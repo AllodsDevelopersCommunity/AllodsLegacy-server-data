@@ -2,6 +2,9 @@
 
 Change note of Allods Legacy server
 
+#### 07-10-2018: LFG period update
++ LFG start every 5 minutes
+
 #### 07-10-2018: Battlegrounds start update
 + BG_01 (Witch Hollow)
   + BG_01 can welcome 24 players per team instead of 12
@@ -24,7 +27,7 @@ Change note of Allods Legacy server
   + MM_Pvp_Arena_Turkish can start with 0.33 immediately start factor
   + Players can join MM_Pvp_Arena_Turkish 60 minutes after start instead of 5 minutes
   + Prepare time reduced by 5 minutes
-  
+
 #### 07-10-2018: Scheduled lucky moment
 + Change lucky time to appear every Friday at 8:00 pm
 
