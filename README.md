@@ -2,6 +2,9 @@
 
 Change note of Allods Legacy server
 
+#### 07-10-2018: First adventure unlock
++ Unlocks first adventure unlock for every player with lvl 4+
+
 #### 07-10-2018: LFG period update
 + LFG start every 5 minutes
 
