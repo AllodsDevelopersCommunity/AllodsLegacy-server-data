@@ -2,6 +2,9 @@
 
 Change note of Allods Legacy server
 
+#### 07-10-2018: Allow mounts indoor
++ Allow mounts indoor and in Tka Rika zone
+
 #### 07-10-2018: First adventure unlock
 + Unlocks first adventure unlock for every player with lvl 4+
 
