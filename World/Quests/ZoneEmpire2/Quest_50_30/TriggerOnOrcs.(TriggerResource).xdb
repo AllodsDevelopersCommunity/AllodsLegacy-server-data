@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>39826</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.12</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateEquipped">
+												<dressType>MANTLE</dressType>
+											</predicate>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="InDuel.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="InDuel.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="BuffLifeGuard.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

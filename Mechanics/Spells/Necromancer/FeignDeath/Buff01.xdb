@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>82898359</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MirrorImage.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/FeignDeath.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventSpellStarted</Item>
+				<Item>gameMechanics.elements.events.EventExploitStarted</Item>
+				<Item>gameMechanics.elements.events.EventStruckWithAutoAttack</Item>
+				<Item>gameMechanics.elements.events.EventSpellLaunchedPoint</Item>
+				<Item>gameMechanics.elements.events.EventSpellLaunchedTarget</Item>
+				<Item>gameMechanics.elements.events.EventMountStarted</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveTrigger">
+			<yawDelta>0.1</yawDelta>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<distDelta>0.5</distDelta>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateEnemyHasAbility">
+					<ability href="/Mechanics/Abilities/Creatures/EliteVision/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectUnworthyOfAttention" />
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.EffectDoesNotAggro" />
+			</effectsElse>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+					<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<duration>120000</duration>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAllEnemies">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactDecrementThreat">
+							<value>10</value>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</scaler>
+							<minValue>1</minValue>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+	</effects>
+	<duration>180000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>
+ 

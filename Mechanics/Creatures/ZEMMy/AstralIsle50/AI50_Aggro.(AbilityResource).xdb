@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739817130</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>All</affectGroup>
+			<radius>20</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</filter>
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Creatures/MechSiege/Instances/AstralIsle50/AI50_ImmuneTraps.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<onBehalfOfHolder>true</onBehalfOfHolder>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+									<value>100</value>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

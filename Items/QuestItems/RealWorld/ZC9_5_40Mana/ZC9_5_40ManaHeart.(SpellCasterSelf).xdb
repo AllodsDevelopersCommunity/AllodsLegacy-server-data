@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>345830417</resourceId>
+	</Header>
+	<Name href="ZC9_5_40ManaHeart.(SpellCasterSelf)_Name.txt" />
+	<Description href="ZC9_5_40ManaHeart.(SpellCasterSelf).Description.txt" />
+	<nameTemplate href="ZC9_5_40ManaHeart.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="ZC9_5_40ManaHeart.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>10</totalCount>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/RealWorld/ZC9_5_40/ZC9_5_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/RealWorld/ZC9_5_40/ZC9_5_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="ZC9_5_40ManaHeart.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item href="ZC9_5_40ManaBomb.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</item>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/RealWorld/ZC9_5_40/Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="ZC9_5_40ManaHeart.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<count>10</count>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

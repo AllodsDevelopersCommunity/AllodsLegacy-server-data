@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>1506344967</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextDescription href="C2_02_Warning_Paper_Description.txt" />
+	</contextActionInfo>
+	<Name href="C2_02_Warning_Paper_SpellName.txt" />
+	<Description href="C2_02_Warning_Paper_SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>3000</prepareDuration>
+	<isAggro>false</isAggro>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions />
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/Kania_male/Instances/ZoneContested2/KaniaDeserter27_28.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested2/C2_E2_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="C2_02_Warning_Paper.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

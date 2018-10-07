@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>226543627</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<visObj />
+			<image>/Interface/Ingame/ContextAstralMap/AstralHubMark/ShipBroken.(UISingleTexture).xdb#xpointer(/UITextureElement)</image>
+			<description>AstralWreckDesc.txt</description>
+			<scale>1</scale>
+			<radius />
+			<name>AstralWreck.txt</name>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj hrefvar="visObj" />
+			<scale var="scale" />
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name hrefvar="name" />
+			<description hrefvar="description" />
+			<image hrefvar="image" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<impactsSpawn>
+		<Item type="gameMechanics.world.ship.elements.ImpactFillBunchLootDroppers">
+			<lootDropperResources>
+				<Item type="gameMechanics.world.astralWreck.LootTableDropper">
+					<lootTable href="LootTables/WreckLoot_TL3.(LootTableResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.LootTableResource)" />
+				</Item>
+				<Item type="gameMechanics.world.astralWreck.TrashLootDropper">
+					<plankCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+						<calcerLong type="gameMechanics.elements.calcers.LongData">
+							<value>16</value>
+						</calcerLong>
+						<calcerFloat type="gameMechanics.elements.calcers.CalcerExp">
+							<base>1.33</base>
+							<powCalc type="gameMechanics.elements.calcers.CalcerSum">
+								<summands>
+									<Item type="gameMechanics.elements.calcers.CalcerSectorAstralLevel" />
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>-1</value>
+									</Item>
+								</summands>
+							</powCalc>
+						</calcerFloat>
+						<rounding>Ceil</rounding>
+					</plankCalcer>
+				</Item>
+			</lootDropperResources>
+		</Item>
+	</impactsSpawn>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius var="radius" />
+			<impactsIn>
+				<Item type="gameMechanics.world.ship.elements.ImpactGiveLoot" />
+			</impactsIn>
+			<impactsOnSelfIn>
+				<Item type="gameMechanics.world.bigAstral.ImpactStopObjectSpawn" />
+				<Item type="gameMechanics.world.astralObjectsInteractions.ImpactSwitchAstralObject">
+					<enabled>false</enabled>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>0</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOnSelfIn>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

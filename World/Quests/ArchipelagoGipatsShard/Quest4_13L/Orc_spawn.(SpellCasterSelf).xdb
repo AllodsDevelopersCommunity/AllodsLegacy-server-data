@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>133298212</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="Orc_spawn.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextGolemDrill.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<Name href="Orc_spawn.txt" />
+	<Description href="SpellDesc.txt" />
+	<nameTemplate href="Orc_spawn.txt" />
+	<descTemplate href="SpellDesc.txt" />
+	<prepareDuration>1500</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>180000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/BattleGround.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos" />
+					<offset>10</offset>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>180000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Items/QuestItems/ArchipelagoGipatsShard/Battle_horn/AddResolv.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.world.pet.PredicateHasPet" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ArchipelagoGipatsShard/Battle_horn/AddResolv.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Characters/Orc_male/Instances/ArchipelagoGipatsShard/OrcMale_Battle.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="Quest4_13L.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/Items/QuestItems/ArchipelagoGipatsShard/Battle_horn/Battle_horn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

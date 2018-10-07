@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>338120705</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>10</value>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/IllusionWorld/Zones/ZC8/ZC8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>30</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/HumMobs/ZC8/Tekuani/TekuaniMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Characters/HumMobs/ZC8/Tekuani/TekuaniWarrior.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+					<targetsLimit>2</targetsLimit>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>6000</value>
+			</tick>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

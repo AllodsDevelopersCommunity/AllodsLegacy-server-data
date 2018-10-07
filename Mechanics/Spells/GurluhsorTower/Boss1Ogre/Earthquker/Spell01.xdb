@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>123396099</resourceId>
+	</Header>
+	<groups />
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageStoneskin.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_1Boss/Earthquaker.xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<speed>50</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>30000</duration>
+			<group href="" />
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>PHYSICAL</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>12.24</minDamage>
+				<maxDamage>15.3</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Spells/Creatures/Elementals/EarthElemental/Earthquake/Shake.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Spells/ClientData/StoneHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsOnAttach>
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler">
+					<stat>IS_Intellect</stat>
+				</scaler>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+	</mechanics>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>70</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

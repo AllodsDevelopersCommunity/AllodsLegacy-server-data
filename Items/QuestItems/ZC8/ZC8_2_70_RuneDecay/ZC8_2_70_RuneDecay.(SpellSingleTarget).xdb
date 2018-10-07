@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>314151998</resourceId>
+	</Header>
+	<Name href="ZC8_2_70_RuneDecay.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/Fear.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC8_2_70_RuneDecay.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZC8/ZC8_2_70/ZC8_2_70.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/TreantGreen/Instances/ZC8/ZC8_TreantGreen.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZC8/ZC8_2_70/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+				<newMobWorld href="/Creatures/TreantGhost/Instances/ZC8/ZC8_TreantGhost.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ForceAggro" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

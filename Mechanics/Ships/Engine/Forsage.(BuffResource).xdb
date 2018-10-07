@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>290892813</resourceId>
+	</Header>
+	<Name href="Forsage.txt" />
+	<Description href="Forsage.Description.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/EngineBigTypeIcon.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="" />
+	<nameTemplate href="Forsage.txt" />
+	<descTemplate href="Forsage.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectForsage" />
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="Forsage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectShipDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="Forsage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.world.device.ImpactSendCriticalMalfunction">
+					<type>CMT_ForsageInterrupted</type>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectCriticalMalfunctionTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="Forsage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<malfunctionType>CMT_ReactorShutdown</malfunctionType>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectNoCrewTrigger">
+			<effectsEmpty>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="Forsage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOn>
+				</Item>
+			</effectsEmpty>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectAllDevices">
+			<effects>
+				<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+					<reason>TR_InterHubAcceleration</reason>
+				</Item>
+			</effects>
+			<filter type="gameMechanics.world.device.filters.HasRemotePartFilter" />
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectAllDevices">
+			<effects>
+				<Item type="gameMechanics.world.ship.elements.DeviceOnlineTrigger">
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="Forsage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOff>
+				</Item>
+			</effects>
+			<filter type="gameMechanics.world.device.filters.UsableDeviceTypeFilter">
+				<allowedTypes>
+					<Item href="/Mechanics/Ships/UsableDeviceTypes/EngineHorizontal.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+				</allowedTypes>
+			</filter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+						<slot>Slot_InternalEngine_01</slot>
+					</addresseeFinder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+							<data href="ForsageOn.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+						<slot>Slot_InternalEngine_01</slot>
+					</addresseeFinder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+							<data href="ForsageOff.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<ranks />
+</gameMechanics.constructor.schemes.buff.BuffResource>

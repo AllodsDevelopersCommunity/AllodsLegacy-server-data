@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>292883468</resourceId>
+	</Header>
+	<name href="ZC6_L_1_6_cue3.(Cue).Name.txt" />
+	<text href="ZC6_L_1_6_cue3.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="ZC6_L_1_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+			<quest href="ZC6_L_1_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterResource href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			<value>3</value>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateBinaryWrapper">
+			<master type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<slave type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+			<binary type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<buff href="ZC6_L_1_6_AboveSuspicion.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</binary>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="ZC6_L_1_6_SeeTraitor.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+							<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.AttachAbility">
+							<ability href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_L_1_6_Aviak.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>260771857</resourceId>
+	</Header>
+	<Name href="InvisYellow2Orange.(BuffResource).Name.txt" />
+	<Description href="InvisYellow2Orange.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageInvisibility.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Items/Maze_KHD_Invisibility.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Items/InteractiveObjects/Maze_KHD/Invis/Invis.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<spellStages>
+				<Item>Launch</Item>
+			</spellStages>
+			<impactsAnySpell>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="InvisYellow2Orange.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsAnySpell>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventExploitStarted</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="InvisYellow2Orange.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="InvisYellow2Orange.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectUnworthyOfAttention" />
+	</effects>
+	<duration>45000</duration>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+</gameMechanics.constructor.schemes.buff.BuffResource>

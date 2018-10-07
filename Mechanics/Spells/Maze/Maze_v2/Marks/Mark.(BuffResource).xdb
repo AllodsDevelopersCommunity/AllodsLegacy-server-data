@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>261520390</resourceId>
+	</Header>
+	<Name href="Mark.(BuffResource).Name.txt" />
+	<Description href="Mark.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/BlackMark.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_KHD.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Mark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="Mark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>15</min>
+								<max>15</max>
+							</range>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Items/QuestItems/ZoneContested1/LeagueHolyJustice/FX.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+							<impact type="gameMechanics.elements.impacts.DirectDamage">
+								<damage>900000</damage>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							</impact>
+							<count type="gameMechanics.elements.calcers.FloatData">
+								<value>18</value>
+							</count>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>1800000</duration>
+	<stackLimit>15</stackLimit>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Maze.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

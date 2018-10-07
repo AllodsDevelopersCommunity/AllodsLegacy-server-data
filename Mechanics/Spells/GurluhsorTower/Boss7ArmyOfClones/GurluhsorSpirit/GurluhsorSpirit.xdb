@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>161309698</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClarity.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="" />
+	<speed>50</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>70</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+					<buffs>
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/CanExplode.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/CanExplode0.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</buffs>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateFalse" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_GurluhsorClone1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_GurluhsorClone.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

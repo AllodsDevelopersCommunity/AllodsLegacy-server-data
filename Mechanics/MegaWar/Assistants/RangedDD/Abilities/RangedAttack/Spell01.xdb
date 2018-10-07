@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>341615641</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RangedAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/MegaWar/RangedDD/RangedAttack_Spell01.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics>
+		<cooldown>
+			<stage>Start</stage>
+			<duration>1500</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateRemote">
+						<range>10</range>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<minDamage>13.33</minDamage>
+						<maxDamage>13.33</maxDamage>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="DontStrafe.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Strafe.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="DontStrafe.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<minDamage>13.33</minDamage>
+						<maxDamage>13.33</maxDamage>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>59426</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<description href="Ability_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>2.5</value>
+			<scaler>StrSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinHealingAura.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>30</radius>
+					<affectGroup>Group</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsDead">
+								</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactHeal">
+									<heal>2.5</heal>
+									<threatMultiplier>0</threatMultiplier>
+									<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+									<statsConvertor>
+										<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Dexterity</stat>
+										</intuition>
+										<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Might</stat>
+										</spirit>
+									</statsConvertor>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+		</Item>
+	</effects>
+	<level>1</level>
+	<ranks />
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>323621888</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/IllusionWorld/ZC6_Fire/ZC6_Fire.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>ZC6_ElementalCave</scriptID>
+							<map href="/Maps/IllusionWorld_Inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<finishImpacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/IllusionWorld/ZC6_MiniinstBoss/ZC6_MiniinstBoss.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Finished</status>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+											<newMobWorld href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_AviakWiseAgent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>1000</delay>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="/World/Quests/IllusionWorld/ZC6_MiniinstBoss/BossFreeze_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.AttachAbility">
+													<ability href="/Mechanics/Abilities/CanDoNothing/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+													<ability href="/Mechanics/Creatures/Aviak/Instances/IllusionWorld/Agent_BattleAction.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>1000</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+															<faction href="/World/Factions/NeutralFriendly.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+											<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+														<mobs>
+															<Item href="/Characters/Kania_female/Instances/IllusionWorld/ZC6_L_StrangeGirl_Miniinst.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														</mobs>
+													</Item>
+												</predicates>
+											</filter>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>ZC6_AviakWise</scriptID>
+										<map href="/Maps/IllusionWorld_Inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+									<impacts>
+										<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+											<visualState>1</visualState>
+										</Item>
+									</impacts>
+									<device>
+										<scriptID>Aviak_Elemental_Cave</scriptID>
+										<map href="/Maps/IllusionWorld_Inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</device>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/RealWorld/ZC9_1_100/ZC9_1_100.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Started</status>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/RealWorld/ZC9_1_100/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/IllusionWorld/ZC6_4_6_post/ZC6_4_6_post.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/IllusionWorld/ZC6_4_6_post/Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</finishImpacts>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Items/InteractiveObjects/IllusionWorld/ZC6_ElementalWall/ZC6_ElementalWall.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsElse>
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

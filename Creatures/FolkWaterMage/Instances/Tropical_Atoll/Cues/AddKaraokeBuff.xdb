@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>258620422</resourceId>
+	</Header>
+	<name href="AddKaraokeBuff_Name.txt" />
+	<text href="AddKaraokeBuff_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/Tropical_Atoll/Quest_06/Quest_06.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Mechanics/Spells/Events/SummerEvent/Karaoke/SongNumber_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>5</min>
+							<max>10</max>
+						</range>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Events/SummerEvent/Karaoke/KaraokeAction00_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+					<rule href="/Mechanics/Rules/SummerEvent/Karaoke/KaraokeRule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/Events/SummerEvent/Karaoke/KaraokeAction00_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

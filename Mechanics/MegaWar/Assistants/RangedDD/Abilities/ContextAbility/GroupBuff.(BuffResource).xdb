@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>342153285</resourceId>
+	</Header>
+	<Name href="GroupBuff.(BuffResource)_Name.txt" />
+	<Description href="GroupBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageInvisibility.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Items/Maze_KHD_Invisibility.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="GroupBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="GroupBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Planes/Invisibility.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<impactsAnySpell>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="GroupBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsAnySpell>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>2000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectMoveTrigger">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="GroupBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<distDelta>0</distDelta>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="GroupBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

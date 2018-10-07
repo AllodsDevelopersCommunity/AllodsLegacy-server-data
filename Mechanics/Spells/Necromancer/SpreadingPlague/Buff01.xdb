@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>107987979</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerSleepingDropsy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/VisScripts/Necromancer/GhostWorld.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.EffectDisablePassiveThreat" />
+		<Item type="gameMechanics.elements.effects.EffectAllowNoVisibleTargets" />
+		<Item type="gameMechanics.elements.effects.EffectForceCombatState" />
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<conditionalEvents>
+				<Item>
+					<obj>gameMechanics.elements.events.EventSpellLaunchedTarget</obj>
+					<predicate type="gameMechanics.elements.predicates.PredicateEventSpellLaunched">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					</predicate>
+				</Item>
+			</conditionalEvents>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Planes/Banish.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0</value>
+					</mulCalcer>
+				</scaler>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisorient">
+			<radius>20</radius>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.5</coeff>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.33</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.RandomScaler">
+								<range>
+									<min>1</min>
+									<max>6</max>
+								</range>
+							</durationScaler>
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>3000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/HoldBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+	</effects>
+	<duration>1</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DRMesmerize.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/StopSing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_CC</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

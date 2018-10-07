@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>266303493</resourceId>
+	</Header>
+	<name href="TrollDeath.(AbilityResource).name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>10</radius>
+							<affectGroup>Enemies</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+									<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+									<minDamage>25</minDamage>
+									<maxDamage>25</maxDamage>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+									<time>800</time>
+									<distance>10</distance>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterOr">
+								<filters>
+									<Item type="gameMechanics.constructor.basicElements.FilterOr">
+										<filters>
+											<Item type="gameMechanics.world.creature.AvatarFilter" />
+											<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+												<predicates>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</predicates>
+											</Item>
+										</filters>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+									</Item>
+								</filters>
+							</filter>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="Effect.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

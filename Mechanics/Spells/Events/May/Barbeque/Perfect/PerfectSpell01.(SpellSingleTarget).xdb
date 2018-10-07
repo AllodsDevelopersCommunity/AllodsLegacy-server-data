@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>243830785</resourceId>
+	</Header>
+	<Name href="/Mechanics/Spells/Events/May/Tag/Spell_Name.txt" />
+	<Description href="/Mechanics/Spells/Events/May/Tag/Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Food/Shashlyk.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="/Mechanics/Spells/Events/May/Tag/Spell_Name.txt" />
+	<descTemplate href="/Mechanics/Spells/Events/May/Tag/Spell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+				<buff href="/Mechanics/Spells/Events/May/Tag/HeroismBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>10</min>
+					<max>10</max>
+				</range>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+				<group href="/Mechanics/Spells/Groups/MayConsumables.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

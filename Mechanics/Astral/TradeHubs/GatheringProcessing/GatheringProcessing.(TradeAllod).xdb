@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.bigAstral.tradeWars.TradeAllod>
+	<Header>
+		<resourceId>301441028</resourceId>
+	</Header>
+	<baseRawPrice>539000</baseRawPrice>
+	<baseProdPrice>673700</baseProdPrice>
+	<rawOverusePenalty>0.66666</rawOverusePenalty>
+	<prodOverusePenalty>0.15384</prodOverusePenalty>
+	<defaultFaction href="/World/Factions/Traders.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+	<factionData>
+		<Item>
+			<faction href="/World/Factions/Traders.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			<poi>
+				<mapPoi href="GatheringProcessing.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+				<scanerPoi href="GatheringProcessing.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+			</poi>
+			<sectorEffects>
+				<Item type="gameMechanics.world.bigAstral.elements.SectorHubsEffects">
+					<effects>
+						<Item type="gameMechanics.elements.effects.AddMapSpecificEffectsGeneric">
+							<effects>
+								<Item type="gameMechanics.elements.effects.Switch">
+									<impactsOn>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsOn>
+									<impactsOff>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsOff>
+								</Item>
+							</effects>
+							<filter type="gameMechanics.world.ship.ShipFilter" />
+						</Item>
+					</effects>
+				</Item>
+			</sectorEffects>
+			<mapHeadEffects>
+				<Item type="gameMechanics.elements.effects.AddMapSpecificEffectsGeneric">
+					<effects>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.world.bigAstral.tradeWars.PredicateCanCaptureTradeAllod" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/AstralHangarHadagan/TradeAllodsCapture/QuestCountTurretDestroyed.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/AstralHangarLeague/TradeAllodsCapture/QuestCountTurretDestroyed.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsOn>
+						</Item>
+					</effects>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</mapHeadEffects>
+		</Item>
+		<Item>
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			<poi>
+				<mapPoi href="GatheringProcessing_Empire.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+				<scanerPoi href="GatheringProcessing_Empire.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+			</poi>
+			<sectorEffects>
+				<Item type="gameMechanics.world.bigAstral.elements.SectorHubsEffects">
+					<effects>
+						<Item type="gameMechanics.elements.effects.AddMapSpecificEffectsGeneric">
+							<effects>
+								<Item type="gameMechanics.elements.effects.Switch">
+									<impactsOn>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateFaction">
+													<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+													<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+													<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsElse>
+										</Item>
+									</impactsOn>
+									<impactsOff>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsOff>
+								</Item>
+							</effects>
+							<filter type="gameMechanics.world.ship.ShipFilter" />
+						</Item>
+					</effects>
+				</Item>
+			</sectorEffects>
+			<mapHeadEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+							<table href="/Mechanics/Astral/TradeHubs/TurretSpawns/EmpireTurret.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Mechanics/Astral/TradeHubs/CaptureMechanics/EmpireAllod.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="GatheringProcessing_Empire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<spawnResource href="TradeAllodSpawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impactsOn>
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="/Mechanics/Astral/TradeHubs/CaptureMechanics/EmpireAllod.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="GatheringProcessing_Empire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<spawnResource href="TradeAllodSpawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impactsOff>
+				</Item>
+			</mapHeadEffects>
+		</Item>
+		<Item>
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			<poi>
+				<mapPoi href="GatheringProcessing_League.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+				<scanerPoi href="GatheringProcessing_League.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+			</poi>
+			<sectorEffects>
+				<Item type="gameMechanics.world.bigAstral.elements.SectorHubsEffects">
+					<effects>
+						<Item type="gameMechanics.elements.effects.AddMapSpecificEffectsGeneric">
+							<effects>
+								<Item type="gameMechanics.elements.effects.Switch">
+									<impactsOn>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateFaction">
+													<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+													<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+													<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsElse>
+										</Item>
+									</impactsOn>
+									<impactsOff>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/SectorBuffs/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsOff>
+								</Item>
+							</effects>
+							<filter type="gameMechanics.world.ship.ShipFilter" />
+						</Item>
+					</effects>
+				</Item>
+			</sectorEffects>
+			<mapHeadEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+							<table href="/Mechanics/Astral/TradeHubs/TurretSpawns/LeagueTurret.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Mechanics/Astral/TradeHubs/CaptureMechanics/LeagueAllod.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="GatheringProcessing_League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<spawnResource href="TradeAllodSpawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impactsOn>
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="/Mechanics/Astral/TradeHubs/CaptureMechanics/LeagueAllod.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="GatheringProcessing_League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<spawnResource href="TradeAllodSpawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impactsOff>
+				</Item>
+			</mapHeadEffects>
+		</Item>
+	</factionData>
+</gameMechanics.world.bigAstral.tradeWars.TradeAllod>

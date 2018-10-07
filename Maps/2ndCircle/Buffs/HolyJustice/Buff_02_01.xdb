@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>241060865</resourceId>
+	</Header>
+	<Name href="Buff_02__Name.txt" />
+	<Description href="Buff_02__Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestZeal.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_02__Name.txt.template" />
+	<descTemplate href="Buff_02__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+									<minLevel type="gameMechanics.formulas.IntConstantValue">
+										<value>30</value>
+									</minLevel>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsMob" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+										<radius>85</radius>
+									</distributor>
+									<data href="/Items/QuestItems/ZoneContested1/LeagueHolyJustice/FX.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>500</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+											<impact type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>900000</damage>
+												<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+											</impact>
+											<count type="gameMechanics.elements.calcers.FloatData">
+												<value>19</value>
+											</count>
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Items/QuestItems/ZoneContested1/LeagueHolyJustice/FX.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>500</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+													<impact type="gameMechanics.elements.impacts.DirectDamage">
+														<damage>900000</damage>
+														<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+													</impact>
+													<count type="gameMechanics.elements.calcers.FloatData">
+														<value>19</value>
+													</count>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsToKiller>
+			<skipSelfKill>true</skipSelfKill>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLevelUpTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+							<minLevel type="gameMechanics.formulas.IntConstantValue">
+								<value>30</value>
+							</minLevel>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

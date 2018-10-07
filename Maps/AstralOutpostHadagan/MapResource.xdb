@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>285459462</resourceId>
+	</Header>
+	<name href="AstralOutpostHadagan.txt" />
+	<exit type="mapLoader.pointer.MapPointerPos">
+		<pointer>
+			<map href="/Maps/AstralHangarHadagan_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			<scriptID>Academy</scriptID>
+		</pointer>
+	</exit>
+	<mapTemplate href="/System/MapTemplates/AstralGenericMap.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects>
+		<Item href="GlobalObjects/Tours/TourOUT.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/TourIN.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+	</globalObjects>
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffectsGeneric">
+				<filter type="gameMechanics.world.ship.ShipFilter" />
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+								<delay>0</delay>
+								<impacts>
+									<Item type="itemService.elements.astral.ImpactRemoveChest">
+										<chestCount type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+											<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+										</chestCount>
+										<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+										<impactsOnAvatarPerChest>
+											<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+												<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+														<Item type="gameMechanics.elements.predicates.BinaryPredicateSwitchActors">
+															<predicate type="gameMechanics.world.ship.elements.PredicateShipOwner" />
+														</Item>
+													</predicates>
+												</predicate>
+												<impactsIf>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+														<buff href="/Mechanics/Rules/Astral/Caravans/RewardBuffs/SupplyFullReward.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsIf>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+												<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+														<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+															<predicate type="gameMechanics.elements.predicates.BinaryPredicateSwitchActors">
+																<predicate type="gameMechanics.world.ship.elements.PredicateShipOwner" />
+															</predicate>
+														</Item>
+													</predicates>
+												</predicate>
+												<impactsIf>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+														<buff href="/Mechanics/Rules/Astral/Caravans/RewardBuffs/SupplyPartReward.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsIf>
+											</Item>
+										</impactsOnAvatarPerChest>
+									</Item>
+									<Item type="itemService.elements.astral.ImpactRemoveChest">
+										<chestCount type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+											<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChestEvent.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+										</chestCount>
+										<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChestEvent.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+										<impactsOnAvatarPerChest>
+											<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+												<predicate type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+												<impactsIf>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+														<buff href="/Mechanics/Rules/Astral/Caravans/RewardBuffs/SupplyFullReward.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsIf>
+											</Item>
+										</impactsOnAvatarPerChest>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsOn>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.bigAstral.EntranceTourPart">
+				<tour href="GlobalObjects/Tours/TourIN.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			</Item>
+			<Item type="gameMechanics.world.bigAstral.ExitTourPart">
+				<tour href="GlobalObjects/Tours/TourOUT.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			</Item>
+		</parts>
+	</cellParts>
+</mapLoader.MapResource>

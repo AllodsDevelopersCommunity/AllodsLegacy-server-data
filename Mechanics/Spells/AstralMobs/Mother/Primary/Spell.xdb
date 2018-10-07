@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>121053392</resourceId>
+		<Variables>
+			<cooldown>5000</cooldown>
+		</Variables>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Mother/Primary.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>250</value>
+	</range>
+	<prepareDuration>4000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+							<damage>875</damage>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+							<value type="gameMechanics.elements.calcers.FloatData">
+								<value>1.33</value>
+							</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+					</calcers>
+				</damage>
+				<shieldDamageMod>1</shieldDamageMod>
+				<deviceDamageMod>0.33</deviceDamageMod>
+				<deviceCount>2</deviceCount>
+				<hullDamageMod>1</hullDamageMod>
+				<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

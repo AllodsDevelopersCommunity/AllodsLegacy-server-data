@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<PreCastAnimation>/Spells/VisScripts/Prototypes2/PreCastAnimationDirect.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastAnimation>
+			<FixPointTarget>true</FixPointTarget>
+			<FxOnTarget>/Spells/FX/Spells/HitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTarget>
+			<LocatorNameOnCaster />
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<PreCastFX>/Spells/VisScripts/Prototypes2/PreCastFX.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastFX>
+			<DelayCasterFX>0</DelayCasterFX>
+			<HitDelay>0</HitDelay>
+			<FXPocket />
+			<FixPointCaster>false</FixPointCaster>
+			<FxOnHands>/Spells/FX/Spells/Quests/TrollShocker.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<LocatorNameOnTarget />
+			<FxOnCaster />
+			<HitPostFxOnTarget>/Spells/VisScripts/HitPostFxOnTarget/HitLightningShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</HitPostFxOnTarget>
+			<Animation>attack1HSpear</Animation>
+			<LocatorOnCaster>Slot_Hand_R</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/Direct.txt" />
+	<actionBarStart type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastAnimation" />
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureChangeVisItemsAction">
+				<items>
+					<Item>
+						<slot>MAINHAND</slot>
+					</Item>
+					<Item>
+						<slot>OFFHAND</slot>
+					</Item>
+				</items>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visActionID />
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<locator>Slot_Hand_R</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<effectFx hrefvar="FxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastFX" />
+			</Item>
+		</elements>
+	</wholeCasting>
+	<precastType>PRECAST_DEFAULT</precastType>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visActionID />
+						<visualEffects>
+							<Item>
+								<delay var="DelayCasterFX" />
+								<locator var="LocatorOnCaster" />
+								<locatorName var="LocatorNameOnCaster" />
+								<effectFx hrefvar="FxOnCaster" />
+								<fixPoint var="FixPointCaster" />
+								<offendTime type="EffectOffendConstDelay">
+									<delay var="HitDelay" />
+								</offendTime>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<charged type="CreatureChargedSpellAction">
+		<visActionID />
+		<effectFx hrefvar="FXPocket" />
+		<fadeInTime>0</fadeInTime>
+		<fadeOutTime>0</fadeOutTime>
+	</charged>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visActionID />
+					<visualEffects>
+						<Item>
+							<locator var="LocatorOnTarget" />
+							<locatorName var="LocatorNameOnTarget" />
+							<effectFx hrefvar="FxOnTarget" />
+							<fixPoint var="FixPointTarget" />
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource hrefvar="HitPostFxOnTarget" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

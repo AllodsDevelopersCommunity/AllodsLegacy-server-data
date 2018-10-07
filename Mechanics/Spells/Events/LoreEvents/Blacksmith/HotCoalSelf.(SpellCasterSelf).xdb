@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>739814271</resourceId>
+	</Header>
+	<Name href="HotCoalSelf.(SpellCasterSelf).Name.txt" />
+	<Description href="HotCoalSelf.(SpellCasterSelf).Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/HotEmber.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="BSLoreCoal.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics>
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="HotCoalSelf.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="LoreBSElemental.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.5</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="HotCoalSelf.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<impactsLose>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="LoreBSElemental.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsLose>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

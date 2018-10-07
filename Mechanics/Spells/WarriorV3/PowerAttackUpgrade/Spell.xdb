@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739821589</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/AutoAttackShared.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Warrior/WarriorPowerAttackUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/PowerAttack.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>2000</duration>
+			<group href="/Mechanics/Spells/Groups/AutoAttackShared.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<scaler type="gameMechanics.elements.scalers.WeaponSpeedBSVScaler">
+				<source>Mainhand</source>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>18</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAddCombatAdvantage">
+				<value>15</value>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/WarriorStrike.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsOnHitCaster>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+						<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+							<ability href="/Mechanics/Spells/WarriorV3/Abilities/StartersDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<mul>0.05</mul>
+						</Item>
+					</scalers>
+				</scaler>
+				<avgDamage var="avgDamage" />
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

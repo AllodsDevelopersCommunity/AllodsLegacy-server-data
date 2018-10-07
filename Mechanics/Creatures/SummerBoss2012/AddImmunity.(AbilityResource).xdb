@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>330172420</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.EffectAllowNoVisibleTargets" />
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>200</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterAnd">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakHasteBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>300000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

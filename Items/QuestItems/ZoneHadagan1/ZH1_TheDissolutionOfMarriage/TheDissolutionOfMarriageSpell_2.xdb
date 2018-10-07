@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>207026186</resourceId>
+	</Header>
+	<Name href="TheDissolutionOfMarriageSpell.txt" />
+	<Description href="TheDissolutionOfMarriageSpell.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromAddressee">
+					<buff href="TheDissolutionOfMarriageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<from type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+					<anyRank>false</anyRank>
+				</predicate>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+												<items>
+													<Item href="Divorce_Documents.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												</items>
+												<totalCount>1</totalCount>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateFaction">
+												<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ReturningImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+												<item href="Divorce_Documents_2.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												<count>1</count>
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ReturningImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff href="TheDissolutionOfMarriageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+										<item href="Divorce_Documents.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										<count>1</count>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactDivorce" />
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ZoneLeague1/ZL1_TheDissolutionOfMarriage/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>1</value>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="/Spells/ClientData/MarriageDivorce.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+												<items>
+													<Item href="Divorce_Documents.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												</items>
+												<totalCount>1</totalCount>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateFaction">
+												<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ReturningImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+												<item href="Divorce_Documents_2.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												<count>1</count>
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ReturningImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff href="TheDissolutionOfMarriageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+										<item href="Divorce_Documents.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										<count>1</count>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactDivorce" />
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ZoneHadagan1/ZH1_TheDissolutionOfMarriage/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>1</value>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="/Spells/ClientData/MarriageDivorce.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>143931453</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="" />
+	<visualScripts href="/Spells/VisScripts/Events/SpringEvent/Congratulation.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCharacterSex">
+				<sex href="/Mechanics/Sex/Female.xdb#xpointer(/gameMechanics.world.avatar.CharacterSex)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			<Item type="gameMechanics.elements.predicates.PredicateCharacterSex">
+				<sex href="/Mechanics/Sex/Male.xdb#xpointer(/gameMechanics.world.avatar.CharacterSex)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague1/SpringEvent_W_03/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneHadagan1/SpringEvent_W_03E/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

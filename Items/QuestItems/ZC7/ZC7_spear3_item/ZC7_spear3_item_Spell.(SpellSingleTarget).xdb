@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>314523676</resourceId>
+	</Header>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZC7/ZC7_spear2/ZC7_spear2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/ZC7/ZC7_spear2/ZC7_spear2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/ZC7/ZC7_spear2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Snake/Cobra/Instances/ZC7/ZC7_CobraMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZC7/ZC7_spear2/ZC7_spear2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="/World/Quests/ZC7/ZC7_spear2/ZC7_spear2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="/World/Quests/ZC7/ZC7_spear2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>1</value>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ZC7/ZC7_spear2E/ZC7_E_SpiritResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZC7/ZC7_spear2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+						<data href="/World/Quests/ZC7/ZC7_spear2E/KobraNotKilled.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>267930656</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="SpellName.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/SkeletonMage/AcidBolt.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<needLos>false</needLos>
+	<element>POISON</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>4000</duration>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBaseMana">
+				<baseMana>0.01</baseMana>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>DISEASE</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>30</minDamage>
+				<maxDamage>30</maxDamage>
+				<impactOnHitTarget type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.5</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

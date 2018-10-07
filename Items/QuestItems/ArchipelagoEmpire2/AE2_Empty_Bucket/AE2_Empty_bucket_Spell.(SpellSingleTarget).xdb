@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24576</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextDescription href="AE2_Empty_Bucket_Spell_cDesc.txt" />
+	</contextActionInfo>
+	<Name href="AE2_Empty_Bucket_Spell_Name.txt" />
+	<Description href="AE2_Empty_Bucket_Spell_cDesc.txt" />
+	<nameTemplate href="AE2_Empty_Bucket_Spell_Name.txt" />
+	<descTemplate href="AE2_Empty_Bucket_Spell_cDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>3000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+				<item href="/Items/QuestItems/ArchipelagoEmpire2/AE2_Full_Bucket/AE2_Full_Bucket.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Rhino/Instances/ArchipelagoEmpire2/AE2_MilkyRhino17_18.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/Neutral.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item href="/Items/QuestItems/ArchipelagoEmpire2/AE2_Full_Bucket/AE2_Full_Bucket.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</item>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="AE2_Empty_Bucket.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

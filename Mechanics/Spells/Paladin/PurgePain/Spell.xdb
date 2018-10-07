@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>87452102</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/StunBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MindControlBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/HoldBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinBlessedShield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/PurgePain.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.ScalerIf">
+				<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+					<ability href="/Mechanics/Spells/Paladin/PassiveTalents/RestlessDefender/Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					<anyRank>false</anyRank>
+				</condition>
+				<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+					<multiplier>0.7</multiplier>
+				</scalerIf>
+				<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+					<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+						<ability href="/Mechanics/Spells/Paladin/PassiveTalents/RestlessDefender/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<anyRank>false</anyRank>
+					</condition>
+					<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>0.8</multiplier>
+					</scalerIf>
+					<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+						<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<ability href="/Mechanics/Spells/Paladin/PassiveTalents/RestlessDefender/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<anyRank>false</anyRank>
+						</condition>
+						<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>0.9</multiplier>
+						</scalerIf>
+					</scalerElse>
+				</scalerElse>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBarrierIsActive">
+				<ability href="/Mechanics/Spells/Paladin/Barrier/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>15</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.PurgePain" />
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

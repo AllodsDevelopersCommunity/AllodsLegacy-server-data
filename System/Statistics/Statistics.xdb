@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<statisticsModule.StatisticsResource>
+    <Header>
+        <resourceId>201574402</resourceId>
+    </Header>
+    <aliases>
+        <Item>
+            <shortName>fps</shortName>
+            <fullName>System.Performance.FPS</fullName>
+        </Item>
+        <Item>
+            <shortName>loadCollector</shortName>
+            <fullName>System.Performance.LoadCollector</fullName>
+        </Item>
+        <Item>
+            <shortName>msg</shortName>
+            <fullName>System.Performance.MsgPublisher</fullName>
+        </Item>
+        <Item>
+            <shortName>cmd</shortName>
+            <fullName>System.Performance.ClientCmds</fullName>
+        </Item>
+        <Item>
+            <shortName>memory</shortName>
+            <fullName>System.Performance.Memory</fullName>
+        </Item>
+        <Item>
+            <shortName>gc</shortName>
+            <fullName>System.Performance.GarbageCollector</fullName>
+        </Item>
+        <Item>
+            <shortName>lag</shortName>
+            <fullName>System.Performance.LagDetector</fullName>
+        </Item>
+        <Item>
+            <shortName>uichunks</shortName>
+            <fullName>System.Performance.UIChunks</fullName>
+        </Item>
+        <Item>
+            <shortName>dboperations</shortName>
+            <fullName>System.Performance.DatabaseOperations</fullName>
+        </Item>
+        <Item>
+            <shortName>auctionhandlers</shortName>
+            <fullName>System.Performance.AuctionHandlers</fullName>
+        </Item>
+        <Item>
+            <shortName>auctionsearch</shortName>
+            <fullName>System.Performance.AuctionSearch</fullName>
+        </Item>
+    </aliases>
+    <root>
+        <name>Root</name>
+        <childs>
+            <Item>
+                <!-- дебажные probes, в release сервер лучше не включать -->
+                <name>Debug</name>
+                <childs>
+                    <Item>
+                        <name>SetPriority</name>
+                        <noContextProbe type="clientReplica.legatReplica.SetPriorityStatisticsProbeResource"/>
+                    </Item>
+                    <Item>
+                        <name>ReplicaRequest</name>
+                        <noContextProbe type="clientCmds.probes.ReplicateRequestsProbeResource"/>
+                    </Item>
+                </childs>
+            </Item>
+            <Item>
+                <name>System</name>
+                <childs>
+                    <Item>
+                        <name>Alarms</name>
+                        <childs>
+                            <Item>
+                                <name>RemoteServerOut</name>
+                                <noContextProbe type="msgSystem.impl.msgPublisher.serversConnectionsMap.remote.RemoteServerOutPipeAlarmResource">
+                                    <coolDown>10000</coolDown>
+                                    <alarmLoadValue>0.85</alarmLoadValue>
+                                </noContextProbe>
+                            </Item>
+                            <Item>
+                                <name>MsgProcessor</name>
+                                <noContextProbe type="msgSystem.impl.msgPublisher.serversConnectionsMap.msgProcessor.MsgProcessorAlarmResource">
+                                    <coolDown>10000</coolDown>
+                                    <alarmLoadValue>0.9</alarmLoadValue>
+                                </noContextProbe>
+                            </Item>
+                            <Item>
+                                <name>Serialization</name>
+                                <noContextProbe type="statisticsProbes.SerializationAlarmProbeResource">
+                                    <maxSize>500</maxSize>
+                                </noContextProbe>
+                            </Item>
+                        </childs>
+                    </Item>
+                    <Item>
+                        <name>Performance</name>
+                        <childs>
+                            <Item>
+                                <name>FPS</name>
+                                <probe type="timeService.probes.ProbeFPS"/>
+                            </Item>
+                            <Item>
+                                <name>LoadCollector</name>
+                                <probe type="gameMechanics.map.load.MapLoadCollector"/>
+                            </Item>
+                            <Item>
+                                <name>LagDetector</name>
+                                <probe type="statisticsProbes.LagDetector">
+                                    <treshold>300</treshold>
+                                    <comfortTime>60</comfortTime>
+                                    <sleep>50</sleep>
+                                    <ignoredThreads>
+                                        <Item>Signal Dispatcher</Item>
+                                        <Item>Monitor Ctrl-Break</Item>
+                                        <Item>ListenThread</Item>
+                                        <Item>LagDetector</Item>
+                                    </ignoredThreads>
+                                </probe>
+                            </Item>
+                            <Item>
+                                <name>MsgPublisher</name>
+                                <probe type="msgSystem.impl.msgPublisher.ProbeMsgPublisher">
+                                    <size>20</size>
+                                    <limit>1000</limit>
+                                </probe>
+                            </Item>
+                            <Item>
+                                <name>ClientCmds</name>
+                                <probe type="statisticsProbes.ProbeClientCmdsResource"/>
+                            </Item>
+                            <Item>
+                                <name>Memory</name>
+                                <probe type="statisticsProbes.ProbeMemory"/>
+                            </Item>
+                            <Item>
+                                <name>GarbageCollector</name>
+                                <probe type="statisticsProbes.ProbeGC"/>
+                            </Item>
+                            <Item>
+                                <name>DBTransaction</name>
+                                <probe type="statisticsProbes.ProbeTransational"/>
+                            </Item>
+                            <Item>
+                                <name>FrontEndQueue</name>
+                                <probe type="frontEnd.ProbeFrontEnd"/>
+                            </Item>
+                            <Item>
+                                <name>UIChunks</name>
+                                <probe type="databaseServer.databaseService.probes.UIChunkProbe"/>
+                            </Item>
+                            <Item>
+                                <name>DatabaseOperations</name>
+                                <probe type="databaseServer.databaseService.probes.DatabaseOperationsProbe"/>
+                            </Item>
+                            <Item>
+                                <name>AuctionHandlers</name>
+                                <probe type="itemService.auction.probes.AuctionHandlersProbe"/>
+                            </Item>
+                            <Item>
+                                <name>AuctionSearch</name>
+                                <probe type="itemService.auction.probes.AuctionSearchProbe"/>
+                            </Item>
+                        </childs>
+                    </Item>
+                </childs>
+            </Item>
+        </childs>
+    </root>
+</statisticsModule.StatisticsResource>

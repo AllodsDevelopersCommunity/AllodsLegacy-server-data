@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>125173810</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicTelekineticThrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/TelekineticThrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>45000</duration>
+			<group href="" />
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+				<time>1000</time>
+				<impactsOnLand>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<minDamage>4</minDamage>
+						<maxDamage>8</maxDamage>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsOnLand>
+				<destination type="gameMechanics.map.destination.RelativeTrailPos">
+					<center type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians" />
+					</center>
+				</destination>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>40</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

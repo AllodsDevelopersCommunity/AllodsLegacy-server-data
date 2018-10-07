@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>343919715</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Mobparts/HeartAnimal.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+					<hideText>false</hideText>
+					<level>0.9</level>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactHealBase">
+					<factor>0.05</factor>
+					<threatMultiplier>1</threatMultiplier>
+					<mode>Direct</mode>
+					<considerOutgoingModifiers>false</considerOutgoingModifiers>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>-1</value>
+					</delta>
+					<attachIfNotExist>false</attachIfNotExist>
+					<resetTimer>false</resetTimer>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>1000</value>
+			</tick>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>20</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>240309286</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ArchipelagoContested5/PortalKey/Spell01name.txt" />
+	<Description href="/Items/QuestItems/ArchipelagoContested5/PortalKey/Spell01Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Items/QuestItems/ArchipelagoContested5/PortalKey/Spell01name.txt" />
+	<descTemplate href="/Items/QuestItems/ArchipelagoContested5/PortalKey/Spell01Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_SkeletWarrior40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_SkeletCaster.(MobKind)40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_SkeletWarrior40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested8/AC8_UnlockPorta/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested8/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_SkeletCaster.(MobKind)40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested8/AC8_UnlockPorta/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested8/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

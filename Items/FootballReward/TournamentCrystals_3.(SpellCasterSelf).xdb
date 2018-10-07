@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>366525445</resourceId>
+	</Header>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItemCounter" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+						<operation type="itemService.elements.TradeActiveItemCounterForCrystals">
+							<chances>
+								<Item>
+									<baseCrystals>0</baseCrystals>
+									<weight>0</weight>
+									<additionalCrystals>
+										<min>200</min>
+										<max>200</max>
+									</additionalCrystals>
+								</Item>
+							</chances>
+							<additionalOperations>
+								<Item type="itemService.elements.CooldownActiveItem">
+									<period>1</period>
+								</Item>
+								<Item type="itemService.avatar.itemBag.IncrementItemCounter">
+									<summand>-1</summand>
+									<destroyItemOnCounterZeroed>true</destroyItemOnCounterZeroed>
+								</Item>
+							</additionalOperations>
+						</operation>
+						<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>1767440520</resourceId>
+	</Header>
+	<Name href="StunItemSpell.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/2ndCircle_AC3/ScriptZones/ArchipelagoContested3/Egg.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<coord x="1" y="1" z="1" />
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+				</destination>
+				<object href="/Creatures/Lizardman/Instances/ArchipelagoContested3/LizardmanYang.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="DraconidSummonerSpell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>120000</duration>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+	<iffPolicy>Friends</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

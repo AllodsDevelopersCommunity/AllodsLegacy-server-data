@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>272288770</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="DeathHandler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.world.ship.elements.ImpactReturnShipToSavedPos" />
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.basicElements.ImpactList">
+													<impactsResource href="/Mechanics/Rules/Astral/TreasureHunting/ChestRespawnInSector.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+													<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.world.ship.elements.PredicateHasBoundShip" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleportToBoundShip" />
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnAttach>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffEquals">
+					<buff href="Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="Instability.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="AlreadyVisited.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+									<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="DeathHandler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.world.ship.elements.ImpactReturnShipToSavedPos" />
+												<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.RepeatedImpactsGeneric">
+															<impacts>
+																<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																	<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																		<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																	</selector>
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																			<essences>
+																				<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																					<maxPerHub>3</maxPerHub>
+																					<countDice>
+																						<edges>1</edges>
+																						<rolls>1</rolls>
+																					</countDice>
+																					<resources>
+																						<Item>
+																							<resource href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																						</Item>
+																					</resources>
+																					<pois>
+																						<mapPoi href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+																						<scanerPoi href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																					</pois>
+																				</Item>
+																			</essences>
+																			<activity href="/Mechanics/Rules/Astral/TreasureHunting/TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																		</Item>
+																	</impacts>
+																</Item>
+															</impacts>
+															<count type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+																<calcerLong type="gameMechanics.elements.calcers.LongData">
+																	<value>1</value>
+																</calcerLong>
+																<calcerFloat type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+																	<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<forAllRanks>true</forAllRanks>
+																</calcerFloat>
+															</count>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+															<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.world.ship.elements.PredicateHasBoundShip" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportToBoundShip" />
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+											</impacts>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+							<minLevel type="gameMechanics.formulas.IntConstantValue">
+								<value>50</value>
+							</minLevel>
+						</Item>
+					</predicates>
+					<impactsIf />
+					<impactsElse>
+						<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+									<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="DeathHandler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.world.ship.elements.ImpactReturnShipToSavedPos" />
+												<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.RepeatedImpactsGeneric">
+															<impacts>
+																<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																	<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																		<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																	</selector>
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																			<essences>
+																				<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																					<maxPerHub>3</maxPerHub>
+																					<countDice>
+																						<edges>1</edges>
+																						<rolls>1</rolls>
+																					</countDice>
+																					<resources>
+																						<Item>
+																							<resource href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																						</Item>
+																					</resources>
+																					<pois>
+																						<mapPoi href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+																						<scanerPoi href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																					</pois>
+																				</Item>
+																			</essences>
+																			<activity href="/Mechanics/Rules/Astral/TreasureHunting/TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																		</Item>
+																	</impacts>
+																</Item>
+															</impacts>
+															<count type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+																<calcerLong type="gameMechanics.elements.calcers.LongData">
+																	<value>1</value>
+																</calcerLong>
+																<calcerFloat type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+																	<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<forAllRanks>true</forAllRanks>
+																</calcerFloat>
+															</count>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+															<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.world.ship.elements.PredicateHasBoundShip" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportToBoundShip" />
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+											</impacts>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+							<data href="LowLevel.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+								<resource href="AlreadyVisitedFakeCue.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="AlreadyVisited.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+									<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="DeathHandler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.world.ship.elements.ImpactReturnShipToSavedPos" />
+												<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.RepeatedImpactsGeneric">
+															<impacts>
+																<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																	<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																		<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																	</selector>
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																			<essences>
+																				<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																					<maxPerHub>3</maxPerHub>
+																					<countDice>
+																						<edges>1</edges>
+																						<rolls>1</rolls>
+																					</countDice>
+																					<resources>
+																						<Item>
+																							<resource href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																						</Item>
+																					</resources>
+																					<pois>
+																						<mapPoi href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+																						<scanerPoi href="/Mechanics/Rules/Astral/TreasureHunting/Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																					</pois>
+																				</Item>
+																			</essences>
+																			<activity href="/Mechanics/Rules/Astral/TreasureHunting/TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																		</Item>
+																	</impacts>
+																</Item>
+															</impacts>
+															<count type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+																<calcerLong type="gameMechanics.elements.calcers.LongData">
+																	<value>1</value>
+																</calcerLong>
+																<calcerFloat type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+																	<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<forAllRanks>true</forAllRanks>
+																</calcerFloat>
+															</count>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+															<buff href="/Mechanics/Rules/Astral/TreasureHunting/BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.world.ship.elements.PredicateHasBoundShip" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportToBoundShip" />
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+											</impacts>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+							<data href="AlreadyVisitedByRemort.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

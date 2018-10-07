@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>262133761</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactAddToBonusPool">
+			<track>Experience</track>
+			<valueCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.CalcerLongSum">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.CalcerLongMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.CalcerLevel" />
+								<Item type="gameMechanics.elements.calcers.CalcerLevel" />
+								<Item type="gameMechanics.elements.calcers.LongData">
+									<value>50</value>
+								</Item>
+							</calcers>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+							<calcerLong type="gameMechanics.elements.calcers.CalcerNextLevelExp">
+								<factor>1</factor>
+							</calcerLong>
+							<calcerFloat type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+										<level>9</level>
+										<exponent>0.9</exponent>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+										<level>34</level>
+										<exponent>1.066</exponent>
+									</Item>
+								</calcers>
+							</calcerFloat>
+						</Item>
+					</calcers>
+				</calcerLong>
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value var="value" />
+				</calcerFloat>
+			</valueCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+			<data href="BonusPool_ChatMessage.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

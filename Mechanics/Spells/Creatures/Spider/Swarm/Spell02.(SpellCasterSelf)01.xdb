@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>275854338</resourceId>
+	</Header>
+	<Name href="Spell02.(SpellCasterSelf)01.Name.txt" />
+	<visualScripts href="SpellVisScripts.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>5000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="Buff01.(BuffResource)01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>1</min>
+					<max>9999</max>
+				</range>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterOr">
+								<filters>
+									<Item type="gameMechanics.world.creature.AvatarFilter" />
+									<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+									</Item>
+								</filters>
+							</filter>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>45000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+					<level type="gameMechanics.elements.calcers.CalcerLevel" />
+					<object href="Swarm.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>8</value>
+				</count>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+				<buff href="Buff01.(BuffResource)01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

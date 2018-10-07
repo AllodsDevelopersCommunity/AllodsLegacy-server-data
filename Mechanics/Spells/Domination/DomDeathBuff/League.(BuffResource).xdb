@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>334288896</resourceId>
+	</Header>
+	<Name href="League.(BuffResource)_Name.txt" />
+	<Description href="League.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Special/Reputation/ReputationEnemy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="League.(BuffResource)_Name.txt.template" />
+	<descTemplate href="League.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.DirectDamage">
+					<damage>1</damage>
+					<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+							<multiplier>0.05</multiplier>
+						</mulCalcer>
+					</scaler>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/Domination02/Zones/Domination02/Domination02.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/Domination02/Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/Domination/Zones/Domination/Domination.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/Domination/Zones/Domination/SafeZone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+	</effects>
+	<duration>120000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>334305286</resourceId>
+	</Header>
+	<Name href="YourMoveBuff.(BuffResource)_Name.txt" />
+	<image href="/Interface/Icons/Context/KickTheBall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="YourMoveBuffName.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsSelfIfTarget">
+					<predicate type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+						<mark href="/Maps/2ndCircle_Goblinoball_New/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+					</predicate>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="FootballRunawayMove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+										<mark href="/Maps/2ndCircle_Goblinoball_New/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</Item>
+								</predicates>
+							</filter>
+							<targetsLimit>1</targetsLimit>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsSelfIfTarget">
+					<predicate type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+						<mark href="/Maps/2ndCircle_Goblinoball_New/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+					</predicate>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="FootballRunawayMove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+										<mark href="/Maps/2ndCircle_Goblinoball_New/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</Item>
+								</predicates>
+							</filter>
+							<targetsLimit>1</targetsLimit>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="CannotAttach.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="LoseBall.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+							<mark href="/Maps/2ndCircle_Goblinoball_New/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="HaveBallBuffRed.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="HaveBallBuffBlue.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="HaveBallBuffRed.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="HaveBallBuffBlue.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="CannotAttach.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>All</affectGroup>
+			<radius>2</radius>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="TooCloseToParry.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="TooCloseToParry.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOut>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

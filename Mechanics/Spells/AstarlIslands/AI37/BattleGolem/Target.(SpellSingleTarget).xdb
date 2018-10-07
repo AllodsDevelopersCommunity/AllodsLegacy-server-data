@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>313287683</resourceId>
+	</Header>
+	<Name href="Target.(SpellSingleTarget).Name.txt" />
+	<nameTemplate href="Target.(SpellSingleTarget).NameTemplate.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>7000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint">
+					<yawDelta type="constructor.basicElements.AngleDegrees">
+						<value>1</value>
+					</yawDelta>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/AstarlIslands/Dummy/VisibilityRule.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/Dummy/DummyTest.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

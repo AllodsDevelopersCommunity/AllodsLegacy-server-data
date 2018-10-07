@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>224061450</resourceId>
+	</Header>
+	<name href="Event04_1.txt" />
+	<text href="Event04_1.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Phase04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/Inst_TkaRika/QuestEvent01/QuestEvent01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/Inst_TkaRika/QuestEvent01/QuestEvent01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/Inst_TkaRika/QuestEvent01/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+			<quest href="/World/Quests/Inst_TkaRika/QuestEvent01/QuestEvent01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterResource href="/World/Quests/Inst_TkaRika/QuestEvent01/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			<value>1</value>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Phase04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<allowOverrideCaster>false</allowOverrideCaster>
+			<durationScalerTarget />
+			<durationScaler />
+			<scalerTarget />
+			<stacks />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell01_Cannon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell03_Jump.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell04_AbsoluteShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell05_Shockwave.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell06_Fireball.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell07_Shock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell08_Frostfield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/Zak.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Spells/ClientData/FadeOutScreen.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.ImpactList">
+			<impactsResource href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/Weather/ChangeWeather.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>2000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Event04Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

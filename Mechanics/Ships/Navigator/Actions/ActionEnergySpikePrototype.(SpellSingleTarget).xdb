@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>338888739</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<cooldown>300000</cooldown>
+			<insightCost>50</insightCost>
+		</Variables>
+	</Header>
+	<Name href="ActionEnergySpikeName.txt" />
+	<Description href="ActionEnergySpikeDesc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/VisorAbilitiesDischargeEnergy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10000</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration var="cooldown" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+					<summands>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.world.device.CalcerTechLevelDelta" />
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>0</value>
+								</Item>
+							</calcers>
+						</Item>
+					</summands>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAstralMob" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.FloatData">
+					<value>1</value>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+				<targetScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.elements.calcers.HealthCalcer">
+						<multiplier>0.3</multiplier>
+					</mulCalcer>
+					<additionalMultiplier>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<value>1</value>
+					</additionalMultiplier>
+				</targetScaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="HitAstralMob.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</targetImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceInsight">
+				<amount type="gameMechanics.elements.calcers.FloatData">
+					<value var="insightCost" />
+				</amount>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

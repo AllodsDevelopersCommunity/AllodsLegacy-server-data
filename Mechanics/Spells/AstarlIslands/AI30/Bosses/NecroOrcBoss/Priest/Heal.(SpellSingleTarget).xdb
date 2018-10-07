@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>270827559</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/GreaterHeals.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Heal.txt" />
+	<visualScripts href="/Spells/VisScripts/Priest/CompleteHealUpgrade.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Heal.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>55</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<element>HOLY</element>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.75</level>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Spells/AstarlIslands/AI30/Bosses/NecroOrcBoss/Warrior/StunBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactHeal">
+				<heal>400</heal>
+				<threatMultiplier>0</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>30</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

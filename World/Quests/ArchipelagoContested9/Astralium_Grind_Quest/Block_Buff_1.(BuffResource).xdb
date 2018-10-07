@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>313320462</resourceId>
+	</Header>
+	<Name href="Block_Buff_1.(BuffResource)_Name.txt" />
+	<needVisualize>false</needVisualize>
+	<nameTemplate href="Block_Buff_1.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ArchipelagoContested9/1_2_Generator_Fly_1/1_2_Generator_Fly_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Block_Buff_1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Block_Buff_2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="BlockZone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.RandomImpact">
+									<entries>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Block_Buff_1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+											<chance>0.5</chance>
+										</Item>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Block_Buff_2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+											<chance>0.5</chance>
+										</Item>
+									</entries>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>900000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>2052194351</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextImage href="/Interface/Icons/Context/ContextSpell.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateItemsCountGreater">
+				<item href="/Items/QuestItems/ArchipelagoEmpire1/Gadget1_1/Gadget.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<value>4</value>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncrementItemsCount">
+				<item href="/Items/QuestItems/ArchipelagoEmpire1/Gadget1_1/Gadget.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<summand>-5</summand>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.5</value>
+				</chanceCalcer>
+				<impactsSuccess>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.5</value>
+						</chanceCalcer>
+						<impactsSuccess>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Nii1</scriptID>
+												<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians" />
+										</destination>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsSuccess>
+						<impactsFailure>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>AE1_Sector2</scriptID>
+												<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians" />
+										</destination>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsFailure>
+					</Item>
+				</impactsSuccess>
+				<impactsFailure>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.5</value>
+						</chanceCalcer>
+						<impactsSuccess>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>AE1_Sector3</scriptID>
+												<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians" />
+										</destination>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsSuccess>
+						<impactsFailure>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>AE1_Sector4</scriptID>
+												<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians" />
+										</destination>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsFailure>
+					</Item>
+				</impactsFailure>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

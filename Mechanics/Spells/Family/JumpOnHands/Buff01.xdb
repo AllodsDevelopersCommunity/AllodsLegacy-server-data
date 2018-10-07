@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>229537801</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/WornHands.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectBearer" />
+		<Item type="gameMechanics.elements.effects.EffectDisableDodge" />
+		<Item type="gameMechanics.elements.effects.EffectDisableParry" />
+		<Item type="gameMechanics.elements.effects.EffectDisableBlock" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<distDelta>0</distDelta>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Family/TakeOnHands/HeavyBurden.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Spells/Family/TakeOnHands/HeavyBurden.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onEnter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/Transformation.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>120000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/BearingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

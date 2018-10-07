@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>380088354</resourceId>
+		<Prototype href="DungeonInstanceProto.xdb" />
+		<Variables>
+			<beastFaction>/World/Factions/WildWild.(Faction).xdb</beastFaction>
+		</Variables>
+	</Header>
+	<entrance type="avatarPopulation.service.impl.matchMakingImpl.map.InstancedEventMapEntrance" />
+	<headParts>
+		<parts>
+			<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+				<reattachOnTeleport>false</reattachOnTeleport>
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactSetMapDeathLimit">
+								<range>
+									<min>5</min>
+									<max>15</max>
+								</range>
+							</Item>
+						</impactsOn>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.world.avatar.MapCombatStateResource" />
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.DeathTrigger">
+								<impacts>
+									<Item type="itemService.avatar.stronghold.ImpactCatchSpark" />
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+								<onEnter>
+									<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+								</onEnter>
+								<effects>
+									<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+										</impacts>
+										<tick>3000</tick>
+										<initialDelay>-1</initialDelay>
+									</Item>
+								</effects>
+							</Item>
+						</effectsIf>
+					</Item>
+                                        <Item type="gameMechanics.elements.effects.EffectsIfTarget">
+                                                <predicates>
+                                                        <Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+                                                </predicates>
+                                                <effectsIf>
+                                                        <Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+                                                </effectsIf>
+                                        </Item>
+				</effects>
+			</Item>
+		</parts>
+	</headParts>
+</mapLoader.MapTemplate>

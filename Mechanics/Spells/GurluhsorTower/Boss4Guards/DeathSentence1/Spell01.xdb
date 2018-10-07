@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>150390841</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MobsCooldowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCleave.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_4Boss/DeathSentence.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>50</speed>
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+			<group href="/Mechanics/Spells/Groups/MobsCooldowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss4Guards/MarkOfDeath1/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>3</min>
+					<max>3</max>
+				</range>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+						<impact type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+							<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+							<threatMultiplier>0</threatMultiplier>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</scaler>
+							<minDamage>306</minDamage>
+							<maxDamage>428.4</maxDamage>
+						</impact>
+						<count type="gameMechanics.elements.calcers.FloatData">
+							<value>12</value>
+						</count>
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler">
+					<stat>IS_Intellect</stat>
+				</scaler>
+				<minDamage>306</minDamage>
+				<maxDamage>428.4</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

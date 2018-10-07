@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Prototype href="PreCast_OnCaster.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<FxProjectile />
+			<FxOnTarget />
+			<HitDelay>0</HitDelay>
+			<Ge>0</Ge>
+			<LocatorNameOnTarget />
+			<HitPostFxOnTarget />
+		</Variables>
+	</Header>
+	<Description href="Projectile.txt" />
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<advanced>
+					<autoHasten>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<visActionID />
+				<play>Simultaneously</play>
+				<playWhile />
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<offendTime />
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureVisActionStartThrow">
+								<visActionID />
+							</Item>
+							<Item type="CreatureProjectileAction">
+								<visActionID />
+								<projectileFx hrefvar="FxProjectile" />
+								<explosionFx hrefvar="FxOnTarget" />
+								<isMultyProjectile>true</isMultyProjectile>
+								<theGe var="Ge" />
+								<pointOnCaster type="VisPointLocator">
+									<shift x="0" y="0" z="0" />
+									<locator var="LocatorOnCaster" />
+									<member>Default_Member</member>
+									<locatorName var="LocatorNameOnCaster" />
+									<from>FROM_DEFALUT</from>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<shift x="0" y="0" z="0" />
+									<locator var="LocatorOnTarget" />
+									<member>Default_Member</member>
+									<locatorName var="LocatorNameOnTarget" />
+									<from>FROM_DEFALUT</from>
+								</pointOnTarget>
+								<isInverted>false</isInverted>
+								<offendTime type="EffectOffendConstDelay">
+									<delay var="HitDelay" />
+								</offendTime>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipHitAnimations>false</skipHitAnimations>
+		<skipBloodFx>false</skipBloodFx>
+		<specialAction type="CreatureRunVisActionResource">
+			<visActionID />
+			<alias href="" />
+			<resource hrefvar="HitPostFxOnTarget" />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

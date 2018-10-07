@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>205137946</resourceId>
+		<Variables>
+			<self>Fly_Buff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</self>
+			<route>/Maps/ArchipelagoContested5/GlobalObjects/Routes/Dragon_isle2.(Route).xdb#xpointer(/gameMechanics.map.tour.Route)</route>
+		</Variables>
+	</Header>
+	<Name href="Fly_Buff2_name.txt" />
+	<Description href="Fly_Buff2_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="AC5_DragonSphereFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>AC5_Dragon_drop2</scriptID>
+							<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<finishImpacts />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+			<factor>0</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells">
+			<onlyIfNotMainTarget>false</onlyIfNotMainTarget>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+			<removeExistingBuffs>true</removeExistingBuffs>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByTour">
+			<route href="/Maps/ArchipelagoContested5/GlobalObjects/Tours/Dragon_isle2.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+				</Item>
+			</impactsOnArrive>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.world.pet.PredicateHasPet" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Items/InteractiveObjects/IllusionWorld/ZC6_AviakGong/PetPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.world.pet.PredicateHasPet" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/IllusionWorld/ZC6_AviakGong/PetPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

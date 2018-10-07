@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24553</resourceId>
+	</Header>
+	<Name href="MarkerSpell_Name.txt" />
+	<Description href="MarkerSpell_Desc.txt" />
+	<nameTemplate href="MarkerSpell_Name.txt" />
+	<descTemplate href="MarkerSpell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.5</level>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Harpy/Instances/ArchipelagoEmpire1/Harpy11_12.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Harpy/Instances/ArchipelagoEmpire1/HarpySilver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/World/Quests/ArchipelagoEmpire1/Quest2_2/Buff2.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoEmpire1/Quest2_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/ArchipelagoEmpire1/Quest2_2/Buff2.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>60000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+						<ability href="NoEvaid.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.AttachAbility">
+				<ability href="NoEvaid.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

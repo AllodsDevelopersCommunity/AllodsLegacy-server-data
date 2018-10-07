@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>171931673</resourceId>
+	</Header>
+	<Name href="DeathClock_Name.txt" />
+	<Description href="DeathClock.Description.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicTimeLapse.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="DeathClock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="DeathClock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>12</min>
+								<max>12</max>
+							</range>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>15000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+			<impactsOnEnter />
+			<impactsOnLeave>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="DeathClock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnLeave>
+			<activeZone href="/Maps/ZoneContested4/Zones/ZoneContested4/ZoneContested4.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<stackLimit>12</stackLimit>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

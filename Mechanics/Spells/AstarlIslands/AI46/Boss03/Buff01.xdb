@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>371119213</resourceId>
+	</Header>
+	<Name href="Buff01.Name.txt" />
+	<Description href="Buff01.Description.txt" />
+	<image href="/Interface/Icons/Misc/Potions/Poison03.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/OpTarget_Skull_Poison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>0.4</scale>
+			<locator>Slot_TopFX</locator>
+		</Item>
+	</visualEffects>
+	<visualPostEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/HitPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>4</scale>
+			<locator>Slot_BodyFX</locator>
+		</Item>
+	</visualPostEffects>
+	<nameTemplate href="Buff01.Name.txt" />
+	<descTemplate href="Buff01.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<tickLength>1000</tickLength>
+				<damagePerTick>2</damagePerTick>
+			</parameters>
+			<element>POISON</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>POISON</element>
+					<minDamage>5</minDamage>
+					<maxDamage>5</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+						</moveType>
+						<resource href="Buff01.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

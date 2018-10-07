@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>266250255</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/StickArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/WeaponThrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>6000000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.3</level>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+														<predicates>
+															<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+															<Item type="gameMechanics.elements.resources.ResourceBuff">
+																<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</predicates>
+													</Item>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</predicates>
+											</Item>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+									</Item>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>3000</delay>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/CommonBuffs/Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+					<multiplier>1</multiplier>
+				</durationScaler>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>5000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<impactsOnHitTarget>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOnHitTarget>
+						<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+						<minDamage>45</minDamage>
+						<maxDamage>45</maxDamage>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>15</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

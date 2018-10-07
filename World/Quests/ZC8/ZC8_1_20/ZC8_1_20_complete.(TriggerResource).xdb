@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>336522248</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.QuestCounterTrigger">
+			<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterId href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			<condition type="constructor.elements.LongEquals">
+				<value>10</value>
+			</condition>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/Creatures/GolemJunesMid/Instances/ZC8/ZC8_GolemGuard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											<value>1</value>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactAddReputation">
+									<faction href="/World/Factions/ZoneContested8/ZC8_GuardTekuani.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									<value>50000</value>
+									<direct>true</direct>
+									<scaleByGlobal>false</scaleByGlobal>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactRenewQuestMarks" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.QuestCounterTrigger">
+			<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterId href="/Creatures/GolemJunesMid/Instances/ZC8/ZC8_GolemGuard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<condition type="constructor.elements.LongEquals">
+				<value>1</value>
+			</condition>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>10</value>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactAddReputation">
+									<faction href="/World/Factions/ZoneContested8/ZC8_GuardTekuani.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									<value>50000</value>
+									<direct>true</direct>
+									<scaleByGlobal>false</scaleByGlobal>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactRenewQuestMarks" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactAddReputation">
+					<faction href="/World/Factions/ZoneContested8/ZC8_GuardTekuani.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					<value>-50000</value>
+					<direct>true</direct>
+					<scaleByGlobal>false</scaleByGlobal>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ZC8_1_20_aggro.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC8_1_20_aggro.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+			<impactsOnEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="ZC8_1_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="ZC8_1_20_aggro.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnEnter>
+			<activeZone href="/Maps/IllusionWorld/Zones/ZC8/ZC8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

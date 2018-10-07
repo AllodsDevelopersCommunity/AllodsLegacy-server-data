@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>100955369</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Misc/Potions/DontDrinkMe.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Druid/EnervatingPotion.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>POISON</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>45000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/DruidV2/OpenWounds/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff hrefvar="buff" />
+						<durationScaler type="gameMechanics.elements.scalers.AbilityRankScaler">
+							<ability href="/Mechanics/Abilities/DruidTalentsV2/ConcotionMastery/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<mul>0.15</mul>
+						</durationScaler>
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff hrefvar="bu_1" />
+				<durationScaler type="gameMechanics.elements.scalers.AbilityRankScaler">
+					<ability href="/Mechanics/Abilities/DruidTalentsV2/ConcotionMastery/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					<mul>0.15</mul>
+				</durationScaler>
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

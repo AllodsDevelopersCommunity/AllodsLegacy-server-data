@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>330635266</resourceId>
+	</Header>
+	<Name href="GolemVisionSpell.(SpellCasterSelf)_Name.txt" />
+	<Description href="GolemVisionSpell.(SpellCasterSelf)_Desc.txt" />
+	<nameTemplate href="GolemVisionSpell.(SpellCasterSelf)_Name.txt.template" />
+	<descTemplate href="GolemVisionSpell.(SpellCasterSelf)_Desc.txt.template" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>300000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+					<radius>5</radius>
+					<mobs>
+						<Item href="/Creatures/Events/SummerBoss2012/GolemVision.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<coord x="1" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>60000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>5000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="GolemShotBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<object href="/Creatures/Events/SummerBoss2012/GolemVision.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

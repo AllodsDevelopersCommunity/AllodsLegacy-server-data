@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+				</advanced>
+			</Item>
+			<Item type="Sound3DAction">
+				<sound>
+					<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+					<name>spells/Mount/MountGolem/RocketSquall</name>
+				</sound>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time>3000</time>
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/SummerBoss_AddSpell_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<startPoint type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</endPoint>
+							</Item>
+						</elements>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionDelay">
+								<time>650</time>
+							</Item>
+							<Item type="CreatureEffectsOnTarget">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Spells/HitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<scale>2</scale>
+										<locator>Slot_FX</locator>
+									</Item>
+								</visualEffects>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="CreatureEffectsAction">
+			<visualEffects />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

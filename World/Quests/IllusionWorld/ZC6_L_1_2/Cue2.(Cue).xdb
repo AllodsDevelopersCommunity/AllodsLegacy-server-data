@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>274255894</resourceId>
+	</Header>
+	<name href="Cue2.txt" />
+	<text href="Cue2.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="ZC6_L_1_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateToInterlocutor">
+			<predicates>
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="BuffWounded.(BuffResource)01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateBinaryWrapper">
+			<master type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<slave type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+			<binary type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<buff href="DoNotTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</binary>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.RandomImpact">
+			<entries>
+				<Item>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="BuffWounded.(BuffResource)01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>15000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>1000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+											<destination type="gameMechanics.map.destination.DestinationLocator">
+												<locator>
+													<scriptID>ZC6_HopeCamp</scriptID>
+													<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</locator>
+											</destination>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DoNotTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="CountId1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="HealSuccess.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>500</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="HealFail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</entries>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

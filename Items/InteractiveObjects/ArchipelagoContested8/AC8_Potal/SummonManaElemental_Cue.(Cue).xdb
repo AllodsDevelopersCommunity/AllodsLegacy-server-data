@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>240309281</resourceId>
+	</Header>
+	<name href="SummonManaElemental_Cue.txt" />
+	<text href="SummonManaElemental_Cue.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested8/AC8_UnlockPorta/AC8_UnlockPorta.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/healthTrigger.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+			<quest href="/World/Quests/ArchipelagoContested8/AC8_UnlockPorta/AC8_UnlockPorta.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterResource href="/World/Quests/ArchipelagoContested8/AC8_UnlockPorta/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			<value>20</value>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>Ac8_portal</scriptID>
+					<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>120000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+			</impacts>
+			<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested8/ManaElementalDestroyer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/healthTrigger.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

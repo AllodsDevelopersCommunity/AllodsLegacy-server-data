@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>135561291</resourceId>
+	</Header>
+	<Name href="Cleave_Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCleave.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TR_2Boss/Cleave.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>12</level>
+	<prepareDuration>1000</prepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.5</level>
+			</Item>
+		</casterConditions>
+		<casterResources />
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitCaster />
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Spells/ClientData/HitMeleeSwordHard.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>11</minDamage>
+				<maxDamage>21</maxDamage>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Hemisphere" />
+	<radius>8</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

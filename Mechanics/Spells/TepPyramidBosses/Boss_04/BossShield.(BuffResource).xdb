@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>278375480</resourceId>
+	</Header>
+	<Name href="BossShield.(BuffResource).Name.txt" />
+	<Description href="BossShield.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/Bloodshield.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="BossShield.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="BossShield.(BuffResource).Name.txt" />
+	<descTemplate href="BossShield.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="VoiceShield.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="ShieldDestruction.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+							<level>0.87</level>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="VoiceShieldOff.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

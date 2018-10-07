@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>326230197</resourceId>
+	</Header>
+	<Name href="SoloFingusAoEDOT.(BuffResource)_Name.txt" />
+	<Description href="SoloFingusAoEDOT.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerWanderingFever.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/Fever.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="SoloFingusAoEDOT.(BuffResource)_Name.txt.template" />
+	<descTemplate href="SoloFingusAoEDOT.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>5</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>POISON</element>
+							<minDamage>5</minDamage>
+							<maxDamage>7</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="SoloFingusAoEDOT.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="SoloFingusAoEDOT.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

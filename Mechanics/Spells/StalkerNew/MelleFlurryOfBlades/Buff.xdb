@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>252173327</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Warrior/WarriorFlurryOfBlows.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/DotBlood.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+					<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+					<threatMultiplier>1</threatMultiplier>
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+							<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+						</scalers>
+					</scaler>
+					<avgDamage var="avgDamage" />
+					<source>Mainhand</source>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

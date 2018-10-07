@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>233994250</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="AC8_U7_item_Spell.txt" />
+	<nameTemplate href="AC8_U7_item_Spell.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ArchipelagoContested8/ScriptZones/Ac8_U7.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/ArchipelagoContested8/AC8_U7/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoContested8/AC8_U7/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="AC8_U7_itemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/QuestSpells/AC8/AC8_Willowisp/AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

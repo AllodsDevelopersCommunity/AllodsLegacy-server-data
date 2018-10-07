@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>263681044</resourceId>
+	</Header>
+	<Name href="fireball.txt" />
+	<visualScripts href="Fireball.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="fireball.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<element>FIRE</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>8000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<minDamage>15</minDamage>
+				<maxDamage>20</maxDamage>
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>6</radius>
+						<affectGroup>Enemies</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>FIRE</element>
+								<minDamage>10</minDamage>
+								<maxDamage>20</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsOnHitCaster>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>15</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

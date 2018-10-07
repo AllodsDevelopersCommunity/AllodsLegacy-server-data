@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<animations>
+							<Item>attack</Item>
+						</animations>
+						<advanced>
+							<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+							<eventPlaybackEnd>true</eventPlaybackEnd>
+						</advanced>
+					</Item>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Mobs/MountTurret_FireCast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fixPoint>true</fixPoint>
+								<scale>1.3</scale>
+								<locator>FROM_LOCATOR_NAME</locator>
+								<member>Mount</member>
+								<locatorName>Slot_Special01</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="CreatureVisActionStartThrow" />
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureProjectileAction">
+								<projectileFx href="/Spells/FX/Mobs/MountTurret_AreaStun_projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<pointOnCaster type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<member>Mount</member>
+									<locatorName>Slot_Special01</locatorName>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</pointOnTarget>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+							<Item type="VisActionDelay">
+								<time>200</time>
+							</Item>
+							<Item type="CreatureProjectileAction">
+								<projectileFx href="/Spells/FX/Mobs/MountTurret_AreaStun_projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<pointOnCaster type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<member>Mount</member>
+									<locatorName>Slot_Special01</locatorName>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</pointOnTarget>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx href="/Spells/FX/Mobs/MountTurret_AreaStun_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<fixPoint>true</fixPoint>
+							<scale>1.1</scale>
+							<locator>Slot_BodyFX</locator>
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitFireShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

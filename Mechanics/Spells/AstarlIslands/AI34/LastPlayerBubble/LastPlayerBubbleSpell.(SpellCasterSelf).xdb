@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>290069508</resourceId>
+	</Header>
+	<Name href="LastPlayerBubbleSpell.(SpellCasterSelf)_Name.txt" />
+	<autoAppendToActionPanel>false</autoAppendToActionPanel>
+	<visualScripts href="AI34BubblelVisScripts.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<element>POISON</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="LastBossBubbleBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="LastPlayerBubbleBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/AstarlIslands/AI34/LastBubbleSpell/KickToBubble.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

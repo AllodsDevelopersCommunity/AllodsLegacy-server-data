@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>263448596</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/NotWeaponAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/WarriorMatrialStarters.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/WarriorKicks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>4.82</value>
+			<scaler>DressSlotScaler</scaler>
+		</Item>
+		<Item>
+			<name>var1</name>
+			<value>5.89</value>
+			<scaler>DressSlotScaler</scaler>
+		</Item>
+		<Item>
+			<name>var2</name>
+			<value>3</value>
+			<scaler>DressSlotIndex</scaler>
+		</Item>
+		<Item>
+			<name>var3</name>
+			<value>3</value>
+			<scaler>DressSlotIndex</scaler>
+		</Item>
+		<Item>
+			<name>var4</name>
+			<value>0.3</value>
+			<scaler>FormulaPercent</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Equipment/Boots/PlateOrcWarriorBoots.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="AI26_Kick.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/WarriorV2/Kick/Spell_Name.txt.template" />
+	<descTemplate href="/Mechanics/Spells/WarriorV2/Kick/Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+			<group href="/Mechanics/Spells/Groups/WarriorKicks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<minDamage>40</minDamage>
+				<maxDamage>40</maxDamage>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.33</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

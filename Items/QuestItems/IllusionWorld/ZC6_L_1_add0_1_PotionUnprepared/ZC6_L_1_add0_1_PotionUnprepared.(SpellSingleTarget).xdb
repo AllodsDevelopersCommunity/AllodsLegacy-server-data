@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>292154401</resourceId>
+	</Header>
+	<Name href="ZC6_L_1_add0_1_PotionUnprepared.(SpellSingleTarget)_Name.txt" />
+	<Description href="ZC6_L_1_add0_1_PotionUnprepared.(SpellSingleTarget)_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC6_L_1_add0_1_PotionUnprepared.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="ZC6_L_1_add0_1_PotionUnprepared.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>50</level>
+	<prepareDuration>2000</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/IllusionWorld/ZC6_L_1_add0_1/ZC6_L_1_add0_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Snake/Cobra/Instances/IllusionWorld/ZC6_Snake50_50.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.85</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/IllusionWorld/ZC6_L_1_add0_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+				<impactsLose>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/Creatures/Asp/AspPoison/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+						<data href="ZC6_L_1_add0_1_Fail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsLose>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

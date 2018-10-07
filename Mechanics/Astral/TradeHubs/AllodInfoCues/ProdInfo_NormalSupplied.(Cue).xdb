@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>307886095</resourceId>
+	</Header>
+	<name href="ProdInfo_NormalSupplied.txt" />
+	<text href="ProdInfo_NormalSupplied.Text.txt" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>sellPrice</alias>
+			<calcer type="gameMechanics.world.bigAstral.tradeWars.CalcerProdPrice" />
+		</Item>
+		<Item type="CueDataLong">
+			<alias>supplied</alias>
+			<calcer type="gameMechanics.world.bigAstral.tradeWars.CalcerProdStockpile" />
+		</Item>
+		<Item type="CueDataLong">
+			<alias>capacity</alias>
+			<calcer type="gameMechanics.world.bigAstral.tradeWars.CalcerMaxStockpile" />
+		</Item>
+	</data>
+	<randomizeNextCues>false</randomizeNextCues>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+			<lhs type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.world.bigAstral.tradeWars.CalcerMaxStockpile" />
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value>0.75</value>
+				</calcerFloat>
+			</lhs>
+			<rhs type="gameMechanics.world.bigAstral.tradeWars.CalcerProdStockpile" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateGreaterLong">
+				<lhs type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+					<calcerLong type="gameMechanics.world.bigAstral.tradeWars.CalcerMaxStockpile" />
+					<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+						<value>0.25</value>
+					</calcerFloat>
+				</lhs>
+				<rhs type="gameMechanics.world.bigAstral.tradeWars.CalcerProdStockpile" />
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts />
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

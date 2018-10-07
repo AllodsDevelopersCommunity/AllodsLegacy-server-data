@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>270704750</resourceId>
+	</Header>
+	<Name href="Targeting.(SpellSingleTarget).Name.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<needLos>false</needLos>
+	<isAggro>false</isAggro>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+				<spell href="Charge.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Target.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+						<value>9999999</value>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

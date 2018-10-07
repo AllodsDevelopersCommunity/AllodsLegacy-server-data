@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Prototype href="Base.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation />
+			<FXWand />
+			<FXPocket />
+			<PreCastFX />
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastAnimation" />
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastFX" />
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item skiped="" />
+							<Item>
+								<effectFx hrefvar="FXWand" />
+								<fixPoint>true</fixPoint>
+								<locator>Wand_Slot_FX</locator>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<charged type="CreatureChargedSpellAction">
+		<effectFx hrefvar="FXPocket" />
+	</charged>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

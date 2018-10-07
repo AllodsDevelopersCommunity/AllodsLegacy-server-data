@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>155380765</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<nameTemplate href="Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.02</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.025</multiplier>
+			</healthOff>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="Buff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>DMBoss02</scriptID>
+						<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.01</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.DoorSwitch">
+							<switchType>Open</switchType>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>DoorDragon_01</scriptID>
+						<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+						<zone type="gameMechanics.elements.calcers.ZoneDistributor$OwnZone" />
+						<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+					</distributor>
+					<data href="/Maps/Inst_DeadCity/Scripts/DragonsDoor.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/DragonsGateKeepers.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

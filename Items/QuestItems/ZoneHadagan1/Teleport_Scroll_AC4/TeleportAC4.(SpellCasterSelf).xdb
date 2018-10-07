@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>94859276</resourceId>
+	</Header>
+	<Name href="1.txt" />
+	<Description href="2.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TZ_1Boss/Teleportation.xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>TeleportMasterAC4EMP</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoContested4/Q_Start_Empire/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="Teleport_Scroll_AC4.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+							<unlock href="/Mechanics/Unlocks/Locations/ArchipelagoContested4/TeleportMasters/TeleportMaster_AC4EMP.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/Locations/ArchipelagoContested4/TeleportMasters/TeleportMaster_AC4EMP.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

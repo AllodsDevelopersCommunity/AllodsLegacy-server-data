@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>81926168</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicMindFire.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>true</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+										<buffs>
+											<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/Sarn_1stAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/Sarn_2ndAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/Sarn_3rdAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</buffs>
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/Sarn_1stAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Defence1/Defence1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>ASTRAL</element>
+							<threatMultiplier>0</threatMultiplier>
+							<statsConvertor type="" />
+							<minDamage>1</minDamage>
+							<maxDamage>1</maxDamage>
+							<impactOnHitTarget />
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mul>1</mul>
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.51</multiplier>
+										</mulCalcer>
+										<sum>0</sum>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.ReverseDpsModScaler" />
+								</scalers>
+							</scaler>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>4000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

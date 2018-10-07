@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>174565397</resourceId>
+	</Header>
+	<lifeLengthCap>0</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+			<radius>85</radius>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/MindControl/MindControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<scalerTarget />
+									<durationScaler />
+									<durationScalerTarget />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/MindControl/MindControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<scalerTarget />
+											<durationScaler />
+											<durationScalerTarget />
+											<allowOverrideCaster>false</allowOverrideCaster>
+										</Item>
+									</impacts>
+									<sendAsMessage>false</sendAsMessage>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/MindControlSelf_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<scalerTarget />
+									<durationScaler />
+									<durationScalerTarget />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/MindControlSelf_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<scalerTarget />
+											<durationScaler />
+											<durationScalerTarget />
+											<allowOverrideCaster>false</allowOverrideCaster>
+										</Item>
+									</impacts>
+									<sendAsMessage>false</sendAsMessage>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<finalImpactsOnHolder>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</finalImpactsOnHolder>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+		</Item>
+	</impactsOnStart>
+	<effects>
+		<Item type="gameMechanics.elements.effects.UltimateVisibilityGeneric" />
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

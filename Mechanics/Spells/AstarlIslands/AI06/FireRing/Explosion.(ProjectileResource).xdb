@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>200314937</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/HitFireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>2000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+			<radius>8</radius>
+			<affectGroup>Enemies</affectGroup>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>FIRE</element>
+					<minDamage>100</minDamage>
+					<maxDamage>100</maxDamage>
+					<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<impactsOnAttach>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="FireDot.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOnAttach>
+						<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>2</multiplier>
+						</durationScaler>
+					</impactOnHitTarget>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+		</Item>
+	</impactsOnStart>
+</gameMechanics.world.projectile.ProjectileResource>

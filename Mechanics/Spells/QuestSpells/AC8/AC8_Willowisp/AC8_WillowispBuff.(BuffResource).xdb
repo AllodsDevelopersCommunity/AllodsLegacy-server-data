@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>233220116</resourceId>
+	</Header>
+	<Name href="AC8_WillowispBuff.txt" />
+	<Description href="AC8_WillowispBuff.Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MirrorImage.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="AC8_Willowisp_ChangePlayerVisual.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="AC8_WillowispBuff.txt" />
+	<descTemplate href="AC8_WillowispBuff.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="Spells_01/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Spells_02/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+				<Item href="Spells_03/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Parry" />
+		<Item type="gameMechanics.elements.effects.SummandArmor">
+			<value>40</value>
+			<scaler type="gameMechanics.elements.scalers.StatScaler">
+				<stat type="gameMechanics.elements.stat.InnateStat">
+					<stat>IS_Intellect</stat>
+				</stat>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsMountAction" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.01</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.05</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Nekromant_point</scriptID>
+							<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+			<impactsOnEnter>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnEnter>
+			<activeZone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<checkTopLevelZonesOnly>false</checkTopLevelZonesOnly>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+							<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.pet.ImpactDismissPet" />
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+									<characterClass href="/Mechanics/Classes/Druid.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactDeactivateDruidPet" />
+							</impactsIf>
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivate">
+					<group href="/Mechanics/Spells/Groups/LooterSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Mechanics/Looters/BagOverflow.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

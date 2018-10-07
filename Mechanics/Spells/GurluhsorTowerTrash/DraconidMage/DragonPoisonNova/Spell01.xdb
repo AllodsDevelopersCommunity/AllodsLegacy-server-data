@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>124629032</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MobsCooldowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<speed>50</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>POISON</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>12000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>POISON</element>
+				<threatMultiplier>1</threatMultiplier>
+				<minDamage>10</minDamage>
+				<maxDamage>15</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+					<buff href="/Mechanics/Spells/GurluhsorTowerTrash/BlackDrake/DragonPoison/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<range>
+						<min>1</min>
+						<max>1</max>
+					</range>
+				</impactOnHitTarget>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>40</radius>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

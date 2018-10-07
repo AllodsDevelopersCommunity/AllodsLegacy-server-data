@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>363053060</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectInstantiatingGeneric">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectHandleEnterMission">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>10000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.world.ship.elements.PredicateHasBoundShip" />
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+													<key href="/System/ContentKeys/AstralShipParking.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+													<impacts>
+														<Item type="gameMechanics.constructor.basicElements.ImpactList">
+															<impactsResource href="SummonOnParking.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+															<calcers>
+																<longEntries>
+																	<Item>
+																		<name>shipIndex</name>
+																		<calcer type="gameMechanics.world.ship.elements.calcers.CalcerAvailableShipIndex" />
+																	</Item>
+																</longEntries>
+															</calcers>
+														</Item>
+													</impacts>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="ShipReturnsOnOnline.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

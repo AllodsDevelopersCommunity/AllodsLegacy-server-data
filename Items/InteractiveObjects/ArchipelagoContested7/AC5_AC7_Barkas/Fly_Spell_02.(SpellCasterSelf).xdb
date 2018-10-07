@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>224439302</resourceId>
+		<Variables>
+			<self>Fly_Buff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</self>
+		</Variables>
+	</Header>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+						<data href="/Mechanics/Spells/CommonBuffs/AstralTravel/CombatWarning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff hrefvar="self" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.world.pet.ImpactDismissPet">
+								<clientData href="" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+						<group href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+						<group href="/Mechanics/Spells/Groups/FeatureConsumables.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

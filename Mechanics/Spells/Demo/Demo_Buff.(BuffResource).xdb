@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>177208320</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectLevelUpTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+							<minLevel type="gameMechanics.formulas.IntConstantValue">
+								<value>8</value>
+							</minLevel>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Demo_Buff_limit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Demo_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="Demo_limit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasContentKey">
+								<key href="/System/ContentKeys/Demo.xdb#xpointer(/basement.contentkey.ContentKey)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Demo_Buff_limit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Demo_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>60000</tick>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<ranks />
+</gameMechanics.constructor.schemes.buff.BuffResource>

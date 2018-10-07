@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>520028454</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicReadThoughts.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Gargoy_StoneSound.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>1000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>6000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>25</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ASTRAL</element>
+						<threatMultiplier>1</threatMultiplier>
+						<minDamage>8.4</minDamage>
+						<maxDamage>12</maxDamage>
+					</Item>
+				</impacts>
+				<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+					<angle type="constructor.basicElements.AngleRadians">
+						<value>0.7</value>
+					</angle>
+				</shape>
+				<affectGroup>Enemies</affectGroup>
+				<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+					<value>15</value>
+				</radius>
+				<targetsNum>0</targetsNum>
+				<affectMainTarget>true</affectMainTarget>
+				<workOnDead>true</workOnDead>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+				<value>10</value>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+	<radius>10</radius>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>170127377</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateVariableEqualsGreatThan">
+									<resource href="/Mechanics/Rules/ArchipelagoContested4/Pvp_arena/Pvp_arena_Variable_E.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+									<globalVar>true</globalVar>
+									<minValue>1</minValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Ac4_pvpEvent_imp_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+							<variable href="Ac4_pvpEvent_imp_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<summand>-1</summand>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>konduktor_imp01</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Ac4_pvpEvent_imp_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Ac4_pvpEvent_imp_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Ac4_pvpEvent_disconnect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<scalerTarget />
+					<durationScaler />
+					<durationScalerTarget />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+			<impactsOnEnter />
+			<impactsOnLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Ac4_pvpEvent_imp_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Ac4_pvpEvent_imp_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnLeave>
+			<activeZone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_08.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<checkTopLevelZonesOnly>false</checkTopLevelZonesOnly>
+		</Item>
+		<Item type="gameMechanics.elements.effects.GlobalVarChangedTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Ac4_pvpEvent_imp_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>100</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Ac4_pvpEvent_imp_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<variableResource href="/Mechanics/Rules/ArchipelagoContested4/Pvp_arena/Pvp_arena_Variable_E.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+		</Item>
+	</effects>
+	<duration>3600000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

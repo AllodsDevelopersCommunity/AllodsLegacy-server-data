@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>314164247</resourceId>
+	</Header>
+	<Name href="Teleport_To_Inst.(BuffResource)_Name.txt" />
+	<Description href="Teleport_To_Inst.(BuffResource)_Desc.txt" />
+	<visScript href="/Spells/BuffVisScripts/KnockDown.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Teleport_To_Inst.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Teleport_To_Inst.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Spells/ClientData/FadeOutScreen.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Items/InteractiveObjects/ArchipelagoContested5/AC5_K_10_firewood/FadeOutSound.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationSamePosAnotherMap">
+								<map href="/Maps/RealWorld/Tower_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</destination>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Maps/RealWorld/Frozen_Time.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<duration>4000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

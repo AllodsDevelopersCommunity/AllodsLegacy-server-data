@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>99333120</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="SphereFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectHidePet" />
+		<Item type="gameMechanics.elements.effects.EffectSpeedSetter">
+			<speed>0.0065</speed>
+			<isExternal>true</isExternal>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByRoute">
+			<route hrefvar="route" />
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff hrefvar="next" />
+				</Item>
+			</impactsOnArrive>
+			<impactsOnCancel>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnCancel>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells" />
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+			</impactsOn>
+			<impactsOff>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>297697280</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Psionic/Meditation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/Meditation.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>10</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/PsionicNew/MindStab/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+				<stacks type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasAbility">
+						<hideText>false</hideText>
+						<ability href="/Mechanics/Spells/PsionicNew/Abilities/ConcentrationStack/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<anyRank>true</anyRank>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.FloatData">
+						<value>3</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FloatData">
+						<value>2</value>
+					</calcerElse>
+				</stacks>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

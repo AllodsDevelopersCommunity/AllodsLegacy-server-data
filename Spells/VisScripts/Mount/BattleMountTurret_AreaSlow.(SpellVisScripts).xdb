@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<time>5000</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Mobs/MountTurret_AreaSlow_Mount.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<member>Mount</member>
+								<locatorName>Floor</locatorName>
+							</Item>
+							<Item>
+								<delay>500</delay>
+								<effectFx href="/Spells/FX/Mobs/MountTurret_AreaSlow_projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fixPoint>true</fixPoint>
+								<lockScale>true</lockScale>
+								<locator>Slot_Global</locator>
+								<member>Mount</member>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

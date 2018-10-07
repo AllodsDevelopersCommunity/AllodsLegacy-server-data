@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>135850002</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="/Mechanics/Spells/Inst_DeadCity/Draconid_Mage/FireBall/Spell_Name.txt" />
+		<contextImage href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="/Mechanics/Spells/Inst_DeadCity/Draconid_Mage/FireBall/Spell_Name.txt" />
+	<Description href="Spell01.Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/DC_2_1Boss/DrakeBomber_Fireball.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/Inst_DeadCity/Draconid_Mage/FireBall/Spell_Name.txt" />
+	<descTemplate href="Spell01.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>75</value>
+	</range>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTPoint</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>4000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<statsConvertor>
+					<intuition type="gameMechanics.elements.calcers.CalcerIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</predicate>
+						<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Intuition</stat>
+						</calcerIf>
+						<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Dexterity</stat>
+						</calcerElse>
+					</intuition>
+					<spirit type="gameMechanics.elements.calcers.CalcerIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</predicate>
+						<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Spirit</stat>
+						</calcerIf>
+						<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Might</stat>
+						</calcerElse>
+					</spirit>
+				</statsConvertor>
+				<minDamage>600000</minDamage>
+				<maxDamage>700000</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>50</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>10</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

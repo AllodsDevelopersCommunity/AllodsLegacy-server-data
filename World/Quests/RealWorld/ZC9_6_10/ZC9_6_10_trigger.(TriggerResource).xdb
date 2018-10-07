@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>344841296</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="ZC9_6_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="/Maps/RealWorld/ScriptZones/ZC9_Cage_inst_zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="ZC9_6_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>NotInQuestBook</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="ZC9_6_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<status>Active</status>
+												</Item>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+														<quest href="ZC9_6_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+														<value>1</value>
+													</predicate>
+												</Item>
+											</predicates>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="ZC9_6_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Failed</status>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>ZC9_inst_exit</scriptID>
+									<map href="/Maps/RealWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleEnterMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="ZC9_6_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsMountAction" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/RealWorld/ZC9_6_20/ZC9_6_20_belka.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

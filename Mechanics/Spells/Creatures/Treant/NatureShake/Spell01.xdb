@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>77801495</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicMindBlast.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Melee/StrongAttack.xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>12</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>1000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>20000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>30</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.55</value>
+						</chanceCalcer>
+						<impactsSuccess>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impactsSuccess>
+						<impactsFailure>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impactsFailure>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+						<threatMultiplier>0</threatMultiplier>
+						<minDamage>12</minDamage>
+						<maxDamage>16</maxDamage>
+					</Item>
+				</impacts>
+				<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+				<affectGroup>Enemies</affectGroup>
+				<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+					<value>12</value>
+				</radius>
+				<targetsNum>0</targetsNum>
+				<affectMainTarget>true</affectMainTarget>
+				<workOnDead>true</workOnDead>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+				<value>10</value>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<radius>12</radius>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

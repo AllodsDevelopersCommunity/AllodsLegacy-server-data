@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>276463661</resourceId>
+	</Header>
+	<Name href="Fever.(BuffResource).Name.txt" />
+	<Description href="Fever.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidEnervatingConcoction.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.25</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.IncomingHealModifier">
+			<priority>Multiplier</priority>
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.25</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+					<level>0.3</level>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.MagicDoT">
+					<element>POISON</element>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					<parameters>
+						<damagePerTick>15</damagePerTick>
+						<impactsPerTick>
+							<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+								<chanceCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+									<mul>0</mul>
+									<sum>0.15</sum>
+								</chanceCalcer>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="HeadHeart.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsIf>
+									</Item>
+								</impacts>
+								<impactsLose>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Spells/PaladinV2/MarkBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+								</impactsLose>
+							</Item>
+						</impactsPerTick>
+					</parameters>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.MagicDoT">
+					<element>POISON</element>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					<parameters>
+						<damagePerTick>10</damagePerTick>
+					</parameters>
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

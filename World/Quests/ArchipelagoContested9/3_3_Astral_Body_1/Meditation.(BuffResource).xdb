@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>238646397</resourceId>
+	</Header>
+	<Name href="Meditation.(BuffResource).Name.txt" />
+	<Description href="Meditation.(BuffResource).Description.txt" />
+	<visScript href="/Spells/VisScripts/Psionic/PhrenicMeditation.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<finishImpacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="3_3_Astral_Body_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested9/3_4_Astral_Body_2/3_4_Astral_Body_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested9/3_5_Astral_Body_3/3_5_Astral_Body_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Astral_Flight_1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</finishImpacts>
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0.4</value>
+						</yaw>
+						<locator>
+							<scriptID>Astral_Body_Start_Point_1_1</scriptID>
+							<map href="/Maps/ArchipelagoContested9_build_instance/first_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Spells/ClientData/FadeOutScreen.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Items/InteractiveObjects/ArchipelagoContested5/AC5_K_10_firewood/FadeOutSound.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

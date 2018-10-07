@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>361917442</resourceId>
+	</Header>
+	<name href="Bonus.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/World/AC5_buf1.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>2</altitude>
+	<speed>0.02</speed>
+	<lifeLengthCap>20000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.StaticEntityAura">
+			<radius>1.5</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="PowerBonus.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

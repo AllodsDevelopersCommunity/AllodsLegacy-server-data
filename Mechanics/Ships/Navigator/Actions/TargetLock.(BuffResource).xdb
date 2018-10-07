@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>250827777</resourceId>
+	</Header>
+	<Name href="TargetLock.txt" />
+	<Description href="TargetLock.Description.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/ShotSteadyUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="ActionTargetLock.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<isHelpful>false</isHelpful>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.25</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTriggerGeneric">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.5</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.5</multiplier>
+			</healthOff>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>0</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+											<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+												<slot>Slot_Teleport_02</slot>
+											</addresseeFinder>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+													<buff href="/Mechanics/Ships/Boarding/AllowBoardingTeleport.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+														<mulCalcer type="gameMechanics.elements.calcers.CalcerBuffDuration">
+															<buff href="TargetLock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<multiplier>1</multiplier>
+														</mulCalcer>
+													</durationScaler>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Mechanics/Ships/Boarding/AllowBoardingTeleportDisplay.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<durationScalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.CalcerBuffDuration">
+											<buff href="TargetLock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<multiplier>1</multiplier>
+										</mulCalcer>
+									</durationScalerTarget>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+									<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+										<slot>Slot_Teleport_02</slot>
+									</addresseeFinder>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Ships/Boarding/AllowBoardingTeleport.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="/Mechanics/Ships/Boarding/AllowBoardingTeleportDisplay.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>15000</duration>
+	<isStackable>false</isStackable>
+</gameMechanics.constructor.schemes.buff.BuffResource>

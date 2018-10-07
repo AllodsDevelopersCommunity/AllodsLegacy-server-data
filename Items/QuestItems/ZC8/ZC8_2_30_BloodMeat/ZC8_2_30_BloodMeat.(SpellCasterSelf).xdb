@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>313878546</resourceId>
+	</Header>
+	<Name href="ZC8_2_30_BloodMeat.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Spells/BloodLust01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Items/ZE1_Quest_Speech.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC8_2_30_BloodMeat.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZC8/ZC8_2_30/ZC8_2_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<coord x="2" y="2" />
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<object href="/Creatures/Bat/Instances/ZC8/ZC8_BatSummon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ZC8/ZC8_2_30/ZC8_2_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/Creatures/Bat/Instances/ZC8/ZC8_BatSummon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<value>9</value>
+								</predicate>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="ZC8_2_30_BloodMeat.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+								<quest href="/World/Quests/ZC8/ZC8_2_30/ZC8_2_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="ZC8_2_30_BloodMeat.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="ZC8_2_30_BloodMeat.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impactsElse>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

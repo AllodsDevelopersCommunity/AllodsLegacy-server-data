@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>272162816</resourceId>
+	</Header>
+	<name href="PricklyAir.txt" />
+	<description href="PricklyAir.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/PricklyAir.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onEnter>
+								<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsFromPhantom">
+											<phantom href="Phantom.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="PhantomBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</onEnter>
+							<onLeave>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="PhantomBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+</gameMechanics.map.basicElements.MapModifierResource>

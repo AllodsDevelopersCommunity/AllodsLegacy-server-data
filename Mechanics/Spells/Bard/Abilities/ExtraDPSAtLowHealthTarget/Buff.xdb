@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>279418974</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Bard/ExtraDPSAtLowHealthTarget.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<element>SHADOW</element>
+			<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+			<fixedMultiplier>1</fixedMultiplier>
+			<progressiveMultiplier>0</progressiveMultiplier>
+			<parameters>
+				<damagePerTick>0.82</damagePerTick>
+				<threatMultiplier>1</threatMultiplier>
+				<scaleOnTick>false</scaleOnTick>
+				<tickLength>2000</tickLength>
+				<statsConvertor>
+					<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Dexterity</stat>
+					</intuition>
+					<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Might</stat>
+					</spirit>
+				</statsConvertor>
+				<affectOnStartTick>false</affectOnStartTick>
+			</parameters>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.999</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.999</multiplier>
+			</healthOff>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.basicElements.ImpactNull">
+					<value>0</value>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit var="stackLimit" />
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups />
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

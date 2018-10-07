@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>95455294</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerLifetap.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>1.2</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.3</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+										<level>0.2</level>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DrainLifeDamage">
+										<element>SHADOW</element>
+										<minDamage>10</minDamage>
+										<maxDamage>20</maxDamage>
+										<casterHealMultiplier>3</casterHealMultiplier>
+										<healthBufferBuff href="/Mechanics/Spells/Necromancer/Lifetap/HealthBufferBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<threatMultiplier>1</threatMultiplier>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.DrainLifeDamage">
+										<element>SHADOW</element>
+										<minDamage>20</minDamage>
+										<maxDamage>30</maxDamage>
+										<casterHealMultiplier>6</casterHealMultiplier>
+										<healthBufferBuff href="/Mechanics/Spells/Necromancer/Lifetap/HealthBufferBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<threatMultiplier>1</threatMultiplier>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</impacts>
+						<targetType>Enemies</targetType>
+					</Item>
+				</impacts>
+			</impact>
+			<attackSource>Mainhand</attackSource>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

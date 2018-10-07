@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>364056576</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectMarkedImpactsGeneric">
+			<mark href="/Mechanics/Ships/Hangar/ExitHangar.(MarkResource).xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStartQuiz">
+					<question href="/Mechanics/Ships/Rudder/LeaveIslandQuiz.(Question).xdb#xpointer(/gameMechanics.world.quiz.Question)" />
+					<participants type="gameMechanics.elements.addresseeFinders.AddressesCalcerShipBounds">
+						<shipFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+					</participants>
+					<resultsHandler type="gameMechanics.elements.common.SameResultsHandler">
+						<calcers>
+							<longEntries>
+								<Item>
+									<name>choice</name>
+									<calcer type="gameMechanics.elements.calcers.LongData">
+										<value>1</value>
+									</calcer>							
+								</Item>
+							</longEntries>
+						</calcers>
+						<percent>0.51</percent>
+						<impactsOnSuccess>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.map.instance.astralIsland.PredicateOnAstralIsland" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactOnShipBound">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactTeleportGeneric">
+														<destination type="gameMechanics.map.destination.DestinationSailingPort" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ImpactLeaveUnion" />
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOnSuccess>
+					</resultsHandler>
+				</Item>
+			</impacts>
+			<exclusivity>FirstLevel</exclusivity>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

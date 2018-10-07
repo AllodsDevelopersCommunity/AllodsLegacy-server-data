@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>299952129</resourceId>
+	</Header>
+	<visualScript type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<delay>500</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<scale>2</scale>
+				<locator>Slot_Global</locator>
+			</Item>
+			<Item>
+				<delay>1000</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Hand_L</locator>
+			</Item>
+			<Item>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Hand_R</locator>
+			</Item>
+			<Item>
+				<delay>1500</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Head</locator>
+			</Item>
+			<Item>
+				<delay>2000</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<scale>3</scale>
+				<locator>Slot_FX</locator>
+			</Item>
+			<Item>
+				<delay>2500</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Shoulder_L</locator>
+			</Item>
+			<Item>
+				<delay>3000</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_BodyFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Shoulder_R</locator>
+			</Item>
+		</visualEffects>
+		<stopOnDeath>true</stopOnDeath>
+	</visualScript>
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.AttachAbility">
+					<ability href="EfreetFireAura.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="EfreetAuraBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="EfreetFireAura.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>50</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Lamia/Instances/AstralIsle35/FirePrison.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<radius>50</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToSummonPoolGeneric">
+							<pool href="/Mechanics/Spells/AstarlIslands/AI35/EfreetFirePrison/AI35_LastSummonPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

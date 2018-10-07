@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>144104453</resourceId>
+	</Header>
+	<Name href="MountBuff_Name.txt" />
+	<Description href="MountBuff_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/Saddle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectMountSpeedSetter" />
+		<Item type="gameMechanics.elements.effects.EffectMountSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.MultLinearEffectScaler">
+				<coeff>1</coeff>
+				<calcer type="gameMechanics.elements.calcers.MountSpeedCalcer" />
+			</effectScaler>
+			<defaultSpeedModifier>true</defaultSpeedModifier>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthScalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.MobBaseHealthCalcer" />
+						<Item type="gameMechanics.elements.calcers.MountHealthCalcer" />
+						<Item type="gameMechanics.elements.calcers.MountPenaltyCalcer" />
+					</calcers>
+				</mulCalcer>
+			</healthScalerTarget>
+			<regenCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</regenCalcer>
+			<regenScalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.MountRegenCalcer" />
+			</regenScalerTarget>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impacts>
+			<resource href="MountDamageThreshold.xdb#xpointer(/gameMechanics.elements.effects.DamageThresholdResource)" />
+			<damageType>ToMount</damageType>
+			<affectsAdditionalHealth>false</affectsAdditionalHealth>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impactsOnAttach>
+			<ignoreHelpful>false</ignoreHelpful>
+			<ignoreHarmful>false</ignoreHarmful>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+					<group href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectInterceptActionExceptGroup">
+			<group href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbilityToPet">
+			<ability href="PetMountAbility.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="PetMountPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/StopSing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

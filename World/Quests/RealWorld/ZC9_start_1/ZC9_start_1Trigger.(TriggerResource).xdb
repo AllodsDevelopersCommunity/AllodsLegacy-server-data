@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>332702770</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="ZC9_start_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="ZC9_start_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Finished</status>
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/RealWorld/Zones/RealWorld/RealWorld.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="ZC9_start_1_Final_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>ZC6_FromElementalCave</scriptID>
+									<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

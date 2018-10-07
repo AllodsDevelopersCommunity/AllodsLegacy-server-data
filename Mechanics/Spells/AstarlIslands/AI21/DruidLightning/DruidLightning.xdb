@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>256784398</resourceId>
+	</Header>
+	<Name href="DruidLightning.Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Druid/CallLightning.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>45</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="ImReady.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="YouHitMe.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>LIGHTNING</element>
+				<minDamage>30</minDamage>
+				<maxDamage>30</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="YouHitMe.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>45</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

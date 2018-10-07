@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>275795983</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<spell />
+		</Variables>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Aura.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic1.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Bard/Elegy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bard/Elegy_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>SHADOW</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>true</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<hideText>true</hideText>
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<hideText>false</hideText>
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+						<anyRank>true</anyRank>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<hideText>false</hideText>
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<hideText>false</hideText>
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+						<anyRank>true</anyRank>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+						<spell hrefvar="spell" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="SongEnforcer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+						<spell href="/Mechanics/Spells/Bard/ElegyUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Mechanics/Spells/Bard/ElegyUpgrade/SongEnforcer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="SongEnforcer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

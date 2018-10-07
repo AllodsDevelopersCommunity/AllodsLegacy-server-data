@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>371119171</resourceId>
+	</Header>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>45000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.8</level>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.SelfPosDestination" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+						</impacts>
+						<object href="/Creatures/DemonBreedScout/Instances/AstralIsland46/46_Add_Boss01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<pool href="SummonPool_46_Boss01.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="/Mechanics/Spells/AstarlIslands/AI46/Tresh/Summon.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1000</time>
+						<distance>20</distance>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

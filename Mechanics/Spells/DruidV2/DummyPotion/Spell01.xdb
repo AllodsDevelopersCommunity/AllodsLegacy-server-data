@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>169133068</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DruidAll.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>47</value>
+			<scaler>IntSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Misc/Potions/PunishingPotion.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Druid/DummyPotion.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>1000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>POISON</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>120000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+				<spell href="/Mechanics/Spells/DruidV2/DummyConcoction/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+				<durationScaler type="gameMechanics.elements.scalers.AbilityRankScaler">
+					<ability href="/Mechanics/Abilities/DruidTalentsV2/ConcotionMastery/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					<mul>0.15</mul>
+				</durationScaler>
+				<range>
+					<min>3</min>
+					<max>3</max>
+				</range>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>318141520</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<damageType>ASTRAL</damageType>
+			<limit>3</limit>
+		</Variables>
+	</Header>
+	<Name href="BeamCannonTargetSpells.Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="TargetTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<stacks type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+						<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<forAllRanks>false</forAllRanks>
+					</stacks>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="TargetTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+											<damage type="gameMechanics.elements.calcers.FloatData">
+												<value var="damageMultiplier" />
+											</damage>
+											<damageType var="damageType" />
+											<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+											<targetScaler type="gameMechanics.elements.scalers.ScalerMin">
+												<scaler1 type="gameMechanics.elements.scalers.LinearScaler">
+													<multiplier>3</multiplier>
+												</scaler1>
+												<scaler2 type="gameMechanics.elements.scalers.ScalerBuff">
+													<buff href="TargetTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<summand>0</summand>
+													<checkCaster>true</checkCaster>
+												</scaler2>
+											</targetScaler>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="TargetTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+	</effects>
+	<stackLimit var="limit" />
+	<isHelpful>false</isHelpful>
+	<isMultiple>true</isMultiple>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

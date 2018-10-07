@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>221198344</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCharge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Warrior/Charge.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Charge">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<hideText>false</hideText>
+							<manaType>Mana</manaType>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+							<impactsOnHitTarget>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+										<radius>85</radius>
+									</distributor>
+									<data href="/Spells/ClientData/Charge.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impactsOnHitTarget>
+							<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+							<threatMultiplier>1</threatMultiplier>
+							<statsConvertor>
+								<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Spirit</stat>
+								</might>
+								<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Intuition</stat>
+								</dexterity>
+							</statsConvertor>
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+									<Item type="gameMechanics.elements.scalers.IntellectDPSScaler" />
+								</scalers>
+							</scaler>
+							<avgDamage>6.88</avgDamage>
+							<source>Mainhand</source>
+						</Item>
+					</impacts>
+					<elseImpacts>
+						<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+							<impactsOnHitTarget>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/CommonBuffs/ChargeFear/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+										<radius>85</radius>
+									</distributor>
+									<data href="/Spells/ClientData/Charge.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impactsOnHitTarget>
+							<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+							<threatMultiplier>1</threatMultiplier>
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+									<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+								</scalers>
+							</scaler>
+							<avgDamage>6.88</avgDamage>
+							<source>Mainhand</source>
+						</Item>
+					</elseImpacts>
+				</Item>
+			</impacts>
+			<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<speedFactor>3</speedFactor>
+			<predicate type="gameMechanics.elements.predicates.PredicateReachTarget">
+				<hideText>false</hideText>
+			</predicate>
+			<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+				<angle>0.5236</angle>
+			</pathChecker>
+			<drawValue>0</drawValue>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnAttach>
+			<forceAttachBuff>true</forceAttachBuff>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+					<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

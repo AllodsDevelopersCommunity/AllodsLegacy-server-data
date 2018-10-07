@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>285233155</resourceId>
+	</Header>
+	<Name href="SpeedVIdleName.txt" />
+	<Description href="SpeedVIdleDesc.txt" />
+	<image href="/Interface/Icons/Actions/StopButton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<groups>
+		<Item href="VerticalSpeedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+			<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="BuffDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="BuffUp.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+				<buff href="BuffUp.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+				<buff href="BuffDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

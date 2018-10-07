@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>739823500</resourceId>
+	</Header>
+	<name href="AI50_Alice_reward_confirm.(Cue).Name.txt" />
+	<text href="AI50_Alice_reward_confirm.(Cue).Text.txt" />
+	<additionalConditions>
+		<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+			<variableResource href="/Maps/AstralIsle50/AI50_Captain.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+			<expectedValue type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</expectedValue>
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+			<affectPets>false</affectPets>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+							<sumCalcer type="gameMechanics.elements.calcers.LongData">
+								<value>200000</value>
+							</sumCalcer>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+			<variable href="/Maps/AstralIsle50/AI50_Captain.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+			<reset>true</reset>
+			<summand>0</summand>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</impacts>
+			<mob>
+				<scriptID>AI50_Captain</scriptID>
+				<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>165624854</resourceId>
+	</Header>
+	<Name href="Timer_buff_name.txt" />
+	<Description href="Timer_buff_desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/RedRag.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+					<affectPets>false</affectPets>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/ZoneContested2/PvP_Empire_Def/PVP_E.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="PvP_Quest.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="/World/Quests/ZoneContested2/PvP_Empire_Def/PvP_Empire_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												</Item>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+														<quest href="/World/Quests/ZoneContested2/PvP_Empire_Def/PvP_Empire_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<status>Failed</status>
+													</predicate>
+												</Item>
+											</predicates>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="/World/Quests/ZoneContested2/PvP_League_Def/PvP_League_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												</Item>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+														<quest href="/World/Quests/ZoneContested2/PvP_League_Def/PvP_League_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<status>Failed</status>
+													</predicate>
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested2/PvP_Empire_Def/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested2/PvP_League_Def/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneContested2/PvP_Empire_Def/PvP_Empire_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZoneContested2/PvP_Empire_Def/PvP_Empire_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Failed</status>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsAlive" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneContested2/PvP_League_Def/PvP_League_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZoneContested2/PvP_League_Def/PvP_League_Def.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Failed</status>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/ZoneContested2/PvP_Empire_Def/PVP_E.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

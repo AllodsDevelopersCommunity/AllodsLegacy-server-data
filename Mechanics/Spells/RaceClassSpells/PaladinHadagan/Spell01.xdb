@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>96933947</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/RaceClassSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>50</value>
+			<scaler>StrSpellWithoutRunes</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Equipment/Shield/ShieldHadagan.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/PurgePain.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>120000</duration>
+			<group href="/Mechanics/Spells/Groups/RaceClassSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>45</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ReduceBarrierDamage">
+				<reduce type="gameMechanics.elements.calcers.LinearCalcer">
+					<mul>1</mul>
+					<mulCalcer type="gameMechanics.constructor.basicElements.ScalerCalcer">
+						<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+						<value>50</value>
+					</mulCalcer>
+					<sum>0</sum>
+				</reduce>
+				<barrierNumber>0</barrierNumber>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+						<hideText>false</hideText>
+						<ability href="/Mechanics/Abilities/PaladinTalentsV2/MoreBarriers/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReduceBarrierDamage">
+						<reduce type="gameMechanics.constructor.basicElements.ScalerCalcer">
+							<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+							<value>50</value>
+						</reduce>
+						<barrierNumber>1</barrierNumber>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+								<hideText>false</hideText>
+								<ability href="/Mechanics/Abilities/PaladinTalentsV2/MoreBarriers/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReduceBarrierDamage">
+								<reduce type="gameMechanics.constructor.basicElements.ScalerCalcer">
+									<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+									<value>50</value>
+								</reduce>
+								<barrierNumber>1</barrierNumber>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReduceBarrierDamage">
+								<reduce type="gameMechanics.constructor.basicElements.ScalerCalcer">
+									<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+									<value>50</value>
+								</reduce>
+								<barrierNumber>2</barrierNumber>
+							</Item>
+						</impacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

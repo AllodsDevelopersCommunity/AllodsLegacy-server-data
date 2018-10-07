@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.behaviour.brain.MobBrainResource>
+	<Header>
+		<resourceId>64101</resourceId>
+	</Header>
+	<memoryVariables>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.AddressVariable">
+			<name>master</name>
+		</Item>
+		<Item type="gameMechanics.world.pet.brain.PetMoveModeVariable">
+			<name>moveMode</name>
+			<value>Follow</value>
+		</Item>
+		<Item type="gameMechanics.world.pet.brain.PetAggroModeVariable">
+			<name>aggroMode</name>
+			<value>Defensive</value>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.MovementTypeVariable">
+			<name>moveType</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.AddressVariable">
+			<name>masterOffender</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.BoolVariable">
+			<name>pursuitToComfort</name>
+			<value>false</value>
+		</Item>
+	</memoryVariables>
+	<!--==============================================================================================-->
+	<!--============================================STATES============================================-->
+	<!--==============================================================================================-->
+	<root type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+		<name>Root</name>
+		<groupType>Static</groupType>
+		<subnodes>
+			<!-- Init Pet, Set Master -->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>WaitInitState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+				<optional>
+					<Item>
+						<to>AliveStatesGroup</to>
+						<pipe type="gameMechanics.world.pet.brain.PetInitializerPipe">
+							<masterVar name="master" />
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+			<!-- Active State -->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+				<name>AliveStatesGroup</name>
+				<groupType>Static</groupType>
+				<subnodes>
+					<!-- Follow/Wait State -->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<groupType>Static</groupType>
+						<name>PetFollowGroup</name>
+						<subnodes>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PetFollowState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateFollow">
+									<target name="master" />
+								</state>
+								<mandatory>
+									<Item>
+										<to>PetWaitState</to>
+									</Item>
+									<Item>
+										<to>PetWaitState</to>
+									</Item>
+								</mandatory>
+								<activeConvolutions>
+									<Item type="gameMechanics.world.pet.brain.PetDefensiveConvolution">
+										<master name="master" />
+										<masterOffender name="masterOffender" />
+										<aggroMode name="aggroMode" />
+									</Item>
+								</activeConvolutions>
+							</Item>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PetWaitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateWait">
+									<period>5000</period>
+								</state>
+								<activeConvolutions>
+									<Item type="gameMechanics.world.pet.brain.PetTeleportByRangeConvolution">
+										<master name="master" />
+										<distance>20</distance>
+									</Item>
+									<Item type="gameMechanics.world.pet.brain.PetDefensiveConvolution">
+										<master name="master" />
+										<masterOffender name="masterOffender" />
+										<aggroMode name="aggroMode" />
+									</Item>
+								</activeConvolutions>
+								<mandatory>
+									<Item>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.VariableTargetPipe">
+											<target name="master" />
+										</pipe>
+										<to>PetFollowState</to>
+									</Item>
+								</mandatory>
+							</Item>
+						</subnodes>
+						<exitsRemap />
+						<exitTypes />
+						<initialState>PetFollowState</initialState>
+						<mandatory />
+						<optional>
+							<Item>
+								<to>PetRealmGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRealmEventPipe">
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<inactiveBuff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetAttackEventPipe">
+									<eventType>gameMechanics.world.creature.MasterAttackedEvent</eventType>
+									<aggroMode name="aggroMode" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicatePetStartAttack">
+										<aggroMode name="aggroMode" />
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetAttackEventPipe">
+									<eventType>gameMechanics.world.pet.PetStartAttackEvent</eventType>
+									<aggroMode name="aggroMode" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicatePetStartAttack">
+										<aggroMode name="aggroMode" />
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<simplePredicate type="gameMechanics.elements.predicates.PredicateNotOccupied" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetRevengeGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRevengeEventPipe">
+									<eventType>gameMechanics.elements.events.StartRevengeEvent</eventType>
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.elements.events.EventMobTeleported</eventType>
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe">
+                                </pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!-- Attack State -->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>AttackStatesGroup</name>
+						<groupType>Static</groupType>
+						<subnodes>
+							<!--0-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PursuitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePursuit">
+									<moveType name="moveType" />
+									<pursuitToComfort name="pursuitToComfort" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item />
+									<Item>
+										<to>AttackState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+								</mandatory>
+							</Item>
+							<!--1-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>AttackState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateAttack">
+									<moveType name="moveType" />
+									<pursuitToComfort name="pursuitToComfort" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item>
+										<to>PursuitState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+									<Item />
+									<Item />
+								</mandatory>
+							</Item>
+						</subnodes>
+						<initialState>AttackState</initialState>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+						</exitTypes>
+						<exitsRemap>
+							<Item>
+								<from>1</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>2</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>3</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>1</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<activeConvolutions>
+							<Item type="gameMechanics.world.pet.brain.PetTeleportByRangeConvolution">
+								<master name="master" />
+								<distance>80</distance>
+							</Item>
+						</activeConvolutions>
+						<mandatory>
+							<Item>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.VariableTargetPipe">
+									<target name="master" />
+								</pipe>
+								<to>PetFollowGroup</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>PetRealmGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRealmEventPipe">
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<inactiveBuff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetAttackEventPipe">
+									<eventType>gameMechanics.world.pet.PetStartAttackEvent</eventType>
+									<aggroMode name="aggroMode" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicatePetStartAttack">
+										<aggroMode name="aggroMode" />
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<simplePredicate type="gameMechanics.elements.predicates.PredicateNotOccupied" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetRevengeGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRevengeEventPipe">
+									<eventType>gameMechanics.elements.events.StartRevengeEvent</eventType>
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetAttackEventPipe">
+									<eventType>gameMechanics.world.pet.PetStartAttackEvent</eventType>
+									<aggroMode name="aggroMode" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicatePetStartAttack">
+										<aggroMode name="aggroMode" />
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.elements.events.EventMobTeleported</eventType>
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetMoveModeEventPipe">
+									<moveMode name="moveMode" />
+									<master name="master" />
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.MsgPetFollow</eventType>
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+								</pipe>
+							</Item>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe">
+                                </pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!-- Revenge State -->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>PetRevengeGroup</name>
+						<groupType>Static</groupType>
+						<subnodes>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PetRevengeState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateAttack">
+									<pursuitToComfort name="pursuitToComfort" />
+									<moveType name="moveType" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item>
+										<to>PetPursuitState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+									<Item />
+									<Item />
+								</mandatory>
+							</Item>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PetPursuitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePursuit">
+									<moveType name="moveType" />
+									<pursuitToComfort name="pursuitToComfort" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item />
+									<Item>
+										<to>PetRevengeState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+								</mandatory>
+							</Item>
+						</subnodes>
+						<initialState>PetRevengeState</initialState>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+						</exitTypes>
+						<exitsRemap>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>2</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>3</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>1</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<mandatory>
+							<Item>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.VariableTargetPipe">
+									<target name="master" />
+								</pipe>
+								<to>PetFollowGroup</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>PetRealmGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRealmEventPipe">
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<inactiveBuff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetMoveModeEventPipe">
+									<moveMode name="moveMode" />
+									<master name="master" />
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.MsgPetFollow</eventType>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!-- Hold State -->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>HoldState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateHold" />
+						<mandatory>
+							<Item>
+								<to>PetFollowGroup</to>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>PetRealmGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRealmEventPipe">
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<inactiveBuff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!-- Realm State -->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<groupType>Static</groupType>
+						<name>PetRealmGroup</name>
+						<subnodes>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PetRealmFollowState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateFollow">
+									<target name="master" />
+								</state>
+								<mandatory>
+									<Item>
+										<to>PetRealmWaitState</to>
+									</Item>
+									<Item>
+										<to>PetRealmWaitState</to>
+									</Item>
+								</mandatory>
+							</Item>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PetRealmWaitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateWait">
+									<period>5000</period>
+								</state>
+								<activeConvolutions>
+									<Item type="gameMechanics.world.pet.brain.PetTeleportByRangeConvolution">
+										<master name="master" />
+										<distance>20</distance>
+									</Item>
+								</activeConvolutions>
+								<mandatory>
+									<Item>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.VariableTargetPipe">
+											<target name="master" />
+										</pipe>
+										<to>PetRealmFollowState</to>
+									</Item>
+								</mandatory>
+							</Item>
+						</subnodes>
+						<exitsRemap />
+						<exitTypes />
+						<initialState>PetRealmFollowState</initialState>
+						<mandatory />
+						<optional>
+							<Item>
+								<to>PetRevengeGroup</to>
+								<pipe type="gameMechanics.world.pet.brain.PetRevengeEventPipe">
+									<eventType>gameMechanics.elements.events.StartRevengeEvent</eventType>
+									<master name="master" />
+									<masterOffender name="masterOffender" />
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+								</pipe>
+							</Item>
+							<Item>
+								<to>PetFollowGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.pet.aiMsg.MsgPetLeaveRealm</eventType>
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactFollowMaster" />
+									</impacts>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.pet.aiMsg.MsgPetLeaveRealmAndAttack</eventType>
+									<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+										<master name="master" />
+									</eventPredicate>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impacts>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+				</subnodes>
+				<initialState>PetFollowGroup</initialState>
+				<optional>
+					<Item>
+						<to>PetTeleportState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<eventType>gameMechanics.world.mob.behaviour.aiEvents.PetStartTeleportEvent</eventType>
+							<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+								<master name="master" />
+							</eventPredicate>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+			<!-- Teleport State -->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>PetTeleportState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdentityFollow">
+					<target name="master" />
+				</state>
+				<!-- state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle"/ -->
+				<optional>
+					<Item>
+						<to>AliveStatesGroup</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<eventType>gameMechanics.elements.events.EventMobTeleported</eventType>
+							<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+								<master name="master" />
+							</eventPredicate>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFollowMaster" />
+							</impacts>
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+			<!-- Despawn State -->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+				<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+					<onStart>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAggroAndTarget" />
+					</onStart>
+				</reaction>
+				<name>PetDespawnState</name>
+			</Item>
+		</subnodes>
+		<initialState>WaitInitState</initialState>
+		<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+			<triggers>
+				<Item>
+					<eventClasses>
+						<Item>gameMechanics.elements.events.EventRevive</Item>
+					</eventClasses>
+					<predicates>
+						<Item type="gameMechanics.world.pet.brain.PredicateFromMaster">
+							<master name="master" />
+							<needFail>false</needFail>
+						</Item>
+					</predicates>
+					<brainImpacts>
+						<Item type="gameMechanics.world.pet.brain.ImpactResetPet">
+							<master name="master" />
+							<masterOffender name="masterOffender" />
+						</Item>
+						<Item type="gameMechanics.world.pet.brain.ImpactLeaveRealm" />
+						<Item type="gameMechanics.world.pet.brain.ImpactFollowMaster" />
+					</brainImpacts>
+				</Item>
+				<Item>
+					<eventClasses>
+						<Item>gameMechanics.world.creature.MasterAttackedEvent</Item>
+					</eventClasses>
+					<predicates>
+						<Item type="gameMechanics.world.mob.behaviour.components.predicates.PredicateFromSelf" />
+					</predicates>
+					<brainImpacts>
+						<Item type="gameMechanics.world.pet.brain.ImpactSetMasterOffender">
+							<master name="master" />
+							<masterOffender name="masterOffender" />
+						</Item>
+					</brainImpacts>
+				</Item>
+				<Item>
+					<eventClasses>
+						<Item>gameMechanics.elements.events.EventLeaveCombat</Item>
+					</eventClasses>
+					<predicates>
+						<Item type="gameMechanics.world.pet.brain.PredicateFromMaster">
+							<master name="master" />
+							<needFail>false</needFail>
+						</Item>
+					</predicates>
+					<brainImpacts>
+						<Item type="gameMechanics.world.pet.brain.ImpactSetMasterOffender">
+							<master name="master" />
+							<masterOffender name="masterOffender" />
+						</Item>
+					</brainImpacts>
+				</Item>
+			</triggers>
+		</reaction>
+	</root>
+</gameMechanics.world.mob.behaviour.brain.MobBrainResource>

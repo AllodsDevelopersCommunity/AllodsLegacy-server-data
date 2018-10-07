@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>2052194356</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="ContextSpell_Name.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextSpell.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<Name href="ContextSpell_Name.txt" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoEmpire1/Quest1_2/Quest1_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="/Items/QuestItems/ArchipelagoEmpire1/Sarkofag/Sarkofag.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/ArchipelagoEmpire1/Quest1_2/Quest1_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/ArchipelagoEmpire1/Quest1_2/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoEmpire1/Quest1_2/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+				<table href="/Maps/Hadagan_AE1/SpawnTables/ArchipelagoEmpire1/Sarkofak_Center.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>10000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+						<table href="/Maps/Hadagan_AE1/SpawnTables/ArchipelagoEmpire1/Sarkofak_Center.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="/Items/QuestItems/ArchipelagoEmpire1/Sarkofag/Sarkofag.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

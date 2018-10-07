@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>1324285988</resourceId>
+	</Header>
+	<Name href="StunItemSpell.txt" />
+	<Description href="StunItemSpellDesc.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinLightForce.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="StunItemSpell.txt" />
+	<descTemplate href="StunItemSpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>10000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/2ndCircle/ScriptZones/Mine.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneContested1/EmpireQuest2_1/EmpireQuest2_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Completed</status>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="BeaconSummonerSpell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>60000</duration>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians" />
+					<coord x="1" y="1" z="1" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>180000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Characters/HumMobs/Instances/ZoneContested1/MilitariPolice22_23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians" />
+					<coord x="-1" y="-1" z="1" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>60000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.device.DeviceDie" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Items/InteractiveObjects/ZoneContested1/ZC1_Beacon/ZC1_Beacon.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				<deviceImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>62000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</deviceImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested1/EmpireQuest2_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

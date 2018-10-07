@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>279410696</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Bard/Cover.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/CommonBuffs/Invisibility/Invisibility.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<descVars />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Planes/Invisibility.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Incoming</direction>
+				<plane href="/Mechanics/Planes/Invisibility.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+			<resolventFor type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateSpellEquals">
+					<spells>
+						<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					</spells>
+				</predicate>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectUnworthyOfAttention" />
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Invisibility.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks />
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

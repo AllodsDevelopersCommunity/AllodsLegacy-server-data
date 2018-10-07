@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>287396870</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Teleporters.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Junk/HearthStone_01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TZ_1Boss/Teleportation.xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<level>1</level>
+	<prepareDuration>15000</prepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<canStartNotBeeingInSpellbook>true</canStartNotBeeingInSpellbook>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateSpellCooldownReady">
+						<spell href="Spell.xdb" />
+					</Item>
+					<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+						<currency href="/Mechanics/AlternativeCurrencies/TravelEssence.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+						<count>1</count>
+						<countCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateSpellCooldownReady">
+						<spell href="Spell.xdb" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+						<spell href="Spell.xdb" />
+						<duration>1800000</duration>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+								<destination type="gameMechanics.map.destination.DestinationHearthstone" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+								<currency href="/Mechanics/AlternativeCurrencies/TravelEssence.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+								<count>1</count>
+								<countCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+								<currency href="/Mechanics/AlternativeCurrencies/TravelEssence.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+								<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+									<value>-1</value>
+								</sumCalcer>
+								<multiplier>1</multiplier>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.map.destination.DestinationHearthstone" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<elseImpacts />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<params>
+		<params>
+			<Item>
+				<name>destination</name>
+				<type>Resource</type>
+			</Item>
+		</params>
+	</params>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

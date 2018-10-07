@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>311481345</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/PsionicContactEffects.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Psionic/PsionicDominate.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/Mislead.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasPsionicContact">
+				<hideText>false</hideText>
+				<type>Normal</type>
+				<spellTarget>false</spellTarget>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>false</hideText>
+				<predicate type="gameMechanics.elements.predicates.PredicatePsionicContactHasBuff">
+					<hideText>false</hideText>
+					<type>Normal</type>
+					<buffResource href="/Mechanics/Spells/PsionicNew/MentalResist/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotHigher">
+				<hideText>false</hideText>
+				<maxAltitude>2</maxAltitude>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>31</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+				<anyRank>true</anyRank>
+			</Item>
+			<Item type="gameMechanics.world.pet.ImpactSummonPet">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+					<faceSourcePos>false</faceSourcePos>
+					<coord x="0" y="0" z="0" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.world.changeappearance.ImpactCopyAppearance">
+						<usePetVisObj>false</usePetVisObj>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff hrefvar="buff" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetTarget">
+						<addresseeFinder type="gameMechanics.elements.abilities.FinderPsionicContactAddress">
+							<contactType>Normal</contactType>
+						</addresseeFinder>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyFaction" />
+					<Item type="gameMechanics.elements.impacts.ImpactCopyIFF">
+						<petIff>false</petIff>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+						<useSpellEnvelopeTargetEffects>true</useSpellEnvelopeTargetEffects>
+					</Item>
+				</impacts>
+				<plane href="/Mechanics/Planes/TwinPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<pool href="" />
+				<traceDown>false</traceDown>
+				<mobResource href="Dummy.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<petType href="PetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+				<copyStats>false</copyStats>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+						<destination type="gameMechanics.map.destination.RelativeTrailPos">
+							<center type="gameMechanics.map.destination.RelativeRotatePos">
+								<base type="gameMechanics.map.destination.RelativePos">
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>0</value>
+									</yaw>
+									<faceSourcePos>true</faceSourcePos>
+								</base>
+								<offset>15</offset>
+							</center>
+						</destination>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

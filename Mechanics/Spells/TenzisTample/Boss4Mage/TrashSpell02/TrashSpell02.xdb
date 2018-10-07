@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>132773891</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>5</value>
+			<scaler>IntSpell</scaler>
+		</Item>
+		<Item>
+			<name>var1</name>
+			<value>7</value>
+			<scaler>IntSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Mage/ControlLightning.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mage/ControlLightning.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>true</needLos>
+	<element>LIGHTNING</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>12000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>LIGHTNING</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>5</minDamage>
+				<maxDamage>7</maxDamage>
+				<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/HitLighning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.MagicScaler">
+							<stat>IS_Intellect</stat>
+						</Item>
+					</scalers>
+				</scaler>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>5</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

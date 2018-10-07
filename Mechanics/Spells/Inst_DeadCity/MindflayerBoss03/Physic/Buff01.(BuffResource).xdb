@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>207394817</resourceId>
+	</Header>
+	<Name href="Buff01Name.txt" />
+	<Description href="Buff01Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCruelty.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Creatures/MindFlayerDCBoss/DCBossBuff_Physic_01.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff01Name.txt" />
+	<descTemplate href="Buff01Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>6</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="Buff02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+											<minDamage>100</minDamage>
+											<maxDamage>500</maxDamage>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>12000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

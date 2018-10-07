@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>357602304</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.skills.PredicateSkillScore">
+				<skill href="Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+				<score var="score" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.skills.diceCraft.DiceCraftStart">
+				<skillResource href="Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+				<diceCount type="gameMechanics.elements.calcers.LongData">
+					<value>5</value>
+				</diceCount>
+				<rerolls type="gameMechanics.elements.calcers.CalcerLongIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Optimized</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.LongData">
+						<value>3</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.LongData">
+						<value>2</value>
+					</calcerElse>
+				</rerolls>
+				<maxLockedDices type="gameMechanics.elements.calcers.CalcerLongIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Stable</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.LongData">
+						<value>4</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.LongData">
+						<value>3</value>
+					</calcerElse>
+				</maxLockedDices>
+				<ignoreDices type="gameMechanics.elements.calcers.CalcerLongIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Quality</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.LongData">
+						<value>1</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.LongData">
+						<value>0</value>
+					</calcerElse>
+				</ignoreDices>
+				<maxRecipeLevel type="gameMechanics.elements.calcers.LongData">
+					<value var="value" />
+				</maxRecipeLevel>
+				<calcerFloat type="gameMechanics.elements.calcers.CalcerIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Handy</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.FloatData">
+						<value>2</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</calcerElse>
+				</calcerFloat>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

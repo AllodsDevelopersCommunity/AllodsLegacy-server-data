@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>192808972</resourceId>
+	</Header>
+	<nameTemplate href="AC6Cultist.AbilityResource01.(AbilityResource).NameTemplate.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>30</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.DirectDamage">
+									<damage>1</damage>
+									<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+									<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mul>1</mul>
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.02</multiplier>
+										</mulCalcer>
+										<additionalMultiplier>
+											<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+											<value>1</value>
+										</additionalMultiplier>
+										<sum>0</sum>
+									</scalerTarget>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+								<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1200000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.GoThroughPath">
+									<runningMode>true</runningMode>
+									<path>
+										<Item>
+											<scriptID>AC6_Start</scriptID>
+											<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+									</path>
+								</Item>
+							</impacts>
+							<object href="AC6_PortalDemon46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.5</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectNoAggro" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

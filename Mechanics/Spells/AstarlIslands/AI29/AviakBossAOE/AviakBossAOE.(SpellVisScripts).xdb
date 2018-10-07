@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Description href="/Spells/VisScripts/Prototypes2/Omni_Instant.txt" />
+	<actionBarStart type="CreatureAnimationAction">
+		<mode>LOOP</mode>
+		<animations>
+			<Item>readySpell</Item>
+		</animations>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<scale>4</scale>
+				<locator>FROM_LOCATOR_NAME</locator>
+				<locatorName>Slot_Special01</locatorName>
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<visActionID />
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<visActionID />
+					<time>1200</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureChannelDirectAction">
+						<visActionID>PrismaticRay011</visActionID>
+						<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<startPoint type="VisPointLocator">
+							<shift x="0" y="0" z="0" />
+							<locator>Slot_Hand_R</locator>
+							<member>Default_Member</member>
+							<locatorName>Slot_Special01</locatorName>
+							<from>FROM_SELF</from>
+						</startPoint>
+						<endPoint />
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<velocity>0</velocity>
+						<offendTime />
+						<multyTargetMode>Umbrella</multyTargetMode>
+						<secondaryTargetParams>
+							<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						</secondaryTargetParams>
+					</Item>
+					<Item type="CreatureEffectsOnTarget">
+						<visActionID />
+						<visualEffects>
+							<Item>
+								<delay>0</delay>
+								<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<effectAlias href="" />
+								<effectAnimations>
+									<mode>DIE</mode>
+								</effectAnimations>
+								<fixPoint>false</fixPoint>
+								<lockScale>false</lockScale>
+								<scale>1</scale>
+								<fadeInTime>0</fadeInTime>
+								<fadeOutTime>0</fadeOutTime>
+								<locator>Slot_FX</locator>
+								<member>Default_Member</member>
+								<locatorName />
+								<offendTime type="EffectOffendConstDelay">
+									<delay>0</delay>
+								</offendTime>
+							</Item>
+						</visualEffects>
+						<direction>DIR_NO_TRANSFORM</direction>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<charged type="CreatureChargedSpellAction">
+		<effectFx href="/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+		<fadeInTime>500</fadeInTime>
+		<fadeOutTime>500</fadeOutTime>
+	</charged>
+</SpellVisScripts>

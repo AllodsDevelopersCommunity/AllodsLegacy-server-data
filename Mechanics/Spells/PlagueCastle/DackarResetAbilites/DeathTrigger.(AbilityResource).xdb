@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>1557528603</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+							<msg href="/Characters/Kania_male/Instances/PlagueCastle/Pannochka07.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+							<defaultSpeaker href="/Characters/Kania_female/Instances/PlagueCastle/Pannochka.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Characters/Kania_male/Instances/PlagueCastle/Pannochka07.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/Pannochka.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>PC_PannochkaSleeping</scriptID>
+								<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/Pannochka.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/SkeletonMage22_22PC.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/ZombieWarrior22_22PC.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/SkeletonWarrior22_22PC.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+							<radius>85</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.EntityImpactEntitiesAround">
+									<radius>85</radius>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+							<impacts>
+								<Item type="gameMechanics.elements.device.DoorSwitch">
+									<switchType>Open</switchType>
+								</Item>
+							</impacts>
+							<device>
+								<scriptID>TheDoor2</scriptID>
+								<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>PC_Dackar</scriptID>
+								<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+									<newMobWorld href="/Characters/Kania_male/Instances/PlagueCastle/DakarDiDazire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>PC_Dackar</scriptID>
+								<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerInputDamageChannel">
+			<element>SHADOW</element>
+			<scaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+				<base>0</base>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerInputDamageChannel">
+			<element>COLD</element>
+			<scaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+				<base>0</base>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>PC_DacarSpell</scriptID>
+									<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</moveType>
+						<resource href="/Mechanics/Spells/PlagueCastle/ResetProjectile/ResetProjectile.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_PlagueCastle/ScriptZones/PC_Boss4_RespawnTrigger.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<Item href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<Item href="/Mechanics/Spells/Groups/Taunt.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<Item href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.99</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire01.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					<defaultSpeaker href="/Characters/Kania_male/Instances/PlagueCastle/DakarDiDazire_Event.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.5</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire02.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					<defaultSpeaker href="/Characters/Kania_male/Instances/PlagueCastle/DakarDiDazire_Event.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.1</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire03.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					<defaultSpeaker href="/Characters/Kania_male/Instances/PlagueCastle/DakarDiDazire_Event.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire03.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.01</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire04.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					<defaultSpeaker href="/Characters/Kania_male/Instances/PlagueCastle/DakarDiDazire_Event.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Characters/Kania_male/Instances/PlagueCastle/DiDazire04.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.6</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

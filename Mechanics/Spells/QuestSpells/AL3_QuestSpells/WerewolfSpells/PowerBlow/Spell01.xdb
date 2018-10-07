@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>124610644</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>99</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Spells/Necromancer/PetCommandAttack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/PetCommandAttack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Termite/CheliceraStrike(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt" />
+	<descTemplate href="Spell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/Instances/ArchipelagoLeague3/AL3_Vampire_Dayli.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Mechanics/Spells/QuestSpells/AL3_QuestSpells/WerewolfSpells/Paw/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>1</min>
+							<max>1</max>
+						</range>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.DirectDamage">
+						<damage>1</damage>
+						<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.04</multiplier>
+							</mulCalcer>
+						</scalerTarget>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Mechanics/Spells/QuestSpells/AL3_QuestSpells/WerewolfSpells/Paw/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>2</min>
+							<max>2</max>
+						</range>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.DirectDamage">
+						<damage>1</damage>
+						<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.06</multiplier>
+							</mulCalcer>
+						</scalerTarget>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Mechanics/Spells/QuestSpells/AL3_QuestSpells/WerewolfSpells/Paw/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>3</min>
+							<max>3</max>
+						</range>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.DirectDamage">
+						<damage>1</damage>
+						<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.08</multiplier>
+							</mulCalcer>
+						</scalerTarget>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/QuestSpells/AL3_QuestSpells/WerewolfSpells/Paw/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.DirectDamage">
+						<damage>1</damage>
+						<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.02</multiplier>
+							</mulCalcer>
+						</scalerTarget>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/QuestSpells/AL3_QuestSpells/WerewolfSpells/Paw/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

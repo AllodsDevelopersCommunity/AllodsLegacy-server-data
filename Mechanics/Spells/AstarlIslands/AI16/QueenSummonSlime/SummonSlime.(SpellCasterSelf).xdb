@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>232052767</resourceId>
+	</Header>
+	<Name href="SummonSlime.txt" />
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3600000</duration>
+		</cooldown>
+		<casterConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+				<table href="/Maps/AstralIsle16/SpawnTables/AstralIsle16/ExplosiveSlime.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>250</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+												<value>100</value>
+											</Item>
+										</impacts>
+										<spawnResource href="/Maps/AstralIsle16/SpawnTables/AstralIsle16/ExplosiveSlime.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.world.creature.AvatarFilter" />
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

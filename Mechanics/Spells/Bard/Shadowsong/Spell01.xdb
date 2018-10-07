@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>286054401</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Aura.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic9.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>11.43</value>
+			<scaler>StrSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Misc/Quest/AC8_S7_item.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bard/Lament_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<needLos>false</needLos>
+	<element>SHADOW</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<hideText>true</hideText>
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="SongEnforcer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="SongEnforcer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

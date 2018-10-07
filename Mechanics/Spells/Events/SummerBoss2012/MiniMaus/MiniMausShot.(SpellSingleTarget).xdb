@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>330770438</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBoss2012MiniMaus.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="MiniMausShot.(SpellSingleTarget)_Name.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/Shot/FireShot02.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="MiniMausShot.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="MiniMausBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="MiniMausBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsSelfIfTarget">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="MiniMausShieldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="MiniMausShieldMessage.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="MiniMausDamageBuffActive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="MiniMausShieldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.PureDamage">
+								<damage>3</damage>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="MiniMausDamageBuffActive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="MiniMausShieldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.PureDamage">
+								<damage>1</damage>
+							</Item>
+						</impactsIf>
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsSelfIfTarget">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="MiniMausBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</predicate>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="NotMaus.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

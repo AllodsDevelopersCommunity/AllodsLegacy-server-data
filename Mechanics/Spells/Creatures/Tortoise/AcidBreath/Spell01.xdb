@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>92870660</resourceId>
+	</Header>
+	<groups />
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Tortoise/AcidBreath.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<level>1</level>
+	<prepareDuration>1500</prepareDuration>
+	<needLos>false</needLos>
+	<element>ACID</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>-7</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.HealthInferiorityCalcer" />
+				<sum>10</sum>
+			</scaler>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ACID</element>
+				<threatMultiplier>1</threatMultiplier>
+				<minDamage>16</minDamage>
+				<maxDamage>20</maxDamage>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<angle type="constructor.basicElements.AngleRadians">
+			<value>0.5</value>
+		</angle>
+	</shape>
+	<radius>20</radius>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

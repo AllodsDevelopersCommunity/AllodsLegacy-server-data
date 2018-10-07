@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>263627788</resourceId>
+	</Header>
+	<Name href="SummonTreant.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="SummonTreant.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>75000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos" />
+					<offset>35</offset>
+					<turn>ToTarget</turn>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/AstarlIslands/AI25/TrashMobs/TreantHealer/Calltohelp.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+				</impacts>
+				<object href="/Creatures/TreantGhost/Instances/AstralIsland25/Treantbosshealer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<pool href="SummonTreant.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativeRotatePos">
+						<base type="gameMechanics.map.destination.RelativePos" />
+						<offset>20</offset>
+						<turn>ToTarget</turn>
+					</destination>
+					<object href="/Creatures/GoblinWarrior/Instances/AstralIsle25/GoblinServant.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="SummonTreant.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>2</value>
+				</count>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

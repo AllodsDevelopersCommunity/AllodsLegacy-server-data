@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>184087976</resourceId>
+	</Header>
+	<Name href="Summon_drakon_pet.txt" />
+	<Description href="Summon_drakon_pet.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Summon.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Summon_drakon_pet.txt" />
+	<descTemplate href="Summon_drakon_pet.Description.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/ArchipelagoContested5.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoContested5/AC5_D_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+							<assistantResource href="/World/Quests/ArchipelagoContested5/AC5_D_2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians" />
+								<coord />
+							</base>
+							<offset>4</offset>
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1.57</value>
+							</yaw>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+								<trigger href="TriggerEgoism.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+							</Item>
+						</impacts>
+						<assistantResource href="/World/Quests/ArchipelagoContested5/AC5_D_2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						<mobResource href="/Creatures/DraconidWarrior/Instances/ArchipelagoContested5/DraconidPet.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<useTargetLevel>false</useTargetLevel>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactDismissAssistant">
+						<assistantResource href="/World/Quests/ArchipelagoContested5/AC5_D_2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+								<spell href="Summon_drakon_pet.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

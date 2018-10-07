@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>156591133</resourceId>
+	</Header>
+	<Name href="ZC2_Teleport_Help_Spell_name.txt" />
+	<Description href="ZC2_Teleport_Help_Spell_Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Teleportation.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC2_Teleport_Help_Spell_name.txt" />
+	<descTemplate href="ZC2_Teleport_Help_Spell_Description.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneLeague2/ZL2_Portal_help/ZL2_Portal_help.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="ZC2_Teleport_Help.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague2/ZL2_Portal_help/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>KaniaCapital</scriptID>
+						<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

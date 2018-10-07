@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>214477903</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/World/DemonicPortalSmall.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>2.5</altitude>
+	<lifeLengthCap>0</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.StaticEntityAura">
+			<radius>3</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/World/Quests/Inst_TkaRika/QuestEvent03/PhaseBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/ProjectilePortal.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+									<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>0.5</value>
+									</chanceCalcer>
+									<impactsSuccess>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/Inst_TkaRika/QuestEvent03/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/Instances/InstTkaRika/EventNames/Event15_1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impactsSuccess>
+									<impactsFailure>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/Inst_TkaRika/QuestEvent03/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>-1</value>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/Instances/InstTkaRika/EventNames/Event15_2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impactsFailure>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Spells/ClientData/FadeOutScreen.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

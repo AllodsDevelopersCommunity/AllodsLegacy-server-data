@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>275802197</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="AviakFly_00.(SpellCasterSelf).ContextName.txt" />
+		<contextDescription href="AviakFly_00.(SpellCasterSelf).ContextDescription.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextEndurePain.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+						<data href="/Mechanics/Spells/CommonBuffs/AstralTravel/CombatWarning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="AviakFly_00_Stun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.world.pet.ImpactDismissPet" />
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+						<group href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+						<group href="/Mechanics/Spells/Groups/FeatureConsumables.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

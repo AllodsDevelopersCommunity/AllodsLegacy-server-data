@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>215354423</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="LvL3Turret.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="LvL4Turret.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+					<targetsLimit>0</targetsLimit>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+						<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+							<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_KHD.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						</zone>
+						<faction type="gameMechanics.elements.calcers.ZoneDistributor$OwnFaction" />
+					</distributor>
+					<data href="/Maps/Maze_KHD/ClientData/BossKilled_02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+							<affectPets>true</affectPets>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Mechanics/Spells/Maze/BossChecker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/ArchipelagoGipatsShard/Tp2Maze/GrantBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Only1Boss.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.CreatureFilter">
+						<blockCreatures>false</blockCreatures>
+					</filter>
+					<targetsLimit>0</targetsLimit>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+					<zone href="/Maps/Maze_KHD/ScriptZones/Boss_02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="/Maps/Maze_KHD/ScriptZones/Boss_02_kill.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<reset>false</reset>
+					<summand>1</summand>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

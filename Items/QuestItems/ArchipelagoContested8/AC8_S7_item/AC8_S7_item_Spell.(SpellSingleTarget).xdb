@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>219621388</resourceId>
+	</Header>
+	<Name href="AC8_S7_item_Spell.txt" />
+	<Description href="AC8_S7_item_Spell.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Creatures/VirusTransfer.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="AC8_S7_item_Spell.txt" />
+	<descTemplate href="AC8_S7_item_Spell.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>6</value>
+	</range>
+	<prepareDuration>1500</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8_01_01.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+				<buff href="/World/Quests/ArchipelagoContested8/AC8_S3/AC8_S3_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</conditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_S7/AC8_S7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ArchipelagoContested8/AC8_S7/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>5</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested8/AC8_S7/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>1000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested8/AC8_S3/AC8_S3_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Characters/Kania_female/Instances/ArchipelagoContested8/AC8_Cultist_Mag_hos01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Characters/Kania_female/Instances/ArchipelagoContested8/AC8_Cultist_Mag_hos02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Characters/Kania_male/Instances/ArchipelagoContested8/AC8_Cultist_hos01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Characters/Kania_male/Instances/ArchipelagoContested8/AC8_Cultist_hos02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+								</filter>
+								<targetsLimit>1</targetsLimit>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested8/AC8_S3/AC8_S3_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/World/Quests/ArchipelagoContested8/AC8_S3/AC8_S3_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+						</impacts>
+						<object href="/Creatures/Shadow/Instances/ArchipelagoContested8/AC8_S7_ShadowMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

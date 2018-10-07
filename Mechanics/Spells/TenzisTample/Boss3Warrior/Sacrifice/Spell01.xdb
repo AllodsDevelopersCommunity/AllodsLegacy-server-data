@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>98103456</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorRend.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TZ_3Boss/TZ_Warrior_Sacrifice.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/TenzisTample/Boss3Warrior/Unsanctities/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="AdeptSpeech.xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/TenzisTample/Boss3Warrior/Unsanctities/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactRemoveAggro" />
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

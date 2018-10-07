@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>302511271</resourceId>
+	</Header>
+	<lifeLengthCap>1000000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>85</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>85</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/EarthElemental/AI11/Instances/AstralIsle40/AI40_EarthElemental_AOE.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Creatures/EarthElemental/AI11/Instances/AstralIsle40/AI40_EarthElementalSoloVar.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityResetSpawnTable">
+					<table href="/Maps/AstralIsle40/SpawnTables/AstralIsle40/AI40_EarthElemental_Boss.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOnNone>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

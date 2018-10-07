@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739822502</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="LightningSpell.(SpellSingleTarget).Name.txt" />
+	<Description href="LightningSpell.(SpellSingleTarget).Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageLightningArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/GolemJunes/LaserArc.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="LightningSpell.(SpellSingleTarget).Name.txt" />
+	<descTemplate href="LightningSpell.(SpellSingleTarget).Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>17</value>
+	</range>
+	<prepareDuration>700</prepareDuration>
+	<element>LIGHTNING</element>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics>
+		<cooldown>
+			<duration>12000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<manaType>Mana</manaType>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<threatMultiplier>0</threatMultiplier>
+						<statsConvertor>
+							<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Spirit</stat>
+							</might>
+						</statsConvertor>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<minDamage>6800</minDamage>
+						<maxDamage>7500</maxDamage>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<threatMultiplier>0</threatMultiplier>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<minDamage>5200</minDamage>
+						<maxDamage>5600</maxDamage>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

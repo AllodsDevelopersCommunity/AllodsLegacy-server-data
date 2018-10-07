@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>188026924</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<descTemplate href="SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested6/Zones/ArchipelagoContested6/ArchipelagoContested6.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/DemonScout/Instances/ArchipelagoContested6/DemonScout45_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DemonWarrior/Instances/ArchipelagoContested6/DemonWarriorAstral46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Characters/Hadagan_male/Instances/ArchipelagoContested6/HadaganCultistMale46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/DemonScout/Instances/ArchipelagoContested6/DemonScout45_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested6/E1_5/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested6/ManaElementalEaterNeutral.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/DemonWarrior/Instances/ArchipelagoContested6/DemonWarriorAstral46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested6/E1_5/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested6/ManaElementalEaterNeutral.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/Hadagan_male/Instances/ArchipelagoContested6/HadaganCultistMale46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested6/E1_5/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested6/ManaElementalEaterNeutral.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

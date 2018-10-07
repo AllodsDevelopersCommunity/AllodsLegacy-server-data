@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>369166348</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AcidSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Boss01_OilPuddle.(SpellArea).Name.txt" />
+	<image href="/Interface/Icons/Misc/Crafting/AlchemyPotion.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Characters/Undead_male/Instances/AstralIsle50/Boss01_OilPuddle.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics>
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="Boss01_Fire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="AI50_OilPuddle.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+				<projectileData>
+					<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+						<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+					</moveType>
+					<startAtCaster>true</startAtCaster>
+					<resource href="Boss01_puddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+				</projectileData>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>4</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>230613003</resourceId>
+	</Header>
+	<Name href="AC8_S8_item_Spell.txt" />
+	<Description href="AC8_S8_item_Spell.Description.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>1000</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_S8/AC8_S8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ArchipelagoContested8/AC8_S8/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>10</value>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ArchipelagoContested8/AC8_S8/AC8_S8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/DraconidMage/Instances/ArchipelagoContested8/AC8_DraconidWeak.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DraconidWarrior/Instances/ArchipelagoContested8/AC8_DraconidWeak_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoContested8/AC8_S8/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactKill" />
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>120000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/Shadow/Instances/ArchipelagoContested8/AC8_S7_ShadowMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

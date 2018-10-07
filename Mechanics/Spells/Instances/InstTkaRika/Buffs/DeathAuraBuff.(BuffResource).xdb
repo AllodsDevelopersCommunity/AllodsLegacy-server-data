@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>198852728</resourceId>
+	</Header>
+	<Name href="DeathAuraBuff.txt" />
+	<Description href="DeathAuraBuff.Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerNeurotoxin.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/VisScripts/Bosses/TR_1Boss/CrystalDeathAura.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>5</radius>
+			<filter type="gameMechanics.world.creature.MobFilter" />
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="DeathBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.ImpactHeal">
+							<heal>1</heal>
+							<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.FloatData">
+									<value>0.1</value>
+								</mulCalcer>
+							</scaler>
+							<considerOutgoingModifiers>false</considerOutgoingModifiers>
+							<mode>Direct</mode>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="DeathBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

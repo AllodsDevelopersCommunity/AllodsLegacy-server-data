@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>275850260</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/AcidPuddle_Root.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0.1</altitude>
+	<lifeLengthCap>6500</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+			<delay>0</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<radius>5</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>DISEASE</element>
+									<minDamage>10</minDamage>
+									<maxDamage>10</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Creatures/Toad/Summon/Buff02.(BuffResource)01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+					</impacts>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<impactsToTarget>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="Area.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+	</impactsToTarget>
+</gameMechanics.world.projectile.ProjectileResource>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>127705088</resourceId>
+	</Header>
+	<Name href="AvatarReviveBuff_Name.txt" />
+	<Description href="AvatarReviveBuff_Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageInvisibility.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/Invisibility.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Planes/AvatarRevivePlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="AvatarReviveBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="AvatarReviveBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+					<sendAsMessage>true</sendAsMessage>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AvatarReviveBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventSpellStarted</Item>
+				<Item>gameMechanics.elements.events.EventExploitStarted</Item>
+				<Item>gameMechanics.elements.events.EventStruckWithAutoAttack</Item>
+				<Item>gameMechanics.elements.events.EventMountStarted</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AvatarReviveBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

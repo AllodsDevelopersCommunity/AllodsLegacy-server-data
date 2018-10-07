@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="CreatureAnimationAction">
+		<visActionID />
+		<mode>LOOP</mode>
+		<use>USE_ANIMATIONS</use>
+		<animations>
+			<Item>readySpell</Item>
+		</animations>
+		<channel>CHANNEL_DEFAULT</channel>
+		<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+		<channelOverrideScript />
+		<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+		<specialController />
+		<advanced>
+			<speed>0</speed>
+			<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+			<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+			<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+			<offendType>NO_OFFEND</offendType>
+			<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+			<autoHasten>
+				<mode>AUTOHASTEN_NONE</mode>
+				<timeToBeLeft>0</timeToBeLeft>
+			</autoHasten>
+			<eventPlaybackEnd>false</eventPlaybackEnd>
+			<turnToTarget>TURN_DEFAULT</turnToTarget>
+			<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+		</advanced>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visActionID />
+		<visualEffects>
+			<Item>
+				<delay>0</delay>
+				<effectFx href="/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<effectAlias href="" />
+				<effectAnimations>
+					<mode>DIE</mode>
+				</effectAnimations>
+				<fixPoint>false</fixPoint>
+				<lockScale>false</lockScale>
+				<scale>4</scale>
+				<fadeInTime>0</fadeInTime>
+				<fadeOutTime>0</fadeOutTime>
+				<locator>FROM_LOCATOR_NAME</locator>
+				<member>Default_Member</member>
+				<locatorName>Slot_Special01</locatorName>
+				<offendTime />
+				<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+			</Item>
+		</visualEffects>
+		<stopOnDeath>false</stopOnDeath>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<visActionID />
+		<play>InSequence</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_CURRENT_ATTACK</use>
+				<animations>
+					<Item>attack</Item>
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<visActionID />
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<visActionID />
+					<time>600</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureChannelDirectAction">
+						<visActionID>PrismaticRay011</visActionID>
+						<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fxLength>2</fxLength>
+						<startPoint type="VisPointLocator">
+							<shift x="0" y="0" z="0" />
+							<locator>FROM_LOCATOR_NAME</locator>
+							<member>Default_Member</member>
+							<locatorName>Slot_Eye_R</locatorName>
+							<from>FROM_SELF</from>
+						</startPoint>
+						<endPoint />
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<velocity>0</velocity>
+						<offendTime />
+						<multyTargetMode>Umbrella</multyTargetMode>
+						<secondaryTargetParams>
+							<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<fxLength>2</fxLength>
+							<fadeInTime>0</fadeInTime>
+							<fadeOutTime>0</fadeOutTime>
+							<velocity>0</velocity>
+							<offendTime />
+						</secondaryTargetParams>
+					</Item>
+					<Item type="CreatureEffectsOnTarget">
+						<visActionID />
+						<visualEffects>
+							<Item>
+								<delay>0</delay>
+								<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<effectAlias href="" />
+								<effectAnimations>
+									<mode>DIE</mode>
+								</effectAnimations>
+								<fixPoint>false</fixPoint>
+								<lockScale>false</lockScale>
+								<scale>1</scale>
+								<fadeInTime>0</fadeInTime>
+								<fadeOutTime>0</fadeOutTime>
+								<locator>Slot_FX</locator>
+								<member>Default_Member</member>
+								<locatorName />
+								<offendTime type="EffectOffendConstDelay">
+									<delay>0</delay>
+								</offendTime>
+								<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+							</Item>
+						</visualEffects>
+						<stopOnDeath>false</stopOnDeath>
+						<direction>DIR_NO_TRANSFORM</direction>
+					</Item>
+				</elements>
+				<stopOnDeath>false</stopOnDeath>
+			</Item>
+		</elements>
+		<stopOnDeath>false</stopOnDeath>
+	</launch>
+</SpellVisScripts>

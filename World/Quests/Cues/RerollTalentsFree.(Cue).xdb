@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>181763075</resourceId>
+	</Header>
+	<name href="RerollTalentsFree_Name.txt" />
+	<text href="RerollTalentsFree_Text.txt" />
+	<image href="/Interface/Icons/Special/Currency/Ruby.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<data>
+		<Item type="CueDataItem">
+			<alias>value</alias>
+			<item href="/ItemMall/Services/Training/TalentsRerollFree.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</data>
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+						<minLevel type="gameMechanics.formulas.IntConstantValue">
+							<value>16</value>
+						</minLevel>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+							<items>
+								<Item href="/ItemMall/Services/Training/TalentsRerollFree.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</items>
+							<totalCount>1</totalCount>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+								<items>
+									<Item href="/Items/BoxSpecialLoot/Training/TalentsRerollInfinite.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</items>
+								<totalCount>1</totalCount>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasUsedTalentPoint" />
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactRerollTalents">
+			<spendTicket>false</spendTicket>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

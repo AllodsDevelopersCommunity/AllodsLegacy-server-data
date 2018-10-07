@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>343626787</resourceId>
+	</Header>
+	<Name href="ZC9_1_120Spell.(SpellCasterSelf)_Name.txt" />
+	<nameTemplate href="ZC9_1_120Spell.(SpellCasterSelf)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>31000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="ZC9_1_120Invis.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/RealWorld/ZC9_1_120/ZC9_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/RealWorld/Zones/RealWorld/RealWorld.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="ZC9_1_120Invis.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

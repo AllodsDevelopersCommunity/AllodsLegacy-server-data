@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>326230236</resourceId>
+	</Header>
+	<Name href="Stun.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/AstralIslands/AI11/ShadowBolt.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Stun.(SpellSingleTarget)_Name.txt.template" />
+	<prepareDuration>3630</prepareDuration>
+	<element>ASTRAL</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>32000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.5</level>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<minDamage>25</minDamage>
+				<maxDamage>25</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Stun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

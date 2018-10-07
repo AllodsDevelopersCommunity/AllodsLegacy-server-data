@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>345632770</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+			<mark href="/Mechanics/AI/EnterCombatMark.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+			<instantiateOnUse>false</instantiateOnUse>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.RelativeRotatePos">
+						<base type="gameMechanics.map.destination.RelativePos" />
+						<offset>4</offset>
+					</destination>
+					<finishImpacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ForceAggro" />
+											</impacts>
+										</Item>
+									</impacts>
+									<filter type="gameMechanics.constructor.basicElements.FilterOr">
+										<filters>
+											<Item type="gameMechanics.world.creature.AvatarFilter" />
+											<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+												<predicates>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</predicates>
+											</Item>
+										</filters>
+									</filter>
+								</Item>
+							</impacts>
+						</Item>
+					</finishImpacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+			</impactsOn>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

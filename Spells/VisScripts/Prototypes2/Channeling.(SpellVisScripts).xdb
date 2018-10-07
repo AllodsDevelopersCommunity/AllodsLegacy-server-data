@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<FxOnCaster />
+			<FadeInTime>200</FadeInTime>
+			<FxOnTarget />
+			<RayVelocity>0</RayVelocity>
+			<LocatorNameOnCaster />
+			<LocatorNameOnTarget />
+			<MultyTargetMode>FromCaster</MultyTargetMode>
+			<LocatorOnCaster>Slot_Hand_R</LocatorOnCaster>
+			<Animation>channelCastDirected</Animation>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<FxOnHands />
+			<FxChanneling />
+			<FadeOutTime>100</FadeOutTime>
+		</Variables>
+	</Header>
+	<Description href="Channeling.txt" />
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item var="Animation" />
+				</animations>
+			</Item>
+			<Item type="CreatureChannelDirectAction">
+				<channelingFx hrefvar="FxChanneling" />
+				<startPoint type="VisPointLocator">
+					<locator var="LocatorOnCaster" />
+					<locatorName var="LocatorNameOnCaster" />
+				</startPoint>
+				<endPoint type="VisPointLocator">
+					<locator var="LocatorOnTarget" />
+					<locatorName var="LocatorNameOnTarget" />
+				</endPoint>
+				<fadeInTime var="FadeInTime" />
+				<fadeOutTime var="FadeOutTime" />
+				<velocity var="RayVelocity" />
+				<offendTime type="EffectOffendConstDelay" />
+				<multyTargetMode var="MultyTargetMode" />
+			</Item>
+			<Item type="CreatureEffectsOnTarget">
+				<visualEffects>
+					<Item>
+						<effectFx hrefvar="FxOnTarget" />
+						<locator var="LocatorOnTarget" />
+						<locatorName var="LocatorNameOnTarget" />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx hrefvar="FxOnCaster" />
+						<locator var="LocatorOnCaster" />
+						<locatorName var="LocatorNameOnCaster" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visActionID />
+		<visualEffects>
+			<Item>
+				<delay>0</delay>
+				<effectFx hrefvar="FxOnHands" />
+				<effectAlias href="" />
+				<effectAnimations>
+					<mode>DIE</mode>
+				</effectAnimations>
+				<fixPoint>false</fixPoint>
+				<fadeInTime>0</fadeInTime>
+				<fadeOutTime>0</fadeOutTime>
+				<locator>Slot_Hand_L</locator>
+				<member>Default_Member</member>
+				<locatorName />
+				<offendTime />
+			</Item>
+			<Item>
+				<delay>0</delay>
+				<effectFx hrefvar="FxOnHands" />
+				<effectAlias href="" />
+				<effectAnimations>
+					<mode>DIE</mode>
+				</effectAnimations>
+				<fixPoint>false</fixPoint>
+				<fadeInTime>0</fadeInTime>
+				<fadeOutTime>0</fadeOutTime>
+				<locator>Slot_Hand_R</locator>
+				<member>Default_Member</member>
+				<locatorName />
+				<offendTime />
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+</SpellVisScripts>

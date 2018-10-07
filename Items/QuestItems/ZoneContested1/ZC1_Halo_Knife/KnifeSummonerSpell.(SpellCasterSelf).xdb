@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>107730964</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/Bloodpact.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/2ndCircle/ScriptZones/Halo_Zone_E.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/2ndCircle/ScriptZones/Halo_Zone_L.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneContested1/ZC1_Halo_L_04/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>Halo_Demon_L</scriptID>
+							<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>500</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+								</impacts>
+								<mob>
+									<scriptID>Halo_Demon_L</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneContested1/ZC1_Halo_E_04/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>Halo_Demon_E</scriptID>
+							<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>500</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+								</impacts>
+								<mob>
+									<scriptID>Halo_Demon_E</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

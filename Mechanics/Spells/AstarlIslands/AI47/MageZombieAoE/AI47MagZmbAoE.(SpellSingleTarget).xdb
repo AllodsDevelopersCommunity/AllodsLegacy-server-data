@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>314445830</resourceId>
+	</Header>
+	<Name href="AI47MagZmbAoE.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="AI47MageZmbeVis.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<element>DISEASE</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+				<projectileData>
+					<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+						<destination type="gameMechanics.map.destination.RelativePos" />
+					</moveType>
+					<resource href="AI47MagZmbeProjectile.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+				</projectileData>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>DISEASE</element>
+						<minDamage>30</minDamage>
+						<maxDamage>30</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+				</filter>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

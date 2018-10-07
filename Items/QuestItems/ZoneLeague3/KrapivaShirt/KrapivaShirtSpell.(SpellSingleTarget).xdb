@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>77969451</resourceId>
+	</Header>
+	<Name href="KrapivaShirtSpell_Name.txt" />
+	<Description href="KrapivaShirtSpell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Paladin/LayHand.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>1500</prepareDuration>
+	<needLos>false</needLos>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions />
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Aviak/Instances/ZoneLeague3/Aviak_Sorcerer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="KrapivaShirt.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague3/Quest13_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+					<faceSourcePos>true</faceSourcePos>
+					<coord x="0" y="0" z="0" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.GoThroughPath">
+						<path>
+							<Item>
+								<scriptID>ZL_WhichCircle</scriptID>
+								<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</path>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+						<msg href="/Characters/Kania_male/Instances/ZoneLeague3/Chat.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					</Item>
+				</impacts>
+				<plane href="" />
+				<object href="/Characters/Kania_male/Instances/ZoneLeague3/BrotherVasilisa.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.Disintegrate" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>356952070</resourceId>
+	</Header>
+	<Name href="GameBuff2.(BuffResource).Name.txt" />
+	<Description href="GameBuff2.(BuffResource).Description.txt" />
+	<image href="/Interface/Ingame/MageEnergyInstability2/Lightning5.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="LightFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>10</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+					<data href="LightningFail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_06/TE2012_SpellGroup.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+					<time>500</time>
+					<impactsOnLand>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="GameKnockDown.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOnLand>
+					<distance>2</distance>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Events/OneTime/TheEnd2012/GameKnockDown0.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>8</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+					<data href="NeedReduceLightning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackChangeTrigger">
+			<impactsOnIncrease>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="GameBuff1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<min>5</min>
+												<max>11</max>
+											</range>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="GameBuff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<min>5</min>
+												<max>11</max>
+											</range>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="GameBuff3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<min>5</min>
+												<max>11</max>
+											</range>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+									<data href="ElementStackIsFive.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOnIncrease>
+			<impactsOnDecrease>
+				<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+			</impactsOnDecrease>
+		</Item>
+	</effects>
+	<stackLimit>0</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_06/TE2012_SpellGroup.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

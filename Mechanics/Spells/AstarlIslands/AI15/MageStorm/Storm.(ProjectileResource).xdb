@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>227173397</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/DruidTornadoAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>8000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+			<delay>2000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.CylinderWithHeight" />
+					<radius>15</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="KickIntoVortex.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+					<targetsLimit>6</targetsLimit>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+			<delay>7000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+						</moveType>
+						<resource href="Lightning.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOnStart>
+</gameMechanics.world.projectile.ProjectileResource>

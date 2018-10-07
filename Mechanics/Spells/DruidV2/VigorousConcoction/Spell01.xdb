@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>88869901</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DruidAll.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidVisitCompanion.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Druid/VigorousConcoction.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>4000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>HOLY</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+				<item href="/Mechanics/Spells/DruidV2/VigorousPotion/Potion03.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<stackCount>1</stackCount>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>52.7</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="/Mechanics/Spells/DruidV2/ConcoctionEssences/VigorousEssence.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item href="/Mechanics/Spells/DruidV2/VigorousPotion/Potion03.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</item>
+				<count>1</count>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Mechanics/Spells/DruidV2/ConcoctionBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>2</min>
+							<max>5</max>
+						</range>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactStartSpell">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+						<buff href="/Mechanics/Spells/DruidV2/ConcoctionBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<resetTimer>true</resetTimer>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

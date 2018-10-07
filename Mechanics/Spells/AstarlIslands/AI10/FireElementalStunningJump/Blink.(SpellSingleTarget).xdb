@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>195895314</resourceId>
+	</Header>
+	<Name href="Blink.(SpellSingleTarget).Name.txt" />
+	<image href="" />
+	<visualScripts href="/Spells/VisScripts/Mage/Blink.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Blink.(SpellSingleTarget).Name.txt" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>600000</duration>
+			<group href="" />
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+						<destination type="gameMechanics.map.destination.RelativeTrailPos">
+							<center type="gameMechanics.map.destination.RelativeRotatePos">
+								<base type="gameMechanics.elements.calcers.DestinationSpellTargetPoint">
+									<yawDelta type="constructor.basicElements.AngleDegrees">
+										<value>0</value>
+									</yawDelta>
+								</base>
+								<offset>5</offset>
+							</center>
+							<offset x="0" y="0" z="0" />
+						</destination>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>200</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>15</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>FIRE</element>
+								<threatMultiplier>1</threatMultiplier>
+								<minDamage>50</minDamage>
+								<maxDamage>50</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler">
+									<stat>IS_Intellect</stat>
+								</scaler>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/AstarlIslands/AI10/ManticoreBomb/Kick.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+								<time>2000</time>
+								<distance>20</distance>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.AvatarFilter">
+							<block>false</block>
+							<withPet>false</withPet>
+						</filter>
+						<targetsLimit>0</targetsLimit>
+						<onBehalfOfHolder>true</onBehalfOfHolder>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+							<radius>85</radius>
+						</distributor>
+						<data href="/Mechanics/Spells/AstarlIslands/AI10/ManticoreBomb/Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+				<spell href="/Mechanics/Spells/AstarlIslands/AI10/FireElementalToxicSmoke/ToxicSmoke.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="/Mechanics/Spells/AstarlIslands/AI10/FireElementalToxicSmoke/ToxicSmoke.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>10000</duration>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

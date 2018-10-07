@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>357289988</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<Description href="PrototypeBuff.(BuffResource).Description02.txt" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/Mechanics/LFG/Quests/RoleSelected.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/Mechanics/LFG/Quests/RoleSelected.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>-1</value>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ItemBagTrigger">
+			<item href="/Mechanics/Astral/TierLevels/Tickets/Tier1_Ticket.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<impactsOnRemove>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+								<items>
+									<Item href="/Mechanics/Astral/TierLevels/Tickets/Tier1_Ticket.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</items>
+								<totalCount>1</totalCount>
+								<checkDress>false</checkDress>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff hrefvar="buff" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnRemove>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDeferredEffects">
+			<delay type="gameMechanics.elements.calcers.CalcerLongSum">
+				<calcers>
+					<Item type="gameMechanics.elements.calcers.TimeTableCalcer">
+						<timeTable href="/Mechanics/LFG/Table.(TimeTable).xdb#xpointer(/timetables.TimeTable)" />
+					</Item>
+					<Item type="gameMechanics.elements.calcers.LongData">
+						<value>-45000</value>
+					</Item>
+				</calcers>
+			</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactStartQuiz">
+							<question href="ReadyCheck.(Question).xdb#xpointer(/gameMechanics.world.quiz.Question)" />
+							<participants type="gameMechanics.elements.addresseeFinders.AddressesCalcerSingle">
+								<calcer type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+							</participants>
+							<timeout>
+								<second>30</second>							
+							</timeout>
+							<resultsHandler type="gameMechanics.elements.common.SingleResultHandler">
+								<impactsOnSuccess>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+												<lhs type="gameMechanics.elements.calcers.LongData">
+													<value>1</value>
+												</lhs>
+												<rhs type="gameMechanics.elements.calcers.CalcerLongParam">
+													<paramName>choice</paramName>
+												</rhs>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff hrefvar="buff" />
+											</Item>
+										</impactsIf>
+									</Item>
+								</impactsOnSuccess>
+								<impactsOnFail>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff hrefvar="buff" />
+									</Item>
+								</impactsOnFail>
+							</resultsHandler>
+						</Item>
+					</impactsOn>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="LFG_RoleBuffs.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

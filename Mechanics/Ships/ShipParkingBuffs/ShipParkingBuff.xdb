@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>361930753</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<uiComponents>
+		<Item href="/Mechanics/Ships/UITransportParking.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+	</uiComponents>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+						<slot>Slot_Teleport_02</slot>
+					</addresseeFinder>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="/Mechanics/Ships/Boarding/Parking/BuffBoarding.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff hrefvar="boardingMarkBuff" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+						<slot>Slot_Teleport_02</slot>
+					</addresseeFinder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="/Mechanics/Ships/Boarding/Parking/BuffBoarding.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff hrefvar="boardingMarkBuff" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectRuleFinishedImpacts">
+			<rule href="/Mechanics/Rules/Astral/ShipParking/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroupGeneric">
+					<group href="/Mechanics/Spells/Groups/ShipParkingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/AstralHangarHadagan_VIP/Zones/AstralHangarHadagan_VIP/AstralHangarHadagan_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/AstralHangarLeague_VIP/Zones/AstralHangarLeague_VIP/AstralHangarLeague_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric">
+							<forced>true</forced>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeoutGeneric">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroupGeneric">
+					<group href="/Mechanics/Spells/Groups/ShipParkingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/AstralHangarHadagan_VIP/Zones/AstralHangarHadagan_VIP/AstralHangarHadagan_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/AstralHangarLeague_VIP/Zones/AstralHangarLeague_VIP/AstralHangarLeague_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric">
+							<forced>true</forced>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectNoBoundTrigger">
+			<effectsEmpty>
+				<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+					<delay>900000</delay>
+					<effects>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateInZone">
+														<zone href="/Maps/AstralHangarLeague_VIP/Zones/AstralHangarLeague_VIP/AstralHangarLeague_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateInZone">
+														<zone href="/Maps/AstralHangarHadagan_VIP/Zones/AstralHangarHadagan_VIP/AstralHangarHadagan_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+													</Item>
+												</predicates>
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="itemService.elements.astral.ImpactRemoveChest" />
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateFaction">
+													<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+													<destination href="/Maps/AstralHangarLeague_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													<success />
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+													<destination href="/Maps/AstralHangarHadagan_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													<success />
+												</Item>
+											</impactsElse>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsOn>
+						</Item>
+					</effects>
+				</Item>
+			</effectsEmpty>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectShipDespawnTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderShipOwner" />
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="ShipReturnsOnOnline.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectPassengerChangeImpacts">
+			<impactsOnEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateGreater">
+									<lhs type="gameMechanics.world.ship.elements.calcers.PassengerCountCalcer" />
+									<rhs type="gameMechanics.elements.calcers.FloatData">
+										<value>50</value>
+									</rhs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+									<data href="ShipFull.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateFaction">
+											<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportGeneric">
+											<destination type="gameMechanics.map.destination.DestinationDeviceSingleSpawn">
+												<spawn>
+													<scriptID var="boardingID" />
+													<map href="/Maps/AstralHangarHadagan_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</spawn>
+											</destination>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportGeneric">
+											<destination type="gameMechanics.map.destination.DestinationDeviceSingleSpawn">
+												<spawn>
+													<scriptID var="boardingID" />
+													<map href="/Maps/AstralHangarLeague_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</spawn>
+											</destination>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnEnter>
+		</Item>
+	</effects>
+	<duration>1</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AstralShipDespawnBlockers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+		<Item href="/Mechanics/Spells/Groups/ShipParkingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>true</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

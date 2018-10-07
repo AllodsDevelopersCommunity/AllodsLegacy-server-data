@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>328882199</resourceId>
+	</Header>
+	<Name href="Phase2SelfDefence.(BuffResource)_Name.txt" />
+	<image href="/Interface/Icons/Mounts/EnergyShield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Phase2SelfDefence.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="Phase2SelfDefenceT1NO.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Phase2SelfDefenceT1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="Phase2SelfDefenceT2NO.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Phase2SelfDefenceT2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Items/InteractiveObjects/Inst_TepPyramid/Boss_02_Item_02/DeviceSpawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Items/InteractiveObjects/Inst_TepPyramid/Boss_02_Item_02/Device2spawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Items/InteractiveObjects/Inst_TepPyramid/Boss_02_Item_02/DeviceSpawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="RedPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>Turret02</scriptID>
+						<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="BluePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>Turret01</scriptID>
+						<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Items/InteractiveObjects/Inst_TepPyramid/Boss_02_Item_02/Device2spawn.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

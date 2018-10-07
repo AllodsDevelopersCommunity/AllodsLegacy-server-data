@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>204507137</resourceId>
+	</Header>
+	<name href="Sacrifice_Name.txt" />
+	<description href="Sacrifice_Desc.txt" />
+	<level>45</level>
+	<rating>3</rating>
+	<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/ArchipelagoContested5.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<reward>
+		<mandatoryItems>
+			<Item>
+				<item href="/Items/QuestItems/ArchipelagoContested5/SacrificeRevard/SacrificeRewardDisplay.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_SINGLE</Item>
+	</types>
+	<locations>
+		<Item>
+			<predicate type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/AC5_Event_Sacrifice.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</predicate>
+			</predicate>
+			<location>
+				<position x="7520.600000" y="9444.900000" z="62.100000" />
+				<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/ArchipelagoContested5.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</location>
+		</Item>
+		<Item>
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/AC5_Event_Sacrifice.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</predicate>
+			<location>
+				<position x="7675.299805" y="9739.400391" z="0.000000" />
+				<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/Lizardman_camp.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</location>
+		</Item>
+	</locations>
+	<timeTable href="Sacrifice.(TimePeriodTable).xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+					<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleDeviceAllMapsGeneric">
+							<device>
+								<scriptID>Sacrifice_01</scriptID>
+								<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/ArchipelagoContested5.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<onlyOnTargetMapHead>false</onlyOnTargetMapHead>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/AC5_Event_Sacrifice.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Completed</status>
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>true</anyRank>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>1</value>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>1</value>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsIf>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>true</anyRank>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>1</value>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>2</value>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsIf>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/Lizardman_camp.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+												<predicates>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_00.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<anyRank>true</anyRank>
+													</Item>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<anyRank>true</anyRank>
+													</Item>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<anyRank>true</anyRank>
+													</Item>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<anyRank>true</anyRank>
+													</Item>
+												</predicates>
+											</predicate>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested5/AC5_Event_Sacrifice/AC5_Event_Sacrifice.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateInZone">
+											<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/Lizardman_camp.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/QuestSpells/AC5_Sacrifice/SacrificeBuff_00.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+									<durationScalerTarget />
+									<durationScaler />
+									<scalerTarget />
+									<stacks />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+	</effects>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+			<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/ArchipelagoContested5.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<onlyOnTargetMapHead>false</onlyOnTargetMapHead>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="Sacrifice_Start.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+			<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMobAllMapsGeneric">
+					<mob>
+						<scriptID>AC5_Victim</scriptID>
+						<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<finishImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+			<zone href="/Maps/ArchipelagoContested5/Zones/ArchipelagoContested5/ArchipelagoContested5.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<onlyOnTargetMapHead>false</onlyOnTargetMapHead>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="Sacrifice_Finish.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleGeneric">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<path>
+								<Item>
+									<scriptID>AC5_Victim1</scriptID>
+									<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>AC5_Victim2</scriptID>
+									<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>AC5_Victim3</scriptID>
+									<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+							<delay>10000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<pointer>
+				<scriptID>AC5_Victim</scriptID>
+				<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</pointer>
+		</Item>
+	</finishImpacts>
+</gameMechanics.world.rules.RuleResource>

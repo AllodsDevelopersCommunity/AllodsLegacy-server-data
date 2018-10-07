@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>331550723</resourceId>
+	</Header>
+	<Name href="PVP_Rubie_Spell.(SpellCasterSelf).Name.txt" />
+	<Description href="PVP_Rubie_Spell.(SpellCasterSelf).Description.txt" />
+	<nameTemplate href="PVP_Rubie_Spell.(SpellCasterSelf).Name.txt" />
+	<descTemplate href="PVP_Rubie_Spell.(SpellCasterSelf).Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+							<unlock href="/Mechanics/Unlocks/AltCurrencies/PvPRank_04_Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/AltCurrencies/PvPRank_04_Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="PVP_Rubie.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/AltCurrencies/PvP_rank_available.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+						<sumCalcer type="constructor.elements.CalcerLongExternal">
+							<externalCalcer href="Gold_PvP_Calcer.(CalcerLongResource).xdb#xpointer(/constructor.elements.CalcerLongResource)" />
+						</sumCalcer>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="Gold_PvP_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="PVP_Rubie.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

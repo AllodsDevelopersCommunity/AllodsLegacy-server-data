@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>298893321</resourceId>
+	</Header>
+	<Name href="Buff_02__Name.txt" />
+	<Description href="Buff_02__Desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/Insurance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Other/Insurance_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_02__Name.txt.template" />
+	<descTemplate href="Buff_02__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.common.HealOverTime">
+			<healPerTick type="gameMechanics.elements.calcers.FloatData">
+				<value>7.107</value>
+			</healPerTick>
+			<threatMultiplier>1</threatMultiplier>
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mul>1</mul>
+						<mulCalcer type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+							<level>9</level>
+							<exponent>1</exponent>
+							<multiplier>0.03</multiplier>
+						</mulCalcer>
+						<sum>0</sum>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.ScalerIf">
+						<condition type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</condition>
+						<scalerIf type="gameMechanics.elements.scalers.MagicScaler">
+							<stat>IS_Intellect</stat>
+						</scalerIf>
+						<scalerElse type="gameMechanics.elements.scalers.SlotScaler">
+							<slot>MAINHAND</slot>
+						</scalerElse>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.OffensiveRunesScaler" />
+				</scalers>
+			</scaler>
+			<tick>1000</tick>
+			<statsConvertor>
+				<intuition type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<manaType>Mana</manaType>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Intuition</stat>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Dexterity</stat>
+					</calcerElse>
+				</intuition>
+				<spirit type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<manaType>Mana</manaType>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Spirit</stat>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Might</stat>
+					</calcerElse>
+				</spirit>
+			</statsConvertor>
+			<affectOnStartTick>false</affectOnStartTick>
+			<considerOutgoingModifiers>false</considerOutgoingModifiers>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_HoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

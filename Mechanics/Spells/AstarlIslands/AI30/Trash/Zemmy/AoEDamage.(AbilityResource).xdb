@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>270704740</resourceId>
+	</Header>
+	<name href="AoEDamage.txt" />
+	<nameTemplate href="AoEDamage.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>6</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+					<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+					<minDamage>10</minDamage>
+					<maxDamage>10</maxDamage>
+				</Item>
+			</impactsIn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Stamina</stat>
+			</stat>
+			<multiplier>0.6</multiplier>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>35</radius>
+					<affectGroup>Friends</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/Scorpion/Instances/AstralIsle30/ScorpionMecha.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Protection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>15</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Damage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="VisScriptBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>true</attachIfNotExist>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

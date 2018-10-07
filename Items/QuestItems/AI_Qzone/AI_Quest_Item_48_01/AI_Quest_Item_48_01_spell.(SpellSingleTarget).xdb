@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739814487</resourceId>
+	</Header>
+	<Name href="AI_Quest_Item_48_01_spell.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Mage/IceTomb.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<prepareDuration>500</prepareDuration>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/AI_Qzone/AI_Quest_tier4_AI48_01/AI_Quest_tier4_AI48_01.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/AI_Qzone/AI_Quest_tier4_AI48_01/Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/WaterElemental/Instances/AstralIsle48/IceEntity.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/AstarlIslands/AI48/Bosses/IceEntity/Destruction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="AI_Quest_item_48_01_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

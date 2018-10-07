@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24370</resourceId>
+	</Header>
+	<Name href="E3_11_Drug_Spell_Name.txt" />
+	<Description href="E3_11_Drug_Spell_Desc.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/ZoneEmpire3/E3_10_Drug_Zone_01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+				<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>10000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneEmpire3/E3_11_01/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+								<msg href="/Mechanics/Spells/QuestSpells/ZoneEmpire3_Questspells/E3_11_1_Text.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>E3_Nezeb_Id</scriptID>
+							<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="E3_11_Drug.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

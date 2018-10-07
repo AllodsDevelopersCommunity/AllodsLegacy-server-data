@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>107880448</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Mage/Fireball.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/2ndCircle/ScriptZones/ZoneContested2/C2_Polygon_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Scorpion/Instances/ZoneContested2/Scorpion26_27.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested2/C2_1_3_LV/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested2/C2_1_3_EV/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>8</radius>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+										<mobs>
+											<Item href="/Creatures/Scorpion/Instances/ZoneContested2/Scorpion26_27.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</mobs>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateFaction">
+										<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+								<faction href="/World/Factions/Neutral.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>30000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+										<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactRemoveAllAggro" />
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>20</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

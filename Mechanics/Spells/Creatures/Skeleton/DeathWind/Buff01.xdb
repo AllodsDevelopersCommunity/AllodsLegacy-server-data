@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>366084197</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerPtomain.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/NecromancerPtomaineDOTAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1</scale>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<locator>Slot_FX</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.2</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>2</multiplier>
+							</durationScaler>
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Stamina</stat>
+			</stat>
+			<multiplier>0.8</multiplier>
+			<summand>0</summand>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

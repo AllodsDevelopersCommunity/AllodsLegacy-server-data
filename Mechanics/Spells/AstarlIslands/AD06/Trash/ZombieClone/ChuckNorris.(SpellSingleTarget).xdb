@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739819588</resourceId>
+	</Header>
+	<Name href="ChuckNorris.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="ChuckNorris.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="Stun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="Stun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1000</time>
+						<impactsOnLand>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>LIGHTNING</element>
+								<minDamage>15</minDamage>
+								<maxDamage>15</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impactsOnLand>
+						<distance>35</distance>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="HitLightning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

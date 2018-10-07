@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>234224675</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestResurrect.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ForgetSpellTrigger">
+			<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellCooldownMultiplier">
+			<spell href="/Mechanics/Spells/Priest/Regeneration/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			<factor>0</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectGroupCooldownMultiplier">
+			<group href="/Mechanics/Spells/Groups/GreaterHeals.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<factor>0</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellRepelTypeModifier">
+			<spells>
+				<Item href="/Mechanics/Spells/Priest/HealingRadiance/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="/Mechanics/Spells/Priest/CureWound/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<Item href="/Mechanics/Spells/Priest/CureWoundUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			</spells>
+			<repelType>IGNORE</repelType>
+			<probability>1</probability>
+		</Item>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<tick>3000</tick>
+			<affectGroup>Raid</affectGroup>
+			<affectSelf>true</affectSelf>
+			<radius>50</radius>
+			<filter type="gameMechanics.world.creature.CreatureFilter" />
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellPrepareDurationModifier">
+			<spell href="/Mechanics/Spells/Priest/Heal/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			<factor>-1</factor>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/PriestAspects.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

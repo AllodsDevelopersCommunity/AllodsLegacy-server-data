@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>198852619</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>850</priority>
+		<contextName href="CrystallJump.txt" />
+		<contextDescription href="CrystallJump.Description.txt" />
+		<contextImage href="/Interface/Icons/Spells/Warrior/WarriorCharge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="CrystallJump.txt" />
+	<Description href="CrystallJump.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TR_1Boss/CrystalJump.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/Inst_TkaRika/Zones/Inst_TkaRika/TkaRika.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="/Items/QuestItems/ArchipelagoContested6/I_2_Item_01/I_2_Item_01.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+				<checkBag>false</checkBag>
+				<checkDress>true</checkDress>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>10</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>true</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget />
+						<durationScaler />
+						<durationScalerTarget />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<stacks />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+						<value>10</value>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.MobFilter" />
+				<targetsLimit>0</targetsLimit>
+				<onBehalfOfHolder>true</onBehalfOfHolder>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+				<destination type="gameMechanics.map.destination.RelativeTrailPos">
+					<center type="gameMechanics.map.destination.RelativeRotatePos">
+						<base type="gameMechanics.map.destination.RelativePos">
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>0</value>
+							</yaw>
+							<faceSourcePos>false</faceSourcePos>
+							<coord x="0" y="0" z="0" />
+						</base>
+						<offset>30</offset>
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+					</center>
+					<offset x="0" y="0" z="0" />
+				</destination>
+				<speed>25</speed>
+				<impactsOnLand>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>10</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>true</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+								<stacks />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+								<value>10</value>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.MobFilter" />
+						<targetsLimit>0</targetsLimit>
+						<onBehalfOfHolder>true</onBehalfOfHolder>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="CrystalJumpLand.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsOnLand>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+				<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell03_Jump.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<delta type="gameMechanics.elements.calcers.FloatData">
+					<value>-1</value>
+				</delta>
+				<resetTimer>false</resetTimer>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>332972038</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="KnockdownRed.(SpellArea)_Name.txt" />
+	<Description href="KnockdownRed.(SpellArea)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/KickUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<sysName>Agob_51</sysName>
+	<nameTemplate href="KnockRedName.txt" />
+	<descTemplate href="KnockdownDesc.txt" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Everyone</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="StrikeBallStrong.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="PainInLegs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="Sprint.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="KnockdownReady.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+						<mark href="/Maps/2ndCircle_Goblinoball_New/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.ClosestAutotarget">
+		<group>All</group>
+	</autotargetSelector>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>4</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

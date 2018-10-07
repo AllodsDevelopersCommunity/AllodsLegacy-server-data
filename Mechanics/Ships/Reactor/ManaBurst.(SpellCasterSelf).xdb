@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>289574912</resourceId>
+	</Header>
+	<Name href="ManaBurst.txt" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.device.EntityClientData">
+				<data href="ManaBurst.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Ships/Lazareth/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactManaburstKick" />
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Ships/Lazareth/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Ships/Lazareth/ProtectionBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.DirectDamageGeneric">
+										<damage type="gameMechanics.elements.calcers.CalcerMul">
+											<calcers>
+												<Item type="gameMechanics.elements.calcers.CalcerDiff">
+													<minuend type="gameMechanics.world.ship.elements.calcers.CalcerCurrentEnergy" />
+													<subtrahend type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+												</Item>
+												<Item type="gameMechanics.elements.calcers.InverseCalcer">
+													<value type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+												</Item>
+											</calcers>
+										</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.33</multiplier>
+											</mulCalcer>
+											<additionalMultiplier>
+												<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+												<value>1</value>
+											</additionalMultiplier>
+										</scalerTarget>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+						<impacts>
+							<Item type="gameMechanics.world.ship.elements.ImpactDeviceHit">
+								<damage type="gameMechanics.elements.calcers.CalcerMul">
+									<calcers>
+										<Item type="gameMechanics.constructor.basicElements.ScalerCalcer">
+											<scaler type="gameMechanics.elements.scalers.RandomScaler">
+												<range>
+													<min>0</min>
+													<max>1000</max>
+												</range>
+											</scaler>
+											<value>0.001</value>
+										</Item>
+										<Item type="gameMechanics.elements.calcers.CalcerSum">
+											<summands>
+												<Item type="gameMechanics.elements.calcers.LinearCalcer">
+													<mul>-1</mul>
+													<mulCalcer type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+													<sum>0</sum>
+												</Item>
+												<Item type="gameMechanics.world.ship.elements.calcers.CalcerCurrentEnergy" />
+											</summands>
+										</Item>
+									</calcers>
+								</damage>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.device.filters.DamagableUsableDeviceFilter" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

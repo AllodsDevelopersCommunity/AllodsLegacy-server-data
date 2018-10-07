@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>198875160</resourceId>
+	</Header>
+	<Name href="Spell01.txt" />
+	<Description href="Spell01.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Creatures/DemonTerminatorThird/Cleave.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>25</mana>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+						<items>
+							<Item href="/Items/QuestItems/ZoneContested4/Obereg/Obereg.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</items>
+						<totalCount>1</totalCount>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>PHYSICAL</element>
+						<threatMultiplier>1</threatMultiplier>
+						<statsConvertor type="" />
+						<minDamage>5</minDamage>
+						<maxDamage>12</maxDamage>
+						<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<stacks />
+						</impactOnHitTarget>
+						<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>PHYSICAL</element>
+						<threatMultiplier>1</threatMultiplier>
+						<minDamage>50</minDamage>
+						<maxDamage>120</maxDamage>
+						<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</impactOnHitTarget>
+						<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Hemisphere" />
+	<radius>8</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>296656900</resourceId>
+	</Header>
+	<Name href="OverHeat.(BuffResource)_Name.txt" />
+	<Description href="OverHeat.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/Firewall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="OverHeat.(BuffResource)_Name.txt.template" />
+	<descTemplate href="OverHeat.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.DirectDamage">
+							<damage>1</damage>
+							<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+									<multiplier>2</multiplier>
+								</mulCalcer>
+							</scalerTarget>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="OverHeat.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>115000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

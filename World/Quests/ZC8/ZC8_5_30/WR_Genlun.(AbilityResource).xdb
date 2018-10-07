@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>315808786</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="ZC8_MorokPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.95</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<conditions>
+						<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onSlave type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Morok/Instances/ZC8/ZC8_WeakMorok.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</onSlave>
+						</Item>
+					</conditions>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+							<value>10000</value>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+				</Item>
+			</impacts>
+			<tick>4000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffAura">
+			<affectGroup>Friends</affectGroup>
+			<radius>55</radius>
+			<buff href="Genlun_help2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

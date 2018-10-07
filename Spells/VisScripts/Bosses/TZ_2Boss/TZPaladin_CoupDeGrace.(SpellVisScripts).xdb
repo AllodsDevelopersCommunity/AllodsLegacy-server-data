@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxOnTargets>/Spells/FX/Spells/PriestHeavenlyStrikeAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTargets>
+			<FxOnTargetsFixedPoint>true</FxOnTargetsFixedPoint>
+			<LocatorNameOnTargets>Slot_Global</LocatorNameOnTargets>
+			<Animation>instantSpellCastOmni</Animation>
+			<LocatorOnTargets>FROM_LOCATOR_NAME</LocatorOnTargets>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectHoly.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+		</Variables>
+	</Header>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx hrefvar="FxOnHands" />
+				<locator>Slot_Hand_L</locator>
+			</Item>
+			<Item>
+				<effectFx hrefvar="FxOnHands" />
+				<locator>Slot_Hand_R</locator>
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<precastType>PRECAST_NONE</precastType>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="CreatureEffectsOnTarget">
+				<visualEffects>
+					<Item>
+						<effectFx hrefvar="FxOnTargets" />
+						<fixPoint var="FxOnTargetsFixedPoint" />
+						<locator var="LocatorOnTargets" />
+						<locatorName var="LocatorNameOnTargets" />
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

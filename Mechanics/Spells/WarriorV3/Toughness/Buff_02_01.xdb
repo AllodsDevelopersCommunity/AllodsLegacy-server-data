@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739822223</resourceId>
+	</Header>
+	<Name href="Buff_02__Name.txt" />
+	<Description href="Buff_02__Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/SweepingSlamUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_02__Name.txt.template" />
+	<descTemplate href="Buff_02__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</healthCalcer>
+			<healthScalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>1</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+					<multiplier>0.2</multiplier>
+				</mulCalcer>
+				<sum>0</sum>
+			</healthScalerTarget>
+			<regenCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</regenCalcer>
+			<regenScalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>1</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateInCombat">
+						<hideText>false</hideText>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>0.1</value>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.AbilityRankCalcer">
+								<ability href="/Mechanics/Spells/WarriorV3/Abilities/ToughnessInCombat/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.33333</mul>
+								<sum>0</sum>
+							</Item>
+						</calcers>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FloatData">
+						<value>0.2</value>
+					</calcerElse>
+				</mulCalcer>
+				<sum>0</sum>
+			</regenScalerTarget>
+			<regenInCombat>true</regenInCombat>
+			<ownerDamageFactor>0</ownerDamageFactor>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+			<resource href="" />
+			<damageType>Absorb</damageType>
+			<priority>LimitedDamageAbsorber</priority>
+			<instantRegenOnDeath>false</instantRegenOnDeath>
+			<affectsPureDamage>false</affectsPureDamage>
+			<affectsAdditionalHealth>true</affectsAdditionalHealth>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

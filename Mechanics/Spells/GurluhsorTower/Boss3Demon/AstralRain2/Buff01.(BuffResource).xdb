@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>194540548</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageDispelMagic.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/GurluhsorTower/Boss3Demon/AstralRain/AstralRain.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/GurluhsorTower/Boss3Demon/AstralRain/Buff_Name.txt.template" />
+	<descTemplate href="/Mechanics/Spells/GurluhsorTower/Boss3Demon/AstralRain/Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>ASTRAL</element>
+					<threatMultiplier>0</threatMultiplier>
+					<scalerTarget type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.CalcerExp">
+									<base>2</base>
+									<powCalc type="gameMechanics.elements.calcers.CalcerSum">
+										<summands>
+											<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<forAllRanks>false</forAllRanks>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>-1</value>
+											</Item>
+										</summands>
+									</powCalc>
+								</mulCalcer>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mul>-0.04</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.AvatarsAroundCalcer">
+									<group>Friends</group>
+									<skipSelf>false</skipSelf>
+									<skipPets>true</skipPets>
+									<radius>8</radius>
+								</mulCalcer>
+								<sum>1.08</sum>
+							</Item>
+						</scalers>
+					</scalerTarget>
+					<minDamage>1.47</minDamage>
+					<maxDamage>1.47</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<resetTimer>false</resetTimer>
+				</Item>
+			</impacts>
+			<tick>19900</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>8</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="/Mechanics/Spells/GurluhsorTower/Boss3Demon/AstralRain/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impacts>
+			<tick>3900</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.RepelTypeRaiser">
+			<type>IGNORE</type>
+		</Item>
+	</effects>
+	<stackLimit>12</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

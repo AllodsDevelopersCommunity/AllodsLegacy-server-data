@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>152829969</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/WarriorFury.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorFlurryOfBlows.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Melee/StrongAttack.xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<needLos>false</needLos>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>8000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>40</level>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateShieldEquipped" />
+			</Item>
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>15</mana>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+					<minDamage>2</minDamage>
+					<maxDamage>3</maxDamage>
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>6</value>
+				</count>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>113074192</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="Water_Name.txt" />
+		<contextDescription href="Water_Desc.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextUse.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<Name href="Water_Name.txt" />
+	<Description href="Water_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Attak.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Water_Name.txt" />
+	<descTemplate href="Water_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="/Items/QuestItems/ZoneContested3/Art_Water/Art_Water.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ZoneContested3/Repit_Quest/Repit_Quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/Items/QuestItems/ZoneContested3/Art_Water/Art_Water.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos" />
+				<deviceImpacts>
+					<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+						<delay>120000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate" />
+						</impacts>
+					</Item>
+				</deviceImpacts>
+				<object href="/Items/InteractiveObjects/ZoneContested3/Fire_Art/Fire_Art.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="/Items/QuestItems/ZoneContested3/Art_Water/Art_Water.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested3/Repit_Quest/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>124629099</resourceId>
+	</Header>
+	<groups />
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Equipment/Mace/MaceMorningStar.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Melee/StrongAttack.xdb#xpointer(/SpellVisScripts)" />
+	<speed>50</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.ScalerBuff">
+				<buff href="/Mechanics/Spells/GurluhsorTowerTrash/ArmoredOgre/Enrage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<multiplier>-1</multiplier>
+				<summand>27000</summand>
+			</scaler>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBaseMana">
+				<baseMana>0.1</baseMana>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff_04_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsOnHitTarget>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>30</minDamage>
+				<maxDamage>35</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

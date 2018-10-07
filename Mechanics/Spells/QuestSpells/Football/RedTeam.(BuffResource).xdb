@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>1645871224</resourceId>
+	</Header>
+	<Name href="RedTeam_Name.txt" />
+	<Description href="RedTeam_Description.txt" />
+	<image href="/Interface/Icons/Misc/Food/BerriesRed.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="RedUniform.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="RedTeam_Name.txt" />
+	<descTemplate href="RedTeam_Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Ingame.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+					<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="RedTeamN_Players.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand>-1</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfScriptZoneVariable">
+					<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="RedTeamN_Players.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateVariableValueEquals" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Playtime.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>SlimeReferee</scriptID>
+								<map href="/Maps/2ndCircle_Goblinoball/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="DeMorphR.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>RedRecruiter</scriptID>
+								<map href="/Maps/2ndCircle_Goblinoball/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+							<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							<variable href="BothTeamsPresent.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<reset>true</reset>
+							<summand>0</summand>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AddContextSpells.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="RedTeam_SpellDisable.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Team_Capitan.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Ingame.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="Sprint.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocatorSpread">
+				<locator>
+					<scriptID>RedTeamEntryPoint</scriptID>
+					<map href="/Maps/2ndCircle_Goblinoball/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+				<yaw type="constructor.basicElements.AngleRadians" />
+				<horizontalSpread>10</horizontalSpread>
+			</destination>
+			<selfBuff href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+					<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="RedTeamN_Players.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand>-1</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfScriptZoneVariable">
+					<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="RedTeamN_Players.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateVariableValueEquals" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Playtime.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>SlimeReferee</scriptID>
+								<map href="/Maps/2ndCircle_Goblinoball/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="DeMorphR.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>RedRecruiter</scriptID>
+								<map href="/Maps/2ndCircle_Goblinoball/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+							<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							<variable href="BothTeamsPresent.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<reset>true</reset>
+							<summand>0</summand>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AddContextSpells.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="RedTeam_SpellDisable.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="Team_Capitan.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Team_Capitan.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Ingame.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>2700000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

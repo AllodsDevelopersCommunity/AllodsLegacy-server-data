@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>210201668</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<path>
+								<Item>
+									<scriptID>droid_1</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_2</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_3</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_4</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_5</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_6</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_7</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_8</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>droid_9</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+					<data href="/Mechanics/Rules/ArchipelagoContested7/other_unReferenced_events/02_02_escort.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/ArchipelagoContested7.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/ArchipelagoContested7/Event_quest_2_2/Golem_Mark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>50</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+									<value>100500</value>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.25</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested7/ScriptZones/Event_2_2_zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Rules/ArchipelagoContested7/other_unReferenced_events/Health25.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

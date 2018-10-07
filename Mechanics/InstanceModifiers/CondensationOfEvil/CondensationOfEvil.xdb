@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>270713857</resourceId>
+	</Header>
+	<name href="CondensationOfEvil.txt" />
+	<description href="CondensationOfEvil.Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodPlague.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+													<projectileData>
+														<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+															<destination type="gameMechanics.map.destination.RelativePos" />
+														</moveType>
+														<resource href="Projectile.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+													</projectileData>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<tick>13000</tick>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+</gameMechanics.map.basicElements.MapModifierResource>

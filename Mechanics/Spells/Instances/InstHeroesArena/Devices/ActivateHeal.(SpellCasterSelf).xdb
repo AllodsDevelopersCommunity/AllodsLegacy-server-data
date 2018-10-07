@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>241167383</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="ActivateHeal.txt" />
+		<contextDescription href="ActivateHeal.Description.txt" />
+		<contextImage href="/Interface/Icons/Spells/Priest/PriestCureWounds.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<Name href="ActivateHeal.txt" />
+	<Description href="ActivateHeal.Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestCureWounds.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="ActivateHeal.txt" />
+	<descTemplate href="ActivateHeal.Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Items/InteractiveObjects/HeroesArena/Spark/CapturedSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<consumeStacks>1</consumeStacks>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+				<projectileData>
+					<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>HealDevProjectile</scriptID>
+								<map href="/Maps/Inst_HeroesArena/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+					</moveType>
+					<resource href="HealProjectile.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+				</projectileData>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+				<affectPets>false</affectPets>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+						<spell href="ActivateHeal.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+						<duration>60000</duration>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Items/InteractiveObjects/HeroesArena/Spark/CapturedSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<consumeStacks>1</consumeStacks>
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Items/InteractiveObjects/HeroesArena/Spark/HealDeviceCA.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Items/InteractiveObjects/HeroesArena/Spark/CapturedSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<max>2</max>
+						</range>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Items/InteractiveObjects/HeroesArena/Spark/HealDeviceCA_UP.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

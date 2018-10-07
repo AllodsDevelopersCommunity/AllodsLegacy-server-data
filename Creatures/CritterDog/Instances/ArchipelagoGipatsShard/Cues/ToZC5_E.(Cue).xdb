@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>175920149</resourceId>
+	</Header>
+	<name href="ToZC5_E.txt" />
+	<text href="ToZC5_E.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneContested5/Q_E/Q_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+			<rule href="/Mechanics/Rules/ZoneContested5/ZC5_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="AntiZC5Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="ZC5Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="AntiZC5Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.IntConstantValue">
+				<value>50</value>
+			</minLevel>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<finishImpacts />
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0</value>
+				</yaw>
+				<locator>
+					<scriptID>ZC5_E</scriptID>
+					<map href="/Maps/ZoneContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="ZC5Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ZC5Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="AntiZC5Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

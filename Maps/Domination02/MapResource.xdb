@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>286310580</resourceId>
+	</Header>
+	<minimapLight>
+		<AmbientFactor>0.5</AmbientFactor>
+		<FogStart>100</FogStart>
+		<FogEnd>500</FogEnd>
+		<SunLightYaw>45</SunLightYaw>
+		<SunLightPitch>0</SunLightPitch>
+		<AmbientColor>2017861120</AmbientColor>
+		<DiffuseColor>2017861120</DiffuseColor>
+		<FogColor>2017861120</FogColor>
+		<SpecularColor>0</SpecularColor>
+		<ContourColor>0</ContourColor>
+		<SpecularWaterColor>0</SpecularWaterColor>
+		<WaterGradientStart>-1</WaterGradientStart>
+		<WaterGradientEnd>-1</WaterGradientEnd>
+		<TerrainSpecularColor>0</TerrainSpecularColor>
+		<TerrainContourColor>0</TerrainContourColor>
+	</minimapLight>
+	<name href="Name.txt" />
+	<factionExits>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Portal_League1_Capital</scriptID>
+					<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Capital_AE1_Teleport</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</factionExits>
+	<mapTemplate href="/System/MapTemplates/InstancedEvent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievementGeneric">
+								<achievement href="/Mechanics/InstancedEventResource/MM_BG02/MM_BG02.(InstancedEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+								<summand type="gameMechanics.elements.calcers.TableFunctionCalcer">
+									<source type="gameMechanics.map.spawn.recaptureable.RecaptureableSpawnPlacesCalcer">
+										<mark href="Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</source>
+									<mapping>
+										<Item>
+											<x>1</x>
+											<y>0</y>
+										</Item>
+										<Item>
+											<x>2</x>
+											<y>1</y>
+										</Item>
+									</mapping>
+								</summand>
+								<mark href="Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+							</Item>
+							<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievementGeneric">
+								<achievement href="/Mechanics/InstancedEventResource/MM_BG02/MM_BG02.(InstancedEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+								<summand type="gameMechanics.elements.calcers.TableFunctionCalcer">
+									<source type="gameMechanics.map.spawn.recaptureable.RecaptureableSpawnPlacesCalcer">
+										<mark href="Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</source>
+									<mapping>
+										<Item>
+											<x>1</x>
+											<y>0</y>
+										</Item>
+										<Item>
+											<x>2</x>
+											<y>1</y>
+										</Item>
+									</mapping>
+								</summand>
+								<mark href="Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+							</Item>
+						</impacts>
+						<tick>1000</tick>
+					</Item>
+				</effects>
+				<attachOnStart>false</attachOnStart>
+				<reattachOnTeleport>false</reattachOnTeleport>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectAvatarRespawnStrategy">
+						<respawnStrategy type="gameMechanics.battleground.BattlegroundRespawnStrategy">
+							<buff href="/Mechanics/Spells/Domination/DomDeathBuff/DomDeathBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</respawnStrategy>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.SetterSightRadius">
+								<maxValue>250</maxValue>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+						<predicate type="gameMechanics.elements.predicates.PredicateSpellEquals">
+							<spells>
+								<Item href="/Mechanics/Spells/Mage/Sanctuary/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.group.SpellGroup)" />
+							</spells>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>6000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+														<predicates>
+															<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																		<predicates>
+																			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+																				<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																			</Item>
+																			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+																		</predicates>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_Pvp_Arena/Arena_wait/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/Spells/Domination/DomDeathBuff/DomDeathBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler_finish.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																</predicates>
+															</Item>
+														</predicates>
+														<impactsIf>
+															<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<range>
+																				<min>9</min>
+																				<max>10</max>
+																			</range>
+																		</predicate>
+																	</Item>
+																</predicates>
+																<impactsIf>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+																		<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<range>
+																			<min>1</min>
+																			<max>1</max>
+																		</range>
+																	</Item>
+																</impactsIf>
+																<impactsElse>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+																		<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<range>
+																			<min>1</min>
+																			<max>1</max>
+																		</range>
+																	</Item>
+																	<Item type="gameMechanics.battleground.map.ImpactExitBattleEvent" />
+																</impactsElse>
+															</Item>
+														</impactsIf>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>10000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+														<predicates>
+															<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																		<predicates>
+																			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+																				<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																			</Item>
+																			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+																		</predicates>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_Pvp_Arena/Arena_wait/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/Spells/Domination/DomDeathBuff/DomDeathBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler_finish.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																</predicates>
+															</Item>
+														</predicates>
+														<impactsIf>
+															<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<range>
+																				<min>9</min>
+																				<max>10</max>
+																			</range>
+																		</predicate>
+																	</Item>
+																</predicates>
+																<impactsIf>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+																		<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<range>
+																			<min>1</min>
+																			<max>1</max>
+																		</range>
+																	</Item>
+																</impactsIf>
+																<impactsElse>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+																		<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<range>
+																			<min>1</min>
+																			<max>1</max>
+																		</range>
+																	</Item>
+																	<Item type="gameMechanics.battleground.map.ImpactExitBattleEvent" />
+																</impactsElse>
+															</Item>
+														</impactsIf>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>1000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+														<predicates>
+															<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																		<predicates>
+																			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+																				<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																			</Item>
+																			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+																		</predicates>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_Pvp_Arena/Arena_wait/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/Spells/Domination/DomDeathBuff/DomDeathBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler_finish.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</predicate>
+																	</Item>
+																</predicates>
+															</Item>
+														</predicates>
+														<impactsIf>
+															<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																		<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+																			<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<range>
+																				<min>9</min>
+																				<max>10</max>
+																			</range>
+																		</predicate>
+																	</Item>
+																</predicates>
+																<impactsIf>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+																		<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<range>
+																			<min>1</min>
+																			<max>1</max>
+																		</range>
+																	</Item>
+																</impactsIf>
+																<impactsElse>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+																		<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Shame_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<range>
+																			<min>1</min>
+																			<max>1</max>
+																		</range>
+																	</Item>
+																	<Item type="gameMechanics.battleground.map.ImpactExitBattleEvent" />
+																</impactsElse>
+															</Item>
+														</impactsIf>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impacts>
+						<tick>30000</tick>
+					</Item>
+					<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+														<zone href="/Maps/Domination/ScriptZones/Red.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</predicate>
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateInZone">
+														<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+													</Item>
+													<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+														<mark href="Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+													</Item>
+												</predicates>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</predicate>
+													</Item>
+													<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+														<mark href="Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+														<zone href="/Maps/Domination/ScriptZones/Blue.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateInZone">
+														<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+													</Item>
+												</predicates>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+											<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Spells/Domination/DomDeathBuff/League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateInZone">
+													<zone href="Zones/Domination02/Domination02_Safe_Zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateInZone">
+													<zone href="Zones/Domination02/Domination02.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+												</Item>
+											</predicates>
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Maps/MM_Pvp_Arena/ScriptZones/MM_pvpEvent_lig_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler_Death01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler_Death01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impactsOff>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

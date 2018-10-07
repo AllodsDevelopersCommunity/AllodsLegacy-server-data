@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>285231108</resourceId>
+	</Header>
+	<groups>
+		<Item href="SpeedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Speed0Name.txt" />
+	<Description href="Speed0Desc.txt" />
+	<image href="/Interface/Icons/Actions/StopButton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivate">
+				<group href="SpeedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.world.ship.elements.ImpactSetSpeed">
+								<speedMod>0</speedMod>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+								<buff href="ShipMovingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOn>
+						<impactsOff>
+							<Item type="gameMechanics.world.ship.elements.ImpactSetSpeed">
+								<speedMod>0</speedMod>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+								<buff href="ShipMovingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOff>
+					</Item>
+				</effects>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

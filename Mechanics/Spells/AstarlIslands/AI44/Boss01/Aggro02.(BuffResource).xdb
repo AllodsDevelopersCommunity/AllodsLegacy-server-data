@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>341557262</resourceId>
+	</Header>
+	<Name href="Aggro02.(BuffResource)_Name.txt" />
+	<Description href="Aggro02.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/PhysDmg.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/AstarlIslands/AI27/LizardmanSoftEnrage/Enrage.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Aggro02.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Aggro02.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectForcedAggroLeader" />
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>1.1</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="WillPower.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<durationScalerTarget type="gameMechanics.elements.scalers.LinearScaler">
+				<multiplier>0.5</multiplier>
+			</durationScalerTarget>
+			<ignoreHelpful>false</ignoreHelpful>
+			<ignoreHarmful>false</ignoreHarmful>
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericOr">
+					<predicates>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/Silence.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>26000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>84262922</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<visObj />
+			<image>/Interface/Ingame/ContextAstralMap/AstralHubMark/Island.(UISingleTexture).xdb#xpointer(/UISingleTexture)</image>
+			<map />
+			<radius />
+			<scale>1</scale>
+			<description>AstralAllodDesc.txt</description>
+			<name>AstralAllodName.txt</name>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj hrefvar="visObj" />
+			<scale var="scale" />
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name hrefvar="name" />
+			<description hrefvar="description" />
+			<image hrefvar="image" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius var="radius" />
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKillAndRespawn" />
+							</impacts>
+						</Item>
+					</impacts>
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+							<hideText>false</hideText>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+					<destination hrefvar="map" />
+					<success />
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

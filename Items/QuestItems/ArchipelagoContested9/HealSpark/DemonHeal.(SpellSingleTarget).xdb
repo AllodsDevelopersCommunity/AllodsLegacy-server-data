@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>247865359</resourceId>
+	</Header>
+	<Name href="DemonHeal.(SpellSingleTarget).Name.txt" />
+	<Description href="DemonHeal.(SpellSingleTarget).Description.txt" />
+	<nameTemplate href="DemonHeal.(SpellSingleTarget).Name.txt" />
+	<descTemplate href="DemonHeal.(SpellSingleTarget).Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>35</value>
+	</range>
+	<element>LIGHTNING</element>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/DemonWarrior/Instances/ArchipelagoContested9/DemonWarriorBoss_AC9.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactHeal">
+						<heal>1</heal>
+						<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.3</multiplier>
+							</mulCalcer>
+						</scaler>
+						<mode>Direct</mode>
+						<considerOutgoingModifiers>false</considerOutgoingModifiers>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+			<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+				<value>5</value>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+				<buff href="dmg_burs_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>1</min>
+					<max>1</max>
+				</range>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>265915410</resourceId>
+	</Header>
+	<Name href="AviakBossKick.(SpellArea).Name.txt" />
+	<visualScripts href="KickVisScripts.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>3000</prepareDuration>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>25000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/AstarlIslands/AI29/AviakBossStage1/AviakBossDamageReturn.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/AstarlIslands/AI29/AviakBossStage1/AviakBossBubble.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/AstarlIslands/AI29/AviakBossStage1/AviakBossEnrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/AstarlIslands/AI29/AviakBossDot/AviakBossDot.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+								<time>5000</time>
+								<distance>80</distance>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<angle type="constructor.basicElements.AngleRadians">
+			<value>1.5</value>
+		</angle>
+	</shape>
+	<radius>20</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

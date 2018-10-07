@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>191296516</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+					<selector type="gameMechanics.elements.calcers.RangeSelectorResource">
+						<range min="0" max="50" />
+						<withinRange>true</withinRange>
+						<minCandidatesCount>50</minCandidatesCount>
+						<targetCount>50</targetCount>
+					</selector>
+					<impacts>
+						<Item>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Maze/BossChecker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<anyRank>true</anyRank>
+													</predicate>
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+													<destination type="gameMechanics.map.destination.DestinationLocator">
+														<locator>
+															<scriptID>Before_MiniBoss_04</scriptID>
+															<map href="/Maps/Maze_KHD/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+														</locator>
+														<yaw type="constructor.basicElements.AngleRadians">
+															<value>0</value>
+														</yaw>
+													</destination>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactRemoveAggro" />
+											</impacts>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

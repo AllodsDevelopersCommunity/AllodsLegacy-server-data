@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>238495759</resourceId>
+		<Variables>
+			<cooldown>30000</cooldown>
+		</Variables>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Warlock/Occasional.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>1000</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<object href="/Mechanics/Astral/MobsNewBreed/LargePack/Instances/TL3/Furious.xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+						<destination type="gameMechanics.map.destination.DestinationModified">
+							<destination type="gameMechanics.map.destination.SelfPosDestination" />
+							<modifiers>
+								<Item type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+									<radius type="gameMechanics.elements.calcers.FloatData">
+										<value>250</value>
+									</radius>
+								</Item>
+							</modifiers>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.world.astralMob.elements.ImpactSetAstralMobStrengthMod">
+								<strengthMod type="gameMechanics.elements.calcers.FloatData">
+									<value>0.33</value>
+								</strengthMod>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff href="MobExpiration.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>380409857</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Papers/BookNecromantic.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.BalanceDamage">
+			<casterPart>1</casterPart>
+			<targetPart>0</targetPart>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<binaryPredicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<range min="0" max="40" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateAffectGroup">
+					<affectGroup>Raid</affectGroup>
+				</Item>
+			</binaryPredicates>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsElse>
+			<runImpactsOnEachTick>false</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>1000</value>
+			</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>276515960</resourceId>
+	</Header>
+	<Name href="Seeds_Grow.txt" />
+	<Description href="Seeds_Grow.Description.txt" />
+	<nameTemplate href="Seeds_Grow.txt" />
+	<descTemplate href="Seeds_Grow.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>180000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/IllusionWorld/ZC6_Earth2/ZC6_Earth2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="ZC6_Seeds.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/IllusionWorld/ScriptZones/ZC6_GrowGrass.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/QuestSpells/CommonSummonPlane/CommonSummonPlaneBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/TreantGreen/Instances/IllusionWorld/ZC6_TreantJungleMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/IllusionWorld/ZC6_Earth2/CountId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

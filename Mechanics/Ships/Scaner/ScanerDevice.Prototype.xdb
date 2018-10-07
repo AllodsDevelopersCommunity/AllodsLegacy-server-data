@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>131516451</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+	</Header>
+	<parts>
+		<Item type="ScanerDevicePart">
+			<locatorName>Slot_Special01</locatorName>
+			<sphereRadius>1.2</sphereRadius>
+			<hub>
+				<obj hrefvar="hubVisObj" />
+				<collision hrefvar="hubCollision" />
+			</hub>
+			<ourHub>
+				<obj hrefvar="ourHubVisObj" />
+				<collision hrefvar="ourHubCollision" />
+			</ourHub>
+			<pitchBones>
+				<Item>
+					<multiplier>1</multiplier>
+					<name>jGear05</name>
+				</Item>
+			</pitchBones>
+			<globalBones>
+				<Item>
+					<name>Slot_Special01</name>
+				</Item>
+			</globalBones>
+		</Item>
+		<Item type="DeathHandler">
+			<useParentState>true</useParentState>
+			<deathScript type="DeviceVisActionList">
+				<play>InSequence</play>
+				<elements>
+					<Item type="DeviceColorAction">
+						<colorValue>-1</colorValue>
+					</Item>
+					<Item type="DeviceVisActionChangeModel">
+						<priority>5</priority>
+					</Item>
+				</elements>
+			</deathScript>
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_SCANER</type>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.world.device.scaner.ScanerDevicePartResource" />
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="/Mechanics/Ships/DevicePenaltyWatchers/ScanerWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOn>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<visObj hrefvar="visObj" />
+	<collision hrefvar="collision" />
+	<collisionObject>true</collisionObject>
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="/Mechanics/Ships/ShipDeviceExploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<viewSight>
+		<isBinding>true</isBinding>
+		<position z="2.5" />
+		<rotation x="-0.092296" y="0.092296" z="0.701057" w="0.701057" />
+		<distance>4</distance>
+	</viewSight>
+</gameMechanics.world.device.UsableDeviceResource>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>289789981</resourceId>
+		<Prototype href="/Mechanics/Ships/Navigator/TechLevel1/NavigatorDevice.Prototype.xdb#xpointer(/gameMechanics.world.device.UsableDeviceResource)" />
+		<Variables>
+			<visObj>/Ships/Components/Visor_01A/Visor_01A.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObj>
+			<collision>/Ships/Components/Visor_01A/Visor_01A.(Collision).xdb#xpointer(/Collision)</collision>
+			<visObjDamaged>/Ships/Components/Visor_01A/Visor_01A.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObjDamaged>
+			<visObjBroken>/Ships/Components/Visor_01A/Visor_01A.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObjBroken>
+		</Variables>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+					<delay>0</delay>
+					<effects>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+									<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactOnShipCrew">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+															<id href="AstralIntroductionQ1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsOn>
+						</Item>
+					</effects>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartTeleportEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+					<delay>0</delay>
+					<effects>
+						<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateAstralSectorRequiredUnlock">
+									<tierLevel>2</tierLevel>
+								</Item>
+							</predicates>
+							<effectsIf>
+								<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+									<reason>TR_Broken</reason>
+								</Item>
+							</effectsIf>
+						</Item>
+					</effects>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<name href="Navigator.(NavigatorResource).Name.txt" />
+	<deviceSpells>
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionScanHub.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionTargetLock.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionTurnAround.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionDiversionShot.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionEnergySpike.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionEnergyBurst.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="/Mechanics/Ships/Navigator/Actions/ActionReplenishShield.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</deviceSpells>
+</gameMechanics.world.device.UsableDeviceResource>

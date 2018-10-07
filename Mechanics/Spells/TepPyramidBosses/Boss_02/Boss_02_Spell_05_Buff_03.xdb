@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>257567765</resourceId>
+	</Header>
+	<Name href="Boss_02_Spell_05_Buff_03.Name.txt" />
+	<Description href="Boss_02_Spell_05_Buff_03.Description.txt" />
+	<image href="/Interface/Icons/Misc/Event/ShieldCarrier.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/Nihil_Boss_ProtectiveDomeBasis.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<lockScale>true</lockScale>
+			<locator>Slot_Global</locator>
+		</Item>
+	</visualEffects>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Boss_02_Spell_05_Buff_03.Name.txt" />
+	<descTemplate href="Boss_02_Spell_05_Buff_03.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Overheat.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>true</attachIfNotExist>
+				</Item>
+			</impacts>
+			<initialDelay>2000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="/Maps/Inst_TepPyramid/ScriptZones/RoomNihil.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="DeviceDetacher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<object href="/Items/InteractiveObjects/Inst_TepPyramid/Boss_02_Item_01/Boss_02_Item_01.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Aura">
+			<radius>6</radius>
+			<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+			<affectSelf>true</affectSelf>
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Boss_02_Item_01_Buff_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Boss_02_Item_01_Buff_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>2000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+					<actions>
+						<Item href="ActionRemoveBuff.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</actions>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>120000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+</gameMechanics.constructor.schemes.buff.BuffResource>

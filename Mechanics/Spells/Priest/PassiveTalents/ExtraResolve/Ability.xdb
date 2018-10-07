@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>89372751</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinDetectUndead.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Resolve</stat>
+			</stat>
+			<multiplier var="multiplier" />
+			<summand>0</summand>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Priest/Aspects/AspectOfMight/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+					<targetImpacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>true</anyRank>
+									<consumeStacks>0</consumeStacks>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactResetBuffDuration">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+											<race>DEMON</race>
+										</Item>
+									</predicates>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+													<ability href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</predicates>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<allowOverrideCaster>false</allowOverrideCaster>
+												</Item>
+											</impacts>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsElse>
+						</Item>
+					</targetImpacts>
+					<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationSpells">
+						<spells>
+							<Item href="/Mechanics/Spells/Priest/HolySmite/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+							<Item href="/Mechanics/Spells/Priest/HolySmiteUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+						</spells>
+					</destination>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

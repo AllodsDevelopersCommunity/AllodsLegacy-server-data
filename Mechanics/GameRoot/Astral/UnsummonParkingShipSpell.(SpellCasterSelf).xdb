@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>352910357</resourceId>
+	</Header>
+	<Name href="UnsummonShipName.txt" />
+	<Description href="UnsummonShipUsage.txt" />
+	<image href="/Interface/Icons/Misc/AstralShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateHasSummonedShip" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderShip" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="/Mechanics/Ships/Hangar/HangarNPC/EnemiesAboard.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric" />
+							<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+										<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+										<data href="/Mechanics/Ships/Hangar/HangarNPC/UnSummonShip.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsElse>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<params>
+		<params>
+			<Item>
+				<name>shipIndex</name>
+				<type>Int</type>
+			</Item>
+		</params>
+	</params>
+	<canStartNotBeeingInSpellbook>true</canStartNotBeeingInSpellbook>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

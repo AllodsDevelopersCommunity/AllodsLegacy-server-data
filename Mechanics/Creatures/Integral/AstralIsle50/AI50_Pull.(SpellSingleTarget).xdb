@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739814773</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="AI50_Pull.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="AI50_Pull.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>20000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="AI50_Integral_Sleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoLeague1/Quest5_1/BoardJump.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>AI50_Integral_Pull</scriptID>
+								<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<speed>50</speed>
+						<impactsOnLand>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>1000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/World/Quests/ArchipelagoLeague1/Quest5_1/BoardJump.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+								<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+								<minDamage>15</minDamage>
+								<maxDamage>15</maxDamage>
+							</Item>
+						</impactsOnLand>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+						<time>1500</time>
+						<impactsOnLand>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+								<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+								<minDamage>15</minDamage>
+								<maxDamage>15</maxDamage>
+							</Item>
+						</impactsOnLand>
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>AI50_Integral_Pull</scriptID>
+								<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

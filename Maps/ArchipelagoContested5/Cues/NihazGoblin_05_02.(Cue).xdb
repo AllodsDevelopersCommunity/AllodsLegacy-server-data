@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>212277320</resourceId>
+	</Header>
+	<name href="NihazGoblin_05_02.txt" />
+	<text href="NihazGoblin_05_02_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/World/Quests/ArchipelagoContested5/AC5_R1/CueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested5/AC5_R1/AC5_R1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/ArchipelagoContested5/AC5_R1/AC5_R1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/Characters/HumMobs/Instances/ArchipelagoContested5/AC5_R1_Mob_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.RelativeRotatePos">
+				<base type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+					<faceSourcePos>true</faceSourcePos>
+					<coord x="0" y="0" z="0" />
+				</base>
+				<offset>5</offset>
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0</value>
+				</yaw>
+				<turn>ToTarget</turn>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.world.changeappearance.ImpactCopyAppearance">
+					<usePetVisObj>false</usePetVisObj>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="CopyAppearance.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>120000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ForceAggro" />
+			</impacts>
+			<plane href="" />
+			<pool href="" />
+			<traceDown>false</traceDown>
+			<object href="/Characters/HumMobs/Instances/ArchipelagoContested5/AC5_R1_Mob_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/ArchipelagoContested5/AC5_R1/CueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

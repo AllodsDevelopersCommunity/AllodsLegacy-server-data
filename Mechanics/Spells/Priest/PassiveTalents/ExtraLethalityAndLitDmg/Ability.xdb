@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>196079632</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Priest/PriestAspectMightUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerOutputDamageChannel">
+			<element>LIGHTNING</element>
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff var="coeff" />
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellEnvelopeTargetEffects">
+			<spells>
+				<Item href="/Mechanics/Spells/Priest/Zeal/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<Item href="/Mechanics/Spells/Priest/ZealUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			</spells>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+							<level>0.3</level>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+							<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+								<coeff var="coe_1" />
+							</scaler>
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+							</predicates>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

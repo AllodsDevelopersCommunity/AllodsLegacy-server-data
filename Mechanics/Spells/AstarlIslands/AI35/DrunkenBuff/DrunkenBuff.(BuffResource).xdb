@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>297826322</resourceId>
+	</Header>
+	<Name href="DrunkenBuff.(BuffResource)_Name.txt" />
+	<Description href="DrunkenBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/AreaSlow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/DoTPoison.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="BuffName.txt" />
+	<descTemplate href="BuffDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.75</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.75</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthHigherTrigger">
+			<min type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.99</multiplier>
+			</min>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="DrunkenBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<damagePerTick>5</damagePerTick>
+			</parameters>
+			<element>FIRE</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			<progressiveMultiplier>0.1</progressiveMultiplier>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

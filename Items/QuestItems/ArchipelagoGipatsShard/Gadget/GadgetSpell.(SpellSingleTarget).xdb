@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>125885725</resourceId>
+	</Header>
+	<Name href="GadgetSpell_Name.txt" />
+	<Description href="GadgetSpell_Desc.txt" />
+	<autoAppendToActionPanel>true</autoAppendToActionPanel>
+	<useVisScipt />
+	<visualScripts href="/Spells/VisScripts/Items/Gadget.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<prepareDuration>2500</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<modifiers />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<casterConditions />
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Boar/Instances/ArchipelagoGipatsShard/BoarGhost40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Toad/Instances/ArchipelagoGipatsShard/ToadGhost40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Toad/Instances/ArchipelagoGipatsShard/ToadGhost40_40_Silver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Boar/Instances/ArchipelagoGipatsShard/BoarGhost40_40_Silver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ForceAggro" />
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Boar/Instances/ArchipelagoGipatsShard/BoarGhost40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Boar/Instances/ArchipelagoGipatsShard/BoarGhost40_40_Silver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ArchipelagoGipatsShard/Quest2_4/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Neutral.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Mechanics/Spells/QuestSpells/ArchipelagoGipatsShard/SoulSparks.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Toad/Instances/ArchipelagoGipatsShard/ToadGhost40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Toad/Instances/ArchipelagoGipatsShard/ToadGhost40_40_Silver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ArchipelagoGipatsShard/Quest2_4/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Neutral.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Mechanics/Spells/QuestSpells/ArchipelagoGipatsShard/SoulSparks.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

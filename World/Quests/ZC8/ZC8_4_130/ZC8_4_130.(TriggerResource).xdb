@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>344482819</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.QuestCounterTrigger">
+			<quest href="ZC8_4_130.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterId href="/Characters/Undead_male/Instances/ZC8/ZC8_4_130_TephAgent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<condition type="constructor.elements.LongGreaterOrEquals">
+				<value>3</value>
+			</condition>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<conditions>
+						<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onSlave type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/Undead_male/Instances/ZC8/ZC8_4_130_TephAgent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</onSlave>
+						</Item>
+					</conditions>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAggro" />
+					</impacts>
+					<finishImpacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/QuestItems/ZC8/ZC8_4_130_Mechanism/Agents_Resolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.world.pet.PredicateHasPet" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="/Items/QuestItems/ZC8/ZC8_4_130_Mechanism/Agents_Resolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Items/InteractiveObjects/ZC8/ZC8_ParadoxWall/ParadoxWall_State4.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/ZC8/ZC8_ParadoxWall/ParadoxWall_State3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/ZC8/ZC8_ParadoxWall/ParadoxWall_State2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</finishImpacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ZC8/ZC8_2_51/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

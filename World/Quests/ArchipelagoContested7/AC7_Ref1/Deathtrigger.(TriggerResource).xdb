@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>238056456</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/InteractiveObjects/ArchipelagoContested7/Ref_Bloody_path/Check_Path.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="Faildata.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

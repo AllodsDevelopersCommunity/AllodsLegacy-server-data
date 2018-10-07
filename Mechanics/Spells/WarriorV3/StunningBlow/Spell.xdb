@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739818746</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic9.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Priest/PriestCleansingFire.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/StunningBlow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceCombatAdvantage">
+				<hideText>false</hideText>
+				<minValue>45</minValue>
+				<ability href="/Mechanics/Spells/WarriorV3/Abilities/CombatAdvantage/Ability.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>10</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/WarriorStrike.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsOnHitCaster>
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier var="multiplier" />
+						</durationScaler>
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+							<ability href="/Mechanics/Spells/WarriorV3/Abilities/FinishersDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<mul>0.05</mul>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+						<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+					</scalers>
+				</scaler>
+				<avgDamage var="avgDamage" />
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

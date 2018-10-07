@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>132378637</resourceId>
+	</Header>
+	<Name href="AE4_aktress_call_Spell_Name.txt" />
+	<Description href="AE4_aktress_call_Spell_Description.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/ArchipelagoEmpire3/AE4_04/AE4_04.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/ArchipelagoEmpire3/AE4_04/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/ZoneEmpire1/AE4_Actress_teleport.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+				<mob>
+					<scriptID>AE4_hadagan_elf_actress</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>60000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>1000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="/World/Quests/ArchipelagoContested4/Q_27e/Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>2500</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+												<data href="/World/Quests/ArchipelagoContested4/Q_27e/Invis.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>2000</delay>
+												<limit>1</limit>
+												<impacts />
+												<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested4/Q_26e/Q_26e_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<scalerTarget />
+										<durationScaler />
+										<durationScalerTarget />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<impactsOnAttach />
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>AE4_hadagan_elf_actress</scriptID>
+							<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>10</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ArchipelagoEmpire3/AE4_04/AE4_actress_buff_summon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ArchipelagoEmpire3/AE4_04/AE4_actress_buff_summon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>AE4_hadagan_elf_actress</scriptID>
+							<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

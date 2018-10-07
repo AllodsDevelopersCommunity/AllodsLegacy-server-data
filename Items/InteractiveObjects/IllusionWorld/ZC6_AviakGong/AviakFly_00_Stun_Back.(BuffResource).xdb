@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>275802124</resourceId>
+	</Header>
+	<Name href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Name.txt" />
+	<Description href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/ZC6_Arhiopterix.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Maps/IllusionWorld/ScriptZones/ZC6_LocalTravel/Archaeopteryx.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Name.txt" />
+	<descTemplate href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByTour">
+			<route href="/Maps/IllusionWorld/GlobalObjects/Tours/AviakTour_00_Back.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AviakFly_00_Stun_Back.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnArrive>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells" />
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+			</impactsOn>
+			<impactsOff>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.world.pet.PredicateHasPet" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="PetPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.world.pet.PredicateHasPet" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="PetPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

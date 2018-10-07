@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>352910353</resourceId>
+	</Header>
+	<Name href="SummonShipName.txt" />
+	<Description href="SummonShipUsage.txt" />
+	<image href="/Interface/Icons/Misc/AstralShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+			<Item type="gameMechanics.world.ship.elements.PredicateHasShip">
+				<enabledOnly>true</enabledOnly>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateHasSummonedShip" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.MarkedImpactGeneric">
+						<mark href="/Mechanics/Ships/Hangar/Summon.(MarkResource).xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<params>
+		<params>
+			<Item>
+				<name>shipIndex</name>
+				<type>Int</type>
+			</Item>
+		</params>
+	</params>
+	<canStartNotBeeingInSpellbook>true</canStartNotBeeingInSpellbook>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>274401293</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/RaceClassSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>21.44</value>
+			<scaler>StrMeleeMin</scaler>
+		</Item>
+		<Item>
+			<name>var1</name>
+			<value>21.44</value>
+			<scaler>StrMeleeMax</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Priest/PriestCleansingFire.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/StunningBlow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>60000</duration>
+			<group href="/Mechanics/Spells/Groups/RaceClassSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>30</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>4</multiplier>
+						</durationScaler>
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/BardWeaponAttack.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+						<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+					</scalers>
+				</scaler>
+				<avgDamage>21.44</avgDamage>
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

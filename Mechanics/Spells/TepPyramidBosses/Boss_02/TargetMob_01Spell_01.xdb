@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>258163720</resourceId>
+	</Header>
+	<Name href="/Mechanics/Spells/IMTurret/LvL4Autofire/Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestPurify.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/IMTurret/TurretBox_Autofire.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/IMTurret/LvL4Autofire/Spell_Name.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>85</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<element>ASTRAL</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+					<radius>0</radius>
+					<mobs>
+						<Item href="TargetMob_01.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobWorld">
+					<mobs>
+						<Item href="TargetMob_01.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<minDamage>20</minDamage>
+				<maxDamage>20</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>45</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

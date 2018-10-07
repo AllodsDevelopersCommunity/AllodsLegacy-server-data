@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>295465036</resourceId>
+	</Header>
+	<Name href="Mob.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Devastator/Primary.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Mob.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>350</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Mob.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration>5000</duration>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+							<damage>200</damage>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+							<value type="gameMechanics.elements.calcers.FloatData">
+								<value>1.33</value>
+							</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+					</calcers>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

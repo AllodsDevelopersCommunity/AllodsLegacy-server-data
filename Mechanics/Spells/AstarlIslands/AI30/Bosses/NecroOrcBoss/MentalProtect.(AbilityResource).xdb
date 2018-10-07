@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>270827591</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Invincibility.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>true</attachIfNotExist>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCallForHelp">
+							<radius>50</radius>
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/AstralIsle30/SpawnTables/AstralIsle30/Boss1Pack.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>50</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Characters/Hadagan_male/Instances/AstralIsle30/BossWarrior.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateFaction">
+											<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/AstralIsle30/SpawnTables/AstralIsle30/Boss1Pack.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+							<faction href="/World/Factions/AI30Mercenaries.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/AstralIsle30/SpawnTables/AstralIsle30/Boss1Pack.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

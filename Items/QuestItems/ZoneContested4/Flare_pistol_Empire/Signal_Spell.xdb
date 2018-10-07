@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>191914002</resourceId>
+	</Header>
+	<Name href="Signal_Spell.txt" />
+	<Description href="Signal_SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>2000</prepareDuration>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneContested4/FE4_3/FE4_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+				<radius>3</radius>
+				<mobs>
+					<Item href="/Characters/Hadagan_male/Instances/ZoneContested4/Wounded_Empire_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="Redfire.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested4/FE4_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>20000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>3000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="ClientData01_medic.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+								<msg href="TextMessage01.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+								<defaultSpeaker href="/Characters/Hadagan_male/Instances/ZoneContested4/Doctor_Empire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="ClientData01_medic.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="ClientData02_medic.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<object href="/Characters/Hadagan_male/Instances/ZoneContested4/Doctor_Empire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>5</radius>
+				<affectGroup>All</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget />
+						<durationScaler />
+						<durationScalerTarget />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<impactsOnAttach>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>120000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+										<newMobWorld href="/Characters/Hadagan_male/Instances/ZoneContested4/Wounded_Empire_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsOnAttach>
+						<stacks />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+						<newMobWorld href="/Characters/Hadagan_male/Instances/ZoneContested4/Wounded_Empire_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/Hadagan_male/Instances/ZoneContested4/Wounded_Empire_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+				</filter>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

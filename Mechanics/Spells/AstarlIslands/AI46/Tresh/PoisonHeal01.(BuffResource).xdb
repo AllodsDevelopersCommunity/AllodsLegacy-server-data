@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>371119199</resourceId>
+	</Header>
+	<Name href="PoisonHeal01.(BuffResource).Name.txt" />
+	<Description href="PoisonHeal01.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodPlague.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/OpTarget_Skull_Poison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>0.4</scale>
+			<locator>Slot_TopFX</locator>
+		</Item>
+	</visualEffects>
+	<visualPostEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/HitPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>4</scale>
+			<locator>Slot_BodyFX</locator>
+		</Item>
+	</visualPostEffects>
+	<nameTemplate href="PoisonHeal01.(BuffResource).Name.txt" />
+	<descTemplate href="PoisonHeal01.(BuffResource).Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>10</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>DISEASE</element>
+							<minDamage>32</minDamage>
+							<maxDamage>32</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="PoisonHeal02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</filter>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>330622978</resourceId>
+	</Header>
+	<Name href="GolemShotBuff.(BuffResource)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageIceInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="GolemShotBuff.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<binaryPredicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<range min="0" max="40" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateHasLos" />
+			</binaryPredicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="GolemVisionClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<calcers>
+								<addressEntries>
+									<Item>
+										<name>caster</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+									<Item>
+										<name>target</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+								</addressEntries>
+							</calcers>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="GolemShotBuffFX.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>4000</value>
+			</tick>
+		</Item>
+	</effects>
+	<duration>200000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

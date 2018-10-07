@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>226415643</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestHeavenlyStrike.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<anyRank>false</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>2000</value>
+					</delta>
+				</Item>
+			</impacts>
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.IncomingThreatMultiplier">
+			<factor type="gameMechanics.elements.calcers.LinearCalcer">
+				<mul>1</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+					<ability href="/Mechanics/Abilities/PaladinTalentsV2/ExtraDotOnCrusaderWord/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					<mul>1</mul>
+					<sum>0</sum>
+				</mulCalcer>
+				<sum>2</sum>
+			</factor>
+			<onlyFromCaster>true</onlyFromCaster>
+		</Item>
+	</effects>
+	<duration>8000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

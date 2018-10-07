@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>107105288</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<Name href="Spell.Name.txt" />
+	<Description href="Spell.Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/PvpDivineFavor.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone hrefvar="active_zone" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="AuraBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="LeaveZoneBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff hrefvar="self_buff" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff hrefvar="self_buff" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+					<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+				</distributor>
+				<data href="StartMsg.ClientData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+				<calcers>
+					<stringEntries>
+						<Item>
+							<name>avatar</name>
+							<calcer type="gameMechanics.elements.calcers.TargetNameCalcer" />
+						</Item>
+					</stringEntries>
+				</calcers>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

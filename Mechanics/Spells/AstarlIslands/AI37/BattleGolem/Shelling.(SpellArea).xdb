@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>313287680</resourceId>
+	</Header>
+	<Name href="Shelling.(SpellArea).Name.txt" />
+	<visualScripts href="ShellingFire.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Shelling.(SpellArea).NameTemplate.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>7000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>PHYSICAL</element>
+				<minDamage>10</minDamage>
+				<maxDamage>10</maxDamage>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<speed>20</speed>
+	<targetsSelectionStage>Prepare</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>5</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

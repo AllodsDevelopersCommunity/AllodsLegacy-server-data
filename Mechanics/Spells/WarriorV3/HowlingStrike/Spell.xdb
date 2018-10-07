@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>739818743</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DragonRelic6.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Modifiers/FieryRevenge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/HowlingStrike.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>1000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasPath">
+				<hideText>false</hideText>
+				<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+				<maxLength>70</maxLength>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateCanMove">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>35</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+							<pathChecker type="space.pathfinding.pathChecker.PathLenghtLimited">
+								<minLength>0</minLength>
+								<maxLength>70</maxLength>
+							</pathChecker>
+							<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom">
+								<from type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+							</modifierElse>
+						</Item>
+					</modifiers>
+				</destination>
+				<speed>30</speed>
+				<impactsOnLand>
+					<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+						<radius>10</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>true</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+								<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+								<threatMultiplier>1</threatMultiplier>
+								<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+									<scalers>
+										<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+											<ability href="/Mechanics/Spells/WarriorV3/Abilities/FinishersDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+											<mul>0.05</mul>
+										</Item>
+										<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+										<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+									</scalers>
+								</scaler>
+								<avgDamage var="avgDamage" />
+								<source>Mainhand</source>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.CreatureFilter">
+							<blockCreatures>false</blockCreatures>
+						</filter>
+						<targetsLimit>0</targetsLimit>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+							<radius>85</radius>
+						</distributor>
+						<data href="/Spells/ClientData/HowlingStrike.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsOnLand>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMatch">
+				<cases>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/WarriorV3/PartyJump/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere">
+									<objectsProvider>Scaner</objectsProvider>
+								</shape>
+								<radius var="radius" />
+								<affectGroup>Raid</affectGroup>
+								<affectHolder>false</affectHolder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+										<destination type="gameMechanics.map.destination.DestinationModified">
+											<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+											<modifiers>
+												<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+													<pathChecker type="space.pathfinding.pathChecker.PathLenghtLimited">
+														<minLength>0</minLength>
+														<maxLength>70</maxLength>
+													</pathChecker>
+													<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom">
+														<from type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+													</modifierElse>
+												</Item>
+											</modifiers>
+										</destination>
+										<speed>30</speed>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.AvatarFilter">
+									<block>false</block>
+									<withPet>false</withPet>
+								</filter>
+								<targetsLimit>1</targetsLimit>
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/WarriorV3/PartyJump/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere">
+									<objectsProvider>Scaner</objectsProvider>
+								</shape>
+								<radius var="radi_1" />
+								<affectGroup>Raid</affectGroup>
+								<affectHolder>false</affectHolder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+										<destination type="gameMechanics.map.destination.DestinationModified">
+											<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+											<modifiers>
+												<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+													<pathChecker type="space.pathfinding.pathChecker.PathLenghtLimited">
+														<minLength>0</minLength>
+														<maxLength>70</maxLength>
+													</pathChecker>
+													<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom">
+														<from type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+													</modifierElse>
+												</Item>
+											</modifiers>
+										</destination>
+										<speed>30</speed>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.AvatarFilter">
+									<block>false</block>
+									<withPet>false</withPet>
+								</filter>
+								<targetsLimit>2</targetsLimit>
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/WarriorV3/PartyJump/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere">
+									<objectsProvider>Scaner</objectsProvider>
+								</shape>
+								<radius var="radi_2" />
+								<affectGroup>Raid</affectGroup>
+								<affectHolder>false</affectHolder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+										<destination type="gameMechanics.map.destination.DestinationModified">
+											<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+											<modifiers>
+												<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+													<pathChecker type="space.pathfinding.pathChecker.PathLenghtLimited">
+														<minLength>0</minLength>
+														<maxLength>70</maxLength>
+													</pathChecker>
+													<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom">
+														<from type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+													</modifierElse>
+												</Item>
+											</modifiers>
+										</destination>
+										<speed>30</speed>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.AvatarFilter">
+									<block>false</block>
+									<withPet>false</withPet>
+								</filter>
+								<targetsLimit>3</targetsLimit>
+							</Item>
+						</impacts>
+					</Item>
+				</cases>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>10</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>271561815</resourceId>
+	</Header>
+	<Name href="AstralShot.txt" />
+	<visualScripts href="/Spells/VisScripts/Other/CrazyMutantProjectile_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="AstralShot.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<element>ASTRAL</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>25000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativeRotatePos">
+								<base type="gameMechanics.map.destination.RelativePos" />
+								<offset>15</offset>
+								<turn>ToTarget</turn>
+							</destination>
+						</moveType>
+						<resource href="Collectable.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>2</value>
+				</count>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ACID</element>
+				<minDamage>20</minDamage>
+				<maxDamage>20</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativeRotatePos">
+								<base type="gameMechanics.map.destination.RelativePos" />
+								<offset>15</offset>
+								<turn>ToTarget</turn>
+							</destination>
+						</moveType>
+						<resource href="Collectable.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>3</value>
+				</count>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>8</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ACID</element>
+						<minDamage>25</minDamage>
+						<maxDamage>25</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.AvatarFilter" />
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

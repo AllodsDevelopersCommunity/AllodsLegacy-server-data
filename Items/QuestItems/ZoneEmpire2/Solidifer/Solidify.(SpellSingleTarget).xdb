@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24321</resourceId>
+	</Header>
+	<Name href="SolidiferSpellName.txt" />
+	<Description href="SolidiferSpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>2000</prepareDuration>
+	<isAggro>false</isAggro>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Slime/Instances/ZoneEmpire2/Slime_Miniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/SlimeSolidZone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneEmpire2/Quest_20_30/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+				<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/SlimeSolid.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="Solidifer.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>15000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+						<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/SlimeSolid.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+				<affectPets>false</affectPets>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneEmpire2/Quest_20_30/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.Disintegrate" />
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

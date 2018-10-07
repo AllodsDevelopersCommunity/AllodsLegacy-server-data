@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FXChanneling>/Spells/FX/Spells/DemonTerminatorKirah_MeleeAttack_Channel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXChanneling>
+			<LocatorOnTarget>Slot_BodyFX</LocatorOnTarget>
+			<FxOnHand>/Spells/FX/Spells/DemonTerminatorKirah_MeleeAttack_Channel_HandGlow.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHand>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<time>1400</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx hrefvar="FxOnHand" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<locatorName>RightHand</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<animations>
+							<Item>attack</Item>
+						</animations>
+						<advanced>
+							<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+							<autoHasten>
+								<timeToBeLeft>500</timeToBeLeft>
+							</autoHasten>
+							<eventPlaybackEnd>true</eventPlaybackEnd>
+							<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+						</advanced>
+					</Item>
+					<Item type="CreatureChannelDirectAction">
+						<channelingFx hrefvar="FXChanneling" />
+						<fxLength>2</fxLength>
+						<startPoint type="VisPointLocator">
+							<locator>FROM_LOCATOR_NAME</locator>
+							<locatorName>RightHand</locatorName>
+						</startPoint>
+						<endPoint type="VisPointLocator">
+							<locator var="LocatorOnTarget" />
+						</endPoint>
+						<fadeOutTime>0</fadeOutTime>
+						<velocity>0</velocity>
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Spells/DemonTerminatorKirah_MeleeAttack_Channel_Hand.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<scale>0.7</scale>
+								<locator>FROM_LOCATOR_NAME</locator>
+								<locatorName>RightHand</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipBloodFx>false</skipBloodFx>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureRunVisActionResource">
+					<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitLightningShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+				</Item>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx href="/Spells/FX/Spells/HitLightning_big.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<fixPoint>true</fixPoint>
+							<locator>Slot_Global</locator>
+						</Item>
+					</visualEffects>
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

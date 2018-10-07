@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>302511268</resourceId>
+	</Header>
+	<name href="Ability01.(AbilityResource)_Name.txt" />
+	<nameTemplate href="Ability01.(AbilityResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/AstarlIslands/AI40/LizardAddBoneBall/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/AstarlIslands/AI40/LizardAddBoneBall/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="Buff05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>0</multiplier>
+					</durationScaler>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

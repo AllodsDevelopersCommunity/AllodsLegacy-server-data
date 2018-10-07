@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>235683873</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinRevenge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/Revenge.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.SpellEnvelopeModifier">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSmoothOutgoingDamage" />
+			</effects>
+			<onBehalfOfHolder>true</onBehalfOfHolder>
+		</Item>
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBarrierIsActive">
+				<ability href="/Mechanics/Spells/PaladinV2/Barriers/BarrierAbility/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>25</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/PaladinV2/Canons/CanonOfLight/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>1</consumeStacks>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/PaladinV2/Canons/CanonOfPurity/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>1</consumeStacks>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.EndurePain">
+				<reduceFactor var="reduceFactor" />
+				<additionalReduce>1</additionalReduce>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Abilities/PaladinTalentsV2/LessDamageFromBarriers/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.05</mul>
+					</mulCalcer>
+					<additionalMultiplier>
+						<scaler type="gameMechanics.elements.abilities.BarrierDamageScaler">
+							<mul>1</mul>
+							<sum>0</sum>
+						</scaler>
+						<value>1</value>
+					</additionalMultiplier>
+				</scaler>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul var="mul" />
+					<mulCalcer type="gameMechanics.elements.abilities.DefferedDamageBarrierCalcer">
+						<barrierIndex>0</barrierIndex>
+					</mulCalcer>
+					<sum>0</sum>
+				</scaler>
+				<minDamage>1</minDamage>
+				<maxDamage>1</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

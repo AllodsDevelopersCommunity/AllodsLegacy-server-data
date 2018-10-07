@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>148221996</resourceId>
+	</Header>
+	<Name href="DieSelf_Name.txt" />
+	<Description href="DieSelf_Desc.txt" />
+	<visualScripts href="SpelLScript.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>60000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Everyone</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="Q_add_07_Buff_1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/2ndCircle/ScriptZones/ZoneContested3/DieZone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneContested3/Q_add_07/Q_add_07.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/World/Quests/ZoneContested3/Q_add_07/DeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>32</value>
+				</minLevel>
+			</Item>
+		</casterConditions>
+		<casterResources />
+		<casterImpacts />
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="ChanBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+					<affectPets>false</affectPets>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZoneContested3/Q_add_07/Q_add_07.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Active</status>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ZoneContested3/Q_add_07/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/ZoneContested3/Q_add_07/DeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<scalerTarget />
+					<durationScaler />
+					<durationScalerTarget />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+					<item href="Q_add_07_Buff_1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsDead" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

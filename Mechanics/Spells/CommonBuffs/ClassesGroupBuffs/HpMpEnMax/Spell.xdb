@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.group.SpellGroup>
+	<Header>
+		<resourceId>197071915</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MageSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/HpMpEnMax.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/HpMpEnMax.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>2000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.group.SpellGroup)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.group.SpellGroup)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.group.SpellGroup)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>169</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff hrefvar="buff" />
+								<anyRank>false</anyRank>
+								<consumeStacks var="consumeStacks" />
+							</Item>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff hrefvar="buff02" />
+								<anyRank>false</anyRank>
+								<consumeStacks var="consumeStacks02" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff hrefvar="buff03" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff hrefvar="buff04" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/ClassesGroupBuffs/MagDmg/Buff_02_02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/Bard/Marches/HpMpEnMax/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Mechanics/Spells/Bard/Marches/HpMpEnMax/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+</gameMechanics.constructor.schemes.spell.group.SpellGroup>

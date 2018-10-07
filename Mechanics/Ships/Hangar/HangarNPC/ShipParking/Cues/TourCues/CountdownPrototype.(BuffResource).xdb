@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>362760198</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<targetMap />
+			<selfLink />
+			<targetTour />
+		</Variables>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>200</radius>
+					</distributor>
+					<data href="Countdown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<calcers>
+						<floatEntries>
+							<Item>
+								<name>timeLeft</name>
+								<calcer type="gameMechanics.elements.calcers.CalcerBuffDuration">
+									<buff hrefvar="selfLink" />
+									<multiplier>0.001</multiplier>
+								</calcer>
+							</Item>
+						</floatEntries>
+						<stringEntries>
+							<Item>
+								<name>shipName</name>
+								<calcer type="gameMechanics.elements.calcers.ShipNameCalcer" />
+							</Item>
+						</stringEntries>
+					</calcers>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>5000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateOnAddressee">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.world.bigAstral.PredicateTripLocked">
+										<mapResource hrefvar="targetMap" />
+										<tour hrefvar="targetTour" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf />
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+							<delay>0</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff hrefvar="selfLink" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+									<data href="TourTaken.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOn>
+			<impactsOff />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeoutGeneric">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateOnAddressee">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.world.bigAstral.PredicateTripLocked">
+										<mapResource hrefvar="targetMap" />
+										<tour hrefvar="targetTour" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.bigAstral.ImpactRequestTripLock">
+							<map hrefvar="targetMap" />
+							<tour hrefvar="targetTour" />
+							<impactsOnSuccess>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Mechanics/Ships/BuffNobodyLeaves.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOnSuccess>
+							<sector href="/Mechanics/Astral/Sector0/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+									<data href="TourTaken.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>35000</duration>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

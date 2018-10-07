@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>197434412</resourceId>
+	</Header>
+	<name href="Event01_Name.txt" />
+	<text href="Event01_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Phase01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/Inst_TkaRika/QuestEvent01/QuestEvent01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/Inst_TkaRika/QuestEvent01/QuestEvent01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/Inst_TkaRika/QuestEvent01/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Phase01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+			<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/LearningProjectile01.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

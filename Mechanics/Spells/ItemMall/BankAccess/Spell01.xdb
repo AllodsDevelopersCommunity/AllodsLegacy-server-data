@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>117854214</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/EpicRitualRune.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>300000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>7</value>
+				</minLevel>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Kania_AL1/Zones/ArchipelagoLeague1/ArchipelagoLeague1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Hadagan_Underground/Zones/ZoneHadagan1_dang_1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeTrailPos">
+					<center type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+						<faceSourcePos>true</faceSourcePos>
+					</center>
+					<offset x="1" y="1" z="0" />
+				</destination>
+				<object href="/Creatures/GoblinBanker/Instances/Goblin_Courier.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>300000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+				</impacts>
+				<plane href="" />
+				<pool href="" />
+				<traceDown>false</traceDown>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

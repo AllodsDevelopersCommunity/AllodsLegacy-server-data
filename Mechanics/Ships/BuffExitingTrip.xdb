@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>363534337</resourceId>
+	</Header>
+	<Name href="BuffExitingTrip.txt" />
+	<Description href="BuffExitingTrip.Description.txt" />
+	<image href="/Interface/Icons/Misc/GetOnTheShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="BuffExitingTrip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeoutGeneric">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnShip" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>3000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

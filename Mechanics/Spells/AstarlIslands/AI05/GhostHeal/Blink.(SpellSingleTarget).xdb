@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>189811726</resourceId>
+	</Header>
+	<visualScripts href="/Spells/VisScripts/Mage/Blink.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>85</value>
+	</range>
+	<needLos>false</needLos>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>20000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/Kania_male/Instances/AstralIsle05/AstralGhostMale.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="ReadyToHeal.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<impactsOnAttach />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+				<spell href="Heal.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+						<destination type="gameMechanics.map.destination.RelativeTrailPos">
+							<center type="gameMechanics.map.destination.RelativeRotatePos">
+								<base type="gameMechanics.elements.calcers.DestinationSpellTargetPoint">
+									<yawDelta type="constructor.basicElements.AngleDegrees">
+										<value>0</value>
+									</yawDelta>
+								</base>
+								<offset>5</offset>
+							</center>
+							<offset x="0" y="0" z="0" />
+						</destination>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

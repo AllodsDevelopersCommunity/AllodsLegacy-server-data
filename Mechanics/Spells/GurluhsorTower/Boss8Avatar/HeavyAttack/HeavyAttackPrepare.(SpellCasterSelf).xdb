@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>174190597</resourceId>
+	</Header>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown type="" />
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+					<buffs>
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/Protection_MightPhase.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/MassSuffocate/CanCastSuffocate.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</buffs>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>85</radius>
+				<affectGroup>All</affectGroup>
+				<affectHolder>true</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+								<msg href="/Mechanics/Spells/QuestSpells/GurluhsorTower/Asks/Boss8_AttackWarning.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+								<defaultSpeaker href="/Creatures/SarnAvatar/SarnAvatar_Mindflow.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+							<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+						</Item>
+					</predicates>
+				</filter>
+				<targetsLimit>0</targetsLimit>
+				<onBehalfOfHolder>true</onBehalfOfHolder>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>3000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/MassSuffocate/CanCastSuffocate.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>true</anyRank>
+								</predicate>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/CanCastHeavyAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<scalerTarget />
+								<durationScaler />
+								<durationScalerTarget />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.RandomImpact">
+				<entries>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+								<duration>35000</duration>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+								<duration>40000</duration>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+								<duration>45000</duration>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+								<duration>50000</duration>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+								<duration>55000</duration>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+				</entries>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/StrengthControle/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+				<duration>3000</duration>
+				<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/MindControl/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+				<duration>3000</duration>
+				<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<ability href="/Mechanics/Spells/QuestSpells/GurluhsorTower/Boss8/Whispering.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.AttachAbility">
+						<ability href="/Mechanics/Spells/QuestSpells/GurluhsorTower/Boss8/Whispering.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

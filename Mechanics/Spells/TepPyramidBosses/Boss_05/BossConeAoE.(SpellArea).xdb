@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>282481692</resourceId>
+	</Header>
+	<Name href="BossConeAoE.(SpellArea)_Name.txt" />
+	<visualScripts href="ConeAoE.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="BossConeAoE.(SpellArea)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>80</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<isAggro>false</isAggro>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<cooldown>
+			<stage>Start</stage>
+			<duration>20000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="BossAoE.(SpellArea).xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+				<duration>1500</duration>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="SoulSteal.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration>1500</duration>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<minDamage>50</minDamage>
+				<maxDamage>50</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ConeAoEDot.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<angle type="constructor.basicElements.AngleDegrees">
+			<value>55</value>
+		</angle>
+	</shape>
+	<shapeCenterPosition>Caster</shapeCenterPosition>
+	<shapeOrientation>YawAndPitch</shapeOrientation>
+	<radius>90</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

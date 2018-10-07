@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>334711820</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="GoalkeeperHold.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Context/Create_An_Obstacle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<sysName>Agob_0</sysName>
+	<nameTemplate href="GoalkeeperHold.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell href="GoalkeeperHold.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate" />
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+						<effects>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="GoalkeeperHoldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="GoalkeeperHoldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOff>
+							</Item>
+						</effects>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

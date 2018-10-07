@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>274837709</resourceId>
+	</Header>
+	<Name href="PowerStrikePreparing.txt" />
+	<Description href="PowerStrikePreparing.Description.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PowerofSuggestion.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="PowerStrikePreparing.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="PowerStrikePreparing.txt" />
+	<descTemplate href="PowerStrikePreparing.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>12</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+							<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+							<minDamage>75</minDamage>
+							<maxDamage>75</maxDamage>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="Hit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Spells/AstarlIslands/AI17/CityBossTorture/DisableMove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+							<time>1500</time>
+							<distance>5</distance>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>true</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

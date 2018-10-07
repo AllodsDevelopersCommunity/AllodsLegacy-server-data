@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>222227456</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/SweepingSlamUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Mage/AstralAegis.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impactsToOffender>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>ASTRAL</element>
+					<threatMultiplier>1</threatMultiplier>
+					<minDamage>30</minDamage>
+					<maxDamage>30</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</scaler>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/HitAstral.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+					<time>1000</time>
+					<impactsOnLand>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOnLand>
+					<distance>15</distance>
+				</Item>
+			</impactsToOffender>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateIsAE" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateSubElement">
+					<subElement>PHYSICAL</subElement>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateDistance">
+					<maxDistToOffender>10</maxDistToOffender>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsOwner">
+						<allowMaster>false</allowMaster>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>120000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

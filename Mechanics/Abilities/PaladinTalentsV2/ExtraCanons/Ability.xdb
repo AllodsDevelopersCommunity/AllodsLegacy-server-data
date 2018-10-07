@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>236230767</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinBlessedSword.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.BuffDurationModifier">
+			<buff href="/Mechanics/Spells/PaladinV2/Canons/RestoreCanons/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<multiplier type="gameMechanics.elements.calcers.FloatData">
+				<value var="value" />
+			</multiplier>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<hideText>false</hideText>
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<hideText>false</hideText>
+						<buff href="/Mechanics/Spells/PaladinV2/Canons/RestoreCanons/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<consumeStacks>0</consumeStacks>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/PaladinV2/Canons/CanonOfLight/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/PaladinV2/Canons/CanonOfPurity/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value var="val_1" />
+			</tick>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

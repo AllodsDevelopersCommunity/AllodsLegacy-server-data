@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>129856561</resourceId>
+	</Header>
+	<Name href="HodorVessel_SpellName.txt" />
+	<Description href="HodorVessel_SpellDesc.txt" />
+	<nameTemplate href="HodorVessel_SpellName.txt" />
+	<descTemplate href="HodorVessel_SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="HodorVessel.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/Elf_male/Instances/Inst_GipatCave/Inst_GipatCaveCultistVampire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/Inst_GipatCave/Quest11_4/Quest11_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="HodorVessel.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/Inst_GipatCave/Quest11_4/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+				<mob>
+					<scriptID>RessurectedHodor</scriptID>
+					<map href="/Maps/Inst_GipatCave/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+				<mob>
+					<scriptID>VampireSpark</scriptID>
+					<map href="/Maps/Inst_GipatCave/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="HodorVessel.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

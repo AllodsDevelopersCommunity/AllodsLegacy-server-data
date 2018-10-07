@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>156591162</resourceId>
+	</Header>
+	<Name href="ZH1_Rupor_item_Spell_Name.txt" />
+	<Description href="ZH1_Rupor_item_Spell_Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/ZE1_Quest_Speech.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZH1_Rupor_item_Spell_Name.txt" />
+	<descTemplate href="ZH1_Rupor_item_Spell_Description.txt" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="ZH1_Rupor_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneHadagan1/ZH1_Rupor_help/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+				<data href="ZH1_Rupor.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>ZE1_NII1</scriptID>
+							<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>ZE1_NII2</scriptID>
+							<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>500</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Nii_01</scriptID>
+												<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>3000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="ZH1_Rupor_item_Zem1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>8000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>ZE1_NII1</scriptID>
+									<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Nii_02</scriptID>
+												<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>5000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="ZH1_Rupor_item_Zem2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>8000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>ZE1_NII2</scriptID>
+									<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

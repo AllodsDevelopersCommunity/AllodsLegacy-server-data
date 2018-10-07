@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>40325</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<image href="Quest1_0.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<canCancel>false</canCancel>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<returnLocation>
+		<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/InstEmpire1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="1416.895020" y="1342.954590" z="-4.372749" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Orc_male/Instances/InstEmpire1/LootMaster.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/Mechanics/StartInstancesNewbieItems/NewbieEmpire_WeaponStaff.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+			<count>1</count>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/Tutorial_04_Inventory.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>6000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<runningMode>true</runningMode>
+							<path>
+								<Item>
+									<scriptID>IE1_SergantMove</scriptID>
+									<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>7000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+									<newMobWorld href="/Characters/Hadagan_male/Instances/InstEmpire1/Sergant_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<rewardImpacts />
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+			<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="/World/Quests/InstEmpire1/Quest1_0W/CounterCustomName_2.txt" />
+			<showCounterValue>false</showCounterValue>
+			<dressSlots>
+				<Item>MAINHAND</Item>
+			</dressSlots>
+			<relatedItems>
+				<Item href="/Items/Mechanics/StartInstancesNewbieItems/NewbieEmpire_WeaponStaff.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<limit>1</limit>
+			<isInternal>true</isInternal>
+			<items>
+				<Item href="/Items/Mechanics/StartInstancesNewbieItems/NewbieEmpire_WeaponStaff.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+		</Item>
+	</counters>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentSelf">
+			<trigger href="DressTrigger.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+		</Item>
+	</triggerAgents>
+	<reward>
+		<experience>4</experience>
+		<money>0</money>
+		<reputations />
+		<mandatoryItems />
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Quest1_0</internalName>
+	<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/InstEmpire1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+</gameMechanics.constructor.schemes.quest.QuestResource>

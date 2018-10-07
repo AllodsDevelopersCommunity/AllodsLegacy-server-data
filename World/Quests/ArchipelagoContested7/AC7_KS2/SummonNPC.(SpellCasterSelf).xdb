@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>260312089</resourceId>
+	</Header>
+	<Name href="SummonNPC.(SpellCasterSelf).Name.txt" />
+	<Description href="SummonNPC.(SpellCasterSelf).Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+					<radius>56</radius>
+					<mobs>
+						<Item href="/Characters/Undead_male/Instances/ArchipelagoContested7/Zem_Mindflyer_scientist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/AC5_Mindflyers_cave_zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos" />
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="2" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>60000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.AttachAbility">
+						<ability href="/Mechanics/Abilities/Creatures/Ghost/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					</Item>
+				</impacts>
+				<object href="/Characters/Undead_male/Instances/ArchipelagoContested7/Zem_Mindflyer_scientist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

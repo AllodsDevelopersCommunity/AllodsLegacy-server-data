@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>81850377</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageStoneskin.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/EarthQuake.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>20000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBaseMana">
+				<baseMana>0.1</baseMana>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>1</multiplier>
+						</durationScaler>
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>2000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+									<radius>85</radius>
+								</distributor>
+								<data href="Shake.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+				</impacts>
+				<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+				<affectGroup>Enemies</affectGroup>
+				<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+					<value>10</value>
+				</radius>
+				<targetsNum>0</targetsNum>
+				<affectMainTarget>true</affectMainTarget>
+				<workOnDead>true</workOnDead>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+				<value>10</value>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

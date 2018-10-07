@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxOnHands>/Spells/FX/Mobs/AstralWasp_SphereStart.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+		</Variables>
+	</Header>
+	<actionBarStart />
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item>instantSpellCastOmni</Item>
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+				<channelOverrideMode>OVERRIDE_IGNORE</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<animationKeysAction />
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visActionID />
+						<visualEffects>
+							<Item>
+								<effectFx hrefvar="FxOnHands" />
+								<lockScale>false</lockScale>
+								<scale>3</scale>
+								<locator>Slot_FX</locator>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="VisActionList">
+				<visActionID />
+				<play>InSequence</play>
+				<playWhile />
+				<elements>
+					<Item type="CreatureAstralSpellFXVisAction">
+						<visActionID />
+						<astralSpell type="AstralSpellProjectile">
+							<shieldExplosion href="/Spells/FX/Ships/Shield.CanonHitAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<shieldCrit href="/Spells/FX/Ships/Shield.CanonHitAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<hullExplosion href="/Spells/FX/Ships/Hull.CanonHitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<hullCrit href="/Spells/FX/Ships/Hull.CanonHitLightning_Crit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<projectileFx href="/Spells/FX/Mobs/AstralCtulhu_Tentacles.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<locatorName>Slot_Enchant0</locatorName>
+						</astralSpell>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<visActionID />
+				<play>InSequence</play>
+				<playWhile />
+				<elements>
+					<Item type="VisActionDelay">
+						<visActionID />
+						<time>500</time>
+					</Item>
+					<Item type="VisActionStopAction">
+						<visActionID />
+						<stoppedActionID>Enchant1</stoppedActionID>
+					</Item>
+					<Item type="VisActionStopAction">
+						<stoppedActionID>TrailAction1</stoppedActionID>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

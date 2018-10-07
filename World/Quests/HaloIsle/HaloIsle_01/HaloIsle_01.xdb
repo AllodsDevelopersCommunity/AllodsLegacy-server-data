@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>111045710</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/HaloIsle/Zones/HaloIsle/HaloIsle.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="1080.761108" y="1056.548950" z="22.849899" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/HumMobs/HaloIsle/Instances/HaloIsle/HaloIsleDraconidPriest40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>HaloIsle_DH</scriptID>
+									<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+							<runningMode>false</runningMode>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>4000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="HaloIsle_Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>1000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="HaloIsle_Invis.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>2000</delay>
+											<limit>1</limit>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+											<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+								</Item>
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>Hunt_01</scriptID>
+				<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>7000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>Demon_H</scriptID>
+						<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>3000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+	</startImpacts>
+	<rewardImpacts />
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/HaloIsle/HaloIsle_start/HaloIsle_start.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<reward>
+		<experience>5</experience>
+		<money>3375</money>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>HaloIsle_01</internalName>
+	<zone href="/Maps/HaloIsle/Zones/HaloIsle/HaloIsle.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>30</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>30</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

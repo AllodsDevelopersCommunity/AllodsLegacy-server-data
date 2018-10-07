@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>246765585</resourceId>
+	</Header>
+	<Name href="AC8_Event_Riding_Buff_plane.txt" />
+	<Description href="AC8_Event_Riding_Buff_plane.Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestResurrect.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/World/Quests/ArchipelagoContested8/AC8_U7/PhantomWorld_Plane.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="AC8_Event_Riding_Buff_plane.txt" />
+	<descTemplate href="AC8_Event_Riding_Buff_plane.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Spells/QuestSpells/AC8/AC8_Plane_mob.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="AC8_Event_Riding.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Completed</status>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="AC8_Event_Riding.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Spells/QuestSpells/AC8/AC8_Willowisp/AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>Nekromant_point</scriptID>
+											<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Spells/QuestSpells/AC8/AC8_Willowisp/AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInZone">
+									<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>Nekromant_point</scriptID>
+											<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleEnterMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AC8_Event_Riding_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AC8_Event_Riding_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMounted" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/TeleportationSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+	</effects>
+	<duration>2700000</duration>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+</gameMechanics.constructor.schemes.buff.BuffResource>

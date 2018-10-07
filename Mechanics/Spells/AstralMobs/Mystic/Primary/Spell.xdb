@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>121053312</resourceId>
+		<Variables>
+			<cooldown>10000</cooldown>
+		</Variables>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Assasin/Ocassional.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>350</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.ship.elements.ImpactSpellHitAE">
+				<count>3</count>
+				<impacts>
+					<Item type="gameMechanics.elements.bunchImpacts.ScaledAstralDamage">
+						<element>ASTRAL</element>
+						<minDamage type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+									<damage>18000</damage>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>1.3</value>
+									</value>
+								</Item>
+							</calcers>
+						</minDamage>
+						<maxDamage type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+									<damage>40000</damage>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>1.3</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+							</calcers>
+						</maxDamage>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+						<data href="/Spells/ClientData/AstralMob_HitAoE.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="/Mechanics/Spells/CommonBuffs/AstralMobShipSlow/BuffSlowShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>216072300</resourceId>
+	</Header>
+	<Name href="ZE3_14_Scorpid_SpellName.txt" />
+	<Description href="ZE3_14_Scorpid_Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Transformation.xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+			<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/Hadagan/ScriptZones/ZoneEmpire3/E3_15_Scorpid_Zone_01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/Hadagan_E3_Miniinst/ScriptZones/ZoneEmpire3/E3_Scorpid_Zone_Minst.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+				<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZoneEmpire3/E3_14_02/E3_14_02.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ZoneEmpire3/E3_14_02/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneEmpire3/E3_14_02/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

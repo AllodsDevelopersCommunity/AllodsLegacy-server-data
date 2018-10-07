@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>345965570</resourceId>
+	</Header>
+	<Name href="Row_Spell.(SpellCasterSelf)_Name.txt" />
+	<Description href="Row_Spell.(SpellCasterSelf)_Desc.txt" />
+	<nameTemplate href="Row_Spell.(SpellCasterSelf)_Name.txt.template" />
+	<descTemplate href="Row_Spell.(SpellCasterSelf)_Desc.txt.template" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>300000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested9/ScriptZones/Row_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneLeague1/Row_03_L/Row_03_L.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ZoneLeague1/Row_03_L/Row_03_L.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/World/Quests/ZoneLeague1/Row_03_L/Count_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>3</value>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneHadagan1/Row_03_E/Row_03_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ZoneHadagan1/Row_03_E/Row_03_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/World/Quests/ZoneLeague1/Row_03_L/Count_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>3</value>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians" />
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="5" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ZoneLeague1/Row_03_L/PlanBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested9/DemonScout52_52.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians" />
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="5" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ZoneLeague1/Row_03_L/PlanBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested9/DemonScout52_52.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians" />
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="5" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ZoneLeague1/Row_03_L/PlanBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested9/DemonScout52_52.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

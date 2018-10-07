@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>376511510</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100499</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/MountCarpetAcceleration.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/MountCarpetAcceleration.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/WindOfHaste.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>-1</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerMountFromGroupMaxLevel">
+					<group href="/Mechanics/Mounts/Groups/Carpet5Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+				</mulCalcer>
+				<sum>30</sum>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMounted">
+				<hideText>false</hideText>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMountFromGroupFeeded">
+				<hideText>false</hideText>
+				<group href="/Mechanics/Mounts/Groups/Carpet5Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

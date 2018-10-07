@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>195151919</resourceId>
+	</Header>
+	<name href="MarkOfHealing.txt" />
+	<description href="MarkOfHealing.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/RaptureBattle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+						<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+							<quality href="/Mechanics/MobQualities/BossAdd.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.DeathTrigger">
+							<impactsToKiller>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+									</predicates>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.basicElements.ImpactList">
+													<impactsResource href="RewardForKill.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+													<impacts>
+														<Item type="gameMechanics.constructor.basicElements.ImpactList">
+															<impactsResource href="RewardForKill.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impactsElse>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsToKiller>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+			<producer href="MarkOfHealing.xdb#xpointer(/gameMechanics.map.basicElements.MapModifierResource)" />
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+</gameMechanics.map.basicElements.MapModifierResource>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>281707520</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/PetModeAggressive.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bard/Vampire_Chord_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthHigher">
+				<level>0.5</level>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<buff href="/Mechanics/Spells/Bard/VampireChord/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</predicate>
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<threatMultiplier>1</threatMultiplier>
+				<statsConvertor>
+					<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Dexterity</stat>
+					</intuition>
+					<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Might</stat>
+					</spirit>
+				</statsConvertor>
+				<minDamage>15</minDamage>
+				<maxDamage>15</maxDamage>
+				<impactOnHitTarget type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactHeal">
+									<heal>30</heal>
+									<threatMultiplier>1</threatMultiplier>
+									<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+									<statsConvertor>
+										<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Dexterity</stat>
+										</intuition>
+										<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Might</stat>
+										</spirit>
+									</statsConvertor>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+					<radius>85</radius>
+				</distributor>
+				<data href="/Spells/ClientData/HitManaBurn.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<AttackAnimation>USE_CURRENT_RANGED_ATTACK</AttackAnimation>
+			<LocatorNameOnArrow>Slot_FX</LocatorNameOnArrow>
+			<FxOnHands>/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<LoadHoldMode>LOOP</LoadHoldMode>
+			<LoadHoldAnimation>USE_CURRENT_RANGED_LOADHOLD</LoadHoldAnimation>
+			<FxProjectile>/Spells/FX/Spells/HitFire_Staff01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/RangedAttack.txt" />
+	<actionBarStart type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode var="LoadHoldMode" />
+				<use var="LoadHoldAnimation" />
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<animationKeysAction>
+						<Item>
+							<action type="CreatureTakeArrowAction">
+								<visActionID />
+								<arrow href="" />
+								<enchantedArrowIndex>1</enchantedArrowIndex>
+								<rorate>NONE</rorate>
+								<forceTakeInHand>false</forceTakeInHand>
+							</action>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<visActionID />
+								<play>Simultaneously</play>
+								<playWhile />
+								<elements>
+									<Item type="CreatureItemAnimationAction">
+										<visActionID />
+										<itemsSlot>RANGED</itemsSlot>
+										<mode>CLAMP</mode>
+										<animation>special</animation>
+									</Item>
+									<Item type="CreatureTakeBowStringAction">
+										<visActionID>AttachString</visActionID>
+										<itemsSlot>RANGED</itemsSlot>
+										<itemLocatorName>Slot_String</itemLocatorName>
+										<creatureLocator>Slot_Hand_R</creatureLocator>
+										<member>Assaulter</member>
+										<creatureLocatorName />
+									</Item>
+									<Item type="Sound3DAction">
+										<sound>
+											<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+											<name>spells/Stalker/StalkerArrowPull</name>
+										</sound>
+									</Item>
+								</elements>
+							</action>
+						</Item>
+					</animationKeysAction>
+					<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay>1000</delay>
+						<effectFx hrefvar="FxOnHands" />
+						<locator>Slot_Hand_L</locator>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting />
+	<launch type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="VisActionStopAction">
+				<visActionID />
+				<stoppedActionID>AttachString</stoppedActionID>
+			</Item>
+			<Item type="CreatureItemAnimationAction">
+				<visActionID />
+				<itemsSlot>RANGED</itemsSlot>
+				<mode>DIE</mode>
+				<animation>attack</animation>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use var="AttackAnimation" />
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>ONEOFFEND_ONETARGET</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+				</advanced>
+			</Item>
+			<Item type="CreatureThrowArrowAction">
+				<enchantedArrowIndex>1</enchantedArrowIndex>
+				<arrowInTargetTime>15000</arrowInTargetTime>
+				<theGe>8</theGe>
+				<additionalEffectFx hrefvar="FxProjectile" />
+				<effectBone var="LocatorNameOnArrow" />
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+			<Item type="Sound3DAction">
+				<visActionID />
+				<sound>
+					<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+					<name>spells/Stalker/StalkerArrowShot</name>
+				</sound>
+				<alias href="" />
+				<forcedSoundStop>false</forcedSoundStop>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipBloodFx>false</skipBloodFx>
+		<specialAction type="Sound3DAction">
+			<sound>
+				<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+				<name>spells/Stalker/StalkerArrowHit</name>
+			</sound>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

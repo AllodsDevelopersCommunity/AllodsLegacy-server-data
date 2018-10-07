@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>221157429</resourceId>
+	</Header>
+	<name href="/Items/QuestItems/ArchipelagoContested5/PortalKey/SummonManaElemental_Name.txt" />
+	<text href="/Items/QuestItems/ArchipelagoContested5/PortalKey/SummonManaElemental_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="Unlock_portal_AC7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="Checker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+			<quest href="Unlock_portal_AC7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			<value>20</value>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>elemental</scriptID>
+					<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>120000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impacts>
+			<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested7/ManaElementalDestroyer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="Checker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

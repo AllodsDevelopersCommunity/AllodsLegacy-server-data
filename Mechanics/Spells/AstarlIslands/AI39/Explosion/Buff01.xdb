@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>329331716</resourceId>
+	</Header>
+	<Name href="Buff01.txt" />
+	<Description href="Buff01.Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageEnlarge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/Bubble_Immunity.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff01.txt" />
+	<descTemplate href="Buff01.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>1.5</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>8</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>ASTRAL</element>
+							<minDamage>85</minDamage>
+							<maxDamage>85</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+							<time>2000</time>
+							<distance>5</distance>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

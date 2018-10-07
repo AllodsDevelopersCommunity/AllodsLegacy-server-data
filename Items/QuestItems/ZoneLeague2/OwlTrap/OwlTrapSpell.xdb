@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24168</resourceId>
+	</Header>
+	<Name href="OwlTrapSpell.txt" />
+	<Description href="OwlTrapSpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/Gadget.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="OwlTrapSpell.txt" />
+	<descTemplate href="OwlTrapSpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Owl/Instances/OwlSpirit10_11.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.5</value>
+				</chanceCalcer>
+				<impactsSuccess>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneLeague2/Quest7_2/CountId.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impactsSuccess>
+				<impactsFailure>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+						<data href="/Items/QuestItems/ZoneLeague2/OwlCage/CageFail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsFailure>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.Disintegrate" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

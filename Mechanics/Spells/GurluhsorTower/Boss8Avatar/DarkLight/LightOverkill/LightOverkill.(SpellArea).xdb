@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>175547396</resourceId>
+	</Header>
+	<Name href="LightOverkill.txt" />
+	<Description href="LightOverkill.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_8Boss/LightOverkill.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>10000</prepareDuration>
+	<element>HOLY</element>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Abilities/GurluhsorTower/Boss8Overkills/LightOverkill/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="/World/Ask/GT/Boss08Sarn_LightOverkill.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Creatures/SarnAvatar/GS_SarnAvatar3Light.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>HOLY</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>10000000</minDamage>
+				<maxDamage>10000000</maxDamage>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.ReverseDpsModScaler" />
+						<Item type="gameMechanics.elements.scalers.TrivialScaler" />
+					</scalers>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.DirectDamage">
+						<damage>1000000</damage>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>200</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

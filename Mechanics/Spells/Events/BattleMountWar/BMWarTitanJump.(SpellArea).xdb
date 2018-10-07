@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>739815305</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100497</priority>
+		<contextName href="BMWarTitanJump.(SpellArea).ContextName.txt" />
+		<contextDescription href="BMWarTitanJump.(SpellArea).ContextDescription.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/HitTheJump.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountSpeedBoosts.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="BMWarTitanJump.(SpellArea).Name.txt" />
+	<Description href="BMWarTitanJump.(SpellArea).Description.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/HitTheJump.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/BattleMountTitan_Jump.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="BMWarTitanJump.(SpellArea).Name.txt" />
+	<descTemplate href="BMWarTitanJump.(SpellArea).Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics>
+		<cooldown>
+			<duration>40000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="BMWarTitanEnergize02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<consumeStacks>4</consumeStacks>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierRelativePolar">
+							<radius type="gameMechanics.elements.calcers.FloatData">
+								<value>2</value>
+							</radius>
+							<angle type="constructor.basicElements.AngleRadians" />
+						</Item>
+						<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+							<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+								<angle>1.5708</angle>
+							</pathChecker>
+							<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom" />
+						</Item>
+					</modifiers>
+				</destination>
+				<speed>25</speed>
+				<impactsOnLand>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>10</radius>
+						<affectGroup>Enemies</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+								<value>10</value>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mounts/Titan/Jump/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Mounts/Titan/Jump/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+											<multiplier>3</multiplier>
+										</durationScaler>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Mechanics/Spells/Mounts/Titan/Jump/TitanLand.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsOnLand>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<targetsSelectionStage>None</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>10</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

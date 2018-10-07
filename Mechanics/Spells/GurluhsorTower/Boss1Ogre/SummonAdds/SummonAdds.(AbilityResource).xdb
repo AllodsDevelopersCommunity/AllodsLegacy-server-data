@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>137231360</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="SummonAdds.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="SummonAdds.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>85</radius>
+							<affectGroup>All</affectGroup>
+							<affectHolder>true</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_Cultist_Warrior.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_Cultist_Mage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_Cultist_Priest.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_Cultist_Stalker.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+							</impacts>
+							<onBehalfOfHolder>true</onBehalfOfHolder>
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

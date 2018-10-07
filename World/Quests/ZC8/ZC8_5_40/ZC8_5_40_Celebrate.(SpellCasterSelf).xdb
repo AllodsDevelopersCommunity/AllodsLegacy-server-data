@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>316258322</resourceId>
+	</Header>
+	<Name href="ZC8_5_40_Celebrate.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Misc/Event/EventFirework02.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="ZC8_5_40_Celebrate.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC8_5_40_Celebrate.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>4000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<conditions>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onSlave type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/HumMobs/ZC8/Tekuani/CelebratingTekuani1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/ZC8/Tekuani/CelebratingTekuani2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</onSlave>
+					</Item>
+				</conditions>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.4</value>
+						</chanceCalcer>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="/Characters/HumMobs/ZC8/Tekuani/Celebrating.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<impactsLose>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="CelebratingSalute.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impactsLose>
+					</Item>
+				</impacts>
+				<finishImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</finishImpacts>
+				<filter type="gameMechanics.world.creature.MobFilter" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

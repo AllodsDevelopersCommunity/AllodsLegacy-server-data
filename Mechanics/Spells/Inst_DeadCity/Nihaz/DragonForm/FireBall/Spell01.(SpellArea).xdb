@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>214084638</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/LightningSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<Name href="/Mechanics/Spells/Inst_DeadCity/Dragon/FireSpit/Spell_Name.txt" />
+	<Description href="/Mechanics/Spells/Inst_DeadCity/Dragon/FireSpit/Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestHolySmite.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/NihazDC/FireBall_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/Inst_DeadCity/Dragon/FireSpit/Spell_Name.txt" />
+	<descTemplate href="/Mechanics/Spells/Inst_DeadCity/Dragon/FireSpit/Spell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>150</value>
+	</range>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTPoint</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Start</stage>
+			<duration>4000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				<minDamage>45</minDamage>
+				<maxDamage>50</maxDamage>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>4</radius>
+						<affectGroup>Friends</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.AvatarFilter" />
+						<onBehalfOfHolder>false</onBehalfOfHolder>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>20</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>4</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

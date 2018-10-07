@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24419</resourceId>
+	</Header>
+	<Name href="DruidKnifeSpell.txt" />
+	<Description href="DruidKnifeSpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoLeague2/Quest_40_10/Quest_40_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="/Items/QuestItems/ArchipelagoLeague2/Trash/JunnArtefact2.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/ArchipelagoLeague2/Quest_40_10/Quest_40_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/Creatures/Drake/Instances/ArchipelagoLeague2/Drake14mb.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Kania_AL2/ScriptZones/ArchipelagoLeague2/Drak.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="AntiDrake.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.DirectDamage">
+				<damage>50</damage>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="DruidKnifeSpell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>15000</duration>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoLeague2/Quest_40_10/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>AL2_Drake1</scriptID>
+						<map href="/Maps/Kania_AL2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+								<radius>60</radius>
+								<affectPets>true</affectPets>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="AntiDrake.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoLeague2/Quest_40_10/DrakePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+					<Item type="gameMechanics.elements.impacts.ForceAggro" />
+				</impacts>
+				<object href="/Creatures/Drake/Instances/ArchipelagoLeague2/Drake14mb.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

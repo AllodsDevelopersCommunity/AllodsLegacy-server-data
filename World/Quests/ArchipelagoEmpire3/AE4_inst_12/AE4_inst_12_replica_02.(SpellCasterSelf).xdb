@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>134781999</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ArchipelagoEmpire3/AE4_12_inst_replica_01/AE4_12_inst_replica_SpellName.txt" />
+	<Description href="/Items/QuestItems/ArchipelagoEmpire3/AE4_12_inst_replica_01/AE4_12_inst_replica_SpellDesc.txt" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="AE4_inst_12.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan_AE3/ScriptZones/ArchipelagoEmpire4/AE4_12_inst.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="Replica_02.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Characters/Hadagan_male/Instances/ArchipelagoEmpire3/AE4_inst_Vash.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2500</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+						<msg href="Actress_replica_03.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+						<defaultSpeaker href="/Characters/Hadagan_female/Instances/ArchipelagoEmpire3/AE4_acress_inst.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="/Items/QuestItems/ArchipelagoEmpire3/AE4_12_inst_replica_02/AE4_12_inst_replica_02.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>1</count>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<iffPolicy>Friends</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

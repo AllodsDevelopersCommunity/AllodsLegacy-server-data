@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>235845634</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextDivineShield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/HoldBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MindControlBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/StunBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FearBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorDefenseCombo.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/EndurePain.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>120000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBarrierIsActive">
+				<ability href="/Mechanics/Spells/PaladinV2/Barriers/BarrierAbility/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.EndurePain">
+				<reduceFactor>0</reduceFactor>
+				<additionalReduce>1</additionalReduce>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>1</mul>
+					<mulCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Abilities/PaladinTalentsV2/LessDamageFromBarriers/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.05</mul>
+						<sum>0</sum>
+					</mulCalcer>
+					<additionalMultiplier>
+						<scaler type="gameMechanics.elements.abilities.BarrierDamageScaler">
+							<mul>1</mul>
+							<sum>0</sum>
+						</scaler>
+						<value>1</value>
+					</additionalMultiplier>
+					<sum>0</sum>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+				<buff href="/Mechanics/Spells/PaladinV2/Canons/CanonOfLight/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<delta type="gameMechanics.elements.calcers.LinearCalcer">
+					<mul>1</mul>
+					<sum>3</sum>
+				</delta>
+				<attachIfNotExist>true</attachIfNotExist>
+				<resetTimer>true</resetTimer>
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+		<linkedAbility href="/Mechanics/Spells/PaladinV2/Barriers/BarrierAbility/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

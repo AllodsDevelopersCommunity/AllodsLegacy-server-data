@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>739817732</resourceId>
+	</Header>
+	<Name href="ElectroAOE.(SpellArea).Name.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<element>LIGHTNING</element>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="Calm.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>LIGHTNING</element>
+						<minDamage>35</minDamage>
+						<maxDamage>35</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="Positive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="Negative.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>85</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

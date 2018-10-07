@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>341413942</resourceId>
+	</Header>
+	<name href="AE.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/Spells/MageFirewallAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0.1</altitude>
+	<lifeLengthCap>12000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Rectangle">
+						<aspectRatio>2.75</aspectRatio>
+					</shape>
+					<radius>5.85</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>FIRE</element>
+							<minDamage>15</minDamage>
+							<maxDamage>15</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>1000</initialDelay>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

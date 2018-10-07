@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>223396889</resourceId>
+	</Header>
+	<Name href="Ac4_pvpEvent_lig_stamina_Buff.txt" />
+	<Description href="Ac4_pvpEvent_lig_stamina_Buff.Description.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinTaunt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Stamina</stat>
+			</stat>
+			<multiplier>1</multiplier>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerExp">
+					<base>0.99</base>
+					<powCalc type="gameMechanics.elements.calcers.CalcerGlobalVariable">
+						<variableResource href="/Mechanics/Rules/ArchipelagoContested4/Pvp_arena/Pvp_arena_Variable_L.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					</powCalc>
+				</mulCalcer>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_08.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Ac4_pvpEvent_lig_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

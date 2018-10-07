@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>333819913</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="StayAndFight.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="RunAway.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.RandomScaler">
+								<range>
+									<min>4</min>
+									<max>12</max>
+								</range>
+							</durationScaler>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="StayAndFight.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.RandomScaler">
+								<range>
+									<min>3</min>
+									<max>10</max>
+								</range>
+							</durationScaler>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateDistance">
+					<maxDistToOffender>8</maxDistToOffender>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="RunAway.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.RandomScaler">
+								<range>
+									<min>4</min>
+									<max>10</max>
+								</range>
+							</durationScaler>
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>208364567</resourceId>
+	</Header>
+	<Name href="FireLongNarrowDamageVerySlow_3Name.txt" />
+	<Description href="../Fire_Description.txt" />
+	<descVars>
+		<Item>
+			<name>range</name>
+			<value>750</value>
+			<scaler>FormulaUndefined</scaler>
+		</Item>
+		<Item>
+			<name>cooldown</name>
+			<value>50000</value>
+			<scaler>FormulaSeconds</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>750</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>50000</duration>
+			<group href="/Mechanics/Spells/Groups/AstralCannons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.world.device.LinearMalfunctionCalcer">
+					<treshold>0.75</treshold>
+					<b>1</b>
+					<value>1</value>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAstralMob" />
+					<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+				</predicates>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="/Mechanics/Ships/Cannon/CannonAttack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+				<clientData href="/Mechanics/Ships/Cannon/FireGeneral_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.FloatData">
+					<value>2000</value>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.CannonCalcType" />
+			</Item>
+		</targetImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceEnergy">
+				<energy type="gameMechanics.elements.calcers.FloatData">
+					<value>1000</value>
+				</energy>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.CannonClosestToRayAutotarget" />
+	<shape type="gameMechanics.constructor.schemes.spell.area.Ray">
+		<objectsProvider>CollisionScene</objectsProvider>
+	</shape>
+	<shapeOrientation>YawAndPitch</shapeOrientation>
+	<radius>750</radius>
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

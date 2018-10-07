@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>346969096</resourceId>
+	</Header>
+	<Name href="BuffNobodyLeaves.txt" />
+	<Description href="BuffNobodyLeaves.Description.txt" />
+	<image href="/Interface/Icons/Misc/GetOnTheShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectPassengerChangeImpacts">
+			<impactsOnLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="BuffExitingTrip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnLeave>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectAllDevices">
+			<effects>
+				<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+					<reason>TR_Teleport</reason>
+				</Item>
+			</effects>
+			<filter type="gameMechanics.constructor.basicElements.TrueFilter" />
+		</Item>
+	</effects>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups />
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

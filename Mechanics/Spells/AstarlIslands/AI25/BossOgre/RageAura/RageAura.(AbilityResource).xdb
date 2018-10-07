@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>259302422</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>Friends</affectGroup>
+			<radius>15</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Ogre/Instances/AstralIsle25/AstralOgreBoss2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</filter>
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="RageAura.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="RageAura.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+					</impacts>
+					<spawnResource href="/Maps/AstralIsle25/SpawnTables/AstralIsle25/AstralWildGoblinFan.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</onEnter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="RageAura.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>739822039</resourceId>
+	</Header>
+	<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+		<predicates>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</predicates>
+	</filter>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+			<time>500</time>
+			<distance>4</distance>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Creatures/MechSiege/Instances/AstralIsle50/AI50_ImmuneTraps.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Items/InteractiveObjects/AstralIsle50/AI50_Static.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.DirectDamage">
+					<damage>1</damage>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+							<multiplier>0.4</multiplier>
+						</mulCalcer>
+					</scalerTarget>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impactsIn>
+	<considerAsWhole>true</considerAsWhole>
+</gameMechanics.map.scriptZone.ScriptZone>

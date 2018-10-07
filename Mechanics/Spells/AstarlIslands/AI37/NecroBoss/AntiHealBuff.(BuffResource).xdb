@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>300405779</resourceId>
+	</Header>
+	<Name href="AntiHealBuff.(BuffResource)_Name.txt" />
+	<Description href="AntiHealBuff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/CriticalCure.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<nameTemplate href="AntiHealBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="AntiHealBuff.(BuffResource).DescTemplate.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealToDamageTransformer">
+			<factor>1</factor>
+			<subElement>ACID</subElement>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+									<radius>56</radius>
+									<mobs>
+										<Item href="/Creatures/SkeletonMage/Instances/AstralIsle37/NecroAddMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+									<radius>56</radius>
+									<mobs>
+										<Item href="/Creatures/SkeletonWarrior/Instances/AstralIsle37/NecroAddSkeletonPro.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+									<radius>56</radius>
+									<mobs>
+										<Item href="/Creatures/SkeletonWarrior/Instances/AstralIsle37/NecroAddSkeleton.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AntiHealBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Enrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/Undead_male/Instances/AstralIsle37/AI37_NecroBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>160107533</resourceId>
+	</Header>
+	<Name href="ContextActionName.txt" />
+	<Description href="SumBoss1.Description.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="5_2_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ZC4_Isle02/ScriptZones/Boss1Sum.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos" />
+					<offset>10</offset>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>120000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+										<affectPets>false</affectPets>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+												<quest href="5_2_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ZC4_Isle02/DemonScoutMiniboss_ZC4_Isle02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="5_2_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/Items/QuestItems/ZC4_Isle02/Boss_Sum_1/Boss_Sum_1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

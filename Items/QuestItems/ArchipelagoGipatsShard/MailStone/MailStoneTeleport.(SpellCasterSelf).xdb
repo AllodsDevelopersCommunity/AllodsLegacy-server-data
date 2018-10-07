@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>142928904</resourceId>
+	</Header>
+	<Name href="MailStoneTeleport_Name.txt" />
+	<Description href="MailStoneTeleport_SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="MailStoneTeleport_Name.txt" />
+	<descTemplate href="MailStoneTeleport_SpellDesc.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>600000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Hover.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+						<destination type="gameMechanics.map.destination.DestinationLocatorSpread">
+							<locator>
+								<scriptID>Start</scriptID>
+								<map href="/Maps/ArchipelagoGipatsShard/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+							<horizontalSpread>15</horizontalSpread>
+						</destination>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+							<unlock href="/Mechanics/Unlocks/Locations/ArchipelagoGipatsShard/TeleportMasterLocation/Teleport_Master_AG1_01.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/Locations/ArchipelagoGipatsShard/TeleportMasterLocation/Teleport_Master_AG1_01.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>199966741</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/CripplingStrike.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/Slow.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMounted" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.EffectMountSpeedModifier">
+							<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+								<coeff>-0.5</coeff>
+							</effectScaler>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effectsIf>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.5</coeff>
+			</effectScaler>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>false</isStackable>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_CC</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

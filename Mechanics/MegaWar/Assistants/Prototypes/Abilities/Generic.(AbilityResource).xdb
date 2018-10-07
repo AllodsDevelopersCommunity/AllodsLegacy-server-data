@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>333819911</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<durationScalerTarget type="gameMechanics.elements.scalers.LinearScaler">
+				<multiplier>0.5</multiplier>
+			</durationScalerTarget>
+			<ignoreHelpful>true</ignoreHelpful>
+			<ignoreHarmful>true</ignoreHarmful>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+					<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+					<predicate type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Abilities/Mercenaries/Tank/HealthRegen.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Abilities/Mercenaries/Tank/WannaHeal.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Abilities/Mercenaries/Tank/TryingToHeal.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Abilities/Mercenaries/Tank/WannaHeal.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Abilities/Mercenaries/Tank/TryingToHeal.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Abilities/Mercenaries/Tank/HealthRegen.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>60</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+									<value>100</value>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAllowNoVisibleTargets" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

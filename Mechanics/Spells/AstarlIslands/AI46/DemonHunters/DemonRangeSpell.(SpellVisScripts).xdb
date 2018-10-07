@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<visActionID>RapidFire</visActionID>
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="VisActionLoopAction">
+				<actionToLoop type="VisActionList">
+					<play>Simultaneously</play>
+					<elements>
+						<Item type="CreatureAnimationAction">
+							<use>USE_CURRENT_RANGED_RAPIDFIRE</use>
+							<channel>CHANNEL_KNOCKDOWN</channel>
+							<advanced>
+								<animationKeysAction>
+									<Item>
+										<action type="CreatureTakeArrowAction">
+											<visActionID>TakeArrow</visActionID>
+										</action>
+										<stopIfAnimationStoped>true</stopIfAnimationStoped>
+									</Item>
+									<Item>
+										<action type="VisActionList">
+											<play>Simultaneously</play>
+											<elements>
+												<Item type="CreatureItemAnimationAction">
+													<itemsSlot>RANGED</itemsSlot>
+													<mode>CLAMP</mode>
+													<animation>special</animation>
+												</Item>
+												<Item type="CreatureTakeBowStringAction">
+													<visActionID>AttachString</visActionID>
+													<itemsSlot>RANGED</itemsSlot>
+													<itemLocatorName>Slot_String</itemLocatorName>
+													<creatureLocator>Slot_Hand_R</creatureLocator>
+													<member>Assaulter</member>
+												</Item>
+												<Item type="Sound3DAction">
+													<sound>
+														<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+														<name>spells/Stalker/StalkerArrowPull</name>
+													</sound>
+												</Item>
+											</elements>
+										</action>
+										<stopIfAnimationStoped>true</stopIfAnimationStoped>
+									</Item>
+									<Item>
+										<action type="VisActionList">
+											<elements>
+												<Item type="VisActionList">
+													<play>Simultaneously</play>
+													<elements>
+														<Item type="VisActionStopAction">
+															<stoppedActionID>AttachString</stoppedActionID>
+														</Item>
+														<Item type="VisActionStopAction">
+															<stoppedActionID>TakeArrow</stoppedActionID>
+														</Item>
+														<Item type="CreatureItemAnimationAction">
+															<itemsSlot>RANGED</itemsSlot>
+															<animation>attack</animation>
+														</Item>
+														<Item type="CreatureThrowArrowAction">
+															<theGe>10</theGe>
+															<additionalEffectFx href="/Spells/FX/Weapon/ArrowRapidFireTrail.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+															<effectBone>Slot_FX</effectBone>
+															<offendTime type="EffectOffendConstDelay" />
+															<fixedThrowDuration>500</fixedThrowDuration>
+														</Item>
+														<Item type="Sound3DAction">
+															<sound>
+																<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+																<name>spells/Stalker/StalkerArrowShot</name>
+															</sound>
+														</Item>
+													</elements>
+												</Item>
+											</elements>
+										</action>
+										<stopIfAnimationStoped>true</stopIfAnimationStoped>
+									</Item>
+								</animationKeysAction>
+								<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+							</advanced>
+						</Item>
+					</elements>
+				</actionToLoop>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="VisActionDelay">
+						<time>700</time>
+					</Item>
+					<Item type="VisActionLoopAction">
+						<actionToLoop type="VisActionList">
+							<play>Simultaneously</play>
+							<playWhile type="VisActionDelay">
+								<time>500</time>
+							</playWhile>
+							<elements>
+								<Item type="CreatureEffectsOnTarget">
+									<visualEffects>
+										<Item>
+											<effectFx href="/Spells/FX/Spells/WarriorCleave_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<fixPoint>true</fixPoint>
+											<locator>Slot_FX</locator>
+										</Item>
+										<Item>
+											<effectFx href="/Spells/FX/Spells/HitMelee.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<fixPoint>true</fixPoint>
+											<locator>Slot_FX</locator>
+										</Item>
+									</visualEffects>
+								</Item>
+							</elements>
+						</actionToLoop>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<actionBarComplite type="VisActionStopAction">
+		<stoppedActionID>RapidFire</stoppedActionID>
+	</actionBarComplite>
+	<launch type="CreatureEffectsOnTarget">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/WarriorGrind_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<fixPoint>true</fixPoint>
+				<scale>0.7</scale>
+				<locator>Slot_FX</locator>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+		</visualEffects>
+	</launch>
+</SpellVisScripts>

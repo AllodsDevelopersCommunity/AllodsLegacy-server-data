@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>156735498</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageIceInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown type="" />
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip">
+					<ownershipRequired>false</ownershipRequired>
+				</addresseeFinder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.world.ship.elements.ImpactEnergyHit">
+								<amount type="gameMechanics.elements.calcers.CalcerMul">
+									<calcers>
+										<Item type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+										<Item type="gameMechanics.elements.calcers.FloatData">
+											<value>-0.25</value>
+										</Item>
+										<Item type="gameMechanics.elements.calcers.CalcerExp">
+											<base>0.66</base>
+											<powCalc type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="ReactorCooling.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<forAllRanks>true</forAllRanks>
+											</powCalc>
+										</Item>
+									</calcers>
+								</amount>
+								<isPure>true</isPure>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+						<buff href="ReactorCooling.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

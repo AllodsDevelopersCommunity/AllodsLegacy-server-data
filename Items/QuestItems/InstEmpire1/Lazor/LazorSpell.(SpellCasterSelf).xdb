@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24624</resourceId>
+	</Header>
+	<Name href="LazorSpell_Name.txt" />
+	<Description href="LazorSpell_Desc.txt" />
+	<visualScripts href="Lazor.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>13000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Inst_EmpireStart/ScriptZones/Lazor.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts />
+		<targetImpacts />
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+					<data href="/Items/InteractiveObjects/InstEmpire1/Shoot.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<locators>
+						<Item>
+							<scriptID>ES_DoorLoc0</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>ES_DoorLoc</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</locators>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1500</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<mob>
+								<scriptID>IE1Priest</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Items/InteractiveObjects/InstEmpire1/Warning05.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>1</visualState>
+								</Item>
+							</impacts>
+							<device>
+								<scriptID>IEEWall1</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/World/Quests/InstEmpire1/Quest3_2/Start_event.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="Stop.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>4000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.GoThroughPath">
+											<path>
+												<Item>
+													<scriptID>ES_TechRun01</scriptID>
+													<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</Item>
+												<Item>
+													<scriptID>ES_TechRun02</scriptID>
+													<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</Item>
+											</path>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>IE1_Tech</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/World/Quests/InstEmpire1/Quest3_2/Start_event.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="Stop.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.GoThroughPath">
+											<path>
+												<Item>
+													<scriptID>ES_TechRun01</scriptID>
+													<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</Item>
+												<Item>
+													<scriptID>IE1Paladin2</scriptID>
+													<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</Item>
+											</path>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>IE1_Tech2</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/InstEmpire1/Quest4_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_EmpireStart/SpawnTables/InstEmpire1/Wall.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+					<item href="Lazor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<count>1</count>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="Stop.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="ForceFieldDown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/InteractiveObjects/InstEmpire1/Wall/LazorHit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+	<iffPolicy>Friends</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

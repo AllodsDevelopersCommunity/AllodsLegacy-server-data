@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>128571398</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneEmpire2/Quest_90_30/Quest_90_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+			<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/RhinoMiniboss11_11_N.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+			<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/NecroFX_E2.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>3000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/NecroFX_E2.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/World/Quests/ZoneEmpire2/Quest_90_30/Necro.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>NecroNPC</scriptID>
+				<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+			<zone href="Necrozone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

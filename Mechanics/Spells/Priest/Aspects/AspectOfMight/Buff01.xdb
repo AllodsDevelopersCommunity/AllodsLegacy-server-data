@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>234224674</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestHeavenlyLight.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ForgetSpellTrigger">
+			<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			<anyRank>true</anyRank>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellRepelTypeModifier">
+			<spells>
+				<Item href="/Mechanics/Spells/Priest/HolySmite/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<Item href="/Mechanics/Spells/Priest/HolySmiteUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<Item href="/Mechanics/Spells/Priest/HolyOrb/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<Item href="/Mechanics/Spells/Priest/ChainSmite/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<Item href="/Mechanics/Spells/Priest/Exorcism/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			</spells>
+			<repelType>IGNORE</repelType>
+			<probability>1</probability>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+			<casterImpacts>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Spells/Priest/PassiveTalents/Cheer/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.05</mul>
+						<sum>0.3</sum>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/Priest/ZealBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</casterImpacts>
+			<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationSpells">
+				<spells>
+					<Item href="/Mechanics/Spells/Priest/HolySmite/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					<Item href="/Mechanics/Spells/Priest/HolySmiteUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				</spells>
+			</destination>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/PriestAspects.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

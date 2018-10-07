@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>126089242</resourceId>
+	</Header>
+	<internalName>DeadCity</internalName>
+	<name href="Name.txt" />
+	<exit type="mapLoader.pointer.MapPointerPos">
+		<pointer>
+			<scriptID>AC9_Main_Portal</scriptID>
+			<map href="/Maps/ArchipelagoContested9/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		</pointer>
+	</exit>
+	<mapTemplate href="/System/MapTemplates/RaidInstance.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<spawnSettings>
+		<trashMinSpawnTime>10800000</trashMinSpawnTime>
+		<trashMaxSpawnTime>10800000</trashMaxSpawnTime>
+		<runeLevel>5</runeLevel>
+	</spawnSettings>
+	<globalObjects>
+		<Item href="GlobalObjects/Tours/Drake_Bomber_Trash_01.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/Drake_Boss_01_Victory.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/Drake_Bomber_Boss_02.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/Drake_Bomber_Boss_01.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/Demon_Start.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+	</globalObjects>
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="Variables/Dragons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/Demons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/MindFlayers.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/UndeadBoss.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/DragonsGateKeepers.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Variables/IsLastBossSummoned.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+							<Item type="gameMechanics.map.variables.MapVariableTrigger">
+								<variableResource href="Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+												<predicates>
+													<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+														<variableResource href="Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+														<expectedValue type="gameMechanics.elements.calcers.FloatData">
+															<value>1</value>
+														</expectedValue>
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+															<faction href="/World/Factions/Inst_DeadCity/DC_Undeads.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</predicate>
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+															<faction href="/World/Factions/Inst_DeadCity/DC_Nihaz.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</predicate>
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+															<faction href="/World/Factions/NeutralFriendly.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</predicate>
+													</Item>
+												</predicates>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="BuffStats01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff href="BuffStats02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+														<predicates>
+															<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+																<variableResource href="Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+																<minValue type="gameMechanics.elements.calcers.FloatData">
+																	<value>1</value>
+																</minValue>
+															</Item>
+															<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+																	<faction href="/World/Factions/Inst_DeadCity/DC_Undeads.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+																</predicate>
+															</Item>
+															<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+																	<faction href="/World/Factions/Inst_DeadCity/DC_Nihaz.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+																</predicate>
+															</Item>
+															<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+																	<faction href="/World/Factions/NeutralFriendly.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+																</predicate>
+															</Item>
+														</predicates>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.BuffDetacher">
+														<buff href="BuffStats01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="BuffStats02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsIf>
+												<impactsElse>
+													<Item type="gameMechanics.elements.impacts.BuffDetacher">
+														<buff href="BuffStats01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.BuffDetacher">
+														<buff href="BuffStats02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsElse>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impacts>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+	<resetInstancePeriod href="MapResetPeriod.(TimeTable).xdb#xpointer(/timetables.TimeTable)" />
+	<deathHeightThreshhold>-500</deathHeightThreshhold>
+</mapLoader.MapResource>

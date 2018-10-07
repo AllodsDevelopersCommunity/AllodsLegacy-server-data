@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>235656195</resourceId>
+	</Header>
+	<name href="Ability01.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.ImpactsToTarget">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.33</value>
+						</chanceCalcer>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>1000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<radius>8</radius>
+										<affectGroup>Enemies</affectGroup>
+										<affectHolder>true</affectHolder>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<scalerTarget />
+												<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+													<multiplier>2</multiplier>
+												</durationScaler>
+												<durationScalerTarget />
+												<allowOverrideCaster>false</allowOverrideCaster>
+												<stacks />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+												<element>PHYSICAL</element>
+												<threatMultiplier>0</threatMultiplier>
+												<statsConvertor type="" />
+												<minDamage>50</minDamage>
+												<maxDamage>50</maxDamage>
+												<impactOnHitTarget />
+												<scaler type="gameMechanics.elements.scalers.MagicScaler">
+													<stat>IS_Intellect</stat>
+												</scaler>
+											</Item>
+										</impacts>
+										<filter type="gameMechanics.constructor.basicElements.FilterOr">
+											<filters>
+												<Item type="gameMechanics.world.creature.AvatarFilter" />
+												<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+												</Item>
+											</filters>
+										</filter>
+										<targetsLimit>0</targetsLimit>
+										<onBehalfOfHolder>false</onBehalfOfHolder>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="EffectData01.xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<targetType>Enemies</targetType>
+			</impact>
+			<attackSource>Mainhand</attackSource>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

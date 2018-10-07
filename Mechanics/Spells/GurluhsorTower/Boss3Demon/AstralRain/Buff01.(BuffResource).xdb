@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>143305739</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageDispelMagic.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<locator>Slot_Global</locator>
+			<effectFx href="/Spells/FX/Mobs/GT_3Boss_AstralRain_newDot.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+		</Item>
+	</visualEffects>
+	<visScript href="" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>ASTRAL</element>
+					<threatMultiplier>0</threatMultiplier>
+					<scalerTarget type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mul>0.08</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.CalcerExp">
+									<base>3</base>
+									<baseCalc />
+									<pow>0.6</pow>
+									<powCalc type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+										<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<forAllRanks>true</forAllRanks>
+									</powCalc>
+									<sum>0</sum>
+									<sumCalc />
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mul>10</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.InverseCalcer">
+									<value type="gameMechanics.elements.calcers.AvatarsAroundCalcer">
+										<group>Friends</group>
+										<skipSelf>false</skipSelf>
+										<skipPets>true</skipPets>
+										<radius>10</radius>
+									</value>
+								</mulCalcer>
+							</Item>
+						</scalers>
+					</scalerTarget>
+					<statsConvertor type="" />
+					<minDamage>1</minDamage>
+					<maxDamage>1</maxDamage>
+					<impactOnHitTarget />
+				</Item>
+			</impacts>
+			<tick>1500</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>false</attachIfNotExist>
+					<resetTimer>false</resetTimer>
+				</Item>
+			</impacts>
+			<tick>4000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<stackLimit>5</stackLimit>
+</gameMechanics.constructor.schemes.buff.BuffResource>

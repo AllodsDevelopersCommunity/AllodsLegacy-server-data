@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>114983957</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodPlague.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/WorldBoss/AC4/ElfCultistBossBreakResolveChannel.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>35</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>SHADOW</element>
+							<minDamage>7</minDamage>
+							<maxDamage>11</maxDamage>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>3</multiplier>
+							</durationScaler>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<ranks />
+	<resistType>SRT_BuffDebuff</resistType>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

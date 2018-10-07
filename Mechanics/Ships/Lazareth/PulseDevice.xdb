@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.SteleResource>
+	<Header>
+		<resourceId>1516699650</resourceId>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.world.device.DeviceOnlinePartResource" />
+		<Item type="gameMechanics.constructor.schemes.buff.BuffsResource" />
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.EffectSwitchInterceptor">
+					<reasonsToIgnore>
+						<Item>TR_ReactorsShutdown</Item>
+						<Item>TR_TeleportToIsland</Item>
+						<Item>TR_InHangar</Item>
+						<Item>TR_NotRepaired</Item>
+					</reasonsToIgnore>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.DeviceOnlineTrigger">
+					<effectsOn>
+						<Item type="gameMechanics.elements.effects.AuraGeneric">
+							<radius>3</radius>
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<impactsIn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="Guard.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.CalcerBuffDuration">
+											<buff href="Timer.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<multiplier>1</multiplier>
+										</mulCalcer>
+									</durationScaler>
+								</Item>
+							</impactsIn>
+							<impactsOut>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="Guard.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOut>
+							<filter type="gameMechanics.constructor.basicElements.FilterAnd">
+								<filters>
+									<Item type="gameMechanics.world.creature.AvatarFilter" />
+									<Item type="gameMechanics.world.device.filters.CrewMemberFilter" />
+								</filters>
+							</filter>
+						</Item>
+					</effectsOn>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="Timer.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>30000</multiplier>
+							</durationScaler>
+						</Item>
+					</impacts>
+					<tick>30000</tick>
+				</Item>
+			</effects>
+			<reattachOnTeleport>false</reattachOnTeleport>
+		</Item>
+	</persistentParts>
+	<name href="Name.txt" />
+</gameMechanics.world.device.SteleResource>

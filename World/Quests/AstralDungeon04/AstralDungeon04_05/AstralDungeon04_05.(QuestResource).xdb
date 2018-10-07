@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>349260807</resourceId>
+	</Header>
+	<name href="AstralDungeon04_05.(QuestResource).Name.txt" />
+	<goal href="AstralDungeon04_05.(QuestResource).Goal.txt" />
+	<startText href="AstralDungeon04_05.(QuestResource).StartText.txt" />
+	<checkText href="AstralDungeon04_05.(QuestResource).CheckText.txt" />
+	<finishText href="AstralDungeon04_05.(QuestResource).FinishText.txt" />
+	<type>QUEST_TYPE_INSTANCE</type>
+	<returnLocation>
+		<zone href="/Maps/AstralDungeon04/Zones/TenzisTemple.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="3037.360107" y="3543.260010" z="-0.897211" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Undead_male/Instances/AstralDungeon04/AstralDungeon04_npc.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/AstralDungeon04/AstralDungeon04_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/AI_Qzone/AI_Quest_post/AI_Quest_post_AD4/Counter_AD4_02_start.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/AI_Qzone/AI_Quest_post/AI_Quest_post_AD4/Counter_AD4_02_finish.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateGreater">
+					<lhs type="gameMechanics.elements.calcers.CalcerSectorAvatarLevel" />
+					<rhs type="gameMechanics.elements.calcers.FloatData">
+						<value>8.286</value>
+					</rhs>
+					<threshold>0.0001</threshold>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateGreater">
+						<lhs type="gameMechanics.elements.calcers.CalcerSectorAvatarLevel" />
+						<rhs type="gameMechanics.elements.calcers.FloatData">
+							<value>8.687</value>
+						</rhs>
+						<threshold>0.0001</threshold>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/AI_Qzone/AI_Quest_post/AI_Quest_post_AD4/AI_Quest_post_AD4_02.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+			</predicates>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<limit>1</limit>
+			<items>
+				<Item href="/Items/QuestItems/AstralDungeon04/AstralDungeon04_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="AstralDungeon04_05.(QuestResource).CustomName.txt" />
+			<relatedMobsAndDevices>
+				<Item href="/Characters/Hadagan_male/Instances/AstralDungeon04/Guards/Guard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</relatedMobsAndDevices>
+			<relatedItems>
+				<Item href="/Items/QuestItems/AstralDungeon04/AstralDungeon04_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>5</limit>
+			<id href="Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<locations>
+				<Item>
+					<zone href="/Maps/AstralDungeon04/Zones/Dungeon_TenzisTemple.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="1546.000000" y="564.000000" z="69.000000" />
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateGreater">
+					<lhs type="gameMechanics.elements.calcers.CalcerSectorAvatarLevel" />
+					<rhs type="gameMechanics.elements.calcers.FloatData">
+						<value>8.2</value>
+					</rhs>
+					<threshold>0.0001</threshold>
+				</Item>
+			</predicates>
+			<objects>
+				<Item href="/Creatures/DemonMageNewBreed/Instances/AstralDungeon04/TZ_boss3Demon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</objects>
+		</Item>
+	</counters>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyDelayed">
+		<cooldown>7</cooldown>
+	</repeatPolicy>
+	<zone href="/Maps/AstralDungeon04/Zones/Dungeon_TenzisTemple.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>55</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>55</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

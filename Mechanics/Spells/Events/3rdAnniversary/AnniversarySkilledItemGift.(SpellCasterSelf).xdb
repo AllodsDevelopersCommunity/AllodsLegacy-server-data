@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>347134976</resourceId>
+	</Header>
+	<Name href="AnniversarySkilledItemGift.(SpellCasterSelf)_Name.txt" />
+	<Description href="AnniversarySkilledItemGift.(SpellCasterSelf)_Desc.txt" />
+	<nameTemplate href="AnniversarySkilledItemGift.(SpellCasterSelf)_Name.txt.template" />
+	<descTemplate href="AnniversarySkilledItemGift.(SpellCasterSelf)_Desc.txt.template" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateActiveItemSlotType">
+				<slotType>ItemBag</slotType>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="Hadagan3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="Hadagan3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Completed</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="Hadagan3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Failed</status>
+						</Item>
+					</predicates>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="Kania3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="Kania3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Completed</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="Kania3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Failed</status>
+						</Item>
+					</predicates>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+						<minLevel type="gameMechanics.formulas.IntConstantValue">
+							<value>52</value>
+						</minLevel>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateFaction">
+								<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactStartQuest">
+								<quest href="Hadagan3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<finisher href="/Characters/Hadagan_male/Instances/ZoneHadagan1/ZH1_LoreEvents_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactStartQuest">
+								<quest href="Kania3rdAnniversaryQuest.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<finisher href="/Characters/Kania_male/Instances/ZoneLeague1/ZL1_LoreEvents_4.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="itemService.avatar.itemBag.ImpactGiveSkilledItem">
+						<level type="gameMechanics.elements.calcers.CalcerLevel" />
+						<quality href="/Mechanics/ItemQualities/Uncommon.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>275802180</resourceId>
+	</Header>
+	<Name href="Summon_Asisst.txt" />
+	<Description href="Summon_Asisst.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Summon.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Summon_Asisst.txt" />
+	<descTemplate href="Summon_Asisst.Description.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/IllusionWorld/Zones/IllusionWorld/IllusionWorld.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+					<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+				<trigger href="/World/Quests/IllusionWorld/ZC6_L_Fly2/TriggerLeave.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Started</status>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>18</value>
+									</Item>
+								</predicates>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Started</status>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>18</value>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos" />
+							<offset>4</offset>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>18</value>
+								</delta>
+								<attachIfNotExist>true</attachIfNotExist>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<useTargetLevel>true</useTargetLevel>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Started</status>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>16</value>
+											</Item>
+										</predicates>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Started</status>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>16</value>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos" />
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+										<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<delta type="gameMechanics.elements.calcers.FloatData">
+											<value>16</value>
+										</delta>
+										<attachIfNotExist>true</attachIfNotExist>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+								<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+								<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<useTargetLevel>true</useTargetLevel>
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+														<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<status>Started</status>
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+														<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+														<value>14</value>
+													</Item>
+												</predicates>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+														<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<status>Started</status>
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+														<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+														<value>14</value>
+													</Item>
+												</predicates>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+										<destination type="gameMechanics.map.destination.RelativeRotatePos">
+											<base type="gameMechanics.map.destination.RelativePos" />
+											<offset>4</offset>
+											<yaw type="constructor.basicElements.AngleRadians">
+												<value>1.57</value>
+											</yaw>
+										</destination>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+												<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<delta type="gameMechanics.elements.calcers.FloatData">
+													<value>14</value>
+												</delta>
+												<attachIfNotExist>true</attachIfNotExist>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+										<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+										<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<useTargetLevel>true</useTargetLevel>
+									</Item>
+								</impactsIf>
+								<impactsElse>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+														<predicates>
+															<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<status>Started</status>
+															</Item>
+															<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																<value>12</value>
+															</Item>
+														</predicates>
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+														<predicates>
+															<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<status>Started</status>
+															</Item>
+															<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																<value>12</value>
+															</Item>
+														</predicates>
+													</Item>
+												</predicates>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+												<destination type="gameMechanics.map.destination.RelativeRotatePos">
+													<base type="gameMechanics.map.destination.RelativePos" />
+													<offset>4</offset>
+													<yaw type="constructor.basicElements.AngleRadians">
+														<value>1.57</value>
+													</yaw>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+													<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+														<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<delta type="gameMechanics.elements.calcers.FloatData">
+															<value>12</value>
+														</delta>
+														<attachIfNotExist>true</attachIfNotExist>
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+												</impacts>
+												<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+												<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<useTargetLevel>true</useTargetLevel>
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+														<predicates>
+															<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																<predicates>
+																	<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																		<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																		<status>Started</status>
+																	</Item>
+																	<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																		<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																		<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																		<value>10</value>
+																	</Item>
+																</predicates>
+															</Item>
+															<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																<predicates>
+																	<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																		<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																		<status>Started</status>
+																	</Item>
+																	<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																		<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																		<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																		<value>10</value>
+																	</Item>
+																</predicates>
+															</Item>
+														</predicates>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+														<destination type="gameMechanics.map.destination.RelativeRotatePos">
+															<base type="gameMechanics.map.destination.RelativePos" />
+															<offset>4</offset>
+															<yaw type="constructor.basicElements.AngleRadians">
+																<value>1.57</value>
+															</yaw>
+														</destination>
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+															<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+																<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																<delta type="gameMechanics.elements.calcers.FloatData">
+																	<value>10</value>
+																</delta>
+																<attachIfNotExist>true</attachIfNotExist>
+															</Item>
+															<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																<impacts>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	</Item>
+																</impacts>
+															</Item>
+														</impacts>
+														<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+														<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														<useTargetLevel>true</useTargetLevel>
+													</Item>
+												</impactsIf>
+												<impactsElse>
+													<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+														<predicates>
+															<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																		<predicates>
+																			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																				<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																				<status>Started</status>
+																			</Item>
+																			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																				<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																				<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																				<value>8</value>
+																			</Item>
+																		</predicates>
+																	</Item>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																		<predicates>
+																			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																				<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																				<status>Started</status>
+																			</Item>
+																			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																				<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																				<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																				<value>8</value>
+																			</Item>
+																		</predicates>
+																	</Item>
+																</predicates>
+															</Item>
+														</predicates>
+														<impactsIf>
+															<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+																<destination type="gameMechanics.map.destination.RelativeRotatePos">
+																	<base type="gameMechanics.map.destination.RelativePos" />
+																	<offset>4</offset>
+																	<yaw type="constructor.basicElements.AngleRadians">
+																		<value>1.57</value>
+																	</yaw>
+																</destination>
+																<impacts>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	</Item>
+																	<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+																		<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<delta type="gameMechanics.elements.calcers.FloatData">
+																			<value>8</value>
+																		</delta>
+																		<attachIfNotExist>true</attachIfNotExist>
+																	</Item>
+																	<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																		<impacts>
+																			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																				<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			</Item>
+																		</impacts>
+																	</Item>
+																</impacts>
+																<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+																<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+																<useTargetLevel>true</useTargetLevel>
+															</Item>
+														</impactsIf>
+														<impactsElse>
+															<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																<predicates>
+																	<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																		<predicates>
+																			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																				<predicates>
+																					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																						<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																						<status>Started</status>
+																					</Item>
+																					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																						<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																						<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																						<value>6</value>
+																					</Item>
+																				</predicates>
+																			</Item>
+																			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																				<predicates>
+																					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																						<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																						<status>Started</status>
+																					</Item>
+																					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																						<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																						<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																						<value>6</value>
+																					</Item>
+																				</predicates>
+																			</Item>
+																		</predicates>
+																	</Item>
+																</predicates>
+																<impactsIf>
+																	<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+																		<destination type="gameMechanics.map.destination.RelativeRotatePos">
+																			<base type="gameMechanics.map.destination.RelativePos" />
+																			<offset>4</offset>
+																			<yaw type="constructor.basicElements.AngleRadians">
+																				<value>1.57</value>
+																			</yaw>
+																		</destination>
+																		<impacts>
+																			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																				<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			</Item>
+																			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+																				<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																				<delta type="gameMechanics.elements.calcers.FloatData">
+																					<value>6</value>
+																				</delta>
+																				<attachIfNotExist>true</attachIfNotExist>
+																			</Item>
+																			<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																				<impacts>
+																					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																						<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																					</Item>
+																				</impacts>
+																			</Item>
+																		</impacts>
+																		<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+																		<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+																		<useTargetLevel>true</useTargetLevel>
+																	</Item>
+																</impactsIf>
+																<impactsElse>
+																	<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																		<predicates>
+																			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																				<predicates>
+																					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																						<predicates>
+																							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																								<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																								<status>Started</status>
+																							</Item>
+																							<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																								<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																								<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																								<value>4</value>
+																							</Item>
+																						</predicates>
+																					</Item>
+																					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																						<predicates>
+																							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																								<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																								<status>Started</status>
+																							</Item>
+																							<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																								<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																								<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																								<value>4</value>
+																							</Item>
+																						</predicates>
+																					</Item>
+																				</predicates>
+																			</Item>
+																		</predicates>
+																		<impactsIf>
+																			<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+																				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+																					<base type="gameMechanics.map.destination.RelativePos" />
+																					<offset>4</offset>
+																					<yaw type="constructor.basicElements.AngleRadians">
+																						<value>1.57</value>
+																					</yaw>
+																				</destination>
+																				<impacts>
+																					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																						<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																					</Item>
+																					<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+																						<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																						<delta type="gameMechanics.elements.calcers.FloatData">
+																							<value>4</value>
+																						</delta>
+																						<attachIfNotExist>true</attachIfNotExist>
+																					</Item>
+																					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																						<impacts>
+																							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																								<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																							</Item>
+																						</impacts>
+																					</Item>
+																				</impacts>
+																				<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+																				<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+																				<useTargetLevel>true</useTargetLevel>
+																			</Item>
+																		</impactsIf>
+																		<impactsElse>
+																			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																				<predicates>
+																					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																						<predicates>
+																							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																								<predicates>
+																									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																										<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																										<status>Started</status>
+																									</Item>
+																									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																										<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																										<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																										<value>2</value>
+																									</Item>
+																								</predicates>
+																							</Item>
+																							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																								<predicates>
+																									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																										<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																										<status>Started</status>
+																									</Item>
+																									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																										<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																										<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																										<value>2</value>
+																									</Item>
+																								</predicates>
+																							</Item>
+																						</predicates>
+																					</Item>
+																				</predicates>
+																				<impactsIf>
+																					<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+																						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+																							<base type="gameMechanics.map.destination.RelativePos" />
+																							<offset>4</offset>
+																							<yaw type="constructor.basicElements.AngleRadians">
+																								<value>1.57</value>
+																							</yaw>
+																						</destination>
+																						<impacts>
+																							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																								<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																							</Item>
+																							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+																								<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																								<delta type="gameMechanics.elements.calcers.FloatData">
+																									<value>2</value>
+																								</delta>
+																								<attachIfNotExist>true</attachIfNotExist>
+																							</Item>
+																							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																								<impacts>
+																									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																										<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																									</Item>
+																								</impacts>
+																							</Item>
+																						</impacts>
+																						<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+																						<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+																						<useTargetLevel>true</useTargetLevel>
+																					</Item>
+																				</impactsIf>
+																				<impactsElse>
+																					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																						<predicates>
+																							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																								<predicates>
+																									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																										<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																										<status>Completed</status>
+																									</Item>
+																									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																										<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																										<status>Completed</status>
+																									</Item>
+																								</predicates>
+																							</Item>
+																						</predicates>
+																						<impactsIf>
+																							<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+																								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+																									<base type="gameMechanics.map.destination.RelativePos" />
+																									<offset>4</offset>
+																									<yaw type="constructor.basicElements.AngleRadians">
+																										<value>1.57</value>
+																									</yaw>
+																								</destination>
+																								<impacts>
+																									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																										<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																									</Item>
+																									<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+																										<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																										<delta type="gameMechanics.elements.calcers.FloatData">
+																											<value>20</value>
+																										</delta>
+																										<attachIfNotExist>true</attachIfNotExist>
+																									</Item>
+																									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																										<impacts>
+																											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																												<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																											</Item>
+																										</impacts>
+																									</Item>
+																								</impacts>
+																								<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+																								<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+																								<useTargetLevel>true</useTargetLevel>
+																							</Item>
+																						</impactsIf>
+																						<impactsElse>
+																							<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+																								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+																									<base type="gameMechanics.map.destination.RelativePos" />
+																									<offset>4</offset>
+																									<yaw type="constructor.basicElements.AngleRadians">
+																										<value>1.57</value>
+																									</yaw>
+																								</destination>
+																								<impacts>
+																									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																										<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																									</Item>
+																									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																										<impacts>
+																											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																												<buff href="ArhiopterixSummoned.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																											</Item>
+																										</impacts>
+																									</Item>
+																								</impacts>
+																								<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+																								<mobResource href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+																								<useTargetLevel>true</useTargetLevel>
+																							</Item>
+																						</impactsElse>
+																					</Item>
+																				</impactsElse>
+																			</Item>
+																		</impactsElse>
+																	</Item>
+																</impactsElse>
+															</Item>
+														</impactsElse>
+													</Item>
+												</impactsElse>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impactsElse>
+							</Item>
+						</impactsElse>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

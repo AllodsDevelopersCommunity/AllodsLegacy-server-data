@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>298316802</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="ZC6_L_12_8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<status>Started</status>
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+													<quest href="ZC6_L_12_8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<counterResource href="CounterAviaks.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>11</value>
+												</Item>
+											</predicates>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="/World/Quests/IllusionWorld/ZC6_L_12_7/ZC6_L_12_7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<status>Completed</status>
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="ZC6_L_12_8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<status>Started</status>
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.RelativePos" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.world.pet.PredicateHasPet" />
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+															<impacts>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="/World/Quests/IllusionWorld/ZC6_L_1_6/ZC6_L_1_6_SeeTraitor.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="/World/Quests/IllusionWorld/ZC6_L_1_6/ZC6_L_1_6_SeeTraitor.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsIf>
+													<impactsElse>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="/World/Quests/IllusionWorld/ZC6_L_1_6/ZC6_L_1_6_SeeTraitor.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsElse>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+									<object href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_L_12_8_Aviak.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

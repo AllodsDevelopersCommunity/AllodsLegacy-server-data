@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>207672337</resourceId>
+	</Header>
+	<Name href="FireSleep.txt" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>600000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Abilities/AstralIslands/AI14/EaterDeath/StopSleeping.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="EaterSleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/GolemJunes/Instances/AstralIsle14/AstralEaterIce.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="EaterSleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>false</anyRank>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+								<spell href="/Mechanics/Spells/AstarlIslands/AI14/EaterIceSleep/IceSleep.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+								<spell href="/Mechanics/Spells/AstarlIslands/AI14/EaterIceSleep/IceSleep.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<duration>30000</duration>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<spawnResource href="/Maps/AstralIsle14/SpawnTables/AstralIsle14/AstralFinalBoss.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

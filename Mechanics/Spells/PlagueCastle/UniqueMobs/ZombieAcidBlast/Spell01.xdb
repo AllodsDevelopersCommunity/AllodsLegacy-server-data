@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>59774</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Zombie/AcidBlast.xdb#xpointer(/SpellVisScripts)" />
+	<speed>20</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>80</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>4000</prepareDuration>
+	<needLos>false</needLos>
+	<element>POISON</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/PlagueCastle/UniqueMobs/ZombieDeathMark/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+			</Item>
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBaseMana">
+				<baseMana>0.1</baseMana>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>POISON</element>
+				<threatMultiplier>1</threatMultiplier>
+				<minDamage>15</minDamage>
+				<maxDamage>15</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</impactOnHitTarget>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/PlagueCastle/UniqueMobs/ZombieDeathMark/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

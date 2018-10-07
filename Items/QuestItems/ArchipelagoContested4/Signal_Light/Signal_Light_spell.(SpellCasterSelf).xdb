@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>107027472</resourceId>
+	</Header>
+	<Name href="Signal_Light_spell_Name.txt" />
+	<Description href="Signal_Light_spell_Description.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ArchipelagoContested4/Q_06/Q_06.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ArchipelagoContested4/Q_06/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+						<projectileData>
+							<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Q_06_loc01</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+								</destination>
+							</moveType>
+							<resource href="/World/Quests/ArchipelagoContested4/Q_06/Q_06_effect01.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+						</projectileData>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>2000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+								<pathChecker />
+								<projectileData>
+									<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Q_06_loc01</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians">
+												<value>0</value>
+											</yaw>
+										</destination>
+									</moveType>
+									<resource href="/World/Quests/ArchipelagoContested4/Q_06/Q_06_effect.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+								</projectileData>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>1000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+								<pathChecker />
+								<projectileData>
+									<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Q_06_loc01</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians">
+												<value>0</value>
+											</yaw>
+										</destination>
+									</moveType>
+									<resource href="/World/Quests/ArchipelagoContested4/Q_06/Q_06_effect02.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+								</projectileData>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested4/Q_06/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+						<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>300000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+								<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								<disable>false</disable>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Signal_Light.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ArchipelagoContested4/Q_06/Q_06.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ArchipelagoContested4/Q_06/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+						<pathChecker />
+						<projectileData>
+							<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Q_06_loc02</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>0</value>
+									</yaw>
+								</destination>
+							</moveType>
+							<resource href="/World/Quests/ArchipelagoContested4/Q_06/Q_06_effect01_1.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+						</projectileData>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>2000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+								<pathChecker />
+								<projectileData>
+									<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Q_06_loc02</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians">
+												<value>0</value>
+											</yaw>
+										</destination>
+									</moveType>
+									<resource href="/World/Quests/ArchipelagoContested4/Q_06/Q_06_effect_1.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+								</projectileData>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>1000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+								<pathChecker />
+								<projectileData>
+									<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Q_06_loc02</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+											<yaw type="constructor.basicElements.AngleRadians">
+												<value>0</value>
+											</yaw>
+										</destination>
+									</moveType>
+									<resource href="/World/Quests/ArchipelagoContested4/Q_06/Q_06_effect02_1.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+								</projectileData>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested4/Q_06/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+						<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						<disable>true</disable>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>300000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+								<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_06_scriptZone02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								<disable>false</disable>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Signal_Light.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>1</count>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

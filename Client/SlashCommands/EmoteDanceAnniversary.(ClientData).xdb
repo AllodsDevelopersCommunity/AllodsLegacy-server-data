@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.ClientData>
+	<Header>
+		<resourceId>202537991</resourceId>
+	</Header>
+	<customData type="UIEmoteData">
+		<textTarget href="EmoteDance2NoTarget.txt" />
+		<textNoTarget href="EmoteDance2NoTarget.txt" />
+		<voiceOvers />
+		<animation type="CreatureVisActionData">
+			<action type="VisActionList">
+				<elements>
+					<Item type="CreatureSetFlagAction">
+						<flagName>Flag_Emote</flagName>
+					</Item>
+					<Item type="VisActionList">
+						<visActionID>dance</visActionID>
+						<play>Simultaneously</play>
+						<playWhile type="PredicateCreatureFlagAction">
+							<flagName>Flag_MountNeeded</flagName>
+							<checkIsSet>false</checkIsSet>
+						</playWhile>
+						<elements>
+							<Item type="VisActionLoopAction">
+								<visActionID>dance</visActionID>
+								<actionToLoop type="VisActionRandom">
+									<elements>
+										<Item>
+											<action type="CreatureAnimationAction">
+												<animations>
+													<Item>danceAnniversary</Item>
+												</animations>
+												<channel>CHANNEL_EMOTE</channel>
+												<channelOverrideMode>OVERRIDE_STOP</channelOverrideMode>
+												<channelOverrideScript type="VisActionStopAction">
+													<stoppedActionID>dance</stoppedActionID>
+												</channelOverrideScript>
+												<channelOverrideControllers>TOP_AND_BOTTOM</channelOverrideControllers>
+											</action>
+										</Item>
+									</elements>
+								</actionToLoop>
+							</Item>
+							<Item type="CreatureAnimationAction">
+								<animations>
+									<Item>emoteDance</Item>
+								</animations>
+								<channel>CHANNEL_EMOTE</channel>
+								<channelOverrideMode>OVERRIDE_STOP</channelOverrideMode>
+								<channelOverrideControllers>TOP_AND_BOTTOM</channelOverrideControllers>
+							</Item>
+							<Item type="CreaturePetVisAction">
+								<visualScript type="CreatureAnimationAction">
+									<mode>LOOP</mode>
+									<animations>
+										<Item>emoteDance</Item>
+									</animations>
+									<channel>CHANNEL_EMOTE</channel>
+									<channelOverrideMode>OVERRIDE_STOP</channelOverrideMode>
+									<channelOverrideControllers>TOP_AND_BOTTOM</channelOverrideControllers>
+								</visualScript>
+							</Item>
+							<Item type="LooterEmoteAction">
+								<mode>LOOP</mode>
+								<animateEmote>emoteDance</animateEmote>
+							</Item>
+						</elements>
+					</Item>
+					<Item type="CreatureSetFlagAction">
+						<flagName>Flag_Emote</flagName>
+						<timeOut>0.5</timeOut>
+					</Item>
+				</elements>
+			</action>
+		</animation>
+		<image href="/Interface/Icons/Special/Emotions/Dance02.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</customData>
+</gameMechanics.world.ClientData>

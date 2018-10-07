@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>315815943</resourceId>
+	</Header>
+	<Name href="ZC8_1_60_Item_fear.(BuffResource)_Name.txt" />
+	<Description href="ZC8_1_60_Item_fear.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerFear.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/Fear.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="ZC8_1_60_Item_fear.(BuffResource)_Name.txt.template" />
+	<descTemplate href="ZC8_1_60_Item_fear.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectFear" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/FearBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisablePassiveThreat" />
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>ZC8_forest_exit</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<runningMode>true</runningMode>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+	</effects>
+	<duration>7000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

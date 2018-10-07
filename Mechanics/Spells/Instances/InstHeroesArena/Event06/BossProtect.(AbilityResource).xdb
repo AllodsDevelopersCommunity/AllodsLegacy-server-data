@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>273451010</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>All</affectGroup>
+			<radius>10</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/MantisMage/Instances/Inst_HeroesArena/MantisBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+			</filter>
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="BossProtect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>true</attachIfNotExist>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="BossProtect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>-1</value>
+					</delta>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="BossProtect.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

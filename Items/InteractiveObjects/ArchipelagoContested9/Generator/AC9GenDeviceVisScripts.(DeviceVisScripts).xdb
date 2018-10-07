@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DeviceVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Device1state.(DeviceVisScripts).xdb#xpointer(/DeviceVisScripts)" />
+		<Variables>
+			<NewVisObj>/World/ArchipelagoContested/ArchipelagoContested9/Buildings/Models/AC9_Generator/AC9_Generator_Broken.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</NewVisObj>
+			<NewVisObjCollision>/World/ArchipelagoContested/ArchipelagoContested9/Buildings/Models/AC9_Generator/AC9_Generator_Broken.(Collision).xdb#xpointer(/Collision)</NewVisObjCollision>
+			<FixPoint>true</FixPoint>
+			<FXForNewVisObj>/Spells/FX/Spells/HitManaBurn.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXForNewVisObj>
+			<LocatorName>Slot_Special02</LocatorName>
+		</Variables>
+	</Header>
+	<states>
+		<Item>
+			<action type="DeviceVisActionList">
+				<elements>
+					<Item skiped="" />
+					<Item type="DeviceVisEffectsAction">
+						<visualEffects>
+							<Item>
+								<locatorName var="LocatorName" />
+								<effectFx hrefvar="FXForNewVisObj" />
+								<fixPoint var="FixPoint" />
+								<scale>15</scale>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</action>
+		</Item>
+		<Item>
+			<action type="DeviceVisEffectsAction">
+				<visualEffects>
+					<Item>
+						<locatorName>Slot_Special01</locatorName>
+						<effectFx href="/Spells/FX/World/AC9_Generator_Charge.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>1</scale>
+					</Item>
+				</visualEffects>
+			</action>
+		</Item>
+		<Item>
+			<action type="DeviceVisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="DeviceVisActionChangeModel">
+						<visObj hrefvar="NewVisObj" />
+						<collision hrefvar="NewVisObjCollision" />
+					</Item>
+					<Item type="DeviceVisEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx hrefvar="FXForNewVisObj" />
+							</Item>
+							<Item>
+								<effectFx href="/Spells/FX/World/AC9_Mine_Explode.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<scale>7</scale>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</action>
+		</Item>
+	</states>
+</DeviceVisScripts>

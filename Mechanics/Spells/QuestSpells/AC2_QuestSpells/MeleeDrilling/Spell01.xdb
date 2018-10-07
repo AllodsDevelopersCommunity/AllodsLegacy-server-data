@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>112824335</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextGolemDrill.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Staff/WandUnicorn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Melee/StrongAttack.xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+			<group href="" />
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<manaType>Mana</manaType>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<threatMultiplier>0</threatMultiplier>
+						<statsConvertor>
+							<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Spirit</stat>
+							</might>
+						</statsConvertor>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<minDamage>5200</minDamage>
+						<maxDamage>5600</maxDamage>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<threatMultiplier>0</threatMultiplier>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<minDamage>5200</minDamage>
+						<maxDamage>5600</maxDamage>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

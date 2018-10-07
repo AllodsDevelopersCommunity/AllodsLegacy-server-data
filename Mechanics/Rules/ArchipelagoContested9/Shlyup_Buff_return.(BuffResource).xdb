@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>239320076</resourceId>
+	</Header>
+	<Name href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Name.txt" />
+	<Description href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Items/InteractiveObjects/ArchipelagoContested5/AC5_Barkas_dragon/AC5_DragonSphereFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Name.txt" />
+	<descTemplate href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<finishImpacts>
+					</finishImpacts>
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Return_Shlyup_Landing</scriptID>
+							<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByTour">
+			<route href="/Maps/ArchipelagoContested5/GlobalObjects/Tours/AC9_Tour_Return.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Shlyup_Buff_return.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnArrive>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/AC6_Start_SpellGroup.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

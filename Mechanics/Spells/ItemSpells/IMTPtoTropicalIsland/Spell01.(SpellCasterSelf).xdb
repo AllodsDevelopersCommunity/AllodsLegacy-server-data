@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>261990406</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Teleporters.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DisabledByChest.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell01.(SpellCasterSelf).Name.txt" />
+	<Description href="Spell01.(SpellCasterSelf).Description.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/IMTPtoCapitalSingle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Teleportation.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>10000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>7</value>
+				</minLevel>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Kania_AL1/Zones/ArchipelagoLeague1/ArchipelagoLeague1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Hadagan_Underground/Zones/ZoneHadagan1_dang_1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+				<rule href="/Mechanics/Rules/SummerEvent/TeleporstToIsland/SummerEvent_Online.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+									<unlock href="/Mechanics/Unlocks/Locations/Kania/TeleportLocations/KaniaCapital.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+									<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/ZE1_Unlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+								</Item>
+							</predicates>
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateFaction">
+								<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+								<unlock href="/Mechanics/Unlocks/Locations/Kania/TeleportLocations/KaniaCapital.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+								<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/ZE1_Unlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>TropicalHome</scriptID>
+								<map href="/Maps/Tropical_Atoll/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

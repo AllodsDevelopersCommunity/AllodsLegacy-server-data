@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>attack</Item>
+					<Item>attack01</Item>
+				</animations>
+				<channel>CHANNEL_DEATH</channel>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visActionID>Fire</visActionID>
+						<visualEffects>
+							<Item>
+								<delay>3200</delay>
+								<effectFx href="/Spells/FX/Spells/Gorynych_FireBreath_Center.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<lockScale>true</lockScale>
+								<fadeInTime>200</fadeInTime>
+								<fadeOutTime>200</fadeOutTime>
+							</Item>
+						</visualEffects>
+						<stopOnDeath>true</stopOnDeath>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionDelay">
+								<time>120000</time>
+							</Item>
+							<Item type="VisActionStopAction">
+								<stoppedActionID>Fire</stoppedActionID>
+							</Item>
+							<Item type="CreatureAnimationAction">
+								<mode>LOOP</mode>
+								<animations>
+									<Item>idle01</Item>
+								</animations>
+								<channel>CHANNEL_DEATH</channel>
+							</Item>
+						</elements>
+						<stopOnDeath>true</stopOnDeath>
+						<stopWhileWhenElementsEnded>false</stopWhileWhenElementsEnded>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionDelay">
+								<time>3400</time>
+							</Item>
+							<Item type="CreatureVisObjectComponentsAction">
+								<visObjComponents>
+									<Item type="AttachedVisObjectComponent">
+										<visObject href="/Spells/FX/Spells/Gorynych_FireBreath.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<offset y="-0.5" />
+										<locatorName>Global</locatorName>
+										<lockScale>true</lockScale>
+									</Item>
+								</visObjComponents>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+		<stopOnDeath>true</stopOnDeath>
+	</actionBarStart>
+	<launch />
+</SpellVisScripts>

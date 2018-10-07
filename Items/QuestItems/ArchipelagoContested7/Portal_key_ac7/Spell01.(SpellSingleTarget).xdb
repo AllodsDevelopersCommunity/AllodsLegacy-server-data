@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>221157389</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ArchipelagoContested5/PortalKey/Spell01name.txt" />
+	<Description href="/Items/QuestItems/ArchipelagoContested5/PortalKey/Spell01Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/ArchipelagoContested7.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Crab/Instances/ArchipelagoContested7/Crab46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/EvilEye/Instances/ArchipelagoContested7/EvilEye46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Drake/Instances/ArchipelagoContested7/Drake46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts />
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Crab/Instances/ArchipelagoContested7/Crab46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/Hunger.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<limit>1</limit>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+												<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+												<impactsOnAttach />
+												<durationScalerTarget />
+												<durationScaler />
+												<scalerTarget />
+											</Item>
+										</impacts>
+										<plane href="" />
+										<pool href="" />
+										<traceDown>false</traceDown>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested7/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/Hunger.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/EvilEye/Instances/ArchipelagoContested7/EvilEye46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested7/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Drake/Instances/ArchipelagoContested7/Drake46_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/Hunger3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<limit>1</limit>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+												<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ArchipelagoContested5/PortalKey/PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+												<durationScalerTarget />
+												<durationScaler />
+												<scalerTarget />
+											</Item>
+										</impacts>
+										<plane href="" />
+										<pool href="" />
+										<traceDown>false</traceDown>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested7/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+										<scaler />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/World/Quests/ArchipelagoContested7/Unlock_portal_AC7/Hunger3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

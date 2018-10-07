@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>192872568</resourceId>
+	</Header>
+	<name href="Projectile.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/World/DemonicPortalSmall.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>600000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AuraEntity">
+			<affectGroup>Enemies</affectGroup>
+			<radius>15</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="AnotherDimension_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="ContextAction_GetBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ContextAction_GetBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOut>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>158797829</resourceId>
+	</Header>
+	<Name href="AreaDamage_Name.txt" />
+	<Description href="AreaDamage_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_6Boss/KillAll.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="AreaDamage_Name.txt" />
+	<descTemplate href="AreaDamage_Desc.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Abilities/GurluhsorTower/Boss6StareAbility/AreaDamage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>10</min>
+					<max>10</max>
+				</range>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>FIRE</element>
+						<threatMultiplier>0</threatMultiplier>
+						<minDamage>1000</minDamage>
+						<maxDamage>1500</maxDamage>
+						<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Abilities/GurluhsorTower/Boss6StareAbility/AreaDamage.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</impactOnHitTarget>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Abilities/GurluhsorTower/Boss6StareAbility/AreaDamage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>251338755</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<image href="" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateInCombat" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>10</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+										<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<targetsLimit>0</targetsLimit>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>2000</value>
+			</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.DirectDamage">
+							<damage>1</damage>
+							<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mul>1</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+									<multiplier>0.15</multiplier>
+								</mulCalcer>
+								<sum>0</sum>
+							</scalerTarget>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsToKiller>
+			<skipSelfKill>false</skipSelfKill>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>60000</delay>
+			<delayExtensionMax>0</delayExtensionMax>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInCombat" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impactsIf>
+					<runImpactsOnEachTick>false</runImpactsOnEachTick>
+					<affectOnStartTick>false</affectOnStartTick>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

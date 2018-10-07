@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>341901325</resourceId>
+	</Header>
+	<Name href="JumpingBuff.(BuffResource)_Name.txt" />
+	<Description href="JumpingBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Herbarium/Spore.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="JumpingBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="JumpingBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="JumpingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactHeal">
+					<heal>18.64</heal>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps>5</jumps>
+			<buff href="JumpingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.FriendWithMinHPAutotarget">
+				<radius>20</radius>
+			</autotarget>
+			<radius>20</radius>
+			<inCasterRange>false</inCasterRange>
+			<keepTrack>false</keepTrack>
+			<renewingEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="TriggeredChainHeal.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<calcers>
+								<addressEntries>
+									<Item>
+										<name>caster</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+									<Item>
+										<name>target</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+								</addressEntries>
+							</calcers>
+						</Item>
+					</impactsOff>
+				</Item>
+			</renewingEffects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDecrementBuffRange">
+					<buff href="JumpingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<min>6</min>
+					<max>6</max>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

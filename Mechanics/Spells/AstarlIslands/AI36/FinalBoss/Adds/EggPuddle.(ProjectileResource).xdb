@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>323520673</resourceId>
+	</Header>
+	<name href="EggPuddle.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/Spells/AcidPuddle.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<radius>20</radius>
+			<affectGroup>Enemies</affectGroup>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>ACID</element>
+					<minDamage>150</minDamage>
+					<maxDamage>150</maxDamage>
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+		</Item>
+	</impactsOnStart>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+			<delay>2000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<radius>7</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ACID</element>
+									<minDamage>60</minDamage>
+									<maxDamage>60</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterOr">
+								<filters>
+									<Item type="gameMechanics.world.creature.AvatarFilter" />
+									<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+									</Item>
+								</filters>
+							</filter>
+						</Item>
+					</impacts>
+					<tick>1000</tick>
+					<initialDelay>1000</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

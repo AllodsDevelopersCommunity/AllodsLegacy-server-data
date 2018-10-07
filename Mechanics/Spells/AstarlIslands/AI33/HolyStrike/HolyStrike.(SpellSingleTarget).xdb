@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>309716019</resourceId>
+	</Header>
+	<Name href="HolyStrike.(SpellSingleTarget)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinHolyStrike.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/PowerAttack.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="HolyStrike.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<needLos>false</needLos>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>12000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/AstarlIslands/AI33/CrusaderStrike/CrusaderStrike.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="HolyStrike.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/AstarlIslands/AI33/CrusaderStrike/CrusaderStrike.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impactsOnHitTarget>
+				<minDamage>1</minDamage>
+				<maxDamage>1</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>323520654</resourceId>
+	</Header>
+	<Name href="DeepRoar.(SpellArea)_Name.txt" />
+	<Description href="DeepRoar.(SpellArea)_Desc.txt" />
+	<visualScripts href="DeepRoar.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="DeepRoar.(SpellArea)_Name.txt.template" />
+	<descTemplate href="DeepRoar.(SpellArea)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+				<spell href="CrabClear.(SpellArea).xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+								<time>1000</time>
+								<impactsOnLand>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="CrabForm.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOnLand>
+								<distance>20</distance>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>50</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

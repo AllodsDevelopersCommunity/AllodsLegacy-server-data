@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<LocatorNameOnTargets />
+			<TrailCreature />
+			<FixPointTarget>true</FixPointTarget>
+			<Trail />
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<LocatorNameOnCaster />
+			<DelayCasterFX>0</DelayCasterFX>
+			<FxOnTargets />
+			<Enchant />
+			<OffendType>ONEOFFEND_ONETARGET</OffendType>
+			<FixPointCaster>false</FixPointCaster>
+			<UseAnimation>USE_CURRENT_ATTACK</UseAnimation>
+			<skipBloodFxOnTarget>false</skipBloodFxOnTarget>
+			<FxOnCaster />
+			<Animation>invalid</Animation>
+			<HitPostFXOnTargets />
+			<TrailOffHand />
+			<LocatorOnCaster />
+		</Variables>
+	</Header>
+	<precastType>PRECAST_NONE</precastType>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay var="DelayCasterFX" />
+						<effectFx hrefvar="FxOnCaster" />
+						<fixPoint var="FixPointCaster" />
+						<locator var="LocatorOnCaster" />
+						<locatorName var="LocatorNameOnCaster" />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<use var="UseAnimation" />
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<offendType var="OffendType" />
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<animationKeysAction />
+					<animationKeysActionPeriod>
+						<Item>
+							<action type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="CreatureTrailAction">
+										<visActionID>TrailAction1</visActionID>
+										<mainHandTrail hrefvar="Trail" />
+										<offHandTrail hrefvar="TrailOffHand" />
+										<creatureTrail hrefvar="TrailCreature" />
+										<lengthMSec>10000</lengthMSec>
+									</Item>
+									<Item type="CreatureEnchantWeaponAction">
+										<visActionID>EnchantAction1</visActionID>
+										<enchant hrefvar="Enchant" />
+									</Item>
+								</elements>
+							</action>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="VisActionStopAction">
+										<visActionID />
+										<stoppedActionID>TrailAction1</stoppedActionID>
+									</Item>
+									<Item type="VisActionStopAction">
+										<visActionID />
+										<stoppedActionID>EnchantAction1</stoppedActionID>
+									</Item>
+								</elements>
+							</action>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="CreatureTrailAction">
+										<visActionID>TrailAction2</visActionID>
+										<mainHandTrail hrefvar="Trail" />
+										<offHandTrail hrefvar="TrailOffHand" />
+										<creatureTrail hrefvar="TrailCreature" />
+										<lengthMSec>10000</lengthMSec>
+									</Item>
+									<Item type="CreatureEnchantWeaponAction">
+										<visActionID>EnchantAction2</visActionID>
+										<enchant hrefvar="Enchant" />
+									</Item>
+								</elements>
+							</action>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="VisActionStopAction">
+										<visActionID />
+										<stoppedActionID>TrailAction2</stoppedActionID>
+									</Item>
+									<Item type="VisActionStopAction">
+										<visActionID />
+										<stoppedActionID>EnchantAction2</stoppedActionID>
+									</Item>
+								</elements>
+							</action>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="CreatureTrailAction">
+										<visActionID>TrailAction3</visActionID>
+										<mainHandTrail hrefvar="Trail" />
+										<offHandTrail hrefvar="TrailOffHand" />
+										<creatureTrail hrefvar="TrailCreature" />
+										<lengthMSec>10000</lengthMSec>
+									</Item>
+									<Item type="CreatureEnchantWeaponAction">
+										<visActionID>EnchantAction3</visActionID>
+										<enchant hrefvar="Enchant" />
+									</Item>
+								</elements>
+							</action>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="VisActionStopAction">
+										<visActionID />
+										<stoppedActionID>TrailAction3</stoppedActionID>
+									</Item>
+									<Item type="VisActionStopAction">
+										<visActionID />
+										<stoppedActionID>EnchantAction3</stoppedActionID>
+									</Item>
+								</elements>
+							</action>
+						</Item>
+					</animationKeysActionPeriod>
+				</advanced>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipBloodFx var="skipBloodFxOnTarget" />
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx hrefvar="FxOnTargets" />
+							<fixPoint var="FixPointTarget" />
+							<locator var="LocatorOnTargets" />
+							<locatorName var="LocatorNameOnTargets" />
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource hrefvar="HitPostFXOnTargets" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

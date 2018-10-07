@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>317590528</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/IMMarkCross.tr.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Name.txt" />
+	<descTemplate href="Description.txt" />
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate" />
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+						<effects>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="clientCmds.cmds.ImpactConsoleCmd">
+										<command>clientCmds.developer.CmdSetTimeRate</command>
+										<params>
+											<Item>0</Item>
+										</params>
+									</Item>
+								</impactsOn>
+								<impactsOff>
+									<Item type="clientCmds.cmds.ImpactConsoleCmd">
+										<command>clientCmds.developer.CmdSetTimeRate</command>
+										<params>
+											<Item>1</Item>
+										</params>
+									</Item>
+								</impactsOff>
+							</Item>
+						</effects>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>109509638</resourceId>
+	</Header>
+	<name href="AL1_LocalTravel_Name.txt" />
+	<text href="LocalTravel_01_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasContentKey">
+						<key href="/System/ContentKeys/Demo.xdb#xpointer(/basement.contentkey.ContentKey)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Demo/Demo_Buff_limit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Demo/Demo_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactStartSpell">
+							<spell href="/Maps/Kania_AL1/ScriptZones/ArchipelagoLeague1/LocalTravel/Way1Jump.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							<spellTarget type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Maps/Hadagan_Underground/ScriptZones/Sewage2City_demo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</elseImpacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

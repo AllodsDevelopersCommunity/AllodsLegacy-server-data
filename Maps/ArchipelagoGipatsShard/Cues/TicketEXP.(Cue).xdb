@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>218460208</resourceId>
+	</Header>
+	<name href="TicketEXP_Name.txt" />
+	<text href="TicketEXP_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+			<items>
+				<Item href="/Items/RepetitiveActivivies/TicketEXP/TicketEXP.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<totalCount>1</totalCount>
+		</Item>
+		<Item type="gameMechanics.elements.resources.ResourceBuff">
+			<buff href="/World/Quests/NIhazIsland/EventMaster/ExpBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<anyRank>true</anyRank>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+			<item href="/Items/RepetitiveActivivies/TicketEXP/TicketEXP.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+			<buff href="/World/Quests/NIhazIsland/EventMaster/ExpBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<delta type="gameMechanics.elements.calcers.FloatData">
+				<value>-1</value>
+			</delta>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+					<minLevel type="gameMechanics.formulas.IntConstantValue">
+						<value>45</value>
+					</minLevel>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactAddExperience">
+					<calcer type="constructor.elements.CalcerLongExternal">
+						<externalCalcer href="/Mechanics/CommonFormulas/DailyTickets/TicketExpFormula.xdb#xpointer(/constructor.elements.CalcerLongResource)" />
+					</calcer>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactAddExperience">
+					<calcer type="gameMechanics.elements.calcers.LongData">
+						<value>10000</value>
+					</calcer>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

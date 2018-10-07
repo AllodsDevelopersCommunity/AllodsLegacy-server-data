@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>132880396</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="AE4_08_evil_kania_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.11</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Spells/QuestSpells/E2_Immortality/KnockDown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>50</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="AE4_08.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<status>Started</status>
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+													<quest href="AE4_08.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<counterResource href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>1</value>
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+									<faction href="/World/Factions/ArchipelagoEmpire3/AE4_Evil_kania_actor.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.1</level>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

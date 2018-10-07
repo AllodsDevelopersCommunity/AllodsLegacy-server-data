@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<FixPointCaster>false</FixPointCaster>
+			<LocatorNameOnCaster />
+			<FixPointTarget>true</FixPointTarget>
+			<LocatorNameOnTargets />
+			<LocatorOnCaster>Slot_Global</LocatorOnCaster>
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<FXOnCaster />
+			<HitPostFXOnTargets />
+			<CastAnimation>spellCastDirectedWand</CastAnimation>
+			<FXOnTargets />
+		</Variables>
+	</Header>
+	<Description href="Base.Description.txt" />
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="CastAnimation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx hrefvar="FXOnCaster" />
+								<fixPoint var="FixPointCaster" />
+								<locator var="LocatorOnCaster" />
+								<locatorName var="LocatorNameOnCaster" />
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx hrefvar="FXOnTargets" />
+							<fixPoint var="FixPointTarget" />
+							<locator var="LocatorOnTargets" />
+							<locatorName var="LocatorNameOnTargets" />
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource hrefvar="HitPostFXOnTargets" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

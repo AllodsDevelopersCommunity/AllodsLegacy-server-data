@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>520028213</resourceId>
+	</Header>
+	<Name href="Buff_02__Name.txt" />
+	<Description href="Buff_02__Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicRapidMetabolism.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Priest/HoldPerson.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_02__Name.txt" />
+	<descTemplate href="Buff_02__Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.FreezeActionProgress" />
+		<Item type="gameMechanics.elements.effects.DisableInstantSpells" />
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateSubElement">
+					<subElement>PHYSICAL</subElement>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<ranks />
+</gameMechanics.constructor.schemes.buff.BuffResource>

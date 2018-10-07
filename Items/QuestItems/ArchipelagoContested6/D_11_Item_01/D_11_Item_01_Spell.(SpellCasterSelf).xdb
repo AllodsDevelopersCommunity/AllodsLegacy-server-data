@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>186434572</resourceId>
+	</Header>
+	<Name href="D_11_Item_01_Spell.txt" />
+	<Description href="D_11_Item_01_Spell.Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ArchipelagoContested6/D_11/D_11.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_03.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ArchipelagoContested6/D_11/D_11.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/World/Quests/ArchipelagoContested6/D_11/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>1</value>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ArchipelagoContested6/D_11/D_11.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/World/Quests/ArchipelagoContested6/D_11/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>1</value>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ArchipelagoContested6/D_11/D_11.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/World/Quests/ArchipelagoContested6/D_11/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+											<value>1</value>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="Mark.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_03.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_05Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_5Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_04Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_4Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>11000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_03Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_3Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>11000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_02Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_2Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>10000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_01Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_1Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDisableScriptZoneTemporarily">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_03.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						<period>60000</period>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>6500</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_5</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_4</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_3</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>1000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_3_2</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>D_11_3_1</scriptID>
+							<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/D_11/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>1</value>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_01Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_1Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_02Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_2Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>11000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_03Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_3Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>11000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_04Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_4Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>10000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_05Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_5Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDisableScriptZoneTemporarily">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_02.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						<period>60000</period>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>6500</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_1</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_2</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_3</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>1000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_2_4</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_02_05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+								<durationScalerTarget />
+								<durationScaler />
+								<scalerTarget />
+								<stacks />
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>D_11_2_5</scriptID>
+							<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/D_11/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>1</value>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_01Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_1Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>12000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_02Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_2Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>11000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_03Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_3Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>11000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_04Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_4Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>10000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_05Dr.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>40000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_5Dr</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDisableScriptZoneTemporarily">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						<period>60000</period>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>6500</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_1</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_2</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_3</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>1000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+										<durationScalerTarget />
+										<durationScaler />
+										<scalerTarget />
+										<stacks />
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>D_11_1_4</scriptID>
+									<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_Buff_01_05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+								<durationScalerTarget />
+								<durationScaler />
+								<scalerTarget />
+								<stacks />
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>D_11_1_5</scriptID>
+							<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/D_11/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>1</value>
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

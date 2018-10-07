@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>175337482</resourceId>
+	</Header>
+	<Name href="DeadlyParalyze.txt" />
+	<Description href="DeadlyParalyze.Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerNeurotoxin.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/Stun.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/StunBreakers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>20</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DemonWorm/Instances/Inst_GurluhsorTower/GT_DemonWorm_boss8.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+								</predicates>
+							</filter>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+	<duration>10000</duration>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

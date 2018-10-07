@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>59356</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Misc/Potions/PoisonBottle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/DotPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1</scale>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<locator>Slot_FX</locator>
+			<member>Default_Member</member>
+			<locatorName />
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+					<manaType>Energy</manaType>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.MagicDoT">
+					<element>POISON</element>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<fixedMultiplier>1</fixedMultiplier>
+					<progressiveMultiplier>0</progressiveMultiplier>
+					<parameters>
+						<damagePerTick var="damagePerTick" />
+						<threatMultiplier>1</threatMultiplier>
+						<tickLength>2000</tickLength>
+						<statsConvertor>
+							<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Dexterity</stat>
+							</intuition>
+							<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Might</stat>
+							</spirit>
+						</statsConvertor>
+						<affectOnStartTick>false</affectOnStartTick>
+					</parameters>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.MagicDoT">
+					<element>POISON</element>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<fixedMultiplier>1</fixedMultiplier>
+					<progressiveMultiplier>0</progressiveMultiplier>
+					<parameters>
+						<damagePerTick var="damagePerTick" />
+						<threatMultiplier>1</threatMultiplier>
+						<tickLength>2000</tickLength>
+						<affectOnStartTick>false</affectOnStartTick>
+					</parameters>
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<duration>14000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff04.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

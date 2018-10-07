@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>284897303</resourceId>
+	</Header>
+	<name href="LoadResourceCrateEventNoSpace.txt" />
+	<text href="LoadResourceCrateEventNoSpace.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateGreaterLong">
+				<lhs type="gameMechanics.world.ship.elements.calcers.CalcerTreasureFreeSpace" />
+				<rhs type="gameMechanics.elements.calcers.LongData">
+					<value>4</value>
+				</rhs>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+					<permission>BuyChests</permission>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.PredicateShipOwner" />
+				<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/AstralCaravans.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+			<rule href="/Mechanics/Rules/Astral/Caravans/CaravanEvent/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/AstralHangarLeague/Caravan/CaravanToOutpost.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/AstralHangarHadagan/Caravan/CaravanToOutpost.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/World/Quests/AstralHangarLeague/Caravan/TookQuestResource.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.IntConstantValue">
+				<value>48</value>
+			</minLevel>
+		</Item>
+	</additionalConditions>
+	<impacts />
+	<nextCues>
+		<Item href="LoadResourceCrateEvent.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="LoadResourceCrateEventNoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="LoadResourceCrate.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="LoadResourceCrateNoShip.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="RefundResourceCrate.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

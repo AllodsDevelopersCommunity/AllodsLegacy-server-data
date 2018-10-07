@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>125923382</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+							<radius>50</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_TenzisTemple/ScriptZones/heroic_TZ_Boss4NPCSpawn.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Characters/Orc_male/Instances/InstTenzisTemple/Instances/Inst_TenzisTemple/TZ_Boss4NPC34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="/Characters/Orc_male/Instances/InstTenzisTemple/Instances/Inst_TenzisTemple/TZ_Boss4NPCNecros34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="/Characters/Orc_male/Instances/InstTenzisTemple_Heroic/Instances/Inst_TenzisTemple/TZ_Boss4NPC34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="/Characters/Orc_male/Instances/InstTenzisTemple_Heroic/Instances/Inst_TenzisTemple/TZ_Boss4NPCNecros34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.AttachAbility">
+									<ability href="/Mechanics/Spells/QuestSpells/TensisTemple/Boss4FallenEnemyBlockPlane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+									<ability href="/Mechanics/Spells/QuestSpells/TensisTemple/Boss4FallenEnemy.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.DoorSwitch">
+							<switchType>Open</switchType>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>Door04</scriptID>
+						<map href="/Maps/Inst_TenzisTemple/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+									<mob>
+										<scriptID>TZ_Boss4_Add1</scriptID>
+										<map href="/Maps/Inst_TenzisTemple/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+									<mob>
+										<scriptID>TZ_Boss4_Add2</scriptID>
+										<map href="/Maps/Inst_TenzisTemple/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateHasAbility">
+												<ability href="/Mechanics/Abilities/TenzisTemple/4BShield/Ability.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.AttachAbility">
+											<ability href="/Mechanics/Abilities/TenzisTemple/4BShield/Ability.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+									<zone href="/Maps/Inst_TenzisTemple/ScriptZones/heroic_TZ_Boss4NPCSpawn.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									<disable>false</disable>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>182312981</resourceId>
+	</Header>
+	<lifeLengthCap>3600000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+			<delay>16000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntitySpawnTableObjects">
+					<table href="/Maps/Inst_GipatCave/SpawnTables/Heroic/PackPortalBoss_1.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+			<delay>8000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+							<ability href="/Mechanics/Abilities/Bosses/InstGipatCave/BossPlane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>boss2</scriptID>
+						<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOnStart>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>85</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+			</filter>
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntitySpawnSingleDevice">
+							<device>
+								<scriptID>Boss_summon_stella</scriptID>
+								<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityFindSingleDevice">
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+									<delay>0</delay>
+								</Item>
+							</impacts>
+							<device>
+								<scriptID>firewall1</scriptID>
+								<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityFindSingleDevice">
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+									<delay>0</delay>
+								</Item>
+							</impacts>
+							<device>
+								<scriptID>lightning</scriptID>
+								<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<radius>85</radius>
+							<affectGroup>All</affectGroup>
+							<affectHolder>true</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DemonWarrior/Instances/Inst_GipatCave_Heroic/DemonWarriorBomb.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DemonScout/Instances/Inst_GipatCave_Heroic/DemonScoutBomb.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DemonMageNewBreed/Instances/Inst_GipatCave_Heroic/Inst_GipatCave_DemonMageBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.AttachAbility">
+											<ability href="/Mechanics/Abilities/Bosses/InstGipatCave/BossPlane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<finalImpactsOnHolder />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityFindSingleProjectile">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+							<projectile>
+								<scriptID>fire_wall_01</scriptID>
+								<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</projectile>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityFindSingleProjectile">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+							<projectile>
+								<scriptID>fire_wall_02</scriptID>
+								<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</projectile>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityFindSingleProjectile">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+							<projectile>
+								<scriptID>fire_wall_03</scriptID>
+								<map href="/Maps/Inst_GipatCave/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</projectile>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOnNone>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

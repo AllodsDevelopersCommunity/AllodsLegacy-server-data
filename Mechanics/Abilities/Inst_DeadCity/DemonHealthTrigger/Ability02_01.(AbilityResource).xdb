@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>136718373</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<image href="" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.02</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.025</multiplier>
+			</healthOff>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DemonMage/Instances/Inst_DeadCity/DemonMage_Plane_03.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="Buff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>true</anyRank>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/Inst_DeadCity/SpawnTables/Inst_DeadCity/DemonMage_Plane_02.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+			<effects />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.01</level>
+		</Item>
+	</effects>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

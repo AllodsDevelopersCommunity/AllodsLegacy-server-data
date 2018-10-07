@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>124607489</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>1000</priority>
+		<contextName href="SimpleKick_Name.txt" />
+		<contextDescription href="SimpleKick_Desc.txt" />
+		<contextImage href="/Interface/Icons/Context/KickTheBall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="SimpleKick_Name.txt" />
+	<nameTemplate href="SimpleKick_Name.txt" />
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="StrikeBall.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Slime/Instances/ArchipelagoEmpire2/SlimeBall.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="BallBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="MoveBall.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Hemisphere" />
+	<radius>3</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

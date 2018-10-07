@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>113190930</resourceId>
+	</Header>
+	<Name href="SoulContainer_Spell_Name.txt" />
+	<Description href="SoulContainer_Desc_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Kneel.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Kania/ScriptZones/ZoneLeague2/GraveStart.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneLeague2/Daily_Quest/Daily_Quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Completed</status>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>Grave_Start_point</scriptID>
+						<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>3000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+								<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+									<value>0.5</value>
+								</chanceCalcer>
+								<impactsSuccess>
+									<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+										<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+											<value>0.5</value>
+										</chanceCalcer>
+										<impactsSuccess>
+											<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+												<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+													<value>0.5</value>
+												</chanceCalcer>
+												<impactsSuccess>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point01</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point01</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsSuccess>
+												<impactsFailure>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point02</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point02</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsFailure>
+											</Item>
+										</impactsSuccess>
+										<impactsFailure>
+											<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+												<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+													<value>0.5</value>
+												</chanceCalcer>
+												<impactsSuccess>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point03</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point03</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsSuccess>
+												<impactsFailure>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point04</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point04</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsFailure>
+											</Item>
+										</impactsFailure>
+									</Item>
+								</impactsSuccess>
+								<impactsFailure>
+									<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+										<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+											<value>0.5</value>
+										</chanceCalcer>
+										<impactsSuccess>
+											<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+												<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+													<value>0.5</value>
+												</chanceCalcer>
+												<impactsSuccess>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point05</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point05</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsSuccess>
+												<impactsFailure>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point06</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point06</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsFailure>
+											</Item>
+										</impactsSuccess>
+										<impactsFailure>
+											<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+												<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+													<value>0.5</value>
+												</chanceCalcer>
+												<impactsSuccess>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point07</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point07</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsSuccess>
+												<impactsFailure>
+													<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+														<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</chanceCalcer>
+														<impactsSuccess>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point08</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>true</runningMode>
+															</Item>
+														</impactsSuccess>
+														<impactsFailure>
+															<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+																<destination type="gameMechanics.map.destination.DestinationLocator">
+																	<locator>
+																		<scriptID>Grave_point08</scriptID>
+																		<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</locator>
+																</destination>
+																<runningMode>false</runningMode>
+															</Item>
+														</impactsFailure>
+													</Item>
+												</impactsFailure>
+											</Item>
+										</impactsFailure>
+									</Item>
+								</impactsFailure>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Characters/Kania_male/Instances/ZoneLeague2/Revenge_Soul.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+				<duration>60000</duration>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague2/Daily_Quest/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

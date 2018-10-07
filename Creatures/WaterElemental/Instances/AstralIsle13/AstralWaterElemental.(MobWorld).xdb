@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.MobWorld>
+	<Header>
+		<resourceId>204541001</resourceId>
+	</Header>
+	<name href="AstralWaterElemental_Name.txt" />
+	<visMob href="AstralWaterElementalBoss.(VisualMob).xdb#xpointer(/VisualMob)" />
+	<kind href="/Mechanics/Creatures/WaterElemental/AstralIsland13/AstralWaterElementalBossKind.(MobKind).xdb#xpointer(/gameMechanics.world.mob.MobKind)" />
+	<walkSpeed>2</walkSpeed>
+	<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+	<aggroRadius>10</aggroRadius>
+	<personalLootTable>
+		<Item>
+			<conditions>
+				<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+			</conditions>
+			<item href="/Items/QuestItems/AstralIsle13/HammerOfPain/HammerOfPain.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<number>
+				<min>1</min>
+				<max>1</max>
+			</number>
+			<isForAll>false</isForAll>
+		</Item>
+	</personalLootTable>
+	<quality href="/Mechanics/MobQualities/Boss.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+	<lootDropModifier type="gameMechanics.world.mob.ExtraLoot">
+		<extraLootProviders>
+			<Item type="gameMechanics.world.mob.AstralSectorExtraLoot" />
+			<Item type="gameMechanics.world.mob.ConditionalExtraLoot">
+				<conditions>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+						<minLevel type="gameMechanics.formulas.IntConstantValue">
+							<value>45</value>
+						</minLevel>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+							<minLevel type="gameMechanics.formulas.IntConstantValue">
+								<value>47</value>
+							</minLevel>
+						</predicate>
+					</Item>
+				</conditions>
+				<lootTableIf href="/Items/HeroicInstancesReward/LootTables/Tier1/AstralIslandsTier1_LootTable_BossUsual_03.xdb#xpointer(/gameMechanics.constructor.schemes.item.LootTableResource)" />
+				<lootTableElse href="" />
+				<chestChance>0.5</chestChance>
+			</Item>
+			<Item type="gameMechanics.world.mob.ConditionalExtraLoot">
+				<conditions>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+						<minLevel type="gameMechanics.formulas.IntConstantValue">
+							<value>47</value>
+						</minLevel>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+							<minLevel type="gameMechanics.formulas.IntConstantValue">
+								<value>49</value>
+							</minLevel>
+						</predicate>
+					</Item>
+				</conditions>
+				<lootTableIf href="/Items/HeroicInstancesReward/LootTables/Tier2/AstralIslandsTier2_LootTable_BossUsual_03.xdb#xpointer(/gameMechanics.constructor.schemes.item.LootTableResource)" />
+				<lootTableElse href="" />
+				<chestChance>0.5</chestChance>
+			</Item>
+		</extraLootProviders>
+	</lootDropModifier>
+	<levelMax type="gameMechanics.formulas.IntConstantValue">
+		<value>45</value>
+	</levelMax>
+	<levelMin type="gameMechanics.formulas.IntConstantValue">
+		<value>45</value>
+	</levelMin>
+</gameMechanics.world.mob.MobWorld>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739815035</resourceId>
+	</Header>
+	<Name href="DemonEliteSpell.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Warrior/ShieldSlam.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="DemonEliteSpell.(SpellSingleTarget).Name.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>32000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>600</delay>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="DemonEliteSpell01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/AstarlIslands/AI46/Tresh/StunBomb.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+					<multiplier>2</multiplier>
+				</durationScaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+				<time>1000</time>
+				<distance>13</distance>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+				<value>50</value>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>80</minDamage>
+				<maxDamage>80</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

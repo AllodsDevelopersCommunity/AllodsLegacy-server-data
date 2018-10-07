@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>1709113347</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+					<zone href="/Maps/2ndCircle_Goblinoball/ScriptZones/ArchipelagoGoblinoball/Goblinoball/FootBall_playground.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="RedScore.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<reset>true</reset>
+					<summand>0</summand>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceAnyBuff">
+									<buffs>
+										<Item href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</buffs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+									<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+										<item href="/Items/QuestItems/ArchipelagoGoblinoball/GoblinoballReward_fake/GoblinoballReward_fake.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+									</item>
+									<count>1</count>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceAnyBuff">
+									<buffs>
+										<Item href="BlueTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<Item href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</buffs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="BlueTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="RedWins_Text.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="AddContextSpells.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="BlueGoalkeeper_Spells.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="RedGoalkeeper_Spells.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="RedTeam_SpellDisable.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>100</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

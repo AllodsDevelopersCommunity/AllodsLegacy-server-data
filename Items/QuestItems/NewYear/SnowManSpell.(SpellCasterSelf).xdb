@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>136323155</resourceId>
+	</Header>
+	<Name href="SnowManQuestSpell_Name.txt" />
+	<Description href="SnowMan.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateDeviceNear">
+					<radius>2</radius>
+					<devices>
+						<Item href="/Items/InteractiveObjects/NewYear/SnowManQuest/SnowManQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<Item href="/Items/InteractiveObjects/NewYear/FirQuest/FirQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<Item href="/Items/InteractiveObjects/NewYear/GarlandQuest/GarlandQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<Item href="/Items/InteractiveObjects/NewYear/FirQuest/FirHadagan_Quest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+					</devices>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Kania/Zones/ZoneLeague1/ZoneLeague1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/ZoneHadagan1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="SnowMan.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>false</faceSourcePos>
+								<coord x="0" y="0" z="0" />
+							</base>
+							<offset>0</offset>
+						</destination>
+						<deviceImpacts>
+							<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+								<delay>900000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+										<delay>0</delay>
+									</Item>
+								</impacts>
+							</Item>
+						</deviceImpacts>
+						<plane href="" />
+						<pool href="KaniaSummonPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+						<traceDown>false</traceDown>
+						<object href="/Items/InteractiveObjects/NewYear/SnowManQuest/SnowManQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>false</faceSourcePos>
+								<coord x="0" y="0" z="0" />
+							</base>
+							<offset>0</offset>
+						</destination>
+						<deviceImpacts>
+							<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+								<delay>900000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+										<delay>0</delay>
+									</Item>
+								</impacts>
+							</Item>
+						</deviceImpacts>
+						<plane href="" />
+						<pool href="HadaganSummonPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+						<traceDown>false</traceDown>
+						<object href="/Items/InteractiveObjects/NewYear/SnowManQuest/SnowManQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="NoUse.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<scalerTarget />
+				<durationScaler />
+				<durationScalerTarget />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

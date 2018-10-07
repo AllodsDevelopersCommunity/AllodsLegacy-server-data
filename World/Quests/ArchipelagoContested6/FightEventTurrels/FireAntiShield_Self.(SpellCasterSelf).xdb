@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>201939985</resourceId>
+	</Header>
+	<Name href="FireAntiShieldName.txt" />
+	<Description href="FireAntiShieldDesc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>400</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.world.ship.parts.PredicateCannonTargetable" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="CritHit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="/Mechanics/Ships/Cannon/CannonAttack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+				<clientData href="FireAntiShield_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.constructor.basicElements.ScalerCalcer">
+					<scaler type="gameMechanics.elements.scalers.ScalerMax">
+						<scaler1 type="gameMechanics.elements.scalers.TrivialScaler" />
+						<scaler2 type="gameMechanics.elements.scalers.ScalerBuff">
+							<buff href="CritHit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<summand>0</summand>
+						</scaler2>
+					</scaler>
+					<value>30000</value>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.CannonCalcType" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.CannonClosestToRayAutotarget" />
+	<shape type="gameMechanics.constructor.schemes.spell.area.Ray">
+		<objectsProvider>CollisionScene</objectsProvider>
+	</shape>
+	<shapeOrientation>YawAndPitch</shapeOrientation>
+	<radius>150</radius>
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

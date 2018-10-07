@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>125295623</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+		<Variables>
+			<malfunctionMod>0.066667</malfunctionMod>
+			<visObjNormal />
+			<power>50</power>
+			<capacity>1500</capacity>
+			<burstMod>0.142857</burstMod>
+			<collisionNormal />
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+			<overheatScript type="DeviceVisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>1</channelId>
+						<animations>
+							<Item>idleMalfunction</Item>
+						</animations>
+					</Item>
+					<Item type="Sound3DActionDevice">
+						<sound>
+							<project href="/SFX/Ships/Ships.(FMODProject).xdb#xpointer(/FMODProject)" />
+							<name>Ships/Components/ShipDevices/Siren/overheatingAttantion</name>
+						</sound>
+					</Item>
+				</elements>
+			</overheatScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_REACTOR</type>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.world.device.reactor.EnergyCapacitorPartResource">
+			<maxEnergy var="capacity" />
+		</Item>
+		<Item type="gameMechanics.world.device.reactor.EnergyProducerPartResource">
+			<power var="power" />
+		</Item>
+		<Item type="gameMechanics.world.device.reactor.OnlineControllerPartResource" />
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.EffectSwitchInterceptor">
+					<reasonsToIgnore>
+						<Item>TR_ReactorsShutdown</Item>
+						<Item>TR_Silence</Item>
+						<Item>TR_TeleportToIsland</Item>
+						<Item>TR_InHangar</Item>
+					</reasonsToIgnore>
+				</Item>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+							<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+								<onMaster type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+										<Item type="gameMechanics.elements.predicates.PredicateGreater">
+											<lhs type="gameMechanics.world.ship.elements.calcers.CalcerCurrentEnergy" />
+											<rhs type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+										</Item>
+									</predicates>
+								</onMaster>
+							</predicate>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+									<chanceCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+										<mul var="malfunctionMod" />
+										<mulCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+											<mul>1</mul>
+											<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+												<calcers>
+													<Item type="gameMechanics.elements.calcers.InverseCalcer">
+														<value type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+													</Item>
+													<Item type="gameMechanics.world.ship.elements.calcers.CalcerCurrentEnergy" />
+												</calcers>
+											</mulCalcer>
+											<sum>-1</sum>
+										</mulCalcer>
+										<sum>0</sum>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="Shutdown.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.world.ship.elements.ImpactNotifyMalfunction">
+											<type>CMT_ReactorShutdown</type>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+									<chanceCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+										<mul var="burstMod" />
+										<mulCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+											<mul>1</mul>
+											<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+												<calcers>
+													<Item type="gameMechanics.elements.calcers.InverseCalcer">
+														<value type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+													</Item>
+													<Item type="gameMechanics.world.ship.elements.calcers.CalcerCurrentEnergy" />
+												</calcers>
+											</mulCalcer>
+											<sum>-1</sum>
+										</mulCalcer>
+										<sum>0</sum>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactStartSpellGeneric">
+											<spell href="ManaBurst.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										</Item>
+										<Item type="gameMechanics.world.ship.elements.ImpactNotifyMalfunction">
+											<type>CMT_ManaBurst</type>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<tick>1000</tick>
+					<initialDelay>-1</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<visObj hrefvar="visObjNormal" />
+	<collision hrefvar="collisionNormal" />
+	<collisionObject>true</collisionObject>
+	<exploitingText href="ExploitText.txt" />
+	<exploit href="Exploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<mass>25</mass>
+	<deviceSpells>
+		<Item href="ForceShutdown.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="SelfDestruct.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="RepairOn.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="RepairOff.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</deviceSpells>
+</gameMechanics.world.device.UsableDeviceResource>

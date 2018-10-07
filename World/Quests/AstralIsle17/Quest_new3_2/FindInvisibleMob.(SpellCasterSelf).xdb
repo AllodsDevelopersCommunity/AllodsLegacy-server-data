@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>237277206</resourceId>
+	</Header>
+	<Name href="FindInvisibleMob.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/MergingMinds.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="Effect.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/AstralIsle17/Zones/AstralIsle17/AstralIsle17.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>5</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Shadow/Instances/AstralIsle17/AstralShadowInvisible.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+								<ability href="/Mechanics/Abilities/AstralIslands/AI17/ShadowInvisibility/Invis.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.MobFilter" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+				<impacts>
+					<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+						<delay>1000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</impacts>
+				<radius>5</radius>
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateDevice">
+						<deviceResources>
+							<Item href="/Items/InteractiveObjects/AstralIsle17/Bones_smoke/Bones_smoke.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+						</deviceResources>
+					</Item>
+				</predicates>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

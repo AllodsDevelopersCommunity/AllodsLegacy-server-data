@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.item.ItemResource>
+	<Header>
+		<resourceId>137544713</resourceId>
+	</Header>
+	<image href="/Interface/Icons/Equipment/Helm/HighLevelHelm08.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<source>Quest</source>
+	<budgetUsage>1</budgetUsage>
+	<visualElement href="/Items/Costumes/VisItems/Set/QuestItems/ZC3_MaskaVora.(VisualItem).xdb#xpointer(/gameMechanics.constructor.schemes.item.VisualItem)" />
+	<nameChecked>false</nameChecked>
+	<isQuestRelated>true</isQuestRelated>
+	<slot>LIFESTYLEHEAD</slot>
+	<ritual>false</ritual>
+	<itemClass href="/Mechanics/ItemClasses/LifeStyle.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneContested3/Q_063/Q_063.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/2ndCircle/Zones/ZoneContested3/ZoneContested3.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectSetReputation">
+					<faction href="/World/Factions/ZoneContested3/Guard_Traders.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					<value>-30000</value>
+				</Item>
+			</effectsIf>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ZoneContested3/Q_063/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZoneContested3/Q_063/Q_063.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Started</status>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ZoneContested3/Q_063/Q_063.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/ZoneContested3/Q_063/Q_063.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/Items/QuestItems/ZoneContested3/Doliy_Informatora/Doliy_Informatora.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												<value>1</value>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested3/Q_063/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>-1</value>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<level>33</level>
+	<requiredLevel>31</requiredLevel>
+	<stackLimit>1</stackLimit>
+	<quality href="/Mechanics/ItemQualities/Goods.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+	<binding>BindOnPickup</binding>
+	<name href="ZC3_MaskaVora_Name.txt" />
+	<requiredReputation>Hostility</requiredReputation>
+	<category href="/Mechanics/ItemCategories/LifeStyle/LSHead.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemCategoryTerminal)" />
+	<includeInBoxes>false</includeInBoxes>
+	<price type="gameMechanics.constructor.schemes.item.price.ItemPriceMoney">
+		<sellPrice>-1</sellPrice>
+		<buyPrice>-1</buyPrice>
+	</price>
+	<customBuyPrice>false</customBuyPrice>
+	<customSellPrice>true</customSellPrice>
+</gameMechanics.constructor.schemes.item.ItemResource>

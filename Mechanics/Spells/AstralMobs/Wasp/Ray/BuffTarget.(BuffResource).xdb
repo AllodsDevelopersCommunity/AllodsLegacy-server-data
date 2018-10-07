@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>296179714</resourceId>
+	</Header>
+	<Name href="BuffTarget.(BuffResource)_Name.txt" />
+	<Description href="BuffTarget.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/IncineratingRay.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="BuffTarget.(BuffResource)_Name.txt.template" />
+	<descTemplate href="BuffTarget.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>0</delay>
+					<impacts>
+						<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+							<damage type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+										<damage>3</damage>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+										<value type="gameMechanics.elements.calcers.FloatData">
+											<value>1.33</value>
+										</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+								</calcers>
+							</damage>
+							<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+							<targetScaler type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+								<buff href="DamageScale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+								<onlyFromMaster>true</onlyFromMaster>
+								<mul>1</mul>
+							</targetScaler>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="DamageScale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<tick>3000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>200</radius>
+					</distributor>
+					<data href="/Spells/VisScripts/Priest/ChainSmite.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<calcers>
+						<addressEntries>
+							<Item>
+								<name>caster</name>
+								<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							</Item>
+							<Item>
+								<name>target</name>
+								<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+							</Item>
+						</addressEntries>
+					</calcers>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>4100</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>329325600</resourceId>
+	</Header>
+	<Name href="FireSingle.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Mage/FireArrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="FireSingle.(SpellSingleTarget)_Name.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>0</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="Illus.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<minDamage>15</minDamage>
+				<maxDamage>15</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="Frost.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

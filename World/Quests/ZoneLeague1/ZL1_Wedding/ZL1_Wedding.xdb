@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>202976303</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital_Church.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="11993.549805" y="12286.785156" z="4.838250" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Kania_female/Instances/ZoneLeague1/Elena_Bugakova_Wedding_Quest_Vendor.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasFamily" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactToSpouse">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Spells/ClientData/JustMarried.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasFamily" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/JustMarried.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateHasFamily" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/ZL1_TheDissolutionOfMarriage/ZL1_TheDissolutionOfMarriage.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/ZL1_TheDissolutionOfMarriage/ZL1_TheDissolutionOfMarriage.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/ZL1_CorruptionDivorce/ZL1_CorruptionDivorce.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/ZL1_CorruptionDivorce/ZL1_CorruptionDivorce.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+						<key href="/System/ContentKeys/USA.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+						<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+					</Item>
+				</predicates>
+			</predicate>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<relatedMobsAndDevices>
+				<Item href="/Characters/Kania_female/Instances/ZoneLeague1/Elena_Bugakova_Wedding_Quest_Vendor.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</relatedMobsAndDevices>
+			<limit>1</limit>
+			<items>
+				<Item href="/ItemMall/Services/Marriage/Ring.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<Item href="/ItemMall/Services/Marriage/Ring_P2P.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<removeOnAbandon>false</removeOnAbandon>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterName3.txt" />
+			<showCounterValue>false</showCounterValue>
+			<relatedMobsAndDevices>
+				<Item href="/Characters/Kania_female/Instances/ZoneLeague1/Elena_Bugakova_Wedding_Quest_Vendor.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</relatedMobsAndDevices>
+			<limit>1</limit>
+			<id href="CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterName2.txt" />
+			<showCounterValue>false</showCounterValue>
+			<relatedItems>
+				<Item href="/Items/Costumes/DressItems/Head/Special/MarriageMask_P2P.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<Item href="/Items/Costumes/DressItems/Head/Special/MarriageMask.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<Item href="/Items/Costumes/DressItems/Set/Special/MarriageSet_P2P.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<Item href="/Items/Costumes/DressItems/Set/Special/MarriageSet.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<experience>2</experience>
+		<money>0</money>
+		<mandatoryItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/ItemMall/NotImplemented/RomanceBondBinded.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyInstant" />
+	<tutorial>false</tutorial>
+	<internalName>ZL1_Wedding</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>15</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>15</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

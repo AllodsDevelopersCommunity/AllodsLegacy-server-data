@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>107375680</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<saveable>true</saveable>
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+			<zone href="heroic_TZ_Boss2FactionSpawn.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>Boss2Necros</scriptID>
+						<map href="/Maps/Inst_TenzisTemple/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>Boss2Paladin</scriptID>
+						<map href="/Maps/Inst_TenzisTemple/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>TZ_Boss2AddLocator</scriptID>
+							<map href="/Maps/Inst_TenzisTemple/heroic_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>180</value>
+						</yaw>
+					</destination>
+					<plane href="" />
+					<pool href="" />
+					<traceDown>false</traceDown>
+					<object href="/Characters/Hadagan_male/Instances/InstTenzisTemple_Heroic/Instances/Inst_TenzisTemple/TZ_Boss2AddPriest34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+			</elseImpacts>
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

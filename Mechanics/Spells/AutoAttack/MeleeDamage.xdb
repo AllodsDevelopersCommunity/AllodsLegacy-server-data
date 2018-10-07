@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>87030796</resourceId>
+	</Header>
+	<uiInfos href="/Client/GMUIHelper/ImpactProducer/Attack.(ImpactProducerUIInfo).xdb#xpointer(/ImpactProducerUIInfo)" />
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AutoAttackShared.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="MeleeDamage_Name.txt" />
+	<Description href="MeleeDamage_Desc.txt" />
+	<image href="/Interface/Icons/Spells/AutoAttack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<DefaultAction>0</DefaultAction>
+	<visualScripts href="/Spells/VisScripts/Common/AutoAttackMelee.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>MeeleeAttack</sysName>
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1</duration>
+			<group href="/Mechanics/Spells/Groups/AutoAttackShared.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+				<source>Mainhand</source>
+			</scaler>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>12.5</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/WarriorStrike.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsOnHitCaster>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<avgDamage>8.75</avgDamage>
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

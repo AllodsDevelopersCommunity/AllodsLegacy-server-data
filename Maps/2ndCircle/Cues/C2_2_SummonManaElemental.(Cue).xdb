@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>253516822</resourceId>
+	</Header>
+	<name href="C2_2_SummonManaElemental.txt" />
+	<text href="C2_2_SummonManaElemental.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneContested1/UnlockPortalNeutral/UnlockPortalNeutral.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Items/QuestItems/ZoneContested1/PortalKeyNeutral/healthTrigger.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+			<quest href="/World/Quests/ZoneContested1/UnlockPortalNeutral/UnlockPortalNeutral.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterResource href="/World/Quests/ZoneContested1/UnlockPortalNeutral/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			<value>10</value>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>ZC2_E_Portal</scriptID>
+					<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>120000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+			</impacts>
+			<object href="/Creatures/ManaElemental/Instances/ZoneContested1/ManaElementalDestroyerNeutral.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Items/QuestItems/ZoneContested1/PortalKeyNeutral/healthTrigger.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

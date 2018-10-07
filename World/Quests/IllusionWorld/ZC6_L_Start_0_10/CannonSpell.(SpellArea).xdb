@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>313060685</resourceId>
+	</Header>
+	<Name href="CannonSpell.(SpellArea)_Name.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/CannonGeneralShot_01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="CannonSpell.(SpellArea)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>400</value>
+	</range>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1500</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.world.ship.parts.PredicateCannonTargetable" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="/Mechanics/Ships/Cannon/CannonAttack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+				<clientData href="/World/Quests/ArchipelagoContested6/FightEventTurrels/FireAntiShield_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+				<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+				<radius>15</radius>
+				<impacts>
+					<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+						<damage type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</damage>
+						<damageType>ASTRAL</damageType>
+						<hitCalcType type="gameMechanics.world.projectile.CannonCalcType">
+							<critFactor>1.8</critFactor>
+							<glanceFactor>0.8</glanceFactor>
+						</hitCalcType>
+						<targetScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.4</multiplier>
+							</mulCalcer>
+						</targetScaler>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/DemonMage/Instances/ZoneContested6_inst/DemonAttacker.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Creatures/DemonMage/Instances/ZoneContested6_inst/Demon_E.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+				</filter>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.CannonClosestToRayAutotarget" />
+	<shape type="gameMechanics.constructor.schemes.spell.area.Ray">
+		<objectsProvider>CollisionScene</objectsProvider>
+	</shape>
+	<shapeOrientation>YawAndPitch</shapeOrientation>
+	<radius>150</radius>
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

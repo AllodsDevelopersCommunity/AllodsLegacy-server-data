@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>380827657</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100499</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/BattleMountZemFixation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountSpeedBoosts.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/BattleMountZemFixation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>40000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>-0.025</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.MountLevelCalcer">
+					<mount href="/Mechanics/Mounts/5thGrade/Mounts/ZemSpider.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+				</mulCalcer>
+				<sum>1</sum>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsMountFed">
+				<hideText>false</hideText>
+				<mount href="/Mechanics/Mounts/5thGrade/Mounts/ZemSpider.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMounted">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/Mounts/ZemSpider/Energize/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>3</consumeStacks>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="JumpVisual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Fixated.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+								<destination type="gameMechanics.map.destination.DestinationModified">
+									<destination type="gameMechanics.map.destination.SelfPosDestination" />
+									<modifiers>
+										<Item type="gameMechanics.map.destination.modifier.ModifierRelativePolar">
+											<radius type="gameMechanics.elements.calcers.FloatData">
+												<value>2</value>
+											</radius>
+											<angle type="constructor.basicElements.AngleRadians" />
+										</Item>
+										<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+											<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+												<angle>1.5708</angle>
+											</pathChecker>
+											<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom" />
+										</Item>
+									</modifiers>
+								</destination>
+								<speed>30</speed>
+								<impactsOnLand>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="JumpVisual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOnLand>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

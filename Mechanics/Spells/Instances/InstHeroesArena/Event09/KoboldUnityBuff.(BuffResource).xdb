@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>243055663</resourceId>
+	</Header>
+	<Name href="KoboldUnityBuff.txt" />
+	<Description href="KoboldUnityBuff.Description.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorDefenseCombo.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="KoboldUnityBuff.txt" />
+	<descTemplate href="KoboldUnityBuff.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.ImmunityToBuffs">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Silence.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Disarms.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</Item>
+				</predicates>
+			</effect>
+			<stackCountTrigger>4</stackCountTrigger>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.ImmunityToAESpells" />
+			<stackCountTrigger>4</stackCountTrigger>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.EffectSpeedModifier">
+				<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+					<coeff>0.5</coeff>
+				</effectScaler>
+			</effect>
+			<stackCountTrigger>4</stackCountTrigger>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>8</radius>
+					<affectGroup>Friends</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/Kobold/Warrior/Instances/Inst_HeroesArena/SwarmKobold.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="KoboldUnityBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.CreatureFilter" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<stackLimit>4</stackLimit>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

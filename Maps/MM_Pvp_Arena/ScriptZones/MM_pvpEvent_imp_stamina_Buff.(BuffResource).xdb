@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>241003521</resourceId>
+	</Header>
+	<Name href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_imp_stamina_Buff.txt" />
+	<Description href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_imp_stamina_Buff.Description.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinTaunt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_imp_stamina_Buff.txt" />
+	<descTemplate href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_imp_stamina_Buff.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/MM_Pvp_Arena/Zones/MM_Pvp_Arena_01.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="MM_pvpEvent_imp_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.map.variables.PredicateMapVariableLess">
+								<variableResource href="MM_pvpEvent_imp_variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+								<maxValue type="gameMechanics.elements.calcers.FloatData">
+									<value>44</value>
+								</maxValue>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneHadagan1/MegaGoal_E_IslandDaily_02/CountId_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneLeague1/MegaGoal_L_IslandDaily_02/CountId_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Stamina</stat>
+			</stat>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerExp">
+					<base>0.99</base>
+					<powCalc type="gameMechanics.map.variables.MapVariableValueCalcer">
+						<resource href="MM_pvpEvent_imp_variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					</powCalc>
+				</mulCalcer>
+			</scaler>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

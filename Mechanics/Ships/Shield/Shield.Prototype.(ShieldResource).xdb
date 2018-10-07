@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>125390854</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+		<Variables>
+			<factor>1</factor>
+			<maxStrength>1</maxStrength>
+			<fullRegenTime>1</fullRegenTime>
+			<regenCost />
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="DeathHandler">
+			<useParentState>true</useParentState>
+			<deathScript type="DeviceVisActionList">
+				<play>InSequence</play>
+				<elements>
+					<Item type="DeviceColorAction">
+						<colorValue>-1</colorValue>
+					</Item>
+					<Item type="DeviceVisActionChangeModel">
+						<priority>5</priority>
+					</Item>
+				</elements>
+			</deathScript>
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_SHIELD</type>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.map.spawn.DynamicTerrainCollision">
+			<object hrefvar="object" />
+			<useDelayedCollision>true</useDelayedCollision>
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.EffectGroupCooldownMultiplierDevice">
+					<group href="ShieldSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					<factor var="factor" />
+				</Item>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+			</effects>
+			<reattachOnTeleport>false</reattachOnTeleport>
+		</Item>
+		<Item type="gameMechanics.world.device.shield.ShieldPartResource">
+			<maxStrength var="maxStrength" />
+			<fullRegenTime var="fullRegenTime" />
+			<regenCost var="regenCost" />
+		</Item>
+	</persistentParts>
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="/Mechanics/Ships/ShipDeviceExploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<mass>2.5</mass>
+	<energyScaler type="gameMechanics.elements.scalers.LinearScaler">
+		<multiplier>0</multiplier>
+	</energyScaler>
+	<deviceSpells>
+		<Item href="ActionRegenerateShield.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</deviceSpells>
+	<defaultSpell href="" />
+</gameMechanics.world.device.UsableDeviceResource>

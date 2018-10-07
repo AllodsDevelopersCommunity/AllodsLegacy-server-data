@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>99174406</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<contextActionInfo>
+		<contextName href="Way1Jump_Name.txt" />
+		<contextDescription href="Way1Jump_Desc.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextEndurePain.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+						<data href="CombatWarning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff hrefvar="self" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.world.pet.ImpactDismissPet" />
+						</impactsIf>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

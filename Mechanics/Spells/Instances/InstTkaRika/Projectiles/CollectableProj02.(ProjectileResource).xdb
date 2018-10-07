@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>214477911</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/World/AC5_buf1.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>0</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.StaticEntityAura">
+			<radius>2</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+									<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>0.55</value>
+									</chanceCalcer>
+									<impactsSuccess>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/EventCollectable02_1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impactsSuccess>
+									<impactsFailure>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/EventCollectable02_2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impactsFailure>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/TakeBlue.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/SpeedBonus.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/SpeedBonus.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+									<elseImpacts>
+										<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+											<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>0.3</value>
+											</chanceCalcer>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/SpeedBonus.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+									</elseImpacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

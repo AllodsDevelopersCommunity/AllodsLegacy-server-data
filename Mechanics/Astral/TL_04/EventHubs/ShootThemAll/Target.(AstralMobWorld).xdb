@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralMob.AstralMobWorld>
+	<Header>
+		<resourceId>294538240</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/AstralMob.(AstralMobWorld).xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.constructor.schemes.spell.multiTarget.cannonTargetShapes.CannonTargetCylinderResource">
+			<length>36</length>
+			<radius>12</radius>
+			<offset x="0" y="0" z="2.33" />
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.ship.elements.EffectImpactsOnDeath">
+					<impactsOnKiller>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+									<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="RewardCount.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+											<damage type="gameMechanics.elements.calcers.FloatData">
+												<value>800</value>
+											</damage>
+											<damageType>ASTRAL</damageType>
+											<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="Force.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+													<buff href="Force.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsOnKiller>
+					<impactsOnVictimWoKiller>
+						<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+					</impactsOnVictimWoKiller>
+					<impactsOnVictim>
+						<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+					</impactsOnVictim>
+				</Item>
+				<Item type="gameMechanics.elements.effects.AddPlaneGeneric">
+					<plane href="Target.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				</Item>
+				<Item type="gameMechanics.world.astralMob.elements.EffectAstralMobSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+						<coeff>1.5</coeff>
+					</effectScaler>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<name href="Target.(AstralMobWorld).Name.txt" />
+	<corpulence>21</corpulence>
+	<visMob href="/Mechanics/Astral/Mobs/Single/Instances/TL4/Devourer.(VisualMob).xdb#xpointer(/VisualMob)" />
+	<image href="/Interface/Ingame/ContextAstralMap/AstralHubMark/Monster03.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<roamingData href="/Mechanics/Astral/Mobs/EmptyRoamingArea.(RoamingData).xdb#xpointer(/gameMechanics.world.mob.RoamingData)" />
+	<stats>
+		<speed>45</speed>
+		<hp type="gameMechanics.elements.calcers.CalcerMul">
+			<calcers>
+				<Item type="gameMechanics.elements.calcers.FloatData">
+					<value>1</value>
+				</Item>
+				<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+					<value type="gameMechanics.elements.calcers.FloatData">
+						<value>1.33</value>
+					</value>
+				</Item>
+				<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+			</calcers>
+		</hp>
+		<aggroRange>600</aggroRange>
+		<hitChance>0.75</hitChance>
+		<insight type="gameMechanics.elements.calcers.CalcerMul">
+			<calcers>
+				<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+				<Item type="gameMechanics.elements.calcers.FloatData">
+					<value>30</value>
+				</Item>
+			</calcers>
+		</insight>
+	</stats>
+	<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+	<abilityKit href="Target.(MobAbilityKit).xdb#xpointer(/gameMechanics.world.mob.MobAbilityKit)" />
+</gameMechanics.world.astralMob.AstralMobWorld>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>196203526</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic1.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerLifetapUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/LifetapUpgrade.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>2</level>
+	<prepareDuration var="prepareDuration" />
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>SHADOW</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana var="mana" />
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>SHADOW</element>
+				<threatMultiplier>1</threatMultiplier>
+				<scalerTarget type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+					<buff href="/Mechanics/Abilities/NecromancerTalents/ToxicWeakness/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<onlyFromMaster>true</onlyFromMaster>
+					<mul>1</mul>
+					<sum>1</sum>
+					<anyRank>false</anyRank>
+				</scalerTarget>
+				<minDamage var="minDamage" />
+				<maxDamage var="maxDamage" />
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>2000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+								<variable href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+								<summand var="summand" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+								<chanceCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+									<ability href="/Mechanics/Abilities/NecromancerTalents/VampireStudent/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<mul var="mul" />
+									<sum>0</sum>
+								</chanceCalcer>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+										<variable href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+										<summand>1</summand>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>true</useSpellEnvelopeTargetEffects>
+					</Item>
+				</impactsOnHitCaster>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.MagicScaler">
+							<stat>IS_Intellect</stat>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.predicates.PredicateHealthLower">
+								<level>0.5</level>
+							</condition>
+							<scalerIf type="gameMechanics.elements.scalers.AbilityRankScaler">
+								<ability href="/Mechanics/Abilities/NecromancerTalents/CalloftheGrave/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.1</mul>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.TrivialScaler" />
+						</Item>
+					</scalers>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Abilities/NecromancerTalents/ToxicWeakness/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>16</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>262649862</resourceId>
+	</Header>
+	<Name href="ShieldChargesConsume.txt" />
+	<Description href="ShieldChargesConsume.Description.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/ShieldCharges.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="ShieldChargesStack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="ShieldChargesStack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>6</min>
+										<max>7</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="ShieldChargesStack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+									<allowedTypes>
+										<Item href="/Mechanics/Ships/UsableDeviceTypes/Shield.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+									</allowedTypes>
+									<impacts>
+										<Item type="gameMechanics.world.device.shield.ImpactReplenishShield" />
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+	</effects>
+	<isMultiple>true</isMultiple>
+	<duration>300000</duration>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

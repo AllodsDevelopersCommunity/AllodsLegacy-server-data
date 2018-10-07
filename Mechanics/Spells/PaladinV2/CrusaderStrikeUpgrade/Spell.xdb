@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>238317594</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<uiInfos href="" />
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/PaladinWeaponAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>7.58</value>
+			<scaler>StrMeleeSpeedMin</scaler>
+		</Item>
+		<Item>
+			<name>var1</name>
+			<value>7.58</value>
+			<scaler>StrMeleeSpeedMax</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Paladin/CrusaderStrikeUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameAEMark />
+	<visualScripts href="/Spells/VisScripts/Paladin/CrusaderStrikeUpgrade.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+				<source>Mainhand</source>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>35</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/PaladinV2/CrusaderStrike/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="/Mechanics/Spells/PaladinV2/CrusaderStrike/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration>1</duration>
+				<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+					<source>Mainhand</source>
+				</scaler>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/PaladinV2/Exorcism/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+								<buff href="/Mechanics/Spells/PaladinV2/Exorcism/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+								<anyRank>true</anyRank>
+								<delta type="gameMechanics.constructor.basicElements.ScalerCalcer">
+									<scaler type="gameMechanics.elements.scalers.WeaponSpeedBSVScaler">
+										<source>Mainhand</source>
+									</scaler>
+									<value>1875</value>
+								</delta>
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/PaladinV2/MarkBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/PaladinCrusaiderStrike.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<avgDamage var="avgDamage" />
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

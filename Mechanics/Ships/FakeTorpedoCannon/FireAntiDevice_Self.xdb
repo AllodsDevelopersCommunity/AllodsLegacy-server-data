@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>2058223651</resourceId>
+	</Header>
+	<Name href="FireAntiDeviceName.txt" />
+	<Description href="FireAntiDeviceDesc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageLightningArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>400</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="CannonAttack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+				<clientData href="FireAntiDevice_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.FloatData">
+					<value>600</value>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+			</Item>
+		</targetImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceEnergy">
+				<energy type="gameMechanics.elements.calcers.FloatData">
+					<value>20</value>
+				</energy>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.CannonClosestToRayAutotarget" />
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>400</radius>
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

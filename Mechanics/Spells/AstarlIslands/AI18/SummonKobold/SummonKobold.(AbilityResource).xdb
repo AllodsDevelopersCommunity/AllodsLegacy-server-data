@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>247625733</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="Barrier.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>KoboldBoss</scriptID>
+						<map href="/Maps/AstralIsle18/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="Barrier.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>-1</value>
+							</delta>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>KoboldBoss</scriptID>
+						<map href="/Maps/AstralIsle18/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.15</coeff>
+			</scaler>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+	<disableWhileInDeathRealm>true</disableWhileInDeathRealm>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

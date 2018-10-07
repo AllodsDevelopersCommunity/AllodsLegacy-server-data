@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>348052480</resourceId>
+	</Header>
+	<Name href="DeathExplosion.(SpellArea)_Name.txt" />
+	<Description href="DeathExplosion.(SpellArea)_Desc.txt" />
+	<visualScripts href="DeathExplosion.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>50</prepareDuration>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>LIGHTNING</element>
+						<minDamage>15</minDamage>
+						<maxDamage>15</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1500</time>
+						<distance>3</distance>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<speed>20</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>13</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

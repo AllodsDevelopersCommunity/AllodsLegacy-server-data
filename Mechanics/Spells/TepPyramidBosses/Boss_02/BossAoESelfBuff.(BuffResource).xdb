@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>293645320</resourceId>
+	</Header>
+	<Name href="BossAoESelfBuff.(BuffResource)_Name.txt" />
+	<Description href="BossAoESelfBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/ChervelitsBrain.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Bosses/TepPyramid/Nihil_Boss_Scheme_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="BossAoESelfBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="BossAoESelfBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Boss_02_Item_01_Buff_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>SHADOW</element>
+									<scalerTarget type="gameMechanics.elements.scalers.ScalerIf">
+										<condition type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="Boss_02_Item_02_Buff_03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</condition>
+										<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+											<multiplier>3</multiplier>
+										</scalerIf>
+										<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+											<condition type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="Boss_02_Item_02_Buff_02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</condition>
+											<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+												<multiplier>2</multiplier>
+											</scalerIf>
+											<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+												<multiplier>1</multiplier>
+											</scalerElse>
+										</scalerElse>
+									</scalerTarget>
+									<minDamage>30</minDamage>
+									<maxDamage>30</maxDamage>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>100</delay>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="NihilAuraDebuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impacts>
+			<initialDelay>6000</initialDelay>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

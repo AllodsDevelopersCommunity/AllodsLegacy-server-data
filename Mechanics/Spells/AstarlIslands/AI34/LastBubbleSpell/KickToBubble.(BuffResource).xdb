@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>304525332</resourceId>
+	</Header>
+	<visScript href="/Mechanics/Spells/AstarlIslands/AI34/LastPlayerBubble/PlayerBubbleVis.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/TeleportationSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="BuffOnBubble.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/Lamia/Instances/AstralIsle34/AI34Bubble.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<pool href="KickToBubble.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+					<time>500</time>
+					<destination type="gameMechanics.map.destination.SelfPosDestination" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>2000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

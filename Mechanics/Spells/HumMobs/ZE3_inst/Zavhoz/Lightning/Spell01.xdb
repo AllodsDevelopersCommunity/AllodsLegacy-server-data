@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>118091798</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageLightningArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mage/LightningArrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>75</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>6000</prepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>50</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RandomImpact">
+				<entries>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+								<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+								<duration>4000</duration>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+								<spell href="/Mechanics/Spells/HumMobs/ZE3_inst/Zavhoz/LightningOnTomb/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+								<duration>4000</duration>
+							</Item>
+						</impacts>
+						<chance>2</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+								<spell href="/Mechanics/Spells/HumMobs/ZE3_inst/Zavhoz/FireBall/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+								<duration>4000</duration>
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+				</entries>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>LIGHTNING</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>12</minDamage>
+				<maxDamage>22</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>3</multiplier>
+					</durationScaler>
+				</impactOnHitTarget>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>20</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

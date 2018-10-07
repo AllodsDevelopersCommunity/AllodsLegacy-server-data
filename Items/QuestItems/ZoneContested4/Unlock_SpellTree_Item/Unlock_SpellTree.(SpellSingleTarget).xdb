@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>191961095</resourceId>
+	</Header>
+	<Name href="Unlock_SpellTree.txt" />
+	<Description href="Unlock_SpellTree.Description.txt" />
+	<image href="/Interface/Icons/Misc/Papers/Offhand_Book_E_02ZemGreen.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/Suffocate.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Unlock_SpellTree.txt" />
+	<descTemplate href="Unlock_SpellTree.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+				<item href="/Items/QuestItems/ZoneContested4/SpellTree_Unlocker/SpellTree_Unlocker.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="Unlock_SpellTree.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Unlock_SpellTree.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

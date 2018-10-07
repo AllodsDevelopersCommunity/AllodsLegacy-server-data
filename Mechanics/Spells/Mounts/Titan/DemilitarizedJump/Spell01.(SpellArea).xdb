@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>739822835</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100497</priority>
+		<contextName href="Spell01.(SpellArea).ContextName.txt" />
+		<contextDescription href="Spell01.(SpellArea).ContextDescription.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/HitTheJump.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountSpeedBoosts.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell01.(SpellArea).Name.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/HitTheJump.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/BattleMountTitan_Jump.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics>
+		<cooldown>
+			<duration>40000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsMountFed">
+				<mount href="/Mechanics/Mounts/4thGrade/Mounts/TitanDemilitarized.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierRelativePolar">
+							<radius type="gameMechanics.elements.calcers.FloatData">
+								<value>0</value>
+							</radius>
+							<angle type="constructor.basicElements.AngleRadians" />
+						</Item>
+						<Item type="gameMechanics.map.destination.modifier.ModifierIfCheckPath">
+							<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+								<angle>1.5708</angle>
+							</pathChecker>
+							<modifierElse type="gameMechanics.map.destination.modifier.ModifierTrailFrom" />
+						</Item>
+					</modifiers>
+				</destination>
+				<speed>25</speed>
+				<impactsOnLand>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Mechanics/Spells/Mounts/Titan/Jump/TitanLand.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsOnLand>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<targetsSelectionStage>None</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>10</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

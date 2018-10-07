@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>333897784</resourceId>
+		<Prototype href="AstralUnlockSpellPrototype.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Variables>
+			<unlockCoeff>0.00833</unlockCoeff>
+			<minUnlock>3</minUnlock>
+			<maxUnlock>/Mechanics/Astral/Addons/Addon03/Tier2AvatarTier.xdb#xpointer(/gameMechanics.world.bigAstral.AvatarTierLevel)</maxUnlock>
+		</Variables>
+	</Header>
+	<Name href="AstralUnlockSpell.txt" />
+	<Description href="AstralUnlockSpell_Yellow.Description.txt" />
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+				<operation type="gameMechanics.elements.impacts.ChangeAstralUnlock">
+					<delta type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="constructor.elements.CalcerFloatExternal">
+								<externalCalcer href="UnlockGainCalcer.(CalcerFloatResource).xdb#xpointer(/constructor.elements.CalcerFloatResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.calcers.CalcerIf">
+								<predicate type="gameMechanics.elements.predicates.PredicateGreater">
+									<lhs type="gameMechanics.elements.calcers.CalcerAvatarLevelMin">
+										<tierLevel href="/Mechanics/Astral/Addons/Addon02/Tier3Extreme2AvatarTier.xdb#xpointer(/gameMechanics.world.bigAstral.AvatarTierLevel)" />
+									</lhs>
+									<rhs type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+								</predicate>
+								<calcerIf type="gameMechanics.elements.calcers.FloatData">
+									<value>2</value>
+								</calcerIf>
+								<calcerElse type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</calcerElse>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.CalcerIf">
+								<predicate type="gameMechanics.elements.predicates.PredicateGreater">
+									<lhs type="gameMechanics.elements.calcers.CalcerAvatarLevelMin">
+										<tierLevel href="/Mechanics/Astral/Addons/Addon02/Tier3Extreme1AvatarTier.xdb#xpointer(/gameMechanics.world.bigAstral.AvatarTierLevel)" />
+									</lhs>
+									<rhs type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+								</predicate>
+								<calcerIf type="gameMechanics.elements.calcers.FloatData">
+									<value>2</value>
+								</calcerIf>
+								<calcerElse type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</calcerElse>
+							</Item>
+						</calcers>
+					</delta>
+				</operation>
+				<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

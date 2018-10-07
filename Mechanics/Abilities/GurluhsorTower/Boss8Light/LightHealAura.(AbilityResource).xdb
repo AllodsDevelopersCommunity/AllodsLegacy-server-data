@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>173388800</resourceId>
+	</Header>
+	<name href="LightHealAura.txt" />
+	<description href="LightHealAura.Description.txt" />
+	<visualScript type="CreatureEffectsAction">
+		<visActionID />
+		<visualEffects>
+			<Item>
+				<delay>0</delay>
+				<effectFx href="/Spells/FX/Mobs/GT_8Boss_LightHealAura.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<effectAlias href="" />
+				<effectAnimations>
+					<mode>DIE</mode>
+				</effectAnimations>
+				<fixPoint>false</fixPoint>
+				<lockScale>false</lockScale>
+				<scale>1</scale>
+				<fadeInTime>0</fadeInTime>
+				<fadeOutTime>0</fadeOutTime>
+				<locator>Global</locator>
+				<member>Default_Member</member>
+				<locatorName />
+				<offendTime />
+			</Item>
+		</visualEffects>
+		<stopOnDeath>false</stopOnDeath>
+	</visualScript>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>20</radius>
+							<affectGroup>Friends</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactHeal">
+									<heal>1</heal>
+									<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.01</multiplier>
+										</mulCalcer>
+									</scaler>
+									<considerOutgoingModifiers>false</considerOutgoingModifiers>
+									<mode>Direct</mode>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.CreatureFilter" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>20</radius>
+							<affectGroup>Friends</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="AuraHealEff.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.CreatureFilter">
+								<blockCreatures>false</blockCreatures>
+							</filter>
+							<targetsLimit>0</targetsLimit>
+							<onBehalfOfHolder>true</onBehalfOfHolder>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>4000</tick>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

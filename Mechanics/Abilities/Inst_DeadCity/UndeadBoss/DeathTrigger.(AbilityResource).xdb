@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>209527817</resourceId>
+	</Header>
+	<name href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<nameTemplate href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<radius>150</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>NihazNPC</scriptID>
+									<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+							<object href="/Characters/Kania_male/Instances/Inst_DeadCity/Nehaz.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/UndeadBoss.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/IsLastBossSummoned.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<reset>true</reset>
+					<summand>0</summand>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<radius>150</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>NihazNPC</scriptID>
+											<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>4.6</value>
+										</yaw>
+									</destination>
+									<object href="/Characters/Kania_male/Instances/Inst_DeadCity/Nehaz.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>100</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>150</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/DC_Undeads/Instances/Inst_DeadCity/ZombieWarriorAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Creatures/DC_Undeads/Instances/Inst_DeadCity/ZombieAddMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/IsLastBossSummoned.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<reset>true</reset>
+					<summand>0</summand>
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

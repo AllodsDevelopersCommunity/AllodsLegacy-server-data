@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>274837623</resourceId>
+	</Header>
+	<Name href="Fear.(SpellCasterSelf)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/Fear.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Fear.(SpellCasterSelf)_Name.txt.template" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>25000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/AstarlIslands/AI32/Enlarge/buff02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>40</radius>
+						<affectGroup>Enemies</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Fear.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+									<multiplier>1</multiplier>
+								</durationScaler>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.constructor.basicElements.FilterOr">
+									<filters>
+										<Item type="gameMechanics.constructor.basicElements.FilterOr">
+											<filters>
+												<Item type="gameMechanics.world.creature.AvatarFilter" />
+												<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+												</Item>
+											</filters>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+										</Item>
+									</filters>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

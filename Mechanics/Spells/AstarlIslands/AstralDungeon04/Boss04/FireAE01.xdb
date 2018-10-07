@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>339005447</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<Name href="FireAE01_Name.txt" />
+	<Description href="FireAE01_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mage/Fireball.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="FireAE01_Name.txt.template" />
+	<descTemplate href="FireAE01_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>75</value>
+	</range>
+	<prepareDuration>900</prepareDuration>
+	<element>COLD</element>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Start</stage>
+			<duration>7000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+				<projectileData>
+					<moveType type="gameMechanics.world.projectile.MoveTypeIdle" />
+					<resource href="/Mechanics/Spells/AstarlIslands/AstralDungeon04/FireZone.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+				</projectileData>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>8</radius>
+				<affectGroup>Enemies</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>FIRE</element>
+						<minDamage>15.98</minDamage>
+						<maxDamage>15.99</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</impacts>
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

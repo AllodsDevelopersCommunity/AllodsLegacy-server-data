@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>371119133</resourceId>
+	</Header>
+	<Name href="ChainBuff03.(BuffResource).Name.txt" />
+	<Description href="ChainBuff03.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Misc/Crafting/Chain02.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/TR_1Boss_CrystalChainsHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>0.5</scale>
+			<fadeInTime>1000</fadeInTime>
+			<locator>Slot_Hand_L</locator>
+		</Item>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/TR_1Boss_CrystalChainsHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_BodyFX</locator>
+		</Item>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/TR_1Boss_CrystalChainsHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>0.5</scale>
+			<fadeInTime>500</fadeInTime>
+			<locator>Slot_Hand_R</locator>
+		</Item>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/TR_1Boss_CrystalChainsHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>0.5</scale>
+			<fadeInTime>250</fadeInTime>
+			<locator>Head</locator>
+		</Item>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/TR_1Boss_CrystalChainsHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>2</scale>
+			<fadeInTime>500</fadeInTime>
+			<locator>Slot_BodyFX</locator>
+		</Item>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/DotSlow.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+		</Item>
+	</visualEffects>
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<nameTemplate href="ChainBuff03.(BuffResource).Name.txt" />
+	<descTemplate href="ChainBuff03.(BuffResource).Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/TeleportationSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+						<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+					</impacts>
+					<object href="/Creatures/DemonScout/Instances/AstralIsle46/46_Add_Boss02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="SummonPool_46Solo.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+						<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+					</impacts>
+					<object href="/Creatures/DemonScout/Instances/AstralIsle46/46_Add_Boss02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="SummonPool_46Solo.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="AggroAddSolo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AggroAddSolo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</predicate>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+												<mobs>
+													<Item href="/Creatures/DemonScout/Instances/AstralIsle46/46_Add_Boss02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												</mobs>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+							</filter>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+			<initialDelay>10000</initialDelay>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>232036353</resourceId>
+	</Header>
+	<Name href="FailQuestPredicateRuleactive.txt" />
+	<Description href="FailQuestPredicateRuleactive.Description.txt" />
+	<image href="/Interface/Icons/Misc/Food/Egg.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>true</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+										<rule href="/Mechanics/Rules/ArchipelagoContested7/01_Event_Queen.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="Queen_event_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Completed</status>
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="Queen_event_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+										<rule href="/Mechanics/Rules/ArchipelagoContested7/01_Event_Queen.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="Queen_event_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="FailQuestPredicateRuleactive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>20000</tick>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

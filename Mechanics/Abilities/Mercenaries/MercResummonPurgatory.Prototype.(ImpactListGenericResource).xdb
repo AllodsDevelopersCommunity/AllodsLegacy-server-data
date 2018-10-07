@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>356573218</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<hideText>false</hideText>
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateNotInCombat">
+							<hideText>false</hideText>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateAssistantInhabits">
+							<hideText>false</hideText>
+							<assistant hrefvar="assistant" />
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<hideText>false</hideText>
+							<predicate type="gameMechanics.elements.predicates.PredicateInRaid">
+								<hideText>false</hideText>
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<hideText>false</hideText>
+							<predicate type="gameMechanics.elements.predicates.PredicateFullGroup">
+								<hideText>false</hideText>
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/Mercenaries/InstSpecificBuff/CanSummonMercs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<hideText>false</hideText>
+							<predicate type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+								<hideText>false</hideText>
+								<assistantResource hrefvar="assistant" />
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+							<destination type="gameMechanics.map.destination.RelativeRotatePos">
+								<base type="gameMechanics.map.destination.RelativePos">
+									<faceSourcePos>true</faceSourcePos>
+								</base>
+								<offset>4</offset>
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>1.57</value>
+								</yaw>
+								<turn>AsBase</turn>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impacts>
+							<plane href="" />
+							<traceDown>false</traceDown>
+							<assistantResource hrefvar="assistant" />
+							<mobResource hrefvar="mobResource" />
+							<useTargetLevel>true</useTargetLevel>
+							<linkRunes>false</linkRunes>
+							<planeSyncStrategy>Sync</planeSyncStrategy>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

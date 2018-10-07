@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>228974780</resourceId>
+	</Header>
+	<Name href="Disease.txt" />
+	<nameTemplate href="Disease.txt" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>8000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>10</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+						<buff href="DiseaseBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<delta type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</delta>
+						<attachIfNotExist>true</attachIfNotExist>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>POISON</element>
+						<minDamage>20</minDamage>
+						<maxDamage>20</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterOr">
+					<filters>
+						<Item type="gameMechanics.world.creature.AvatarFilter" />
+						<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</filters>
+				</filter>
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="ClientVisData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

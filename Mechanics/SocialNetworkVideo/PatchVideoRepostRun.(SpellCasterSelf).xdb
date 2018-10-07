@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>739821360</resourceId>
+	</Header>
+	<Name href="PatchVideoRepostRun.(SpellCasterSelf).Name.txt" />
+	<Description href="PatchVideoRepostRun.(SpellCasterSelf).Description.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="socialNetworks.predicates.PredicateSocialNetworkAvailable">
+				<socialNetworks>
+					<Item href="/Client/Social/Facebook.(SocialNetworkDescription).xdb#xpointer(/socialNetworks.SocialNetworkDescription)" />
+					<Item href="/Client/Social/MyWorld.(SocialNetworkDescription).xdb#xpointer(/socialNetworks.SocialNetworkDescription)" />
+					<Item href="/Client/Social/VKontakte.(SocialNetworkDescription).xdb#xpointer(/socialNetworks.SocialNetworkDescription)" />
+					<Item href="/Client/Social/Twitter.(SocialNetworkDescription).xdb#xpointer(/socialNetworks.SocialNetworkDescription)" />
+				</socialNetworks>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="PatchVideoRepostL.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="PatchVideoRepostE.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="VideoRepost2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+						<unlock href="/Mechanics/Unlocks/SocialNetworkPost/Patch_4_0_2_Promo_Unlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="VideoRepost3.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCheckSocialReposts">
+						<repostId>-1</repostId>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>166874152</resourceId>
+		<Variables>
+			<self>Heart_Stone_Fly_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</self>
+			<route>/Maps/HaloIsle/GlobalObjects/Routes/Halo_LocalTravel.(Route).xdb#xpointer(/gameMechanics.map.tour.Route)</route>
+		</Variables>
+	</Header>
+	<Name href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Name.txt" />
+	<Description href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/CommonBuffs/AstralTravel/SphereFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+			<factor>0</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByRoute">
+			<route hrefvar="route" />
+			<reversed>false</reversed>
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnArrive>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells">
+			<onlyIfNotMainTarget>false</onlyIfNotMainTarget>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<removeExistingBuffs>true</removeExistingBuffs>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+			</impactsOn>
+			<impactsOff>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

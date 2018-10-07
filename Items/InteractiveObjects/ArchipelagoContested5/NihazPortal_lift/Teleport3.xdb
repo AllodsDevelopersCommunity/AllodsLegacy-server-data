@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>212249629</resourceId>
+	</Header>
+	<name href="Teleport3_Name.txt" />
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Portal_nihaz_4</scriptID>
+							<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+						<yaw type="constructor.basicElements.AngleRadians" />
+					</destination>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_1/AC8_1.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_2/AC8_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>NotInQuestBook</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Items/QuestItems/ArchipelagoContested8_inst/AC8_Start_inst_item/AC8_Start_inst_itemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Items/QuestItems/ArchipelagoContested8_inst/AC8_Start_inst_item/AC8_Start_inst_itemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

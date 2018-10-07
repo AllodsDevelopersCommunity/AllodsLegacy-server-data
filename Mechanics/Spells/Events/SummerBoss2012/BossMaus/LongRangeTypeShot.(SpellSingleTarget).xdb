@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>337346568</resourceId>
+	</Header>
+	<Name href="LongRangeTypeShot.(SpellSingleTarget)_Name.txt" />
+	<nameTemplate href="LongRangeTypeShot.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>130</value>
+	</range>
+	<needLos>false</needLos>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>99999</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactKill" />
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/Events/SummerBoss2012/T92Arta/Targeting.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>3000</delay>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="MausShotPrepare.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactsToMapHead">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactAllAvatarsOnMap">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+														<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+														<data href="MausShooting.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<mob>
+					<scriptID>Maus</scriptID>
+					<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

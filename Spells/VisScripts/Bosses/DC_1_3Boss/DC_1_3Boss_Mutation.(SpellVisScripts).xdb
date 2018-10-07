@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item skiped="" />
+		</visualEffects>
+	</wholeCasting>
+	<precastType>PRECAST_LAUNCH</precastType>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>attack01</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile />
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Spells/PsionicTelekineticTrustAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<locatorName>Slot_Eye_L</locatorName>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+							<Item>
+								<effectFx href="/Spells/FX/Spells/PsionicTelekineticTrustAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<locatorName>Slot_Eye_R</locatorName>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time>1000</time>
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/DC_3BossDraconid_MutationChannel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>5.4</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<locatorName>Slot_Eye_L</locatorName>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_Head</locator>
+									<member>Assaulter</member>
+								</endPoint>
+							</Item>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/DC_3BossDraconid_MutationChannel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>5.4</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<locatorName>Slot_Eye_R</locatorName>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_Head</locator>
+									<member>Assaulter</member>
+								</endPoint>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx href="/Spells/FX/Spells/CreaturesTransform.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<member>Default_Member</member>
+						</Item>
+					</visualEffects>
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

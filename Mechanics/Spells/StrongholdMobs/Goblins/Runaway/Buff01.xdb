@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739821371</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Debuff.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/Fear.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectFear" />
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.5</coeff>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.5</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.RandomImpact">
+							<entries>
+								<Item>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+												<radius>85</radius>
+											</distributor>
+											<data href="RunSpeech1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<chance>1</chance>
+								</Item>
+								<Item>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+												<radius>85</radius>
+											</distributor>
+											<data href="RunSpeech2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<chance>1</chance>
+								</Item>
+								<Item>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+												<radius>85</radius>
+											</distributor>
+											<data href="RunSpeech3.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<chance>1</chance>
+								</Item>
+								<Item>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+												<radius>85</radius>
+											</distributor>
+											<data href="RunSpeech4.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<chance>1</chance>
+								</Item>
+							</entries>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>1000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

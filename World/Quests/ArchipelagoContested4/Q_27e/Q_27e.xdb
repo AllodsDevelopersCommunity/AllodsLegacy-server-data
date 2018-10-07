@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>1939406991</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<kickText href="KickText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_05.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="12716.616211" y="13230.625977" z="12.497100" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Undead_female/Instances/ArchipelagoContested4/Mage_Empire_Undead.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Prizoner_Astral_Lake_loc</scriptID>
+							<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="Invis.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>2000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>Prizoner_Astral_Lake</scriptID>
+				<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+	</startImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested4/Q_26e/Q_26e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>true</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_07.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="12870.000000" y="13688.000000" z="0.000000" />
+					<isIndoor>false</isIndoor>
+					<radius>40</radius>
+				</Item>
+			</locations>
+			<relatedItems>
+				<Item href="/Items/QuestItems/ArchipelagoContested4/Key_Cage1/Key_Cage1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>3</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<customName href="" />
+			<showCounterValue>false</showCounterValue>
+			<limit>3</limit>
+			<isInternal>true</isInternal>
+			<items>
+				<Item href="/Items/QuestItems/ArchipelagoContested4/Key_Cage1/Key_Cage1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<removeOnAbandon>true</removeOnAbandon>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<customName href="" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>true</isInternal>
+			<objects>
+				<Item href="/Items/InteractiveObjects/ArchipelagoContested4/Cage1/Cage1.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</objects>
+			<isSolo>true</isSolo>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<customName href="" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>true</isInternal>
+			<objects>
+				<Item href="/Items/InteractiveObjects/ArchipelagoContested4/Cage2/Cage2.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</objects>
+			<isSolo>true</isSolo>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<customName href="" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>true</isInternal>
+			<objects>
+				<Item href="/Items/InteractiveObjects/ArchipelagoContested4/Cage3/Cage3.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</objects>
+			<isSolo>true</isSolo>
+		</Item>
+	</counters>
+	<lootTable>
+		<Item>
+			<lootable href="/Characters/Orc_male/Instances/ArchipelagoContested4/Cultist_Astral_Lake.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<item href="/Items/QuestItems/ArchipelagoContested4/Key_Cage1/Key_Cage1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<chance>0.50625</chance>
+			<minNumber>1</minNumber>
+			<maxNumber>1</maxNumber>
+			<isForAll>false</isForAll>
+		</Item>
+	</lootTable>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentSelf">
+			<trigger href="CheckBag.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+			<detachesOnDeath>false</detachesOnDeath>
+		</Item>
+	</triggerAgents>
+	<reward>
+		<experience>14</experience>
+		<money>3084</money>
+		<reputations>
+			<Item>
+				<faction href="/World/Factions/Empire_Keepers.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<value>250</value>
+			</Item>
+		</reputations>
+		<alternativeItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested4/AC4_Quest_Empire_CmPlatePants39Phys.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested4/AC4_Quest_Empire_CmPlatePants39MagHealer.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested4/AC4_Quest_Empire_CmLeatherPants39Phys.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested4/AC4_Quest_Empire_CmLeatherPants39Mag.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested4/AC4_Quest_Empire_CmClothPants39Mag.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</alternativeItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Q_27e</internalName>
+	<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4/ArchipelagoContested4.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>38</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

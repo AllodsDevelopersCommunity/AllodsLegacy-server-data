@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>260440066</resourceId>
+	</Header>
+	<name href="Summer_EventTeleport0_1.(Cue).name.txt" />
+	<text href="Summer_EventTeleport0_1_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+			<rule href="/Mechanics/Rules/SummerEvent/TeleporstToIsland/Can_Teleport.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.resources.ResourceItem">
+			<item href="/Items/QuestItems/Tropical_Atoll/TicketsSummerEvent_Ticket.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+								<unlock href="/Mechanics/Unlocks/Locations/Kania/TeleportLocations/KaniaCapital.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+								<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/ZE1_Unlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+							</Item>
+						</predicates>
+					</predicate>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateFaction">
+							<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+							<unlock href="/Mechanics/Unlocks/Locations/Kania/TeleportLocations/KaniaCapital.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</Item>
+					</impacts>
+					<elseImpacts>
+						<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+							<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/ZE1_Unlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</Item>
+					</elseImpacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>TropicalHome</scriptID>
+							<map href="/Maps/Tropical_Atoll/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<nextCues>
+		<Item href="Summer_EventTeleport0_0.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

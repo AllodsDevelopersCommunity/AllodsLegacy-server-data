@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>301355009</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic7.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>44.41875</value>
+			<scaler>IntSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Mage/Gust.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/MindExplosion.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>15000</duration>
+			<group href="" />
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<hideText>false</hideText>
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<hideText>false</hideText>
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<consumeStacks>0</consumeStacks>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+						<hideText>false</hideText>
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+						<checkHelpful>false</checkHelpful>
+						<checkHarmful>true</checkHarmful>
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateAffectedByMasterContact">
+				<hideText>false</hideText>
+				<checkContactType>true</checkContactType>
+				<contactType>Crude</contactType>
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>17</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<threatMultiplier>1</threatMultiplier>
+				<minDamage>44.41875</minDamage>
+				<maxDamage>44.41875</maxDamage>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.MagicScaler">
+							<stat>IS_Intellect</stat>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+							<ability href="/Mechanics/Spells/PsionicNew/Abilities/MindWipeBlastDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<mul>0.05</mul>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+							<ability href="/Mechanics/Spells/PsionicNew/Abilities/SameContacts/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<mul>0.1</mul>
+						</Item>
+					</scalers>
+				</scaler>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>40</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>298345490</resourceId>
+	</Header>
+	<Name href="SelfBuff.(BuffResource)_Name.txt" />
+	<visScript href="/Spells/VisScripts/AstralMobs/Craken/SelfBuff_Shield_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="SelfBuff.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.EffectShipDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactBunchesAround">
+					<radius>750</radius>
+					<impacts>
+						<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+							<damage type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+										<damage>500</damage>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+										<value type="gameMechanics.elements.calcers.FloatData">
+											<value>1.33</value>
+										</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+								</calcers>
+							</damage>
+							<damageType>SHADOW</damageType>
+							<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.ship.ShipFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>200</radius>
+					</distributor>
+					<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>15000</duration>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

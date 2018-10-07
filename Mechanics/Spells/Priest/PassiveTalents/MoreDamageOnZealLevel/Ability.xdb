@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>196080689</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Paladin/CrusaderStrikeUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Priest/Aspects/AspectOfControl/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Priest/ZealBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<tick var="tick" />
+					<initialDelay>-1</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/Priest/Aspects/AspectOfControl/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Mechanics/Spells/Priest/Aspects/AspectOfControl/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

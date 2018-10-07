@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart />
+	<wholeCasting type="VisActionList">
+		<preconditional>true</preconditional>
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureAnimationAction">
+								<animations>
+									<Item>dodge</Item>
+								</animations>
+								<advanced>
+									<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+								</advanced>
+							</Item>
+							<Item type="CreatureAnimationAction">
+								<mode>LOOP</mode>
+								<animations>
+									<Item>idle</Item>
+								</animations>
+								<advanced>
+									<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+									<stopIfMoved>true</stopIfMoved>
+								</advanced>
+							</Item>
+						</elements>
+					</Item>
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/MountSpider_FixatingChannel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>15</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<member>Mount</member>
+									<locatorName>Slot_FX</locatorName>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_Global</locator>
+									<member>Assaulter</member>
+								</endPoint>
+								<fadeInTime>100</fadeInTime>
+								<fadeOutTime>200</fadeOutTime>
+								<velocity>40</velocity>
+								<multyTargetMode>Umbrella</multyTargetMode>
+								<secondaryTargetParams>
+									<fxLength>20</fxLength>
+									<offendTime type="EffectOffendConstDelay" />
+								</secondaryTargetParams>
+							</Item>
+							<Item type="VisActionList">
+								<elements>
+									<Item type="VisActionDelay">
+										<time>300</time>
+									</Item>
+									<Item type="VisActionList">
+										<play>Simultaneously</play>
+										<playWhile type="VisActionDelay">
+											<time>6000</time>
+										</playWhile>
+										<elements>
+											<Item type="CreatureEffectsOnTarget">
+												<visualEffects>
+													<Item>
+														<effectFx href="/Spells/FX/Mobs/MountSpider_FixatingChannelEnd.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+														<fadeOutTime>300</fadeOutTime>
+														<locator>Slot_Global</locator>
+														<member>Assaulter</member>
+													</Item>
+												</visualEffects>
+											</Item>
+										</elements>
+									</Item>
+								</elements>
+							</Item>
+							<Item type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="Sound3DAction">
+										<sound>
+											<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+											<name>spells/Mount/MountZemSpider/Hook</name>
+										</sound>
+									</Item>
+								</elements>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch />
+</SpellVisScripts>

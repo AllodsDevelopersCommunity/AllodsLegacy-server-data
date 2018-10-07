@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>297932818</resourceId>
+	</Header>
+	<Name href="EfreetShieldBuff.(BuffResource)_Name.txt" />
+	<Description href="EfreetShieldBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/Firewall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="AI35EfreetShieldVis.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="BuffName.txt" />
+	<descTemplate href="BuffDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+					<spell href="DamageShieldSpell.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthCalcer type="gameMechanics.constructor.basicElements.ScalerCalcer">
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.MagicScaler" />
+						<Item type="gameMechanics.elements.scalers.OffensiveRunesScaler" />
+					</scalers>
+				</scaler>
+				<value>20</value>
+			</healthCalcer>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="CountingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<damagePredicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</damagePredicates>
+			<instantRegenOnDeath>true</instantRegenOnDeath>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<stackLimit>0</stackLimit>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>208265244</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>85</radius>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Inst_DeadCity/UndeadBoss/AuraOfDeath/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Inst_DeadCity/UndeadBoss/AuraOfDeath/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/Inst_DeadCity/UndeadBoss/AuraOfDeath/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>150</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Spells/Inst_DeadCity/UndeadBoss/AuraOfDeath/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

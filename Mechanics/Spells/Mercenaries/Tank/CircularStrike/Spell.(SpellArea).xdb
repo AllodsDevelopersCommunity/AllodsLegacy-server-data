@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>283510790</resourceId>
+	</Header>
+	<Name href="Spell.(SpellArea)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicMindShield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/SweepingSlam.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell.(SpellArea)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>1200</prepareDuration>
+	<needLos>false</needLos>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>40000</duration>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>60</mana>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>2</multiplier>
+						</durationScaler>
+					</Item>
+				</impactsOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>28</minDamage>
+				<maxDamage>29</maxDamage>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>12</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

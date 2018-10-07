@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>305273927</resourceId>
+	</Header>
+	<name href="ZC7_NPC_Newbie_Cue_01.txt" />
+	<text href="ZC7_NPC_Newbie_Cue_01.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateBinaryWrapper">
+						<master type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+						<slave type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+						<binary type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+							<buff href="/Mechanics/Spells/QuestSpells/ZC7_Immortality/ZC7_Immortality.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</binary>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZC7/ZC7_L_1_10/ZC7_L_1_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="/World/Quests/ZC7/ZC7_L_1_10/ZC7_L_1_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="/World/Quests/ZC7/ZC7_L_1_10/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>3</value>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+					<faction href="/World/Factions/ZoneContested7/ZC7_Aviak_newbie_evil.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZC7/ZC7_L_1_10/ZC7_L_1_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ZC7/ZC7_L_1_10/ZC7_L_1_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/World/Quests/ZC7/ZC7_L_1_10/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>2</value>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.AttachAbility">
+							<ability href="/Mechanics/Spells/QuestSpells/ZC7_Immortality/ZC7_NPC_Newbie.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+									<radius>50</radius>
+									<affectPets>true</affectPets>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ZC7/ZC7_L_1_10/zc7_aviak_noob_resolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/World/Quests/ZC7/ZC7_L_1_10/VisualBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativePos" />
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+							<trigger href="/World/Quests/ZC7/ZC7_L_1_10/ZC7_L_1_10_TriggerAgent.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+									<radius>50</radius>
+									<affectPets>true</affectPets>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ZC7/ZC7_L_1_10/ZC7_L_1_10_buff_agent_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+					<object href="/Characters/Undead_male/Instances/ZC7/ZC7_L_1_10_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

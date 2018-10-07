@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.item.ItemResource>
+	<Header>
+		<resourceId>357744640</resourceId>
+		<Variables>
+			<unlockCoeff>0.00833</unlockCoeff>
+			<maxUnlock>10</maxUnlock>
+			<nerfUnlock>10</nerfUnlock>
+			<minUnlock>3</minUnlock>
+		</Variables>
+	</Header>
+	<description href="UnlockMap_New.Description.txt" />
+	<image href="/Interface/Icons/Misc/Papers/PapersSecret.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<StackCount>1</StackCount>
+	<position>1</position>
+	<visualElement href="" />
+	<nameChecked>false</nameChecked>
+	<canBeDeposited>false</canBeDeposited>
+	<slot>UNDRESSABLE</slot>
+	<itemClass href="/Mechanics/ItemClasses/Other.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+	<functionalPart type="itemService.avatar.itemBag.ItemTakeActions">
+		<actions>
+			<Item type="itemService.elements.components.ItemTakeActionImpacts">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateGreater">
+										<lhs type="gameMechanics.elements.calcers.FloatData">
+											<value var="maxUnlock" />
+										</lhs>
+										<rhs type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+										<threshold>0</threshold>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateGreater">
+											<lhs type="gameMechanics.elements.calcers.FloatData">
+												<value var="minUnlock" />
+											</lhs>
+											<rhs type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+											<threshold>0</threshold>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+								<operation type="gameMechanics.elements.impacts.ChangeAstralUnlock">
+									<delta type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.CalcerMul">
+												<calcers>
+													<Item type="gameMechanics.elements.calcers.FloatData">
+														<value var="unlockCoeff" />
+													</Item>
+													<Item type="gameMechanics.elements.calcers.CalcerIf">
+														<predicate type="gameMechanics.elements.predicates.PredicateGreater">
+															<lhs type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+															<rhs type="gameMechanics.elements.calcers.FloatData">
+																<value var="nerfUnlock" />
+															</rhs>
+														</predicate>
+														<calcerIf type="gameMechanics.elements.calcers.FloatData">
+															<value>0.666667</value>
+														</calcerIf>
+														<calcerElse type="gameMechanics.elements.calcers.FloatData">
+															<value>1</value>
+														</calcerElse>
+													</Item>
+												</calcers>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.InverseCalcer">
+												<value type="gameMechanics.elements.calcers.CalcerMul">
+													<calcers>
+														<Item type="gameMechanics.elements.calcers.FloatData">
+															<value>0.5</value>
+														</Item>
+														<Item type="gameMechanics.elements.calcers.CalcerSum">
+															<summands>
+																<Item type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+																<Item type="gameMechanics.elements.calcers.FloatData">
+																	<value>-3.5</value>
+																</Item>
+															</summands>
+														</Item>
+													</calcers>
+												</value>
+											</Item>
+										</calcers>
+									</delta>
+								</operation>
+								<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</actions>
+	</functionalPart>
+	<level>1</level>
+	<requiredLevel>1</requiredLevel>
+	<spell href="" />
+	<stackLimit>20</stackLimit>
+	<quality href="/Mechanics/ItemQualities/Legendary.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+	<binding>BindOnPickup</binding>
+	<lifeLengthCap>604800000</lifeLengthCap>
+	<name href="UnlockMap_New.txt" />
+	<includeInBoxes>false</includeInBoxes>
+	<price type="gameMechanics.constructor.schemes.item.price.ItemPriceMoney">
+		<sellPrice>-1</sellPrice>
+		<buyPrice>-1</buyPrice>
+	</price>
+	<customBuyPrice>true</customBuyPrice>
+	<customSellPrice>true</customSellPrice>
+</gameMechanics.constructor.schemes.item.ItemResource>

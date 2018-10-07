@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>342129668</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Priest/Providence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/Priest_Providence_03.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>0.45</scale>
+			<fadeInTime>300</fadeInTime>
+			<fadeOutTime>300</fadeOutTime>
+			<locator>Slot_TopFX</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+					<buff hrefvar="buff" />
+					<resetTimer>false</resetTimer>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/TrinketGTHealing.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactHeal">
+					<heal var="heal" />
+					<threatMultiplier>1</threatMultiplier>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</scaler>
+					<mode>Default</mode>
+					<considerOutgoingModifiers>true</considerOutgoingModifiers>
+				</Item>
+			</impacts>
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>12</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups />
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.item.ItemResource>
+	<Header>
+		<resourceId>739832519</resourceId>
+	</Header>
+	<itemClass href="/Mechanics/ItemClasses/Other.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+	<functionalPart type="itemService.avatar.itemBag.ItemTakeActions">
+		<actions>
+			<Item type="itemService.elements.components.ItemTakeActionImpacts">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="WinSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="LooseSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="WinSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="LooseSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+										<buff href="WinSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<range>
+											<max>20</max>
+										</range>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.RandomImpact">
+										<entries>
+											<Item>
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+														<buff href="WinSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<delta type="gameMechanics.elements.calcers.FloatData">
+															<value>1</value>
+														</delta>
+														<attachIfNotExist>true</attachIfNotExist>
+													</Item>
+												</impacts>
+												<chance>0.9</chance>
+											</Item>
+											<Item>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.BuffDetacher">
+														<buff href="WinSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+												<chance>0.1</chance>
+											</Item>
+										</entries>
+									</Item>
+								</impactsIf>
+								<impactsElse>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="WinSeria.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsElse>
+							</Item>
+						</impactsElse>
+					</Item>
+				</impacts>
+			</Item>
+		</actions>
+	</functionalPart>
+	<quality href="/Mechanics/ItemQualities/Common.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+</gameMechanics.constructor.schemes.item.ItemResource>

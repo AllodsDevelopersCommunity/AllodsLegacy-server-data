@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>274104323</resourceId>
+	</Header>
+	<Name href="UseNet.(SpellArea)01_Name.txt" />
+	<Description href="CrabNetUseSpell.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/CrabNet.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="UseNet.(SpellArea)01_Name.txt.template" />
+	<descTemplate href="CrabNetUseSpell.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>45</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/IllusionWorld/ZC6_L_2_add1/ZC6_L_2_add1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/IllusionWorld/Zones/ZC6_IllusionWorld_05.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+							<item href="/Items/QuestItems/IllusionWorld/Crab/Crab.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</item>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>100</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.Disintegrate" />
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Crab/Instances/IllusionWorld/ZC6_Crab_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<speed>10</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>8</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

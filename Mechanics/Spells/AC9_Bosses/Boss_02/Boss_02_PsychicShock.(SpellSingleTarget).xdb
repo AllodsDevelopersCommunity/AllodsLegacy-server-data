@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>251238402</resourceId>
+	</Header>
+	<Name href="Spell_Name_PsychicShock.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicMindStab.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/MindFlyer_PsychicShock.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/Creatures/MindFlayer/PsychicShock/Spell_Name.txt.template" />
+	<descTemplate href="/Mechanics/Spells/Creatures/MindFlayer/PsychicShock/Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<threatMultiplier>1</threatMultiplier>
+				<minDamage>30</minDamage>
+				<maxDamage>30</maxDamage>
+				<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.IncrementMana">
+							<manaType>Mana</manaType>
+							<amount>-40</amount>
+							<threatMultiplier>1</threatMultiplier>
+							<scaler type="gameMechanics.elements.scalers.ManaLevelScaler" />
+						</Item>
+					</impactsIf>
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler">
+					<stat>IS_Intellect</stat>
+				</scaler>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>40340</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline>IE1_mainLine</plotline>
+	<image href="Quest4_1.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<canCancel>false</canCancel>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/Room06.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="1398.380005" y="1292.739990" z="16.160000" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_male/Instances/InstEmpire1/Mage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/InstEmpire1/Lazor/Lazor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/Tutorial_08_InventoryItemUse.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+			</impacts>
+			<spawnResource href="/Maps/Inst_EmpireStart/SpawnTables/InstEmpire1/FireElemental3_3.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+			</impacts>
+			<spawnResource href="/Maps/Inst_EmpireStart/SpawnTables/InstEmpire1/FireElemental3_3_Boss.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+			<mob>
+				<scriptID>IE1_StarPom02</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+			<mob>
+				<scriptID>IE1_Captain02</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+			<impacts>
+				<Item type="gameMechanics.elements.device.DoorSwitch">
+					<switchType>Close</switchType>
+				</Item>
+			</impacts>
+			<device>
+				<scriptID>ES_Door10</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<path>
+								<Item>
+									<scriptID>IE1_StarPom02_Path</scriptID>
+									<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>23000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Characters/Hadagan_female/Instances/InstEmpire1/Say.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_17_3d_Bubble0.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+									<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+											<msg href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_17_Chat0.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>IE1_StarPom02</scriptID>
+						<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<path>
+								<Item>
+									<scriptID>IE1_Captain02_Path</scriptID>
+									<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>10000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_17_3d.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>9000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_19_3d.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>11000</delay>
+											<limit>1</limit>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+													<newMobWorld href="/Characters/Orc_female/Instances/InstEmpire1/Captain_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												</Item>
+											</impacts>
+											<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Characters/Hadagan_female/Instances/InstEmpire1/Say.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>8000</delay>
+											<limit>1</limit>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/Characters/Hadagan_female/Instances/InstEmpire1/Say.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_19_3d_Bubble0.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+													<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+															<msg href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_19_0Chat.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+											<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+											<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+													<msg href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/Text_CaptainSpeech3.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_19_3d_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Characters/Hadagan_female/Instances/InstEmpire1/Say.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5500</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_18.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+									<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+											<msg href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/Text_CaptainSpeech2.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_17_3d_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_16_3d.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+									<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+											<msg href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/Text_CaptainSpeech1.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_16_3d_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>IE1_Captain02</scriptID>
+						<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/InstEmpire1/Quest3_2/Quest3_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/Room06.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="1396.000000" y="1296.400024" z="16.299999" />
+					<isIndoor>false</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<relatedItems>
+				<Item href="/Items/QuestItems/InstEmpire1/Lazor/Lazor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<customName href="CounterCustomName_2.txt" />
+			<showCounterValue>true</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/Room06.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="1396.500000" y="1311.800049" z="17.100000" />
+					<isIndoor>false</isIndoor>
+					<radius>15</radius>
+				</Item>
+			</locations>
+			<limit>3</limit>
+			<isInternal>false</isInternal>
+			<objects>
+				<Item href="/Creatures/FireElemental/Instances/InstEmpire1/FireElemental3_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<Item href="/Creatures/FireElemental/Instances/InstEmpire1/FireElemental3_3_Boss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</objects>
+		</Item>
+	</counters>
+	<triggerAgents />
+	<reward>
+		<experience>12</experience>
+		<money>0</money>
+		<reputations />
+		<alternativeItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/StartInstRewardEmpire_WeaponBow.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/StartInstRewardEmpire_WeaponWand.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</alternativeItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Quest4_1</internalName>
+	<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/InstEmpire1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>3</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

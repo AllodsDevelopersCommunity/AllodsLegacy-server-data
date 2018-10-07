@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>267161611</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<radius>50</radius>
+			<visObj>/World/Igsh/Igsh3/Ships_Graveyard/Models/Ship_Broken_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObj>
+			<name>/Mechanics/ObjectTemplates/AstralWreck.txt</name>
+			<description>/Mechanics/ObjectTemplates/AstralWreckDesc.txt</description>
+			<image>/Interface/Ingame/ContextAstralMap/AstralHubMark/ShipAbolished.(UISingleTexture).xdb#xpointer(/UISingleTexture)</image>
+			<scanerPoi />
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj hrefvar="visObj" />
+			<scale>1</scale>
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name hrefvar="name" />
+			<description hrefvar="description" />
+			<image hrefvar="image" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius var="radius" />
+			<impactsIn>
+				<Item type="gameMechanics.world.ship.elements.ImpactGiveLoot" />
+			</impactsIn>
+			<impactsOnSelfIn>
+				<Item type="gameMechanics.world.astralObjectsInteractions.ImpactSwitchAstralObject">
+					<enabled>false</enabled>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>0</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOnSelfIn>
+		</Item>
+	</effects>
+	<impactsSpawn />
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

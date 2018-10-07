@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>285890579</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<cost />
+		</Variables>
+	</Header>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceInsight">
+				<amount type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value var="cost" />
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerExp">
+							<base>2</base>
+							<powCalc type="gameMechanics.world.device.CalcerTechLevelDelta" />
+						</Item>
+					</calcers>
+				</amount>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.world.device.scaner.ImpactScanPOI">
+				<finder type="gameMechanics.world.device.scaner.IslandPOIFinder">
+					<failCause>ScanIslandNotFound</failCause>
+				</finder>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="ActionPlotRoutePrototype.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

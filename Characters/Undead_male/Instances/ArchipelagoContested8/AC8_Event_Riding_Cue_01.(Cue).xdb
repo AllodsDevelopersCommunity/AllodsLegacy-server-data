@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>246765659</resourceId>
+	</Header>
+	<name href="AC8_Event_Riding_Cue_01.txt" />
+	<text href="AC8_Event_Riding_Cue_01.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+					<rule href="/Mechanics/Rules/ArchipelagoContested8/AC8_Event_Riding/Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+					<rule href="/Mechanics/Rules/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>3000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/CountId_10.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/QuestSpells/AC8/AC8_Willowisp/AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>500</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactResetActiveAction" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+		<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+			<group href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivate">
+			<group href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>169376802</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/MageIceStormAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>4000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<radius>55</radius>
+			<affectGroup>Enemies</affectGroup>
+			<affectHolder>true</affectHolder>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+							<time>1500</time>
+							<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+			<targetsLimit>0</targetsLimit>
+		</Item>
+	</impactsOnStart>
+</gameMechanics.world.projectile.ProjectileResource>

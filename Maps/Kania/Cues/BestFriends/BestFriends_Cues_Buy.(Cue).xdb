@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>358363154</resourceId>
+	</Header>
+	<name href="BestFriends_Cues_Buy.(Cue).Name.txt" />
+	<text href="BestFriends_Cues_Buy.(Cue).Text.txt" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>buyPrice</alias>
+			<calcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.MoneyIncomeOnLevelCalcer" />
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value>3.1</value>
+				</calcerFloat>
+			</calcer>
+		</Item>
+	</data>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.IntConstantValue">
+				<value>6</value>
+			</minLevel>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateHasBestFriends">
+				<count>2</count>
+			</predicate>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.MoneyIncomeOnLevelCalcer" />
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value>3.1</value>
+				</calcerFloat>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+			<item href="/Items/QuestItems/ZoneLeague1/BestFriends/MakeFriendsItem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStartQuiz">
+					<question href="BestFriends_Cues_Buy_Question.(Question).xdb#xpointer(/gameMechanics.world.quiz.Question)" />
+					<participants type="gameMechanics.elements.addresseeFinders.AddressesCalcerSingle">
+						<calcer type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+					</participants>
+					<resultsHandler type="gameMechanics.elements.common.SingleResultHandler">
+						<impactsOnSuccess>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+										<lhs type="gameMechanics.elements.calcers.CalcerLongParam">
+											<paramName>choice</paramName>
+										</lhs>
+										<rhs type="gameMechanics.elements.calcers.LongData">
+											<value>0</value>
+										</rhs>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+												<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+													<calcerLong type="gameMechanics.elements.calcers.MoneyIncomeOnLevelCalcer" />
+													<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+														<value>-3.1</value>
+													</calcerFloat>
+												</sumCalcer>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+												<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+													<item href="/Items/QuestItems/ZoneLeague1/BestFriends/MakeFriendsItem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												</item>
+											</Item>
+										</impacts>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOnSuccess>
+					</resultsHandler>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

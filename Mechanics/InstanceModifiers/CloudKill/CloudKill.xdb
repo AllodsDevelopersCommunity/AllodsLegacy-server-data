@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>271798274</resourceId>
+	</Header>
+	<name href="CloudKill.txt" />
+	<description href="CloudKill.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/ThePoisonousCloud.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+							<actions>
+								<Item href="ContextSpell1/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<Item href="ExhalationContextSpell/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							</actions>
+						</Item>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<stacks type="gameMechanics.elements.calcers.FloatData">
+										<value>6</value>
+									</stacks>
+								</Item>
+							</impactsOn>
+						</Item>
+						<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="BreathHoldBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="RespireBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<tick>6000</tick>
+							<initialDelay>-1</initialDelay>
+						</Item>
+						<Item type="gameMechanics.elements.effects.LayeredHealthTrigger">
+							<layers>
+								<Item>
+									<percent>0.001</percent>
+									<mechanics>
+										<effectsWhileOff>
+											<Item type="gameMechanics.elements.effects.Switch">
+												<impactsOn>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="ResurrectShield/ResurrestShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOn>
+											</Item>
+										</effectsWhileOff>
+									</mechanics>
+								</Item>
+							</layers>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<cellEffects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactRandomAvatarsOnCell">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+							<projectileData>
+								<moveType type="gameMechanics.world.projectile.MoveTypeDisorient">
+									<radius>10</radius>
+									<destination type="gameMechanics.map.destination.RelativeTrailPos">
+										<center type="gameMechanics.map.destination.RelativeRotatePos">
+											<base type="gameMechanics.map.destination.RelativePos" />
+											<offset>10</offset>
+										</center>
+										<offset x="0" y="0" z="0" />
+									</destination>
+								</moveType>
+								<resource
+										href="Projectile.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+							</projectileData>
+						</Item>
+					</impacts>
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+				</Item>
+			</impacts>
+			<tick>90000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</cellEffects>
+	<weight>1</weight>
+</gameMechanics.map.basicElements.MapModifierResource>

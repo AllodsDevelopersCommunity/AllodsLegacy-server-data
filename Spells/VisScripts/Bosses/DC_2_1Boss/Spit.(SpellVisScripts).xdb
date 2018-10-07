@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="CreatureAnimationAction">
+		<mode>LOOP</mode>
+		<animations>
+			<Item>readySpell</Item>
+		</animations>
+		<advanced>
+			<turnToTarget>NO_TURN</turnToTarget>
+		</advanced>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/ReadySpellDirectAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>50</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>Slot_Special01</locatorName>
+					</Item>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/ReadySpellDirectAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>50</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>Slot_Special02</locatorName>
+					</Item>
+					<Item>
+						<effectFx href="/Spells/FX/Mobs/DC_1BossDemon_ReadySpell.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>1</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>Slot_Special01</locatorName>
+					</Item>
+					<Item>
+						<delay>150</delay>
+						<effectFx href="/Spells/FX/Mobs/DC_1BossDemon_RReadySpell.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>Slot_Special02</locatorName>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>attack</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item skiped="" />
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionRandom">
+								<elements>
+									<Item>
+										<action type="CreatureProjectileAction">
+											<projectileFx href="/Spells/FX/Mobs/DC_1BossDemon_SpitProjectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<explosionFx href="/Spells/FX/Spells/HitAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<pointOnCaster type="VisPointLocator">
+												<locator>FROM_LOCATOR_NAME</locator>
+												<locatorName>Slot_Special01</locatorName>
+											</pointOnCaster>
+											<pointOnTarget type="VisPointLocator">
+												<locator>Slot_FX</locator>
+												<member>Mount</member>
+											</pointOnTarget>
+											<offendTime type="EffectOffendConstDelay" />
+										</action>
+									</Item>
+									<Item>
+										<action type="CreatureProjectileAction">
+											<projectileFx href="/Spells/FX/Mobs/DC_1BossDemon_SpitProjectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<explosionFx href="/Spells/FX/Spells/HitAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<pointOnCaster type="VisPointLocator">
+												<locator>FROM_LOCATOR_NAME</locator>
+												<locatorName>Slot_Special02</locatorName>
+											</pointOnCaster>
+											<pointOnTarget type="VisPointLocator">
+												<locator>Slot_FX</locator>
+												<member>Mount</member>
+											</pointOnTarget>
+											<offendTime type="EffectOffendConstDelay" />
+										</action>
+									</Item>
+								</elements>
+							</Item>
+							<Item type="CreatureVisActionStartThrow" />
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

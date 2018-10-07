@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>333697070</resourceId>
+	</Header>
+	<Name href="MegawarPetOwner.(BuffResource)_Name.txt" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="MegawarPetOwner.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<personalPlane>true</personalPlane>
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<personalPlane>true</personalPlane>
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<personalPlane>true</personalPlane>
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/NoRegenSignaled.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectGroup>Friends</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+									<group href="/Mechanics/Spells/Groups/MercRegen.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="MegawarPet.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</filter>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/Mercenaries/Controls/NoRegenSignaled.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<stackLimit>5</stackLimit>
+	<isHelpful>true</isHelpful>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>238173198</resourceId>
+	</Header>
+	<Name href="/World/Quests/ArchipelagoContested8/AC8_Fin2/AC8_Fin2_Buff.txt" />
+	<Description href="/World/Quests/ArchipelagoContested8/AC8_Fin2/AC8_Fin2_Buff.Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MirrorImage.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="/World/Quests/ArchipelagoContested8/AC8_Fin2/AC8_Fin2_Buff.txt" />
+	<descTemplate href="/World/Quests/ArchipelagoContested8/AC8_Fin2/AC8_Fin2_Buff.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllSpells" />
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_Fin2/AC8_Fin2_Buff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<mob>
+						<scriptID>AC8_Sarn</scriptID>
+						<map href="/Maps/ArchipelagoContested8_inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<device>
+						<scriptID>AC8_Sarn_D</scriptID>
+						<map href="/Maps/ArchipelagoContested8_inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AC8_1_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/ArchipelagoContested8_inst/Zones/ArchipelagoContested8_inst/ArchipelagoContested8_inst.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AC8_1_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>4000</tick>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>294292488</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<conditions>
+						<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onSlave type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZoneLeague2/Quest7_2/Quest7_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Started</status>
+							</onSlave>
+						</Item>
+					</conditions>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsSelfIfTarget">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZoneLeague2/Quest7_2/Quest7_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Started</status>
+							</predicate>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.RelativePos" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>30000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+										</Item>
+									</impacts>
+									<object href="OwlSpirit10_11.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<targetsLimit>1</targetsLimit>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

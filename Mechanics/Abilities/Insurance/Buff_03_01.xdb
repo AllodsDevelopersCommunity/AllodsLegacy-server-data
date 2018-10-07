@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>298893324</resourceId>
+	</Header>
+	<Name href="Buff_03__Name.txt" />
+	<Description href="" />
+	<image href="/Interface/Icons/Misc/Itemmall/Insurance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Buff_03__Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.PartiallyScaledMagicDamage">
+					<element>HOLY</element>
+					<statsConvertor>
+						<intuition type="gameMechanics.elements.calcers.CalcerIf">
+							<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+								<manaType>Mana</manaType>
+							</predicate>
+							<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Intuition</stat>
+							</calcerIf>
+							<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Dexterity</stat>
+							</calcerElse>
+						</intuition>
+						<spirit type="gameMechanics.elements.calcers.CalcerIf">
+							<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+								<manaType>Mana</manaType>
+							</predicate>
+							<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Spirit</stat>
+							</calcerIf>
+							<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Might</stat>
+							</calcerElse>
+						</spirit>
+					</statsConvertor>
+					<minDamage>14.214</minDamage>
+					<maxDamage>14.214</maxDamage>
+					<impactOnHitTarget />
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+									<level>9</level>
+									<exponent>1</exponent>
+									<multiplier>0.03</multiplier>
+								</mulCalcer>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.ScalerIf">
+								<condition type="gameMechanics.elements.predicates.PredicateManaCaster">
+									<manaType>Mana</manaType>
+								</condition>
+								<scalerIf type="gameMechanics.elements.scalers.MagicScaler" />
+								<scalerElse type="gameMechanics.elements.scalers.SlotScaler">
+									<slot>MAINHAND</slot>
+								</scalerElse>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.OffensiveRunesScaler" />
+						</scalers>
+					</scaler>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>1000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>255416362</resourceId>
+	</Header>
+	<Name href="AntiDemonArtifact.txt" />
+	<Description href="AntiDemonArtifact.(SpellCasterSelf)_Desc.txt" />
+	<visualScripts href="/Items/QuestItems/InstEmpire1/Lazor/Lazor.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="AntiDemonArtifact.txt" />
+	<descTemplate href="AntiDemonArtifact.(SpellCasterSelf)_Desc.txt.template" />
+	<prepareDuration>7000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/Hadagan_Sanatorium/Quest_2_4/Quest_2_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/Hadagan_Sanatorium/Quest_2_5/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/CannonFire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/Hadagan_Sanatorium/Quest_2_5/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleProjectile">
+					<projectile>
+						<scriptID>ShipHelper02</scriptID>
+						<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</projectile>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

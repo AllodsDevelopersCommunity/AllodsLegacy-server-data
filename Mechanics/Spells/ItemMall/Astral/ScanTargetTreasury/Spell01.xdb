@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>156671004</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="/Mechanics/Ships/Reactor/Coolant/Test-500/Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageIceInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.device.PredicateUsingDevice">
+				<type href="/Mechanics/Ships/UsableDeviceTypes/Navigator.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.PredicateOnShipWithTarget" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+				<addresseeFinder type="gameMechanics.world.device.AddresseeFinderUsingDevice" />
+				<impacts>
+					<Item type="gameMechanics.world.device.navigator.ImpactGetTargetLootInfo" />
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739817837</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/MountCarpetAcceleration.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Mount/Acceleration.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectSetMountSpeed">
+			<value>0.0195</value>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectForceMove">
+			<syncPeriod>400</syncPeriod>
+			<destinations>
+				<Item type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.SelfPosDestination" />
+					<offset>100</offset>
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+					<turn>AsBase</turn>
+				</Item>
+			</destinations>
+			<impactsOnArrived>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOnArrived>
+			<impactsOnPathNotFound>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOnPathNotFound>
+		</Item>
+	</effects>
+	<duration>2000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

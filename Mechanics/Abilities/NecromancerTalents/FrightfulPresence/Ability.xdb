@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>88844291</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Misc/Mobparts/SkullAnimal.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.IncrementMana">
+					<manaType>Mana</manaType>
+					<amount>0</amount>
+					<threatMultiplier>0</threatMultiplier>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<impactsToOffender>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value var="value" />
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>2</multiplier>
+							</durationScaler>
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsToOffender>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateIsAE" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateDistance">
+					<maxDistToOffender>10</maxDistToOffender>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

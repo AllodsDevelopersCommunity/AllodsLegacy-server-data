@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>102301699</resourceId>
+	</Header>
+	<isStartInstance>true</isStartInstance>
+	<hasPatches>true</hasPatches>
+	<headParts>
+		<parts>
+			<Item type="mapLoader.parts.PlayerCountResource" />
+			<Item type="mapLoader.parts.MapDestroyerResource">
+				<instanceLifeTime>0</instanceLifeTime>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.EffectSetSaveDeactivated" />
+							<Item type="gameMechanics.elements.effects.EffectSetDisconnectTimeout">
+								<disconnectTime>10800000</disconnectTime>
+							</Item>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+										<group href="/Mechanics/Spells/Groups/StartInstanceBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									</Item>
+								</impactsOff>
+							</Item>
+							<Item type="gameMechanics.elements.effects.HealthTrigger">
+								<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+								<impactsOn>
+									<Item type="gameMechanics.elements.impacts.DisintegrateAvatar" />
+								</impactsOn>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</headParts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.mob.MobCellCountResource">
+				<limit>20</limit>
+			</Item>
+			<Item type="gameMechanics.map.spawn.SummonPoolManager">
+				<globalPool href="/System/GlobalSummonPools/SummonPoolPersonalInstance.xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+			<Item type="gameMechanics.map.spawn.SpawnRateController">
+				<limit>200</limit>
+			</Item>
+		</parts>
+	</cellParts>
+	<entrance type="gameMechanics.map.instance.StartInstanceEntrance" />
+	<isExitRequired>true</isExitRequired>
+	<isInvitesAllowed>false</isInvitesAllowed>
+	<prohibitWorldDrop>true</prohibitWorldDrop>
+</mapLoader.MapTemplate>

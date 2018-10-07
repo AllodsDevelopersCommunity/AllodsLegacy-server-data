@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Mob_Projectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>readySpell</PreCastAnimation>
+			<FxProjectile>/Spells/FX/Mobs/GT_8Boss_HolySmite_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+			<FxOnTarget />
+			<LocatorNameOnCaster>Slot_Special01</LocatorNameOnCaster>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<FxOnHands>/Spells/FX/Spells/ReadyAstralSpellFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FxOnCaster>/Spells/FX/Mobs/GT_7Boss_TeleportExplosion_HandFlash.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<HitPostFxOnTarget />
+			<Animation>spellCastDirected</Animation>
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<lockScale>false</lockScale>
+						<scale>2</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>Slot_Special01</locatorName>
+					</Item>
+					<Item>
+						<effectFx href="" />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item skiped="" />
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<scale>7</scale>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="CreatureFixedTimeProjectileAction">
+						<projectileFx hrefvar="FxProjectile" />
+						<explosionFx href="/Spells/FX/Mobs/GT_7Boss_TeleportExplosion_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<isMultyProjectile>true</isMultyProjectile>
+						<theGe>0</theGe>
+						<pointOnCaster type="VisPointLocator">
+							<locator>FROM_LOCATOR_NAME</locator>
+							<locatorName>Slot_Special01</locatorName>
+						</pointOnCaster>
+						<pointOnTarget type="VisPointLocator">
+							<locator>Slot_Global</locator>
+							<locatorName var="LocatorNameOnTarget" />
+						</pointOnTarget>
+						<offendTime type="EffectOffendConstDelay" />
+						<waitDuration>200</waitDuration>
+						<throwDuration>400</throwDuration>
+						<count>1</count>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

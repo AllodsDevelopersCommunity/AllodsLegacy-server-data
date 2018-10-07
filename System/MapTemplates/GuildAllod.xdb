@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>142478337</resourceId>
+	</Header>
+	<hasPatches>true</hasPatches>
+	<headParts>
+		<parts>
+			<Item type="mapLoader.parts.PlayerCountResource" />
+			<Item type="gameMechanics.map.basicElements.MapCountdownResource">
+				<ttl>5</ttl>
+				<evacuator type="gameMechanics.map.basicElements.MapCountdown$NoopAvatarEvacuator" />
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.SetterSightRadius">
+								<maxValue>200</maxValue>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</headParts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.avatar.replicationControl.BalanceObjTypesProportionCell">
+				<shares>
+					<Item>
+						<type>Avatar</type>
+						<share>50</share>
+					</Item>
+					<Item>
+						<type>Mob</type>
+						<share>25</share>
+					</Item>
+					<Item>
+						<type>Device</type>
+						<share>20</share>
+					</Item>
+					<Item>
+						<type>Other</type>
+						<share>20</share>
+					</Item>
+				</shares>
+			</Item>
+			<Item type="gameMechanics.map.spawn.SummonPoolManager">
+				<globalPool href="/System/GlobalSummonPools/SummonPoolLimitedInstance.xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+		</parts>
+	</cellParts>
+	<entrance type="gameMechanics.map.astral.GuildAllodEntrance" />
+	<isExitRequired>true</isExitRequired>
+	<denyCells>true</denyCells>
+	<regularObserverRadiusCap>200</regularObserverRadiusCap>
+</mapLoader.MapTemplate>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>330991622</resourceId>
+	</Header>
+	<Name href="DoT01.(BuffResource)_Name.txt" />
+	<Description href="DoT01.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/ThePoisonousCloud.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/DotPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_BodyFX</locator>
+		</Item>
+	</visualEffects>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="DoT01.(BuffResource)_Name.txt.template" />
+	<descTemplate href="DoT01.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>10</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>75</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>DISEASE</element>
+									<minDamage>25</minDamage>
+									<maxDamage>25</maxDamage>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DoT02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<targetsLimit>10</targetsLimit>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="DoT01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>25000</duration>
+	<stackLimit>10</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

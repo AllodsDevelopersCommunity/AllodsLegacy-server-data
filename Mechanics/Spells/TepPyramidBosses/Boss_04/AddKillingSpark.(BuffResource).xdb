@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>325518336</resourceId>
+	</Header>
+	<image href="/Interface/Icons/Mounts/SpellsMounts/AccumulationPowerSparks.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps>4</jumps>
+			<buff href="AddKillingSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.ClosestAutotarget">
+				<group>All</group>
+				<conditions>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<hideText>true</hideText>
+						<onSlave type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04_Add_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</onSlave>
+					</Item>
+				</conditions>
+			</autotarget>
+			<radius>85</radius>
+			<inCasterRange>false</inCasterRange>
+			<renewingEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="GeneratorSpark.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<calcers>
+								<addressEntries>
+									<Item>
+										<name>caster</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+									<Item>
+										<name>target</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+								</addressEntries>
+							</calcers>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectGroup>Friends</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="SparkCount.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+										<mobs>
+											<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04_Add_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</mobs>
+									</Item>
+								</predicates>
+							</filter>
+						</Item>
+					</impactsOn>
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04_Add_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impactsIf>
+						</Item>
+					</impactsOff>
+				</Item>
+			</renewingEffects>
+		</Item>
+	</effects>
+	<duration>1500</duration>
+	<stackLimit>10</stackLimit>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

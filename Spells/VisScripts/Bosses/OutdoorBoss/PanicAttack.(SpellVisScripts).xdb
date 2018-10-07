@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID />
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<member>Default_Member</member>
+						<locatorName>Slot_Special01</locatorName>
+						<effectFx href="/Spells/FX/Mobs/OutDoorBoss_PanicAttack_Cast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>false</lockScale>
+						<scale>1.3</scale>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<offendTime />
+					</Item>
+					<Item>
+						<delay>200</delay>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<member>Default_Member</member>
+						<locatorName>Slot_Special02</locatorName>
+						<effectFx href="/Spells/FX/Mobs/OutDoorBoss_PanicAttack_Cast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>false</lockScale>
+						<scale>1.3</scale>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+					<Item type="VisActionList">
+						<visActionID />
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<visActionID />
+							<time>100</time>
+						</playWhile>
+						<elements>
+							<Item type="ProceduralEffectVisAction">
+								<visActionID />
+								<timeOff>0.8</timeOff>
+								<timeOn>0.33</timeOn>
+								<priority>0</priority>
+								<proceduralEffect href="/Spells/FX/InterfaceFX/LightningSplash.(ProceduralEffect).xdb#xpointer(/ProceduralEffect)" />
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>specialAttack</Item>
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<animationKeysActionPeriod>
+						<Item>
+							<action type="CreatureTrailAction">
+								<creatureTrail href="/Spells/FX/InterfaceFX/TrailBlue.(TrailTemplate).xdb#xpointer(/TrailTemplate)" />
+								<lengthMSec>350</lengthMSec>
+							</action>
+						</Item>
+					</animationKeysActionPeriod>
+				</advanced>
+			</Item>
+			<Item type="CreatureVisActionStartThrow">
+				<visActionID />
+			</Item>
+			<Item type="CreatureProjectileAction">
+				<visActionID />
+				<projectileFx href="/Spells/FX/Mobs/OutDoorBoss_PanicAttack_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<explosionFx href="/Spells/FX/Mobs/OutDoorBoss_PanicAttack_ProjectileHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<isMultyProjectile>false</isMultyProjectile>
+				<theGe>0</theGe>
+				<pointOnCaster type="VisPointLocator">
+					<shift x="0" y="0" z="0" />
+					<locator>FROM_LOCATOR_NAME</locator>
+					<member>Default_Member</member>
+					<locatorName>Slot_Special03</locatorName>
+					<from>FROM_DEFALUT</from>
+				</pointOnCaster>
+				<pointOnTarget type="VisPointLocator">
+					<shift x="0" y="0" z="0" />
+					<locator>Slot_Global</locator>
+					<member>Default_Member</member>
+					<locatorName />
+					<from>FROM_DEFALUT</from>
+				</pointOnTarget>
+				<isInverted>false</isInverted>
+				<offendTime type="EffectOffendConstDelay">
+					<delay>0</delay>
+				</offendTime>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipBloodFx>true</skipBloodFx>
+		<specialAction type="CreatureRunVisActionResource">
+			<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitLightning02.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

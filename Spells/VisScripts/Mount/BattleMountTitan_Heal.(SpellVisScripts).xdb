@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<animations>
+							<Item>special03</Item>
+						</animations>
+						<advanced>
+							<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+							<offendType>ONEOFFEND_ONETARGET</offendType>
+						</advanced>
+					</Item>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Spells/Titan_Heal_Wave01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<scale>0.9</scale>
+								<fadeOutTime>1000</fadeOutTime>
+								<locator>FROM_LOCATOR_NAME</locator>
+								<member>Mount</member>
+								<locatorName>Hand_L</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx href="/Spells/FX/Mobs/GT_8Boss_HealNoCycle.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<locator>Slot_FX</locator>
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource" />
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

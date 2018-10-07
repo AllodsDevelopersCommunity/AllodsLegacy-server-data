@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>226980866</resourceId>
+	</Header>
+	<minimapLight>
+		<AmbientFactor>0.5</AmbientFactor>
+		<FogStart>100</FogStart>
+		<FogEnd>500</FogEnd>
+		<SunLightYaw>45</SunLightYaw>
+		<SunLightPitch>0</SunLightPitch>
+		<AmbientColor>2017861120</AmbientColor>
+		<DiffuseColor>2017861120</DiffuseColor>
+		<FogColor>2017861120</FogColor>
+		<SpecularColor>0</SpecularColor>
+		<ContourColor>0</ContourColor>
+		<SpecularWaterColor>0</SpecularWaterColor>
+		<WaterGradientStart>-1</WaterGradientStart>
+		<WaterGradientEnd>-1</WaterGradientEnd>
+		<TerrainSpecularColor>0</TerrainSpecularColor>
+		<TerrainContourColor>0</TerrainContourColor>
+	</minimapLight>
+	<name href="Name.txt" />
+	<mapTemplate href="/System/MapTemplates/Continent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects>
+		<Item href="GlobalObjects/Tours/ZC9_7_70_Garinich_Route.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/ZC9_3_70_Demon.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/ZC9_astral_unlock_tours.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+	</globalObjects>
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/RealWorld/ZC9_6_20/ZC9_6_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Finished</status>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/InteractiveObjects/RealWorld/ZC9_Control_panel/ZC9_Control_panel_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsIf>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+						<impactsOff>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Items/InteractiveObjects/RealWorld/ZC9_Control_panel/ZC9_Control_panel_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Items/InteractiveObjects/RealWorld/ZC9_Control_panel/ZC9_Control_panel_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOff>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

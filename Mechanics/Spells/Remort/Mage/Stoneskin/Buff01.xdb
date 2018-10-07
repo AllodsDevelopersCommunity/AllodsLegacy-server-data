@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>221191181</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageStoneskin.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Mage/StoneSkin.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.FixedDamageAbsorber">
+			<elements>
+				<Item>PHYSICAL</Item>
+			</elements>
+			<absorb>36</absorb>
+			<scaler type="gameMechanics.elements.scalers.ScalerIf">
+				<condition type="gameMechanics.elements.predicates.PredicateManaCaster">
+					<manaType>Mana</manaType>
+				</condition>
+				<scalerIf type="gameMechanics.elements.scalers.MagicScaler">
+					<stat>IS_Intellect</stat>
+				</scalerIf>
+				<scalerElse type="gameMechanics.elements.scalers.SlotScaler">
+					<slot>MAINHAND</slot>
+				</scalerElse>
+			</scaler>
+			<damagePredicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</damagePredicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+							<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							<duration>45000</duration>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ForgetSpellTrigger">
+			<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			<anyRank>true</anyRank>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>1800000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>4</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

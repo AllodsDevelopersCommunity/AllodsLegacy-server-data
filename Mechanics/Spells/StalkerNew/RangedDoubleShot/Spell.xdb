@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>250033193</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RangedAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic7.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Stalker/StalkerDoubleshot.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Stalker/DoubleShot.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>500</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>5</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+				<source>Ranged</source>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateEquipped">
+				<dressType>RANGED</dressType>
+				<weaponRequired>true</weaponRequired>
+				<itemClass href="" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateRemote">
+				<range>8</range>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>40</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Ranged</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+					<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+					<threatMultiplier>1</threatMultiplier>
+					<scalerTarget type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+						<buff href="/Mechanics/Spells/StalkerNew/RangedSnipe/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<onlyFromMaster>true</onlyFromMaster>
+						<mul>0.15</mul>
+						<sum>1</sum>
+						<anyRank>false</anyRank>
+					</scalerTarget>
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.PhysicalRangedScaler" />
+							<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+								<ability href="/Mechanics/Spells/StalkerNew/Talents/DoubleShotDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.06</mul>
+							</Item>
+						</scalers>
+					</scaler>
+					<avgDamage var="avgDamage" />
+					<source>Ranged</source>
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>2</value>
+				</count>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

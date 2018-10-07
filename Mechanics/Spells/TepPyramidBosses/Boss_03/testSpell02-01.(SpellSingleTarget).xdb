@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>276325381</resourceId>
+	</Header>
+	<Name href="testSpell02_01.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="testSpell02-1.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="testSpell02_01.(SpellSingleTarget).Name.txt" />
+	<descTemplate href="testSpell02_01.(SpellSingleTarget).Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>6</radius>
+				<affectGroup>Enemies</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="Creature_02_Ability_01_Buff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>ASTRAL</element>
+								<minDamage>45</minDamage>
+								<maxDamage>45</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>ASTRAL</element>
+								<minDamage>15</minDamage>
+								<maxDamage>15</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impactsElse>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.AvatarFilter">
+					<withPet>true</withPet>
+				</filter>
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>30</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

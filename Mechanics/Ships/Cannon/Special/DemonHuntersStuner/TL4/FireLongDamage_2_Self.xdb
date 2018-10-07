@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>276776976</resourceId>
+		<Prototype href="/Mechanics/Ships/Cannon/Fire.Prototype.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Variables>
+			<damageType>LIGHTNING</damageType>
+			<range>450</range>
+			<cooldown>45000</cooldown>
+			<energy>600</energy>
+			<damage>1800</damage>
+			<clientData>/Mechanics/Ships/Cannon/FireAntiDevice_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)</clientData>
+		</Variables>
+	</Header>
+	<Name href="FireLongDamage_2Name.txt" />
+	<Description href="/Mechanics/Ships/Cannon/Fire_Astral_Description.txt" />
+	<descVars>
+		<Item>
+			<name>damage</name>
+			<value>1800</value>
+			<scaler>FormulaUndefined</scaler>
+		</Item>
+		<Item>
+			<name>energy</name>
+			<value>600</value>
+			<scaler>FormulaUndefined</scaler>
+		</Item>
+		<Item>
+			<name>range</name>
+			<value>450</value>
+			<scaler>FormulaUndefined</scaler>
+		</Item>
+		<Item>
+			<name>cooldown</name>
+			<value>45000</value>
+			<scaler>FormulaSeconds</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Mage/MageLightningArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetImpacts>
+			<Item skiped="" />
+			<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+						<predicate type="gameMechanics.world.ship.elements.PredicateIsShip" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/CommonBuffs/AstralMobCCImmunity/CrowdControlImmune.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+						<buff href="AstralMobStun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

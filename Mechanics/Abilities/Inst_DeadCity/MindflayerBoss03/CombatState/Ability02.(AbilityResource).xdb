@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>260709378</resourceId>
+	</Header>
+	<name href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<nameTemplate href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_DeadCity/SpawnTables/Inst_DeadCity/MindflayerBoss03.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/MindFlayers.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Mindflayer03Boss</scriptID>
+									<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+							<object href="/Creatures/DC_Mindflayers/Instances/Inst_DeadCity/MindflayerBoss03_Ghost.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+							<variable href="/Maps/Inst_DeadCity/Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<summand>1</summand>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

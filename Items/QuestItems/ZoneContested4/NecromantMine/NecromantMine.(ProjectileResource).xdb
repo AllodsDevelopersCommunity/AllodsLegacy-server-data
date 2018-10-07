@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>160200870</resourceId>
+	</Header>
+	<visObject href="/World/Generic/Environment/Models/Mine_Box/Mines_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>120000</lifeLengthCap>
+	<plane href="/Mechanics/Planes/Landmine.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRuleGeneric">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Incoming</direction>
+				<plane href="/Mechanics/Planes/Landmine.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.TickableEntityAura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>12</radius>
+			<holderImpactsIn>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>12</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="Blast.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians" />
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+									<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/ZombieWarrior/Instances/ZoneContested4/SummonedZombie.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+					<finalImpactsOnHolder>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</finalImpactsOnHolder>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</holderImpactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

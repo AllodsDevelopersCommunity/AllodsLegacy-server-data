@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>182583298</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital_MainStreet.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="13719.327148" y="6897.145020" z="-9.745060" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Kania_male/Instances/ZoneLeague1/U_V_Guild.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateGuildRight">
+			<memberRight>GMRWearSymobolics</memberRight>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasGuildProgress" />
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<customName href="" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<items>
+				<Item href="/Items/QuestItems/ZoneContested5/SymbOfGlory/SymbOfGlory.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<removeOnAbandon>false</removeOnAbandon>
+		</Item>
+	</counters>
+	<reward>
+		<experience>2</experience>
+		<money>34</money>
+		<guildLoyaltyCalcer type="gameMechanics.elements.calcers.FloatData">
+			<value>10</value>
+		</guildLoyaltyCalcer>
+		<guildAuthorityScaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+			<scalers>
+				<Item type="gameMechanics.elements.scalers.LinearScaler">
+					<multiplier>20</multiplier>
+				</Item>
+				<Item type="gameMechanics.elements.scalers.ScalerIf">
+					<condition type="gameMechanics.elements.predicates.PredicateGuildLevelLesser">
+						<level>15</level>
+					</condition>
+					<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>10</multiplier>
+					</scalerIf>
+					<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>1</multiplier>
+					</scalerElse>
+				</Item>
+			</scalers>
+		</guildAuthorityScaler>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyInstant" />
+	<tutorial>false</tutorial>
+	<internalName>SymbOfGlory_L</internalName>
+	<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>5</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

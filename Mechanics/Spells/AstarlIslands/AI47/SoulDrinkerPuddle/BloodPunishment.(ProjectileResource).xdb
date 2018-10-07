@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>313985029</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/HeroesArena_Cleave_Spike.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<lifeLengthCap>3000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+			<radius>5</radius>
+			<affectGroup>Enemies</affectGroup>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>PHYSICAL</element>
+							<threatMultiplier>0</threatMultiplier>
+							<minDamage>75</minDamage>
+							<maxDamage>75</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+		</Item>
+	</impactsOnStart>
+</gameMechanics.world.projectile.ProjectileResource>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>307645446</resourceId>
+	</Header>
+	<visualScripts href="/Spells/VisScripts/Priest/Resurrection.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<isAggro>false</isAggro>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZC7/ZC7_Crusade_E_5/ZC7_Crusade_E_5.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ZC7/ZC7_Crusade_E_5/ZC7_Crusade_E_5.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/World/Quests/ZC7/ZC7_Crusade_E_5/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									<value>1</value>
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZC7/ZC7_Crusade_L_5/ZC7_Crusade_L_5.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ZC7/ZC7_Crusade_L_5/ZC7_Crusade_L_5.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/World/Quests/ZC7/ZC7_Crusade_L_5/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									<value>1</value>
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/ZC7/ZC7_NPC_Kemal_Fight.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead">
+				<hideText>true</hideText>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZC7/ZC7_Crusade_E_5/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ZC7/ZC7_Crusade_E_5/Kemal_Common_Resolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZC7/ZC7_Crusade_L_5/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="/World/Quests/ZC7/ZC7_Crusade_E_5/Resurrection.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>Kemal</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.Disintegrate" />
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

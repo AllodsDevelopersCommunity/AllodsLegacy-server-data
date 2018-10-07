@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>341615631</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<descVars />
+	<image href="/Interface/Icons/Spells/Paladin/HolyStrikeUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/PowerAttackUpgrade.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics>
+		<cooldown>
+			<duration>500</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+													<multiplier>1.5</multiplier>
+												</durationScaler>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="forgetTarget.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+												<time>1000</time>
+												<impactsOnLand>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOnLand>
+												<distance>15</distance>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="forgetTarget.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>12</minDamage>
+				<maxDamage>13</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

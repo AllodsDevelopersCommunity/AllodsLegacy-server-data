@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>317663237</resourceId>
+	</Header>
+	<name href="FT_ZC7_League.(Cue).Name.txt" />
+	<text href="FT_ZC7_League.(Cue).Text.txt" />
+	<image href="/Interface/Icons/Special/Cues/IconTeleport.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/IllusionWorld/ScriptZones/ZC7_Distortion_League.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZC7/ZC7_L_up2_01/ZC7_L_up2_01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/RealWorld/ZC9_1_100/ZC9_1_100.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>500</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>ZC7_FT_League</scriptID>
+									<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/ZC8/ZC8_1_10_L/CountId_1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

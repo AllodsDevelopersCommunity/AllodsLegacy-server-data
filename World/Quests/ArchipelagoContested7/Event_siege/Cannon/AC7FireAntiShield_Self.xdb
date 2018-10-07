@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>217522176</resourceId>
+	</Header>
+	<Name href="Spell_name.txt" />
+	<Description href="spell_descr.txt" />
+	<image href="/Interface/Icons/Misc/Crafting/HoodAstralCold.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>150</value>
+	</range>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.world.ship.parts.PredicateCannonTargetable" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="/Mechanics/Ships/Cannon/CannonAttack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+				<clientData href="/World/Quests/ArchipelagoContested7/Event_siege/FireAntiShield_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ReturningImpact">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/ArchipelagoContested7/AC7_WS5/QuestGolemChestPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impactsIf>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>GOLEM</scriptID>
+									<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/GolemJunesMid/ArchipelagoContested7/Instances/ArchipelagoContested7/Golem_Reid_Boss.(MobKind)48_48.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.ship.elements.ImpactDeviceHit">
+						<damage type="gameMechanics.elements.calcers.FloatData">
+							<value>50000</value>
+						</damage>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+						<buff href="/Creatures/GolemJunesMid/ArchipelagoContested7/Instances/ArchipelagoContested7/Absorb.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.CannonClosestToRayAutotarget" />
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>150</radius>
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

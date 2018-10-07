@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>276067330</resourceId>
+	</Header>
+	<name href="ElementalReady2.(Cue).Name.txt" />
+	<text href="ElementalReady2.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="EmpireQuest5_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="EmpireQuest5_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+			<radius>40</radius>
+			<affectPets>false</affectPets>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="CountId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<coord x="1" y="1" z="1" />
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<path>
+								<Item>
+									<scriptID>ZC1_FirePath01</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath02</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath03</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath04</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath05</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath06</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath07</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath08</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>ZC1_FirePath</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Items/QuestItems/ZoneContested1/Wood/Wood_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+									<affectPets>false</affectPets>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="WhoIsYourDaddy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="WhoIsYourDaddy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+							<trigger href="ElementalDeath.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+						</Item>
+					</impacts>
+					<object href="/Creatures/FireElemental/Instances/ZoneContested1/FireElementalMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

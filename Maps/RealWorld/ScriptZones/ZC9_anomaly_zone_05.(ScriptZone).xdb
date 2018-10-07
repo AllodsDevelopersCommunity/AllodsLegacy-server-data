@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>341760003</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/RealWorld/ZC9_astral_unlock_03/ZC9_astral_unlock_03.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Items/QuestItems/RealWorld/ZC9_astral_unlock_03_item_01/ZC9_astral_unlock_03_item_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/RealWorld/ZC9_astral_unlock_03/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_anomaly_05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>ZC9_anomaly_05_loc</scriptID>
+							<map href="/Maps/RealWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+							<delay>3000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_anomaly/ZC9_astral_unlock_anomaly_Exploit.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/RealWorld/ZC9_astral_unlock_03/ZC9_anomaly_exploit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Spells/VisScripts/Bosses/DC_2_3Boss/AstralExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>ZC9_astral_unlock_start</scriptID>
+									<map href="/Maps/RealWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/RealWorld/ZC9_astral_unlock_03/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>-4</value>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/RealWorld/ZC9_astral_unlock_03/ZC9_astral_unlock_03_fly_inv.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_anomaly_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_anomaly_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_anomaly_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_anomaly_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_anomaly_05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/InteractiveObjects/RealWorld/ZC9_astral_unlock_Barkas/ZC9_astral_unlock_BarkasFly_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsElse>
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

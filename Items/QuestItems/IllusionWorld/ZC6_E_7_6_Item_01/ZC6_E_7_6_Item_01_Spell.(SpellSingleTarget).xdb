@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>286595072</resourceId>
+	</Header>
+	<Name href="ZC6_E_7_6_Item_01_Spell.txt" />
+	<Description href="ZC6_E_7_6_Item_01_Spell.(SpellSingleTarget)_Desc.txt" />
+	<nameTemplate href="ZC6_E_7_6_Item_01_Spell.txt" />
+	<descTemplate href="ZC6_E_7_6_Item_01_Spell.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>50</level>
+	<prepareDuration>2000</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Cat/Tiger/Instances/IllusionWorld/Leopard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Rhino/Instances/IllusionWorld/ZC6_Tapir50_50.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Eagle/Instances/IllusionWorld/Eagle50_50.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item href="/Items/QuestItems/IllusionWorld/ZC6_E_7_6_item/ZC6_E_7_6_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</item>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="ZC6_E_7_6_Item_01.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

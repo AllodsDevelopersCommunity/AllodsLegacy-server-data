@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>297932836</resourceId>
+	</Header>
+	<Name href="FirePrisonBuff.(BuffResource)_Name.txt" />
+	<Description href="FirePrisonBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageConflagrate.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="BuffName.txt" />
+	<descTemplate href="BuffDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+				<Item>Rotate</Item>
+				<Item>Move</Item>
+				<Item>Move</Item>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.IncomingHealModifier">
+			<priority>Multiplier</priority>
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<radius>5</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>5</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Lamia/Instances/AstralIsle35/FirePrison.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="BuffOnPrison.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="BuffOnPrison.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>329331730</resourceId>
+	</Header>
+	<name href="Ability01.txt" />
+	<nameTemplate href="Ability01.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.2</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>4000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<radius>15</radius>
+									<affectGroup>Enemies</affectGroup>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+											<element>PHYSICAL</element>
+											<minDamage>100</minDamage>
+											<maxDamage>100</maxDamage>
+											<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+											<time>1500</time>
+											<distance>15</distance>
+										</Item>
+									</impacts>
+									<filter type="gameMechanics.constructor.basicElements.FilterOr">
+										<filters>
+											<Item type="gameMechanics.world.creature.AvatarFilter" />
+											<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+												<predicates>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</predicates>
+											</Item>
+										</filters>
+									</filter>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

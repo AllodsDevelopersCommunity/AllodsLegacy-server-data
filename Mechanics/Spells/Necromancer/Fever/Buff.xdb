@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>178347021</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerWanderingFever.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/Fever.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/WarriorV2/SweepingSlam/CABuff/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>DISEASE</element>
+							<threatMultiplier>1</threatMultiplier>
+							<minDamage var="minDamage" />
+							<maxDamage var="maxDamage" />
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.MagicScaler">
+										<stat>IS_Intellect</stat>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+										<ability href="/Mechanics/Abilities/NecromancerTalents/Infection/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										<mul>0.05</mul>
+									</Item>
+								</scalers>
+							</scaler>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Spells/WarriorV2/SweepingSlam/CABuff/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<conditionalEvents>
+				<Item>
+					<obj>gameMechanics.elements.events.EventSpellLaunchedTarget</obj>
+					<predicate type="gameMechanics.elements.predicates.PredicateEventSpellLaunched">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					</predicate>
+				</Item>
+			</conditionalEvents>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/WarriorV2/SweepingSlam/CABuff/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Abilities/NecromancerTalents/VampireStudent/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.03</mul>
+						<sum var="sum" />
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+											<variable href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+											<summand>1</summand>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration>90000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

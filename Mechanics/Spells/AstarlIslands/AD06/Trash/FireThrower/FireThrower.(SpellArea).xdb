@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>739819598</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AstralSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="FireThrower.(SpellArea).Name.txt" />
+	<visualScripts href="/Mechanics/Spells/AstarlIslands/AI28/DrakeTrash/Firestorm.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics>
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<minDamage>60</minDamage>
+				<maxDamage>60</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="BurnFear.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<angle type="constructor.basicElements.AngleRadians">
+			<value>1.5</value>
+		</angle>
+	</shape>
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

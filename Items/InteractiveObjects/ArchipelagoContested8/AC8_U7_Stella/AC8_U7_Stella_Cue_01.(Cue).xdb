@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>233994259</resourceId>
+		<Variables>
+			<path>/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7_Escort_Path.(LocatorsList).xdb#xpointer(/gameMechanics.map.LocatorsList)</path>
+		</Variables>
+	</Header>
+	<name href="AC8_U7_Stella_Cue_01.txt" />
+	<text href="AC8_U7_Stella_Cue_01.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/ArchipelagoContested8/AC8_U7/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/ArchipelagoContested8/AC8_U7/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>3_D_08</scriptID>
+					<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7_Escort_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.world.pet.PredicateHasPet" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ArchipelagoContested8/AC8_U7/AC8_U7_Escort_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.GoThroughLocatorsList">
+					<path hrefvar="path" />
+				</Item>
+			</impacts>
+			<object href="/Characters/Kania_female/Instances/ArchipelagoContested8/AC8_Konstrakt_Escort.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>130246692</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateSpawnSaved">
+				<spawn href="/Characters/Orc_female/Instances/Inst_GurluhsorTower/GS_Boss5_Orc.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</predicate>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+			<mob>
+				<scriptID>GS_Drake1</scriptID>
+				<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>2000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>GS_DrakeLandingPoint1</scriptID>
+									<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+							<runningMode>false</runningMode>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>GS_Drake1</scriptID>
+						<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactDisableScriptZoneTemporarily">
+			<zone href="GS_DrakeAppear1.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			<period>7200000</period>
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

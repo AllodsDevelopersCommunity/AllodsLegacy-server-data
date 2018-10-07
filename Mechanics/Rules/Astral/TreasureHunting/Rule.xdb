@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>282492941</resourceId>
+	</Header>
+	<name href="Rule.txt" />
+	<description href="Rule_Desc.txt" />
+	<level>50</level>
+	<rating>4</rating>
+	<zone href="" />
+	<reward>
+		<experience>0</experience>
+		<mandatoryItems>
+			<Item>
+				<item href="/Items/Agents/SA_Act.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<item href="Loot/AstralPvPMark.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_GROUP</Item>
+	</types>
+	<predicates>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/AstralTreasureHunting.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+	</predicates>
+	<timeTable href="TimePeriodTable.xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects>
+		<Item type="gameMechanics.world.bigAstral.elements.EffectEnableSpawnTable">
+			<mapResource href="/Mechanics/Astral/Sector1/StaticHubs/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			<spawnResource href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Entrances/Wormhole.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			<forceDespawn>true</forceDespawn>
+		</Item>
+		<Item type="gameMechanics.world.bigAstral.elements.EffectEnableSpawnTable">
+			<mapResource href="/Mechanics/Astral/Sector2/StaticHubs/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			<spawnResource href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Entrances/Wormhole.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			<forceDespawn>true</forceDespawn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+					<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+						<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+					</selector>
+					<impacts>
+						<Item type="gameMechanics.world.bigAstral.activities.ImpactAddActivity">
+							<activities>
+								<Item href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+							</activities>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+					<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+							<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+								<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+									<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</zone>
+								<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+							</distributor>
+							<data href="ClientData/EventStarted.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+					<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+						<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+					</selector>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+							<delay>10000</delay>
+							<impacts>
+								<Item type="gameMechanics.world.bigAstral.activities.ImpactRemoveActivity">
+									<activities>
+										<Item href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+									</activities>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+					<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+							<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+								<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+									<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</zone>
+								<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+							</distributor>
+							<data href="ClientData/EventEnded.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToAvatarPopulation">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="avatarPopulation.service.predicates.PredicateAvatarsInZoneLess">
+											<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<count>18</count>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+											<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>0.1</value>
+											</chanceCalcer>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+															<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																	<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																		<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																			<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																		</zone>
+																		<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																	</distributor>
+																	<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+															<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+															</selector>
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																	<essences>
+																		<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																			<maxPerHub>4</maxPerHub>
+																			<countDice>
+																				<edges>1</edges>
+																				<rolls>1</rolls>
+																			</countDice>
+																			<resources>
+																				<Item>
+																					<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																				</Item>
+																			</resources>
+																			<pois>
+																				<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																				<global>true</global>
+																			</pois>
+																		</Item>
+																	</essences>
+																	<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="avatarPopulation.service.predicates.PredicateAvatarsInZoneLess">
+													<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+													<count>36</count>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+													<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+														<value>0.2</value>
+													</chanceCalcer>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																	<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																			<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																				<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																					<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																				</zone>
+																				<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																			</distributor>
+																			<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																		</Item>
+																	</impacts>
+																</Item>
+																<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																	<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																		<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																	</selector>
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																			<essences>
+																				<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																					<maxPerHub>4</maxPerHub>
+																					<countDice>
+																						<edges>1</edges>
+																						<rolls>1</rolls>
+																					</countDice>
+																					<resources>
+																						<Item>
+																							<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																						</Item>
+																					</resources>
+																					<pois>
+																						<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																						<global>true</global>
+																					</pois>
+																				</Item>
+																			</essences>
+																			<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																		</Item>
+																	</impacts>
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+													<predicates>
+														<Item type="avatarPopulation.service.predicates.PredicateAvatarsInZoneLess">
+															<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+															<count>54</count>
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+															<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+																<value>0.3</value>
+															</chanceCalcer>
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																			<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																					<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																						<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																							<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																						</zone>
+																						<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																					</distributor>
+																					<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																				</Item>
+																			</impacts>
+																		</Item>
+																		<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																			<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																				<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																			</selector>
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																					<essences>
+																						<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																							<maxPerHub>4</maxPerHub>
+																							<countDice>
+																								<edges>1</edges>
+																								<rolls>1</rolls>
+																							</countDice>
+																							<resources>
+																								<Item>
+																									<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																								</Item>
+																							</resources>
+																							<pois>
+																								<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																								<global>true</global>
+																							</pois>
+																						</Item>
+																					</essences>
+																					<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																				</Item>
+																			</impacts>
+																		</Item>
+																	</impacts>
+																</Item>
+															</impacts>
+														</Item>
+													</impactsIf>
+													<impactsElse>
+														<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+															<predicates>
+																<Item type="avatarPopulation.service.predicates.PredicateAvatarsInZoneLess">
+																	<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																	<count>72</count>
+																</Item>
+															</predicates>
+															<impactsIf>
+																<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+																	<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+																		<value>0.4</value>
+																	</chanceCalcer>
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																					<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																							<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																								<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																									<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																								</zone>
+																								<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																							</distributor>
+																							<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																						</Item>
+																					</impacts>
+																				</Item>
+																				<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																					<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																						<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																					</selector>
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																							<essences>
+																								<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																									<maxPerHub>4</maxPerHub>
+																									<countDice>
+																										<edges>1</edges>
+																										<rolls>1</rolls>
+																									</countDice>
+																									<resources>
+																										<Item>
+																											<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																										</Item>
+																									</resources>
+																									<pois>
+																										<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																										<global>true</global>
+																									</pois>
+																								</Item>
+																							</essences>
+																							<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																						</Item>
+																					</impacts>
+																				</Item>
+																			</impacts>
+																		</Item>
+																	</impacts>
+																</Item>
+															</impactsIf>
+															<impactsElse>
+																<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+																	<predicates>
+																		<Item type="avatarPopulation.service.predicates.PredicateAvatarsInZoneLess">
+																			<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																			<count>108</count>
+																		</Item>
+																	</predicates>
+																	<impactsIf>
+																		<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+																			<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+																				<value>0.6</value>
+																			</chanceCalcer>
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																							<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																									<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																										<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																											<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																										</zone>
+																										<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																									</distributor>
+																									<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																								</Item>
+																							</impacts>
+																						</Item>
+																						<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																							<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																								<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																							</selector>
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																									<essences>
+																										<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																											<maxPerHub>4</maxPerHub>
+																											<countDice>
+																												<edges>1</edges>
+																												<rolls>1</rolls>
+																											</countDice>
+																											<resources>
+																												<Item>
+																													<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																												</Item>
+																											</resources>
+																											<pois>
+																												<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																												<global>true</global>
+																											</pois>
+																										</Item>
+																									</essences>
+																									<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																								</Item>
+																							</impacts>
+																						</Item>
+																					</impacts>
+																				</Item>
+																			</impacts>
+																		</Item>
+																	</impactsIf>
+																	<impactsElse>
+																		<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+																			<predicates>
+																				<Item type="avatarPopulation.service.predicates.PredicateAvatarsInZoneLess">
+																					<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																					<count>144</count>
+																				</Item>
+																			</predicates>
+																			<impactsIf>
+																				<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+																					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+																						<value>0.8</value>
+																					</chanceCalcer>
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																									<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																									<impacts>
+																										<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																											<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																												<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																													<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																												</zone>
+																												<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																											</distributor>
+																											<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																										</Item>
+																									</impacts>
+																								</Item>
+																								<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																									<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																										<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																									</selector>
+																									<impacts>
+																										<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																											<essences>
+																												<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																													<maxPerHub>4</maxPerHub>
+																													<countDice>
+																														<edges>1</edges>
+																														<rolls>1</rolls>
+																													</countDice>
+																													<resources>
+																														<Item>
+																															<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																														</Item>
+																													</resources>
+																													<pois>
+																														<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																														<global>true</global>
+																													</pois>
+																												</Item>
+																											</essences>
+																											<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																										</Item>
+																									</impacts>
+																								</Item>
+																							</impacts>
+																						</Item>
+																					</impacts>
+																				</Item>
+																			</impactsIf>
+																			<impactsElse>
+																				<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																							<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+																									<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+																										<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+																											<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+																										</zone>
+																										<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+																									</distributor>
+																									<data href="ClientData/ChestSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																								</Item>
+																							</impacts>
+																						</Item>
+																						<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+																							<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+																								<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+																							</selector>
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+																									<essences>
+																										<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+																											<maxPerHub>4</maxPerHub>
+																											<countDice>
+																												<edges>1</edges>
+																												<rolls>1</rolls>
+																											</countDice>
+																											<resources>
+																												<Item>
+																													<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+																												</Item>
+																											</resources>
+																											<pois>
+																												<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+																												<global>true</global>
+																											</pois>
+																										</Item>
+																									</essences>
+																									<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+																								</Item>
+																							</impacts>
+																						</Item>
+																					</impacts>
+																				</Item>
+																			</impactsElse>
+																		</Item>
+																	</impactsElse>
+																</Item>
+															</impactsElse>
+														</Item>
+													</impactsElse>
+												</Item>
+											</impactsElse>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>60000</tick>
+			<initialDelay>60000</initialDelay>
+		</Item>
+	</effects>
+	<saveable>false</saveable>
+	<internal>false</internal>
+</gameMechanics.world.rules.RuleResource>

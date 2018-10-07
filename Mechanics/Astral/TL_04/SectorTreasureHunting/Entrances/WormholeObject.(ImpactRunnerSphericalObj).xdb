@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>271972383</resourceId>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj href="/Spells/FX/Ships/WormholeTL5.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>7.5</scale>
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name href="WormholeObject_Name.txt" />
+			<description href="WormholeObject_Desc.txt" />
+			<image href="/Interface/Ingame/ContextAstralMap/AstralHubMark/PortalRed.(UITextureElement).xdb#xpointer(/UITextureElement)" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<persistentParts />
+	<impactsSpawn />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius>50</radius>
+			<impactsIn>
+				<Item type="gameMechanics.world.ship.elements.ImpactSaveShipPosition">
+					<savedPosShift>175</savedPosShift>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactTeleportShip">
+					<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+					<success />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactOnShipCrew">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/AstralHangarLeague/TreasureHunting/EnterSector.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIn>
+			<impactsOnSelfIn />
+			<impactsOnSelfOut />
+			<inPredicates>
+				<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+					<onSlave type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/AstralShipInterhubTravelBlockers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+							</groups>
+						</predicate>
+					</onSlave>
+				</Item>
+			</inPredicates>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

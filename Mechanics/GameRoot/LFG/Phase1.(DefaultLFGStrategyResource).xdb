@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<avatarPopulation.service.impl.lookingForGroupImpl.scheme.DefaultLFGStrategyResource>
+	<Header>
+		<resourceId>342408196</resourceId>
+	</Header>
+	<startTime href="/Mechanics/LFG/Table.(TimeTable).xdb#xpointer(/timetables.TimeTable)" />
+	<destinations>
+		<Item href="NewbieSectorDestination.(LFGDestination).xdb#xpointer(/avatarPopulation.service.impl.lookingForGroupImpl.scheme.LFGDestination)" />
+	</destinations>
+	<impactsOnEnter>
+		<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+			<group href="/Mechanics/LFG/Buffs/LFG_RoleBuffs.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsGroupLeader" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateFaction">
+							<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="itemService.elements.astral.ImpactSummonTempShip">
+							<shipResource href="/Mechanics/Ships/AstralShip/AstralShipHadagan5.(ShipResource).xdb#xpointer(/gameMechanics.world.ship.ShipResource)" />
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="Phase1ShipBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="itemService.elements.astral.ImpactSetSailingPort">
+									<sailingPort href="/Mechanics/Ships/Hangar/SailingPorts/SailingPortEmpireParking.xdb#xpointer(/gameMechanics.map.astral.SailingPort)" />
+								</Item>
+								<Item type="avatarPopulation.service.impl.lookingForGroupImpl.impacts.ImpactInstallBoundToGroupLink" />
+							</impacts>
+							<owner>Group</owner>
+							<permissions>LfgShip</permissions>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="itemService.elements.astral.ImpactSummonTempShip">
+							<shipResource href="/Mechanics/Ships/AstralShip/AstralShipKaniaNew5.(ShipResource).xdb#xpointer(/gameMechanics.world.ship.ShipResource)" />
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="Phase1ShipBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="itemService.elements.astral.ImpactSetSailingPort">
+									<sailingPort href="/Mechanics/Ships/Hangar/SailingPorts/SailingPortLeagueParking.xdb#xpointer(/gameMechanics.map.astral.SailingPort)" />
+								</Item>
+								<Item type="avatarPopulation.service.impl.lookingForGroupImpl.impacts.ImpactInstallBoundToGroupLink" />
+							</impacts>
+							<owner>Group</owner>
+							<permissions>LfgShip</permissions>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/LFG/Buffs/LFG_Member.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impactsOnEnter>
+	<impactsOnEnterFailed>
+		<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+	</impactsOnEnterFailed>
+	<lfgGroupSenderResource href="GroupSenderWithMercs.(RoleBasedWithMercsSenderResource).xdb#xpointer(/avatarPopulation.service.impl.lookingForGroupImpl.scheme.RoleBasedWithMercsSenderResource)" />
+</avatarPopulation.service.impl.lookingForGroupImpl.scheme.DefaultLFGStrategyResource>

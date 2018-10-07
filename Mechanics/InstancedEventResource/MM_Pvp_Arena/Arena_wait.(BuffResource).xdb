@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739814105</resourceId>
+	</Header>
+	<Name href="Arena_wait.(BuffResource).Name.txt" />
+	<Description href="Arena_wait.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestSilence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<sysUIScriptName>BattlegroundStartAwaiting</sysUIScriptName>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDoesNotAggro" />
+		<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+		<Item type="gameMechanics.elements.effects.ImmunityToHarmfulSpells" />
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/TeleportationSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/DruidPetCommand.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Family/JumpOnHands/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Family/JumpOnHands/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Family/TakeOnHands/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Family/TakeOnHands/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="/Maps/MM_Pvp_Arena/Buff_Variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEqualsGeneric">
+							<variableResource href="/Maps/MM_Pvp_Arena/Buff_Variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.FloatData">
+								<value>2</value>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+							<buff href="Arena_wait.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>120000</value>
+							</delta>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="/Maps/MM_Pvp_Arena/Buff_Variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEqualsGeneric">
+							<variableResource href="/Maps/MM_Pvp_Arena/Buff_Variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.FloatData">
+								<value>3</value>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+							<buff href="Arena_wait.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>240000</value>
+							</delta>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="/Maps/MM_Pvp_Arena/Buff_Variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEqualsGeneric">
+							<variableResource href="/Maps/MM_Pvp_Arena/Buff_Variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.FloatData">
+								<value>4</value>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+							<buff href="Arena_wait.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>360000</value>
+							</delta>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/InstancedEventResource/MM_BG01/Afk_Disabler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>1000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

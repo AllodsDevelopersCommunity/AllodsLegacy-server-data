@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>314671126</resourceId>
+	</Header>
+	<Name href="Boss01Trash_MeleeAdd_Cleave.(SpellArea)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Boss01Trash_MeleeAdd_Cleave.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Boss01Trash_MeleeAdd_Cleave.(SpellArea)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>5000</value>
+	</range>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>18</minDamage>
+				<maxDamage>18</maxDamage>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="Curse.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Boss_01_Spell_02_Buff_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+									<multiplier>0.7</multiplier>
+								</durationScaler>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.AvatarFilter" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="Curse.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Spells/ClientData/TepPyramid_Boss01_HitAoE.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<angle type="constructor.basicElements.AngleRadians">
+			<value>2</value>
+		</angle>
+	</shape>
+	<radius>0</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

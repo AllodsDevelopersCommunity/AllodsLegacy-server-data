@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>157367390</resourceId>
+	</Header>
+	<internalName>ZC4</internalName>
+	<name href="zc4_name.txt" />
+	<exit type="mapLoader.pointer.MapPointerPos">
+		<pointer>
+			<scriptID>NihazIsle</scriptID>
+			<map href="/Maps/ArchipelagoGipatsShard/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		</pointer>
+	</exit>
+	<mapTemplate href="/System/MapTemplates/Continent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="ScriptZones/Winning_L_Counters.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="ScriptZones/Winning_E_Counters.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectZoneSpecificEffects">
+						<effectsInZone>
+							<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<effectsIf>
+									<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+												<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+													<value>0.25</value>
+												</chanceCalcer>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactSummon">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativePos">
+																<yaw type="constructor.basicElements.AngleRadians" />
+																<coord />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+																	<verticalRange min="0" max="0" />
+																	<horizontalRange min="0" max="3" />
+																</Item>
+															</modifiers>
+														</destination>
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.ForceAggro" />
+															<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+																<delay>60000</delay>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.Disintegrate" />
+																</impacts>
+															</Item>
+														</impacts>
+														<object href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														<pool href="ScriptZones/Terminators1.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+														<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+														<data href="ScriptZones/TerminatorClientData01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="ScriptZones/TerminatorBuffResource01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+										<tick>300000</tick>
+										<initialDelay>-1</initialDelay>
+									</Item>
+								</effectsIf>
+							</Item>
+						</effectsInZone>
+						<activeZone href="Zones/ZoneContested4/Mountains.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						<checkTopLevelZonesOnly>false</checkTopLevelZonesOnly>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectZoneSpecificEffects">
+						<effectsInZone>
+							<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+													<predicates>
+														<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+															<predicates>
+																<Item type="gameMechanics.elements.predicates.PredicateFaction">
+																	<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/ZoneContested4/L6_7/L6_7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Finished</status>
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/NIhazIsland/6_2/6_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Finished</status>
+																</Item>
+															</predicates>
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+															<predicates>
+																<Item type="gameMechanics.elements.predicates.PredicateFaction">
+																	<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/ZoneContested4/E6_7/E6_7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Finished</status>
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/NIhazIsland/6_2/6_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Finished</status>
+																</Item>
+															</predicates>
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+															<predicates>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/ZoneContested4/L6_7/L6_7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Completed</status>
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/NIhazIsland/6_2/6_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Completed</status>
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/ZoneContested4/E6_7/E6_7.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Completed</status>
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/NIhazIsland/6_2/6_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Completed</status>
+																</Item>
+															</predicates>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+										</predicate>
+									</Item>
+								</predicates>
+								<effectsIf>
+									<Item type="gameMechanics.elements.effects.Switch">
+										<impactsOn>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/InteractiveObjects/ZoneContested4/DemonicPortalBridge/DemonicPortalBridgePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsOn>
+									</Item>
+								</effectsIf>
+							</Item>
+						</effectsInZone>
+						<activeZone href="Zones/ZoneContested4/DragonWay.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						<checkTopLevelZonesOnly>false</checkTopLevelZonesOnly>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+	<deathHeightThreshhold>-100</deathHeightThreshhold>
+</mapLoader.MapResource>

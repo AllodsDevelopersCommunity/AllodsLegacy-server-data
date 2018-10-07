@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>78889020</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.world.mob.behaviour.aiEvents.GoneThroughPathEvent</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="CountId.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSingleMob">
+				<mob>
+					<scriptID var="escortee_name" />
+					<map hrefvar="escortee_map" />
+				</mob>
+			</eventsSource>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectShepherd">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest hrefvar="quest" />
+				</Item>
+			</impacts>
+			<sheep type="gameMechanics.elements.addresseeFinders.AddresseeFinderSingleMob">
+				<mob>
+					<scriptID var="escortee_name" />
+					<map hrefvar="escortee_map" />
+				</mob>
+			</sheep>
+			<distance>45</distance>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest hrefvar="quest" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest hrefvar="quest" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Protect">
+			<protectorSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSingleMob">
+				<mob>
+					<scriptID var="escortee_name" />
+					<map hrefvar="escortee_map" />
+				</mob>
+			</protectorSource>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

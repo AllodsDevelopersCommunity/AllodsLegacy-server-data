@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>87452374</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinVengeance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/WarriorInnerRageAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<effectAnimations>
+				<mode>DIE</mode>
+			</effectAnimations>
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1</scale>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<locator>Global</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<visScript href="/Spells/VisScripts/Creatures/Vengeance.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.SpellsModifier">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateSpellInGroup">
+							<group href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateSpellInGroup">
+							<group href="/Mechanics/Spells/Groups/RangedAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateSpellInGroup">
+							<group href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<modifiers>
+				<Item type="gameMechanics.elements.spell.SpellEnvelopeModifier">
+					<effects>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.LinearCalcer">
+										<mul>0</mul>
+										<sum>-1</sum>
+									</delta>
+									<attachIfNotExist>false</attachIfNotExist>
+									<resetTimer>false</resetTimer>
+									<anyRank>false</anyRank>
+								</Item>
+							</impactsOn>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+							<targetImpacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>HOLY</element>
+									<threatMultiplier>1</threatMultiplier>
+									<statsConvertor>
+										<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Dexterity</stat>
+										</intuition>
+										<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Might</stat>
+										</spirit>
+									</statsConvertor>
+									<minDamage>25</minDamage>
+									<maxDamage>25</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+								</Item>
+							</targetImpacts>
+						</Item>
+					</effects>
+				</Item>
+			</modifiers>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>10</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

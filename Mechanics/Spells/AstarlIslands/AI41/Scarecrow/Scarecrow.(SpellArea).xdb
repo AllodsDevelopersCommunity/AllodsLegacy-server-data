@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>326230063</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic4.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Scarecrow.(SpellArea)_Name.txt" />
+	<Description href="Scarecrow.(SpellArea)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicTelekineticThrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/TelekineticThrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Scarecrow.(SpellArea)_Name.txt" />
+	<descTemplate href="Scarecrow.(SpellArea)_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>250</value>
+	</range>
+	<element>ASTRAL</element>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>32000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+				<group href="/Mechanics/Spells/Groups/DRMesmerize.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Scarecrow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHealthHigher">
+						<level>0.56</level>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+						<level>0.18</level>
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>250</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

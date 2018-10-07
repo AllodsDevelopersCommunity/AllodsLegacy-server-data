@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>351586317</resourceId>
+	</Header>
+	<parts>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle01</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle01</Item>
+				</animations>
+			</offlineScript>
+		</Item>
+		<Item type="DeathHandler">
+			<useParentState>true</useParentState>
+			<deathScript type="DeviceVisActionList">
+				<elements>
+					<Item type="DeviceColorAction">
+						<colorValue>-1</colorValue>
+					</Item>
+					<Item type="DeviceVisActionChangeModel">
+						<priority>5</priority>
+					</Item>
+				</elements>
+			</deathScript>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.map.spawn.DynamicTerrainCollision">
+			<object href="/Ships/Components/Astral_Trap/Astral_Trap.(StaticObject).xdb#xpointer(/mapLoader.StaticObject)" />
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.EffectsOnShipGeneric">
+					<effects>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="IncreaseCap150.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="IncreaseCap150.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOff>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTriggerGeneric">
+							<onEnter>
+								<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+											<data href="/Mechanics/Ships/AstralTrap/OpenTrap.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</onEnter>
+							<onLeave>
+								<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+											<data href="/Mechanics/Ships/AstralTrap/CloseTrap.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</onLeave>
+						</Item>
+					</effects>
+				</Item>
+			</effects>
+			<reattachOnTeleport>false</reattachOnTeleport>
+		</Item>
+	</persistentParts>
+	<name href="AstralTrap150.txt" />
+	<corpulence>2.75</corpulence>
+	<interactiveObject>true</interactiveObject>
+</gameMechanics.world.device.UsableDeviceResource>

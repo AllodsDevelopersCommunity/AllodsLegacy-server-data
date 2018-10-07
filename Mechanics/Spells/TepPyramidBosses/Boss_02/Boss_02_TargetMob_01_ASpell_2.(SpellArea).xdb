@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>279873542</resourceId>
+	</Header>
+	<Name href="Boss_02_TargetMob_01_ASpell_2.(SpellArea)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TepPyramid/Boss_02_TargetMob_01_ASpell_1_Turet.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Boss_02_TargetMob_01_ASpell_2.(SpellArea)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>85</value>
+	</range>
+	<needLos>false</needLos>
+	<element>LIGHTNING</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1500</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="RedPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>LIGHTNING</element>
+						<minDamage>35</minDamage>
+						<maxDamage>35</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>7</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

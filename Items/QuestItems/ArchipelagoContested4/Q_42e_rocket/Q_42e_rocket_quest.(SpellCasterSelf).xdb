@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>99627046</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ArchipelagoContested4/Artefact_Demon_Portal/Artefact_Demon_Portal_Spell.txt" />
+	<Description href="/Items/QuestItems/ArchipelagoContested4/Artefact_Demon_Portal/Artefact_Demon_Portal_SpellDesc.txt" />
+	<nameTemplate href="/Items/QuestItems/ArchipelagoContested4/Artefact_Demon_Portal/Artefact_Demon_Portal_Spell.txt" />
+	<descTemplate href="/Items/QuestItems/ArchipelagoContested4/Artefact_Demon_Portal/Artefact_Demon_Portal_SpellDesc.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ArchipelagoContested4/ScriptZones/Q_42e_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/ArchipelagoContested4/Q_42e/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+				<affectPets>false</affectPets>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested4/Q_42e/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="/Items/QuestItems/ArchipelagoContested4/Artefact_Demon_Portal/Artefact_Demon_Portal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>120000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>DG1</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.GoThroughPath">
+										<path>
+											<Item>
+												<scriptID>Target</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</Item>
+										</path>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>280000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>15000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+									</Item>
+								</impacts>
+								<object href="/Characters/Orc_male/Instances/ArchipelagoContested4/Cultist_OrcBoss_Finall.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>60000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>DG1</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.GoThroughPath">
+										<path>
+											<Item>
+												<scriptID>Target</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</Item>
+										</path>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>370000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>15000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+									</Item>
+								</impacts>
+								<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/Demon40_40_finalBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>60000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>DG2</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.GoThroughPath">
+										<path>
+											<Item>
+												<scriptID>Target</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</Item>
+										</path>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>370000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>15000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+									</Item>
+								</impacts>
+								<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/Demon40_40_finalBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>60000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>DG3</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.GoThroughPath">
+										<path>
+											<Item>
+												<scriptID>Target</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</Item>
+										</path>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>370000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>15000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+									</Item>
+								</impacts>
+								<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/Demon40_40_finalBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>DG1</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.GoThroughPath">
+						<path>
+							<Item>
+								<scriptID>Target</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</path>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>370000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/DemonScout34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>DG2</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.GoThroughPath">
+						<path>
+							<Item>
+								<scriptID>Target</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</path>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>370000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/DemonScout34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>DG3</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.GoThroughPath">
+						<path>
+							<Item>
+								<scriptID>Target</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</path>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>370000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/DemonScout34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>DG4</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.GoThroughPath">
+						<path>
+							<Item>
+								<scriptID>Target</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</path>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>370000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/DemonScout34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>DG5</scriptID>
+						<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.GoThroughPath">
+						<path>
+							<Item>
+								<scriptID>Target</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</path>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>370000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Creatures/DemonScout/Instances/ArchipelagoContested4/DemonScout34_34.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e_player_cast.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>120000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>DG2</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.GoThroughPath">
+										<path>
+											<Item>
+												<scriptID>Target</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</Item>
+										</path>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>280000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>15000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+									</Item>
+								</impacts>
+								<object href="/Characters/Orc_male/Instances/ArchipelagoContested4/Cultist_OrcBoss_Finall.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>240000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>DG1</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.GoThroughPath">
+										<path>
+											<Item>
+												<scriptID>Target</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</Item>
+										</path>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>280000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+								</impacts>
+								<object href="/Characters/Orc_male/Instances/ArchipelagoContested4/Cultist_OrcBoss_FinallMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ArchipelagoContested4/Q_41_solo_imp/Q_41_solo_imp.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Finished</status>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e_player_cast_solo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested4/Q_42e/Q_42e_player_cast.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

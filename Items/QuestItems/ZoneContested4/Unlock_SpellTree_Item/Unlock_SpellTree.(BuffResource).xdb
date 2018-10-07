@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>301788166</resourceId>
+	</Header>
+	<Name href="Unlock_SpellTree.(BuffResource)_Name.txt" />
+	<Description href="Unlock_SpellTree.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Papers/Offhand_Book_E_02ZemGreen.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/AI12_MindFlyAura_debuff.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<lockScale>true</lockScale>
+			<locator>Slot_TopFX</locator>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Unlock_SpellTree.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Unlock_SpellTree.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.2</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+										<items>
+											<Item href="/Items/QuestItems/ZoneContested4/SpellTree_Unlocker/SpellTree_Unlocker.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</items>
+										<totalCount>1</totalCount>
+									</predicate>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+									<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+										<item href="/Items/QuestItems/ZoneContested4/SpellTree_Unlocker/SpellTree_Unlocker.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+									</item>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+									<data href="sucess_text.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<impactsOnFail>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="fail_text.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsOnFail>
+				</Item>
+			</impactsToKiller>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>164524058</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DruidAll.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Druid/DruidDrowsingConcoction.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Druid/DrowsingConcoction.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>4000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>HOLY</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<modifiers />
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat">
+				<hideText>false</hideText>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+				<hideText>false</hideText>
+				<item href="/Mechanics/Spells/DruidV2/DrowsingPotion/Potion01.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<stackCount>1</stackCount>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>52.7</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<hideText>false</hideText>
+				<item href="/Mechanics/Spells/DruidV2/ConcoctionEssences/DrowsingEssence.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number var="number" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item href="/Mechanics/Spells/DruidV2/DrowsingPotion/Potion01.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</item>
+				<count>1</count>
+				<transferDecayedTime>false</transferDecayedTime>
+				<binding>Transfer</binding>
+				<worldNotification href="" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<hideText>false</hideText>
+						<buff href="/Mechanics/Spells/DruidV2/ConcoctionBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>2</min>
+							<max>5</max>
+						</range>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+						<buff href="/Mechanics/Spells/DruidV2/ConcoctionBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<resetTimer>true</resetTimer>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactStartSpell">
+						<spell hrefvar="spell" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactNull">
+				<value var="value" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactNull">
+				<value var="val_1" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

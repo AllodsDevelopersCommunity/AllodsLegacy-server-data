@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/AstralMobDemon_AOE.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<animOnPrecast>readySpellDirected</animOnPrecast>
+			<animSpeedOnPrecast>1</animSpeedOnPrecast>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="CreatureAnimationAction">
+				<visActionID>Anim</visActionID>
+				<mode>LOOP</mode>
+				<animations>
+					<Item var="animOnPrecast" />
+				</animations>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay>1000</delay>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="VisActionStopAction">
+				<stoppedActionID>Anim</stoppedActionID>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+			</Item>
+			<Item type="VisActionStopAction">
+				<stoppedActionID>HandsFX</stoppedActionID>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

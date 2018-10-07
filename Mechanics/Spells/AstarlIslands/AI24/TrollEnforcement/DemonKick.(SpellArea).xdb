@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>269384719</resourceId>
+	</Header>
+	<visualScripts href="/Spells/VisScripts/Creatures/DemonWarrior/DemonFlash.xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Start</stage>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="EnforcementBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>9</min>
+					<max>9</max>
+				</range>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/AstarlIslands/AI24/TrollSpeedup/SpeedBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>35</minDamage>
+				<maxDamage>35</maxDamage>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+				<time>1500</time>
+				<distance>15</distance>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<radius>10</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

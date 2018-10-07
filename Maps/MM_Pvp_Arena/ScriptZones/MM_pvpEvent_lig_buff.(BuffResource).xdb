@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>241003531</resourceId>
+	</Header>
+	<Name href="MM_pvpEvent_lig_buff.txt" />
+	<Description href="" />
+	<image href="/Interface/Icons/Equipment/Cloak/GurluhsorPriestBlueCloak.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="MM_pvpEvent_lig_buff.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+									<variableResource href="MM_pvpEvent_lig_variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<minValue type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</minValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="MM_pvpEvent_lig_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MM_pvpEvent_lig_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MM_pvpEvent_lig_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+			<impactsOnLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="MM_pvpEvent_lig_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="MM_pvpEvent_lig_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOnLeave>
+			<activeZone href="/Maps/MM_Pvp_Arena/Zones/MM_Pvp_Arena_01.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<checkTopLevelZonesOnly>false</checkTopLevelZonesOnly>
+		</Item>
+		<Item type="gameMechanics.map.variables.MapVariableTrigger">
+			<variableResource href="MM_pvpEvent_lig_variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MM_pvpEvent_lig_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>100</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+									<variableResource href="MM_pvpEvent_lig_variable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<minValue type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</minValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="MM_pvpEvent_lig_stamina_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/MM_Pvp_Arena/Zones/MM_Pvp_Arena_01.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="MM_pvpEvent_lig_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration>3600000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>377759745</resourceId>
+	</Header>
+	<groups />
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCruelty.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/Cruelty.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+						<effects>
+							<Item type="gameMechanics.elements.effects.WhileAlive">
+								<effects>
+									<Item type="gameMechanics.elements.effects.ThreatMultiplier">
+										<factor>3</factor>
+									</Item>
+									<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+										<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+											<coeff>-0.1</coeff>
+										</scaler>
+									</Item>
+								</effects>
+							</Item>
+						</effects>
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>76128264</resourceId>
+	</Header>
+	<name href="CueSummonShip.txt" />
+	<text href="CueSummonShipText.txt" />
+	<conditions>
+		<Item type="gameMechanics.world.ship.elements.PredicateHasShip">
+			<enabledOnly>true</enabledOnly>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateIsDweller" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.world.ship.elements.PredicateHasSummonedShip" />
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+					<lhs type="gameMechanics.world.ship.elements.calcers.CalcerAvailableShipIndex" />
+					<rhs type="gameMechanics.elements.calcers.LongData">
+						<value>-1</value>
+					</rhs>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.basicElements.ImpactList">
+					<impactsResource href="/Mechanics/Ships/Hangar/HangarNPC/ImpactsSummonPersistentShip.xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="/Mechanics/Ships/Hangar/HangarNPC/NoAvailableShips.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

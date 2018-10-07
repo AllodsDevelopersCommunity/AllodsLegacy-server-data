@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>259925075</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.5</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="Departure_Message.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>8000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>Secret_Room_Astral_Body</scriptID>
+											<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ArchipelagoContested9/3_5_Astral_Body_3/Count5.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<targetsLimit>20</targetsLimit>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="Chat.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/ArchipelagoContested9/3_5_Astral_Body_3/Angelic_Immune.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

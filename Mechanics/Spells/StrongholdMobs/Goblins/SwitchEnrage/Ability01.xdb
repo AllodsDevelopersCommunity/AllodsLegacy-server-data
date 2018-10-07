@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739823282</resourceId>
+	</Header>
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onEnter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.ImpactsToTarget">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.RandomImpact">
+														<entries>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																		<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+																		<data href="Enrage1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																	</Item>
+																</impacts>
+															</Item>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																		<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+																		<data href="Enrage2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																	</Item>
+																</impacts>
+															</Item>
+														</entries>
+													</Item>
+												</impacts>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsElse>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Mechanics/Spells/StrongholdMobs/Goblins/WatchfulEye/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</impact>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

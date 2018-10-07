@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>134226981</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn />
+	<conditionsOut>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/HaloIsle/HaloIsle_Final/HaloIsle_Final.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+	</conditionsOut>
+	<impactsIn />
+	<impactsOut>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>Ha_1</scriptID>
+							<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>Ha_2</scriptID>
+							<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>Ha_3</scriptID>
+							<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>Ha_4</scriptID>
+							<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>Ha_Shaman_01</scriptID>
+				<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+			<zone href="HaloIsle_zone_01.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			<disable>true</disable>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>26000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>DR</scriptID>
+						<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/World/Quests/HaloIsle/HaloIsle_Final/HaloIsle_Final_D.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>DR</scriptID>
+								<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/World/Quests/HaloIsle/HaloIsle_Final/Buff_Final.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<scalerTarget />
+									<durationScaler />
+									<durationScalerTarget />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>Ha_Shaman_01</scriptID>
+								<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+	</impactsOut>
+</gameMechanics.map.scriptZone.ScriptZone>

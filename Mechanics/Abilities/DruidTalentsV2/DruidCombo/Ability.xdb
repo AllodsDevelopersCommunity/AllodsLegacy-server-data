@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>169156618</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Equipment/Fists/Fist_1H_Hadagan_B01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>DUALWIELD</slot>
+			<itemClasses>
+				<Item href="/Mechanics/ItemClasses/PairOfFists.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+			</itemClasses>
+			<effects>
+				<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+					<casterImpacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff hrefvar="buff" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<stacks type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0</mul>
+								<sum var="sum" />
+							</stacks>
+						</Item>
+					</casterImpacts>
+					<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationSpells">
+						<spells>
+							<Item href="/Mechanics/Spells/DruidV2/WeaponStrike/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+							<Item href="/Mechanics/Spells/DruidV2/WeaponStrikeUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+						</spells>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+					<mark href="/Mechanics/Spells/Marks/DruidComboImpact.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					<instantiateOnUse>true</instantiateOnUse>
+					<exclusivity>BaseLevel</exclusivity>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceMana">
+									<hideText>false</hideText>
+									<mana>23.72</mana>
+									<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+									<source>Mainhand</source>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+											<hideText>false</hideText>
+											<spell href="/Mechanics/Spells/DruidV2/WeaponStrikeUpgrade/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</predicates>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfCasterClose">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.constructor.basicElements.MiniSpell">
+																	<resource type="gameMechanics.elements.resources.ResourceMana">
+																		<hideText>false</hideText>
+																		<mana>23.72</mana>
+																		<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+																		<source>Mainhand</source>
+																		<manaType>
+																			<Item>Mana</Item>
+																		</manaType>
+																	</resource>
+																	<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+																		<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+																		<threatMultiplier>1</threatMultiplier>
+																		<statsConvertor>
+																			<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+																				<stat>IS_Spirit</stat>
+																			</might>
+																			<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+																				<stat>IS_Intuition</stat>
+																			</dexterity>
+																		</statsConvertor>
+																		<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+																		<avgDamage>18.66</avgDamage>
+																		<source>Mainhand</source>
+																	</impact>
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																	<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+																		<radius>85</radius>
+																	</distributor>
+																	<data href="Combo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+													<range>5</range>
+												</Item>
+											</impacts>
+											<targetType>Enemies</targetType>
+										</Item>
+									</impacts>
+									<elseImpacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+													<hideText>false</hideText>
+													<spell href="/Mechanics/Spells/DruidV2/WeaponStrike/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</predicates>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactIfCasterClose">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																	<impacts>
+																		<Item type="gameMechanics.constructor.basicElements.MiniSpell">
+																			<resource type="gameMechanics.elements.resources.ResourceMana">
+																				<hideText>false</hideText>
+																				<mana>23.72</mana>
+																				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+																				<source>Mainhand</source>
+																				<manaType>
+																					<Item>Mana</Item>
+																				</manaType>
+																			</resource>
+																			<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+																				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+																				<threatMultiplier>1</threatMultiplier>
+																				<statsConvertor>
+																					<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+																						<stat>IS_Spirit</stat>
+																					</might>
+																					<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+																						<stat>IS_Intuition</stat>
+																					</dexterity>
+																				</statsConvertor>
+																				<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+																				<avgDamage>18.06</avgDamage>
+																				<source>Mainhand</source>
+																			</impact>
+																		</Item>
+																	</impacts>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+																				<radius>85</radius>
+																			</distributor>
+																			<data href="Combo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																		</Item>
+																	</impacts>
+																</Item>
+															</impacts>
+															<range>5</range>
+														</Item>
+													</impacts>
+													<targetType>Enemies</targetType>
+												</Item>
+											</impacts>
+											<elseImpacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+															<hideText>false</hideText>
+															<spell href="/Mechanics/Spells/DruidV2/WeaponStrikeUpgrade/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</predicates>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactIfCasterClose">
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																			<impacts>
+																				<Item type="gameMechanics.constructor.basicElements.MiniSpell">
+																					<resource type="gameMechanics.elements.resources.ResourceMana">
+																						<hideText>false</hideText>
+																						<mana>23.72</mana>
+																						<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+																						<source>Mainhand</source>
+																						<manaType>
+																							<Item>Mana</Item>
+																						</manaType>
+																					</resource>
+																					<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+																						<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+																						<threatMultiplier>1</threatMultiplier>
+																						<statsConvertor>
+																							<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+																								<stat>IS_Spirit</stat>
+																							</might>
+																							<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+																								<stat>IS_Intuition</stat>
+																							</dexterity>
+																						</statsConvertor>
+																						<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+																						<avgDamage>17.58</avgDamage>
+																						<source>Mainhand</source>
+																					</impact>
+																				</Item>
+																			</impacts>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+																						<radius>85</radius>
+																					</distributor>
+																					<data href="Combo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																				</Item>
+																			</impacts>
+																		</Item>
+																	</impacts>
+																	<range>5</range>
+																</Item>
+															</impacts>
+															<targetType>Enemies</targetType>
+														</Item>
+													</impacts>
+													<elseImpacts>
+														<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+															<predicates>
+																<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+																	<hideText>false</hideText>
+																	<spell href="/Mechanics/Spells/DruidV2/WeaponStrike/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+																	<anyRank>false</anyRank>
+																</Item>
+															</predicates>
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactIfCasterClose">
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																					<impacts>
+																						<Item type="gameMechanics.constructor.basicElements.MiniSpell">
+																							<resource type="gameMechanics.elements.resources.ResourceMana">
+																								<hideText>false</hideText>
+																								<mana>23.72</mana>
+																								<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+																								<source>Mainhand</source>
+																								<manaType>
+																									<Item>Mana</Item>
+																								</manaType>
+																							</resource>
+																							<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+																								<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+																								<threatMultiplier>1</threatMultiplier>
+																								<statsConvertor>
+																									<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+																										<stat>IS_Spirit</stat>
+																									</might>
+																									<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+																										<stat>IS_Intuition</stat>
+																									</dexterity>
+																								</statsConvertor>
+																								<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+																								<avgDamage>17.01</avgDamage>
+																								<source>Mainhand</source>
+																							</impact>
+																						</Item>
+																					</impacts>
+																				</Item>
+																				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+																								<radius>85</radius>
+																							</distributor>
+																							<data href="Combo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																						</Item>
+																					</impacts>
+																				</Item>
+																			</impacts>
+																			<range>5</range>
+																		</Item>
+																	</impacts>
+																	<targetType>Enemies</targetType>
+																</Item>
+															</impacts>
+															<elseImpacts>
+																<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+																	<predicates>
+																		<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+																			<hideText>false</hideText>
+																			<spell href="/Mechanics/Spells/DruidV2/WeaponStrikeUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+																			<anyRank>false</anyRank>
+																		</Item>
+																	</predicates>
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactIfCasterClose">
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																							<impacts>
+																								<Item type="gameMechanics.constructor.basicElements.MiniSpell">
+																									<resource type="gameMechanics.elements.resources.ResourceMana">
+																										<hideText>false</hideText>
+																										<mana>23.72</mana>
+																										<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+																										<source>Mainhand</source>
+																										<manaType>
+																											<Item>Mana</Item>
+																										</manaType>
+																									</resource>
+																									<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+																										<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+																										<threatMultiplier>1</threatMultiplier>
+																										<statsConvertor>
+																											<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+																												<stat>IS_Spirit</stat>
+																											</might>
+																											<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+																												<stat>IS_Intuition</stat>
+																											</dexterity>
+																										</statsConvertor>
+																										<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+																										<avgDamage>12.71</avgDamage>
+																										<source>Mainhand</source>
+																									</impact>
+																								</Item>
+																							</impacts>
+																						</Item>
+																						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+																										<radius>85</radius>
+																									</distributor>
+																									<data href="Combo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																								</Item>
+																							</impacts>
+																						</Item>
+																					</impacts>
+																					<range>5</range>
+																				</Item>
+																			</impacts>
+																			<targetType>Enemies</targetType>
+																		</Item>
+																	</impacts>
+																	<elseImpacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactsToTarget">
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactIfCasterClose">
+																					<impacts>
+																						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																							<impacts>
+																								<Item type="gameMechanics.constructor.basicElements.MiniSpell">
+																									<resource type="gameMechanics.elements.resources.ResourceMana">
+																										<hideText>false</hideText>
+																										<mana>23.72</mana>
+																										<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+																										<source>Mainhand</source>
+																										<manaType>
+																											<Item>Mana</Item>
+																										</manaType>
+																									</resource>
+																									<impact type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+																										<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+																										<threatMultiplier>1</threatMultiplier>
+																										<statsConvertor>
+																											<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+																												<stat>IS_Spirit</stat>
+																											</might>
+																											<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+																												<stat>IS_Intuition</stat>
+																											</dexterity>
+																										</statsConvertor>
+																										<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+																										<avgDamage>11.98</avgDamage>
+																										<source>Mainhand</source>
+																									</impact>
+																								</Item>
+																							</impacts>
+																						</Item>
+																						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+																							<impacts>
+																								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+																										<radius>85</radius>
+																									</distributor>
+																									<data href="Combo.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																								</Item>
+																							</impacts>
+																						</Item>
+																					</impacts>
+																					<range>5</range>
+																				</Item>
+																			</impacts>
+																			<targetType>Enemies</targetType>
+																		</Item>
+																	</elseImpacts>
+																</Item>
+															</elseImpacts>
+														</Item>
+													</elseImpacts>
+												</Item>
+											</elseImpacts>
+										</Item>
+									</elseImpacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.effects.SpellCooldownMultiplier">
+					<spell href="/Mechanics/Spells/DruidV2/WeaponStrike/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					<factor var="factor" />
+				</Item>
+				<Item type="gameMechanics.elements.effects.SpellCooldownMultiplier">
+					<spell href="/Mechanics/Spells/DruidV2/WeaponStrikeUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					<factor var="fact_1" />
+				</Item>
+			</effects>
+			<secondary>false</secondary>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectNull">
+			<value var="value" />
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

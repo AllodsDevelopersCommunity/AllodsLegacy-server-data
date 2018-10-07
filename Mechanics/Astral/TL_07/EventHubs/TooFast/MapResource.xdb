@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>365028355</resourceId>
+	</Header>
+	<stabilityZoneInfo>
+		<lights href="/World/Sky/Astral/Astral_Birth_01/Astral_Birth_01.(ZoneLights).xdb#xpointer(/ZoneLights)" />
+		<ambience>
+			<project href="/SFX/Ambience/Ambience.(FMODProject).xdb#xpointer(/FMODProject)" />
+			<name>Ambience/AstralAmbience/5Layer_1Tier</name>
+		</ambience>
+	</stabilityZoneInfo>
+	<instabilityZoneInfo>
+		<lights href="/World/Sky/Astral/Astral_Birth_01/Astral_Birth_01_Unstable.(ZoneLights).xdb#xpointer(/ZoneLights)" />
+		<ambience>
+			<project href="/SFX/Ambience/Ambience.(FMODProject).xdb#xpointer(/FMODProject)" />
+			<name>Ambience/AstralAmbience/5Layer_1Tier</name>
+		</ambience>
+	</instabilityZoneInfo>
+	<mapTemplate href="/System/MapTemplates/AstralHubFreePvP.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<serverObjects href="/Mechanics/Astral/TL_04/EventHubs/TooFast/TooFast.(ServerObjects).xdb#xpointer(/gameMechanics.map.ServerObjects)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffectsGeneric">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+										<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<stacks type="gameMechanics.elements.calcers.FloatData">
+											<value>3</value>
+										</stacks>
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+										<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/MainTheme.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+										<predicates>
+											<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+												<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+												<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+												<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/MainTheme.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsIf>
+									</Item>
+								</impactsOff>
+							</Item>
+							<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+												<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<range>
+													<min>1</min>
+													<max>999</max>
+												</range>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+												<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+														<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<range>
+															<min>1</min>
+															<max>999</max>
+														</range>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.ImpactDecrementBuffGeneric">
+														<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsIf>
+												<impactsElse>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+														<buff href="/Mechanics/Astral/TL_04/EventHubs/TooFast/Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsElse>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impacts>
+								<tick>60000</tick>
+								<initialDelay>60000</initialDelay>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

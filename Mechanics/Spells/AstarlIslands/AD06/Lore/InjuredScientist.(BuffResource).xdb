@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739823098</resourceId>
+	</Header>
+	<Name href="InjuredScientist.(BuffResource).Name.txt" />
+	<Description href="InjuredScientist.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodpact.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="InjuredScientist.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.DirectDamage">
+					<damage>1</damage>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+							<multiplier>0.99</multiplier>
+						</mulCalcer>
+					</scalerTarget>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="InjuredScientistTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>2000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.LayeredHealthTrigger">
+					<layers>
+						<Item>
+							<percent>0.9</percent>
+							<mechanics>
+								<effectsWhileOn>
+									<Item type="gameMechanics.elements.effects.Switch">
+										<impactsOn>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff href="InjuredScientist.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsOn>
+									</Item>
+								</effectsWhileOn>
+							</mechanics>
+						</Item>
+					</layers>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

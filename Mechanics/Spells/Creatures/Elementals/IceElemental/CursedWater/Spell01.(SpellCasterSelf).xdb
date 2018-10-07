@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>274344989</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellCasterSelf).Name.txt" />
+	<visualScripts href="SpellVisScripts.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell01.(SpellCasterSelf).Name.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<element>DISEASE</element>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Spells/Creatures/Elementals/IceElemental/ElementalPull/BuffPrep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>1</min>
+					<max>9999</max>
+				</range>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+				<projectileData>
+					<moveType type="gameMechanics.world.projectile.MoveTypeIdle" />
+					<startAtCaster>true</startAtCaster>
+					<resource href="CursedWater.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+				</projectileData>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/Creatures/Elementals/IceElemental/ElementalPull/BuffPrep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

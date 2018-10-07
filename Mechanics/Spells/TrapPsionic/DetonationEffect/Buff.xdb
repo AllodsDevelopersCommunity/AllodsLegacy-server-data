@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>114647131</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+						<buff href="/Mechanics/Spells/TrapPsionic/MineCC/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>3</multiplier>
+							</durationScaler>
+							<impactsOnAttach>
+								<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+									<group href="/Mechanics/Spells/Groups/PsionicDetonators.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+									<group href="/Mechanics/Spells/Groups/PsionicMines.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</Item>
+							</impactsOnAttach>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsIf">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+								<buff href="/Mechanics/Spells/TrapPsionic/MineDPS/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="buff" />
+									<impactsOnAttach>
+										<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+											<group href="/Mechanics/Spells/Groups/PsionicMines.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+											<group href="/Mechanics/Spells/Groups/PsionicDetonators.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+										</Item>
+									</impactsOnAttach>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+										<buff href="/Mechanics/Spells/TrapPsionic/MineHybrid/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff hrefvar="bu_1" />
+											<impactsOnAttach>
+												<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+													<group href="/Mechanics/Spells/Groups/PsionicDetonators.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+													<group href="/Mechanics/Spells/Groups/PsionicMines.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+												</Item>
+											</impactsOnAttach>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>1000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

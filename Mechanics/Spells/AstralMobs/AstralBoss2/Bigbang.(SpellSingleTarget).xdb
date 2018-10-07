@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>363041795</resourceId>
+	</Header>
+	<Name href="Bigbang.(SpellSingleTarget).Name.txt" />
+	<autoAppendToActionPanel>false</autoAppendToActionPanel>
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Summoner/Occasional.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10000</value>
+	</range>
+	<prepareDuration>45000</prepareDuration>
+	<needLos>false</needLos>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>120000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="HoldBigBang.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="BigBangPrepare.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="BigBangProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="BigBangProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+							<damage type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+										<damage>9600</damage>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+										<value type="gameMechanics.elements.calcers.FloatData">
+											<value>1.33</value>
+										</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+								</calcers>
+							</damage>
+							<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+		<casterChannelingEffects>
+			<Item type="gameMechanics.elements.effects.Switch">
+				<impactsOn>
+					<Item type="gameMechanics.elements.impacts.ImpactSummonGeneric">
+						<destination type="gameMechanics.map.destination.DestinationModified">
+							<destination type="gameMechanics.map.destination.SelfPosDestination" />
+							<modifiers>
+								<Item type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+									<radius type="gameMechanics.elements.calcers.FloatData">
+										<value>400</value>
+									</radius>
+								</Item>
+							</modifiers>
+						</destination>
+						<object href="Anomaly.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+					</Item>
+				</impactsOn>
+			</Item>
+			<Item type="gameMechanics.world.astralMob.elements.EffectAstralMobSpeedModifier">
+				<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+					<coeff>-1</coeff>
+				</effectScaler>
+			</Item>
+		</casterChannelingEffects>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

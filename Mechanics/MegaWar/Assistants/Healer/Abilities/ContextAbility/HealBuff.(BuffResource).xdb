@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>342252548</resourceId>
+	</Header>
+	<Name href="HealBuff.(BuffResource)_Name.txt" />
+	<Description href="HealBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/EarthElementalHeart.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/HOTGood.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_BodyFX</locator>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="HealBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="HealBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.CountingEffectOverTime">
+			<effect type="gameMechanics.elements.effects.ImpactsOverTime">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactHeal">
+								<heal>67.45</heal>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impacts>
+						<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+						<affectGroup>Group</affectGroup>
+						<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+							<value>20</value>
+						</radius>
+					</Item>
+				</impacts>
+			</effect>
+			<ticksCount>4</ticksCount>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="AddresseeFinderBuffCaster.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="HealBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_HoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

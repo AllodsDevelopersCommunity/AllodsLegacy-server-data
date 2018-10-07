@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>210201694</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+					<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<locators>
+						<Item>
+							<scriptID>explosion</scriptID>
+							<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</locators>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>20</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactEndRuleActivity">
+					<ruleResource href="/Mechanics/Rules/ArchipelagoContested7/other_unReferenced_events/02_2_escort.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>100</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="Player_aggro_drakes.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+											<quest href="Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>50</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>20</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="Player_aggro_drakes.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/GolemJunes/ArchipelagoContested7/Instances/ArchipelagoContested7/Golem_special.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

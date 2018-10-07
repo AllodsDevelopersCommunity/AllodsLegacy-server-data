@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>305257502</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="ZC7_E_5_10_Agent.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.15</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+					<selector type="gameMechanics.elements.calcers.RangeSelectorResource">
+						<range min="0" max="1" />
+						<withinRange>false</withinRange>
+						<minCandidatesCount>0</minCandidatesCount>
+						<targetCount>0</targetCount>
+					</selector>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<impacts>
+						<Item>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Agent_Blind.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<impactsOnFail>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>4000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+															<destination type="gameMechanics.map.destination.DestinationLocator">
+																<locator>
+																	<scriptID>ZC7_E_5_10_Teleport</scriptID>
+																	<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																</locator>
+															</destination>
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impactsOnFail>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="ZC7_E_5_10_OrcPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Characters/Orc_male/Instances/ZC7/ZC7_E_5_10_OrcDead.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</onLeave>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

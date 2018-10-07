@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>232052756</resourceId>
+	</Header>
+	<name href="Explosion.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.2</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ExplodeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>20</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Mechanics/Spells/AstarlIslands/AI16/QueenShield/Shield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>25000</delay>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/AstarlIslands/AI16/QueenShield/Shield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/TermiteQueen/Instances/AstralIsle16/QueenBoss_AI16.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>120</radius>
+							<affectGroup>Friends</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+									<spell href="SummonSlime.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+										<mobs>
+											<Item href="/Creatures/TermiteQueen/Instances/AstralIsle16/QueenBoss_AI16.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</mobs>
+									</Item>
+								</predicates>
+							</filter>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<effects />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.5</coeff>
+			</effectScaler>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

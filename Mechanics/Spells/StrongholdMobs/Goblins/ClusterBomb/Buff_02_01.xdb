@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739823440</resourceId>
+	</Header>
+	<Name href="Buff_02__Name.txt" />
+	<Description href="Buff_02__Desc.txt" />
+	<image href="/Interface/Icons/Spells/MegaWarPetsCaster.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_02__Name.txt.template" />
+	<descTemplate href="Buff_02__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>8</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>FIRE</element>
+							<threatMultiplier>1</threatMultiplier>
+							<minDamage>30</minDamage>
+							<maxDamage>30</maxDamage>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+								<radius>85</radius>
+							</distributor>
+							<data href="/Mechanics/Spells/AstarlIslands/AI14/ChargedExplosion/Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+					<targetsLimit>1</targetsLimit>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+										<hideText>false</hideText>
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>true</anyRank>
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<allowOverrideCaster>false</allowOverrideCaster>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>100</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

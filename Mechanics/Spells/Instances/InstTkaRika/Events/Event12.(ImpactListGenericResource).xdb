@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>227563535</resourceId>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/Inst_TkaRika/QuestEvent03/PhaseBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<scalerTarget />
+			<durationScaler />
+			<durationScalerTarget />
+			<allowOverrideCaster>false</allowOverrideCaster>
+			<stacks />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+						<buffs>
+							<Item href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/DelayedDeath.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<Item href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/Death.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</buffs>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/Inst_TkaRika/QuestEvent03_1/QuestEvent03_1.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.basicElements.ImpactList">
+							<impactsResource href="Event08.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>3000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+									<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/CollectableProjectile03.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/Instances/InstTkaRika/EventNames/Event12.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/CollectableProjectile04.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Spells/Instances/InstTkaRika/EventNames/Event13.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsElse>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.ImpactList">
+			<impactsResource href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/Weather/ChangeWeather.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Spells/ClientData/FadeOutScreen.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

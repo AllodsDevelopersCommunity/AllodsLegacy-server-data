@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>267212801</resourceId>
+	</Header>
+	<name href="/Mechanics/Spells/AstarlIslands/AI24/DemonSoloMirror/AbilityName.txt" />
+	<nameTemplate href="/Mechanics/Spells/AstarlIslands/AI24/DemonSoloMirror/AbilityName.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impactsToOffender>
+				<Item type="gameMechanics.elements.impacts.PureDamage">
+					<damage>1</damage>
+					<scaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>0.2</multiplier>
+					</scaler>
+					<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				</Item>
+			</impactsToOffender>
+			<scaleImpactsByDamage>true</scaleImpactsByDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/AstarlIslands/AI24/DemonSoloHeal/HealBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/AstarlIslands/AI24/DemonSoloMirror/MirrorBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</onEnter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="DemonSoloBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</impactsToKiller>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>305257538</resourceId>
+	</Header>
+	<name href="Orc_cue2.(Cue).Name.txt" />
+	<text href="Orc_cue2.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="ZC7_E_5_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="ZC7_E_5_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>ZC7_E_5_10_Orc</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="ZC7_E_5_10_AgentPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="ZC7_E_5_10_AgentPlane_pet.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="ZC7_E_5_10_OrcPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Characters/Undead_male/Instances/ZC7/ZC7_TephAgent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

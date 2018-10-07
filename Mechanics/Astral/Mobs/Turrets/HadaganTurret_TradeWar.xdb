@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralMob.AstralMobWorld>
+	<Header>
+		<resourceId>314547205</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/AstralMob.(AstralMobWorld).xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+	</Header>
+	<brain href="/Mechanics/AI/AstralTurretBrain.xdb#xpointer(/gameMechanics.world.astralMob.AstralMobBrainResource)" />
+	<persistentParts>
+		<Item type="gameMechanics.constructor.schemes.spell.multiTarget.cannonTargetShapes.CannonTargetCylinderResource">
+			<vertical>true</vertical>
+			<length>55</length>
+			<radius>25</radius>
+			<offset x="0" y="0" z="12.5" />
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSolidCollision">
+					<radius>50</radius>
+					<offset>10</offset>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.EffectImpactsOnDeath">
+					<impactsOnKiller />
+					<impactsOnVictimWoKiller />
+					<impactsOnVictim>
+						<Item type="gameMechanics.world.bigAstral.tradeWars.ImpactResetTradeAllod" />
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+							<distributor type="gameMechanics.elements.calcers.AstralSectorDistributor">
+								<sector type="gameMechanics.world.bigAstral.elements.CurrentSectorSelector" />
+								<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+							</distributor>
+							<data href="/Mechanics/Astral/TradeHubs/ClientData/TurretDestroyed.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsOnVictim>
+				</Item>
+				<Item type="gameMechanics.elements.effects.CombatStateTriggerGeneric">
+					<onLeave>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="/Mechanics/Astral/TradeHubs/ClientData/AlreadyTookDamage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</onLeave>
+					<effects>
+						<Item type="gameMechanics.world.ship.elements.EffectShipDamageTrigger">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Astral/TradeHubs/ClientData/AlreadyTookDamage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+											<distributor type="gameMechanics.elements.calcers.AstralSectorDistributor">
+												<sector type="gameMechanics.world.bigAstral.elements.CurrentSectorSelector" />
+												<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+											</distributor>
+											<data href="/Mechanics/Astral/TradeHubs/ClientData/TurretTakingDamage.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="/Mechanics/Astral/TradeHubs/ClientData/AlreadyTookDamage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impacts>
+						</Item>
+					</effects>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+							<key href="/System/ContentKeys/AstralTradeAllods_CaptureEvent.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Mechanics/Rules/Astral/TradeWarAlternativeCapture/TurretImmunity.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+											<rule href="/Mechanics/Rules/Astral/TradeWarAlternativeCapture/AlternativeCaptureEvent.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+											<buff href="/Mechanics/Rules/Astral/TradeWarAlternativeCapture/TurretImmunity.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="/Mechanics/Rules/Astral/TradeWarAlternativeCapture/TurretImmunity.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsOn>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+			<attachOnStart>true</attachOnStart>
+		</Item>
+		<Item type="gameMechanics.world.cellReplication.MapWideReplicated" />
+	</persistentParts>
+	<name href="HadaganTurret_TradeWar.txt" />
+	<corpulence>24.9</corpulence>
+	<visMob href="HadaganTurret.(VisualMob).xdb#xpointer(/VisualMob)" />
+	<image href="/Interface/Ingame/ContextAstralMap/AstralHubMark/AstralTurel.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<roamingData href="/Mechanics/Astral/Mobs/EmptyRoamingArea.(RoamingData).xdb#xpointer(/gameMechanics.world.mob.RoamingData)" />
+	<stats>
+		<speed>0</speed>
+		<hp type="gameMechanics.elements.calcers.CalcerMul">
+			<calcers>
+				<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+					<value type="gameMechanics.elements.calcers.FloatData">
+						<value>1.33</value>
+					</value>
+				</Item>
+				<Item type="gameMechanics.elements.calcers.FloatData">
+					<value>30000</value>
+				</Item>
+			</calcers>
+		</hp>
+		<aggroRange>900</aggroRange>
+		<hitChance>1</hitChance>
+		<insight type="gameMechanics.elements.calcers.FloatData">
+			<value>0</value>
+		</insight>
+	</stats>
+	<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+	<abilityKit href="/Mechanics/Creatures/Astral/Special/TurretHadaganAbilityKit_TradeWar.xdb#xpointer(/gameMechanics.world.mob.MobAbilityKit)" />
+</gameMechanics.world.astralMob.AstralMobWorld>

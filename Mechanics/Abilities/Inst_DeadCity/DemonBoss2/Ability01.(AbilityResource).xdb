@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>192872572</resourceId>
+	</Header>
+	<name href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<nameTemplate href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/Demons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Abilities/Bosses/ActivityTrackerDisabler/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Abilities/Bosses/ActivityTracker/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="/Maps/Inst_DeadCity/Variables/Demons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableLessGeneric">
+							<variableResource href="/Maps/Inst_DeadCity/Variables/Demons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<maxValue type="gameMechanics.elements.calcers.FloatData">
+								<value>2</value>
+							</maxValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/Inst_DeadCity/SpawnTables/Inst_DeadCity/DemonBoss02_CopyPlane.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAllowNoVisibleTargets" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

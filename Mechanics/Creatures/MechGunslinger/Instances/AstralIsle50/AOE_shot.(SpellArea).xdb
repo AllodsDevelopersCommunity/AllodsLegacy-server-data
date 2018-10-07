@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>367587370</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<Name href="AOE_shot.(SpellArea).Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/FireBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="AOE_shot.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics>
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>30</minDamage>
+				<maxDamage>30</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="AOE_shot.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>6</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

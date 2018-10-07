@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>360059912</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/ActionBarChange.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell.(SpellSingleTarget).Name.txt" />
+	<Description href="Spell.(SpellSingleTarget).Description.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinHealingAura.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Priest/Exorcism.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>2</sysName>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<prepareDuration>8000</prepareDuration>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics>
+		<cooldown>
+			<duration>24000</duration>
+		</cooldown>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBestFriends" />
+		</conditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

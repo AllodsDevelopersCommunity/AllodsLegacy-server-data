@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<PreCastAnimation>/Spells/VisScripts/Prototypes/PreCastFXDisease.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastAnimation>
+			<LocatorNameOnTargets />
+			<FXOnTargets />
+			<CastAnimation>emoteCongratulate</CastAnimation>
+			<FixPointTarget>true</FixPointTarget>
+			<FXOnCaster>/Spells/FX/Spells/WarriorOrc.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<LocatorNameOnCaster />
+			<PreCastFX />
+			<FXWand />
+			<FixPointCaster>false</FixPointCaster>
+			<FXPocket />
+			<HitPostFXOnTargets />
+			<LocatorOnCaster>Slot_Global</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes/Parts/Base.Description.txt" />
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastAnimation" />
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastFX" />
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="CastAnimation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<mode>LOOP</mode>
+						<animations>
+							<Item>emoteCallout</Item>
+						</animations>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<charged type="CreatureChargedSpellAction">
+		<effectFx hrefvar="FXPocket" />
+	</charged>
+	<playOnTargets>
+		<specialAction />
+	</playOnTargets>
+</SpellVisScripts>

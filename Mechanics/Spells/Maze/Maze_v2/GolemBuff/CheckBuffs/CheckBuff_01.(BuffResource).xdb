@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>260506630</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delayExtensionMax>45000</delayExtensionMax>
+			<effects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableLess">
+									<variableResource href="Check.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<maxValue type="gameMechanics.elements.calcers.FloatData">
+										<value>2</value>
+									</maxValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+									<variable href="Check.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<summand>1</summand>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="/Mechanics/Spells/Maze/Maze_v2/GolemBuff/GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>12</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="FormerGolem.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_yellow.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<onlyOnTargetMapHead>true</onlyOnTargetMapHead>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+													<data href="/Mechanics/Spells/Maze/Maze_v2/GolemBuff/GolemAnnounce.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+									<variable href="Check.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<reset>true</reset>
+									<summand>0</summand>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_yellow.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<onlyOnTargetMapHead>true</onlyOnTargetMapHead>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="CheckBuff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsOn>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>120000</duration>
+	<isHelpful>true</isHelpful>
+	<decayPolicy>OfflineDecay</decayPolicy>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>311581709</resourceId>
+	</Header>
+	<Name href="ZC8_1_120_Tooth.(SpellCasterSelf).Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Prototypes2/Instant_OnCaster.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ZC8/ZC8_1_120/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/IllusionWorld/ScriptZones/ZC8_1_110_zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZC8/ZC8_1_120/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_visScript.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/ZC8/ZC8_start_L_1/ZC8_start_2_Distortion.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+				<data href="/Mechanics/Spells/Creatures/Elementals/EarthElemental/Earthquake/Shake.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>3000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>6000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Started</status>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>ZC8_Agent2</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+										<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>ZC8_Agent3</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+										<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>ZC8_Agent4</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+										<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>6000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Started</status>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.DestinationLocator">
+													<locator>
+														<scriptID>ZC8_Agent2</scriptID>
+														<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+												<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.DestinationLocator">
+													<locator>
+														<scriptID>ZC8_Agent3</scriptID>
+														<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+												<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.DestinationLocator">
+													<locator>
+														<scriptID>ZC8_Agent4</scriptID>
+														<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+												<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.DestinationLocator">
+													<locator>
+														<scriptID>ZC8_Agent1</scriptID>
+														<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+												<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.DestinationLocator">
+													<locator>
+														<scriptID>ZC8_Agent5</scriptID>
+														<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+												</impacts>
+												<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</Item>
+										</impactsIf>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Started</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>ZC8_Agent1</scriptID>
+										<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								</impacts>
+								<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>ZC8_Agent5</scriptID>
+										<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								</impacts>
+								<object href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>6000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Started</status>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>ZC8_GuardEscape3</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/ZC8/ZC8_1_120/ZC8_1_120_buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>1000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+														<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+														<data href="GenlunAppears.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+												<affectGroup>Enemies</affectGroup>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+												<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+															<mobs>
+																<Item href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+															</mobs>
+														</Item>
+													</predicates>
+												</filter>
+											</Item>
+										</impacts>
+										<object href="/Characters/HumMobs/ZC8/ZC8_NPC_Genlun_agro.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

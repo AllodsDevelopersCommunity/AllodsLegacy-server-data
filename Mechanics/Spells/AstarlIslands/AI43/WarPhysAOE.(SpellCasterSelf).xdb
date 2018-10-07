@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>329512988</resourceId>
+	</Header>
+	<Name href="WarPhysAOE.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestDivineArmor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/DC_3_2Boss/DC_3_2BossWarrior_PhysAOE.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="WarPhysAOE.(SpellCasterSelf)_Name.txt.template" />
+	<needLos>false</needLos>
+	<element>HOLY</element>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>30</radius>
+				<affectGroup>Enemies</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+								<impactsOnHitTarget>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="KnockDown.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOnHitTarget>
+								<minDamage>15</minDamage>
+								<maxDamage>15</maxDamage>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

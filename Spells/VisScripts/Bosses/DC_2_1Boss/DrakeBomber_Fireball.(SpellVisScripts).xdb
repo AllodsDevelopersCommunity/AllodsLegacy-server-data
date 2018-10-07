@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart />
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirectFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Mouth</locator>
+				<member>Mount</member>
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>attack</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item skiped="" />
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureProjectileAction">
+								<projectileFx href="/Spells/FX/Mobs/GT_7BossFireBall_projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<explosionFx href="/Spells/FX/Spells/HitFireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<theGe>5</theGe>
+								<pointOnCaster type="VisPointLocator">
+									<locator>Head</locator>
+									<member>Mount</member>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator" />
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+							<Item type="CreatureVisActionStartThrow" />
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

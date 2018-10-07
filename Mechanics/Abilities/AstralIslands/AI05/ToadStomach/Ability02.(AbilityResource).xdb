@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>189453391</resourceId>
+	</Header>
+	<name href="Ability02.(AbilityResource).Name.txt" />
+	<nameTemplate href="Ability02.(AbilityResource).Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>50</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>lake</scriptID>
+											<map href="/Maps/AstralIsle05/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</impacts>
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>500</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										<Item type="gameMechanics.elements.impacts.DirectDamage">
+											<damage>1</damage>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>1000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactKill" />
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<spawnResource href="/Maps/AstralIsle05/SpawnTables/AstralIsle05/AstralToadBoss.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsToKiller>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>332264451</resourceId>
+	</Header>
+	<Name href="ChangeShipHullName.txt" />
+	<Description href="ChangeShipHullUsage.txt" />
+	<image href="/Interface/Icons/Misc/AstralShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+			<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+						<permission>Modify</permission>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnShip" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Ships/Hangar/Buffs/ShipMasterBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.world.ship.elements.ImpactSwitchShipHull">
+				<paramName>hull</paramName>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactTeleportGeneric">
+												<destination type="gameMechanics.map.destination.DestinationSailingPort" />
+											</Item>
+										</impacts>
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+										</predicates>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<params>
+		<params>
+			<Item>
+				<name>hull</name>
+				<type>Resource</type>
+			</Item>
+		</params>
+	</params>
+	<canStartNotBeeingInSpellbook>true</canStartNotBeeingInSpellbook>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

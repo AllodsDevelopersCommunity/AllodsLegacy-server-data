@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>146509875</resourceId>
+	</Header>
+	<Name href="Spell01name.txt" />
+	<Description href="Spell01Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/2ndCircle_AC3/Zones/ArchipelagoContested3/ArchipelagoContested3.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Rhino/Instances/ArchipelagoContested3/Tapir37_38.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Crocodile/Instances/ArchipelagoContested3/Crocodile38_39.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DraconidWarrior/Instances/ArchipelagoContested3/DraconidWarrior38_39.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DraconidWarrior/Instances/ArchipelagoContested3/DraconidWarrior37_38.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts />
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Rhino/Instances/ArchipelagoContested3/Tapir37_38.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested3/UnlockPortal/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<limit>1</limit>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+												<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+												<impactsOnAttach />
+												<durationScalerTarget />
+												<durationScaler />
+												<scalerTarget />
+											</Item>
+										</impacts>
+										<plane href="" />
+										<pool href="" />
+										<traceDown>false</traceDown>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested3/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Crocodile/Instances/ArchipelagoContested3/Crocodile38_39.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>true</anyRank>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested3/UnlockPortal/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<limit>1</limit>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+												<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+												<durationScalerTarget />
+												<durationScaler />
+												<scalerTarget />
+											</Item>
+										</impacts>
+										<plane href="" />
+										<pool href="" />
+										<traceDown>false</traceDown>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested3/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+										<scaler />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/DraconidWarrior/Instances/ArchipelagoContested3/DraconidWarrior38_39.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/DraconidWarrior/Instances/ArchipelagoContested3/DraconidWarrior37_38.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Hunger3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>true</anyRank>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoContested3/UnlockPortal/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>60000</delay>
+												<limit>1</limit>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.Disintegrate" />
+												</impacts>
+												<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="PlayAnimation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+												<durationScalerTarget />
+												<durationScaler />
+												<scalerTarget />
+											</Item>
+										</impacts>
+										<plane href="" />
+										<pool href="" />
+										<traceDown>false</traceDown>
+										<object href="/Creatures/ManaElemental/Instances/ArchipelagoContested3/ManaElementalEater.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Hunger3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+										<spell href="Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<duration>10000</duration>
+										<scaler />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

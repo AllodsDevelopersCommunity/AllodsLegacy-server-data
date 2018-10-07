@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>225727512</resourceId>
+	</Header>
+	<Name href="Rage.txt" />
+	<Description href="Rage.Description.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidPetGetItUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="Rage.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.75</coeff>
+			</scaler>
+			<group href="" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.WeaponSpeedMultiplier">
+			<scaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+				<base>0.5</base>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>1.33</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/Wolf/Instances/AstralIsle15/Astral_WolfBossInfectedAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Creatures/Wolf/Instances/AstralIsle15/Astral_WolfBossAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>10</radius>
+							<affectGroup>Friends</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/Wolf/Instances/AstralIsle15/AstralWolfBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/Wolf/Instances/AstralIsle15/Astral_WolfBossAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="Rage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Rage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.CreatureFilter" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

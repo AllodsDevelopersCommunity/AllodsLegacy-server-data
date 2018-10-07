@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction" />
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsOnTarget">
+				<visualEffects>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/General_Mage_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fixPoint>true</fixPoint>
+						<scale>3</scale>
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureLockTargetAction">
+				<lockTime>6000</lockTime>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>specialAttack</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Mobs/MountGolem_RocketSquall_FireUp.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<locatorName>Slot_Special05</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureVisActionStartThrow" />
+							<Item type="CreatureProjectileAction">
+								<projectileFx href="/Spells/FX/Mobs/MountGolem_RocketSquall_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<explosionFx href="/Spells/FX/Spells/HitFireball2.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<theGe>40</theGe>
+								<pointOnCaster type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<locatorName>Slot_Special05</locatorName>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<locator>Global</locator>
+								</pointOnTarget>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

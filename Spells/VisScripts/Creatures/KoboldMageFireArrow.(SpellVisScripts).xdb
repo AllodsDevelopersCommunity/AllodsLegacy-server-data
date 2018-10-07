@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastOmni</Item>
+				</animations>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirect01Down.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			</Item>
+			<Item>
+				<delay>800</delay>
+				<effectFx href="/Spells/FX/Spells/MageFireInstabilityProc.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<fixPoint>true</fixPoint>
+				<locator>Slot_BodyFX</locator>
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+				</advanced>
+			</Item>
+			<Item type="CreatureVisActionStartThrow" />
+			<Item type="CreatureProjectileAction">
+				<projectileFx href="/Spells/FX/Spells/MageFireArrowAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<explosionFx href="/Spells/FX/Spells/HitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<pointOnCaster type="VisPointLocator">
+					<locator>Slot_Hand_R</locator>
+				</pointOnCaster>
+				<pointOnTarget type="VisPointLocator">
+					<locator>Slot_BodyFX</locator>
+				</pointOnTarget>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="CreatureRunVisActionResource">
+			<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitFireShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

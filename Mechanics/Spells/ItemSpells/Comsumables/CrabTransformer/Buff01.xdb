@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>98829350</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Mobparts/ClawCrabSpecial.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualPostEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/CreaturesTransform.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<member>Default_Member</member>
+			<offendTime />
+		</Item>
+	</visualPostEffects>
+	<visScript href="/Spells/BuffVisScripts/CrabTransform.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/IMCivilCloth.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventSpellStarted</Item>
+				<Item>gameMechanics.elements.events.EventSpellLaunchedPoint</Item>
+				<Item>gameMechanics.elements.events.EventSpellLaunchedTarget</Item>
+				<Item>gameMechanics.elements.events.EventStruckWithAutoAttack</Item>
+				<Item>gameMechanics.elements.events.EventStruckWithAutoAttack</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/IMCivilCloth.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/IMCivilCloth.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsMountAction" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/IMCivilCloth.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

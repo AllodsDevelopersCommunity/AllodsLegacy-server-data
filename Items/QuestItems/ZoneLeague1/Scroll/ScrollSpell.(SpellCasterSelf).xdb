@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>131254299</resourceId>
+	</Header>
+	<Name href="Scroll_Name.txt" />
+	<Description href="Scroll_Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Prototypes2/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions />
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+							<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_1Lumber.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Scroll.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>1</count>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>60000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</impacts>
+						<plane href="/Mechanics/Spells/QuestSpells/IE1_move/Comander.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+						<object href="/Characters/Kania_male/Instances/Inst_DeadCity/NPC_02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Items/QuestItems/InstEmpire1/Vodka/Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<impactsOnAttach>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>60000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Items/QuestItems/InstEmpire1/Vodka/Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impactsOnAttach>
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+							<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/E1_Scientific.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Scroll.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>0</value>
+							</yaw>
+							<faceSourcePos>true</faceSourcePos>
+							<coord x="0" y="0" z="0" />
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>60000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impacts>
+						<plane href="/Mechanics/Spells/QuestSpells/IE1_move/Comander.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+						<pool href="" />
+						<traceDown>false</traceDown>
+						<object href="/Characters/Kania_male/Instances/Inst_DeadCity/NPC_02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Items/QuestItems/InstEmpire1/Vodka/Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget />
+						<durationScaler />
+						<durationScalerTarget />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<impactsOnAttach>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>60000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Items/QuestItems/InstEmpire1/Vodka/Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impactsOnAttach>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>2005663756</resourceId>
+		<Variables>
+			<abili_1>/Mechanics/Abilities/NecromancerTalents/Infection/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)</abili_1>
+			<minDamage>72</minDamage>
+			<buff>Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</buff>
+			<multiplier>2.5</multiplier>
+			<maxDamage>72</maxDamage>
+			<ability>/Mechanics/Abilities/NecromancerTalents/Infection/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)</ability>
+			<bu_1>Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</bu_1>
+			<damagePerTick>4.7</damagePerTick>
+		</Variables>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerNeurotoxin.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/Neurotoxin.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>false</attachIfNotExist>
+					<resetTimer>false</resetTimer>
+				</Item>
+			</impacts>
+			<tick>2500</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<scaleOnTick>false</scaleOnTick>
+				<tickLength>3000</tickLength>
+				<damagePerTick>1.5</damagePerTick>
+				<threatMultiplier>1</threatMultiplier>
+				<affectOnStartTick>false</affectOnStartTick>
+				<impactsPerTick>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/NecromancerNeurotoxinTick.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/NecromancerToxicWeacness.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsPerTick>
+			</parameters>
+			<element>POISON</element>
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+						<ability href="/Mechanics/Abilities/NecromancerTalents/Infection/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.05</mul>
+					</Item>
+				</scalers>
+			</scaler>
+			<fixedMultiplier>1</fixedMultiplier>
+			<progressiveMultiplier>0</progressiveMultiplier>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>POISON</element>
+					<threatMultiplier>1</threatMultiplier>
+					<minDamage>15.2</minDamage>
+					<maxDamage>15.2</maxDamage>
+					<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+							<radius>85</radius>
+						</distributor>
+						<data href="/Spells/ClientData/HitPoisonBig.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</impactOnHitTarget>
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+								<ability href="/Mechanics/Abilities/NecromancerTalents/Infection/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.05</mul>
+							</Item>
+						</scalers>
+					</scaler>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>3</multiplier>
+					</durationScaler>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>8</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>POISON</element>
+					<threatMultiplier>1</threatMultiplier>
+					<minDamage>15.2</minDamage>
+					<maxDamage>15.2</maxDamage>
+					<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+							<radius>85</radius>
+						</distributor>
+						<data href="/Spells/ClientData/HitPoisonBig.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</impactOnHitTarget>
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+								<ability href="/Mechanics/Abilities/NecromancerTalents/Infection/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.05</mul>
+							</Item>
+						</scalers>
+					</scaler>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>3</multiplier>
+					</durationScaler>
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>17501</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>8</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Poisons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks />
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

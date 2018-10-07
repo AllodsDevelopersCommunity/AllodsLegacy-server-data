@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>277552129</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Bard/Evasion.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.abilities.DieHardObserver">
+			<dieHardBuff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<impactsOnAttach>
+				<Item type="gameMechanics.elements.impacts.ImpactBaseHealth">
+					<healthMultiplier var="healthMultiplier" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<checkCaster>false</checkCaster>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<checkCaster>false</checkCaster>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<checkCaster>false</checkCaster>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+							<group href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<checkCaster>false</checkCaster>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier var="multiplier" />
+					</durationScaler>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSetBuffDuration">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationMultiplier type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value var="value" />
+							</Item>
+							<Item type="gameMechanics.elements.calcers.AbilityRankCalcer">
+								<ability href="/Mechanics/Spells/Bard/Abilities/StatGain/AgilitySG/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.15</mul>
+								<sum>1</sum>
+							</Item>
+						</calcers>
+					</durationMultiplier>
+				</Item>
+			</impactsOnAttach>
+			<restrictiveBuff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<priority>0</priority>
+			<suppressDamage>true</suppressDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateFalse">
+							<hideText>false</hideText>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>true</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

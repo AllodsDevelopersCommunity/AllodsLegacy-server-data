@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>186441755</resourceId>
+	</Header>
+	<Name href="AC5_knife_spell.txt" />
+	<Description href="AC5_knife_spell.Description.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>10000</prepareDuration>
+	<needLos>true</needLos>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Scrub/Instances/ArchipelagoContested5/Scrub45_45.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Items/QuestItems/ArchipelagoContested5/AC5_RepK_2_paralizator/AC5_paralizator_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts />
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="AC5_knife_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Creatures/Scrub/Instances/ArchipelagoContested5/Scrub45_45_sick.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>60000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Creatures/Scrub/Instances/ArchipelagoContested5/Scrub45_45.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ArchipelagoContested5/RepK_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactResetMob" />
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+							<operation type="itemService.avatar.itemBag.IncrementItemCounter">
+								<summand>1</summand>
+							</operation>
+							<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+						</Item>
+					</impacts>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

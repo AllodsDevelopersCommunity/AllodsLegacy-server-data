@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>93849649</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerSleepingDropsy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/MindStab.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<level>10</level>
+	<prepareDuration>1500</prepareDuration>
+	<needLos>false</needLos>
+	<element>SHADOW</element>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<cooldown>
+			<duration>18000</duration>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>25</mana>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>15</radius>
+				<affectGroup>Enemies</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="PsionicLab01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ASTRAL</element>
+						<threatMultiplier>0</threatMultiplier>
+						<minDamage>25</minDamage>
+						<maxDamage>25</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+						<projectileData>
+							<moveType type="gameMechanics.world.projectile.MoveTypeDestination">
+								<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+							</moveType>
+							<startAtCaster>true</startAtCaster>
+							<resource href="PsionicProjectile.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+						</projectileData>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

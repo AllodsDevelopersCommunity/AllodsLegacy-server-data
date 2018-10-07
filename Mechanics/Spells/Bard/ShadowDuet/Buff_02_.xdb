@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>344553485</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<hideText>false</hideText>
+							<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+								<hideText>false</hideText>
+								<groups>
+									<Item href="/Mechanics/Spells/Groups/StopSing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</groups>
+								<checkHelpful>true</checkHelpful>
+								<checkHarmful>true</checkHarmful>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Bard/Shadowsong/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.CalcerMul">
+				<calcers>
+					<Item type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Spells/Bard/Abilities/StrongHealsong/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>-600</mul>
+						<sum>6000</sum>
+					</Item>
+					<Item type="gameMechanics.elements.calcers.CalcerIf">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/Bard/QuickSong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</predicate>
+						<calcerIf type="gameMechanics.elements.calcers.LinearCalcer">
+							<mul>-1</mul>
+							<mulCalcer type="gameMechanics.constructor.basicElements.ScalerCalcer">
+								<scaler type="gameMechanics.elements.scalers.BuffRankScaler">
+									<buff href="/Mechanics/Spells/Bard/QuickSong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<mul>1</mul>
+									<checkCaster>false</checkCaster>
+								</scaler>
+								<value>1</value>
+							</mulCalcer>
+							<sum>5</sum>
+						</calcerIf>
+						<calcerElse type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</calcerElse>
+					</Item>
+				</calcers>
+			</tick>
+		</Item>
+	</effects>
+	<duration>40000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff_02_02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff_02_03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

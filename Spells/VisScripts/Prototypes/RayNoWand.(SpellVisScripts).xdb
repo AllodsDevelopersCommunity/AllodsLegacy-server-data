@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<FXRaySecondary />
+			<RaySecondaryVelocity>0</RaySecondaryVelocity>
+			<MultyTargetMode>FromCaster</MultyTargetMode>
+			<FXOnTarget />
+			<LocatorNameOnCaster />
+			<RayLength>2</RayLength>
+			<FXOnWand />
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<FXRay />
+			<PreCastFX />
+			<RaySecondaryLength>2</RaySecondaryLength>
+			<RayVelocity>0</RayVelocity>
+			<LocatorNameOnTargets />
+			<FXOnCaster />
+			<Animation>channelCastDirected</Animation>
+			<LocatorOnCaster>Slot_Hand_R</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item var="Animation" />
+				</animations>
+			</Item>
+			<Item type="CreatureChannelDirectAction">
+				<channelingFx hrefvar="FXRay" />
+				<fxLength var="RayLength" />
+				<startPoint type="VisPointLocator">
+					<locator var="LocatorOnCaster" />
+					<locatorName var="LocatorNameOnCaster" />
+				</startPoint>
+				<endPoint type="VisPointLocator">
+					<locator var="LocatorOnTargets" />
+					<locatorName var="LocatorNameOnTargets" />
+				</endPoint>
+				<fadeInTime>200</fadeInTime>
+				<fadeOutTime>100</fadeOutTime>
+				<velocity var="RayVelocity" />
+				<offendTime type="EffectOffendConstDelay" />
+				<multyTargetMode var="MultyTargetMode" />
+				<secondaryTargetParams>
+					<channelingFx hrefvar="FXRaySecondary" />
+					<fxLength var="RaySecondaryLength" />
+					<velocity var="RaySecondaryVelocity" />
+				</secondaryTargetParams>
+			</Item>
+			<Item type="CreatureEffectsOnTarget">
+				<visualEffects>
+					<Item>
+						<effectFx hrefvar="FXOnTarget" />
+						<locator var="LocatorOnTargets" />
+						<locatorName var="LocatorNameOnTargets" />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx hrefvar="FXOnCaster" />
+						<locator var="LocatorOnCaster" />
+						<locatorName var="LocatorNameOnCaster" />
+					</Item>
+					<Item>
+						<effectFx hrefvar="FXOnWand" />
+						<fixPoint>true</fixPoint>
+						<locator>Slot_Hand_R</locator>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureRunVisActionResource">
+		<resource hrefvar="PreCastFX" />
+	</wholeCasting>
+</SpellVisScripts>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>318147614</resourceId>
+	</Header>
+	<minimapLight>
+		<SunLightYaw>45</SunLightYaw>
+		<SunLightPitch>30</SunLightPitch>
+		<WaterGradientStart>0</WaterGradientStart>
+		<WaterGradientEnd>0</WaterGradientEnd>
+	</minimapLight>
+	<internalName>Goblinoball</internalName>
+	<name href="Name.txt" />
+	<predictionElastic>0.06</predictionElastic>
+	<factionExits>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Portal_League1_Capital</scriptID>
+					<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Capital_AE1_Teleport</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</factionExits>
+	<mapTemplate href="/System/MapTemplates/InstancedEvent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="/Mechanics/Spells/QuestSpells/Football_New/Blue_Goalkeeper.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/Spells/QuestSpells/Football_New/Red_Goalkeeper.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/Spells/QuestSpells/Football_New/FootballDrawVariable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/Spells/QuestSpells/Football_New/BlueGoalkeeper.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/Spells/QuestSpells/Football_New/RedGoalkeeper.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<hideText>true</hideText>
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<hideText>true</hideText>
+												<predicate type="gameMechanics.elements.predicates.PredicateIsAvatar">
+													<hideText>true</hideText>
+												</predicate>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<hideText>true</hideText>
+												<predicate type="gameMechanics.elements.predicates.PredicateIsMob">
+													<hideText>true</hideText>
+												</predicate>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/QuestSpells/Football_New/PlaneToPets.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+						<tick>60000</tick>
+					</Item>
+					<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<hideText>true</hideText>
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+												<hideText>true</hideText>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<hideText>true</hideText>
+												<predicate type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/InstancedEventResource/MM_Football/FootballWait.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</predicate>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/QuestSpells/Football_New/FootballGameplayV2/AntiAFKBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/QuestSpells/Football_New/FootballGameplayV2/AntiAFKWorningBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+						<tick>10000</tick>
+						<initialDelay>10000</initialDelay>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectMoveTrigger">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<hideText>true</hideText>
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+												<hideText>true</hideText>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<hideText>true</hideText>
+												<predicate type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/InstancedEventResource/MM_Football/FootballWait.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</predicate>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<hideText>true</hideText>
+												<predicate type="gameMechanics.battleground.map.PredicateBattleEventMember">
+													<hideText>true</hideText>
+													<eventResource href="/Mechanics/InstancedEventResource/MM_Football/MM_Team_Football.(InstancedEventResource).xdb#xpointer(/avatarPopulation.service.impl.matchMakingImpl.scheme.InstancedEventResource)" />
+												</predicate>
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<hideText>true</hideText>
+												<predicate type="gameMechanics.battleground.map.PredicateBattleEventMember">
+													<hideText>true</hideText>
+													<eventResource href="/Mechanics/InstancedEventResource/MM_Football/MM_Team_Football_Training.(InstancedEventResource).xdb#xpointer(/avatarPopulation.service.impl.matchMakingImpl.scheme.InstancedEventResource)" />
+												</predicate>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Spells/QuestSpells/Football_New/FootballGameplayV2/AntiAFKBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Spells/QuestSpells/Football_New/FootballGameplayV2/AntiAFKWorningBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+						<distDelta>2</distDelta>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

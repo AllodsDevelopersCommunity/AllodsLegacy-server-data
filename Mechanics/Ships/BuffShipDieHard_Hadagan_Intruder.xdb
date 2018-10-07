@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>280799244</resourceId>
+		<Variables>
+			<decreasePercent>0</decreasePercent>
+		</Variables>
+	</Header>
+	<Name href="BuffShipDieHard_Intruder.txt" />
+	<Description href="BuffShipDieHard_Intruder.Description.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/Blackjack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectShipDieHard">
+			<impactsOnAttach>
+				<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+					<limitModCalcer type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+					<valueModCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+			</impactsOnAttach>
+			<priority>-2</priority>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectImpactsOnDeath">
+			<impactsOnKiller />
+			<impactsOnVictimWoKiller />
+			<impactsOnVictim>
+				<Item type="gameMechanics.world.ship.elements.ImpactFillBunchLootDroppers">
+					<lootDropperResources>
+						<Item type="gameMechanics.world.astralWreck.AstralChestsDropper">
+							<chestAmount type="gameMechanics.world.ship.elements.calcers.ChestCountCalcer" />
+							<clientData href="ChestsDropperData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.world.astralWreck.TrashLootDropper">
+							<plankCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+								<calcerLong type="gameMechanics.elements.calcers.LongData">
+									<value>50</value>
+								</calcerLong>
+								<calcerFloat type="gameMechanics.elements.calcers.CalcerMul">
+									<calcers>
+										<Item type="gameMechanics.elements.calcers.FloatData">
+											<value>0.84</value>
+										</Item>
+										<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+											<value type="gameMechanics.elements.calcers.FloatData">
+												<value>1.33</value>
+											</value>
+										</Item>
+									</calcers>
+								</calcerFloat>
+								<rounding>Ceil</rounding>
+							</plankCalcer>
+						</Item>
+					</lootDropperResources>
+				</Item>
+			</impactsOnVictim>
+		</Item>
+	</effects>
+	<isClientReplicated>true</isClientReplicated>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

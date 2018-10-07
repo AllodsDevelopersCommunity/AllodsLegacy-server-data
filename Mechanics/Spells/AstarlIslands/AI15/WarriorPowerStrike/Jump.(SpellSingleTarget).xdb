@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>227173415</resourceId>
+	</Header>
+	<Name href="Jump.txt" />
+	<image href="" />
+	<visualScripts href="/Spells/VisScripts/Mount/BattleMountGolem_Jump.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Jump.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>20000</duration>
+			<group href="" />
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>false</hideText>
+				<predicate type="gameMechanics.elements.predicates.PredicateMobWorld">
+					<hideText>false</hideText>
+					<mobs>
+						<Item href="/Creatures/Artiodactyl/Instances/AstralIsle15/StellaVillage1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<Item href="/Creatures/Artiodactyl/Instances/AstralIsle15/StellaVillage2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1500</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>15</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+								<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+								<threatMultiplier>1</threatMultiplier>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler">
+									<stat>IS_Intellect</stat>
+								</scaler>
+								<minDamage>30</minDamage>
+								<maxDamage>30</maxDamage>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+									<radius>85</radius>
+								</distributor>
+								<data href="HitEffect.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.world.creature.AvatarFilter">
+									<block>false</block>
+									<withPet>false</withPet>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<hideText>false</hideText>
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>true</anyRank>
+											<consumeStacks>0</consumeStacks>
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+						<targetsLimit>0</targetsLimit>
+						<onBehalfOfHolder>true</onBehalfOfHolder>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+							<radius>85</radius>
+						</distributor>
+						<data href="/Mechanics/Spells/Mounts/Battlemount/Jump/BattleMountLand.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+						<time>1500</time>
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<faceSourcePos>true</faceSourcePos>
+						</destination>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

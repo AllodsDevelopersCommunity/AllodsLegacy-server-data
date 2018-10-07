@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>291970051</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellSingleTarget)_Name.txt" />
+	<Description href="Spell01.(SpellSingleTarget)_Desc.txt" />
+	<visualScripts href="AI31_AspectOfHeal.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell01.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="Spell01.(SpellSingleTarget)_Desc.txt.template" />
+	<element>HOLY</element>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>17000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>1</level>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Snake/Cobra/Instances/AstralIsle31/AI31_SnakeBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactHeal">
+						<heal>1</heal>
+						<scaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>0.04</multiplier>
+						</scaler>
+						<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.7</multiplier>
+							</mulCalcer>
+						</scalerTarget>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

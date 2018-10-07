@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>367587356</resourceId>
+	</Header>
+	<Name href="Alarm.(SpellCasterSelf).Name.txt" />
+	<visualScripts href="Alarm.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>30</radius>
+				<affectGroup>Friends</affectGroup>
+				<conditions>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onSlave type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+					</Item>
+				</conditions>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+				</impacts>
+				<filter type="gameMechanics.world.creature.MobFilter" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>30</radius>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/AI50_Robots.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+						</impacts>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/Robot/Instances/AstralIsle50/AI50_Worker.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Creatures/Robot/Instances/AstralIsle50/AI50_Ingeneer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Creatures/Integral/AstralIsle50/AI50_Integral_Sleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+				</filter>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

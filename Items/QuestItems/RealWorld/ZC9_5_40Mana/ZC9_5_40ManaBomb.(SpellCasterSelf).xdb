@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>345830431</resourceId>
+	</Header>
+	<Name href="ZC9_5_40ManaBomb.(SpellCasterSelf)_Name.txt" />
+	<nameTemplate href="ZC9_5_40ManaBomb.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/RealWorld/ScriptZones/ZC9_5_40RobotFactory.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/RealWorld/ZC9_5_40/ZC9_5_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/RealWorld/ZC9_5_40/ZC9_5_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/RealWorld/ZC9_5_40/Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="/World/Quests/RealWorld/ZC9_5_40/ZC9_5_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="/World/Quests/RealWorld/ZC9_5_40/Counter2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>1</value>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos" />
+					<offset>3</offset>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Items/InteractiveObjects/RealWorld/ZC9_5_40Bomb/ZC9_5_40Bomb.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="ZC9_5_40ManaBomb.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/RealWorld/ZC9_5_40/Counter2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/RealWorld/ZC9_5_40/ZC9_5_40FireResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

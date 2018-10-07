@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>361700352</resourceId>
+	</Header>
+	<Name href="MagicKick.(SpellArea).Name.txt" />
+	<visualScripts href="MagicKick.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics>
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ASTRAL</element>
+						<minDamage>40</minDamage>
+						<maxDamage>40</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1000</time>
+						<distance>20</distance>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<angle type="constructor.basicElements.AngleDegrees">
+			<value>45</value>
+		</angle>
+	</shape>
+	<radius>20</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

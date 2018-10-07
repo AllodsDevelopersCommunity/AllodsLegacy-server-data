@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>264621114</resourceId>
+	</Header>
+	<Name href="AcidBombName.txt" />
+	<Description href="AcidBombDescription.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerCorrosiveAcid.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualPostEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/HitPoisonAOE.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<fixPoint>true</fixPoint>
+			<lockScale>true</lockScale>
+			<scale>0.5</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+	</visualPostEffects>
+	<visScript href="/Spells/VisScripts/Necromancer/CorrosiveAcid.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="AcidBombName.txt" />
+	<descTemplate href="AcidBombDescription.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle" />
+						<resource href="AcidPuddleHydra.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>8</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>ACID</element>
+							<minDamage>40</minDamage>
+							<maxDamage>40</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<damagePerTick>10</damagePerTick>
+				<affectOnStartTick>true</affectOnStartTick>
+			</parameters>
+			<element>ACID</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+		</Item>
+	</effects>
+	<duration>7000</duration>
+	<isHelpful>false</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>207125520</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<sector />
+			<savedPosShift>50</savedPosShift>
+			<boss>/Mechanics/Astral/Mobs/Single/AstralBoss.xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)</boss>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj href="/Spells/FX/Ships/TeleportRedBlack.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>10</scale>
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name href="WormholeObject_Name.txt" />
+			<description href="WormholeObject_Desc.txt" />
+			<image href="/Interface/Icons/Special/AstralHubMark/PortalRed.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<impactsSpawn>
+		<Item type="gameMechanics.elements.impacts.ImpactLockHub" />
+	</impactsSpawn>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius>50</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactUniqueImpacts">
+					<impacts>
+						<Item type="gameMechanics.world.ship.elements.ImpactSaveShipPosition">
+							<savedPosShift var="savedPosShift" />
+						</Item>
+						<Item type="gameMechanics.world.ship.elements.ImpactTeleportShip">
+							<sector hrefvar="sector" />
+							<hub>0</hub>
+							<success>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Warning.(BuffResource).xdb" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+									<delay>20000</delay>
+									<impacts>
+										<Item type="gameMechanics.world.ship.elements.ImpactSummonAstralMobWithLoottable">
+											<mobWorld hrefvar="boss" />
+										</Item>
+									</impacts>
+								</Item>
+							</success>
+						</Item>
+					</impacts>
+					<cheaterClientData href="AlreadyVisitedData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsIn>
+			<inPredicates>
+				<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+					<onSlave type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/AstralShipInterhubTravelBlockers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+							</groups>
+						</predicate>
+					</onSlave>
+				</Item>
+			</inPredicates>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

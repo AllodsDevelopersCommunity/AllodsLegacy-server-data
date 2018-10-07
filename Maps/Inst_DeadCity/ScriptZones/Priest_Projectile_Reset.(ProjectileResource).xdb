@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>128849938</resourceId>
+	</Header>
+	<visObject href="" />
+	<altitude>0</altitude>
+	<lifeLengthCap>0</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>85</radius>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>3000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DraconidPriest/Instances/Inst_DeadCity/DraconidPriestBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DraconidPriest/Instances/Inst_DeadCity/DraconidPriestBoss02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactResetMob" />
+									</impactsIf>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DraconidWarrior/Instances/Inst_DeadCity/DraconidWarriorSummon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DemonWarrior/Instances/Inst_DeadCity/DemonWarriorElite42_42.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DemonWarrior/Instances/Inst_DeadCity/DemonWarriorHelpTransmute.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DemonWarrior/Instances/Inst_DeadCity/DemonWarriorHelpDPS.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DemonWarrior/Instances/Inst_DeadCity/DemonWarriorHelpHeal.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DemonWarrior/Instances/Inst_DeadCity/DemonWarriorHelpTank.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/DraconidMage/Inst_DeadCity/Instances/Inst_DeadCity/DraconidMageCopy42_42.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DraconidPriest/Inst_DeadCity/Instances/Inst_DeadCity/DraconidCopyPriest42_42.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/DraconidWarrior/Instances/Inst_DeadCity/DraconidCopyWar.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityImpactScriptZoneSetDisabled">
+					<zone href="Priest.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityImpactScriptZoneSetDisabled">
+					<zone href="Draconid2DontOut.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>true</disable>
+				</Item>
+			</impactsOnNone>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="/Mechanics/Abilities/Inst_DeadCity/ResurecttAura/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

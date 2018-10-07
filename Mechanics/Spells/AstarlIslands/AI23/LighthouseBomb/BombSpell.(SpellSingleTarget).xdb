@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>259892305</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<visualScripts href="/Spells/VisScripts/Psionic/MindFire.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<element>FIRE</element>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>20000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/AstarlIslands/AI23/JackForgetFear/ForgetFearBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="BombBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>5000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ASTRAL</element>
+						<threatMultiplier>0</threatMultiplier>
+						<minDamage>35</minDamage>
+						<maxDamage>35</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>10</radius>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>ASTRAL</element>
+								<threatMultiplier>0</threatMultiplier>
+								<minDamage>75</minDamage>
+								<maxDamage>75</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.world.creature.AvatarFilter" />
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+						<onBehalfOfHolder>false</onBehalfOfHolder>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Mechanics/Spells/AstarlIslands/AI10/ManticoreBomb/Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739821083</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTriggerGeneric">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/AstralIsle50/SpawnTables/AI50_Boss02_ElectricDoor.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/AstralIsle50/ScriptZones/AI50_Boss02_ElectricDoor.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/AstralIsle50/ScriptZones/AI50_ElectricDoor1.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/AstralIsle50/SpawnTables/AI50_Boss02_ElectricDoor.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<spawnResource href="/Maps/AstralIsle50/SpawnTables/AI50_Boss02_ElectricDoor.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/AstralIsle50/ScriptZones/AI50_Boss02_ElectricDoor.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/AstralIsle50/ScriptZones/AI50_ElectricDoor1.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectTaggerReward">
+			<impactsToAllTaggers>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+							<affectPets>false</affectPets>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/AstralIsle50/AI50_Closed2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsToAllTaggers>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FloatData">
+				<value>0</value>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/AstralIsle50/Boss02.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>AI50StationDoor</scriptID>
+						<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

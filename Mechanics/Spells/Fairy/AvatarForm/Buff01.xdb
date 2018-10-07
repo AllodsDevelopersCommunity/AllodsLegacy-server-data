@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>189978632</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/DragonForm.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Mobs/DisguisePathos.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1</scale>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<locator>Slot_FX</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<visualPostEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/DisguiseCommon.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_FX</locator>
+		</Item>
+	</visualPostEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectActivateSecondaryDress" />
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>BELT</slot>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+						<base>1.03</base>
+					</effectScaler>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>BOOTS</slot>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+						<base>1.03</base>
+					</effectScaler>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>BRACERS</slot>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+						<base>1.03</base>
+					</effectScaler>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>CLOAK</slot>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+						<base>1.03</base>
+					</effectScaler>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>ARMOR</slot>
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+					<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onMaster type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateEquipped">
+												<dressType>GLOVES</dressType>
+												<weaponRequired>false</weaponRequired>
+												<itemClass href="" />
+												<secondary>true</secondary>
+											</Item>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>true</anyRank>
+											</Item>
+										</predicates>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+								</predicates>
+							</predicate>
+						</onMaster>
+						<onSlave type="gameMechanics.constructor.basicElements.PredicateTrue" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+					<predicates>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/Silence.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								<Item href="/Mechanics/Spells/Groups/Disarms.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<binaryPredicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onMaster type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateEquipped">
+												<dressType>GLOVES</dressType>
+												<weaponRequired>false</weaponRequired>
+												<itemClass href="" />
+												<secondary>true</secondary>
+											</Item>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>true</anyRank>
+											</Item>
+										</predicates>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+								</predicates>
+							</predicate>
+						</onMaster>
+						<onSlave type="gameMechanics.constructor.basicElements.PredicateTrue" />
+					</binaryPredicate>
+					<removeExistingBuffs>true</removeExistingBuffs>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>MANTLE</slot>
+			<effects>
+				<Item type="gameMechanics.elements.abilities.DieHardObserver">
+					<dieHardBuff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOnAttach>
+					<restrictiveBuff href="" />
+					<priority>1</priority>
+					<suppressDamage>true</suppressDamage>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EquipTrigger">
+			<slot>NECKLACE</slot>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+						<base>1.03</base>
+					</effectScaler>
+				</Item>
+			</effects>
+			<secondary>true</secondary>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

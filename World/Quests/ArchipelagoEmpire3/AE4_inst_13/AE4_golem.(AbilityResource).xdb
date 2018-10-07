@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>134521861</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.25</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="golem_berserk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<scalerTarget />
+					<durationScaler />
+					<durationScalerTarget />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>5</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="AE4_inst_13.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+											<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+									<mob>
+										<scriptID>AE4_golem</scriptID>
+										<map href="/Maps/Hadagan_AE3/movie_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

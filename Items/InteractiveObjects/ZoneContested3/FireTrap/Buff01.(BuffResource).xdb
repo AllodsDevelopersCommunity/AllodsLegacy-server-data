@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>113074193</resourceId>
+	</Header>
+	<Name href="FireTrap_Name.txt" />
+	<Description href="FireTrap_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<locator>FROM_LOCATOR_NAME</locator>
+			<member>Default_Member</member>
+			<locatorName>Slot_BodyFX</locatorName>
+			<effectFx href="/Spells/FX/Spells/MageFireInstability.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<effectAnimations>
+				<mode>DIE</mode>
+			</effectAnimations>
+			<fixPoint>false</fixPoint>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<offendTime />
+		</Item>
+	</visualEffects>
+	<needVisualize>true</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Fire_DOT_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<coord x="1" y="0" z="0" />
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+						<faceSourcePos>true</faceSourcePos>
+						<liftFromSurface>true</liftFromSurface>
+					</destination>
+					<object href="/Items/InteractiveObjects/ZoneContested1/FireWall/FireWall.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<deviceImpacts>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>5000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+									<delay>0</delay>
+								</Item>
+							</impacts>
+						</Item>
+					</deviceImpacts>
+					<plane href="" />
+					<pool href="" />
+					<traceDown>false</traceDown>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+							<items>
+								<Item href="/Items/QuestItems/ZoneContested3/Art_Water/Art_Water.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</items>
+							<totalCount>1</totalCount>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+					<actions>
+						<Item href="WaterSpell.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</actions>
+				</Item>
+			</effectsIf>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

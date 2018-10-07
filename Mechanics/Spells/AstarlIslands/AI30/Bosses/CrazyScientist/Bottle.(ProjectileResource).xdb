@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>287611918</resourceId>
+	</Header>
+	<name href="Bottle.(ProjectileResource).Name.txt" />
+	<visObject href="/World/Dungeons/TenzisTemple/Models/ZemBottle.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<lifeLengthCap>6000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+			<delay>5000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.CylinderWithHeight" />
+					<radius>4</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>ACID</element>
+							<minDamage>50</minDamage>
+							<maxDamage>50</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+						</moveType>
+						<resource href="Explosion.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+						</moveType>
+						<resource href="Puddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOnStart>
+</gameMechanics.world.projectile.ProjectileResource>

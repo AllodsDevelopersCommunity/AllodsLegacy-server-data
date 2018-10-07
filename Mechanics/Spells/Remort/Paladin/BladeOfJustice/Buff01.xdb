@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>221194255</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinBladeJustice.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Paladin/BladeOfJustice.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Charge">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+							<impactsOnHitTarget>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impactsOnHitTarget>
+							<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+							<threatMultiplier>1</threatMultiplier>
+							<statsConvertor>
+								<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Spirit</stat>
+								</might>
+								<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Intuition</stat>
+								</dexterity>
+							</statsConvertor>
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+									<Item type="gameMechanics.elements.scalers.IntellectDPSScaler" />
+								</scalers>
+							</scaler>
+							<minDamage>18</minDamage>
+							<maxDamage>18</maxDamage>
+						</Item>
+					</impacts>
+					<elseImpacts>
+						<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+							<impactsOnHitTarget>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impactsOnHitTarget>
+							<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+							<threatMultiplier>1</threatMultiplier>
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+									<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+								</scalers>
+							</scaler>
+							<minDamage>18</minDamage>
+							<maxDamage>18</maxDamage>
+						</Item>
+					</elseImpacts>
+				</Item>
+			</impacts>
+			<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<speedFactor>3</speedFactor>
+			<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+				<angle>0.5236</angle>
+			</pathChecker>
+			<drawValue>0</drawValue>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnAttach>
+			<forceAttachBuff>true</forceAttachBuff>
+			<ignoreHelpful>false</ignoreHelpful>
+			<ignoreHarmful>false</ignoreHarmful>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+					<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

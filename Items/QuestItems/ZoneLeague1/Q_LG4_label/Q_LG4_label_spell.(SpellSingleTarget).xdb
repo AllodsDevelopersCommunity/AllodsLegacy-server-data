@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>104802347</resourceId>
+	</Header>
+	<Name href="Q_LG4_label_Spell_Name.txt" />
+	<Description href="Q_LG4_label_Spell_Description.txt" />
+	<image href="/Interface/Icons/Equipment/Trinket/AstralRune.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Q_LG4_label_Spell_Name.txt" />
+	<descTemplate href="Q_LG4_label_Spell_Description.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>1000</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/ArchipelagoContested4/Q_LG4/Q_LG4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/ArchipelagoContested4/Q_LG4/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/Elf_male/Instances/ZoneLeague1/Q_LG3_cultist_L.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ArchipelagoContested4/Q_LG4/Q_LG4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="Q_LG4_label.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoContested4/Q_LG4/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="Q_LG4_label.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>5000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="/Items/QuestItems/ZoneLeague1/Q_LG3_ObsidiantovyjKnife/Q_LG3_ObsidiantovyjKnife.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

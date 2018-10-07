@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739814403</resourceId>
+	</Header>
+	<Name href="AI50_Boss02_Sphere.(BuffResource).Name.txt" />
+	<Description href="AI50_Boss02_Sphere.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/ControlLightning.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="AI50_Boss02_Sphere.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>10</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>LIGHTNING</element>
+							<minDamage>10</minDamage>
+							<maxDamage>10</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>60</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>LIGHTNING</element>
+							<minDamage>40</minDamage>
+							<maxDamage>40</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="AI50_Boss02_SphereBurst.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.03</multiplier>
+			</healthCalcer>
+			<healthScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+			<ownerDamageFactor>0.5</ownerDamageFactor>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AI50_Boss02_Sphere.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<resource href="/Mechanics/GameRoot/Mount/MountDamageThreshold.xdb#xpointer(/gameMechanics.elements.effects.DamageThresholdResource)" />
+			<damageType>Damage</damageType>
+		</Item>
+	</effects>
+	<duration>8000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Undispelable.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

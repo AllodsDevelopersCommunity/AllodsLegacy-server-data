@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>160341019</resourceId>
+	</Header>
+	<Name href="GurluhsorSpirit_Name.txt" />
+	<Description href="GurluhsorSpirit_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinBlessedShield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/GT_7Boss_GurluhsorSpirit_buff.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_Global</locator>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="GurluhsorSpirit_Name.txt" />
+	<descTemplate href="GurluhsorSpirit_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Silence.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Disarms.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro">
+					<value>2</value>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="GurluhsorSpiritDebuffDetach.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="GurluhsorSpiritTemporalyHelpless.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AllDamageShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro">
+					<value>2</value>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ShieldDisabler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+							<variable href="/Maps/Inst_GurluhsorTower/ScriptZones/Boss7KillCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<predicates>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableLessGeneric">
+									<variableResource href="/Maps/Inst_GurluhsorTower/ScriptZones/Boss7KillCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<maxValue type="gameMechanics.elements.calcers.FloatData">
+										<value>12</value>
+									</maxValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_GurluhsorClone.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Characters/HumMobs/Instances/Inst_GurluhsorTower/GS_GurluhsorClone1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+									<buffs>
+										<Item href="GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</buffs>
+								</predicate>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+						</predicates>
+					</filter>
+					<targetsLimit>1</targetsLimit>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.01</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="/Maps/Inst_GurluhsorTower/ScriptZones/Boss7KillCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableLessGeneric">
+							<variableResource href="/Maps/Inst_GurluhsorTower/ScriptZones/Boss7KillCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<maxValue type="gameMechanics.elements.calcers.FloatData">
+								<value>12</value>
+							</maxValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.005</level>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

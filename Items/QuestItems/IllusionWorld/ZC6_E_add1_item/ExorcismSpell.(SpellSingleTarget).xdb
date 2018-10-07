@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>336531461</resourceId>
+	</Header>
+	<Name href="ExorcismSpell.(SpellSingleTarget)_Name.txt" />
+	<Description href="ExorcismSpell.(SpellSingleTarget)_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Jewelry/Necklace03.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="BurningRay.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ExorcismSpell.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="ExorcismSpell.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>45</value>
+	</range>
+	<level>50</level>
+	<prepareDuration>5000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<element>FIRE</element>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/IllusionWorld/ZC6_E_add1/ZC6_E_add1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/IllusionWorld/Zones/ZC6_IllusionWorld.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Rhino/Instances/IllusionWorld/ZC6_Tapir50_50.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateIsDead" />
+			</Item>
+		</targetConditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Exorcism.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</channelingMechanics>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+			<Item type="gameMechanics.elements.impacts.ForceAggro" />
+			<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+				<trigger href="DeathTrigger.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

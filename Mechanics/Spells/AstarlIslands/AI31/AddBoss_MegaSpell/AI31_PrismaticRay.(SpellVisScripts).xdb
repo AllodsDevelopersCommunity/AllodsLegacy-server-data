@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/Omni.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>AI31_PreCastAnimationOmni.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastAnimation>
+			<LocatorNameOnTargets />
+			<FXOnTargets />
+			<CastAnimation>spellCastOmniWand</CastAnimation>
+			<FixPointTarget>true</FixPointTarget>
+			<FXOnCaster>/Spells/FX/Spells/MagePrismaticRayAbility_Attack.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<LocatorNameOnCaster />
+			<PreCastFX>/Spells/VisScripts/Prototypes/PreCastFXLightningWand.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastFX>
+			<FXWand>/Spells/FX/Spells/ReadySpellDirectLightningWand_Cast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXWand>
+			<FixPointCaster>false</FixPointCaster>
+			<FXPocket />
+			<HitPostFXOnTargets />
+			<LocatorOnCaster>Slot_Global</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_Cristal.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<locator>Slot_TopFX</locator>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time>2000</time>
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<visActionID>PrismaticRay01</visActionID>
+								<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<startPoint type="VisPointLocator">
+									<shift z="0.6" />
+									<locator>Slot_TopFX</locator>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</endPoint>
+								<multyTargetMode>Umbrella</multyTargetMode>
+								<secondaryTargetParams>
+									<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								</secondaryTargetParams>
+							</Item>
+							<Item type="CreatureEffectsAction">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_CristalRays.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<locator>Slot_TopFX</locator>
+									</Item>
+									<Item>
+										<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_Cristal.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<locator>Slot_TopFX</locator>
+									</Item>
+								</visualEffects>
+							</Item>
+							<Item type="CreatureEffectsOnTarget">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<locator>Slot_BodyFX</locator>
+									</Item>
+								</visualEffects>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

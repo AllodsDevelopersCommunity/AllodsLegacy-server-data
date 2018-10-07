@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>356718595</resourceId>
+		<Prototype href="PrototypeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Variables>
+			<buff>RoleHealerBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</buff>
+		</Variables>
+	</Header>
+	<Name href="RoleHealerBuff.(BuffResource).Name.txt" />
+	<Description href="PrototypeBuff.(BuffResource).Description02.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/Healing.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="avatarPopulation.service.impl.lookingForGroupImpl.effects.EffectJoinLFG">
+			<destination href="/Mechanics/GameRoot/LFG/NewbieSectorDestination.(LFGDestination).xdb#xpointer(/avatarPopulation.service.impl.lookingForGroupImpl.scheme.LFGDestination)" />
+			<resource href="/Mechanics/GameRoot/LFG/Phase1.(DefaultLFGStrategyResource).xdb#xpointer(/avatarPopulation.service.impl.lookingForGroupImpl.scheme.DefaultLFGStrategyResource)" />
+			<role href="/Mechanics/GameRoot/LFG/Role/Healer.(LFGRole).xdb#xpointer(/avatarPopulation.service.impl.lookingForGroupImpl.scheme.LFGRole)" />
+			<impactsOnQueueExit>
+				<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+			</impactsOnQueueExit>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="PseudoBuffs/TimerBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mulCalcer type="gameMechanics.elements.calcers.TimeTableCalcerFloat">
+							<timeTable href="/Mechanics/LFG/Table.(TimeTable).xdb#xpointer(/timetables.TimeTable)" />
+						</mulCalcer>
+					</durationScaler>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="PseudoBuffs/TimerBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.buff.BuffResource>

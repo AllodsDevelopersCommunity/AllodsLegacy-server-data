@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>167273484</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/IMTurret.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Context/ContextSpell.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<level>1</level>
+	<prepareDuration>1000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="/Items/BoxSpecialLoot/Cannon/ManaBattery.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummonTurret">
+				<resource href="LvL3Turret.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<destination type="gameMechanics.map.destination.RelativeTrailPos">
+					<center type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+						<faceSourcePos>true</faceSourcePos>
+					</center>
+					<offset x="3" y="0" z="0" />
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyIFF" />
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/IMTurret/SetUpBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>178000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/IMTurret/TimeOutBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>2000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="/Mechanics/Spells/IMTurret/TurretPassive/Close.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+				</impacts>
+				<syncPlanes>true</syncPlanes>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+					<mul>0.05</mul>
+					<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+						<buff href="/Mechanics/Spells/IMTurret/TMC/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<forAllRanks>false</forAllRanks>
+					</mulCalcer>
+					<sum>0</sum>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSpellGroupCooldown">
+						<group href="/Mechanics/Spells/Groups/IMTurret.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<duration>72000000</duration>
+					</Item>
+				</impacts>
+				<impactsOnFail>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/IMTurret/TMC/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSpellGroupCooldown">
+						<group href="/Mechanics/Spells/Groups/IMTurret.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<duration>600000</duration>
+					</Item>
+				</impactsOnFail>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

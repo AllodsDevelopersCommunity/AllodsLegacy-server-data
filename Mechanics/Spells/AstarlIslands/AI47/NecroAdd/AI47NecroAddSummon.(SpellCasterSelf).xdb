@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>330612739</resourceId>
+	</Header>
+	<Name href="AI47NecroAddSummon.(SpellCasterSelf)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSoul.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<prepareDuration>9000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="AI47NecroSummonBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="AI47NecroAddLive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="AI47NecroAddLive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos" />
+					<offset>1</offset>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+				</impacts>
+				<object href="/Creatures/Banshee/Instances/AstralIsle47/AI47NecroAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<pool href="AI47NecroAddSummon.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>260771861</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/Maze/Maze_v2/CheckPoints/CheckPoint_10.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/Maze/Maze_v2/CheckPoints/CheckPoint_10.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+			<data href="/Mechanics/Spells/Maze/Maze_v2/CheckPoints/CheckPointAnnounce.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+					<minLevel type="gameMechanics.formulas.IntConstantValue">
+						<value>51</value>
+					</minLevel>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+					<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+						<item href="/Items/Agents/SA_Act_Fragment.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</item>
+					<count>25</count>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+					<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+						<item href="/Items/QuestItems/Domination/WiningToken.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</item>
+					<count>15</count>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

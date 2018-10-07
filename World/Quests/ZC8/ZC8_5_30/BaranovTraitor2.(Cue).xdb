@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>315808800</resourceId>
+	</Header>
+	<name href="BaranovTraitor2.(Cue).Name.txt" />
+	<text href="BaranovTraitor2.(Cue).Text.txt" />
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="CountId_1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="ZC8_MorokResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="BaranovResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+						<radius>55</radius>
+						<mobs>
+							<Item href="/Creatures/Morok/Instances/ZC8/ZC8_WeakMorok.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>WR_Morok</scriptID>
+						<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.world.pet.PredicateHasPet" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="ZC8_MorokResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>206659630</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Misc/Food/Buterbrot.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Family/FamilyCooking.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>4000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell04.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell05.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+				<item hrefvar="item" />
+				<stackCount>10</stackCount>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Mechanics/Spells/Family/FamilyDinner/Potion01.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<Item href="/Mechanics/Spells/Family/FamilyDinner/Potion05.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<Item href="/Mechanics/Spells/Family/FamilyDinner/Potion04.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<Item href="/Mechanics/Spells/Family/FamilyDinner/Potion03.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<Item href="/Mechanics/Spells/Family/FamilyDinner/Potion02.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>200</totalCount>
+					<checkBag>true</checkBag>
+					<checkDress>false</checkDress>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateSameFamily" />
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+				<currency href="/Mechanics/AlternativeCurrencies/RomanceBond.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<count var="count" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAddFamilySpellExperience">
+				<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<experience>2</experience>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item hrefvar="it_1" />
+				</item>
+				<count>10</count>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

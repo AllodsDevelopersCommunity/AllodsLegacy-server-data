@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>244201473</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText_Homosexual.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<itemMall>true</itemMall>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/HadaganTower2.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="11506.700001" y="12815.900000" z="26.400000" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_female/Instances/ZoneHadagan1/Valeria_Komissarova_Wedding_Quest_Vendor.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+			<trigger href="Wedding_Ring_Bag_Trigger_Empire.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasFamily" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactToSpouse">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Spells/ClientData/JustMarried.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasFamily" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/JustMarried.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateHasFamily" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/ZH1_TheDissolutionOfMarriage/ZH1_TheDissolutionOfMarriage.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/ZH1_TheDissolutionOfMarriage/ZH1_TheDissolutionOfMarriage.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/ZH1_CorruptionDivorce/ZH1_CorruptionDivorce.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/ZH1_CorruptionDivorce/ZH1_CorruptionDivorce.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/USA.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+			</predicates>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_4.txt" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_2.txt" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_3.txt" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_3.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<experience>2</experience>
+		<money>0</money>
+		<mandatoryItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/ItemMall/NotImplemented/RomanceBondBinded.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyInstant" />
+	<tutorial>false</tutorial>
+	<internalName>ZH1_Wedding</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/ZoneHadagan1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>15</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>15</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>89467973</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Priest/PriestAspectMight.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/BurningLightMelee.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>HOLY</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+				<source>Mainhand</source>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon" />
+		</casterConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+				<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>35</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffRangeFromMaster">
+							<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>3</min>
+								<max>3</max>
+							</range>
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+								<radius>15</radius>
+								<affectGroup>Enemies</affectGroup>
+								<affectHolder>true</affectHolder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+										<element>HOLY</element>
+										<threatMultiplier>1</threatMultiplier>
+										<statsConvertor>
+											<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+												<stat>IS_Dexterity</stat>
+											</intuition>
+											<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+												<stat>IS_Might</stat>
+											</spirit>
+										</statsConvertor>
+										<minDamage var="minDamage" />
+										<maxDamage var="maxDamage" />
+										<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+									</Item>
+								</impacts>
+								<onBehalfOfHolder>false</onBehalfOfHolder>
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactsIf">
+								<predicate type="gameMechanics.elements.predicates.PredicateHasBuffRangeFromMaster">
+									<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>2</min>
+										<max>2</max>
+									</range>
+								</predicate>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<radius>15</radius>
+										<affectGroup>Enemies</affectGroup>
+										<affectHolder>true</affectHolder>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+												<element>HOLY</element>
+												<threatMultiplier>1</threatMultiplier>
+												<statsConvertor>
+													<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Dexterity</stat>
+													</intuition>
+													<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Might</stat>
+													</spirit>
+												</statsConvertor>
+												<minDamage var="minDama_1" />
+												<maxDamage var="maxDama_1" />
+												<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+											</Item>
+										</impacts>
+										<onBehalfOfHolder>false</onBehalfOfHolder>
+									</Item>
+								</impactsIf>
+								<impactsElse>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<radius>15</radius>
+										<affectGroup>Enemies</affectGroup>
+										<affectHolder>true</affectHolder>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+												<element>HOLY</element>
+												<threatMultiplier>1</threatMultiplier>
+												<statsConvertor>
+													<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Dexterity</stat>
+													</intuition>
+													<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Might</stat>
+													</spirit>
+												</statsConvertor>
+												<minDamage var="minDama_2" />
+												<maxDamage var="maxDama_2" />
+												<scaler type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+											</Item>
+										</impacts>
+										<onBehalfOfHolder>false</onBehalfOfHolder>
+									</Item>
+								</impactsElse>
+							</Item>
+						</impactsElse>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scalerTarget type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+					<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<onlyFromMaster>true</onlyFromMaster>
+					<mul var="mul" />
+					<sum var="sum" />
+					<anyRank>false</anyRank>
+				</scalerTarget>
+				<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+				<minDamage>1</minDamage>
+				<maxDamage>1</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

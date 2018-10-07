@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>198130703</resourceId>
+	</Header>
+	<Name href="ShipBuilderRuneEpic_Spell.txt" />
+	<Description href="ShipBuilderRuneEpic_Spell.Description.txt" />
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+				<item href="ShipBuilderRune.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<stackCount>8</stackCount>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="ShipBuilderRuneEpic.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateHasShipInProgress" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.ship.elements.ImpactIncreaseProgress">
+						<timeBy>691200000</timeBy>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+							<item href="ShipBuilderRune.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</item>
+						<count>8</count>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

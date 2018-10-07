@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>287075328</resourceId>
+	</Header>
+	<Name href="SelfDestructName.txt" />
+	<Description href="SelfDestructDesc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageLightningArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateInHangar" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateOnAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactStartSpell">
+								<spell href="SelfDestructSpellLong/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<spellTarget type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>283454475</resourceId>
+	</Header>
+	<name href="Rule.txt" />
+	<description href="Rule_Desc.txt" />
+	<level>48</level>
+	<rating>4</rating>
+	<zone href="" />
+	<reward>
+		<experience>0</experience>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_GROUP</Item>
+	</types>
+	<predicates>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/AstralTreasureHunting.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+	</predicates>
+	<timeTable href="TimePeriodTable_CustomMobs.xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+					<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+						<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+					</selector>
+					<impacts>
+						<Item type="gameMechanics.world.bigAstral.activities.ImpactAddActivity">
+							<activities>
+								<Item href="CustomMobs.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+							</activities>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+					<map href="/Mechanics/Astral/TL_04/SectorTreasureHunting/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+							<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+								<zone type="gameMechanics.elements.calcers.ZoneDistributor$ParticularZone">
+									<zone href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/ZoneTreasureHunting.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</zone>
+								<faction type="gameMechanics.elements.calcers.ZoneDistributor$OwnFaction" />
+							</distributor>
+							<data href="ClientData/MobSpawned.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+					<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+						<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+					</selector>
+					<impacts>
+						<Item type="gameMechanics.world.bigAstral.activities.ImpactRemoveActivity">
+							<activities>
+								<Item href="CustomMobs.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+							</activities>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<saveable>false</saveable>
+	<internal>true</internal>
+</gameMechanics.world.rules.RuleResource>

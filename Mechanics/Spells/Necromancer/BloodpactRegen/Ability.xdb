@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>179749892</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<isHidden>true</isHidden>
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodpact.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateNotInCombat">
+					<hideText>false</hideText>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateVariableLessThan">
+					<hideText>false</hideText>
+					<resource href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<value var="value" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAlive">
+					<hideText>false</hideText>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+					<variable href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand>1</summand>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>5000</value>
+			</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ReviveTrigger">
+			<impactsOnRevive>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+					<variable href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand var="summand" />
+				</Item>
+			</impactsOnRevive>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

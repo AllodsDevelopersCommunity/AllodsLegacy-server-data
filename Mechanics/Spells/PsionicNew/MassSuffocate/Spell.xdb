@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>342380558</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Psionic/AstralBreath.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Psionic/Suffocate.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>8000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+	</ranks>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType">
+			<repelType>FAIL</repelType>
+		</Item>
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>90000</duration>
+			<group href="" />
+		</cooldown>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasLos">
+				<hideText>false</hideText>
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/PsionicNew/MindStab/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>1</consumeStacks>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceDressItem">
+				<hideText>false</hideText>
+				<secondary>false</secondary>
+				<slot>AMMO</slot>
+				<count>3</count>
+			</Item>
+		</casterResources>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff hrefvar="buff" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/PsionicNew/Suffocate/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<anyRank>false</anyRank>
+				</Item>
+			</finishImpacts>
+			<isForthright>false</isForthright>
+		</channelingMechanics>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Start</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>25</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

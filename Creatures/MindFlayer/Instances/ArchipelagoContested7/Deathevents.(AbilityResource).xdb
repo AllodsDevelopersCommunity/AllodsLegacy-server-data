@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>199247963</resourceId>
+	</Header>
+	<name href="Deathevents.(AbilityResource)_Name.txt" />
+	<nameTemplate href="Deathevents.(AbilityResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.2</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+					<faction href="/World/Factions/ArchipelagoDecision/Nihaz.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+															<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<status>Active</status>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+															<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<counterResource href="/World/Quests/ArchipelagoContested7/AC7_Ref1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+															<value>1</value>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+															<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<counterResource href="/World/Quests/ArchipelagoContested7/AC7_Ref1/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+															<value>1</value>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+															<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<counterResource href="/World/Quests/ArchipelagoContested7/AC7_Ref1/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+															<value>1</value>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested7/AC7_Ref1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+									<filter type="gameMechanics.world.creature.AvatarFilter" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.15</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+					<data href="/World/Quests/ArchipelagoContested7/AC7_Ref1/Predator_explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<locators>
+						<Item>
+							<scriptID>step2</scriptID>
+							<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</locators>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>30</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>FIRE</element>
+									<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.3</multiplier>
+										</mulCalcer>
+									</scalerTarget>
+									<minDamage>100</minDamage>
+									<maxDamage>500</maxDamage>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>80</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Finished</status>
+										</Item>
+									</predicates>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+											<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="/World/Quests/ArchipelagoContested7/AC7_Ref1/Faildata.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Completed</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/ArchipelagoContested7/AC7_Ref1/AC7_Ref1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Finished</status>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ArchipelagoContested7/AC7_Ref1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									<value>-1</value>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

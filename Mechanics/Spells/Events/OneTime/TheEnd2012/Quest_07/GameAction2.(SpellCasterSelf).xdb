@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>356943874</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_06/TE2012_SpellGroup.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="GameAction2.(SpellCasterSelf).Name.txt" />
+	<Description href="GameAction2.(SpellCasterSelf).Description.txt" />
+	<image href="/Interface/Ingame/MageEnergyInstability2/Ice5.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>4000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+				<buff href="GameBuff3.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<delta type="gameMechanics.elements.calcers.FloatData">
+					<value>-2</value>
+				</delta>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateGreater">
+						<lhs type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+							<buff href="GameBuff1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</lhs>
+						<rhs type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+							<buff href="GameBuff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</rhs>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+						<buff href="GameBuff1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<delta type="gameMechanics.elements.calcers.FloatData">
+							<value>-2</value>
+						</delta>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateGreater">
+								<lhs type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="GameBuff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</lhs>
+								<rhs type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="GameBuff1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</rhs>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="GameBuff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>-2</value>
+								</delta>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+												<buff href="GameBuff1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<delta type="gameMechanics.elements.calcers.FloatData">
+													<value>-2</value>
+												</delta>
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+												<buff href="GameBuff2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<delta type="gameMechanics.elements.calcers.FloatData">
+													<value>-2</value>
+												</delta>
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</elseImpacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="GameAction3.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>4000</duration>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="GameAction4.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>4000</duration>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

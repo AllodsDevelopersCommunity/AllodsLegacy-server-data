@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>185235490</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AC6_Start_SpellGroup.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="E1_4_Item_03_Spell.txt" />
+	<Description href="E1_4_Item_03_Spell.Description.txt" />
+	<useVisScipt />
+	<visualScripts href="" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested6/E1_4/E1_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Failed</status>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested6/Zones/ArchipelagoContested6/ArchipelagoContested6_AstralFlyer.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>55</radius>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/DemonMage/Instances/ArchipelagoContested6/LittleDemonMageMiniboss45_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="E1_4_Item_03_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

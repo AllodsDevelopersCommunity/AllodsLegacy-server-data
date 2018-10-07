@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>76414978</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<saveable>false</saveable>
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+			<items>
+				<Item href="/Items/QuestItems/ZoneContested2/C2_01_Holyarmor/C2_01_Holyarmor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<totalCount>1</totalCount>
+			<checkBag>false</checkBag>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZoneContested2/C2_1_4_EV/C2_1_4_EV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZoneContested2/C2_1_4_LV/C2_1_4_LV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Immortality_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>60000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested2/C2_1_4_LV/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested2/C2_1_4_EV/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Immortality_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/2ndCircle/SpawnTables/ZoneContested2/Cyclops26_27.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+					<spawnResource href="/Maps/2ndCircle/SpawnTables/ZoneContested2/Cyclops26_27.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+		</Item>
+	</impactsIn>
+	<impactsOut>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZoneContested2/C2_1_4_EV/C2_1_4_EV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZoneContested2/C2_1_4_LV/C2_1_4_LV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="Immortality_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/ZoneContested2/C2_1_4_EV/C2_1_4_EV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/ZoneContested2/C2_1_4_LV/C2_1_4_LV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAggro" />
+					</impacts>
+					<spawnResource href="/Maps/2ndCircle/SpawnTables/ZoneContested2/Cyclops26_27.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Immortality_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOut>
+</gameMechanics.map.scriptZone.ScriptZone>

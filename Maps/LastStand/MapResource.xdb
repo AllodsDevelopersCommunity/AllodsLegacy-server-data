@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>366594061</resourceId>
+	</Header>
+	<minimapLight>
+		<SunLightYaw>44.7619</SunLightYaw>
+		<SunLightPitch>0</SunLightPitch>
+	</minimapLight>
+	<internalName>LastStand</internalName>
+	<name href="LastStand.txt" />
+	<factionExits>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Portal_League1_Capital</scriptID>
+					<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Capital_AE1_Teleport</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</factionExits>
+	<mapTemplate href="/System/MapTemplates/InstancedEvent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectAvatarRespawnStrategy">
+						<respawnStrategy type="gameMechanics.battleground.BattlegroundRespawnStrategy">
+							<buff href="/Mechanics/InstancedEventResource/MM_LastStand/LastStand_DeadBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</respawnStrategy>
+					</Item>
+					<Item type="gameMechanics.elements.effects.DeathTrigger">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+										<mark href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_blue_mark.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+										<variable href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Blue_dead.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+										<summand>1</summand>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>1000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+														<variableResource href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Blue_dead.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+														<expectedValue type="gameMechanics.map.variables.MapVariableValueCalcer">
+															<resource href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Blue.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+														</expectedValue>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.ImpactsToMapHead">
+														<impacts>
+															<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievementGeneric">
+																<achievement href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_noob.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+																<summand type="gameMechanics.elements.calcers.FloatData">
+																	<value>1</value>
+																</summand>
+																<mark href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Red_mark.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+															</Item>
+														</impacts>
+													</Item>
+													<Item type="avatarPopulation.service.impl.matchMakingImpl.map.ImpactFinishInstancedEventRound" />
+												</impactsIf>
+											</Item>
+										</impacts>
+									</Item>
+								</impactsIf>
+								<impactsElse>
+									<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+										<variable href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Red_dead.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+										<summand>1</summand>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>1000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+														<variableResource href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Red_dead.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+														<expectedValue type="gameMechanics.map.variables.MapVariableValueCalcer">
+															<resource href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Red.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+														</expectedValue>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.ImpactsToMapHead">
+														<impacts>
+															<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievementGeneric">
+																<achievement href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_hai.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+																<summand type="gameMechanics.elements.calcers.FloatData">
+																	<value>1</value>
+																</summand>
+																<mark href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_blue_mark.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+															</Item>
+														</impacts>
+													</Item>
+													<Item type="avatarPopulation.service.impl.matchMakingImpl.map.ImpactFinishInstancedEvent" />
+												</impactsIf>
+											</Item>
+										</impacts>
+									</Item>
+								</impactsElse>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+						<predicate type="gameMechanics.elements.predicates.PredicateSpellInGroup">
+							<group href="/Mechanics/Spells/Groups/Resurrection.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</predicate>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Blue.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Red.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Blue_dead.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/InstancedEventResource/MM_LastStand/MM_LastStand_Red_dead.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

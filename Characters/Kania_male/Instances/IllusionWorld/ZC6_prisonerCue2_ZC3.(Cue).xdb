@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>329048219</resourceId>
+	</Header>
+	<name href="ZC6_prisonerCue2_ZC3.(Cue).Name.txt" />
+	<text href="ZC6_prisonerCue2_ZC3.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/IllusionWorld/ZC6_L_Start_0_7/ZC6_L_Start_0_7.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.elements.predicates.PredicateBinaryWrapper">
+			<master type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<slave type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+			<binary type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<buff href="/World/Quests/IllusionWorld/ZC6_E_Start_0_8/NoTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</binary>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/IllusionWorld/ZC6_L_Start_0_7/ZC6_L_Start_0_7.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/IllusionWorld/ZC6_L_Start_0_7/Count6.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>3</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/IllusionWorld/ZC6_L_Start_0_7/Count6.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>15000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>HS_L_C3</scriptID>
+									<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/World/Quests/IllusionWorld/ZC6_E_Start_0_8/NoTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

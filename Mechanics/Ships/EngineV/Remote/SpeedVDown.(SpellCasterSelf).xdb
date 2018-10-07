@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>285233152</resourceId>
+	</Header>
+	<Name href="SpeedVDownName.txt" />
+	<Description href="SpeedVDownDesc.txt" />
+	<image href="/Interface/Icons/Actions/DownButton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<groups>
+		<Item href="VerticalSpeedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1</duration>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerVertialEngineDuration" />
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+			<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="BuffDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="BuffDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.elements.calcers.CalcerVertialEngineDuration" />
+				</durationScaler>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

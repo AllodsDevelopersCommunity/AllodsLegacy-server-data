@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>334301195</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="Vakula_agressive_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="Vakula_agressive_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="Vakula_agressive_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="Vakula_agressive_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="Vakula_agressive_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="Vakula_agressive_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Vakula_Agressive_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="Quest_09_035.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/Creatures/Werewolf/Instances/ZoneLeague1/Werewolf_02_agressive.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<value>1</value>
+								</Item>
+							</predicates>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+									<quest href="Quest_09_035.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/World/Quests/ZoneLeague1/Quest_09_034/Vakula_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

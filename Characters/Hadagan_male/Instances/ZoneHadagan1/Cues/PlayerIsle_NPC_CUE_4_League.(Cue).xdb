@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>299969565</resourceId>
+	</Header>
+	<name href="PlayerIsle_NPC_CUE_4_League.(Cue).Name.txt" />
+	<text href="PlayerIsle_NPC_CUE_4_League.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneLeague1/MegaGoal_Island_L_06/MegaGoal_Island_L_06.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Finished</status>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/MegaGoal_Island_L_10/MegaGoal_Island_L_10.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Finished</status>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<finishImpacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Maps/PlayerIsle_Observation/Buffs/Fly_3_League.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</finishImpacts>
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0.4</value>
+				</yaw>
+				<locator>
+					<scriptID>PlayerIsle_Patrol_1_Locator</scriptID>
+					<map href="/Maps/PlayerIsle_Observation/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

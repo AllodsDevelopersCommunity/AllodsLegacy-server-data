@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>79600677</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Papers/BookEvil.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/BuffVisScripts/DoTWeakness.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<element>SHADOW</element>
+			<fixedMultiplier>1</fixedMultiplier>
+			<progressiveMultiplier>0</progressiveMultiplier>
+			<parameters>
+				<damagePerTick>4.5</damagePerTick>
+				<impactsPerTick>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactHeal">
+								<heal>9</heal>
+								<threatMultiplier>1</threatMultiplier>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactHeal">
+										<heal>9</heal>
+										<threatMultiplier>1</threatMultiplier>
+										<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+											<scalers>
+												<Item type="gameMechanics.elements.scalers.MagicScaler">
+													<stat>IS_Intellect</stat>
+												</Item>
+												<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+													<ability href="/Mechanics/Abilities/NecromancerTalents/SummoningMastery/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+													<mul>0.1</mul>
+												</Item>
+											</scalers>
+										</scaler>
+									</Item>
+								</impacts>
+								<sendAsMessage>false</sendAsMessage>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="/Spells/ClientData/NecromancerElf_Heal.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="/Spells/ClientData/NecromancerElf_Heal.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<sendAsMessage>false</sendAsMessage>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsPerTick>
+				<threatMultiplier>1</threatMultiplier>
+				<scaleOnTick>false</scaleOnTick>
+				<tickLength>2000</tickLength>
+				<affectOnStartTick>false</affectOnStartTick>
+			</parameters>
+		</Item>
+	</effects>
+	<duration>16000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

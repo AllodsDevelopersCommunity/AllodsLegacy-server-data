@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>208361482</resourceId>
+	</Header>
+	<Name href="Protection.txt" />
+	<Description href="Protection.Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestDivineArmor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactHeal">
+							<threatMultiplier>1</threatMultiplier>
+							<heal>1</heal>
+							<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+									<multiplier>0.2</multiplier>
+								</mulCalcer>
+							</scaler>
+							<considerOutgoingModifiers>false</considerOutgoingModifiers>
+							<mode>Direct</mode>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/DemonTerminator/Instances/Inst_TkaRika/DemonTerminatorMini.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/RepairBotsEvent.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>25000</duration>
+	<stackLimit>100</stackLimit>
+	<isHelpful>true</isHelpful>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

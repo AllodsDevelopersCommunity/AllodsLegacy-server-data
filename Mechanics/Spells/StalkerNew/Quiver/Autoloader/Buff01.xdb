@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>260723738</resourceId>
+	</Header>
+	<image href="/Interface/Icons/Misc/Itemmall/PortalsDesc.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<spellStages>
+				<Item>Prepare</Item>
+				<Item>Start</Item>
+				<Item>Launch</Item>
+			</spellStages>
+			<impactsAnySpell>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.ScalerIf">
+						<condition type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+									<ability href="/Mechanics/Spells/StalkerNew/Talents/ArrowCastTime/Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+									<ability href="/Mechanics/Spells/StalkerNew/Talents/ArrowCastTime/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								</Item>
+							</predicates>
+						</condition>
+						<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>0.5</multiplier>
+						</scalerIf>
+						<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+								<ability href="/Mechanics/Spells/StalkerNew/Talents/ArrowCastTime/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</condition>
+							<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>0.63</multiplier>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>1</multiplier>
+							</scalerElse>
+						</scalerElse>
+					</durationScaler>
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impactsAnySpell>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<consumeStacks>0</consumeStacks>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateNotOccupied" />
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Ships/Lazareth/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<consumeStacks>0</consumeStacks>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.MarkedImpact">
+					<mark href="/Mechanics/Spells/Marks/StalkerAutoloaderSleep.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.CalcerIf">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<ability href="/Mechanics/Spells/StalkerNew/Talents/ArrowCastTime/Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<ability href="/Mechanics/Spells/StalkerNew/Talents/ArrowCastTime/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</Item>
+					</predicates>
+				</predicate>
+				<calcerIf type="gameMechanics.elements.calcers.FloatData">
+					<value>1000</value>
+				</calcerIf>
+				<calcerElse type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasAbility">
+						<ability href="/Mechanics/Spells/StalkerNew/Talents/ArrowCastTime/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.FloatData">
+						<value>1333</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FloatData">
+						<value>2000</value>
+					</calcerElse>
+				</calcerElse>
+			</tick>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

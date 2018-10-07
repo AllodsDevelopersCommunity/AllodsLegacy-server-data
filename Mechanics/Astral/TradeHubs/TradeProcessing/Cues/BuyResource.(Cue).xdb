@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>301441048</resourceId>
+	</Header>
+	<name href="BuyResource.txt" />
+	<text href="BuyResource.Text.txt" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>buyPrice</alias>
+			<calcer type="gameMechanics.world.bigAstral.tradeWars.CalcerProdPrice" />
+		</Item>
+	</data>
+	<conditions>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+					<permission>BuyChests</permission>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+			<lhs type="gameMechanics.world.ship.elements.calcers.CalcerTreasureFreeSpace" />
+			<rhs type="gameMechanics.elements.calcers.LongData">
+				<value>0</value>
+			</rhs>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateGreaterLong">
+				<lhs type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+					<chestType href="/Mechanics/Astral/TradeHubs/ResourceChests/Resource2Chest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+					<boundChestsOnly>true</boundChestsOnly>
+				</lhs>
+				<rhs type="gameMechanics.elements.calcers.LongData">
+					<value>2</value>
+				</rhs>
+			</predicate>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.MaxLevelConstant">
+				<summand>-3</summand>
+			</minLevel>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Astral/TradeHubs/LockBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<range min="0" max="700" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasMoney">
+			<sumCalcer type="gameMechanics.world.bigAstral.tradeWars.CalcerProdPrice" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="/Mechanics/Astral/TradeHubs/LockBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip">
+						<ownershipRequired>false</ownershipRequired>
+					</addresseeFinder>
+					<impacts>
+						<Item type="gameMechanics.world.ship.elements.ImpactAddChest">
+							<chestType href="/Mechanics/Astral/TradeHubs/ResourceChests/Resource2Chest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+							<chestLootTable href="/Mechanics/Astral/TradeHubs/ResourceChests/Resource2.(LootTableResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.LootTableResource)" />
+							<chestBindingPredicates>
+								<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateNotMaster" />
+								</Item>
+							</chestBindingPredicates>
+							<casterImpacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="/Mechanics/Astral/TradeHubs/LockBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</casterImpacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="itemService.elements.astral.ImpactNotifyChests">
+			<clientData href="/Mechanics/Astral/TradeHubs/ClientData/ChestBought.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			<chestResource href="/Mechanics/Astral/TradeHubs/ResourceChests/Resource2Container.xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMul">
+				<calcers>
+					<Item type="gameMechanics.world.bigAstral.tradeWars.CalcerProdPrice" />
+					<Item type="gameMechanics.elements.calcers.LongData">
+						<value>-1</value>
+					</Item>
+				</calcers>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.world.bigAstral.tradeWars.ImpactRemoveProd">
+			<count type="gameMechanics.elements.calcers.LongData">
+				<value>1</value>
+			</count>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/AstralTradeAllods/TradeProcessing/QuestCountLoadedSupplies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</impacts>
+	<nextCues>
+		<Item href="BuyResource.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_MaxChests.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_NoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="SellRaw.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

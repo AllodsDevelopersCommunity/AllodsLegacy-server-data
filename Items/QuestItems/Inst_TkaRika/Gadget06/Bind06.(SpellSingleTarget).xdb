@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>134982696</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="/Items/QuestItems/Inst_TkaRika/Gadget01/Gadget01Spell_Name.txt" />
+	<Description href="Gadget06Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TR_1Boss/CrystalChains.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<prepareDuration>30000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+			<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Items/QuestItems/Inst_TkaRika/Gadget05/5thBind.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/Inst_TkaRika/Instances/Inst_TkaRika/Boss1Sarn.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Bind06.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/Inst_TkaRika/QuestEvent01/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="6thBind.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

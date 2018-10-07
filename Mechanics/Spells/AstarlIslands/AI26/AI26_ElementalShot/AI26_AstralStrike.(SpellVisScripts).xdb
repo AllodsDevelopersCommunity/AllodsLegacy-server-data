@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/Projectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation />
+			<FXProjectile>/Spells/FX/Spells/AstralComet_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXProjectile>
+			<FXOnTargets>/Spells/FX/Spells/HitAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnTargets>
+			<CastAnimation>spellCastDirected</CastAnimation>
+			<FXOnCaster />
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<HitPostFXOnTargets />
+			<LocatorOnCaster>Slot_BodyFX</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<advanced>
+					<speed>1</speed>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<delay>0</delay>
+							</Item>
+							<Item skiped="" />
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionDelay">
+								<time>500</time>
+							</Item>
+							<Item skiped="" />
+							<Item type="CreatureProjectileAction">
+								<offendTime type="EffectOffendConstDelay">
+									<delay>0</delay>
+								</offendTime>
+							</Item>
+						</elements>
+						<stopOnDeath>false</stopOnDeath>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

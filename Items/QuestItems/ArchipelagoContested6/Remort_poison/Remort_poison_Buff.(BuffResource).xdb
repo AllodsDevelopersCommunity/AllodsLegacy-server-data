@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>223559686</resourceId>
+	</Header>
+	<Name href="Remort_poison_Buff.txt" />
+	<Description href="Remort_poison_Buff.Description.txt" />
+	<image href="/Interface/Icons/Misc/Potions/DontDrinkMe.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/ArchipelagoContested5/Remort_G_02/Remort_G_02.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Finished</status>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+								<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+									<quest href="/World/Quests/ArchipelagoContested5/Remort_G_02/Remort_G_02.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/ArchipelagoContested5/Remort_G_02/Remort_G_02.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>1800000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

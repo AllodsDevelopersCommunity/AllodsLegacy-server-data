@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>193776652</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+							<chanceCalcer type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+										<buff href="BackstabberSpawn.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<forAllRanks>true</forAllRanks>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>0.01</value>
+									</Item>
+								</calcers>
+							</chanceCalcer>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="BackstabberSpawnCooldown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.AttachAbility">
+													<ability href="/Mechanics/Abilities/StandartSummoned/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+												</Item>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Threat.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+											<object href="Backstabber.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="BackstabberSpawn.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<impactsLose>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="BackstabberSpawn.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsLose>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>4000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>100</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

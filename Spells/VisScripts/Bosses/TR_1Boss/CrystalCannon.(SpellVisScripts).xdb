@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Omni_Instant.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FxOnCaster>/Spells/FX/Mobs/TR_1Boss_CrystalArmorCannonCharge.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<HitPostFxOnTarget>/Spells/VisScripts/HitPostFxOnTarget/HitLightningShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</HitPostFxOnTarget>
+			<LocatorOnCaster>Slot_BodyFX</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<member>Group</member>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time>1000</time>
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/TR_1Boss_CrystalArmorCannonChannel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>6</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>Slot_TopFX</locator>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</endPoint>
+							</Item>
+							<Item type="CreatureEffectsAction">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Mobs/TR_1Boss_CrystalArmorCast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<locator>Slot_BodyFX</locator>
+										<member>Group</member>
+									</Item>
+								</visualEffects>
+							</Item>
+							<Item type="CreatureEffectsOnTarget">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Spells/HitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<locator>Slot_FX</locator>
+									</Item>
+								</visualEffects>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

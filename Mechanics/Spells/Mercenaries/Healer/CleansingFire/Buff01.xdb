@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>283897885</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestCleansingFire.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/DotFire.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<element>FIRE</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			<parameters>
+				<damagePerTick>1.7</damagePerTick>
+				<impactsPerTick>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/PriestCleansingFireTick.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsPerTick>
+				<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>0.1</mul>
+					<additionalMultiplier>
+						<scaler type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+							<buff href="/Mechanics/Spells/Priest/PassiveTalents/ExtendedDoTs/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<onlyFromMaster>true</onlyFromMaster>
+							<mul>1</mul>
+						</scaler>
+						<value>1</value>
+					</additionalMultiplier>
+					<sum>1</sum>
+				</scalerTarget>
+				<scaleOnTick>true</scaleOnTick>
+			</parameters>
+		</Item>
+	</effects>
+	<duration>14111</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

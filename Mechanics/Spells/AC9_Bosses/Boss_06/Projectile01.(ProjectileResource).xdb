@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>246520839</resourceId>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.constructor.commonBunchParts.ImportantObjectResource" />
+	</persistentParts>
+	<visObject href="/Spells/FX/Mobs/MindFlayerPsionicFX_Area_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+			<delay>8000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+						</moveType>
+						<resource href="Projectile02.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOnStart>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AuraEntity">
+			<radius>15</radius>
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Creatures/AC9_Bosses/Boss_06_InCharge.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Creatures/AC9_Bosses/Boss_06_InCharge.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

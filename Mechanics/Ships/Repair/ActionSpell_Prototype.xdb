@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>286646605</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<buffGood />
+		</Variables>
+	</Header>
+	<image href="/Interface/Icons/Equipment/Ships/RepairGoblinsBigTypeIcon.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+			<Item type="gameMechanics.elements.predicates.PredicateOnAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="GoblinCarrierBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff hrefvar="buffGood" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="BuffStunRepair.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

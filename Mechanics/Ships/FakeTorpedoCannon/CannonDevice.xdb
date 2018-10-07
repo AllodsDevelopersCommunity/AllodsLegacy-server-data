@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>1598947331</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+	</Header>
+	<parts>
+		<Item type="DeviceHealthComponent">
+			<states>
+				<Item>
+					<health>1</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Ships/Components/Torpedoe_01/Torpedoe_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<collision href="/Ships/Components/Torpedoe_01/Torpedoe_01.(Collision).xdb#xpointer(/Collision)" />
+					</script>
+				</Item>
+				<Item>
+					<health>0.5</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Ships/Components/Torpedoe_01/Torpedoe_01damaged.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<collision href="/Ships/Components/Torpedoe_01/Torpedoe_01damaged.(Collision).xdb#xpointer(/Collision)" />
+					</script>
+				</Item>
+				<Item>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Ships/Components/Torpedoe_01/Torpedoe_01broken.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<collision href="/Ships/Components/Torpedoe_01/Torpedoe_01broken.(Collision).xdb#xpointer(/Collision)" />
+					</script>
+				</Item>
+			</states>
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_CANNON</type>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<name href="CannonName.txt" />
+	<visObj href="/Ships/Components/Torpedoe_01/Torpedoe_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<collision href="/Ships/Components/Torpedoe_01/Torpedoe_01.(Collision).xdb#xpointer(/Collision)" />
+	<collisionObject>true</collisionObject>
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="/Mechanics/Ships/ShipDeviceExploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<viewSight>
+		<isBinding>true</isBinding>
+		<position x="0.2" y="3.4" z="4.3" />
+	</viewSight>
+	<mass>5</mass>
+	<deviceSpells>
+		<Item href="FireAntiDevice_Self.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+	</deviceSpells>
+	<defaultSpell href="" />
+</gameMechanics.world.device.UsableDeviceResource>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>79271941</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="ShootText.txt" />
+		<contextDescription href="ShootText.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextEnchantArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/InstEmpire1/Quest3_1/Quest3_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.5</value>
+				</chanceCalcer>
+				<impactsSuccess>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/Items/InteractiveObjects/InstEmpire1/CanonShoot01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>Shoot1</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+							<Item>
+								<scriptID>Shoot2</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+				</impactsSuccess>
+				<impactsFailure>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/Items/InteractiveObjects/InstEmpire1/CanonShoot02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>Shoot1</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+							<Item>
+								<scriptID>Shoot3</scriptID>
+								<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+				</impactsFailure>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>13000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/InstEmpire1/Quest3_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+						<zone href="Fire2.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="GunContextAction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+				<impacts>
+					<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+						<visualState>2</visualState>
+					</Item>
+				</impacts>
+				<device>
+					<scriptID>IE1_EmpireGun03</scriptID>
+					<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</device>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>3300</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+								<visualState>0</visualState>
+							</Item>
+						</impacts>
+						<device>
+							<scriptID>IE1_EmpireGun03</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</device>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="Shoot.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>5000</duration>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

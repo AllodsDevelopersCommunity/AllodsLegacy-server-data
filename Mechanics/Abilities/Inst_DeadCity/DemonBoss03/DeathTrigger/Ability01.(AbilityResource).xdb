@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>193325071</resourceId>
+	</Header>
+	<name href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<nameTemplate href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>150</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/DC_Demons/Instances/Inst_DeadCity/Tentacle.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.CreatureFilter" />
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/Demons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Demon03Boss</scriptID>
+									<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+							<object href="/Creatures/DC_Demons/Instances/Inst_DeadCity/DemonBoss03_Ghost.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+							<variable href="/Maps/Inst_DeadCity/Variables/WingsCompleted.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<summand>1</summand>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>150</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/DC_Demons/Instances/Inst_DeadCity/Tentacle.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.CreatureFilter" />
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

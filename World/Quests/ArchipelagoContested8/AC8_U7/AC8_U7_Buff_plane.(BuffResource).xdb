@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>233994286</resourceId>
+	</Header>
+	<Name href="AC8_U7_Buff_plane.txt" />
+	<Description href="AC8_U7_Buff_plane.Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestResurrect.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="PhantomWorld_Plane.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="AC8_U7_Buff_plane.txt" />
+	<descTemplate href="AC8_U7_Buff_plane.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Spells/QuestSpells/AC8/AC8_Plane_mob.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AC8_U7_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Active</status>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+									<quest href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/QuestSpells/AC8/AC8_Willowisp/AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Mechanics/Spells/QuestSpells/AC8/AC8_Willowisp/AC8_WillowispBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>4000</tick>
+		</Item>
+	</effects>
+	<duration>2700000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Channeling_Instant.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<FixPointTarget>true</FixPointTarget>
+			<FxOnTarget>/Spells/FX/Spells/Twar/TWarChampionHand_Target.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTarget>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<FxChannel>/Spells/FX/Spells/Twar/TWarChampionHand_Channel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxChannel>
+			<FxOnHands>/Spells/FX/Spells/Twar/ReadySpellDirectTWar.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<RayVelocity>0</RayVelocity>
+			<FxOnCaster />
+			<LocatorOnCaster>Slot_Hand_R</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx href="" />
+					</Item>
+					<Item>
+						<effectFx hrefvar="FxOnHands" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<advanced>
+					<speed>0</speed>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<locator>Slot_Global</locator>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<elements>
+							<Item skiped="" />
+							<Item type="VisActionList">
+								<elements>
+									<Item type="CreatureChannelDirectAction">
+										<velocity var="RayVelocity" />
+									</Item>
+								</elements>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<delay>0</delay>
+							<locator>Slot_Global</locator>
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item skiped="" />
+			</elements>
+		</specialAction>
+	</playOnTargets>
+	<useOwnKillingParams>false</useOwnKillingParams>
+</SpellVisScripts>

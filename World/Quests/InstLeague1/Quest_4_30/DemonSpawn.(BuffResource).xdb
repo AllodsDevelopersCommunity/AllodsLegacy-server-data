@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>1972895784</resourceId>
+	</Header>
+	<Description href="DemonSpawn_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+					<zone href="/Maps/Inst_LeagueStart/ScriptZones/TeleportOut.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="/Maps/Inst_LeagueStart/ScriptZones/DemonsCount_Current.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<reset>true</reset>
+					<summand>0</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+					<zone href="/Maps/Inst_LeagueStart/ScriptZones/TeleportOut.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="/Maps/Inst_LeagueStart/ScriptZones/DemonsCount_Total.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<reset>true</reset>
+					<summand>0</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTurnMob">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Firewall</scriptID>
+									<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+							</destination>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Firewall/Firewall_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>ElfYoungSorceress</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout1_1.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout_0000.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout_0001.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfScriptZoneVariable">
+					<zone href="/Maps/Inst_LeagueStart/ScriptZones/TeleportOut.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<variable href="/Maps/Inst_LeagueStart/ScriptZones/DemonsCount_Total.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateVariableValueGreatThan">
+							<value>100</value>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="DemonSpawn.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>3000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/ManaHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+									<spawnResource href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout1_1.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/ManaHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+									<spawnResource href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/ManaHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+									<spawnResource href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout_0000.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/ManaHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+									<spawnResource href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/DemonScout_0001.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<radius>40</radius>
+									<affectGroup>All</affectGroup>
+									<affectHolder>true</affectHolder>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+													<mobs>
+														<Item href="/Creatures/DemonScout/Instances/InstLeague1/DemonScout1_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														<Item href="/Creatures/DemonScout/Instances/InstLeague1/DemonScout1_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														<Item href="/Creatures/DemonScout/Instances/InstLeague1/DemonScout1_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														<Item href="/Creatures/DemonScout/Instances/InstLeague1/DemonScout3_3_Coward.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+														<Item href="/Creatures/DemonScout/Instances/InstLeague1/DemonScout3_3Killer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+													</mobs>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/ManaHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactKill" />
+											</impactsIf>
+										</Item>
+									</impacts>
+									<onBehalfOfHolder>true</onBehalfOfHolder>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>5000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+													<msg href="ElfTalk2.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+													<defaultSpeaker href="" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/18_Elf04.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/18_Elf04_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>ElfYoungSorceress</scriptID>
+										<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>7000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+									<mob>
+										<scriptID>FinalOmegaDemon</scriptID>
+										<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+															<msg href="ElfTalk4.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+															<defaultSpeaker href="" />
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+															<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/20_Elf06.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+															<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/20_Elf06_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+											<mob>
+												<scriptID>ElfYoungSorceress</scriptID>
+												<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+								</Item>
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+							<zone href="/Maps/Inst_LeagueStart/ScriptZones/TeleportOut.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							<variable href="/Maps/Inst_LeagueStart/ScriptZones/DemonsCount_Current.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<reset>false</reset>
+							<summand>1</summand>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/StartInstanceBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

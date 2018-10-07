@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>184770566</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<nameTemplate href="Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.PureDamage">
+							<damage>1</damage>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>DragonBoss</scriptID>
+						<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+			<scaleImpactsByDamage>true</scaleImpactsByDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+							<spell href="/Mechanics/Spells/Inst_DeadCity/Dragon/Charge/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactModifySpellCooldown">
+							<spell href="/Mechanics/Spells/Inst_DeadCity/Dragon/RespawnRightHand/Spell01.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							<factor>0</factor>
+							<sum>20000</sum>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactModifySpellCooldown">
+							<spell href="/Mechanics/Spells/Inst_DeadCity/Dragon/FireBreath/SpellFixOnTarget.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+							<factor>0</factor>
+							<sum>4000</sum>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>DragonBoss</scriptID>
+						<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Abilities/Bosses/ActivityTrackerDisabler/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Abilities/Bosses/ActivityTracker/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

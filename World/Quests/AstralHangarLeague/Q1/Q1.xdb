@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>137210880</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline>LearnShip</plotline>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/AstralHangarLeague/Zones/AstralHangarLeague/AstralHangar.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="319.406097" y="1425.991455" z="73.816448" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Mechanics/Ships/Hangar/HangarNPC/HangarNPC_L.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Items/QuestItems/AstralHangar/Ship_License/Ship_License.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>1</totalCount>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="itemService.elements.astral.ImpactSummonTempShip">
+					<scanRadius>1000</scanRadius>
+					<shipResource href="/Mechanics/Ships/AstralShip/AstralShipKaniaNewTL0.(ShipResource).xdb#xpointer(/gameMechanics.world.ship.ShipResource)" />
+				</Item>
+			</elseImpacts>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDespawnShip" />
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.world.ship.elements.PredicateIsHangarEmpty" />
+		<Item type="gameMechanics.elements.predicates.PredicateIsDweller" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.world.ship.elements.PredicateHasBoundShip">
+			</predicate>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_3.txt" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<items>
+				<Item href="/Items/QuestItems/AstralHangar/Ship_License/Ship_License.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<removeOnAbandon>false</removeOnAbandon>
+		</Item>
+	</counters>
+	<reward>
+		<experience>2</experience>
+		<money>1234</money>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>true</tutorial>
+	<internalName>Q1</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/AstralHangarLeague/Zones/AstralHangarLeague/AstralHangar.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>33</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

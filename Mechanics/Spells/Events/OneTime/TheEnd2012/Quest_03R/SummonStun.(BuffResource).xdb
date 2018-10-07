@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>354407425</resourceId>
+	</Header>
+	<Name href="SummonStun.(BuffResource).Name.txt" />
+	<Description href="SummonStun.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/BookMasters.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/Events/OneTime/TheEnd2012/StunAnimation.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.SelfPosDestination" />
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+										<verticalRange min="0" max="0" />
+										<horizontalRange min="0" max="8" />
+									</Item>
+								</modifiers>
+							</destination>
+							<object href="MobSpawnStele.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+							<level type="gameMechanics.elements.calcers.CalcerLevel" />
+							<pool href="BookCount.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate" />
+					</impacts>
+					<device href="MobSpawnStele.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<radius>10</radius>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+</gameMechanics.constructor.schemes.buff.BuffResource>

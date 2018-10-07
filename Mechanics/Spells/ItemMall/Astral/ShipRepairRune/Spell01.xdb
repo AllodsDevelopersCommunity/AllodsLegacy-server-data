@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>146641927</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/ShipBuilderRune.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>5000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateHasShipInRepair" />
+							<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+								<lhs type="gameMechanics.elements.calcers.RemainingShipRepairCalcer" />
+								<rhs type="gameMechanics.elements.calcers.LongData">
+									<value>0</value>
+								</rhs>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+							<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+								<predicates>
+									<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+										<permission>Modify</permission>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+									<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+										<onMaster />
+										<onSlave type="gameMechanics.elements.predicates.PredicateGreater">
+											<lhs type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+											<rhs type="gameMechanics.elements.calcers.FullHealthCalcer" />
+										</onSlave>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateHasShipInRepair" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.world.ship.elements.ImpactIncreaseRepair">
+						<timeBy>28800000</timeBy>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+								<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+								<impacts>
+									<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+										<limitModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+											<calcers>
+												<Item type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+												<Item type="gameMechanics.elements.calcers.FloatData">
+													<value>-0.16</value>
+												</Item>
+											</calcers>
+										</limitModCalcer>
+										<valueModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+											<calcers>
+												<Item type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+												<Item type="gameMechanics.elements.calcers.FloatData">
+													<value>0.16</value>
+												</Item>
+											</calcers>
+										</valueModCalcer>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

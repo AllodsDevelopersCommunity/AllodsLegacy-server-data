@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>362760195</resourceId>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.world.device.control.ImpactSetEngineManualMode" />
+		<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/ShipParkingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+							<destination href="/Maps/AstralHangarLeague_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							<success />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric">
+							<forced>true</forced>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/ShipParkingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+							<destination href="/Maps/AstralHangarHadagan_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							<success />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric">
+							<forced>true</forced>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsElse>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+			<buff href="/Mechanics/Ships/BuffNobodyLeaves.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>164524042</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Druid/DruidWaspSwarm.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/VisScripts/Druid/WaspSwarm.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<scaleOnTick>false</scaleOnTick>
+				<tickLength>2000</tickLength>
+				<damagePerTick var="damagePerTick" />
+				<threatMultiplier>1</threatMultiplier>
+				<affectOnStartTick>false</affectOnStartTick>
+			</parameters>
+			<element>POISON</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler">
+				<stat>IS_Intellect</stat>
+			</scaler>
+			<fixedMultiplier>1</fixedMultiplier>
+			<progressiveMultiplier>0</progressiveMultiplier>
+			<considerOutgoingModifiers>true</considerOutgoingModifiers>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff hrefvar="buff" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+					<durationScalerTarget type="gameMechanics.elements.scalers.ScalerIf">
+						<condition type="gameMechanics.elements.resources.ResourceBuff">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/DruidV2/OpenWounds/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</condition>
+						<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>1.5</multiplier>
+						</scalerIf>
+					</durationScalerTarget>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration var="duration" />
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_CC</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

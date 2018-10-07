@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>114927630</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DisabledByChest.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Teleportation.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>7000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1800000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnShip" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>98.82</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/PetRealm/Zones/PetRealm/PetRealm.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasReturnPoint" />
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactTeleportToReturnPoint">
+								<cleanReturnPoint>true</cleanReturnPoint>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.elements.calcers.DestinationGlobalGraveyard" />
+									</Item>
+								</impacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactStoreReturnPoint" />
+					<Item type="gameMechanics.elements.impacts.ImpactTeleportLocFaction">
+						<factionLocators>
+							<Item>
+								<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								<locator>
+									<scriptID>PetRealmLeague</scriptID>
+									<map href="/Maps/PetRealm/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>5.47</value>
+								</yaw>
+							</Item>
+							<Item>
+								<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								<locator>
+									<scriptID>PetRealmEmpire</scriptID>
+									<map href="/Maps/PetRealm/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>3.15</value>
+								</yaw>
+							</Item>
+						</factionLocators>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+		<linkedAbility href="ReturnPointAbility.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

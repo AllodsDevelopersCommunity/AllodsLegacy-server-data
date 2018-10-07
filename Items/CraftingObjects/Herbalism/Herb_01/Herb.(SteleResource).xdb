@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.SteleResource>
+	<Header>
+		<resourceId>129717249</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Items/CraftingObjects/Foraging/Foraging.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+		<Variables>
+			<visobj_var>/Spells/FX/World/ResursMarkerGrass.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visobj_var>
+			<point_level>0</point_level>
+			<prof_var>/Mechanics/Skills/Herbalism/Herbalism.xdb#xpointer(/gameMechanics.elements.skills.foraging.ForagingResource)</prof_var>
+			<plane_var>DevicePlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)</plane_var>
+			<vis_buff_var>VisibilityFilterBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</vis_buff_var>
+		</Variables>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.elements.skills.foraging.ForagingLabelResource">
+			<skills>
+				<Item href="/Mechanics/Skills/AlchemyV2/Alchemy.xdb#xpointer(/gameMechanics.elements.skills.alchemy.AlchemyResource)" />
+			</skills>
+			<lootTable hrefvar="loot_table_v2" />
+			<pointLevel var="point_level" />
+			<forageChance var="forage_chance" />
+			<autoForageable var="autoForageable" />
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.StaticEntityAura">
+					<radius>5</radius>
+					<shape type="space.scaner.resources.Sphere" />
+					<impactsIn>
+						<Item type="gameMechanics.elements.skills.foraging.ImpactIfCanForage">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff hrefvar="vis_buff_var" />
+									<allowOverrideCaster>true</allowOverrideCaster>
+								</Item>
+							</impacts>
+							<resource href="/Mechanics/Skills/AlchemyV2/Alchemy.xdb#xpointer(/gameMechanics.elements.skills.alchemy.AlchemyResource)" />
+						</Item>
+					</impactsIn>
+					<impactsOut>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff hrefvar="vis_buff_var" />
+							<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOut>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<parts>
+		<Item type="ForagingVisualizerComponent">
+			<states>
+				<Item>
+					<probability>1</probability>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Spells/FX/World/ResursMarkerGrass.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					</script>
+				</Item>
+				<Item>
+					<probability>0.15</probability>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Spells/FX/World/ResursMarkerGrass.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					</script>
+				</Item>
+				<Item>
+					<probability>-1</probability>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Spells/FX/World/ResursMarkerGrass.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					</script>
+				</Item>
+			</states>
+		</Item>
+	</parts>
+</gameMechanics.world.device.SteleResource>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>341615659</resourceId>
+	</Header>
+	<Name href="GoChargeMe.(BuffResource)_Name.txt" />
+	<Description href="GoChargeMe.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Special/Emotions/Wait.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="GoChargeMe.(BuffResource)_Name.txt.template" />
+	<descTemplate href="GoChargeMe.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.LayeredHealthTrigger">
+			<layers>
+				<Item>
+					<percent>0.8</percent>
+					<mechanics>
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="GoChargeMe.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="ChargeStandAlone.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+					</mechanics>
+				</Item>
+			</layers>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="GoChargeMe.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

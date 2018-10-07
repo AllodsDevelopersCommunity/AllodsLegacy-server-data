@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>223894529</resourceId>
+	</Header>
+	<Name href="EvilOfTkaRika.txt" />
+	<Description href="EvilOfTkaRika.Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/SummonDushegubky.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="EvilOfTkaRika.txt" />
+	<descTemplate href="EvilOfTkaRika.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+											<items>
+												<Item href="/Items/QuestItems/ArchipelagoContested6/I_2_Item_01/I_2_Item_01.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+											</items>
+											<totalCount>1</totalCount>
+											<checkBag>false</checkBag>
+										</Item>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/GameRoot/AvatarReviveBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ChannelDamage">
+									<element>ASTRAL</element>
+									<damage>100000</damage>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>3000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/Inst_TkaRika/QuestEvent01/QuestEvent01.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/Inst_TkaRika/QuestEvent03/QuestEvent03.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/Inst_TkaRika/QuestEvent03_1/QuestEvent03_1.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

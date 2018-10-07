@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739823421</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Equipment/Trinket/AstralBomb_01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Mechanics/Spells/HumMobs/Bomb/Bomb.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>2000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.RandomScaler">
+				<range>
+					<min>20</min>
+					<max>35</max>
+				</range>
+			</scaler>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RandomImpact">
+				<entries>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+									<radius>85</radius>
+								</distributor>
+								<data href="BombSpeech1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+									<radius>85</radius>
+								</distributor>
+								<data href="BombSpeech2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<chance>1</chance>
+					</Item>
+				</entries>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>15</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>true</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1000</time>
+						<impactsOnLand>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impactsOnLand>
+						<distance>20</distance>
+					</Item>
+				</impacts>
+				<targetsLimit>0</targetsLimit>
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>20</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>154658826</resourceId>
+	</Header>
+	<Name href="Quest_03_Halo_item_Spell_Name.txt" />
+	<Description href="Quest_03_Halo_item_Spell_Description.txt" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan_AE1/ScriptZones/ArchipelagoEmpire1/Halo_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoEmpire1/Quest_03_Halo/Quest_03_Halo.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Completed</status>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoEmpire1/Quest_03_Halo/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>7000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>AE1_demon_halo</scriptID>
+							<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>7500</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<mob>
+							<scriptID>AE1_demon_halo</scriptID>
+							<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoEmpire1/Quest_03_Halo/Quest_03_Halo.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Completed</status>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="Quest_03_Halo_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								<count>1</count>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>6500</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<mob>
+											<scriptID>AE1_demon_halo</scriptID>
+											<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</mob>
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Quest_03_Halo_item_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>152720397</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Prototypes2/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<descTemplate href="SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/DemonMage/Instances/ArchipelagoGipatsShard/DemonMageRevenge.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DemonWarrior/Instances/ArchipelagoGipatsShard/DemonWarriorRevenge.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DemonWarrior/Instances/ArchipelagoGipatsShard/DemonWarrior.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DemonMage/Instances/ArchipelagoGipatsShard/DemonMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DemonMage/Instances/ArchipelagoGipatsShard/DemonMage_Silver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/DemonWarrior/Instances/ArchipelagoGipatsShard/DemonWarrior_Silver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RandomImpact">
+				<entries>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ArchipelagoGipatsShard/Q10_14/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+								<msg href="message2.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+								<defaultSpeaker href="/Creatures/DemonWarrior/Instances/ArchipelagoGipatsShard/DemonWarriorSoul.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+						<chance>0.7</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+								<msg href="Message1.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+								<defaultSpeaker href="/Creatures/DemonWarrior/Instances/ArchipelagoGipatsShard/DemonWarriorSoul.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+						<chance>0.3</chance>
+					</Item>
+				</entries>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

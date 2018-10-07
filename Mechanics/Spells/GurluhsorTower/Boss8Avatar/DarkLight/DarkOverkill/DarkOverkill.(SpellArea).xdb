@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>175547427</resourceId>
+	</Header>
+	<Name href="DarkOverkill.txt" />
+	<Description href="DarkOverkill.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_8Boss/DarkOverkill.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>10000</prepareDuration>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceAnyBuff">
+				<buffs>
+					<Item href="/Mechanics/Abilities/GurluhsorTower/Boss8Overkills/DarkOverkill/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/CanOMFG.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</buffs>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="/World/Ask/GT/Boss08Sarn_DarkOverkill.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Creatures/SarnAvatar/GS_SarnAvatar3Dark.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/CanOMFG.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ASTRAL</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>10000000</minDamage>
+				<maxDamage>10000000</maxDamage>
+				<impactOnHitTarget />
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.ReverseDpsModScaler" />
+						<Item type="gameMechanics.elements.scalers.TrivialScaler" />
+					</scalers>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.DirectDamage">
+						<damage>3000000</damage>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>6000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/NoAOE.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>SarnLight</scriptID>
+									<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/OMFGProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>200</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

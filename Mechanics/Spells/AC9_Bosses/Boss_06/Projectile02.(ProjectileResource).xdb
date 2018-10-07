@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>246520841</resourceId>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.constructor.commonBunchParts.ImportantObjectResource" />
+	</persistentParts>
+	<visObject href="/Spells/FX/Mobs/MindFlayerPsionicFX_Area_02.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+			<delay>8000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>true</faceSourcePos>
+								<coord x="0" y="0" z="0" />
+							</destination>
+						</moveType>
+						<resource href="Projectile03.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOnStart>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AuraEntity">
+			<affectGroup>Enemies</affectGroup>
+			<radius>15</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>ASTRAL</element>
+					<minDamage>120</minDamage>
+					<maxDamage>180</maxDamage>
+					<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="/Spells/ClientData/HitFire.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</impactOnHitTarget>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impactsIn>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.TickableEntityAura">
+			<tick>1000</tick>
+			<affectGroup>Enemies</affectGroup>
+			<radius>15</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.DrainLifeDamage">
+					<element>ASTRAL</element>
+					<minDamage>100</minDamage>
+					<maxDamage>200</maxDamage>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>265631748</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Mage/MageLightningBallsUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>false</needVisualize>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/MageV2/Abilities/ExtraDmgLightningBalls/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.CountingEffectOverTime">
+			<effect type="gameMechanics.elements.effects.MagicDoT">
+				<parameters>
+					<scalerTarget type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+						<buff href="/Mechanics/Spells/MageV2/Abilities/ExtraDmgLightningBalls/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<onlyFromMaster>true</onlyFromMaster>
+						<mul>0.05</mul>
+						<sum>1</sum>
+					</scalerTarget>
+					<scaleOnTick>true</scaleOnTick>
+					<tickLength>1000</tickLength>
+					<damagePerTick var="damagePerTick" />
+					<threatMultiplier>1</threatMultiplier>
+					<affectOnStartTick>false</affectOnStartTick>
+					<impactsPerTick>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>10</radius>
+							<affectGroup>Enemies</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>LIGHTNING</element>
+									<threatMultiplier>1</threatMultiplier>
+									<minDamage var="minDamage" />
+									<maxDamage var="maxDamage" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AliveFilter" />
+							<targetsLimit>3</targetsLimit>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.MarkedImpact">
+							<mark href="/Mechanics/Spells/Marks/MageLBTickHit.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+						</Item>
+					</impactsPerTick>
+				</parameters>
+				<element>LIGHTNING</element>
+				<fixedMultiplier>1</fixedMultiplier>
+				<progressiveMultiplier>0</progressiveMultiplier>
+			</effect>
+			<ticksCount>5</ticksCount>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/LightningSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

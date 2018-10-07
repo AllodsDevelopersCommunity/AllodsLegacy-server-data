@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>260678688</resourceId>
+	</Header>
+	<text href="EaterWish1.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="Silence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/ArchipelagoContested9_Tep_Island/AC9_Tep_Island_Unlock_Portal/AC9_Tep_Island_Unlock_Portal.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/ArchipelagoContested9_Tep_Island/AC9_Tep_Island_Unlock_Portal/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>20</value>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested9_Tep_Island/AC9_Tep_Island_Unlock_Portal/AC9_Tep_Island_Unlock_Portal.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="Hunger1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<scalerTarget />
+			<durationScaler />
+			<durationScalerTarget />
+			<allowOverrideCaster>false</allowOverrideCaster>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="Silence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<scalerTarget />
+			<durationScaler />
+			<durationScalerTarget />
+			<allowOverrideCaster>false</allowOverrideCaster>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>1965031435</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<contextActionInfo>
+		<priority>100</priority>
+		<contextName href="" />
+		<contextDescription href="" />
+		<contextImage href="/Interface/Icons/Context/ContextSummonSkeleton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic7.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Necromancer/SummonBanshee.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>2</level>
+	<prepareDuration>10000</prepareDuration>
+	<needLos>false</needLos>
+	<element>SHADOW</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>132</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.world.pet.PredicateHasPet" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.world.pet.ImpactDismissPet">
+						<clientData href="" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMatch">
+				<cases>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.world.pet.ImpactSummonPet">
+								<mobResource hrefvar="mobResource" />
+								<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</base>
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff hrefvar="buff" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Necromancer/SummonSkeleton/BuffVis.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<scalerTarget />
+										<durationScaler />
+										<durationScalerTarget />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<copyStats>true</copyStats>
+								<plane href="" />
+							</Item>
+							<Item skiped="" />
+						</impacts>
+					</Item>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.world.pet.ImpactSummonPet">
+								<mobResource hrefvar="mobResour_1" />
+								<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</base>
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff hrefvar="bu_1" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Necromancer/SummonSkeleton/BuffVis.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<scalerTarget />
+										<durationScaler />
+										<durationScalerTarget />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<copyStats>true</copyStats>
+								<plane href="" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.world.pet.ImpactSummonPet">
+								<mobResource hrefvar="mobResour_2" />
+								<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</base>
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff hrefvar="bu_2" />
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Necromancer/SummonSkeleton/BuffVis.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<scalerTarget />
+										<durationScaler />
+										<durationScalerTarget />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<copyStats>true</copyStats>
+								<plane href="" />
+							</Item>
+							<Item skiped="" />
+						</impacts>
+					</Item>
+				</cases>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff_04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

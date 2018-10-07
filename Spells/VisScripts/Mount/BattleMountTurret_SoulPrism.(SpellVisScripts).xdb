@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx href="/Spells/FX/Mobs/MountTurret_FireCast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fixPoint>true</fixPoint>
+						<scale>1.3</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<member>Mount</member>
+						<locatorName>Slot_Special01</locatorName>
+					</Item>
+					<Item>
+						<effectFx href="/Spells/FX/Mobs/Turret04_Dust.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fixPoint>true</fixPoint>
+						<scale>1.4</scale>
+						<locator>Slot_Global</locator>
+						<member>Mount</member>
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureVisActionStartThrow" />
+			<Item type="CreatureProjectileAction">
+				<projectileFx href="/Spells/FX/Mobs/GT_7BossFireBall_projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<explosionFx href="" />
+				<pointOnCaster type="VisPointLocator">
+					<locator>FROM_LOCATOR_NAME</locator>
+					<member>Mount</member>
+					<locatorName>Slot_Special01</locatorName>
+				</pointOnCaster>
+				<pointOnTarget type="VisPointLocator">
+					<locator>Slot_FX</locator>
+				</pointOnTarget>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx href="/Spells/FX/Spells/HitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<fixPoint>true</fixPoint>
+							<scale>2</scale>
+							<locator>Slot_FX</locator>
+						</Item>
+						<Item>
+							<effectFx href="/Spells/FX/Mobs/GT_4BossGuard_DeathSentence_Hit_Part.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<fixPoint>true</fixPoint>
+							<scale>1.6</scale>
+							<locator>Slot_FX</locator>
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitFireShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

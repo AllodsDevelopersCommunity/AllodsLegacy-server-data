@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>156591125</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/ZE1_Quest_Speech.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<descTemplate href="SpellDesc.txt" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="ZL1_Rupor_IM.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague1/ZL1_Rupor_Help/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+				<data href="ZL1_Rupor.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>ZL1_R_2</scriptID>
+							<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>500</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Gib_1</scriptID>
+												<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>2000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="ZL1_Rupor_IM_Gib1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>ZL1_R_1</scriptID>
+									<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>Gib_2</scriptID>
+												<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>4000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="ZL1_Rupor_IM_Gib2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+								<mob>
+									<scriptID>ZL1_R_2</scriptID>
+									<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</mob>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+						<mob>
+							<scriptID>ZL1_R_1</scriptID>
+							<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

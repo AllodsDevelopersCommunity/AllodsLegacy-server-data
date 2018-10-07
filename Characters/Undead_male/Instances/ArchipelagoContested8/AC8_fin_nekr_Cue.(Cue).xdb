@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>238047395</resourceId>
+	</Header>
+	<name href="AC8_fin_nekr_Cue.txt" />
+	<text href="AC8_fin_nekr_Cue.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ArchipelagoContested8/AC8_Fin2/AC8_Fin2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Finished</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_Fin1/AC8_Fin1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_Fin1/AC8_Fin1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/ArchipelagoContested8/AC8_S9/AC8_S9_Buff_plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>AC8_fin_nekr_start</scriptID>
+					<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_Fin1/AC8_Fin1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ArchipelagoContested8/AC8_Fin1/AC8_Fin1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/World/Quests/ArchipelagoContested8/AC8_Fin1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ArchipelagoContested8/AC8_Fin1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Items/QuestItems/ArchipelagoContested8/AC8_U7_item/AC8_Final_inst_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Items/QuestItems/ArchipelagoContested8/AC8_U7_item/AC8_U7_itemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

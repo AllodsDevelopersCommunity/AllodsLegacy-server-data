@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>224061449</resourceId>
+	</Header>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2700000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Remort/RemortAbility/RebornBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateIsRemort" />
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+								<minLevel type="gameMechanics.formulas.IntConstantValue">
+									<value>45</value>
+								</minLevel>
+							</predicate>
+						</Item>
+					</predicates>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAddExperience">
+				<calcer type="constructor.elements.CalcerLongExternal">
+					<externalCalcer href="/Mechanics/CommonFormulas/HourlyTickets/TicketExpFormula.(CalcerLongResource).xdb#xpointer(/constructor.elements.CalcerLongResource)" />
+				</calcer>
+				<direct>true</direct>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

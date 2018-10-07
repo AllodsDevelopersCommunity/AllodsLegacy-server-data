@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>128849978</resourceId>
+	</Header>
+	<Name href="Buff_02__Name.txt" />
+	<Description href="Buff_02__Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/SummonSkeleton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Buff_02__Name.txt" />
+	<descTemplate href="Buff_02__Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInZone">
+							<zone href="/Maps/Inst_DeadCity/Zones/Inst_DeadCity_DragonWing.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.RelativePos" />
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/Inst_DeadCity/Boss_Priest/SummonGhost/ImmunityBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+									<object href="/Creatures/DraconidWarrior/Instances/Inst_DeadCity/DraconidCopyWar.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+													<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+													<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="/Mechanics/Spells/Inst_DeadCity/Boss_Priest/SummonGhost/ImmunityBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+											<object href="/Creatures/DraconidPriest/Inst_DeadCity/Instances/Inst_DeadCity/DraconidCopyPriest42_42.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="/Mechanics/Spells/Inst_DeadCity/Boss_Priest/SummonGhost/ImmunityBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+											<object href="/Creatures/DraconidMage/Inst_DeadCity/Instances/Inst_DeadCity/DraconidMageCopy42_42.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAction">
+			<action href="/Mechanics/Spells/Paladin/Redemption/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAction">
+			<action href="/Mechanics/Spells/Priest/Resurrection/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAction">
+			<action href="/Mechanics/Spells/PaladinV2/Redemption/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

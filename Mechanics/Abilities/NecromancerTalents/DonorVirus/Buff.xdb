@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>260375557</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerDonorVirus.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ConditionalHealOverTime">
+			<predicate type="gameMechanics.elements.predicates.PredicateCreatureRace">
+				<race>UNDEAD</race>
+			</predicate>
+			<healPerTickIf type="gameMechanics.elements.calcers.CalcerMul">
+				<calcers>
+					<Item type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Abilities/NecromancerTalents/SummoningMastery/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.1</mul>
+						<sum>1</sum>
+					</Item>
+					<Item type="gameMechanics.elements.calcers.LinearCalcer">
+						<mul>1</mul>
+						<sum var="sum" />
+					</Item>
+				</calcers>
+			</healPerTickIf>
+			<healPerTickElse type="gameMechanics.elements.calcers.LinearCalcer">
+				<mul>0</mul>
+				<sum var="s_1" />
+			</healPerTickElse>
+			<threatMultiplier>1</threatMultiplier>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler">
+				<stat>IS_Intellect</stat>
+			</scaler>
+			<tick>2000</tick>
+			<mode>Default</mode>
+			<affectOnStartTick>false</affectOnStartTick>
+		</Item>
+	</effects>
+	<duration>8000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_HoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

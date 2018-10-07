@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>189922347</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/HadaganTower3.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="11417.3" y="12798.6" z="40.4" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Undead_male/Instances/ZoneHadagan1/Guild_Vendor.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasGuildProgress" />
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountMoney">
+			<customName href="/World/Quests/ZoneLeague1/Guild_Charity_01/Money_Counter.txt" />
+			<limit>500000</limit>
+		</Item>
+	</counters>
+	<reward>
+		<experience>2</experience>
+		<money>79</money>
+		<mandatoryItems />
+		<guildLoyaltyCalcer type="gameMechanics.elements.calcers.CalcerIf">
+			<predicate type="gameMechanics.elements.predicates.PredicateGuildLevelLesser">
+				<level>15</level>
+			</predicate>
+			<calcerIf type="gameMechanics.elements.calcers.FloatData">
+				<value>3</value>
+			</calcerIf>
+			<calcerElse type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</calcerElse>
+		</guildLoyaltyCalcer>
+		<guildAuthorityScaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+			<scalers>
+				<Item type="gameMechanics.elements.scalers.LinearScaler">
+					<multiplier>20</multiplier>
+				</Item>
+				<Item type="gameMechanics.elements.scalers.ScalerIf">
+					<condition type="gameMechanics.elements.predicates.PredicateGuildLevelLesser">
+						<level>15</level>
+					</condition>
+					<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>3</multiplier>
+					</scalerIf>
+					<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>1</multiplier>
+					</scalerElse>
+				</Item>
+			</scalers>
+		</guildAuthorityScaler>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyDelayed">
+		<cooldown>1</cooldown>
+	</repeatPolicy>
+	<tutorial>false</tutorial>
+	<internalName>Guild_Charity_02</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/ZoneHadagan1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>8</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>8</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

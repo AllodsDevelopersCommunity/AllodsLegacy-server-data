@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>330744834</resourceId>
+	</Header>
+	<Name href="MiniMausBuff.(BuffResource)_Name.txt" />
+	<Description href="MiniMausBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/BossMaus.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="MiniMausVisual.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="MiniMausBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="MiniMausBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>0.1</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/SummerBoss2012MiniMaus.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/Mechanics/GameRoot/Mount/PetMountPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbilityToPet">
+			<ability href="/Mechanics/GameRoot/Mount/PetMountAbility.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivate">
+					<group href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MiniMausDamageBuffActive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MiniMausShieldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MiniMausHasteBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedSetter">
+			<speed>0.0025</speed>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthScalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>15</mul>
+			</healthScalerTarget>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MiniMausBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<resource href="/Mechanics/GameRoot/Mount/MountDamageThreshold.xdb#xpointer(/gameMechanics.elements.effects.DamageThresholdResource)" />
+			<damageType>ToMount</damageType>
+			<affectsPureDamage>true</affectsPureDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="MiniMausShot.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="MiniMausHaste.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="MiniMausShield.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="MiniMausDamageBuff.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableSpellsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/SummerBoss2012MiniMaus.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsMountAction" />
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBoss2012MiniMaus.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Transformation.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+</gameMechanics.constructor.schemes.buff.BuffResource>

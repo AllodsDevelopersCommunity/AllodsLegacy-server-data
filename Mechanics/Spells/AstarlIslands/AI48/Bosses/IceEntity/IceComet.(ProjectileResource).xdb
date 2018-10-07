@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>362082336</resourceId>
+	</Header>
+	<name href="IceComet.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/Spells/MageIceCometAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<speed>0.015</speed>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<impactsToTarget>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+				<radius>60</radius>
+			</distributor>
+			<data href="Comet.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+			<radius>8</radius>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>COLD</element>
+					<minDamage>70</minDamage>
+					<maxDamage>70</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+		</Item>
+	</impactsToTarget>
+</gameMechanics.world.projectile.ProjectileResource>

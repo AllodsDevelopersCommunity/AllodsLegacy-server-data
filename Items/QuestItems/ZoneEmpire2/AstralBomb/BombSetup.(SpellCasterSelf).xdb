@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24304</resourceId>
+	</Header>
+	<Name href="AstralBomb_SpellName.txt" />
+	<Description href="AstralBomb_SpellDesc.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/AstralBomb.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="AstralBomb.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneEmpire2/Quest_130_30/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+				<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/AstralBomb.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>20000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+						<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/AstralBomb.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="/World/Quests/ZoneEmpire2/Quest_130_30/Redfire.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

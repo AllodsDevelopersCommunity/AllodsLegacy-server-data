@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>2036793378</resourceId>
+	</Header>
+	<Name href="GadgetSpell_Name.txt" />
+	<Description href="GadgetSpell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/Gadget.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="GadgetSpell_Name.txt" />
+	<descTemplate href="GadgetSpell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>8</value>
+	</range>
+	<prepareDuration>1500</prepareDuration>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Willowisp/Instances/ArchipelagoEmpire1/Willowisp1_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Willowisp/Instances/ArchipelagoEmpire1/WillowispKadavr.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncrementItemsCount">
+				<item href="Gadget.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<summand>1</summand>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Willowisp/Instances/ArchipelagoEmpire1/WillowispKadavr.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ArchipelagoEmpire1/Quest5_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Willowisp/Instances/ArchipelagoEmpire1/Willowisp1_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/ArchipelagoEmpire1/Quest0_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impactsElse>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.Disintegrate" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>221196292</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicSuffocate.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+					<hideText>false</hideText>
+					<manaType>Mana</manaType>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.constructor.basicElements.CountingEffectOverTime">
+					<effect type="gameMechanics.elements.effects.MagicDoT">
+						<parameters>
+							<scaleOnTick>false</scaleOnTick>
+							<tickLength>2000</tickLength>
+							<damagePerTick>27.79</damagePerTick>
+							<threatMultiplier>1</threatMultiplier>
+							<affectOnStartTick>true</affectOnStartTick>
+							<impactsPerTick>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impactsPerTick>
+						</parameters>
+						<element>ASTRAL</element>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler">
+							<stat>IS_Intellect</stat>
+						</scaler>
+						<fixedMultiplier>1</fixedMultiplier>
+						<progressiveMultiplier>0</progressiveMultiplier>
+					</effect>
+					<ticksCount>5</ticksCount>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.constructor.basicElements.CountingEffectOverTime">
+					<effect type="gameMechanics.elements.effects.MagicDoT">
+						<parameters>
+							<statsConvertor>
+								<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Dexterity</stat>
+								</intuition>
+								<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Might</stat>
+								</spirit>
+							</statsConvertor>
+							<scaleOnTick>false</scaleOnTick>
+							<tickLength>2000</tickLength>
+							<damagePerTick>27.79</damagePerTick>
+							<threatMultiplier>1</threatMultiplier>
+							<affectOnStartTick>true</affectOnStartTick>
+							<impactsPerTick>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impactsPerTick>
+						</parameters>
+						<element>ASTRAL</element>
+						<scaler type="gameMechanics.elements.scalers.SlotScaler">
+							<slot>MAINHAND</slot>
+						</scaler>
+						<fixedMultiplier>1</fixedMultiplier>
+						<progressiveMultiplier>0</progressiveMultiplier>
+					</effect>
+					<ticksCount>5</ticksCount>
+				</Item>
+			</effectsElse>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Remort/Psionic/Suffocate/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AstralSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>346313732</resourceId>
+	</Header>
+	<hasPatches>true</hasPatches>
+	<headParts>
+		<parts>
+			<Item type="mapLoader.parts.PlayerCountResource" />
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.EffectSetDisconnectTimeout">
+								<disconnectTime>180000</disconnectTime>
+							</Item>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/MegaWar/Assistants/CanSummonMegaPet.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectAvatarRespawnStrategy">
+						<respawnStrategy type="gameMechanics.battleground.BattlegroundRespawnStrategy">
+							<buff href="/Mechanics/Spells/Megawar/RespBuff/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</respawnStrategy>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="/Mechanics/MegaWar/Variables/BluePetCounter.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/MegaWar/Variables/RedPetCounter.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/MegaWar/Variables/Round.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/MegaWar/Variables/AttackersResource.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/MegaWar/Variables/DefendersResource.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/MegaWar/Variables/PointsCaptured.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/MegaWar/Variables/PointsCaptured2ndRound.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/InstancedEventResource/MW_01/MysteriousCounterRed.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/InstancedEventResource/MW_01/MysteriousCounterBlue.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.map.variables.PredicateMapVariableEqualsGeneric">
+										<variableResource href="/Mechanics/MegaWar/Variables/Round.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+										<expectedValue type="gameMechanics.elements.calcers.FloatData">
+											<value>1</value>
+										</expectedValue>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievementGeneric">
+										<achievement href="/Mechanics/InstancedEventResource/MW_01/MegaWar_01.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+										<summand type="gameMechanics.elements.calcers.TableFunctionCalcer">
+											<source type="gameMechanics.map.spawn.recaptureable.RecaptureableSpawnPlacesCalcer">
+												<mark href="/Maps/MW_Isle01/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+											</source>
+											<mapping>
+												<Item>
+													<x>1</x>
+													<y>0</y>
+												</Item>
+												<Item>
+													<x>2</x>
+													<y>0</y>
+												</Item>
+												<Item>
+													<x>3</x>
+													<y>0</y>
+												</Item>
+												<Item>
+													<x>4</x>
+													<y>100</y>
+												</Item>
+											</mapping>
+										</summand>
+										<mark href="/Maps/MW_Isle01/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</Item>
+								</impactsIf>
+								<impactsElse>
+									<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievementGeneric">
+										<achievement href="/Mechanics/InstancedEventResource/MW_01/MegaWar_01.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+										<summand type="gameMechanics.elements.calcers.TableFunctionCalcer">
+											<source type="gameMechanics.map.spawn.recaptureable.RecaptureableSpawnPlacesCalcer">
+												<mark href="/Maps/MW_Isle01/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+											</source>
+											<mapping>
+												<Item>
+													<x>1</x>
+													<y>0</y>
+												</Item>
+												<Item>
+													<x>2</x>
+													<y>0</y>
+												</Item>
+												<Item>
+													<x>3</x>
+													<y>0</y>
+												</Item>
+												<Item>
+													<x>4</x>
+													<y>100</y>
+												</Item>
+											</mapping>
+										</summand>
+										<mark href="/Maps/MW_Isle01/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+									</Item>
+								</impactsElse>
+							</Item>
+						</impacts>
+						<tick>1000</tick>
+					</Item>
+				</effects>
+				<attachOnStart>false</attachOnStart>
+				<reattachOnTeleport>false</reattachOnTeleport>
+			</Item>
+		</parts>
+	</headParts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.map.spawn.SummonPoolManager">
+				<globalPool href="/System/GlobalSummonPools/SummonPoolLimitedInstance.xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+		</parts>
+	</cellParts>
+	<entrance type="avatarPopulation.service.impl.matchMakingImpl.map.InstancedEventMapEntrance" />
+	<isExitRequired>true</isExitRequired>
+	<denyCells>true</denyCells>
+	<isAutoNavigationOn>false</isAutoNavigationOn>
+	<regularObserverRadiusCap>400</regularObserverRadiusCap>
+</mapLoader.MapTemplate>

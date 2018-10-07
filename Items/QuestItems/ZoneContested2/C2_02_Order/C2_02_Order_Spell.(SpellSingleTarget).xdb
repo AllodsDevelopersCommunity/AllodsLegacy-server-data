@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>1348862149</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextDescription href="C2_02_Order_Description.txt" />
+	</contextActionInfo>
+	<Name href="C2_02_Order_SpellName.txt" />
+	<Description href="C2_02_Order_SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/ZE1_Quest_Speech.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<isAggro>false</isAggro>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/Kania_male/Instances/ZoneContested2/KaniaDeserter27_28.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested2/C2_L2_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.5</value>
+				</chanceCalcer>
+				<impactsSuccess>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>60000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</impactsSuccess>
+				<impactsFailure>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+					</Item>
+				</impactsFailure>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

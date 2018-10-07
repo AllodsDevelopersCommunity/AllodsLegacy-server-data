@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>188721163</resourceId>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.constructor.commonBunchParts.ImportantObjectResource">
+			<isImportant>true</isImportant>
+		</Item>
+	</persistentParts>
+	<visObject href="/Spells/FX/Spells/Twar/TWarChampionsVengeanceSlow.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<speed>0</speed>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableEntityAura">
+			<tick>1000</tick>
+			<affectGroup>Enemies</affectGroup>
+			<radius>25</radius>
+			<delayIn>0</delayIn>
+			<filter type="gameMechanics.world.creature.AvatarFilter">
+				<block>false</block>
+				<withPet>true</withPet>
+			</filter>
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<casterAddresseeFinder />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+			<worksOnDead>false</worksOnDead>
+			<worksAfterCasterRemoved>false</worksAfterCasterRemoved>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+					<delay>5000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<radius>25</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>HOLY</element>
+									<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.45</multiplier>
+										</mulCalcer>
+									</scalerTarget>
+									<statsConvertor>
+										<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Lethality</stat>
+										</intuition>
+										<spirit type="gameMechanics.elements.calcers.CalcerMul">
+											<calcers>
+												<Item type="gameMechanics.elements.calcers.FloatData">
+													<value>19.7642</value>
+												</Item>
+												<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+													<level>1</level>
+													<exponent>1.0677</exponent>
+													<multiplier>0</multiplier>
+												</Item>
+											</calcers>
+										</spirit>
+									</statsConvertor>
+									<minDamage>1</minDamage>
+									<maxDamage>1</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+								</Item>
+							</impacts>
+							<finalImpactsOnHolder>
+								<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+									<projectileData>
+										<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+											<destination type="gameMechanics.map.destination.RelativePos">
+												<yaw type="constructor.basicElements.AngleRadians">
+													<value>0</value>
+												</yaw>
+												<faceSourcePos>true</faceSourcePos>
+												<coord x="0" y="0" z="0" />
+											</destination>
+										</moveType>
+										<resource href="ProjectileDamage.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+									</projectileData>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+									<projectileData>
+										<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+											<destination type="gameMechanics.map.destination.RelativePos">
+												<yaw type="constructor.basicElements.AngleRadians">
+													<value>0</value>
+												</yaw>
+												<faceSourcePos>true</faceSourcePos>
+												<coord x="0" y="0" z="0" />
+											</destination>
+										</moveType>
+										<resource href="ProjectileHeal.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+									</projectileData>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</finalImpactsOnHolder>
+							<filter type="gameMechanics.world.creature.AvatarFilter">
+								<block>false</block>
+								<withPet>true</withPet>
+							</filter>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

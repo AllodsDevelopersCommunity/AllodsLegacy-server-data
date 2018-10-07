@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>739819358</resourceId>
+	</Header>
+	<Name href="ValirskySummonName.txt" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSoul.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="AD05_CanSummon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>ValirskyAdd</scriptID>
+						<map href="/Maps/AstralDungeon05/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="AD05_CanSummon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Mechanics/Creatures/Viy/AstralDungeon05/AD05_ValirskyAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<pool href="/Mechanics/Spells/AstarlIslands/AstralDungeon05/ValirskyDemon/AD05_ValirskyPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

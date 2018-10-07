@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureVisActionPlayOnUsedDevice">
+				<action type="DeviceVisActionList">
+					<play>Simultaneously</play>
+					<elements>
+						<Item type="DeviceAnimationAction">
+							<mode>LOOP</mode>
+							<animations>
+								<Item>ready</Item>
+							</animations>
+						</Item>
+						<Item type="DeviceVisEffectsAction">
+							<visualEffects>
+								<Item>
+									<locatorName>Slot_Special02</locatorName>
+									<effectFx href="/Spells/FX/Mobs/TwarGolem_Ready.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								</Item>
+							</visualEffects>
+						</Item>
+					</elements>
+				</action>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureVisActionPlayOnUsedDevice">
+				<action type="DeviceAnimationAction">
+					<animations>
+						<Item>attack</Item>
+					</animations>
+					<advanced>
+						<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					</advanced>
+				</action>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureProjectileAction">
+						<projectileFx href="/Spells/FX/Mobs/MountGolem_RocketSquall_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<explosionFx href="/Spells/FX/Spells/HitFireball2.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<theGe>2</theGe>
+						<pointOnCaster type="VisPointLocator">
+							<locator>UsedObject_Slot_FX</locator>
+						</pointOnCaster>
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+					<Item type="CreatureVisActionPlayOnUsedDevice">
+						<action type="DeviceVisEffectsAction">
+							<visualEffects>
+								<Item>
+									<locatorName>Slot_Special01</locatorName>
+									<effectFx href="/Spells/FX/Mobs/MountGolem_RocketSquall_FireUp.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								</Item>
+							</visualEffects>
+						</action>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="CreatureEffectsAction">
+			<visualEffects>
+				<Item>
+					<effectFx href="/Spells/FX/Mobs/MountGolem_RocketSquall_TargetRoot.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					<fixPoint>true</fixPoint>
+				</Item>
+			</visualEffects>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>242213897</resourceId>
+	</Header>
+	<Name href="AC8_GR_01_item_Spell.txt" />
+	<Description href="AC8_GR_01_item_Spell.Description.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+							<assistantResource href="/World/Quests/ArchipelagoContested8/AC8_GR_01/AC8_GR_01_Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos" />
+							<offset>4</offset>
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1.57</value>
+							</yaw>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+								<trigger href="/World/Quests/ArchipelagoContested8/AC8_GR_01/TriggerAssistant.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+							</Item>
+						</impacts>
+						<assistantResource href="/World/Quests/ArchipelagoContested8/AC8_GR_01/AC8_GR_01_Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						<mobResource href="/Creatures/DemonScout/Instances/ArchipelagoContested8/AC8_DemonScout_Assistant.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<useTargetLevel>false</useTargetLevel>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactDismissAssistant">
+						<assistantResource href="/World/Quests/ArchipelagoContested8/AC8_GR_01/AC8_GR_01_Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+								<spell href="AC8_GR_01_item_Spell.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

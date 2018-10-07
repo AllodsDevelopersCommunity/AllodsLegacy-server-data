@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>333471793</resourceId>
+	</Header>
+	<name href="EgidaActivateTraining.(Cue).Name.txt" />
+	<text href="EgidaActivateTrainingType59.(Cue).Text.txt" />
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>500</delay>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Events/SummerBoss2012/Type59ST/Type59STBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/Events/SummerBoss2012/SummerBossTrainingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/Events/SummerBoss2012/Type1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.map.variables.PredicateMapVariableLess">
+					<hideText>true</hideText>
+					<variableResource href="/Mechanics/InstancedEventResource/MM_SummerBoss/Start.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<maxValue type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</maxValue>
+				</Item>
+			</predicates>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+									<variableResource href="/Mechanics/InstancedEventResource/MM_SummerBoss/ChestCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<minValue type="gameMechanics.elements.calcers.FloatData">
+										<value>14</value>
+									</minValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>Spawn1</scriptID>
+											<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+											<variableResource href="/Mechanics/InstancedEventResource/MM_SummerBoss/ChestCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+											<minValue type="gameMechanics.elements.calcers.FloatData">
+												<value>9</value>
+											</minValue>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+											<destination type="gameMechanics.map.destination.DestinationLocator">
+												<locator>
+													<scriptID>Spawn2</scriptID>
+													<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</locator>
+											</destination>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+											<destination type="gameMechanics.map.destination.DestinationLocator">
+												<locator>
+													<scriptID>SummerBoss</scriptID>
+													<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</locator>
+											</destination>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

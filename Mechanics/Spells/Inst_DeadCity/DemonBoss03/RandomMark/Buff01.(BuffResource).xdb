@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>193325058</resourceId>
+	</Header>
+	<Name href="BuffName.txt" />
+	<Description href="BuffDesc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicPyrokinesisUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="BuffName.txt" />
+	<descTemplate href="BuffDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/VisScripts/Bosses/DC_DemonBoss_03/AstralExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>10</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ASTRAL</element>
+									<minDamage>51.8886</minDamage>
+									<maxDamage>63.6417</maxDamage>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Inst_DeadCity/DemonBoss03/Tentacle/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+											<time>1000</time>
+											<distance>15</distance>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

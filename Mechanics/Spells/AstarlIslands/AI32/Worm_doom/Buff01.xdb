@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>276687883</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/SummonDushegubky.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>3</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+		<Item>
+			<delay>600</delay>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>2</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+		<Item>
+			<delay>1200</delay>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>2.5</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt" />
+	<descTemplate href="Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>3</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>PHYSICAL</element>
+							<minDamage>5</minDamage>
+							<maxDamage>5</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration>15000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

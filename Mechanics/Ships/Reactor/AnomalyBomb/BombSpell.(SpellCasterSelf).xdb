@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>288693259</resourceId>
+	</Header>
+	<Name href="BombSpell.txt" />
+	<Description href="BombSpell.Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/DetailAstralVehicle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>20000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateDeviceTypeNear">
+				<radius>10</radius>
+				<deviceTypes>
+					<Item href="/Mechanics/Ships/UsableDeviceTypes/Reactor.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+				</deviceTypes>
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.PredicateStandingOnEnemyShip" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateInHangar" />
+			</Item>
+		</casterConditions>
+		<conditions />
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+								<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+									<slot>Slot_ManaReactor_01</slot>
+								</addresseeFinder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+												<buff href="MinedReactor.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

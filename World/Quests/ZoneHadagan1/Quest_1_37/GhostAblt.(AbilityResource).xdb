@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>127795202</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="GhostPlan.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>91000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impactsOn>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsToKiller>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

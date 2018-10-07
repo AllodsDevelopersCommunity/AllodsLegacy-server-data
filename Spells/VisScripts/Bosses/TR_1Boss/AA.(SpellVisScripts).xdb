@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FXChanneling>/Spells/FX/Mobs/GT_8Boss_MeleeStrike_Channeling.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXChanneling>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<FxOnHand>/Spells/FX/Mobs/GT_7Boss_ShockingGrasp_channeling_HandGlow.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHand>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>readySpellOmni</Item>
+				</animations>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>1.5</scale>
+						<locator>Slot_Hand_R</locator>
+					</Item>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/StunDevice.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>0.4</scale>
+						<locator>Slot_Hand_R</locator>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionRandom">
+		<elements>
+			<Item>
+				<action type="VisActionList">
+					<play>Simultaneously</play>
+					<elements>
+						<Item type="VisActionList">
+							<play>Simultaneously</play>
+							<playWhile type="VisActionDelay">
+								<time>1400</time>
+							</playWhile>
+							<elements>
+								<Item type="CreatureEffectsAction">
+									<visActionID />
+									<visualEffects>
+										<Item>
+											<delay>0</delay>
+											<effectFx hrefvar="FxOnHand" />
+											<effectAlias href="" />
+											<effectAnimations>
+												<mode>DIE</mode>
+											</effectAnimations>
+											<fixPoint>false</fixPoint>
+											<lockScale>false</lockScale>
+											<scale>1</scale>
+											<fadeInTime>0</fadeInTime>
+											<fadeOutTime>0</fadeOutTime>
+											<locator>Slot_Hand_R</locator>
+											<member>Default_Member</member>
+											<locatorName />
+											<offendTime />
+										</Item>
+									</visualEffects>
+									<stopOnDeath>false</stopOnDeath>
+								</Item>
+							</elements>
+						</Item>
+						<Item type="VisActionList">
+							<visActionID />
+							<play>InSequence</play>
+							<playWhile />
+							<elements>
+								<Item type="CreatureAnimationAction">
+									<visActionID />
+									<mode>DIE</mode>
+									<use>USE_ANIMATIONS</use>
+									<animations>
+										<Item>attack</Item>
+									</animations>
+									<channel>CHANNEL_DEFAULT</channel>
+									<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+									<channelOverrideScript />
+									<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+									<specialController />
+									<advanced>
+										<speed>0</speed>
+										<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+										<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+										<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+										<offendType>NO_OFFEND</offendType>
+										<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+										<autoHasten>
+											<mode>AUTOHASTEN_NONE</mode>
+											<timeToBeLeft>500</timeToBeLeft>
+										</autoHasten>
+										<eventPlaybackEnd>true</eventPlaybackEnd>
+										<turnToTarget>TURN_DEFAULT</turnToTarget>
+										<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+									</advanced>
+								</Item>
+								<Item type="CreatureChannelDirectAction">
+									<visActionID />
+									<channelingFx hrefvar="FXChanneling" />
+									<startPoint type="VisPointLocator">
+										<shift x="0" y="0" z="0" />
+										<locator>Slot_Hand_R</locator>
+										<member>Default_Member</member>
+										<locatorName />
+										<from>FROM_DEFALUT</from>
+									</startPoint>
+									<endPoint type="VisPointLocator">
+										<shift x="0" y="0" z="0" />
+										<locator var="LocatorOnTarget" />
+										<member>Default_Member</member>
+										<locatorName />
+										<from>FROM_DEFALUT</from>
+									</endPoint>
+									<fadeInTime>0</fadeInTime>
+									<fadeOutTime>0</fadeOutTime>
+									<velocity>0</velocity>
+									<offendTime type="EffectOffendConstDelay">
+										<delay>0</delay>
+									</offendTime>
+									<multyTargetMode>FromCaster</multyTargetMode>
+									<secondaryTargetParams>
+										<channelingFx href="" />
+										<fadeInTime>0</fadeInTime>
+										<fadeOutTime>0</fadeOutTime>
+										<velocity>0</velocity>
+										<offendTime />
+									</secondaryTargetParams>
+								</Item>
+								<Item type="CreatureEffectsAction">
+									<visualEffects>
+										<Item>
+											<effectFx href="/Spells/FX/Spells/MageLightningChannel_HandFlash.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<scale>0.7</scale>
+											<locator>Slot_Hand_R</locator>
+										</Item>
+									</visualEffects>
+								</Item>
+							</elements>
+							<stopOnDeath>false</stopOnDeath>
+						</Item>
+					</elements>
+				</action>
+			</Item>
+			<Item>
+				<probability>1</probability>
+				<action type="VisActionList">
+					<play>Simultaneously</play>
+					<elements>
+						<Item type="VisActionList">
+							<visActionID />
+							<play>Simultaneously</play>
+							<playWhile type="VisActionDelay">
+								<visActionID />
+								<time>1400</time>
+							</playWhile>
+							<elements>
+								<Item type="CreatureEffectsAction">
+									<visActionID />
+									<visualEffects>
+										<Item>
+											<delay>0</delay>
+											<effectFx hrefvar="FxOnHand" />
+											<effectAlias href="" />
+											<effectAnimations>
+												<mode>DIE</mode>
+											</effectAnimations>
+											<fixPoint>false</fixPoint>
+											<lockScale>false</lockScale>
+											<scale>1</scale>
+											<fadeInTime>0</fadeInTime>
+											<fadeOutTime>0</fadeOutTime>
+											<locator>Slot_Hand_L</locator>
+											<member>Default_Member</member>
+											<locatorName />
+											<offendTime />
+										</Item>
+									</visualEffects>
+									<stopOnDeath>false</stopOnDeath>
+								</Item>
+							</elements>
+							<stopOnDeath>false</stopOnDeath>
+						</Item>
+						<Item type="VisActionList">
+							<visActionID />
+							<play>InSequence</play>
+							<playWhile />
+							<elements>
+								<Item type="CreatureAnimationAction">
+									<visActionID />
+									<mode>DIE</mode>
+									<use>USE_ANIMATIONS</use>
+									<animations>
+										<Item>attack01</Item>
+									</animations>
+									<channel>CHANNEL_DEFAULT</channel>
+									<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+									<channelOverrideScript />
+									<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+									<specialController />
+									<advanced>
+										<speed>0</speed>
+										<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+										<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+										<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+										<offendType>NO_OFFEND</offendType>
+										<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+										<autoHasten>
+											<mode>AUTOHASTEN_NONE</mode>
+											<timeToBeLeft>500</timeToBeLeft>
+										</autoHasten>
+										<eventPlaybackEnd>true</eventPlaybackEnd>
+										<turnToTarget>TURN_DEFAULT</turnToTarget>
+										<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+									</advanced>
+								</Item>
+								<Item type="CreatureChannelDirectAction">
+									<visActionID />
+									<channelingFx hrefvar="FXChanneling" />
+									<startPoint type="VisPointLocator">
+										<shift x="0" y="0" z="0" />
+										<locator>Slot_Hand_L</locator>
+										<member>Default_Member</member>
+										<locatorName />
+										<from>FROM_DEFALUT</from>
+									</startPoint>
+									<endPoint type="VisPointLocator">
+										<shift x="0" y="0" z="0" />
+										<locator var="LocatorOnTarget" />
+										<member>Default_Member</member>
+										<locatorName />
+										<from>FROM_DEFALUT</from>
+									</endPoint>
+									<fadeInTime>0</fadeInTime>
+									<fadeOutTime>0</fadeOutTime>
+									<velocity>0</velocity>
+									<offendTime type="EffectOffendConstDelay">
+										<delay>0</delay>
+									</offendTime>
+									<multyTargetMode>FromCaster</multyTargetMode>
+									<secondaryTargetParams>
+										<channelingFx href="" />
+										<fadeInTime>0</fadeInTime>
+										<fadeOutTime>0</fadeOutTime>
+										<velocity>0</velocity>
+										<offendTime />
+									</secondaryTargetParams>
+								</Item>
+								<Item type="CreatureEffectsAction">
+									<visActionID />
+									<visualEffects>
+										<Item>
+											<delay>0</delay>
+											<effectFx href="/Spells/FX/Spells/MageLightningChannel_HandFlash.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<effectAlias href="" />
+											<effectAnimations>
+												<mode>DIE</mode>
+											</effectAnimations>
+											<fixPoint>false</fixPoint>
+											<lockScale>false</lockScale>
+											<scale>0.7</scale>
+											<fadeInTime>0</fadeInTime>
+											<fadeOutTime>0</fadeOutTime>
+											<locator>Slot_Hand_L</locator>
+											<member>Default_Member</member>
+											<locatorName />
+											<offendTime />
+										</Item>
+									</visualEffects>
+									<stopOnDeath>false</stopOnDeath>
+								</Item>
+							</elements>
+							<stopOnDeath>false</stopOnDeath>
+						</Item>
+					</elements>
+				</action>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureRunVisActionResource">
+					<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitLightningShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+				</Item>
+				<Item type="CreatureEffectsAction">
+					<visualEffects>
+						<Item>
+							<effectFx href="/Spells/FX/Spells/HitLightning_big.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<fixPoint>true</fixPoint>
+							<scale>1</scale>
+							<locator>Slot_Global</locator>
+						</Item>
+					</visualEffects>
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

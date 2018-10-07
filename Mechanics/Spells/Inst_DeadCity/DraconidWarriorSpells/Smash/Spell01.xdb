@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>130239531</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>0</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Equipment/Fists/WolfBlades.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Fists/WolfBlades.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Attack01.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1000</duration>
+			<group href="" />
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/Instances/ArchipelagoLeague3/AL3_Vampire_Dayli.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.5</value>
+				</chanceCalcer>
+				<impactsSuccess>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.5</value>
+						</chanceCalcer>
+						<impactsSuccess>
+							<Item type="gameMechanics.elements.impacts.DirectDamage">
+								<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+										<multiplier>0.04</multiplier>
+									</mulCalcer>
+								</scalerTarget>
+								<damage>1</damage>
+							</Item>
+						</impactsSuccess>
+						<impactsFailure>
+							<Item type="gameMechanics.elements.impacts.DirectDamage">
+								<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+										<multiplier>0.045</multiplier>
+									</mulCalcer>
+								</scalerTarget>
+								<damage>1</damage>
+							</Item>
+						</impactsFailure>
+					</Item>
+				</impactsSuccess>
+				<impactsFailure>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.5</value>
+						</chanceCalcer>
+						<impactsSuccess>
+							<Item type="gameMechanics.elements.impacts.DirectDamage">
+								<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+										<multiplier>0.035</multiplier>
+									</mulCalcer>
+								</scalerTarget>
+								<damage>1</damage>
+							</Item>
+						</impactsSuccess>
+						<impactsFailure>
+							<Item type="gameMechanics.elements.impacts.DirectDamage">
+								<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+										<multiplier>0.05</multiplier>
+									</mulCalcer>
+								</scalerTarget>
+								<damage>1</damage>
+							</Item>
+						</impactsFailure>
+					</Item>
+				</impactsFailure>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

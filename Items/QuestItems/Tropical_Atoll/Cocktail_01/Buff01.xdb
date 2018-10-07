@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>248882179</resourceId>
+	</Header>
+	<Name href="Buff01name.txt" />
+	<Description href="Buff01.Description.txt" />
+	<image href="/Interface/Icons/Spells/Stun.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff01name.txt" />
+	<descTemplate href="Buff01.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>3</min>
+								<max>7</max>
+							</range>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/Tropical_Atoll/Quest_02/Quest_02.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Completed</status>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.7</value>
+					</chanceCalcer>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Disorient_free.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<impactsLose>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Disorient_buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsLose>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>15000</value>
+			</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/DrunkWalk_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="/World/Quests/Tropical_Atoll/Quest_02/Quest_02.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>2</count>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_Vision.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_VisionMedium.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_VisionHard.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>4</count>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_VisionMedium.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_Vision.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_VisionHard.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>6</count>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_VisionHard.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_Vision.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Maps/Tropical_Atoll/Scripts/DrunkMaraphon/Drunk_VisionMedium.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/MountedBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+	</effects>
+	<duration>40000</duration>
+	<stackLimit>7</stackLimit>
+	<isGradual>true</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

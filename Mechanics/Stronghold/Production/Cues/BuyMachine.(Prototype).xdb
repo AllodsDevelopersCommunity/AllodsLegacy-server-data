@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>739823759</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<text href="BuyMachine.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/Stronghold.xdb" />
+		</Item>
+		<Item type="itemService.avatar.stronghold.production.elements.PredicateProductionMachineExists">
+			<device hrefvar="previous" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="itemService.avatar.stronghold.production.elements.PredicateProductionMachineExists">
+				<device hrefvar="current" />
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="itemService.avatar.stronghold.production.elements.ImpactBuyMachine">
+			<device hrefvar="current" />
+		</Item>
+	</impacts>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+			<currency href="/Mechanics/AlternativeCurrencies/PlayerIslandGround.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			<count var="cost" />
+		</Item>
+	</additionalConditions>
+	<data>
+		<Item type="CueDataLong">
+			<alias>cost</alias>
+			<calcer type="gameMechanics.elements.calcers.LongData">
+				<value var="cost" />
+			</calcer>
+		</Item>
+	</data>
+</gameMechanics.world.mob.interaction.Cue>

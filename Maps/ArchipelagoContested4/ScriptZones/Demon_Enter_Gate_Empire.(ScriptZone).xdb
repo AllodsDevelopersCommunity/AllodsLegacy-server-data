@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>1979580443</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateReputationLevelLess">
+				<faction href="/World/Factions/Demons.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<level>Friendly</level>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested4/Q_44/Q_44.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_44/Q_44.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/World/Quests/ArchipelagoContested4/Q_44/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested4/Q_44e/Q_44e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ArchipelagoContested4/Q_44e/Q_44e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/World/Quests/ArchipelagoContested4/Q_44e/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="GateX.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested4/Q_44e/Q_44e.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ArchipelagoContested4/Q_44e/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+					<variable href="/World/Quests/ArchipelagoContested4/Q_44e/Q_44e_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand>-3</summand>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested4/Q_44/Q_44.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ArchipelagoContested4/Q_44/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+					<variable href="/World/Quests/ArchipelagoContested4/Q_44/Q_44_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand>-3</summand>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+			<msg href="OreFailMessage_mob.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

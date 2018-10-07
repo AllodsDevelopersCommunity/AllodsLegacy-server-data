@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>297558018</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<tick>1000</tick>
+			<affectGroup>All</affectGroup>
+			<affectSelf>true</affectSelf>
+			<radius>15</radius>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactsSelfIfTarget">
+					<predicate type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AI35FearBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>20</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+											<value>1</value>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Creatures/FireElemental/Instances/AstralIsle35/AI35_FireElemental.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

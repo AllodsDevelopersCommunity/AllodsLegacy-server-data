@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>260709377</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="/Mechanics/Spells/GurluhsorTowerTrash/Cultists/Priest/UnholyArmor/Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestDivineArmor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/MindFlayerDCBoss/MindFlayerDCBossDamaged.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell02.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>5000</prepareDuration>
+	<needLos>false</needLos>
+	<element>HOLY</element>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>24000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.3</level>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Enemies</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="2ndPhase/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.CreatureFilter" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+				<newMobWorld href="/Creatures/DC_Mindflayers/Instances/Inst_DeadCity/MindflayerBoss03_Broken.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

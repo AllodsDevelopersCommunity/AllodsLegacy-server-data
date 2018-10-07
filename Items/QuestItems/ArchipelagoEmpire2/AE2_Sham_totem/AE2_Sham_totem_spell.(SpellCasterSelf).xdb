@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24572</resourceId>
+	</Header>
+	<Name href="AE2_Sham_totem_spell_name.txt" />
+	<Description href="AE2_Sham_totem_spell_desc.txt" />
+	<nameTemplate href="AE2_Sham_totem_spell_name.txt" />
+	<descTemplate href="AE2_Sham_totem_spell_desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan_AE2/ScriptZones/ArchipelagoEmpire2/AE2_Sham_totem_area.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoEmpire2/3_5AE2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="AE2_Sham_totem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians" />
+					<faceSourcePos>false</faceSourcePos>
+					<coord z="0.3" />
+				</destination>
+				<object href="/Items/InteractiveObjects/ArchipelagoEmpire2/Totem/Totem.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				<deviceImpacts>
+					<Item type="gameMechanics.elements.device.DeviceDie" />
+				</deviceImpacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

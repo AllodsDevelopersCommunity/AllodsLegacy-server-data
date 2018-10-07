@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739817192</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="SummonSpy.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEqualsGeneric">
+							<variableResource href="SummonSpy.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>4</mul>
+								<sum>0</sum>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.GoThroughLocatorsList">
+									<runningMode>true</runningMode>
+									<path href="/Maps/AstralIsle46/ScriptZones/Spy01.(LocatorsList).xdb#xpointer(/gameMechanics.map.LocatorsList)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+									<ability href="Spy01.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>2500</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="Animation01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="Spy01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+											<msg href="Spy01.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+											<defaultSpeaker href="/Characters/Hadagan_male/Instances/AstralIsle46/DemonSpy.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<spawnResource href="/Maps/AstralIsle46/SpawnTables/AstralIsle46/SummonSpy.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impactsIf>
+					<summandIf>4</summandIf>
+				</Item>
+			</impacts>
+			<tick>2500</tick>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

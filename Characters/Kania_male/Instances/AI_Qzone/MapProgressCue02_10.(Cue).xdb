@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>353853445</resourceId>
+	</Header>
+	<name href="MapProgressCue02_10.(Cue).Name.txt" />
+	<text href="MapProgressCue02_10.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.resources.ResourceItem">
+			<item href="/Items/MegaWars/MegaWarProgressKey03.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<number>10</number>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateGreaterLong">
+				<lhs type="gameMechanics.world.social.megaWar.elements.CalcerMWarProgressWeek" />
+				<rhs type="gameMechanics.elements.calcers.LongData">
+					<value>23</value>
+				</rhs>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+			<item href="/Items/MegaWars/MegaWarProgressKey03.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<count>10</count>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.LongData">
+				<value>1000000</value>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateGreaterLong">
+						<lhs type="gameMechanics.world.social.megaWar.elements.CalcerMWarProgressWeek" />
+						<rhs type="gameMechanics.elements.calcers.LongData">
+							<value>23</value>
+						</rhs>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+					<impacts>
+						<Item type="gameMechanics.world.social.megaWar.elements.ImpactAddMapProgress">
+							<delta>10</delta>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

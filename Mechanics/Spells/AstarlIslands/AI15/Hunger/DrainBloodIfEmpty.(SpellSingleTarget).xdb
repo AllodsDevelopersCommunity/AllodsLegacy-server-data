@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>223893518</resourceId>
+	</Header>
+	<Name href="DrainBlood.txt" />
+	<image href="/Interface/Icons/Spells/VacuumingLife.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="DrainBlood.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>35</value>
+	</range>
+	<needLos>false</needLos>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Characters/Kania_male/Instances/AstralIsle15/Astral_Victum_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Characters/Kania_male/Instances/AstralIsle15/Astral_Victum_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Characters/Kania_female/Instances/AstralIsle15/Astral_Victum_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Characters/Kania_female/Instances/AstralIsle15/Astral_Victum_4.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Artiodactyl/Instances/AstralIsle15/AstralCow.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Artiodactyl/Instances/AstralIsle15/AstralDeer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Rat/Instances/AstralIsle15/AstralRat.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="ChargeEmpty.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+								<data href="InvalidCreatures.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

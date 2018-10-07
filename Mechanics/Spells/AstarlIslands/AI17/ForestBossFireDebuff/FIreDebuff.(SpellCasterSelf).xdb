@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>238823451</resourceId>
+	</Header>
+	<Name href="FIreDebuff.(SpellCasterSelf).Name.txt" />
+	<visualScripts href="FireDebuff.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>20000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.66</level>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>55</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+						<buff href="FireWeakness.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<delta type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</delta>
+						<attachIfNotExist>true</attachIfNotExist>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterOr">
+					<filters>
+						<Item type="gameMechanics.world.creature.AvatarFilter" />
+						<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</filters>
+				</filter>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

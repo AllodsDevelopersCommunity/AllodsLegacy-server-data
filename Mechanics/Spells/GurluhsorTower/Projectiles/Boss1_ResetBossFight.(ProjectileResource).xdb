@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>135420939</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.UltimateVisibilityGeneric" />
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>85</radius>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntityFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactResetMob" />
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>1000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+											<ability href="/Mechanics/Abilities/GurluhsorTower/Boss1Ability/AddPlane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>4.66</value>
+										</yaw>
+										<locator>
+											<scriptID>GS_Boss1_Projectile</scriptID>
+											<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>GS_Boss1</scriptID>
+								<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSendClientDataZoneGeneric">
+							<data href="/Maps/Inst_GurluhsorTower/ScriptZones/Boss1_Message_Fail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOnNone>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

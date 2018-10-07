@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>230563846</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectShepherd">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impacts>
+			<sheep type="gameMechanics.elements.addresseeFinders.AddresseeFinderSingleMob">
+				<mob>
+					<scriptID>event_droid</scriptID>
+					<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</sheep>
+			<distance>80</distance>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/ArchipelagoContested7.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+										<rule href="/Mechanics/Rules/ArchipelagoContested7/other_unReferenced_events/02_2_escort.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Player_aggro_drakes.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

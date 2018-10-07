@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>94859279</resourceId>
+	</Header>
+	<Name href="1.txt" />
+	<Description href="2.txt" />
+	<nameTemplate href="1.txt" />
+	<descTemplate href="2.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZoneEmpire2/Quest_140_30/Quest_140_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Started</status>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ZoneEmpire2/Quest_140_30/Quest_140_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/Characters/HumMobs/Instances/ZoneEmpire2/HumanWarriorMiniboss_12.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<value>1</value>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ZoneEmpire2/Quest_140_30/Quest_140_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/Items/QuestItems/ZoneEmpire2/AdmiralHead_inBox/AdmiralHead_inBox.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								<value>1</value>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneEmpire2/Quest_90_60/Quest_90_60.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>AE1_Port</scriptID>
+						<map href="/Maps/Hadagan_AE1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="Teleport_Scroll_AE1_Q_140_30.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+							<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/TeleportMaster_AE1.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/TeleportMaster_AE1.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneEmpire2/Quest_140_30/Counter1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

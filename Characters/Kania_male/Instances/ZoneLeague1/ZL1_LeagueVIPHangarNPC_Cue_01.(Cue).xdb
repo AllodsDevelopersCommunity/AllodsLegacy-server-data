@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>361268239</resourceId>
+	</Header>
+	<name href="ZL1_LeagueVIPHangarNPC_Cue_01.txt" />
+	<text href="ZL1_LeagueVIPHangarNPC_Cue_01.Text.txt" />
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>AstralHangarLeague_VIP</scriptID>
+					<map href="/Maps/AstralHangarLeague_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+								<unlock href="/Mechanics/Unlocks/Locations/AstralHangarLeague_VIP/TeleportLocations/AstralHangarLeague_VIP.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+							<unlock href="/Mechanics/Unlocks/Locations/AstralHangarLeague_VIP/TeleportLocations/AstralHangarLeague_VIP.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZoneLeague1/Quest_Learn_Ship/Quest_Learn_Ship.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Active</status>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/ZoneLeague1/Quest_Learn_Ship/Quest_Learn_Ship.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/World/Quests/ZoneLeague1/Quest_Learn_Ship/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>1</value>
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneLeague1/Quest_Learn_Ship/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</finishImpacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

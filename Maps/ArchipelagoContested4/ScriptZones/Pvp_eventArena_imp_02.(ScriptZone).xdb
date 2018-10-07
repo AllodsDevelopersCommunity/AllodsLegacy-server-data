@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>169772113</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.elements.resources.ResourceBuff">
+			<buff href="Arena_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<anyRank>true</anyRank>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0</value>
+				</yaw>
+				<locator>
+					<scriptID>Arena_imp_02</scriptID>
+					<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_Rare/Ac4pvpChest_Rare_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="Arena_AC4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_Rare/Ac4pvpChest_Rare_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</destination>
+									<plane href="" />
+									<pool href="" />
+									<traceDown>false</traceDown>
+									<object href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_Rare_open/Ac4pvpChest_Rare_open.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+									<deviceImpacts>
+										<Item type="gameMechanics.elements.device.DeviceDie" />
+									</deviceImpacts>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_08.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateFaction">
+															<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item skiped="" />
+														<Item type="mailServer.services.mailService.mechanics.ImpactSendMail">
+															<template href="AC4_Arena_Rare_Mail.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+															<items>
+																<Item>
+																	<item href="/Items/Agents/WhiteFragment.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+																	<stackCount>60</stackCount>
+																</Item>
+															</items>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+															<data href="AC4Chest_Rare_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+								<Item skiped="" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/TeleportUp.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_Epic/Ac4pvpChest_Epic_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="Arena_AC4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_Epic/Ac4pvpChest_Epic_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</destination>
+									<plane href="" />
+									<pool href="" />
+									<traceDown>false</traceDown>
+									<object href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_Epic_open/Ac4pvpChest_Epic_open.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+									<deviceImpacts>
+										<Item type="gameMechanics.elements.device.DeviceDie" />
+									</deviceImpacts>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_08.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateFaction">
+															<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item skiped="" />
+														<Item type="mailServer.services.mailService.mechanics.ImpactSendMail">
+															<template href="AC4_Arena_Rare_Mail.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+															<items>
+																<Item>
+																	<item href="/Items/Agents/WhiteFragment.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+																	<stackCount>120</stackCount>
+																</Item>
+															</items>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+															<data href="AC4Chest_Epic_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+								<Item skiped="" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/TeleportUp.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_uncomon/Ac4pvpChest_uncomon_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="Arena_AC4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_uncomon/Ac4pvpChest_uncomon_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</destination>
+									<plane href="" />
+									<pool href="" />
+									<traceDown>false</traceDown>
+									<object href="/Items/InteractiveObjects/ArchipelagoContested4/Ac4pvpChest_uncomon_open/Ac4pvpChest_uncomon_open.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+									<deviceImpacts>
+										<Item type="gameMechanics.elements.device.DeviceDie" />
+									</deviceImpacts>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/ArchipelagoContested4/Zones/ArchipelagoContested4_08.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateFaction">
+															<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item skiped="" />
+														<Item type="mailServer.services.mailService.mechanics.ImpactSendMail">
+															<template href="AC4_Arena_Rare_Mail.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+															<items>
+																<Item>
+																	<item href="/Items/Agents/WhiteFragment.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+																	<stackCount>30</stackCount>
+																</Item>
+															</items>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+															<data href="AC4Chest_uncomon_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+								<Item skiped="" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/TeleportUp.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.world.pet.PredicateHasPet" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<impacts>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impactsIn>
+	<impactsOut />
+</gameMechanics.map.scriptZone.ScriptZone>

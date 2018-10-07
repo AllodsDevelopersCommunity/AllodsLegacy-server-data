@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>246308880</resourceId>
+	</Header>
+	<Name href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Name.txt" />
+	<Description href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/World/Quests/ArchipelagoContested9/1_2_Generator_Fly_1/AC9_Flying.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Name.txt" />
+	<descTemplate href="/Mechanics/Rules/ArchipelagoContested6/StartEvent/Fly_Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<finishImpacts>
+					</finishImpacts>
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>4_2_Landing_Locator</scriptID>
+							<map href="/Maps/ArchipelagoContested9/Bosses_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Rules/ArchipelagoContested9/PiratesBarkas_Buff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByTour">
+			<route href="/Maps/ArchipelagoContested9/GlobalObjects/Tours/Quest_4_2_Tour.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Quest_4_2_Shlyup_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Rules/ArchipelagoContested9/PiratesBarkas_Buff_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnArrive>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/AC9_SpellGroup.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+					<quest href="4_2_To_New_Isle.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>336603138</resourceId>
+	</Header>
+	<name href="LiftButtonTop_FlyStep1.(Cue).Name.txt" />
+	<text href="LiftButtonTop_FlyStep1.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+					<variableResource href="/Maps/Inst_TepPyramid/Scripts/NihilVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<expectedValue type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</expectedValue>
+				</Item>
+				<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+					<variableResource href="/Maps/Inst_TepPyramid/Scripts/MorokVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<expectedValue type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</expectedValue>
+				</Item>
+				<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+					<variableResource href="/Maps/Inst_TepPyramid/Scripts/GatekeeperVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<expectedValue type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</expectedValue>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+					<variableResource href="/Maps/Inst_TepPyramid/Scripts/TepVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<minValue type="gameMechanics.elements.calcers.FloatData">
+						<value>0</value>
+					</minValue>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>TPTep</scriptID>
+							<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+						<yaw type="constructor.basicElements.AngleDegrees">
+							<value>270</value>
+						</yaw>
+					</destination>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+							<variableResource href="/Maps/Inst_TepPyramid/Scripts/LiftVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<minValue type="gameMechanics.elements.calcers.FloatData">
+								<value>0</value>
+							</minValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+											<projectileData>
+												<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+													<destination type="gameMechanics.map.destination.DestinationLocator">
+														<locator>
+															<scriptID>TepBoss</scriptID>
+															<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+														</locator>
+													</destination>
+												</moveType>
+												<resource href="/Mechanics/Spells/TepPyramidBosses/Boss_05/BattleWatcher.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+											</projectileData>
+										</Item>
+										<Item type="gameMechanics.elements.device.DeviceDie" />
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsToUnionMembers">
+							<affectPets>false</affectPets>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/TepPyramidBosses/Boss_03/LiftTeleportFade.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>3000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+											<destination type="gameMechanics.map.destination.DestinationLocator">
+												<locator>
+													<scriptID>TPTep</scriptID>
+													<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</locator>
+												<yaw type="constructor.basicElements.AngleDegrees">
+													<value>270</value>
+												</yaw>
+											</destination>
+											<finishImpacts>
+												<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+													<variable href="/Maps/Inst_TepPyramid/Scripts/TepStart.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+													<predicates>
+														<Item type="gameMechanics.map.variables.PredicateMapVariableEqualsGeneric">
+															<variableResource href="/Maps/Inst_TepPyramid/Scripts/TepStart.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+															<expectedValue type="gameMechanics.elements.calcers.FloatData">
+																<value>0</value>
+															</expectedValue>
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+															<data href="/Mechanics/Spells/TepPyramidBosses/Boss_05/TepVoice1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impactsIf>
+													<impactsElse>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+															<data href="/Mechanics/Spells/TepPyramidBosses/Boss_05/TepVoice2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impactsElse>
+												</Item>
+											</finishImpacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/TepPyramidBosses/LiftTravelSphere.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

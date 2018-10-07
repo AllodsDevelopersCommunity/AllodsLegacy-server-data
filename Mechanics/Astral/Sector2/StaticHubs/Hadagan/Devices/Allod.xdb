@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>104161289</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/AllodManualEnter.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+		<Variables>
+			<visObj>/World/Astral/Astral_Materics/Models/Astral_Hadagan.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObj>
+			<map>/Maps/AstralHangarHadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)</map>
+			<description>HadaganAllodDesc.txt</description>
+			<radius>200</radius>
+			<name>HadaganAllodName.txt</name>
+		</Variables>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSolidCollision">
+					<radius>150</radius>
+					<offset>10</offset>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius>200</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKillAndRespawn" />
+							</impacts>
+						</Item>
+					</impacts>
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+							<hideText>false</hideText>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/ShipParkingBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+							<destination href="/Maps/AstralHangarHadagan_VIP/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							<success />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+							<destination href="/Maps/AstralHangarHadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							<success />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIn>
+			<inPredicates>
+				<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+					<onSlave type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</onSlave>
+				</Item>
+			</inPredicates>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>280756300</resourceId>
+	</Header>
+	<Name href="GadgetSpell_Name.txt" />
+	<Description href="GadgetSpell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/Gadget.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>7</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions />
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Willowisp/Instances/ArchipelagoEmpire1/Willowisp1_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoEmpire1/Quest0_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+				<operation type="itemService.avatar.itemBag.IncrementItemCounter">
+					<summand>1</summand>
+					<destroyItemOnCounterZeroed>false</destroyItemOnCounterZeroed>
+				</operation>
+				<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.Disintegrate" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

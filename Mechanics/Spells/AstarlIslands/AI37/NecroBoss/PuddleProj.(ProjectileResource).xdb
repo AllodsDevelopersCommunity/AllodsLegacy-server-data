@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>300405801</resourceId>
+	</Header>
+	<name href="PuddleProj.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/Spells/AcidPuddle.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0</altitude>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+			<delay>2000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<radius>3</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ACID</element>
+									<minDamage>10</minDamage>
+									<maxDamage>10</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateIsMob" />
+									</Item>
+								</predicates>
+							</filter>
+						</Item>
+					</impacts>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<impactsToTarget>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Mechanics/Spells/AstarlIslands/AI29/HarpyBossPuddle/HarpyBossPuddleData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+	</impactsToTarget>
+</gameMechanics.world.projectile.ProjectileResource>

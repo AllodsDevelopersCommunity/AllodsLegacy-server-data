@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>244413485</resourceId>
+	</Header>
+	<lifeLengthCap>60000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableEntityAura">
+			<affectGroup>All</affectGroup>
+			<radius>15</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateIsMob" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</filter>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+							<variableResource href="/Maps/Inst_HeroesArena/ScriptZones/DefenceDeviceLevelNew.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.FloatData">
+								<value>0</value>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="Defence01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+							<variableResource href="/Maps/Inst_HeroesArena/ScriptZones/DefenceDeviceLevelNew.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="Defence01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>2</value>
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+							<variableResource href="/Maps/Inst_HeroesArena/ScriptZones/DefenceDeviceLevelNew.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<expectedValue type="gameMechanics.elements.calcers.FloatData">
+								<value>2</value>
+							</expectedValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="Defence01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>3</value>
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Defence01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.EntityFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>DefDev</scriptID>
+						<map href="/Maps/Inst_HeroesArena/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.EntityFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>2</visualState>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>DefDev</scriptID>
+						<map href="/Maps/Inst_HeroesArena/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

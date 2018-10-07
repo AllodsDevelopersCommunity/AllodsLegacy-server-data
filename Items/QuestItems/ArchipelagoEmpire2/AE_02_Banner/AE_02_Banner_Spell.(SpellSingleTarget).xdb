@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>2114125873</resourceId>
+	</Header>
+	<Name href="AE_02_Banner_SpellName.txt" />
+	<Description href="AE_02_Banner_Spelldesc.txt" />
+	<nameTemplate href="AE_02_Banner_SpellName.txt" />
+	<descTemplate href="AE_02_Banner_Spelldesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>3000</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Hyena/Instances/ArchipelagoEmpire2/Hyena18_19.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Eagle/Instances/ArchipelagoEmpire2/Eagle17_18.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Eagle/Instances/ArchipelagoEmpire2/EagleSilver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Hyena/Instances/ArchipelagoEmpire2/Hyena_Quest_20_20.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoEmpire2/3_2AE2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<faceSourcePos>false</faceSourcePos>
+					<coord z="-0.3" />
+				</destination>
+				<object href="/Items/InteractiveObjects/ArchipelagoEmpire2/AE_02_Banner/AE_02_Banner.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				<deviceImpacts>
+					<Item type="gameMechanics.elements.device.DeviceDie" />
+				</deviceImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

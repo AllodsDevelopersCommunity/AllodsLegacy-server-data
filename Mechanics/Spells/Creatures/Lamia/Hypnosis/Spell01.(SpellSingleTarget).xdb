@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>275837971</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellSingleTarget).Name.txt" />
+	<visualScripts href="SpellVisScripts1.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>4000</prepareDuration>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>35000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+				<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.elements.calcers.DestinationBehind">
+							<comfortRange>2</comfortRange>
+							<maxSteps>1</maxSteps>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>15000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<affectGroup>Enemies</affectGroup>
+										<affectHolder>false</affectHolder>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+										<filter type="gameMechanics.world.creature.AvatarFilter" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactCopyVisibility" />
+						</impacts>
+						<plane href="Plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+						<level type="gameMechanics.elements.calcers.CalcerLevel" />
+						<object href="Mob.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<planeSyncStrategy>Sync</planeSyncStrategy>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

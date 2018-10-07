@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>214594587</resourceId>
+	</Header>
+	<Name href="Player_aggro_drakes.txt" />
+	<Description href="Player_aggro_drakes.Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodPlague.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Player_aggro_drakes.txt" />
+	<descTemplate href="Player_aggro_drakes.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInZone">
+							<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/Rocks.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>180</value>
+								</yaw>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>2000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+											<faction href="/World/Factions/ArchipelagoDecision/GreatDragon.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>500</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ForceAggro" />
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<object href="/Creatures/Drake/Instances/ArchipelagoContested7/DrakeElite47_47.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>NotInQuestBook</status>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Failed</status>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Completed</status>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsAlive" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Player_aggro_drakes.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>120000</tick>
+		</Item>
+	</effects>
+	<duration>6000000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

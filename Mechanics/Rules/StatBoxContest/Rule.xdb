@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>330133509</resourceId>
+	</Header>
+	<name href="RuleName.txt" />
+	<description href="RuleDesc.txt" />
+	<level>4</level>
+	<rating>5</rating>
+	<reward>
+		<mandatoryItems>
+			<Item>
+				<item href="/Mechanics/Mounts/4thGrade/Items/BattleMount.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasContentKey">
+							<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<item href="/Mechanics/Mounts/4thGrade/Items/BattleStationDemilitarized.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+						<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_ACTION</Item>
+	</types>
+	<timeTable href="TimePeriodTable.xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="itemService.rules.components.contest.OpenBoxContest">
+					<contest href="ContestEurope.(OpenBoxContestResource).xdb#xpointer(/itemService.rules.components.contest.OpenBoxContestResource)" />
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="itemService.rules.components.contest.OpenBoxContest">
+					<contest href="Contest.xdb#xpointer(/itemService.rules.components.contest.OpenBoxContestResource)" />
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<finishImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="itemService.rules.components.contest.GiveOpenBoxContestReward">
+					<contest href="ContestEurope.(OpenBoxContestResource).xdb#xpointer(/itemService.rules.components.contest.OpenBoxContestResource)" />
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="itemService.rules.components.contest.GiveOpenBoxContestReward">
+					<contest href="Contest.xdb#xpointer(/itemService.rules.components.contest.OpenBoxContestResource)" />
+				</Item>
+			</elseImpacts>
+		</Item>
+	</finishImpacts>
+	<saveable>false</saveable>
+	<internal>false</internal>
+</gameMechanics.world.rules.RuleResource>

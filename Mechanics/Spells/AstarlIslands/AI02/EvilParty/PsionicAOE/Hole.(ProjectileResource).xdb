@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>228791324</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/PsionicTelekineticThrowAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+			<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+			<radius>25</radius>
+			<affectGroup>Enemies</affectGroup>
+			<affectHolder>false</affectHolder>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ASTRAL</element>
+									<threatMultiplier>1</threatMultiplier>
+									<statsConvertor type="" />
+									<minDamage>50</minDamage>
+									<maxDamage>50</maxDamage>
+									<impactOnHitTarget />
+									<scaler type="gameMechanics.elements.scalers.MagicScaler">
+										<stat>IS_Intellect</stat>
+									</scaler>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+							<time>1500</time>
+							<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+			<targetsLimit>0</targetsLimit>
+		</Item>
+	</impactsOnStart>
+</gameMechanics.world.projectile.ProjectileResource>

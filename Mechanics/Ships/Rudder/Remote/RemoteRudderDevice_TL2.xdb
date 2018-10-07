@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>172916736</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/gameMechanics.world.device.UsableDeviceResource)" />
+	</Header>
+	<name href="Name.txt" />
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="/Mechanics/Ships/ShipDeviceExploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<health>1000</health>
+	<persistentParts>
+		<Item type="gameMechanics.map.spawn.DynamicTerrainCollision">
+			<object href="/Ships/Components/RudderHorizontal_01/RudderHorizontal_01.(StaticObject).xdb#xpointer(/mapLoader.StaticObject)" />
+		</Item>
+		<Item type="gameMechanics.world.device.parts.RemotePartResource">
+			<controlledTypes>
+				<Item href="/Mechanics/Ships/UsableDeviceTypes/Rudder.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+				<Item href="/Mechanics/Ships/UsableDeviceTypes/EngineHorizontal.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+			</controlledTypes>
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<modes>
+		<Item>
+			<enabledActions>
+				<Item href="RudderFullLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+				<Item href="RudderLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+				<Item href="RudderIdle.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+				<Item href="RudderRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+				<Item href="RudderFullRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+			</enabledActions>
+		</Item>
+		<Item>
+			<enabledActions />
+		</Item>
+		<Item>
+			<enabledActions />
+		</Item>
+		<Item>
+			<enabledActions />
+		</Item>
+		<Item>
+			<enabledActions>
+				<Item href="RudderIdle.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+			</enabledActions>
+		</Item>
+	</modes>
+	<parts>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="DeviceActiveActionComponent">
+			<scripts>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="RudderFullLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+					<script type="DeviceAnimationAction">
+						<animations>
+							<Item>shuffleLeft01</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="RudderLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+					<script type="DeviceAnimationAction">
+						<mode>DIE</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleLeft</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="RudderRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+					<script type="DeviceAnimationAction">
+						<mode>DIE</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleRight</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="RudderFullRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteRudderTurn)" />
+					<script type="DeviceAnimationAction">
+						<mode>DIE</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleRight01</Item>
+						</animations>
+					</script>
+				</Item>
+			</scripts>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_REMOTE_RUDDER</type>
+		</Item>
+	</parts>
+</gameMechanics.world.device.UsableDeviceResource>

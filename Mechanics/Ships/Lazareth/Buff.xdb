@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>59046</resourceId>
+	</Header>
+	<Name href="BuffName.txt" />
+	<Description href="BuffDesc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestSilence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/FeignDeath.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectInstantiatingGeneric">
+			<effects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Resurrect">
+									<timeOut>1</timeOut>
+									<force>true</force>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsOn>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+				<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+				<Item type="gameMechanics.elements.effects.EffectDoesNotAggro" />
+				<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+				<Item type="gameMechanics.elements.effects.ImmunityToHarmfulSpells" />
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactSetHealthToFull" />
+						<Item type="gameMechanics.elements.impacts.ImpactSetManaToFull" />
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="ProtectionBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOff>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EffectDisableAct">
+					<actions>
+						<Item>Move</Item>
+						<Item>Rotate</Item>
+						<Item>Jump</Item>
+					</actions>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<duration>1</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

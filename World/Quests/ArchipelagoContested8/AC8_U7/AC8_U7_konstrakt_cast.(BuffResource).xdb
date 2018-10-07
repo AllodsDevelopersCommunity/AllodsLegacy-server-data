@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>233994325</resourceId>
+	</Header>
+	<Name href="AC8_U7_konstrakt_cast.txt" />
+	<Description href="AC8_U7_konstrakt_cast.Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageMeditation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="AC8_U7_konstrakt_cast_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="AC8_U7_konstrakt_cast.txt" />
+	<descTemplate href="AC8_U7_konstrakt_cast.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>5000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+							<object href="/Creatures/Shadow/Instances/ArchipelagoContested8/Ac8_Shadow.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+							<object href="/Creatures/Shadow/Instances/ArchipelagoContested8/Ac8_Shadow.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+							<object href="/Creatures/Shadow/Instances/ArchipelagoContested8/Ac8_Shadow.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>50000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>40</radius>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Items/QuestItems/ArchipelagoContested8/AC8_U7_item/AC8_Final_inst_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>40</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Nekromant_point</scriptID>
+									<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/QuestItems/ArchipelagoContested8/AC8_U7_item/AC8_U7_itemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/EvadeProtectedBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

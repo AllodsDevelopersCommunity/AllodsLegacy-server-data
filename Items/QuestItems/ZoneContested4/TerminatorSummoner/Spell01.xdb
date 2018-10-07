@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>186881045</resourceId>
+	</Header>
+	<Name href="Spell01.txt" />
+	<Description href="Spell01.Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/ManaLight.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Prototypes2/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell01.txt" />
+	<descTemplate href="Spell01.Description.txt" />
+	<prepareDuration>4000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateDeviceNear">
+				<radius>12</radius>
+				<devices>
+					<Item href="/Items/InteractiveObjects/ZoneContested4/DemonicSpawnPortal_01/DemonicSpawnPortal_01.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<Item href="/Items/InteractiveObjects/ZoneContested4/DemonicSpawnPortal_02/DemonicSpawnPortal_02.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<Item href="/Items/InteractiveObjects/ZoneContested4/DemonicSpawnPortal_03/DemonicSpawnPortal_03.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<Item href="/Items/InteractiveObjects/ZoneContested4/DemonicSpawnPortal/DemonicSpawnPortal.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				</devices>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+					<radius>25</radius>
+					<mobs>
+						<Item href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<Item href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<Item href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+								<items>
+									<Item href="/Items/QuestItems/ZoneContested4/TerminatorCrystall_2/Charged_TerminatorCrystall_2.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</items>
+								<totalCount>1</totalCount>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInGroup" />
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+							<items>
+								<Item href="/Items/QuestItems/ZoneContested4/TerminatorCrystall_2/Charged_TerminatorCrystall_2.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</items>
+							<totalCount>1</totalCount>
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+						<items>
+							<Item href="/Items/QuestItems/ZoneContested4/TerminatorCrystall_2/Charged_TerminatorCrystall_2.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</items>
+						<totalCount>1</totalCount>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="/Items/QuestItems/ZoneContested4/TerminatorCrystall_2/Charged_TerminatorCrystall_2.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationModified">
+							<destination type="gameMechanics.map.destination.RelativePos" />
+							<modifiers>
+								<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+									<verticalRange min="0" max="0" />
+									<horizontalRange min="0" max="4" />
+								</Item>
+							</modifiers>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<object href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+								<items>
+									<Item href="/Items/QuestItems/ZoneContested4/TerminatorCrystall_1/Charged_TerminatorCrystall_1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</items>
+								<totalCount>1</totalCount>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="/Items/QuestItems/ZoneContested4/TerminatorCrystall_1/Charged_TerminatorCrystall_1.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationModified">
+									<destination type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians" />
+									</destination>
+									<modifiers>
+										<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</Item>
+									</modifiers>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								</impacts>
+								<object href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationModified">
+									<destination type="gameMechanics.map.destination.RelativePos" />
+									<modifiers>
+										<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</Item>
+									</modifiers>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								</impacts>
+								<object href="/Creatures/AstralDemonWarrior/Instances/ZoneContested4/Terminator_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

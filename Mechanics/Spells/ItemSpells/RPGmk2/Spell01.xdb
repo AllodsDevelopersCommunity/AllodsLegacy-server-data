@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>280431616</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/RPG_Mk2.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<element>ASTRAL</element>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>120000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/GameRoot/Mount/MountBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/ItemSpells/RPG/Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>6</multiplier>
+							</durationScaler>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>LIGHTNING</element>
+							<statsConvertor>
+								<intuition type="gameMechanics.elements.calcers.CalcerIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+										<manaType>Energy</manaType>
+									</predicate>
+									<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Dexterity</stat>
+									</calcerIf>
+									<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Intuition</stat>
+									</calcerElse>
+								</intuition>
+								<spirit type="gameMechanics.elements.calcers.CalcerIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+										<manaType>Energy</manaType>
+									</predicate>
+									<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Might</stat>
+									</calcerIf>
+									<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Spirit</stat>
+									</calcerElse>
+								</spirit>
+							</statsConvertor>
+							<minDamage>50</minDamage>
+							<maxDamage>60</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+									<level>1</level>
+									<exponent>1.14</exponent>
+								</mulCalcer>
+							</scaler>
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Spells/ClientData/RPG.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirectFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>Slot_Mouth</locator>
+				<member>Mount</member>
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<precastType>PRECAST_LAUNCH</precastType>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>specialCast</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<time>2000</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="" />
+								<scale>1</scale>
+								<locator>Slot_Mouth</locator>
+								<member>Mount</member>
+								<locatorName />
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="CreatureChannelDirectAction">
+						<channelingFx href="/Spells/FX/Mobs/DC_1BossDemon_DrakeFlame_Channel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fxLength>18</fxLength>
+						<startPoint type="VisPointLocator">
+							<shift x="0" y="0" z="0" />
+							<locator>Slot_Mouth</locator>
+							<member>Mount</member>
+							<locatorName />
+						</startPoint>
+						<endPoint type="VisPointLocator">
+							<locator>Slot_FX</locator>
+							<member>Assaulter</member>
+						</endPoint>
+						<offendTime type="EffectOffendConstDelay" />
+						<multyTargetMode>Umbrella</multyTargetMode>
+						<secondaryTargetParams>
+							<channelingFx href="" />
+							<fxLength>20</fxLength>
+							<offendTime type="EffectOffendConstDelay" />
+						</secondaryTargetParams>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction />
+	</playOnTargets>
+</SpellVisScripts>

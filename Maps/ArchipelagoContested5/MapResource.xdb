@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>173542436</resourceId>
+	</Header>
+	<minimapLight>
+		<AmbientFactor>0.5</AmbientFactor>
+		<FogStart>100</FogStart>
+		<FogEnd>500</FogEnd>
+		<SunLightYaw>45</SunLightYaw>
+		<SunLightPitch>0</SunLightPitch>
+		<AmbientColor>2017861120</AmbientColor>
+		<DiffuseColor>2017861120</DiffuseColor>
+		<FogColor>2017861120</FogColor>
+		<SpecularColor>0</SpecularColor>
+		<ContourColor>0</ContourColor>
+		<SpecularWaterColor>0</SpecularWaterColor>
+		<WaterGradientStart>-1</WaterGradientStart>
+		<WaterGradientEnd>-1</WaterGradientEnd>
+		<TerrainSpecularColor>0</TerrainSpecularColor>
+		<TerrainContourColor>0</TerrainContourColor>
+	</minimapLight>
+	<name href="Name.txt" />
+	<mapTemplate href="/System/MapTemplates/Continent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects>
+		<Item href="GlobalObjects/Tours/AC6_Tour_02.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC5_Enter03.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC5_Enter02.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC5_Enter01.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC9_Tour.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC7_AC5_tour_2.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC8_AC5_Tour.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC5_AC8_Tour.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC9_Tour_Return.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/Dragon_isle2.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC5_AC7_Tour.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AC6_Tour.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/Dragon_isle.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+	</globalObjects>
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+										<group href="/Mechanics/Spells/Groups/GipatShard.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									</Item>
+								</impactsOff>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+						<impactsOnEnter>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Secret_Room_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOnEnter>
+						<impactsOnLeave>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="Secret_Room_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOnLeave>
+						<activeZone href="Zones/Secret_Room.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>316932100</resourceId>
+	</Header>
+	<Name href="CaptureSpell.txt" />
+	<Description href="CaptureSpell.Description.txt" />
+	<image href="/Interface/Icons/Spells/CapturePoint.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Summon.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>60000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.bigAstral.tradeWars.PredicateCanCaptureTradeAllod" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+				<predicates>
+					<Item type="gameMechanics.world.bigAstral.tradeWars.PredicateCanCaptureTradeAllod" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.bigAstral.tradeWars.ImpactCaptureTradeAllod" />
+					<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateFaction">
+								<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+								<distributor type="gameMechanics.elements.calcers.AstralSectorDistributor">
+									<sector type="gameMechanics.world.bigAstral.elements.CurrentSectorSelector" />
+									<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+								</distributor>
+								<data href="/Mechanics/Astral/TradeHubs/ClientData/AllodCaptured.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+								<distributor type="gameMechanics.elements.calcers.AstralSectorDistributor">
+									<sector type="gameMechanics.world.bigAstral.elements.CurrentSectorSelector" />
+									<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+								</distributor>
+								<data href="/Mechanics/Astral/TradeHubs/ClientData/AllodCaptured_League.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impactsElse>
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

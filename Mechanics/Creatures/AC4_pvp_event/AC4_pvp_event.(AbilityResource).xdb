@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>154933258</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.5</value>
+					</chanceCalcer>
+					<impactsSuccess>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>AC4_Titan_L</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impactsSuccess>
+					<impactsFailure>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>AC4_Titan_E</scriptID>
+								<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impactsFailure>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Act_Titan_active.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="AC4_Titan_E.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>true</anyRank>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+									<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>0.5</value>
+									</chanceCalcer>
+									<impactsSuccess>
+										<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+											<mob>
+												<scriptID>AC4_Titan_L</scriptID>
+												<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="AC4_Titan_E.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impactsSuccess>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="AC4_Titan_L.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>true</anyRank>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+											<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>0.5</value>
+											</chanceCalcer>
+											<impactsSuccess>
+												<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+													<mob>
+														<scriptID>AC4_Titan_E</scriptID>
+														<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</mob>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC4_Titan_L.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsSuccess>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>1800000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="AC4_pvp_event_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectNoAggro" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

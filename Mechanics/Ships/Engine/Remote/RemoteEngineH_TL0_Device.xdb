@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>139578368</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice_Control.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.map.spawn.DynamicTerrainCollision">
+			<object href="/Ships/Components/Accelerator_01/Accelerator_01.(StaticObject).xdb#xpointer(/mapLoader.StaticObject)" />
+		</Item>
+		<Item type= "gameMechanics.world.device.parts.RemotePartResource">
+			<controlledTypes>
+				<Item href="/Mechanics/Ships/UsableDeviceTypes/Rudder.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+				<Item href="/Mechanics/Ships/UsableDeviceTypes/EngineHorizontal.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+			</controlledTypes>
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/AstralHangar/Q4/Count_1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</userImpactsOnStartUse>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<parts>
+		<Item type="TLScriptsPart">
+			<techLevels>
+				<Item>
+					<quality href="/Mechanics/ItemQualities/Common.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+					<object href="/Ships/Components/Accelerator_01/Accelerator_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					<collision href="/Ships/Components/Accelerator_01/Accelerator_01.(Collision).xdb#xpointer(/Collision)" />
+					<texturesByTL>
+						<Item skiped="" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_01.(Texture).xdb#xpointer(/Texture)" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_02.(Texture).xdb#xpointer(/Texture)" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_03.(Texture).xdb#xpointer(/Texture)" />
+					</texturesByTL>
+				</Item>
+				<Item>
+					<quality href="/Mechanics/ItemQualities/Uncommon.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+					<object href="/Ships/Components/Accelerator_01A/Accelerator_01A.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					<collision href="/Ships/Components/Accelerator_01A/Accelerator_01A.(Collision).xdb#xpointer(/Collision)" />
+					<texturesByTL>
+						<Item href="" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_01.(Texture).xdb#xpointer(/Texture)" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_02.(Texture).xdb#xpointer(/Texture)" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_03.(Texture).xdb#xpointer(/Texture)" />
+					</texturesByTL>
+				</Item>
+				<Item>
+					<quality href="/Mechanics/ItemQualities/Rare.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+					<object href="/Ships/Components/Accelerator_01B/Accelerator_01B.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					<collision href="/Ships/Components/Accelerator_01B/Accelerator_01B.(Collision).xdb#xpointer(/Collision)" />
+					<texturesByTL>
+						<Item href="" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_01.(Texture).xdb#xpointer(/Texture)" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_02.(Texture).xdb#xpointer(/Texture)" />
+						<Item href="/Ships/Components/Accelerator_01/Accelerator_03.(Texture).xdb#xpointer(/Texture)" />
+					</texturesByTL>
+				</Item>
+			</techLevels>
+			<controlType href="/Mechanics/Ships/UsableDeviceTypes/EngineHorizontal.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="DeviceActiveActionComponent">
+			<scripts>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Speed1.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteSetSpeed)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>run</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Speed2.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteSetSpeed)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>run01</Item>
+						</animations>
+						<advanced>
+							<speed>0</speed>
+							<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+						</advanced>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Speed3.(SpellCasterSelf).xdb#xpointer(/gameMechanics.world.device.control.RemoteSetSpeed)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>run02</Item>
+						</animations>
+						<advanced>
+							<speed>0</speed>
+							<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+						</advanced>
+					</script>
+				</Item>
+			</scripts>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_REMOTE_RUDDER</type>
+		</Item>
+	</parts>
+	<name href="RemoteEngineHName.txt" />
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="Exploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<health>5000</health>
+</gameMechanics.world.device.UsableDeviceResource>

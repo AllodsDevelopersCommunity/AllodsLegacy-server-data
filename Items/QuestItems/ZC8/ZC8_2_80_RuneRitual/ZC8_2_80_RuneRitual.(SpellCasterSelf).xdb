@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>314152017</resourceId>
+	</Header>
+	<Name href="ZC8_2_80_RuneRitual.(SpellCasterSelf)_Name.txt" />
+	<nameTemplate href="ZC8_2_80_RuneRitual.(SpellCasterSelf)_Name.txt.template" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+					<radius>55</radius>
+					<mobs>
+						<Item href="/Characters/HumMobs/ZC8/Tekuani/ZC8_EvilTekuani.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/IllusionWorld/ScriptZones/ZC8_2_80_Ritual.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZC8/ZC8_2_80/ZC8_2_80.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="ZC8_2_80_RuneRitual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<conditions>
+							<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+								<onSlave type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="ZC8_2_80_RuneRitual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</onSlave>
+							</Item>
+						</conditions>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="ZC8_2_80_RuneRitual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+										<data href="/World/Quests/ZC8/ZC8_2_80/ZC8_2_80_RitualFail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.AvatarFilter" />
+						<targetsLimit>1</targetsLimit>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ReturningImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.BuffDetacher">
+												<buff href="ZC8_2_80_RuneRitual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>ZC8_TreantBoss</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

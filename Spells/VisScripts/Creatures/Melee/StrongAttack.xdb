@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<LocatorNameOnTargets />
+			<Trail />
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<LocatorNameOnCaster />
+			<FxOnTargetsFixedPoint>true</FxOnTargetsFixedPoint>
+			<FxOnTargets />
+			<OffendType>ONEOFFEND_ONETARGET</OffendType>
+			<skipBloodFxOnTarget>false</skipBloodFxOnTarget>
+			<UseAnimation>USE_ANIMATIONS</UseAnimation>
+			<ShaderOnTarget />
+			<FxOnCaster>/Spells/FX/Spells/WarriorCrueltyAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<Enchan />
+			<Animation>specialAttack</Animation>
+			<TrailOffHand />
+			<LocatorOnCaster>Global</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<Description href="" />
+	<precastType>PRECAST_DEFAULT</precastType>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<locator var="LocatorOnCaster" />
+						<locatorName var="LocatorNameOnCaster" />
+						<effectFx hrefvar="FxOnCaster" />
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureTrailAction">
+						<visActionID>TrailAction</visActionID>
+						<mainHandTrail hrefvar="Trail" />
+						<creatureTrail href="/Spells/FX/InterfaceFX/TrailBlood.(TrailTemplate).xdb#xpointer(/TrailTemplate)" />
+					</Item>
+					<Item type="CreatureAnimationAction">
+						<use var="UseAnimation" />
+						<animations>
+							<Item var="Animation" />
+						</animations>
+						<channel>CHANNEL_ABILITY</channel>
+						<advanced>
+							<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+							<offendType>ONEOFFEND_ONETARGET</offendType>
+							<autoHasten>
+								<mode>AUTOHASTEN_NONE</mode>
+								<timeToBeLeft>0</timeToBeLeft>
+							</autoHasten>
+							<eventPlaybackEnd>true</eventPlaybackEnd>
+							<animationKeysAction>
+								<Item>
+									<action type="VisActionStopAction">
+										<stoppedActionID>TrailAction</stoppedActionID>
+									</action>
+									<runIfOverrided>true</runIfOverrided>
+								</Item>
+							</animationKeysAction>
+						</advanced>
+					</Item>
+					<Item type="CreatureEffectsOnTarget">
+						<visualEffects>
+							<Item>
+								<locator var="LocatorOnTargets" />
+								<locatorName var="LocatorNameOnTargets" />
+								<effectFx hrefvar="FxOnTargets" />
+								<fixPoint var="FxOnTargetsFixedPoint" />
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipBloodFx var="skipBloodFxOnTarget" />
+		<specialAction type="CreatureRunVisActionResource">
+			<resource hrefvar="ShaderOnTarget" />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

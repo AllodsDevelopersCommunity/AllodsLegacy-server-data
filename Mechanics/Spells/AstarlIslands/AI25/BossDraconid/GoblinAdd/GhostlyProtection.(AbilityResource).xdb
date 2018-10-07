@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>265427977</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>16000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="GhostlyProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<impactsOnAttach>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="GhostOwner.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="GhostOwner.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>FinalBoss</scriptID>
+										<map href="/Maps/AstralIsle25/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+							</impactsOnAttach>
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

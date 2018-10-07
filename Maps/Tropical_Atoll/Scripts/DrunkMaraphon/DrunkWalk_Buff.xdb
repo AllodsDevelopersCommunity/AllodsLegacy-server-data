@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>258659338</resourceId>
+	</Header>
+	<Name href="DrunkWalk_Buff.Name.txt" />
+	<Description href="DrunkWalk_Buff.Description.txt" />
+	<image href="/Interface/Icons/Misc/Event/Champagne.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="/Items/QuestItems/Tropical_Atoll/Cocktail_01/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>2</min>
+										<max>7</max>
+									</range>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+									<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>0.6</value>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="DrunkWalk_ClientData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+	</effects>
+	<duration>1200000</duration>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

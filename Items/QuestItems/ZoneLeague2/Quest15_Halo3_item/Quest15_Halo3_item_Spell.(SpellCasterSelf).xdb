@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>154658822</resourceId>
+	</Header>
+	<Name href="Quest15_Halo3_item_Spell_Name.txt" />
+	<Description href="Quest15_Halo3_item_Spell_Description.txt" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/World/Quests/ZoneLeague2/Quest15_Halo2/AddHalo.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneLeague2/Quest15_Halo3/Quest15_Halo3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Completed</status>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ZoneLeague2/Quest15_Halo3/Quest15_Halo3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="Quest15_Halo3_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Quest15_Halo3_item_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>7000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationLocalLocator">
+							<scriptID>Demon_halo_ZL2</scriptID>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoLeague1/AL1_Halo/AL1_Halo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.world.pet.PredicateHasPet" />
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/World/Quests/ArchipelagoLeague1/AL1_Halo/AL1_Halo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impactsIf>
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+						</impacts>
+						<object href="/Creatures/DemonMage/Instances/ZoneLeague2/DemonMageMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague2/Quest15_Halo3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="Quest15_Halo3_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>306689047</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.09</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.2</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="StopFight.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+					<selector type="gameMechanics.elements.calcers.RangeSelectorResource">
+						<range max="1" min="0" />
+						<withinRange>false</withinRange>
+						<minCandidatesCount>0</minCandidatesCount>
+						<targetCount>0</targetCount>
+					</selector>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<impacts>
+						<Item>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+											<data href="ZC7_4_30_StopFight.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>3000</delay>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ZC7/ZC7_E_4_20/ZC7_4_20_AviakGhost_Resolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

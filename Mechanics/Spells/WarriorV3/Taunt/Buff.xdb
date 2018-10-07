@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>344031272</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinTaunt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/WarriorTauntAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<effectAnimations>
+				<mode>DIE</mode>
+			</effectAnimations>
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1</scale>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<locator>Slot_Head</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<visScript href="/Spells/VisScripts/Warrior/Taunt.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectVariable">
+			<resource hrefvar="resource" />
+			<impactsOnMin>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOnMin>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+					<variable hrefvar="variable" />
+					<summand>-1</summand>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<scaleImpactsByDamage>true</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsOwner">
+					<allowMaster>false</allowMaster>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbonentLostWatcher">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff hrefvar="buff" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectStackChangeTrigger">
+			<impactsOnIncrease>
+				<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value var="value" />
+					</delta>
+				</Item>
+			</impactsOnIncrease>
+			<impactsOnDecrease>
+				<Item type="gameMechanics.constructor.basicElements.ImpactNull">
+					<value>0</value>
+				</Item>
+			</impactsOnDecrease>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<delta type="gameMechanics.elements.calcers.LinearCalcer">
+						<mul>1</mul>
+						<sum>0</sum>
+					</delta>
+					<attachIfNotExist>false</attachIfNotExist>
+					<resetTimer>false</resetTimer>
+				</Item>
+			</impacts>
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateSpellGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+					<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+						<coeff>-0.5</coeff>
+					</scaler>
+					<group href="" />
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration var="duration" />
+	<isStackable>true</isStackable>
+	<stackLimit>3</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Taunt.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_CC</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>332891155</resourceId>
+	</Header>
+	<Name href="GoalkeeperBuff.(BuffResource)_Name.txt" />
+	<Description href="GoalkeeperBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Context/Create_An_Obstacle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="GoalkeeperBuff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="GoalkeeperBuffName.txt" />
+	<descTemplate href="GoalkeeperBuffDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<tick>1000</tick>
+			<affectGroup>All</affectGroup>
+			<radius>2</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Slime/Instances/ArchipelagoEmpire2/SlimeBall.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+			</filter>
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<hideText>true</hideText>
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<hideText>true</hideText>
+						<buff href="FootballGameplayV2/FootballCannotBlockBall.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<blinking>true</blinking>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+					<time>500</time>
+					<destination type="gameMechanics.map.destination.SelfPosDestination" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="MoveBall2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="FootballGameplayV2/FootballRunawayMove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<holderImpactsIn>
+				<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievement">
+					<achievement href="/Mechanics/InstancedEventResource/MM_Football/FootKeeperAchievement.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+					<summand>1</summand>
+				</Item>
+			</holderImpactsIn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="GoalkeeperBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<distDelta>1</distDelta>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

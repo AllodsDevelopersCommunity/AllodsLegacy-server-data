@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24407</resourceId>
+	</Header>
+	<Name href="Mark_Spell.txt" />
+	<Description href="Mark_SpellDesc2.txt" />
+	<nameTemplate href="Mark_Spell.txt" />
+	<descTemplate href="Mark_SpellDesc2.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Kania_AL2/ScriptZones/ArchipelagoLeague2/Mark_B2Area.xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="Mark_B2.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoLeague2/Quest_36_12/MarkersCount.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>1</value>
+					</yaw>
+					<coord x="2" y="0.1" z="-1" />
+				</destination>
+				<object href="/Items/InteractiveObjects/ArchipelagoLeague2/Stele/Mark_B.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				<deviceImpacts>
+					<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+						<delay>100000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.device.DeviceDie" />
+						</impacts>
+					</Item>
+				</deviceImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoLeague2/Quest_36_12/ZoneCount2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

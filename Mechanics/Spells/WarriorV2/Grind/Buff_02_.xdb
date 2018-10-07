@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>118697868</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Necromancer/PetCommandAttack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_02__Name.txt.template" />
+	<descTemplate href="Buff_02__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<binaryPredicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<range min="0" max="8" />
+				</Item>
+			</binaryPredicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+					<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+					<threatMultiplier>1</threatMultiplier>
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+							<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+								<ability href="/Mechanics/Spells/WarriorV2/Abilites/ExtraGrimStrikeDmg/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.05</mul>
+							</Item>
+						</scalers>
+					</scaler>
+					<avgDamage var="avgDamage" />
+					<source>Mainhand</source>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="buff" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsElse>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>true</affectOnStartTick>
+			<tick type="gameMechanics.constructor.basicElements.ScalerCalcer">
+				<scaler type="gameMechanics.elements.scalers.WeaponSpeedBSVScaler">
+					<source>Mainhand</source>
+				</scaler>
+				<value>500</value>
+			</tick>
+		</Item>
+	</effects>
+	<duration>2000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff_02_02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff_02_03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

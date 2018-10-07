@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>81460224</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicContactMind.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_8Boss/StrengthControle.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>80000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+					<buffs>
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/CanCastHeavyAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/MindPhase_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</buffs>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/Protection_MightPhase.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/MightPhase_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="/World/Ask/GT/Boss08Sarn_SC.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Creatures/SarnAvatar/SarnAvatar40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+				<mob>
+					<scriptID>Boss8_Lower_Might</scriptID>
+					<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Druid.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="MightControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="MightControl_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/MightControlSelf_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/GurluhsorTower/Boss8Avatar/Buffs/MightControlSelf_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+	</mechanics>
+	<speed>50</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>200</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

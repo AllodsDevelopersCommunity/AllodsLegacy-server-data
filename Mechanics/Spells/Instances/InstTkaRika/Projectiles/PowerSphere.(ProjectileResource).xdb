@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>271779857</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/World/AC5_buf1.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>1</altitude>
+	<lifeLengthCap>0</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.StaticEntityAura">
+			<radius>3</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/World/Quests/Inst_TkaRika/QuestEvent03/PhaseBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_TkaRika/SpawnTables/Inst_TkaRika/PowerSphere.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Spells/ClientData/FadeOutScreen.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/Inst_TkaRika/QuestEvent03/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell01_CannonCopy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

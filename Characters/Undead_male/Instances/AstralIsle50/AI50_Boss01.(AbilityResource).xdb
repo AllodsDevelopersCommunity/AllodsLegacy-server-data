@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>369166380</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<spellStages>
+				<Item>Start</Item>
+			</spellStages>
+			<spellEntries>
+				<Item>
+					<spells>
+						<Item href="Boss01_AOE_Projectile.(SpellArea).xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+					</spells>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+							<projectileData>
+								<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+									<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+								</moveType>
+								<resource href="/Mechanics/Characters/Undead_male/AstralIsle50/AI50_Boss01_Decal.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+							</projectileData>
+						</Item>
+					</impacts>
+				</Item>
+				<Item>
+					<spells>
+						<Item href="/Mechanics/Characters/Undead_male/AstralIsle50/Boss01_Fire.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					</spells>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Characters/Undead_male/AstralIsle50/Boss01_Fire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</spellEntries>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Characters/Undead_male/AstralIsle50/AI50_OilPuddle.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<tick>18000</tick>
+			<initialDelay>5000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/AstralIsle50/Boss01.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/AstralIsle50/SpawnTables/AI50_ElectricDoorBridge.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<spawnResource href="/Maps/AstralIsle50/SpawnTables/AI50_ElectricDoorBridge.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/AstralIsle50/ScriptZones/AI50_ElectricDoorBridge.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectTaggerReward">
+			<impactsToAllTaggers>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+							<affectPets>false</affectPets>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/AstralIsle50/AI50_Closed1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsToAllTaggers>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactsToSummonPoolGeneric">
+					<pool href="/Mechanics/Characters/Undead_male/AstralIsle50/Boss01_SummonAdd.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>367068160</resourceId>
+	</Header>
+	<visScript href="IndoorElementalBuff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="IndoorElementalBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<resetTimer>false</resetTimer>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>1000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.RandomImpact">
+									<entries>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+														<radius>40</radius>
+													</distributor>
+													<data href="BSLoreElemText01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+														<radius>40</radius>
+													</distributor>
+													<data href="BSLoreElemText02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+														<radius>40</radius>
+													</distributor>
+													<data href="BSLoreElemText03.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impacts>
+										</Item>
+									</entries>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>40</radius>
+					</distributor>
+					<data href="BSLoreElemDeath.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>10500</duration>
+	<stackLimit>10</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/EvadeProtectedBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

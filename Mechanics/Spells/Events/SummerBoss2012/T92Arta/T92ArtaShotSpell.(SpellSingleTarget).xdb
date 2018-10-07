@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>330188802</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBoss2012.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="T92ArtaShotSpell.(SpellSingleTarget)_Name.txt" />
+	<Description href="T92ArtaShotSpell.(SpellSingleTarget)_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/Shot/FireShot02.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Events/SummerBoss2012/T92ArtaShot_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>Ar1</sysName>
+	<nameTemplate href="T92ArtaShotSpell.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="T92ArtaShotSpell.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>80</value>
+	</range>
+	<needLos>false</needLos>
+	<iffPolicy>Everyone</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>9000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Events/SummerBoss2012/BossMaus.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="T92ArtaFocusBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="T92ArtaFocusBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.8</value>
+						</chanceCalcer>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.01</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+										<chance>2</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.005</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impacts>
+						<impactsLose>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakMiss1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+												<projectileData>
+													<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativeTrailPos">
+																<center type="gameMechanics.map.destination.SelfPosDestination" />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+																	<modifier type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+																		<radius type="gameMechanics.elements.calcers.FloatData">
+																			<value>50</value>
+																		</radius>
+																	</modifier>
+																</Item>
+															</modifiers>
+														</destination>
+													</moveType>
+													<resource href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemains.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+												</projectileData>
+											</Item>
+										</impacts>
+										<chance>2</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+												<projectileData>
+													<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativeTrailPos">
+																<center type="gameMechanics.map.destination.SelfPosDestination" />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+																	<modifier type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+																		<radius type="gameMechanics.elements.calcers.FloatData">
+																			<value>35</value>
+																		</radius>
+																	</modifier>
+																</Item>
+															</modifiers>
+														</destination>
+													</moveType>
+													<resource href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemains.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+												</projectileData>
+											</Item>
+										</impacts>
+										<chance>2</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+												<projectileData>
+													<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativeTrailPos">
+																<center type="gameMechanics.map.destination.SelfPosDestination" />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+																	<modifier type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+																		<radius type="gameMechanics.elements.calcers.FloatData">
+																			<value>15</value>
+																		</radius>
+																	</modifier>
+																</Item>
+															</modifiers>
+														</destination>
+													</moveType>
+													<resource href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemains.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+												</projectileData>
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impactsLose>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.25</value>
+						</chanceCalcer>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.005</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.0025</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impacts>
+						<impactsLose>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakMiss1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Events/SummerBoss2012/SummerBossTrainingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+										<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+											<value>0.3</value>
+										</chanceCalcer>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="/Mechanics/Spells/Events/SummerBoss2012/TrainingData/ArtaTrainingStep2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+												<projectileData>
+													<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativeTrailPos">
+																<center type="gameMechanics.map.destination.SelfPosDestination" />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+																	<modifier type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+																		<radius type="gameMechanics.elements.calcers.FloatData">
+																			<value>45</value>
+																		</radius>
+																	</modifier>
+																</Item>
+															</modifiers>
+														</destination>
+													</moveType>
+													<resource href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemains.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+												</projectileData>
+											</Item>
+										</impacts>
+										<chance>2</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+												<projectileData>
+													<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativeTrailPos">
+																<center type="gameMechanics.map.destination.SelfPosDestination" />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+																	<modifier type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+																		<radius type="gameMechanics.elements.calcers.FloatData">
+																			<value>30</value>
+																		</radius>
+																	</modifier>
+																</Item>
+															</modifiers>
+														</destination>
+													</moveType>
+													<resource href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemains.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+												</projectileData>
+											</Item>
+										</impacts>
+										<chance>2</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+												<projectileData>
+													<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+														<destination type="gameMechanics.map.destination.DestinationModified">
+															<destination type="gameMechanics.map.destination.RelativeTrailPos">
+																<center type="gameMechanics.map.destination.SelfPosDestination" />
+															</destination>
+															<modifiers>
+																<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+																	<modifier type="gameMechanics.map.destination.modifier.ModifierRelativeRandomDir">
+																		<radius type="gameMechanics.elements.calcers.FloatData">
+																			<value>15</value>
+																		</radius>
+																	</modifier>
+																</Item>
+															</modifiers>
+														</destination>
+													</moveType>
+													<resource href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemains.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+												</projectileData>
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impactsLose>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>15</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

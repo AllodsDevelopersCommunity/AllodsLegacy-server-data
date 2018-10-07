@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739822186</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidPetGetIt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.25</coeff>
+			</scaler>
+			<group href="" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>1.1</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.25</coeff>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+				<groups>
+					<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</groups>
+			</effect>
+			<stackCountTrigger>2</stackCountTrigger>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.ImmunityToBuffs">
+				<predicates>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							<Item href="/Mechanics/Spells/Groups/Disarms.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</Item>
+				</predicates>
+				<removeExistingBuffs>true</removeExistingBuffs>
+			</effect>
+			<stackCountTrigger>2</stackCountTrigger>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>100</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

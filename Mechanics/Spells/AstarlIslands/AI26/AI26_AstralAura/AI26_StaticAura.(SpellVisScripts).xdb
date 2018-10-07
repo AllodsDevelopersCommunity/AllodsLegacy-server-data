@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<PreCastAnimation>/Spells/VisScripts/Prototypes2/PreCastAnimationOmni.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastAnimation>
+			<FixPointTarget>true</FixPointTarget>
+			<ShakeParams />
+			<FxOnTarget />
+			<LocatorNameOnCaster />
+			<LocatorOnTarget />
+			<PreCastFX>/Spells/VisScripts/Prototypes2/PreCastFX.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastFX>
+			<DelayCasterFX>0</DelayCasterFX>
+			<HitDelay>0</HitDelay>
+			<FixPointCaster>false</FixPointCaster>
+			<FXPocket />
+			<FxOnHands />
+			<LocatorNameOnTarget />
+			<FxOnCaster />
+			<HitPostFxOnTarget />
+			<Animation>spellCastOmni</Animation>
+			<LocatorOnCaster>Slot_Global</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/Direct.txt" />
+	<actionBarStart type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastAnimation" />
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID />
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="FxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Hand_L</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+					</Item>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="FxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Hand_R</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureRunVisActionResource">
+				<resource hrefvar="PreCastFX" />
+			</Item>
+		</elements>
+	</wholeCasting>
+	<precastType>PRECAST_DEFAULT</precastType>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay>300</delay>
+						<effectFx href="/Spells/FX/Spells/AstralComet_Respawn.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>1.5</scale>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</launch>
+	<charged type="CreatureChargedSpellAction">
+		<visActionID />
+		<effectFx hrefvar="FXPocket" />
+		<fadeInTime>0</fadeInTime>
+		<fadeOutTime>0</fadeOutTime>
+	</charged>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visActionID />
+					<visualEffects>
+						<Item>
+							<effectFx hrefvar="FxOnTarget" />
+							<fixPoint var="FixPointTarget" />
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource hrefvar="HitPostFxOnTarget" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

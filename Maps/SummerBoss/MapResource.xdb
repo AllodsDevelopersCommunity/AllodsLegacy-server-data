@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>329931839</resourceId>
+	</Header>
+	<minimapLight>
+		<AmbientFactor>0.5</AmbientFactor>
+		<FogStart>100</FogStart>
+		<FogEnd>500</FogEnd>
+		<SunLightYaw>45</SunLightYaw>
+		<SunLightPitch>0</SunLightPitch>
+		<AmbientColor>2017861120</AmbientColor>
+		<DiffuseColor>2017861120</DiffuseColor>
+		<FogColor>2017861120</FogColor>
+		<SpecularColor>0</SpecularColor>
+		<ContourColor>0</ContourColor>
+		<SpecularWaterColor>0</SpecularWaterColor>
+		<WaterGradientStart>-1</WaterGradientStart>
+		<WaterGradientEnd>-1</WaterGradientEnd>
+		<TerrainSpecularColor>0</TerrainSpecularColor>
+		<TerrainContourColor>0</TerrainContourColor>
+	</minimapLight>
+	<name href="Name.txt" />
+	<factionExits>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Portal_League1_Capital</scriptID>
+					<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Capital_AE1_Teleport</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+			</exit>
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</factionExits>
+	<mapTemplate href="/System/MapTemplates/InstancedEvent.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectAvatarRespawnStrategy">
+						<respawnStrategy type="gameMechanics.battleground.BattlegroundRespawnStrategy">
+							<buff href="/Mechanics/Spells/Events/SummerBoss2012/MapAnnounces/SummerBossRespawnBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</respawnStrategy>
+					</Item>
+					<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+						<predicate type="gameMechanics.elements.predicates.PredicateSpellEquals">
+							<spells>
+								<Item href="/Mechanics/Spells/Mage/Sanctuary/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.group.SpellGroup)" />
+							</spells>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.elements.effects.SetterSightRadius">
+						<maxValue>400</maxValue>
+					</Item>
+					<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+													<zone href="ScriptZones/Start.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+												</predicate>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+															<buff href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakVisualBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<range>
+																<min>1</min>
+																<max>9</max>
+															</range>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+															<buff href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakHasteBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<range>
+																<min>1</min>
+																<max>9</max>
+															</range>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+															<buff href="/Mechanics/Spells/Events/SummerBoss2012/T92Arta/T92ArtaBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<range>
+																<min>1</min>
+																<max>9</max>
+															</range>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+															<buff href="/Mechanics/Spells/Events/SummerBoss2012/Type59ST/Type59STBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<range>
+																<min>1</min>
+																<max>9</max>
+															</range>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+															<buff href="/Mechanics/Spells/Events/SummerBoss2012/Tyazh/TyazhBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<range>
+																<min>1</min>
+																<max>9</max>
+															</range>
+														</Item>
+													</predicates>
+												</predicate>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+										<destination type="gameMechanics.map.destination.DestinationLocator">
+											<locator>
+												<scriptID>SBRespawnLoc</scriptID>
+												<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</destination>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impacts>
+						<tick>3000</tick>
+						<initialDelay>3000</initialDelay>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="/Mechanics/InstancedEventResource/MM_SummerBoss/ChestCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="/Mechanics/InstancedEventResource/MM_SummerBoss/Start.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

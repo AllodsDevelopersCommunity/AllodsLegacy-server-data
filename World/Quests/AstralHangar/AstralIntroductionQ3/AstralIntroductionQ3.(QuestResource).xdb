@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>289789983</resourceId>
+	</Header>
+	<name href="AstralIntroductionQ3.(QuestResource).Name.txt" />
+	<goal href="AstralIntroductionQ3.(QuestResource).Goal.txt" />
+	<startText href="AstralIntroductionQ3.(QuestResource).StartText.txt" />
+	<checkText href="AstralIntroductionQ3.(QuestResource).CheckText.txt" />
+	<finishText href="AstralIntroductionQ3.(QuestResource).FinishText.txt" />
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Mechanics/Ships/Hangar/HangarNPC/AstralGoblin.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="InHangar.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<object href="/Mechanics/Astral/Mobs/Special/Quests/Warrior.xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+									<destination type="gameMechanics.map.destination.DestinationModified">
+										<destination type="gameMechanics.map.destination.SelfPosDestination" />
+										<modifiers>
+											<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+												<verticalRange min="0" max="0" />
+												<horizontalRange min="0" max="1000" />
+											</Item>
+										</modifiers>
+									</destination>
+									<impacts>
+										<Item type="gameMechanics.world.astralMob.elements.ImpactSetAstralMobStrengthMod">
+											<strengthMod type="gameMechanics.elements.calcers.FloatData">
+												<value>0.1</value>
+											</strengthMod>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactAggroAstralMob" />
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+											<delay>180000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="DeviceWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/AstralHangarHadagan/AstralIntroductionQ2/Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="/World/Quests/AstralHangarHadagan/AstralIntroductionQ2/PlaneGeneric.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/World/Quests/AstralHangarHadagan/AstralIntroductionQ2/InvisDetect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="DeviceWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/World/Quests/AstralHangarHadagan/AstralIntroductionQ2/Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="/World/Quests/AstralHangarHadagan/AstralIntroductionQ2/PlaneGeneric.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="InHangar.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/AstralHangarHadagan/AstralIntroductionQ2/AstralIntroductionQ2.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="AstralIntroductionQ3.(QuestResource).CustomName.txt" />
+			<description href="AstralIntroductionQ3.(QuestResource).Description.txt" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<id href="C1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<customName href="AstralIntroductionQ3.(QuestResource).CustomName02.txt" />
+			<relatedMobsAndDevices>
+				<Item href="/Mechanics/Astral/Mobs/Special/Quests/Warrior.xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+			</relatedMobsAndDevices>
+			<limit>1</limit>
+			<objects>
+				<Item href="/Mechanics/Astral/Mobs/Special/Quests/Warrior.xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+			</objects>
+		</Item>
+	</counters>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentSelf">
+			<trigger href="Fail.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+		</Item>
+	</triggerAgents>
+	<reward>
+		<experience>2</experience>
+		<money>7000</money>
+	</reward>
+	<sharing>
+		<onRequest>false</onRequest>
+	</sharing>
+	<zone href="/Mechanics/Astral/AstralZone.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>34</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>35</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

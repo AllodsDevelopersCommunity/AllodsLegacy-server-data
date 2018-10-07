@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>275795994</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Bard/MassDissonance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Bard/Mass_Dissonance_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<hideText>false</hideText>
+							<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+								<hideText>false</hideText>
+								<groups>
+									<Item href="/Mechanics/Spells/Groups/StopSing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</groups>
+								<checkHelpful>true</checkHelpful>
+								<checkHarmful>true</checkHarmful>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>40</radius>
+							<affectGroup>Enemies</affectGroup>
+							<conditions>
+								<Item type="gameMechanics.constructor.basicElements.BinaryPredicateOr">
+									<hideText>false</hideText>
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+											<hideText>false</hideText>
+											<buff href="/Mechanics/Spells/Bard/Abilities/DissonanceMagnet/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>true</anyRank>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateDistance">
+											<hideText>false</hideText>
+											<range min="0" max="20" />
+										</Item>
+									</predicates>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateHasLos">
+									<hideText>false</hideText>
+								</Item>
+							</conditions>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ASTRAL</element>
+									<threatMultiplier>1</threatMultiplier>
+									<scalerTarget type="gameMechanics.constructor.basicElements.ScalerMultiple">
+										<scalers>
+											<Item type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+												<buff href="/Mechanics/Spells/Bard/VampireChord/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>false</anyRank>
+												<onlyFromMaster>true</onlyFromMaster>
+												<mul>0.13</mul>
+												<sum>1</sum>
+											</Item>
+											<Item type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+												<buff href="/Mechanics/Spells/Bard/VampireChord/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>false</anyRank>
+												<onlyFromMaster>true</onlyFromMaster>
+												<mul>0.16</mul>
+												<sum>1</sum>
+											</Item>
+											<Item type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+												<buff href="/Mechanics/Spells/Bard/VampireChord/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<anyRank>false</anyRank>
+												<onlyFromMaster>true</onlyFromMaster>
+												<mul>0.17</mul>
+												<sum>1</sum>
+											</Item>
+										</scalers>
+									</scalerTarget>
+									<statsConvertor>
+										<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Dexterity</stat>
+										</intuition>
+										<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+											<stat>IS_Might</stat>
+										</spirit>
+									</statsConvertor>
+									<minDamage>1</minDamage>
+									<maxDamage>1</maxDamage>
+									<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+										<scalers>
+											<Item type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+											<Item type="gameMechanics.elements.scalers.ScalerIf">
+												<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+													<hideText>false</hideText>
+													<spell href="/Mechanics/Spells/Bard/DissonanceUpgrade/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+													<anyRank>false</anyRank>
+												</condition>
+												<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+													<multiplier>17.67</multiplier>
+												</scalerIf>
+												<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+													<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+														<hideText>false</hideText>
+														<spell href="/Mechanics/Spells/Bard/DissonanceUpgrade/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+														<anyRank>false</anyRank>
+													</condition>
+													<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+														<multiplier>16.81</multiplier>
+													</scalerIf>
+													<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+														<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+															<hideText>false</hideText>
+															<spell href="/Mechanics/Spells/Bard/Dissonance/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+															<anyRank>false</anyRank>
+														</condition>
+														<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+															<multiplier>16.71</multiplier>
+														</scalerIf>
+														<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+															<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+																<hideText>false</hideText>
+																<spell href="/Mechanics/Spells/Bard/Dissonance/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+																<anyRank>false</anyRank>
+															</condition>
+															<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+																<multiplier>15.9</multiplier>
+															</scalerIf>
+															<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+																<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+																	<hideText>false</hideText>
+																	<spell href="/Mechanics/Spells/Bard/DissonanceUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+																	<anyRank>false</anyRank>
+																</condition>
+																<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+																	<multiplier>13.73</multiplier>
+																</scalerIf>
+																<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+																	<multiplier>12.98</multiplier>
+																</scalerElse>
+															</scalerElse>
+														</scalerElse>
+													</scalerElse>
+												</scalerElse>
+											</Item>
+										</scalers>
+									</scaler>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+										<radius>85</radius>
+									</distributor>
+									<data href="/Spells/ClientData/Bard_Hit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+											<spell href="/Mechanics/Spells/Bard/Dissonance/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+											<duration>1500</duration>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+											<spell href="/Mechanics/Spells/Bard/DissonanceUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+											<duration>1500</duration>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.MarkedImpact">
+									<mark href="/Mechanics/Spells/Marks/BardDissonance.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactInciteAvatarCombatState" />
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactInciteAvatarCombatState" />
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterAnd">
+								<filters>
+									<Item type="gameMechanics.world.creature.AliveFilter">
+										<alowImmortal>true</alowImmortal>
+									</Item>
+									<Item type="gameMechanics.world.creature.CreatureFilter">
+										<blockCreatures>false</blockCreatures>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.FilterNot">
+										<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+													<hideText>false</hideText>
+													<groups>
+														<Item href="/Mechanics/Spells/Groups/DRMesmerize.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+													</groups>
+													<checkHelpful>false</checkHelpful>
+													<checkHarmful>true</checkHarmful>
+												</Item>
+											</predicates>
+										</filter>
+									</Item>
+								</filters>
+							</filter>
+							<targetsLimit>1</targetsLimit>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.CalcerSum">
+				<summands>
+					<Item type="gameMechanics.elements.calcers.FloatData">
+						<value>1050</value>
+					</Item>
+					<Item type="gameMechanics.elements.calcers.AbilityRankCalcer">
+						<ability href="/Mechanics/Spells/Bard/Abilities/ExtraDissonanceForMassDissonance/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>-125</mul>
+						<sum>0</sum>
+					</Item>
+				</summands>
+			</tick>
+		</Item>
+	</effects>
+	<duration var="duration" />
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

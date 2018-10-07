@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>316927007</resourceId>
+	</Header>
+	<Name href="Boss04_Trash02_Melee_Overload.(BuffResource)_Name.txt" />
+	<Description href="Boss04_Trash02_Melee_Overload.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/FitEenergy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Boss04_Trash02_Melee_Overload.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Boss04_Trash02_Melee_Overload.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>10</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>10</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>LIGHTNING</element>
+							<minDamage>40</minDamage>
+							<maxDamage>40</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Mechanics/Spells/AstarlIslands/AI06/FireShield/Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="Boss04_Trash02_Melee_Overload.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+				</Item>
+			</impacts>
+			<tick>3000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.1</coeff>
+			</scaler>
+		</Item>
+	</effects>
+	<stackLimit>10</stackLimit>
+	<isHelpful>false</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

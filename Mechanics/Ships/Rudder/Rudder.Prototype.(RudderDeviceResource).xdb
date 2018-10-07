@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>125390866</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+		<Variables>
+			<health>1000</health>
+			<maxAngularSpeed>0.2</maxAngularSpeed>
+			<energyPerAngle>35</energyPerAngle>
+			<fullTurnCooldown>30000</fullTurnCooldown>
+			<fullTurnDuration>5000</fullTurnDuration>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="DeathHandler">
+			<useParentState>true</useParentState>
+			<deathScript type="DeviceVisActionList">
+				<play>InSequence</play>
+				<elements>
+					<Item type="DeviceColorAction">
+						<colorValue>-1</colorValue>
+					</Item>
+					<Item type="DeviceVisActionChangeModel">
+						<priority>5</priority>
+					</Item>
+				</elements>
+			</deathScript>
+		</Item>
+		<Item type="DeviceHealthComponent">
+			<states>
+				<Item>
+					<health>1</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObj" />
+						<collision hrefvar="collision" />
+					</script>
+				</Item>
+				<Item>
+					<health>0.5</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjDamaged" />
+						<collision hrefvar="collisionDamaged" />
+					</script>
+				</Item>
+				<Item>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjBroken" />
+						<collision hrefvar="collisionBroken" />
+					</script>
+				</Item>
+			</states>
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_RUDDER</type>
+		</Item>
+		<Item type="DeviceActiveActionComponent">
+			<scripts>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Remote/RudderFullLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleLeft01</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Remote/RudderLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleLeft</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Remote/RudderRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleRight</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<fromAny>true</fromAny>
+					<toAction href="Remote/RudderFullRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<channelId>0</channelId>
+						<animations>
+							<Item>shuffleRight01</Item>
+						</animations>
+					</script>
+				</Item>
+			</scripts>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.world.device.DeviceMortalPartResource" />
+		<Item type="gameMechanics.world.HealthResource">
+			<maxHealth var="health" />
+		</Item>
+		<Item type="gameMechanics.world.device.control.RudderPartResource">
+			<maxAngularSpeed var="maxAngularSpeed" />
+			<energyPerAngle var="energyPerAngle" />
+			<fullTurnCooldown var="fullTurnCooldown" />
+			<fullTurnDuration var="fullTurnDuration" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.spell.spellstate.SpellStatesResource" />
+		<Item type="gameMechanics.world.device.ResetActiveSpellsCallbackResource">
+			<defaultSpells>
+				<Item href="Remote/RudderIdle.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</defaultSpells>
+		</Item>
+		<Item type="gameMechanics.world.device.parts.RemoteSpellsHolderPartResource">
+			<remoteSpells>
+				<Item href="Remote/RudderFullLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/RudderLeft.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/RudderIdle.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/RudderRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/RudderFullRight.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</remoteSpells>
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.EffectSwitchInterceptor">
+					<reasonsToIgnore>
+						<Item>TR_Broken</Item>
+					</reasonsToIgnore>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.Effects.EffectImmortalMortal" />
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+							<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+								<onMaster type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+									</predicates>
+								</onMaster>
+							</predicate>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+									<chanceCalcer type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.CalcerDiff">
+												<minuend type="gameMechanics.elements.calcers.CalcerMul">
+													<calcers>
+														<Item type="gameMechanics.elements.calcers.HealthInferiorityCalcer" />
+														<Item type="gameMechanics.elements.calcers.FloatData">
+															<value>4</value>
+														</Item>
+													</calcers>
+												</minuend>
+												<subtrahend type="gameMechanics.elements.calcers.FloatData">
+													<value>3</value>
+												</subtrahend>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>0.0083333375</value>
+											</Item>
+										</calcers>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="/Mechanics/Ships/BuffStunDevice.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.world.ship.elements.ImpactNotifyMalfunction">
+											<type>CMT_RudderStuck</type>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<tick>500</tick>
+					<initialDelay>-1</initialDelay>
+				</Item>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="/Mechanics/Ships/DevicePenaltyWatchers/RudderWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOn>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<visObj hrefvar="visObj" />
+	<collision hrefvar="collision" />
+	<collisionObject>true</collisionObject>
+	<mass>2</mass>
+</gameMechanics.world.device.UsableDeviceResource>

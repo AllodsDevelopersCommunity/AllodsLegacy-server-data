@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>77305961</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Mobparts/Talon.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/EagleBeak.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>1000</prepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>8000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>60</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Creatures/Eagle/EagleCry/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<impactsOnHitCaster />
+						<impactsOnHitTarget>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>1000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<scalerTarget />
+										<durationScaler />
+										<durationScalerTarget />
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impactsOnHitTarget>
+						<threatMultiplier>0</threatMultiplier>
+						<statsConvertor type="" />
+						<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+						<minDamage>1.6</minDamage>
+						<maxDamage>2</maxDamage>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.5</value>
+						</chanceCalcer>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+								<impactsOnHitCaster />
+								<impactsOnHitTarget>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>1000</delay>
+										<limit>1</limit>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<scalerTarget />
+												<durationScaler />
+												<durationScalerTarget />
+											</Item>
+										</impacts>
+										<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+									</Item>
+								</impactsOnHitTarget>
+								<threatMultiplier>0</threatMultiplier>
+								<statsConvertor type="" />
+								<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+								<minDamage>1.3</minDamage>
+								<maxDamage>1.5</maxDamage>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<iffPolicy>Enemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

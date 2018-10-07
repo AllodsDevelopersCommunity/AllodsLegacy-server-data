@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>350692357</resourceId>
+		<Variables>
+			<cooldown>20000</cooldown>
+		</Variables>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Furious/Primary.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>300</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="CtulhuDetonation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="/Mechanics/Spells/AstralMobs/Bombardier/Detonation/Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+				<delay>0</delay>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+						<buff href="CtulhuEnrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+							<damage>1440</damage>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+							<value type="gameMechanics.elements.calcers.FloatData">
+								<value>1.33</value>
+							</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+						<Item type="gameMechanics.elements.calcers.CalcerExp">
+							<base>1.3</base>
+							<baseCalc type="gameMechanics.elements.calcers.FloatData">
+								<value>1.3</value>
+							</baseCalc>
+							<powCalc type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+								<buff href="CtulhuEnrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<forAllRanks>true</forAllRanks>
+							</powCalc>
+						</Item>
+					</calcers>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="/Mechanics/Spells/CommonBuffs/AstralMobShipSlow/BuffSlowShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

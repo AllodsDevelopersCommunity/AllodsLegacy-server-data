@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>196078593</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Warrior/WarriorInnerRage.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<spellStages>
+				<Item>Launch</Item>
+			</spellStages>
+			<spellEntries>
+				<Item>
+					<spells>
+						<Item href="/Mechanics/Spells/Priest/HolySmite/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+						<Item href="/Mechanics/Spells/Priest/HolySmiteUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					</spells>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+							<chanceCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.01</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="/Mechanics/Spells/Priest/PassiveTalents/InstaHeavenlyStrikeProc/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>false</forAllRanks>
+								</mulCalcer>
+								<sum>0.05</sum>
+							</chanceCalcer>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>3000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff hrefvar="buff" />
+											<allowOverrideCaster>false</allowOverrideCaster>
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>true</useSpellEnvelopeTargetEffects>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</spellEntries>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

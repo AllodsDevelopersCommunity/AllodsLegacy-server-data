@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>305273880</resourceId>
+	</Header>
+	<Name href="ZC7_L_1_rep2_item_01.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Prototypes2/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC7_L_1_rep2_item_01.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>5</value>
+	</range>
+	<prepareDuration>700</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>500</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZC7/ZC7_L_1_2/ZC7_L_1_2.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZC7/ZC7_L_1_rep2/ZC7_L_1_rep2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/ZC7/ZC7_L_Guard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<buff href="ZC7_L_1_rep2_item_01_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="/World/Quests/ZC7/ZC7_L_1_2/HasBow.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="ZC7_L_1_rep2_item_01_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="ZC7_L_1_rep2_item_01.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZC7/ZC7_L_1_2/CountId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZC7/ZC7_L_1_rep2/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.RandomImpact">
+						<entries>
+							<Item>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+										<data href="/World/Quests/ZC7/ZC7_L_1_2/Thanks.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<chance>0.3</chance>
+							</Item>
+							<Item>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+										<data href="/World/Quests/ZC7/ZC7_L_1_2/Thanks2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<chance>0.3</chance>
+							</Item>
+							<Item>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+										<data href="/World/Quests/ZC7/ZC7_L_1_2/Thanks3.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<chance>0.3</chance>
+							</Item>
+						</entries>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

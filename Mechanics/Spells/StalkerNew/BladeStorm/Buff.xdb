@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>345797645</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Stalker/WhirlwindBlades.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>15</radius>
+					<affectGroup>Enemies</affectGroup>
+					<conditions>
+						<Item type="gameMechanics.elements.predicates.PredicateCanSee">
+							<hideText>false</hideText>
+							<channel>Visibility</channel>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateHasPathBinary">
+							<hideText>false</hideText>
+							<pathChecker type="space.pathfinding.pathChecker.PathLenghtLimited">
+								<minLength>0</minLength>
+								<maxLength>30</maxLength>
+							</pathChecker>
+							<maxLength>-1</maxLength>
+						</Item>
+					</conditions>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsUnderEnvelope">
+							<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+									<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+									<threatMultiplier>1</threatMultiplier>
+									<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+										<scalers>
+											<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+											<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+											<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+												<mul>1</mul>
+												<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+													<calcers>
+														<Item type="gameMechanics.elements.calcers.FloatData">
+															<value>0.25</value>
+														</Item>
+														<Item type="gameMechanics.elements.calcers.CalcerSum">
+															<summands>
+																<Item type="gameMechanics.elements.calcers.FloatData">
+																	<value>4</value>
+																</Item>
+																<Item type="gameMechanics.elements.calcers.ItemQualityCalcer">
+																	<dressSlot>AMMO</dressSlot>
+																</Item>
+															</summands>
+														</Item>
+													</calcers>
+												</mulCalcer>
+												<sum>0</sum>
+											</Item>
+										</scalers>
+									</scaler>
+									<avgDamage var="avgDamage" />
+									<source>Mainhand</source>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+									<destination type="gameMechanics.map.destination.RelativeRotatePos">
+										<base type="gameMechanics.map.destination.RelativePos">
+											<faceSourcePos>true</faceSourcePos>
+										</base>
+										<offset>2</offset>
+										<turn>ToBase</turn>
+									</destination>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+								<radius>85</radius>
+							</distributor>
+							<data href="/Spells/ClientData/BladeStorm.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInciteAvatarCombatState" />
+						<Item type="gameMechanics.elements.impacts.ImpactPvpAction">
+							<iffPolicy>Enemies</iffPolicy>
+							<isAggro>true</isAggro>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AliveFilter">
+						<alowImmortal>true</alowImmortal>
+					</filter>
+					<targetsLimit>1</targetsLimit>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+					<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.PriorityAutotarget">
+						<priorityPredicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+								<hideText>false</hideText>
+							</Item>
+						</priorityPredicates>
+						<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.RandomAutotarget">
+							<group>Enemies</group>
+							<radius>15</radius>
+						</autotarget>
+					</autotarget>
+				</Item>
+			</impacts>
+			<tick>500</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToHarmfulSpells" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+			</predicates>
+			<removeExistingBuffs>true</removeExistingBuffs>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Escapes.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

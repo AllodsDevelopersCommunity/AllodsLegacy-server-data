@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.interactions.autonavigation.AutoNavigationTeleportEdge>
+	<Header>
+		<resourceId>332378112</resourceId>
+	</Header>
+	<from>
+		<scriptID>HS_Empire1</scriptID>
+		<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+	</from>
+	<to>
+		<scriptID>AE3_Quest</scriptID>
+		<map href="/Maps/Hadagan_AE3/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+	</to>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>AE3_Quest</scriptID>
+					<map href="/Maps/Hadagan_AE3/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+						<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/TeleportMaster_AE3_Quest.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+					<unlock href="/Mechanics/Unlocks/Locations/Hadagan/TeleportMasterLocations/TeleportMaster_AE3_Quest.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+		</Item>
+	</impacts>
+	<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+		<predicates>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneHadagan1/AE3_0_1/AE3_0_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Finished</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneHadagan1/MountEmpireQuest_6/MountEmpireQuest_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</predicates>
+	</predicate>
+</gameMechanics.interactions.autonavigation.AutoNavigationTeleportEdge>

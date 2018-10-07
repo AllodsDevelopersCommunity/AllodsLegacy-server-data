@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>164523131</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<uiInfos href="" />
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DruidStrike.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DruidAll.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic7.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>9.46</value>
+			<scaler>IntMeleeSpeedMin</scaler>
+		</Item>
+		<Item>
+			<name>var1</name>
+			<value>10.88</value>
+			<scaler>IntMeleeSpeedMin</scaler>
+		</Item>
+		<Item>
+			<name>var2</name>
+			<value>18.93</value>
+			<scaler>IntMeleeSpeedMin</scaler>
+		</Item>
+		<Item>
+			<name>var3</name>
+			<value>9.46</value>
+			<scaler>IntMeleeSpeedMax</scaler>
+		</Item>
+		<Item>
+			<name>var4</name>
+			<value>10.88</value>
+			<scaler>IntMeleeSpeedMax</scaler>
+		</Item>
+		<Item>
+			<name>var5</name>
+			<value>18.93</value>
+			<scaler>IntMeleeSpeedMax</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Misc/Mobparts/BearHead.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameAEMark />
+	<visualScripts href="/Spells/VisScripts/Druid/BearPaw.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1</duration>
+			<group href="/Mechanics/Spells/Groups/DruidStrike.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+				<source>Mainhand</source>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>47.4336</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellGroupCooldown">
+				<group href="/Mechanics/Spells/Groups/DruidStrikeOne.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				<duration>1</duration>
+				<scaler type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+					<source>Mainhand</source>
+				</scaler>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromAddressee">
+					<hideText>false</hideText>
+					<buff href="/Mechanics/Abilities/DruidTalentsV2/AdvancedCombo/petAbility/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<from type="gameMechanics.elements.addresseeFinders.AddresseeFinderCasterPet" />
+					<anyRank>false</anyRank>
+				</predicate>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+						<impactsOnHitTarget>
+							<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+								<radius>5</radius>
+								<affectGroup>Enemies</affectGroup>
+								<affectHolder>false</affectHolder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+										<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+										<threatMultiplier>1</threatMultiplier>
+										<statsConvertor>
+											<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+												<stat>IS_Spirit</stat>
+											</might>
+											<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+												<stat>IS_Intuition</stat>
+											</dexterity>
+										</statsConvertor>
+										<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+										<avgDamage var="avgDamage" />
+										<source>Mainhand</source>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+											<radius>85</radius>
+										</distributor>
+										<data href="HitMeleeHard2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<hideText>false</hideText>
+											<predicate type="gameMechanics.elements.predicates.PredicateIsDead">
+												<hideText>false</hideText>
+											</predicate>
+										</Item>
+									</predicates>
+								</filter>
+								<targetsLimit>5</targetsLimit>
+								<onBehalfOfHolder>false</onBehalfOfHolder>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Abilities/DruidTalentsV2/AdvancedCombo/petAbility/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCasterPet" />
+										<anyRank>true</anyRank>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsOnHitTarget>
+						<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+						<threatMultiplier>1</threatMultiplier>
+						<statsConvertor>
+							<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Spirit</stat>
+							</might>
+							<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Intuition</stat>
+							</dexterity>
+						</statsConvertor>
+						<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+						<avgDamage var="avgDama_1" />
+						<source>Mainhand</source>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromAddressee">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/DruidV2/OpenWounds/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<from type="gameMechanics.elements.addresseeFinders.AddresseeFinderCasterPet" />
+							<anyRank>false</anyRank>
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+								<impactsOnHitTarget>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<radius>5</radius>
+										<affectGroup>Enemies</affectGroup>
+										<affectHolder>false</affectHolder>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+												<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+												<threatMultiplier>1</threatMultiplier>
+												<statsConvertor>
+													<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Spirit</stat>
+													</might>
+													<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Intuition</stat>
+													</dexterity>
+												</statsConvertor>
+												<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+												<avgDamage var="avgDama_2" />
+												<source>Mainhand</source>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+													<radius>85</radius>
+												</distributor>
+												<data href="HitMeleeHard2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+										<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<hideText>false</hideText>
+													<predicate type="gameMechanics.elements.predicates.PredicateIsDead">
+														<hideText>false</hideText>
+													</predicate>
+												</Item>
+											</predicates>
+										</filter>
+										<targetsLimit>5</targetsLimit>
+										<onBehalfOfHolder>false</onBehalfOfHolder>
+									</Item>
+								</impactsOnHitTarget>
+								<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+								<threatMultiplier>1</threatMultiplier>
+								<statsConvertor>
+									<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Spirit</stat>
+									</might>
+									<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Intuition</stat>
+									</dexterity>
+								</statsConvertor>
+								<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+								<avgDamage var="avgDama_3" />
+								<source>Mainhand</source>
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+								<impactsOnHitTarget>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<radius>5</radius>
+										<affectGroup>Enemies</affectGroup>
+										<affectHolder>false</affectHolder>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+												<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+												<threatMultiplier>1</threatMultiplier>
+												<statsConvertor>
+													<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Spirit</stat>
+													</might>
+													<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+														<stat>IS_Intuition</stat>
+													</dexterity>
+												</statsConvertor>
+												<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+												<avgDamage var="avgDama_4" />
+												<source>Mainhand</source>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+													<radius>85</radius>
+												</distributor>
+												<data href="HitMeleeHard2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+										<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<hideText>false</hideText>
+													<predicate type="gameMechanics.elements.predicates.PredicateIsDead">
+														<hideText>false</hideText>
+													</predicate>
+												</Item>
+											</predicates>
+										</filter>
+										<targetsLimit>5</targetsLimit>
+										<onBehalfOfHolder>false</onBehalfOfHolder>
+									</Item>
+								</impactsOnHitTarget>
+								<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+								<threatMultiplier>1</threatMultiplier>
+								<statsConvertor>
+									<might type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Spirit</stat>
+									</might>
+									<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+										<stat>IS_Intuition</stat>
+									</dexterity>
+								</statsConvertor>
+								<scaler type="gameMechanics.elements.scalers.PhysicalIntScaler" />
+								<avgDamage var="avgDama_5" />
+								<source>Mainhand</source>
+							</Item>
+						</impactsElse>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

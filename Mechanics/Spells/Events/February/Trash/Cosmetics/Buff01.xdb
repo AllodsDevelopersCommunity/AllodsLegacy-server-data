@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>143931501</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/PotionSet6.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<conditionalEvents>
+				<Item>
+					<obj>clientCmds.cmds.CmdAttachBuff</obj>
+					<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>6</min>
+							<max>6</max>
+						</range>
+					</predicate>
+				</Item>
+			</conditionalEvents>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+					<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>0.05</value>
+					</chanceCalcer>
+					<impactsSuccess>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impactsSuccess>
+					<impactsFailure>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impactsFailure>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>6</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

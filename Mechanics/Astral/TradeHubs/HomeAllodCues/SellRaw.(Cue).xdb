@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>307222538</resourceId>
+	</Header>
+	<name href="SellRaw.txt" />
+	<text href="SellRaw.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+			<lhs type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+				<chestType href="/Mechanics/Astral/TradeHubs/ResourceChests/Resource3Chest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+				<boundChestsOnly>true</boundChestsOnly>
+			</lhs>
+			<rhs type="gameMechanics.elements.calcers.LongData">
+				<value>0</value>
+			</rhs>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+					<permission>BuyChests</permission>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/AstralTradeAllods.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.MaxLevelConstant">
+				<summand>-3</summand>
+			</minLevel>
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip">
+						<ownershipRequired>false</ownershipRequired>
+					</addresseeFinder>
+					<impacts>
+						<Item type="itemService.elements.astral.ImpactRemoveChest">
+							<chestType href="/Mechanics/Astral/TradeHubs/ResourceChests/Resource3Chest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+							<impactsOnAvatarPerChest>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateDistance">
+										<range min="0" max="80" />
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/AstralTradeAllods/FinalProduction_Hadagan/QuestCountSoldSupplies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/AstralTradeAllods/FinalProduction_Kania/QuestCountSoldSupplies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsOnAvatarPerChest>
+							<scalableImpactsOnAvatarPerChest>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateDistance">
+										<range min="0" max="80" />
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+											<sumCalcer type="gameMechanics.elements.calcers.LongData">
+												<value>3580000</value>
+											</sumCalcer>
+										</Item>
+									</impactsIf>
+								</Item>
+							</scalableImpactsOnAvatarPerChest>
+							<inverseScaleOnBoundCount>true</inverseScaleOnBoundCount>
+							<boundChestsOnly>true</boundChestsOnly>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<nextCues>
+		<Item href="BuyResource.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_MaxChests.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_NoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="SellRaw.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="/Mechanics/Ships/Hangar/HangarNPC/CaravanCues/RewardResourceCrate.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="/Mechanics/Ships/Hangar/HangarNPC/CaravanCues/LoadSupplyCrateEvent.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="/Mechanics/Ships/Hangar/HangarNPC/CaravanCues/LoadSupplyCrateEventNoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="/Mechanics/Ships/Hangar/HangarNPC/CaravanCues/LoadSupplyCrate.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="/Mechanics/Ships/Hangar/HangarNPC/CaravanCues/LoadSupplyCrateNoShip.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="/Mechanics/Ships/Hangar/HangarNPC/CaravanCues/RefundSupplyCrate.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

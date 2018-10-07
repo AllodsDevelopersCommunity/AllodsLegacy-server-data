@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>281801728</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/AstralIsland_VeryHard.(MapResource).xdb#xpointer(/mapLoader.MapResource)" />
+	</Header>
+	<name href="MapResource.txt" />
+	<description href="MapResource.Description.txt" />
+	<mapTemplate href="/System/MapTemplates/AstralIsland.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects>
+		<Item href="GlobalObjects/Tours/AI34_TourOUT.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/AI34_tourIN.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+	</globalObjects>
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+										<mobs>
+											<Item href="/Characters/Kania_male/Instances/ZoneLeague1/MercNPC_Leader.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											<Item href="/Characters/Hadagan_male/Instances/ZoneHadagan1/MercNPC_Leader.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</mobs>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateIsMob" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/AstarlIslands/AI34/NoSwimBuff/NoSwimBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.bigAstral.EntranceTourPart">
+				<tour href="GlobalObjects/Tours/AI34_tourIN.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			</Item>
+			<Item type="gameMechanics.world.bigAstral.ExitTourPart">
+				<tour href="GlobalObjects/Tours/AI34_TourOUT.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+			</Item>
+		</parts>
+	</cellParts>
+</mapLoader.MapResource>

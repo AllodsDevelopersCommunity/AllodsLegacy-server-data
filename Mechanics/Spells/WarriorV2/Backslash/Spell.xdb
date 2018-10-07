@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>118697163</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic9.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Warrior/WarriorFlurryOfBlows.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Warrior/Backslash.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1</duration>
+			<group href="" />
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+						<source>Mainhand</source>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>0.8</multiplier>
+					</Item>
+				</scalers>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon">
+				<hideText>false</hideText>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/WarriorV2/BackslashReady/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>0</consumeStacks>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>20</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/WarriorV2/BackslashReady/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+								<hideText>false</hideText>
+								<ability href="/Mechanics/Spells/WarriorV2/Abilites/ExtraCAOnBackslash/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAddCombatAdvantage">
+								<value>25</value>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+										<hideText>false</hideText>
+										<ability href="/Mechanics/Spells/WarriorV2/Abilites/ExtraCAOnBackslash/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAddCombatAdvantage">
+										<value>17</value>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAddCombatAdvantage">
+										<value>10</value>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impactsOnHitCaster>
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/WarriorStrike.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/WarriorWeaponStrike.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+					</scalers>
+				</scaler>
+				<avgDamage var="avgDamage" />
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

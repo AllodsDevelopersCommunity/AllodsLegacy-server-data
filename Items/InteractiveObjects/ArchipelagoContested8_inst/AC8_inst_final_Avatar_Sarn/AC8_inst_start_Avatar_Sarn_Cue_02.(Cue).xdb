@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>251559940</resourceId>
+	</Header>
+	<name href="AC8_inst_start_Avatar_Sarn_Cue_02.txt" />
+	<text href="AC8_inst_start_Avatar_Sarn_Cue_02.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested8/AC8_1/AC8_1.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/ArchipelagoContested8/AC8_1/AC8_1.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/ArchipelagoContested8/AC8_1/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+			<item href="/Items/QuestItems/ArchipelagoContested8_inst/AC8_Start_inst_item/AC8_Start_inst_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>4000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ArchipelagoContested8/AC8_1/AC8_1_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/ArchipelagoContested8/AC8_1/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/World/Quests/ArchipelagoContested4/Q_27e/Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>2000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<mob>
+						<scriptID>AC8_Sarn</scriptID>
+						<map href="/Maps/ArchipelagoContested8_inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<device>
+						<scriptID>AC8_Sarn_D</scriptID>
+						<map href="/Maps/ArchipelagoContested8_inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Teleport_from_isle</scriptID>
+							<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/World/Quests/ArchipelagoContested8/AC8_Fin2/InvisOff.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="AC8_Avatar_Sarn_itemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/ArchipelagoContested8_inst/AC8_Start_inst_item/AC8_Start_inst_item.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

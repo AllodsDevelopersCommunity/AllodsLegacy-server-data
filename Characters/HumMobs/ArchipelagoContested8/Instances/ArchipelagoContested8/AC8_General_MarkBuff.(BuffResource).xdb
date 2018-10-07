@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>254405679</resourceId>
+		<Variables>
+			<self_buff>AC8_General_MarkBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</self_buff>
+			<active_zone>/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)</active_zone>
+		</Variables>
+	</Header>
+	<Name href="AC8_General_MarkBuff.txt" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+					<mobs>
+						<Item href="AC8_General_Demon40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectInZoneTracker">
+					<buff hrefvar="self_buff" />
+					<activeZone hrefvar="active_zone" />
+					<trackData href="TrackDataDemon.(TrackDataResource).xdb#xpointer(/gameMechanics.world.avatar.TrackDataResource)" />
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/Kania_male/Instances/ArchipelagoContested8/AC8_Cultist_General.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.EffectInZoneTracker">
+							<buff hrefvar="self_buff" />
+							<activeZone hrefvar="active_zone" />
+							<trackData href="TrackDataCultist.(TrackDataResource).xdb#xpointer(/gameMechanics.world.avatar.TrackDataResource)" />
+						</Item>
+					</effectsIf>
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/EvadeProtectedBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

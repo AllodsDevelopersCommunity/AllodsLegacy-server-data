@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>194969612</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<converter_intu>IS_Intuition</converter_intu>
+			<converter_spi>IS_Spirit</converter_spi>
+		</Variables>
+	</Header>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinCounteractDicease.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Items/TrinketGTHealing.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+					<buff hrefvar="buff" />
+					<resetTimer>false</resetTimer>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactHeal">
+					<heal var="heal" />
+					<threatMultiplier>1</threatMultiplier>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<statsConvertor>
+						<intuition type="gameMechanics.elements.calcers.CalcerIf">
+							<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+								<hideText>false</hideText>
+								<manaType>Energy</manaType>
+							</predicate>
+							<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat var="converter_intu" />
+							</calcerIf>
+							<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Intuition</stat>
+							</calcerElse>
+						</intuition>
+						<spirit type="gameMechanics.elements.calcers.CalcerIf">
+							<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+								<hideText>false</hideText>
+								<manaType>Energy</manaType>
+							</predicate>
+							<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat var="converter_spi" />
+							</calcerIf>
+							<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Spirit</stat>
+							</calcerElse>
+						</spirit>
+					</statsConvertor>
+					<mode>Default</mode>
+					<considerOutgoingModifiers>true</considerOutgoingModifiers>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/TrinketGTHealing.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+	</effects>
+	<duration var="duration" />
+	<isStackable>true</isStackable>
+	<stackLimit var="stackLimit" />
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/TrinketSpellBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff04.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff05.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

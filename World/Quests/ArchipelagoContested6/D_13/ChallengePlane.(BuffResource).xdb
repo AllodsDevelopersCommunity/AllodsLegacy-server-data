@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>222797839</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ZoneHadagan1/SummonMob/ChallengePlane.txt" />
+	<Description href="/Items/QuestItems/ZoneHadagan1/SummonMob/ChallengePlane.Description.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/Meditation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>true</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/World/Quests/ArchipelagoContested6/D_12/SuiciderPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<action>ALLOW</action>
+			</visibilityRule>
+			<resolventFor />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/World/Quests/ArchipelagoContested6/D_12/SuiciderPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<action>ALLOW</action>
+			</visibilityRule>
+			<resolventFor />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/World/Quests/ArchipelagoContested6/D_12/SuiciderPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<action>ALLOW</action>
+			</visibilityRule>
+			<resolventFor />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/World/Quests/ArchipelagoContested6/D_12/SuiciderPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<action>ALLOW</action>
+			</visibilityRule>
+			<resolventFor />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/World/Quests/ArchipelagoContested6/D_12/SuiciderPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<action>ALLOW</action>
+			</visibilityRule>
+			<resolventFor />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/World/Quests/ArchipelagoContested6/D_12/SuiciderPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<action>ALLOW</action>
+			</visibilityRule>
+			<resolventFor />
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="D_13.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Finished</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="D_13.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>NotInQuestBook</status>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="ChallengePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="ChallengePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="D_13.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Finished</status>
+											</predicate>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+											<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_D_11_12_Silaya.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/World/Quests/ArchipelagoContested6/D_12/MindResolvent_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ArchipelagoContested6/D_12/MindResolvent_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+</gameMechanics.constructor.schemes.buff.BuffResource>

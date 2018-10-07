@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>292303929</resourceId>
+	</Header>
+	<Name href="Spell02.(SpellArea)_Name.txt" />
+	<Description href="Spell02.(SpellArea)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireballUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="AI31_Fireball.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell02.(SpellArea)_Name.txt.template" />
+	<descTemplate href="Spell02.(SpellArea)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>75</value>
+	</range>
+	<prepareDuration>2500</prepareDuration>
+	<element>FIRE</element>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>11000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<minDamage>50</minDamage>
+				<maxDamage>50</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>6</radius>
+						<affectGroup>Friends</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</delta>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.constructor.basicElements.FilterOr">
+									<filters>
+										<Item type="gameMechanics.world.creature.AvatarFilter" />
+										<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+										</Item>
+									</filters>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+						<onBehalfOfHolder>false</onBehalfOfHolder>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<speed>10</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>6</radius>
+	<needLosToTarget>true</needLosToTarget>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

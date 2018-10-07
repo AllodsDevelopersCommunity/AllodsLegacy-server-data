@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>285232135</resourceId>
+	</Header>
+	<Name href="RudderFullLeftName.txt" />
+	<Description href="RudderFullLeftDesc.txt" />
+	<image href="/Interface/Icons/Actions/DoubleLeftButton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<groups>
+		<Item href="RudderSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1</duration>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.world.ship.elements.calcers.CalcerFullTurnCooldown" />
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.world.ship.elements.ImpactRudderTurn">
+				<omegaMod>1</omegaMod>
+				<resourceMod>2</resourceMod>
+				<movementModeFactor>1.76</movementModeFactor>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivate">
+				<group href="RudderSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.world.ship.elements.calcers.CalcerFullTurnDuration" />
+				</durationScaler>
+				<buff href="BuffFullLeft.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOff>
+							<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+								<buff href="BuffFullLeft.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOff>
+					</Item>
+				</effects>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

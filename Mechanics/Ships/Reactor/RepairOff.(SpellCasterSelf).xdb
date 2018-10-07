@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>287075331</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AstralIslandSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="RepairOffName.txt" />
+	<Description href="RepairOffDesc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/RepairCorpsStop.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateOnAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateInHangar" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+						<buff href="RepairBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

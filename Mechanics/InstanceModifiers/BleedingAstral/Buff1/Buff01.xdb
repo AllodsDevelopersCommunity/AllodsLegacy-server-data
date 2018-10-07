@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>270917639</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/Firewall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_FX</locator>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+							<quality href="/Mechanics/MobQualities/Boss.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.PureDamageDoT">
+							<parameters>
+								<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+										<multiplier>0.02</multiplier>
+									</mulCalcer>
+									<additionalMultiplier>
+										<scaler type="gameMechanics.elements.scalers.LinearScaler">
+											<multiplier>1</multiplier>
+										</scaler>
+										<value>1</value>
+									</additionalMultiplier>
+								</scalerTarget>
+								<damagePerTick>1</damagePerTick>
+							</parameters>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						</Item>
+					</effectsIf>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.PureDamageDoT">
+					<parameters>
+						<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mul>0.1</mul>
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthBSVCalcer" />
+							<additionalMultiplier>
+								<scaler type="gameMechanics.elements.scalers.LinearScaler">
+									<multiplier>1</multiplier>
+								</scaler>
+								<value>1</value>
+							</additionalMultiplier>
+						</scalerTarget>
+						<damagePerTick>1</damagePerTick>
+					</parameters>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<offends>true</offends>
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

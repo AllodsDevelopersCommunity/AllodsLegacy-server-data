@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>210201652</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.MobFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+			<mobs>
+				<Item href="/Creatures/GolemJunesMid/Instances/ArchipelagoContested7/Droid.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</mobs>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>10000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>20</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>10000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>0</visualState>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>rock</scriptID>
+						<map href="/Maps/ArchipelagoContested7/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Mechanics/Rules/ArchipelagoContested7/other_unReferenced_events/02_22_escort.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+			<radius>80</radius>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested7/Event_quest_2_2/Event_quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ArchipelagoContested7/Event_quest_2_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="/Mechanics/Rules/ArchipelagoContested7/other_unReferenced_events/02_22_escort_Success.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>13000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</impacts>
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

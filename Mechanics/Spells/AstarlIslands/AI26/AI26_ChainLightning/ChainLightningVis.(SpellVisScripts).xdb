@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="CreatureAnimationAction">
+		<mode>LOOP</mode>
+		<animations>
+			<Item>readySpell</Item>
+		</animations>
+		<advanced>
+			<autoHasten />
+		</advanced>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<effectAnimations />
+				<scale>4</scale>
+				<locator>FROM_LOCATOR_NAME</locator>
+				<locatorName>Slot_Special01</locatorName>
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<use>USE_CURRENT_ATTACK</use>
+				<animations>
+					<Item>attack</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten />
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<time>600</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureChannelDirectAction">
+						<visActionID>PrismaticRay011</visActionID>
+						<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<startPoint type="VisPointLocator">
+							<shift />
+							<locator>FROM_LOCATOR_NAME</locator>
+							<locatorName>Slot_Eye_R</locatorName>
+							<from>FROM_SELF</from>
+						</startPoint>
+						<multyTargetMode>Umbrella</multyTargetMode>
+						<secondaryTargetParams>
+							<channelingFx href="/Spells/FX/Spells/MagePrismaticRayAbility_RayBlue.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						</secondaryTargetParams>
+					</Item>
+					<Item type="CreatureEffectsOnTarget">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Spells/MagePrismaticRayAbility_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<effectAnimations />
+								<locator>Slot_FX</locator>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

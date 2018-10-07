@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>99026993</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Terrarium/GreenSlime.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_5Boss/AcidPool.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<level>40</level>
+	<needLos>false</needLos>
+	<element>POISON</element>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+			<scaler type="gameMechanics.elements.scalers.ScalerBuff">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss5Orc/Rage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<multiplier>-1</multiplier>
+				<summand>32000</summand>
+			</scaler>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>ACID</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>12.24</minDamage>
+				<maxDamage>14.69</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="/Mechanics/Spells/GurluhsorTower/Boss5Orc/Rage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<max>15</max>
+						</range>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+						<projectileData>
+							<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+								<destination type="gameMechanics.map.destination.RelativePos">
+									<yaw type="constructor.basicElements.AngleRadians" />
+									<coord />
+								</destination>
+							</moveType>
+							<resource href="NewAcid.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+						</projectileData>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ACID</element>
+						<threatMultiplier>0</threatMultiplier>
+						<minDamage>12.24</minDamage>
+						<maxDamage>14.69</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>30</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

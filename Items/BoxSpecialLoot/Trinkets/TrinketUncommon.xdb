@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.item.ItemResource>
+	<Header>
+		<resourceId>241280005</resourceId>
+	</Header>
+	<description href="TrinketUncommon.Description.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/UncommonTrinket.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<source>Vendor</source>
+	<nameChecked>false</nameChecked>
+	<includeInBoxes>false</includeInBoxes>
+	<customSellPrice>true</customSellPrice>
+	<customBuyPrice>true</customBuyPrice>
+	<slot>TRINKET</slot>
+	<itemClass href="/Mechanics/ItemClasses/Other.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/ItemMall/BoxTrinkets/Buff_04_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+									<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>0.1</value>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/ItemMall/BoxTrinkets/Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<conditionalImpacts>
+				<Item>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/ItemMall/BoxTrinkets/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+											<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>0.1</value>
+											</chanceCalcer>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="/Mechanics/Spells/ItemMall/BoxTrinkets/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<conditions>
+						<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+							<predicate type="gameMechanics.constructor.basicElements.PredicateGenericFalse" />
+						</Item>
+					</conditions>
+				</Item>
+			</conditionalImpacts>
+		</Item>
+	</effects>
+	<level>4</level>
+	<requiredLevel>4</requiredLevel>
+	<spell href="/Mechanics/Spells/ItemMall/BoxTrinkets/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	<stackLimit>1</stackLimit>
+	<quality href="/Mechanics/ItemQualities/Uncommon.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+	<price type="gameMechanics.constructor.schemes.item.price.ItemPriceMoney">
+		<sellPrice>-1</sellPrice>
+		<buyPrice>-1</buyPrice>
+	</price>
+	<binding>BindOnEquip</binding>
+	<itemMallType>ITEMMALLABLE</itemMallType>
+	<name href="TrinketUncommon.txt" />
+	<requiredReputation>Hostility</requiredReputation>
+</gameMechanics.constructor.schemes.item.ItemResource>

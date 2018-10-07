@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>194969651</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Equipment/Trinket/TalismanAstralIntrigue.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Items/TrinketGTMagDPS.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration var="prepareDuration" />
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>LIGHTNING</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell04.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="/Mechanics/Spells/Groups/TrinketSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateActiveItemNotCursed" />
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<hideText>false</hideText>
+						<manaType>Mana</manaType>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>LIGHTNING</element>
+						<threatMultiplier>1</threatMultiplier>
+						<minDamage var="minDamage" />
+						<maxDamage var="maxDamage" />
+						<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactAstralKick">
+							<time>1000</time>
+							<distance>12</distance>
+						</impactOnHitTarget>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>LIGHTNING</element>
+						<threatMultiplier>1</threatMultiplier>
+						<statsConvertor>
+							<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Dexterity</stat>
+							</intuition>
+							<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Might</stat>
+							</spirit>
+						</statsConvertor>
+						<minDamage var="minDamage" />
+						<maxDamage var="maxDamage" />
+						<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactAstralKick">
+							<time>1000</time>
+							<distance>12</distance>
+						</impactOnHitTarget>
+						<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>3</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

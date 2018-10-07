@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>271088657</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Aura">
+			<radius>25</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/FastAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/StrongAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="AuraBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/FastAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/StrongAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AuraBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.75</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="TepNoSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativeRotatePos">
+						<base type="gameMechanics.map.destination.RelativePos" />
+						<offset>3</offset>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyIFF" />
+						<Item type="gameMechanics.elements.impacts.ImpactCopyFaction" />
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/TepPyramidBosses/MobStun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+											</impacts>
+										</Item>
+									</impacts>
+									<spawnResource href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/TepAstral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/StrongAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="Boss05AddPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="TepVoice5.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAbility">
+			<ability href="/Mechanics/Abilities/Bosses/ActivityTracker/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="TepNoSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="Explode_Summons.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>5000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+									<impact type="gameMechanics.elements.impacts.ImpactSummon">
+										<destination type="gameMechanics.map.destination.RelativeRotatePos">
+											<base type="gameMechanics.map.destination.RelativePos" />
+											<offset>3</offset>
+										</destination>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactCopyIFF" />
+											<Item type="gameMechanics.elements.impacts.ImpactCopyFaction" />
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/TepPyramidBosses/MobStun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+																</impacts>
+															</Item>
+														</impacts>
+														<spawnResource href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/TepAstral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+										<object href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/FastAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<pool href="Boss05AddPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+									</impact>
+									<count type="gameMechanics.elements.calcers.FloatData">
+										<value>3</value>
+									</count>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="TepVoice4.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+			<tick>60000</tick>
+			<initialDelay>20000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Aura.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="TepHighlander.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/TepAstral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="TepVoice3.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.5</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativeRotatePos">
+						<base type="gameMechanics.map.destination.RelativePos" />
+						<offset>3</offset>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyIFF" />
+						<Item type="gameMechanics.elements.impacts.ImpactCopyFaction" />
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/TepPyramidBosses/MobStun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+											</impacts>
+										</Item>
+									</impacts>
+									<spawnResource href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/TepAstral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/StrongAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="Boss05AddPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="TepNoSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="TepVoice5.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.25</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativeRotatePos">
+						<base type="gameMechanics.map.destination.RelativePos" />
+						<offset>3</offset>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyIFF" />
+						<Item type="gameMechanics.elements.impacts.ImpactCopyFaction" />
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/TepPyramidBosses/MobStun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+											</impacts>
+										</Item>
+									</impacts>
+									<spawnResource href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/TepAstral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/StrongAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="Boss05AddPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="TepNoSpark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="TepVoice5.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.SelfPosDestination" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectGroup>Enemies</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+								</Item>
+							</impacts>
+							<impactsOnNoTargets>
+								<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+							</impactsOnNoTargets>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="TepCorpseVisual.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<object href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/TepPhysCorpse.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<pool href="TepPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="PhysTepDead.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/TepAstral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>100</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

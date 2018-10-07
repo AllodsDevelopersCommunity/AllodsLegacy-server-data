@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>280718384</resourceId>
+	</Header>
+	<Name href="SparkCount.(BuffResource)_Name.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/AccumulationPowerSparks.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="SparkCount.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectStackTrigger">
+			<count>3</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="GeneratorSpark.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<calcers>
+										<addressEntries>
+											<Item>
+												<name>caster</name>
+												<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+											</Item>
+											<Item>
+												<name>target</name>
+												<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+											</Item>
+										</addressEntries>
+									</calcers>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>500</delay>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="ShieldBreaker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+												<multiplier>4</multiplier>
+											</durationScaler>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+										<mobs>
+											<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</mobs>
+									</Item>
+								</predicates>
+							</filter>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<stackLimit>100</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

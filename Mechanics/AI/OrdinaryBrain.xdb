@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.behaviour.brain.MobBrainResource>
+	<Header>
+		<resourceId>58939</resourceId>
+	</Header>
+	<memoryVariables>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.NavigationPosVariable">
+			<name>spawnPos</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.NavigationPosVariable">
+			<name>interruptPos</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.AddressMapVariable">
+			<name>interlocutors</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.BuffsSetVariable">
+			<name>buffs</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.MovementTypeVariable">
+			<name>moveType</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.BoolVariable">
+			<name>pursuitToComfort</name>
+			<value>false</value>
+		</Item>
+	</memoryVariables>
+	<!--==============================================================================================-->
+	<!--============================================STATES============================================-->
+	<!--==============================================================================================-->
+	<root type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+		<name>Root</name>
+		<groupType>Static</groupType>
+		<subnodes>
+			<!--0-->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+				<name>AliveStatesGroup</name>
+				<groupType>Static</groupType>
+				<subnodes>
+					<!--0-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>WaitAvatar</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateWaitAvatar" />
+						<optional>
+							<Item>
+								<to>NaturalStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.WakeUpMsg</eventType>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe" />
+							</Item>
+						</optional>
+					</Item>
+					<!--1-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>ReturnState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateReturn">
+							<interruptPos name="interruptPos" />
+							<moveType name="moveType" />
+						</state>
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<onStart>
+								<Item type="gameMechanics.elements.impacts.ImpactResetMob" />
+							</onStart>
+							<effects>
+								<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+								<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+								<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+											<predicate type="gameMechanics.constructor.schemes.buff.BuffRetainedOnReset" />
+										</Item>
+									</predicates>
+								</Item>
+								<Item type="gameMechanics.elements.effects.EffectNoAggro" />
+								<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+									<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+										<base>2</base>
+									</effectScaler>
+								</Item>
+							</effects>
+						</reaction>
+						<mandatory>
+							<Item>
+								<to>PostReturnState</to>
+							</Item>
+							<Item>
+								<to>PostReturnState</to>
+							</Item>
+						</mandatory>
+					</Item>
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>PostReturnState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdleTime">
+							<delay>2000</delay>
+						</state>
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<effects>
+								<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+								<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+								<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+											<predicate type="gameMechanics.constructor.schemes.buff.BuffRetainedOnReset" />
+										</Item>
+									</predicates>
+								</Item>
+								<Item type="gameMechanics.elements.effects.EffectNoAggro" />
+							</effects>
+						</reaction>
+						<mandatory>
+							<Item>
+								<to>NaturalStatesGroup</to>
+							</Item>
+						</mandatory>
+					</Item>
+					<!--2-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>TalkState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateTalk">
+							<interlocutors name="interlocutors" />
+						</state>
+						<mandatory>
+							<Item>
+								<to>NaturalStatesGroup</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>ReturnState</to>
+								<!-- not used ? -->
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.MsgReturnToIdle</eventType>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe" />
+							</Item>
+						</optional>
+					</Item>
+					<!--4-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>HoldState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateHold" />
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<effects>
+								<Item type="gameMechanics.elements.effects.EffectDisableEvadeTimeout" />
+							</effects>
+						</reaction>
+						<mandatory>
+							<Item>
+								<to>ReturnState</to>
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+							</Item>
+						</mandatory>
+						<activeConvolutions>
+							<Item type="gameMechanics.world.mob.behaviour.components.states.ImpactConvolution">
+								<impact type="gameMechanics.elements.impacts.ImpactCallForHelp">
+									<radius>10</radius>
+								</impact>
+							</Item>
+						</activeConvolutions>
+						<optional>
+							<Item>
+								<to>ReturnState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!--3-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>NaturalStatesGroup</name>
+						<groupType>Dynamic</groupType>
+						<subnodes>
+							<!--0-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>GuardState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateGuard">
+									<interruptPos name="interruptPos" />
+									<spawnPos name="spawnPos" />
+								</state>
+								<mandatory>
+									<Item />
+								</mandatory>
+								<optional>
+									<Item>
+										<to>RoamingState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.mob.behaviour.aiMsgs.MsgStartRoaming</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+									<Item>
+										<to>PatrolGroup</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.mob.behaviour.aiMsgs.MsgStartPatrol</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+									<Item>
+										<to>GoThroughPathState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.mob.behaviour.aiMsgs.MsgStartGoingThroughPath</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+								</optional>
+							</Item>
+							<!--1-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>RoamingState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateRoaming">
+									<interruptPos name="interruptPos" />
+								</state>
+								<mandatory>
+									<Item />
+								</mandatory>
+								<optional>
+									<Item>
+										<to>GoThroughPathState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.mob.behaviour.aiMsgs.MsgStartGoingThroughPath</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+								</optional>
+							</Item>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+								<name>PatrolGroup</name>
+								<groupType>Dynamic</groupType>
+								<initialState>PatrolState</initialState>
+								<subnodes>
+									<!--0-->
+									<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+										<name>PatrolState</name>
+										<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePatrol">
+											<interruptPos name="interruptPos" />
+											<moveType name="moveType" />
+										</state>
+										<mandatory>
+											<Item />
+										</mandatory>
+										<optional>
+											<Item>
+												<to>ScriptSequence</to>
+												<pipe type="gameMechanics.world.mob.behaviour.components.pipes.PatrolScriptsRunner" />
+											</Item>
+										</optional>
+									</Item>
+									<!--1-->
+									<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+										<name>ScriptSequence</name>
+										<state type="gameMechanics.world.mob.behaviour.components.states.AIStateScriptSequence">
+											<buffs name="buffs" />
+											<interruptPos name="interruptPos" />
+										</state>
+										<mandatory>
+											<Item />
+											<Item>
+												<to>PatrolState</to>
+											</Item>
+										</mandatory>
+									</Item>
+								</subnodes>
+								<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+									<onStart>
+										<Item type="gameMechanics.world.mob.behaviour.components.impacts.ImpactAttachPatrolBuffs">
+											<buffs name="buffs" />
+										</Item>
+									</onStart>
+									<onFinish>
+										<Item type="gameMechanics.world.mob.behaviour.components.impacts.ImpactDetachPatrolBuffs">
+											<buffs name="buffs" />
+										</Item>
+									</onFinish>
+								</reaction>
+								<mandatory>
+									<Item />
+								</mandatory>
+								<exitsRemap>
+									<Item>
+										<from>0</from>
+										<exit>0</exit>
+										<groupExit>0</groupExit>
+									</Item>
+									<Item>
+										<from>1</from>
+										<exit>0</exit>
+										<groupExit>0</groupExit>
+									</Item>
+								</exitsRemap>
+								<exitTypes>
+									<Item>
+										<type>gameMechanics.world.behaviour.basicComponents.TargetProvider</type>
+									</Item>
+								</exitTypes>
+								<optional>
+									<Item>
+										<to>GoThroughPathState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.mob.behaviour.aiMsgs.MsgStartGoingThroughPath</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+								</optional>
+							</Item>
+							<!--3-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>GoThroughPathState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateGoThroughPath">
+									<interruptPos name="interruptPos" />
+								</state>
+								<mandatory>
+									<Item />
+								</mandatory>
+								<optional>
+									<Item>
+										<to>GoThroughPathState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.mob.behaviour.aiMsgs.MsgStartGoingThroughPath</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+								</optional>
+							</Item>
+						</subnodes>
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<effects>
+								<Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+								<Item type="gameMechanics.world.mob.behaviour.components.effects.HandleHealthChangesNotInCombat">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactResetMob" />
+									</impacts>
+								</Item>
+							</effects>
+						</reaction>
+						<initialState>GuardState</initialState>
+						<activeConvolutions>
+							<Item type="gameMechanics.world.mob.behaviour.components.states.FallAsleepConvolution" />
+						</activeConvolutions>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.TargetProvider</type>
+							</Item>
+						</exitTypes>
+						<exitsRemap>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>2</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>3</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<mandatory>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>TalkState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.StartTalkPipeResource" />
+							</Item>
+							<Item>
+								<to>WaitAvatar</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.FallAsleepMsg</eventType>
+								</pipe>
+							</Item>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe">
+								</pipe>
+							</Item>
+							<Item>
+								<to>PreAggro</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.PreAggroPipe" />
+							</Item>
+						</optional>
+					</Item>
+					<!--4-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>AttackStatesGroup</name>
+						<groupType>Static</groupType>
+						<subnodes>
+							<!--0-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PursuitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePursuit">
+									<moveType name="moveType" />
+									<pursuitToComfort name="pursuitToComfort" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item />
+									<Item>
+										<to>AttackState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+								</mandatory>
+								<optional>
+									<Item>
+										<to>IdleState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+											<eventType>gameMechanics.world.mob.behaviour.aiMsgs.NoVisibleTargetsMsg</eventType>
+										</pipe>
+									</Item>
+								</optional>
+							</Item>
+							<!--1-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>AttackState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateAttack">
+									<pursuitToComfort name="pursuitToComfort" />
+									<moveType name="moveType" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item>
+										<to>PursuitState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+									<Item />
+									<Item>
+										<to>IdleState</to>
+									</Item>
+								</mandatory>
+								<optional>
+									<Item>
+										<to>IdleState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+											<eventType>gameMechanics.world.mob.behaviour.aiMsgs.NoVisibleTargetsMsg</eventType>
+										</pipe>
+									</Item>
+								</optional>
+							</Item>
+							<!--2-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>IdleState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+								<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+									<onStart>
+										<Item type="gameMechanics.elements.impacts.ImpactRemoveMobAttackContext" />
+									</onStart>
+								</reaction>
+							</Item>
+						</subnodes>
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<effects>
+								<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobKnocksDownInPursuit" />
+									</predicates>
+									<effectsIf>
+										<Item type="gameMechanics.elements.effects.EffectOnStrike">
+											<impact type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+												<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactsIf">
+														<predicate type="gameMechanics.elements.predicates.PredicateMasterBehindSlave" />
+														<impactsIf>
+															<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+																<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+																	<value>0.25</value>
+																</chanceCalcer>
+																<impacts>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="/Mechanics/Spells/CommonBuffs/MobMoveSpeedSlow/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<allowOverrideCaster>false</allowOverrideCaster>
+																		<impactsOnFail>
+																			<Item type="gameMechanics.elements.impacts.ImpactResetBuffDuration">
+																				<buff href="/Mechanics/Spells/CommonBuffs/MobMoveSpeedSlow/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			</Item>
+																		</impactsOnFail>
+																	</Item>
+																</impacts>
+															</Item>
+														</impactsIf>
+													</Item>
+												</impacts>
+											</impact>
+										</Item>
+										<Item type="gameMechanics.elements.effects.EffectIfSwitching">
+											<binaryPredicates>
+												<Item type="gameMechanics.elements.predicates.BinaryPredicateSwitchActors">
+													<predicate type="gameMechanics.elements.predicates.PredicateMasterBehindSlave" />
+												</Item>
+											</binaryPredicates>
+											<masterForBinaryPredicates type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+											<effectsIf>
+												<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+													<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+														<coeff>0.15</coeff>
+													</effectScaler>
+												</Item>
+											</effectsIf>
+										</Item>
+									</effectsIf>
+								</Item>
+								<Item type="gameMechanics.elements.effects.SpellsModifier">
+									<modifiers>
+										<Item type="gameMechanics.elements.spell.IgnoreRangeAfterStartModifier" />
+									</modifiers>
+								</Item>
+							</effects>
+							<onStart>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="BrainInCombat.xdb" />
+										</Item>
+									</predicates>
+									<impactsElse>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="BrainInCombat.xdb" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.MarkedImpact">
+													<mark href="/Mechanics/AI/EnterCombatMark.xdb" />
+												</Item>
+											</impacts>
+										</Item>
+									</impactsElse>
+								</Item>
+							</onStart>
+							<onFinish>
+								<Item type="gameMechanics.elements.impacts.ImpactRemoveMobAttackContext" />
+							</onFinish>
+						</reaction>
+						<activeConvolutions>
+							<Item type="gameMechanics.world.mob.behaviour.components.states.GlobalEvadeConvolution">
+								<basePos name="interruptPos" />
+							</Item>
+							<Item type="gameMechanics.world.mob.behaviour.components.states.LocalEvadeConvolution">
+								<basePos name="interruptPos" />
+							</Item>
+							<Item type="gameMechanics.world.mob.behaviour.components.states.ImpactConvolution">
+								<impact type="gameMechanics.elements.impacts.ImpactCallForHelp">
+									<radius>10</radius>
+								</impact>
+							</Item>
+						</activeConvolutions>
+						<initialState>AttackState</initialState>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+						</exitTypes>
+						<exitsRemap>
+							<Item>
+								<from>1</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>2</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>1</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<mandatory>
+							<Item>
+								<to>ReturnState</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe" />
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<simplePredicate type="gameMechanics.elements.predicates.PredicateNotOccupied" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>ReturnState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!--5-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>PreAggro</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePreAggro" />
+						<mandatory>
+							<Item>
+								<to>NaturalStatesGroup</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>AttackStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+						</optional>
+					</Item>
+				</subnodes>
+				<initialState>WaitAvatar</initialState>
+				<optional>
+					<Item>
+						<to>DeadState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactLand" />
+								<Item type="gameMechanics.elements.impacts.ImpactRemoveAggroAndTarget" />
+							</impacts>
+							<eventType>gameMechanics.elements.events.EventDeath</eventType>
+							<isSubscriptional>false</isSubscriptional>
+							<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateFromSelf" />
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+			<!--1-->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>DeadState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+			</Item>
+		</subnodes>
+		<initialState>AliveStatesGroup</initialState>
+	</root>
+</gameMechanics.world.mob.behaviour.brain.MobBrainResource>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>301441030</resourceId>
+	</Header>
+	<name href="SellRaw.txt" />
+	<text href="SellRaw.Text.txt" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>sellPrice</alias>
+			<calcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.world.bigAstral.tradeWars.CalcerRawPrice">
+					<count type="gameMechanics.elements.calcers.ItemsCalcer">
+						<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</count>
+				</calcerLong>
+				<calcerFloat type="gameMechanics.elements.calcers.InverseCalcer">
+					<value type="gameMechanics.elements.calcers.ItemsCalcer">
+						<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</value>
+				</calcerFloat>
+			</calcer>
+		</Item>
+		<Item type="CueDataMoney">
+			<alias>sellPriceStack</alias>
+			<calcer type="gameMechanics.world.bigAstral.tradeWars.CalcerRawPrice">
+				<count type="gameMechanics.elements.calcers.ItemsCalcer">
+					<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</count>
+			</calcer>
+		</Item>
+		<Item type="CueDataLong">
+			<alias>sellCount</alias>
+			<calcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.LongData">
+					<value>1</value>
+				</calcerLong>
+				<calcerFloat type="gameMechanics.elements.calcers.ItemsCalcer">
+					<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</calcerFloat>
+			</calcer>
+		</Item>
+	</data>
+	<conditions>
+		<Item type="gameMechanics.elements.resources.ResourceItem">
+			<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.MaxLevelConstant">
+				<summand>-3</summand>
+			</minLevel>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<range min="0" max="700" />
+				</Item>
+			</predicates>
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+			<operation type="gameMechanics.elements.itemservice.RemoveItem">
+				<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<count type="gameMechanics.elements.calcers.ItemsCalcer">
+					<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</count>
+			</operation>
+			<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+			<operation type="itemService.elements.RunImpacts">
+				<success>
+					<Item type="gameMechanics.elements.impacts.ImpactScaledImpacts">
+						<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.ItemsCalcer">
+								<item href="/Mechanics/Astral/TradeHubs/GatheringProcessing/GatheringRaw.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</mulCalcer>
+						</scaler>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+								<sumCalcer type="gameMechanics.world.bigAstral.tradeWars.CalcerRawPrice" />
+							</Item>
+							<Item type="gameMechanics.world.bigAstral.tradeWars.ImpactAddRaw">
+								<count type="gameMechanics.elements.calcers.LongData">
+									<value>1</value>
+								</count>
+							</Item>
+						</impacts>
+					</Item>
+				</success>
+			</operation>
+			<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+	</impacts>
+	<nextCues>
+		<Item href="BuyResource.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_MaxChests.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_NoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="SellRawChest.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>1557528599</resourceId>
+	</Header>
+	<Name href="ChalkSpell_Name.txt" />
+	<Description href="ChalkSpell_Description.txt" />
+	<nameTemplate href="ChalkSpell_Name.txt" />
+	<descTemplate href="ChalkSpell_Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Inst_PlagueCastle/ScriptZones/BossDeathTrigger.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactActiveSpellCooldown">
+				<duration>30000</duration>
+				<scaler type="gameMechanics.elements.scalers.ScalerBuff">
+					<buff href="/Mechanics/Spells/Mercenaries/Controls/MercOwner.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<multiplier>-0.07</multiplier>
+					<summand>30000</summand>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+				<projectileData>
+					<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+						<destination type="gameMechanics.map.destination.RelativePos" />
+					</moveType>
+					<resource href="ChalkAura.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+				</projectileData>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

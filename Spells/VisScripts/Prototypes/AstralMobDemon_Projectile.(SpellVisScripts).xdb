@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="MobProjectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>readySpell</PreCastAnimation>
+			<PreCastFXScale>1</PreCastFXScale>
+			<PreCastFxLocator>FROM_LOCATOR_NAME</PreCastFxLocator>
+			<shieldExplosion>/Spells/FX/Ships/Shield.CanonHitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</shieldExplosion>
+			<hullExplosion>/Spells/FX/Ships/Hull.CanonHitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullExplosion>
+			<PreCastFx />
+			<ProjectileFX>/Spells/FX/Ships/Cannon.ProjectileFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</ProjectileFX>
+			<shieldCrit>/Spells/FX/Ships/Shield.CanonHitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</shieldCrit>
+			<ProjectileFXLocator>Slot_Hand_R</ProjectileFXLocator>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<PreCastFXLocatorName>Slot_Special01</PreCastFXLocatorName>
+			<hullCrit>/Spells/FX/Ships/Hull.CanonHitLightning_Crit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullCrit>
+			<PreCastFxDelay>500</PreCastFxDelay>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="PreCastAnimation" />
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID>handFX</visActionID>
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<lockScale>true</lockScale>
+					</Item>
+					<Item>
+						<delay>0</delay>
+						<lockScale>true</lockScale>
+					</Item>
+					<Item>
+						<delay var="PreCastFxDelay" />
+						<effectFx hrefvar="PreCastFx" />
+						<scale var="PreCastFXScale" />
+						<locator var="PreCastFxLocator" />
+						<locatorName var="PreCastFXLocatorName" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<actionBarComplite />
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<channel>CHANNEL_ABILITY</channel>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<elements>
+							<Item skiped="" />
+							<Item type="CreatureAstralSpellFXVisAction">
+								<astralSpell type="AstralSpellProjectile">
+									<shieldExplosion hrefvar="shieldExplosion" />
+									<shieldCrit hrefvar="shieldCrit" />
+									<hullExplosion hrefvar="hullExplosion" />
+									<hullCrit hrefvar="hullCrit" />
+									<projectileFx hrefvar="ProjectileFX" />
+									<locatorName var="ProjectileFXLocator" />
+								</astralSpell>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

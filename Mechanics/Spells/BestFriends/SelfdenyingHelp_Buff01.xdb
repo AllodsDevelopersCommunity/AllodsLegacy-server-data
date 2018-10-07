@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>358363180</resourceId>
+	</Header>
+	<Name href="SelfdenyingHelp_Buff01.Name.txt" />
+	<Description href="SelfdenyingHelp_Buff01.Description.txt" />
+	<image href="/Interface/Icons/Misc/Buffs/BestFriends/BuffBestFriends1.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectPersonalAstralModifer">
+			<modifiers>
+				<Item>
+					<actions>
+						<Item>EnterIsland</Item>
+						<Item>JumpDirect</Item>
+					</actions>
+					<modifier>
+						<modifications>
+							<Item>
+								<type>Remove</type>
+								<operations>
+									<Item>CheckTicket</Item>
+									<Item>ConsumeTicket</Item>
+									<Item>ConsumeJumpCurrency</Item>
+								</operations>
+							</Item>
+						</modifications>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="SelfdenyingHelpActive_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</delta>
+								<attachIfNotExist>true</attachIfNotExist>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactLogBuff">
+								<buff href="SelfdenyingHelpActive_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<mapheadImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAddPaymentInfo">
+								<payment>SelfDeny</payment>
+							</Item>
+						</mapheadImpacts>
+					</modifier>
+				</Item>
+				<Item>
+					<actions>
+						<Item>JumpIndirect</Item>
+					</actions>
+					<modifier>
+						<modifications>
+							<Item>
+								<type>Remove</type>
+								<operations>
+									<Item>CheckTicket</Item>
+									<Item>ConsumeTicket</Item>
+									<Item>ConsumeJumpCurrency</Item>
+								</operations>
+							</Item>
+						</modifications>
+					</modifier>
+				</Item>
+				<Item>
+					<actions>
+						<Item>Summon</Item>
+					</actions>
+					<modifier>
+						<modifications>
+							<Item>
+								<type>Remove</type>
+								<operations>
+									<Item>CheckTicket</Item>
+									<Item>ConsumeTicket</Item>
+									<Item>ConsumeJumpCurrency</Item>
+								</operations>
+							</Item>
+						</modifications>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="SelfdenyingHelpActive_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</delta>
+								<attachIfNotExist>true</attachIfNotExist>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactLogBuff">
+								<buff href="SelfdenyingHelpActive_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<mapheadImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAddPaymentInfo">
+								<payment>SelfDeny</payment>
+							</Item>
+						</mapheadImpacts>
+					</modifier>
+					<conditions>
+						<Item type="gameMechanics.elements.conditions.PredicatesCondition">
+							<targetPredicates>
+								<Item type="gameMechanics.map.instance.astralIsland.PredicateOnAstralIsland" />
+							</targetPredicates>
+						</Item>
+						<Item type="gameMechanics.world.ship.NotAlreadyPaidCondition">
+							<payment>Generic</payment>
+						</Item>
+					</conditions>
+				</Item>
+			</modifiers>
+			<conditions>
+				<Item>
+					<actions>
+						<Item>EnterIsland</Item>
+						<Item>JumpDirect</Item>
+						<Item>JumpIndirect</Item>
+						<Item>Summon</Item>
+					</actions>
+					<conditions>
+						<Item>
+							<failData href="CantUseSelfdenyingHelp.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<conditions>
+								<Item type="gameMechanics.world.avatar.bestFriends.selfdeny.CanActivateCondition">
+									<selfDenyBuff href="SelfdenyingHelp_Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</conditions>
+						</Item>
+					</conditions>
+				</Item>
+			</conditions>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Undispelable.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/ItemMall/AstralLootMultiplier/MultiplierBlocker.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

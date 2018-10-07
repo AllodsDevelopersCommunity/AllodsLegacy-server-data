@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>294538245</resourceId>
+	</Header>
+	<Name href="KillerCount.(BuffResource)_Name.txt" />
+	<Description href="KillerCount.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/FearOfDeath.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="KillerCount.(BuffResource)_Name.txt.template" />
+	<descTemplate href="KillerCount.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeoutGeneric">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="KillerCount.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>20</min>
+								<max>999</max>
+							</range>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactOnShipCrew">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+											<currency href="/Mechanics/AlternativeCurrencies/AstralExplore.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+											<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</sumCalcer>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactAddMoneyGeneric">
+											<sumCalcer type="gameMechanics.elements.calcers.LongData">
+												<value>1800000</value>
+											</sumCalcer>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+											<currency href="/Mechanics/AlternativeCurrencies/AstralPvP.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+											<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</sumCalcer>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactOnShipCrew">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactAddMoneyGeneric">
+									<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+										<calcerLong type="gameMechanics.elements.calcers.LongData">
+											<value>90000</value>
+										</calcerLong>
+										<calcerFloat type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+											<buff href="KillerCount.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<forAllRanks>true</forAllRanks>
+										</calcerFloat>
+									</sumCalcer>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>180000</duration>
+	<stackLimit>20</stackLimit>
+	<isHelpful>false</isHelpful>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

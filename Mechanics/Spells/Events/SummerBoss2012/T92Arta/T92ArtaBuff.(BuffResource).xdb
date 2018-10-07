@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>330178562</resourceId>
+	</Header>
+	<Name href="T92ArtaBuff.(BuffResource)_Name.txt" />
+	<Description href="T92ArtaBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/MountGolemSummerEvent.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/Events/SummerBoss2012/SummerBossMountGolemVisual.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<nameTemplate href="T92ArtaBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="T92ArtaBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>100</value>
+			</healthCalcer>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="T92ArtaBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<resource href="/Mechanics/GameRoot/Mount/MountDamageThreshold.xdb#xpointer(/gameMechanics.elements.effects.DamageThresholdResource)" />
+			<damageType>ToMount</damageType>
+			<affectsPureDamage>true</affectsPureDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/SummerBoss2012.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivate">
+					<group href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakRemainsImmunity.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>5000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/SummerBossTrainingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/TrainingData/SummerBossTrainingStep1.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+					<spell href="/Mechanics/Spells/Bard/Elegy/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+					<spell href="/Mechanics/Spells/Bard/ElegyUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+					<group href="/Mechanics/Spells/Groups/SummerBossBuffs.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+					<time>3000</time>
+					<destination type="gameMechanics.elements.calcers.DestinationBehind">
+						<comfortRange>30</comfortRange>
+						<maxSteps>4</maxSteps>
+					</destination>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AbilityToPet">
+			<ability href="/Mechanics/GameRoot/Mount/PetMountAbility.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Hover" />
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/SummerBoss/Zones/SummerBoss/SummerBoss.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+								<Item type="avatarPopulation.service.impl.matchMakingImpl.map.PredicateNotInstancedEventMember" />
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="T92ArtaBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>2000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectGiveSpell">
+			<spell href="Masking.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectGiveSpell">
+			<spell href="T92ArtaShotSpell.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectGiveSpell">
+			<spell href="T92ArtaFocusSpell.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.3</coeff>
+			</effectScaler>
+		</Item>
+	</effects>
+	<duration>3599999</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBossBuffs.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>300982435</resourceId>
+	</Header>
+	<name href="HadaganQuestBlindedStart.(QuestResource).Name.txt" />
+	<goal href="HadaganQuestBlindedStart.(QuestResource).Goal.txt" />
+	<startText href="HadaganQuestBlindedStart.(QuestResource).StartText.txt" />
+	<checkText href="HadaganQuestBlindedStart.(QuestResource).CheckText.txt" />
+	<finishText href="HadaganQuestBlindedStart.(QuestResource).FinishText.txt" />
+	<returnLocation>
+		<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/E1_Uprava.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="11469.423828" y="12443.391602" z="3.893570" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_male/Instances/ZoneHadagan1/StValentinesHadaganNPC.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+								<items>
+									<Item href="/Items/QuestItems/StValentines/SpecialValentine.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</items>
+								<totalCount>1</totalCount>
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+							<item href="/Items/QuestItems/StValentines/SpecialValentine.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+					<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+						<item href="/Items/QuestItems/StValentines/SpecialValentine.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</item>
+				</Item>
+			</impactsIf>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/Events/StValentines/BlindedByLove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+			<buff href="/Mechanics/Spells/Events/StValentines/BlindedByLove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<range>
+				<min>1</min>
+				<max>1</max>
+			</range>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+			<item href="/Items/QuestItems/StValentines/SpecialValentine.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="HadaganQuestBlindedStart.(QuestResource).CustomName.txt" />
+			<description href="HadaganQuestBlindedStart.(QuestResource).Description.txt" />
+			<relatedItems>
+				<Item href="/Items/QuestItems/StValentines/SpecialValentine.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<id href="HadaganQuestBlindedStartBuffCounter.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<showCounterValue>false</showCounterValue>
+			<limit>0</limit>
+			<isInternal>true</isInternal>
+			<items>
+				<Item href="/Items/QuestItems/StValentines/SpecialValentine.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+		</Item>
+	</counters>
+	<reward>
+		<mandatoryItems>
+			<Item>
+				<item href="/Items/QuestItems/StValentines/HeartsTrinket.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyNone" />
+	<internalName>StValentine07e</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/E1_Uprava.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>369166349</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<Name href="Boss01_AOE_Projectile.(SpellArea).Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="Boss01_FireAOE.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>4000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>50</minDamage>
+				<maxDamage>50</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+				<radius>2</radius>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							<Item type="gameMechanics.elements.predicates.PredicateRespawnableResource">
+								<resources>
+									<Item href="/Mechanics/Characters/Undead_male/AstralIsle50/Boss01_puddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+								</resources>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+								<projectileData>
+									<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+										<destination type="gameMechanics.map.destination.SelfPosDestination" />
+									</moveType>
+									<resource href="/Mechanics/Characters/Undead_male/AstralIsle50/Boss01_FirePuddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+								</projectileData>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+								<delay>1000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<cooldown>
+			<duration>20000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Characters/Undead_male/AstralIsle50/Boss01_Fire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>25</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>4</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

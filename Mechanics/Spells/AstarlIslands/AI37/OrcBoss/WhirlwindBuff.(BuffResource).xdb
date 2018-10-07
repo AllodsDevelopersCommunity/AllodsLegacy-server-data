@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>300405778</resourceId>
+	</Header>
+	<Name href="WhirlwindBuff.(BuffResource)_Name.txt" />
+	<Description href="WhirlwindBuff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorWhirlwindUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Warrior/Whirlwind.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="WhirlwindBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="WhirlwindBuff.(BuffResource).DescTemplate.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>5</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+							<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+							<minDamage>30</minDamage>
+							<maxDamage>30</maxDamage>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+	</effects>
+	<duration>3000</duration>
+	<isHelpful>false</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

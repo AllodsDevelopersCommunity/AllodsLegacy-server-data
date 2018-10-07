@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>342224914</resourceId>
+		<Variables>
+			<buff>Buff_02_03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</buff>
+			<duration>150000</duration>
+		</Variables>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell01_Name.txt" />
+	<Description href="Spell01_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>16</value>
+			<scaler>AmmoDouble</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Bard/ShadowDuo.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bard/Bard_ShadowDuet.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>1</min>
+					<max>2</max>
+				</range>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>false</hideText>
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<hideText>false</hideText>
+					<buff href="/Mechanics/Spells/Bard/QuickSong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<consumeStacks>0</consumeStacks>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceDressItem">
+				<hideText>false</hideText>
+				<secondary>false</secondary>
+				<slot>AMMO</slot>
+				<count>4</count>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.world.pet.ImpactSummonPet">
+				<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mul>1</mul>
+							<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>0.25</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.ItemQualityCalcer">
+										<dressSlot>AMMO</dressSlot>
+									</Item>
+								</calcers>
+							</mulCalcer>
+							<sum>1</sum>
+						</durationScaler>
+					</Item>
+					<Item type="gameMechanics.world.changeappearance.ImpactCopyAppearance">
+						<usePetVisObj>false</usePetVisObj>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/Elegy/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Bard/Elegy/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+										<hideText>false</hideText>
+										<spell href="/Mechanics/Spells/Bard/Elegy/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Bard/Elegy/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+												<hideText>false</hideText>
+												<spell href="/Mechanics/Spells/Bard/Elegy/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/Bard/Elegy/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</impacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/ElegyUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Bard/ElegyUpgrade/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+										<hideText>false</hideText>
+										<spell href="/Mechanics/Spells/Bard/ElegyUpgrade/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Bard/ElegyUpgrade/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+												<hideText>false</hideText>
+												<spell href="/Mechanics/Spells/Bard/ElegyUpgrade/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/Bard/ElegyUpgrade/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</impacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/Lament/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Bard/Lament/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+										<hideText>false</hideText>
+										<spell href="/Mechanics/Spells/Bard/Lament/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Bard/Lament/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+												<hideText>false</hideText>
+												<spell href="/Mechanics/Spells/Bard/Lament/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/Bard/Lament/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</impacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/Bravado/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Bard/Bravado/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+										<hideText>false</hideText>
+										<spell href="/Mechanics/Spells/Bard/Bravado/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Bard/Bravado/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+												<hideText>false</hideText>
+												<spell href="/Mechanics/Spells/Bard/Bravado/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/Bard/Bravado/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</impacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/Healsong/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Bard/Healsong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+										<hideText>false</hideText>
+										<spell href="/Mechanics/Spells/Bard/Healsong/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Bard/Healsong/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+												<hideText>false</hideText>
+												<spell href="/Mechanics/Spells/Bard/Healsong/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/Bard/Healsong/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</impacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/Shadowsong/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff hrefvar="buff" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+								<hideText>false</hideText>
+								<spell href="/Mechanics/Spells/Bard/Allegro/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<anyRank>false</anyRank>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Bard/Allegro/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<plane href="/Mechanics/Planes/ShadowDuet.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				<traceDown>false</traceDown>
+				<mobResource href="Dummy.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<petType href="/Mechanics/Pets/Turret.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+				<copyStats>true</copyStats>
+			</Item>
+		</casterImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<radius>20</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

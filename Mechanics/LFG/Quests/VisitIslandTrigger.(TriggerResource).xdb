@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>739821765</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.map.instance.astralIsland.PredicateOnAstralIsland" />
+						<Item type="gameMechanics.elements.predicates.PredicateGreater">
+							<lhs type="gameMechanics.elements.calcers.CalcerSectorAvatarLevel" />
+							<rhs type="gameMechanics.elements.calcers.CalcerAvatarLevelMin">
+								<tierLevel href="/Mechanics/Astral/Addons/Addon02/Tier1AvatarTier.xdb#xpointer(/gameMechanics.world.bigAstral.AvatarTierLevel)" />
+							</rhs>
+							<threshold>-0.01</threshold>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+							<currency href="/Mechanics/AlternativeCurrencies/LFG_Phase1.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+							<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</sumCalcer>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Spells/ItemMall/AstralLootMultiplier/ActiveMultiplierBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+									<currency href="/Mechanics/AlternativeCurrencies/LFG_Phase1.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+									<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</sumCalcer>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/LFG/Buffs/IfLootMultiplier.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

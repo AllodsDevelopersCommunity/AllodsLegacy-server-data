@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>342129664</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Priest/Providence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Priest/Equipment.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceDressItem">
+				<hideText>false</hideText>
+				<secondary>false</secondary>
+				<slot>AMMO</slot>
+				<count>3</count>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+				<predicate type="gameMechanics.elements.predicates.PredicateAffectGroup">
+					<hideText>false</hideText>
+					<affectGroup>Friends</affectGroup>
+				</predicate>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+						<buff hrefvar="buff" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<linearCoeffCalcer type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.InverseCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>6</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.ItemQualityCalcer">
+									<dressSlot>AMMO</dressSlot>
+								</Item>
+							</calcers>
+						</linearCoeffCalcer>
+						<range>
+							<min>6</min>
+							<max>12</max>
+						</range>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+						<buff hrefvar="bu_1" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<linearCoeffCalcer type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.InverseCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>6</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.ItemQualityCalcer">
+									<dressSlot>AMMO</dressSlot>
+								</Item>
+							</calcers>
+						</linearCoeffCalcer>
+						<range>
+							<min>6</min>
+							<max>12</max>
+						</range>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

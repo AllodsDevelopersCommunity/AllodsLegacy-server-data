@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<basement.server.module.ModulesPack>
+    <Header>
+        <resourceId>330668049</resourceId>
+    </Header>
+    <modules>
+        <Item type="msgSystem.systemModule.SystemModuleResource"/>
+        <Item type="timeService.service.TimeServiceModuleResource"/>
+        <Item type="transfer.module.TransferSupportModuleResource" />
+        <Item type="shardstarter.modules.FrontEndModuleResource"/>
+        <Item type="clientReplica.module.ClientReplicaModuleResource"/>
+        <Item type="statisticsModule.StatisticsModuleResource"/>
+        <Item type="collectModule.AbonentsCounterModuleResource"/>
+        <Item type="loginCheck.modules.LoginCheckResource">
+            <reportMask>loginCheck/${result}/avatar.${avatarId}.xml</reportMask>
+            <!--iterator type="loginCheck.resource.iterator.FileList">
+                <fileName>avatarList.txt</fileName>
+            </iterator-->
+            <iterator type="loginCheck.resource.iterator.AllAvatars">
+                <minLevel>12</minLevel>
+            </iterator>
+            <before>
+                <Item type="loginCheck.resource.offlineAction.TeleportToLoc">
+                    <map href="/Maps/DeathRealm/MapResource.xdb#xpointer(/mapLoader.MapResource)"/>
+                </Item>
+                <Item type="loginCheck.resource.offlineAction.ReadAvatarInfo"/>
+            </before>
+            <check>
+                <Item type="loginCheck.resource.onlineAction.ReadAvatarInfo"/>
+            </check>
+        </Item>
+    </modules>
+</basement.server.module.ModulesPack>

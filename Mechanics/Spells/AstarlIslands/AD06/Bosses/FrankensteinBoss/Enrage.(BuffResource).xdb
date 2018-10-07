@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739817683</resourceId>
+	</Header>
+	<Name href="Enrage.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorInnerRage.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/AstarlIslands/AI27/LizardmanExecutionerEnrage/Enrage.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>3000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+					<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+						<coeff>1.5</coeff>
+					</scaler>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+					<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+						<coeff>-0.5</coeff>
+					</effectScaler>
+				</Item>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+							<projectileData>
+								<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+									<destination type="gameMechanics.map.destination.SelfPosDestination" />
+								</moveType>
+								<resource href="ElectricPuddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+							</projectileData>
+						</Item>
+					</impacts>
+					<tick>6000</tick>
+				</Item>
+				<Item type="gameMechanics.elements.effects.Enlarge">
+					<factor>1.4</factor>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="BossOff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>3</value>
+					</delta>
+					<attachIfNotExist>true</attachIfNotExist>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+					<impact type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.SelfPosDestination" />
+							<offset>10</offset>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+						</impacts>
+						<object href="/Characters/Undead_male/Instances/AstralDungeon06/FinalBossAdd.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</impact>
+					<count type="gameMechanics.elements.calcers.FloatData">
+						<value>3</value>
+					</count>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>45000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

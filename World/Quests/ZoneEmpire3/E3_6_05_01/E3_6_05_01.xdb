@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>39925</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline>E3_OrcLine</plotline>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Hadagan/Zones/ZoneEmpire3/E3_Sector06.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="13314.074219" y="11250.960938" z="-126.491997" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_female/Instances/ZoneEmpire3/E3_06_Burokrat.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1100</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/World/Quests/ZoneEmpire3/E3_0_1/E3_0_1_PlaneBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<coord x="1" y="1" z="1" />
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="E3_6_05_01_Escortee.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>600000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.GoThroughPath">
+									<path>
+										<Item>
+											<scriptID>E3_6_pat_01</scriptID>
+											<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>E3_6_pat_02</scriptID>
+											<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>E3_6_pat_03</scriptID>
+											<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>E3_6_pat_04</scriptID>
+											<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>E3_6_pat_05</scriptID>
+											<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>E3_6_pat_06</scriptID>
+											<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+									</path>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.world.pet.PredicateHasPet" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="E3_6_05_01_Mobs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Characters/Orc_female/Instances/ZoneEmpire3/E3_06_Orc_Necro_Escortee.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<rewardImpacts />
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneEmpire3/E3_0_1/E3_0_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="E3_6_05_01.CustomName.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Hadagan/Zones/ZoneEmpire3/E3_Sector06.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="13316.783470" y="11200.389999" z="0.000000" />
+					<isIndoor>true</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountID_1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<experience>8</experience>
+		<money>1188</money>
+		<reputations>
+			<Item>
+				<faction href="/World/Factions/Orc.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<value>250</value>
+			</Item>
+		</reputations>
+	</reward>
+	<secretSequence>true</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>E3_6_05_01</internalName>
+	<zone href="/Maps/Hadagan/Zones/ZoneEmpire3/ZoneEmpire3.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>17</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

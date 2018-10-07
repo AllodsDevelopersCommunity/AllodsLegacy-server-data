@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/MeleeAttack.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<LocatorNameOnCaster>hammer_central</LocatorNameOnCaster>
+			<FxOnTargets>/Spells/FX/Spells/HitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTargets>
+			<UseAnimation>USE_ANIMATIONS</UseAnimation>
+			<FxOnCaster>/Spells/FX/Spells/Maze_KHD_Haste01_Trail.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<Animation>attack</Animation>
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<actionBarStart />
+	<launch type="VisActionList">
+		<preconditional>true</preconditional>
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<preconditional>true</preconditional>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>300</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<animations>
+							<Item>attack</Item>
+						</animations>
+						<advanced>
+							<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+							<offendType>ONEOFFEND_ONETARGET</offendType>
+							<animationKeysActionPeriod>
+								<Item>
+									<action type="VisActionList">
+										<play>Simultaneously</play>
+										<elements>
+											<Item type="CreatureTrailAction">
+												<visActionID>TrailAction1</visActionID>
+												<lengthMSec>10000</lengthMSec>
+											</Item>
+											<Item type="CreatureEnchantWeaponAction">
+												<visActionID>EnchantAction1</visActionID>
+											</Item>
+										</elements>
+									</action>
+								</Item>
+								<Item>
+									<action type="VisActionList">
+										<play>Simultaneously</play>
+										<elements>
+											<Item type="VisActionStopAction">
+												<stoppedActionID>TrailAction1</stoppedActionID>
+											</Item>
+											<Item type="VisActionStopAction">
+												<stoppedActionID>EnchantAction1</stoppedActionID>
+											</Item>
+										</elements>
+									</action>
+								</Item>
+								<Item>
+									<action type="VisActionList">
+										<play>Simultaneously</play>
+										<elements>
+											<Item type="CreatureTrailAction">
+												<visActionID>TrailAction2</visActionID>
+												<lengthMSec>10000</lengthMSec>
+											</Item>
+											<Item type="CreatureEnchantWeaponAction">
+												<visActionID>EnchantAction2</visActionID>
+											</Item>
+										</elements>
+									</action>
+								</Item>
+								<Item>
+									<action type="VisActionList">
+										<play>Simultaneously</play>
+										<elements>
+											<Item type="VisActionStopAction">
+												<stoppedActionID>TrailAction2</stoppedActionID>
+											</Item>
+											<Item type="VisActionStopAction">
+												<stoppedActionID>EnchantAction2</stoppedActionID>
+											</Item>
+										</elements>
+									</action>
+								</Item>
+								<Item>
+									<action type="VisActionList">
+										<play>Simultaneously</play>
+										<elements>
+											<Item type="CreatureTrailAction">
+												<visActionID>TrailAction3</visActionID>
+												<lengthMSec>10000</lengthMSec>
+											</Item>
+											<Item type="CreatureEnchantWeaponAction">
+												<visActionID>EnchantAction3</visActionID>
+											</Item>
+										</elements>
+									</action>
+								</Item>
+								<Item>
+									<action type="VisActionList">
+										<play>Simultaneously</play>
+										<elements>
+											<Item type="VisActionStopAction">
+												<stoppedActionID>TrailAction3</stoppedActionID>
+											</Item>
+											<Item type="VisActionStopAction">
+												<stoppedActionID>EnchantAction3</stoppedActionID>
+											</Item>
+										</elements>
+									</action>
+								</Item>
+							</animationKeysActionPeriod>
+						</advanced>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<elements>
+				<Item skiped="" />
+				<Item skiped="" />
+				<Item type="Sound3DAction">
+					<sound>
+						<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+						<name>spells/Mount/MountTitan/HummerFall</name>
+					</sound>
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

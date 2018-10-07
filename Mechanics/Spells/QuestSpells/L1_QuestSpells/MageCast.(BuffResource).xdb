@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>59918</resourceId>
+	</Header>
+	<Name href="MageCastName.txt" />
+	<Description href="MageCastDesc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageMeditation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/ReadySpellDirectHoly.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_Hand_R</locator>
+		</Item>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/ReadySpellDirectHoly.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_Hand_L</locator>
+		</Item>
+	</visualEffects>
+	<visScript href="Cast.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="SeeOnlyPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_Liga1End/SpawnTables/Inst_Liga1End/PortalEff.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>PortalEffect</scriptID>
+							<map href="/Maps/Inst_Liga1End/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>182</value>
+						</yaw>
+					</destination>
+					<object href="/Characters/HumMobs/Instances/ZoneLeague1/ZL_HadaganBanditStalker.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>50</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+													<value>100</value>
+												</Item>
+											</impacts>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_Liga1End/SpawnTables/Inst_Liga1End/PortalEff.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>298893314</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScalerTarget type="gameMechanics.elements.scalers.RandomScaler">
+						<range>
+							<min>10000</min>
+							<max>15000</max>
+						</range>
+					</durationScalerTarget>
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>true</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>15000</value>
+			</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+			<targetImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+								<consumeStacks>0</consumeStacks>
+							</predicate>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<impactsOnAttach>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<durationScalerTarget type="gameMechanics.elements.scalers.RandomScaler">
+												<range>
+													<min>10000</min>
+													<max>30000</max>
+												</range>
+											</durationScalerTarget>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsOnAttach>
+						</Item>
+					</impacts>
+				</Item>
+			</targetImpacts>
+			<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationGroups">
+				<groups>
+					<Item href="/Mechanics/Spells/Groups/InsuranceHealTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</groups>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+			<targetImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_03_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<impactsOnAttach>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<durationScalerTarget type="gameMechanics.elements.scalers.RandomScaler">
+												<range>
+													<min>10000</min>
+													<max>30000</max>
+												</range>
+											</durationScalerTarget>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsOnAttach>
+						</Item>
+					</impacts>
+				</Item>
+			</targetImpacts>
+			<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationGroups">
+				<groups>
+					<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</groups>
+			</destination>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>282396679</resourceId>
+	</Header>
+	<name href="TP2EP_Volcano.txt" />
+	<text href="TP2EP_VolcanoText.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/EP_Volcano.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/EP_Volcano/PlayerTimeoutBuff/EP_Volcano_12hourbuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/Maze/Teleport2Before_Boss.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>4000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>EP_Volcano_N</scriptID>
+							<map href="/Maps/EP_Volcano/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Spells/EP_Volcano/PlayerTimeoutBuff/EP_Volcano_PlayerBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+			<elseImpacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/EP_Volcano/PlayerTimeoutBuff/EP_Volcano_PlayerBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</elseImpacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

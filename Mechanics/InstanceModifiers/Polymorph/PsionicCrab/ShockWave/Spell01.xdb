@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>291960881</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AstralSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/ActionBarChange.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>49.89</value>
+			<scaler>RemortSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Spells/Psionic/PsionicPyrokinesisUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/AstralIslands/Modificators/PsionicCrab_ShockWave.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>7000</duration>
+			<group href="" />
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsMob">
+						<hideText>false</hideText>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>ASTRAL</element>
+						<threatMultiplier>1</threatMultiplier>
+						<statsConvertor>
+							<intuition type="gameMechanics.elements.calcers.CalcerIf">
+								<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+									<hideText>false</hideText>
+									<manaType>Mana</manaType>
+								</predicate>
+								<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Intuition</stat>
+								</calcerIf>
+								<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Dexterity</stat>
+								</calcerElse>
+							</intuition>
+							<spirit type="gameMechanics.elements.calcers.CalcerIf">
+								<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+									<hideText>false</hideText>
+									<manaType>Mana</manaType>
+								</predicate>
+								<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Spirit</stat>
+								</calcerIf>
+								<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Might</stat>
+								</calcerElse>
+							</spirit>
+						</statsConvertor>
+						<minDamage>49.89</minDamage>
+						<maxDamage>49.89</maxDamage>
+						<scaler type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.predicates.PredicateManaCaster">
+								<hideText>false</hideText>
+								<manaType>Mana</manaType>
+							</condition>
+							<scalerIf type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.SlotScaler">
+								<slot>MAINHAND</slot>
+							</scalerElse>
+						</scaler>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1000</time>
+						<impactsOnLand>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impactsOnLand>
+						<distance>15</distance>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

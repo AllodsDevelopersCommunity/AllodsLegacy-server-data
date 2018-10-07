@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>313042985</resourceId>
+	</Header>
+	<Name href="ZC8_3_10_Water.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Misc/Quest/ZC6_waterbuff.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="ZC8_3_10_Gather.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC8_3_10_Water.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="ZC8_3_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Items/QuestItems/ZC8/ZC8_3_10_Water/ZC8_3_10_Water.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>1</totalCount>
+					<checkDress>false</checkDress>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+				<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+					<item href="/Items/QuestItems/ZC8/ZC8_3_10_Water/ZC8_3_10_Water.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</item>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff href="ZC8_3_10_Water.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

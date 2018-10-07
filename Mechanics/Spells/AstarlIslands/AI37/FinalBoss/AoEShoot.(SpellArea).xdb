@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>300405774</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/WarriorSpecials.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="AoEShoot.(SpellArea)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCleave.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="AOEVisScripts.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="AoEShoot.(SpellArea)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="ScrificeControBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>SHADOW</element>
+				<minDamage>30</minDamage>
+				<maxDamage>30</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>40</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Hemisphere" />
+	<radius>30</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

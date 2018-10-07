@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>297420846</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<name href="League_Mercenaries0_P.(Cue).Name.txt" />
+	<text href="League_Mercenaries0_P.(Cue).Text.txt" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>value</alias>
+			<calcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.MoneyIncomeOnLevelCalcer" />
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value>0.06929</value>
+				</calcerFloat>
+			</calcer>
+		</Item>
+	</data>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction hrefvar="faction" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateAssistantInhabits">
+				<assistant hrefvar="assistant" />
+			</predicate>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.MoneyIncomeOnLevelCalcer" />
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value>0.06929</value>
+				</calcerFloat>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateFullGroup" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateInRaid" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+				<calcerLong type="gameMechanics.elements.calcers.MoneyIncomeOnLevelCalcer" />
+				<calcerFloat type="gameMechanics.elements.calcers.FloatData">
+					<value>-0.06929</value>
+				</calcerFloat>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactInhabitAssistant">
+			<assistant hrefvar="assistant" />
+		</Item>
+		<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+			<destination type="gameMechanics.map.destination.RelativeRotatePos">
+				<base type="gameMechanics.map.destination.RelativePos" />
+				<offset>4</offset>
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>1.57</value>
+				</yaw>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<assistantResource hrefvar="assistant" />
+			<mobResource hrefvar="mobResource" />
+			<useTargetLevel>true</useTargetLevel>
+			<planeSyncStrategy>Sync</planeSyncStrategy>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

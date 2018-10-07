@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxOnCaster>/Spells/FX/Spells/WarriorInnerRageAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<UseAnimation>USE_ANIMATIONS</UseAnimation>
+			<FxOnTargets />
+			<LocatorNameOnCaster />
+			<FxOnTargetsFixedPoint>true</FxOnTargetsFixedPoint>
+			<LocatorNameOnTargets />
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<LocatorOnCaster>Global</LocatorOnCaster>
+			<Animation>specialCast</Animation>
+		</Variables>
+	</Header>
+		<actionBarComplite type="VisActionStopAction">
+		<stoppedActionID>Enrage</stoppedActionID>
+	</actionBarComplite>
+	<actionBarCancel type="VisActionStopAction">
+		<stoppedActionID>Enrage</stoppedActionID>
+	</actionBarCancel>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<locator var="LocatorOnCaster" />
+						<locatorName var="LocatorNameOnCaster" />
+						<effectFx hrefvar="FxOnCaster" />
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>specialAttack</Item>
+				</animations>
+				<advanced>
+					<offendType>ONEOFFEND_ONETARGET</offendType>
+				</advanced>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

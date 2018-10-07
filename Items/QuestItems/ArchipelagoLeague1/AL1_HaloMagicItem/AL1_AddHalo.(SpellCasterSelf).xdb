@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>154124301</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ArchipelagoEmpire1/HaloMagicItem_True/HaloMagicItem_True_SpellName.txt" />
+	<Description href="/Items/QuestItems/ArchipelagoEmpire1/HaloMagicItem_True/HaloMagicItem_True_SpellDesc.txt" />
+	<nameTemplate href="/Items/QuestItems/ArchipelagoEmpire1/HaloMagicItem_True/HaloMagicItem_True_SpellName.txt" />
+	<descTemplate href="/Items/QuestItems/ArchipelagoEmpire1/HaloMagicItem_True/HaloMagicItem_True_SpellDesc.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>40000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Kania_AL1/ScriptZones/ArchipelagoLeague1/AL1_Halo.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoLeague1/AL1_Halo/AL1_Halo.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Completed</status>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ArchipelagoLeague1/AL1_Halo/AL1_Halo.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="AL1_HaloMagicItem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/ArchipelagoEmpire1/Quest_02_Halo/AddHalo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>7000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationLocalLocator">
+							<scriptID>Al1_Halo_Demon</scriptID>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/World/Quests/ArchipelagoLeague1/AL1_Halo/AL1_Halo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+						</impacts>
+						<object href="/Creatures/DemonMageNewBreed/Instances/ArchipelagoLeague1/DemonMageNewBreed4_4.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoLeague1/AL1_Halo/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

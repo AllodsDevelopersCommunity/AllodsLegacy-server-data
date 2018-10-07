@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>273129482</resourceId>
+	</Header>
+	<name href="Plam.(RuleResource).Name.txt" />
+	<description href="Plam.(RuleResource).Description.txt" />
+	<level>4</level>
+	<rating>4</rating>
+	<reward>
+		<experience>0</experience>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_HOLYDAY</Item>
+	</types>
+	<predicates>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateHasContentKey">
+				<key href="/System/ContentKeys/P2P_shard/P2P_shard_Zones.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+			</predicate>
+		</Item>
+	</predicates>
+	<timeTable href="Plam.(TimePeriodTable).xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects>
+		<Item type="itemService.elements.AvatarLogonTrigger">
+			<identifier href="Plam.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasFairy">
+							<fairy href="/Mechanics/Fairies/Fairy10.xdb#xpointer(/gameMechanics.constructor.schemes.fairy.FairyResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+							<operation type="itemService.elements.RunImpactsWithCooldown">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+										<operation type="gameMechanics.elements.impacts.FeedFairy">
+											<period>1814400000</period>
+										</operation>
+										<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+										<data href="Plam.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<lock href="Plam.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+								<binding>Soul</binding>
+								<period>50</period>
+							</operation>
+							<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<canBeScheduled>true</canBeScheduled>
+	<canBeDisabled>true</canBeDisabled>
+</gameMechanics.world.rules.RuleResource>

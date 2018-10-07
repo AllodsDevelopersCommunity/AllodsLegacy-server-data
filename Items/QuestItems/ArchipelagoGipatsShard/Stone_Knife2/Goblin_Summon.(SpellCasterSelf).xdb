@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>145163293</resourceId>
+	</Header>
+	<Name href="Goblin_Summon_Name.txt" />
+	<Description href="Goblin_Summon_Desc.txt" />
+	<nameTemplate href="Goblin_Summon_Name.txt" />
+	<descTemplate href="Goblin_Summon_Desc.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>180000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/GoblinKill.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoGipatsShard/Quest2_10/Quest2_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Completed</status>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+						<ability href="/Mechanics/Spells/QuestSpells/ArchipelagoGipatsShard/GoblinKill_Plane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>180000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.AttachAbility">
+								<ability href="/Mechanics/Spells/QuestSpells/ArchipelagoGipatsShard/GoblinKill_Plane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<spawnResource href="/Maps/ArchipelagoGipatsShard/SpawnTables/ArchipelagoGipatsShard/GoblinWarrior_Passive_40_40.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoGipatsShard/Quest2_10/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>338888735</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<cooldown>300000</cooldown>
+			<insightCost>60</insightCost>
+		</Variables>
+	</Header>
+	<Name href="ActionEnergyBurstName.txt" />
+	<Description href="ActionEnergyBurstDesc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/VisorAbilitiesReleaseEnergy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration var="cooldown" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+					<summands>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.world.device.CalcerTechLevelDelta" />
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>0</value>
+								</Item>
+							</calcers>
+						</Item>
+					</summands>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactBunchesAround">
+						<radius>400</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+								<damage type="gameMechanics.elements.calcers.CalcerMul">
+									<calcers>
+										<Item type="gameMechanics.elements.calcers.FloatData">
+											<value>2200</value>
+										</Item>
+										<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+											<value type="gameMechanics.elements.calcers.FloatData">
+												<value>1.3</value>
+											</value>
+										</Item>
+									</calcers>
+								</damage>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.astralMob.AstralMobFilter" />
+						<targetsLimit>5</targetsLimit>
+						<onBehalfOfHolder>false</onBehalfOfHolder>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceInSlot">
+							<slot>Slot_AstralTrap_01</slot>
+						</addresseeFinder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+								<data href="Shockwave.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceInsight">
+				<amount type="gameMechanics.elements.calcers.FloatData">
+					<value var="insightCost" />
+				</amount>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>287075329</resourceId>
+	</Header>
+	<Name href="ForceShutdownName.txt" />
+	<Description href="ForceShutdownDesc.txt" />
+	<image href="/Interface/Icons/Actions/StopButton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+			<Item type="gameMechanics.elements.predicates.PredicateOnAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateStandingOnEnemyShip" />
+							<Item type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="Shutdown.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

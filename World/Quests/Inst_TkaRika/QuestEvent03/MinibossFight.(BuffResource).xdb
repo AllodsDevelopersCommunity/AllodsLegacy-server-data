@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>205866008</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts />
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+							<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+								<value>0.1</value>
+							</chanceCalcer>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+									<currency href="/Mechanics/AlternativeCurrencies/Events/DemonSpark.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+									<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</sumCalcer>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="PhaseBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+									<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+										<value>0.1</value>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+											<currency href="/Mechanics/AlternativeCurrencies/Events/DemonSpark.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+											<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</sumCalcer>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="PhaseBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsToKiller>
+			<skipSelfKill>false</skipSelfKill>
+		</Item>
+		<Item type="gameMechanics.elements.effects.UltimateVisibility" />
+	</effects>
+	<duration>0</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/EvadeProtectedBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

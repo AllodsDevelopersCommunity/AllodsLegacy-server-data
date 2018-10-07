@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>267892782</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Special/Talents/Mage/ManaProtect.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<scaleImpactsByDamage>false</scaleImpactsByDamage>
+			<damageType>Damage</damageType>
+			<impactsToOffender>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/HitLighning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>LIGHTNING</element>
+					<threatMultiplier>1</threatMultiplier>
+					<minDamage var="minDamage" />
+					<maxDamage var="maxDamage" />
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.ScalerBuff">
+								<buff hrefvar="buff" />
+								<multiplier>1</multiplier>
+								<summand>0</summand>
+								<checkCaster>false</checkCaster>
+							</Item>
+						</scalers>
+					</scaler>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsToOffender>
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateDistance">
+					<maxDistToOffender>85</maxDistToOffender>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>120000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>5</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

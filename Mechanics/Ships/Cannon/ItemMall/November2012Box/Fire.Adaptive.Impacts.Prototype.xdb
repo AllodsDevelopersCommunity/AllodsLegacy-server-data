@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>346046473</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<impactsResource />
+			<damageType />
+			<range />
+			<energy>0</energy>
+			<damage />
+			<clientData />
+		</Variables>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AstralCannons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<descVars>
+		<Item>
+			<name>energy</name>
+			<value>0</value>
+			<scaler>FormulaUndefined</scaler>
+		</Item>
+		<Item>
+			<name>range</name>
+			<value>0</value>
+			<scaler>FormulaUndefined</scaler>
+		</Item>
+		<Item>
+			<name>cooldown</name>
+			<value>0</value>
+			<scaler>FormulaSeconds</scaler>
+		</Item>
+	</descVars>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value var="range" />
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration var="cooldown" />
+			<group href="/Mechanics/Spells/Groups/AstralCannons.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.world.device.LinearMalfunctionCalcer">
+					<treshold>0.75</treshold>
+					<b>1</b>
+					<value>1</value>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAstralMob" />
+					<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+				</predicates>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="/Mechanics/Ships/Cannon/CannonAttack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+				<clientData hrefvar="clientData" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+				<chanceCalcer type="gameMechanics.elements.calcers.CalcerSum">
+					<summands>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>-1</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.CalcerMul">
+									<calcers>
+										<Item type="gameMechanics.elements.calcers.HealthInferiorityCalcer" />
+										<Item type="gameMechanics.elements.calcers.FloatData">
+											<value>0.5</value>
+										</Item>
+									</calcers>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>3</value>
+								</Item>
+							</calcers>
+						</Item>
+					</summands>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.world.ship.elements.ImpactEnergyHit">
+						<amount type="gameMechanics.elements.calcers.FloatData">
+							<value var="energy" />
+						</amount>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+								<data href="/Mechanics/Ships/Cannon/CannonEnergyBurst.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactAvatarFinishUse" />
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+										<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+						<impacts>
+							<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+								<damage type="gameMechanics.elements.calcers.CalcerMul">
+									<calcers>
+										<Item type="gameMechanics.elements.calcers.FloatData">
+											<value>0.5</value>
+										</Item>
+										<Item type="gameMechanics.elements.calcers.FloatData">
+											<value var="damage" />
+										</Item>
+									</calcers>
+								</damage>
+								<damageType var="damageType" />
+								<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.ImpactList">
+								<impactsResource hrefvar="impactsResource" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value var="damage" />
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerExp">
+							<base>1.33</base>
+							<powCalc type="gameMechanics.elements.calcers.CalcerMin">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>2</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.CalcerMax">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>0</value>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.CalcerDiff">
+												<minuend type="gameMechanics.elements.calcers.AstralSectorTLCalcerFloat" />
+												<subtrahend type="gameMechanics.elements.calcers.FloatData">
+													<value>7</value>
+												</subtrahend>
+											</Item>
+										</calcers>
+									</Item>
+								</calcers>
+							</powCalc>
+						</Item>
+					</calcers>
+				</damage>
+				<damageType var="damageType" />
+				<hitCalcType type="gameMechanics.world.projectile.CannonCalcType" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactList">
+				<impactsResource hrefvar="impactsResource" />
+			</Item>
+		</targetImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceEnergy">
+				<energy type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value var="energy" />
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerExp">
+							<base>1.33</base>
+							<powCalc type="gameMechanics.elements.calcers.CalcerMin">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>2</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.CalcerMax">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>0</value>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.CalcerDiff">
+												<minuend type="gameMechanics.elements.calcers.AstralSectorTLCalcerFloat" />
+												<subtrahend type="gameMechanics.elements.calcers.FloatData">
+													<value>7</value>
+												</subtrahend>
+											</Item>
+										</calcers>
+									</Item>
+								</calcers>
+							</powCalc>
+						</Item>
+					</calcers>
+				</energy>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>50</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<autotargetSelector type="gameMechanics.constructor.schemes.spell.multiTarget.CannonClosestToRayAutotarget" />
+	<shape type="gameMechanics.constructor.schemes.spell.area.Ray">
+		<objectsProvider>CollisionScene</objectsProvider>
+	</shape>
+	<shapeOrientation>YawAndPitch</shapeOrientation>
+	<radius var="range" />
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

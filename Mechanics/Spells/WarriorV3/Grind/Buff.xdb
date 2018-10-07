@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739821449</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Necromancer/PetCommandAttack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.CountingEffectOverTime">
+			<effect type="gameMechanics.elements.effects.ImpactsOverTime">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+						<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+						<threatMultiplier>1</threatMultiplier>
+						<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+							<scalers>
+								<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+								<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+							</scalers>
+						</scaler>
+						<avgDamage var="avgDamage" />
+						<source>Mainhand</source>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateEquipped">
+								<hideText>false</hideText>
+								<dressType>DUALWIELD</dressType>
+								<weaponRequired>false</weaponRequired>
+								<itemClass href="" />
+								<secondary>false</secondary>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+								<chanceCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+									<ability href="/Mechanics/Spells/WarriorV3/Abilities/GrindImproved/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<mul>0.334</mul>
+									<sum>0</sum>
+								</chanceCalcer>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+										<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+										<threatMultiplier>1</threatMultiplier>
+										<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+											<scalers>
+												<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+												<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+												<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+													<ability href="/Mechanics/Spells/WarriorV3/Abilities/FinishersDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+													<mul>0.05</mul>
+												</Item>
+											</scalers>
+										</scaler>
+										<avgDamage var="avgDama_1" />
+										<source>Mainhand</source>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<tick>500</tick>
+				<initialDelay>0</initialDelay>
+			</effect>
+			<ticksCount>6</ticksCount>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

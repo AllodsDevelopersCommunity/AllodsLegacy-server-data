@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>298011708</resourceId>
+	</Header>
+	<name href="L_1_10_Worker1.(Cue).Name.txt" />
+	<text href="L_1_10_Worker1.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="ZC6_L_1_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="ZC6_L_1_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>2</value>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateBinaryWrapper">
+			<master type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<slave type="gameMechanics.elements.addresseeFinders.AddresseeFinderInterlocutor" />
+			<binary type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<buff href="/Characters/HumMobs/Instances/IllusionWorld/ZC6_Grd_NotTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</binary>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Characters/HumMobs/Instances/IllusionWorld/ZC6_Grd_NotTalk.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

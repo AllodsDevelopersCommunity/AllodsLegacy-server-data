@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>306717727</resourceId>
+	</Header>
+	<name href="Summon_Mob_1.(Cue).Name.txt" />
+	<text href="Summon_Mob_1.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/RealWorld/ZC9_1_90/ZC9_1_90.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Active</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/RealWorld/ZC9_1_90/ZC9_1_90.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/RealWorld/ZC9_1_90/Count_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateInZone">
+			<zone href="/Maps/RealWorld/Zones/RealWorld/WhiteRoom.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/RealWorld/ScriptZones/WhiteRoom_Inst.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationSamePosAnotherMap">
+								<map href="/Maps/RealWorld/WhiteRoom_MapResource.(MapResource).xdb#xpointer(/mapLoader.MapResource)" />
+							</destination>
+							<finishImpacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+									<object href="/Creatures/Eagle/Instances/WhiteRoom/IllusionApe.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<level type="gameMechanics.elements.calcers.CalcerLevel" />
+								</Item>
+							</finishImpacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+					<object href="/Creatures/Eagle/Instances/WhiteRoom/IllusionApe.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<level type="gameMechanics.elements.calcers.CalcerLevel" />
+				</Item>
+			</impactsElse>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1500</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

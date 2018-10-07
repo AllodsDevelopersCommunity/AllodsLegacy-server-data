@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>340202506</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<image href="" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+							<selector type="gameMechanics.elements.calcers.RangeSelectorResource">
+								<range min="0" max="60" />
+								<withinRange>true</withinRange>
+								<minCandidatesCount>0</minCandidatesCount>
+								<targetCount>0</targetCount>
+							</selector>
+							<impacts>
+								<Item>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsIf">
+											<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateAnd">
+												<hideText>false</hideText>
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+														<hideText>false</hideText>
+														<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+															<hideText>false</hideText>
+															<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>true</anyRank>
+														</predicate>
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+														<hideText>false</hideText>
+														<onSlave type="gameMechanics.constructor.basicElements.PredicateNot">
+															<hideText>false</hideText>
+															<predicate type="gameMechanics.elements.resources.ResourceBuff">
+																<hideText>false</hideText>
+																<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																<anyRank>true</anyRank>
+																<consumeStacks>0</consumeStacks>
+															</predicate>
+														</onSlave>
+													</Item>
+												</predicates>
+											</predicate>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<allowOverrideCaster>false</allowOverrideCaster>
+													<durationScaler type="gameMechanics.elements.scalers.RandomScaler">
+														<range>
+															<min>3000</min>
+															<max>12000</max>
+														</range>
+													</durationScaler>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<tick>1000</tick>
+					<initialDelay>500</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

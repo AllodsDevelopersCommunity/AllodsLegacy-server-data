@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>289494033</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="/Mechanics/Spells/Inst_DeadCity/Draconid_Mage/FireBall/Spell_Name.txt" />
+		<contextImage href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="BG_CannonDevice_Action01.txt" />
+	<Description href="BG_CannonDevice_Action01.Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Domination/CanonFire.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="/Mechanics/Spells/Inst_DeadCity/Draconid_Mage/FireBall/Spell_Name.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>200</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTPoint</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.DirectDamage">
+				<damage>1</damage>
+				<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+						<multiplier>0.2</multiplier>
+					</mulCalcer>
+				</scalerTarget>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<Item type="gameMechanics.elements.predicates.PredicateMounted" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>30</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

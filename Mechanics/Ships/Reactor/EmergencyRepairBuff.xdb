@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>269395968</resourceId>
+		<Variables>
+			<decreasePercent>0.16</decreasePercent>
+		</Variables>
+	</Header>
+	<Name href="EmergencyRepairBuff.txt" />
+	<Description href="EmergencyRepairBuff.Description.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/RepairCorps.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+					<limitModCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+					<valueModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.HealthBaseCalcer" />
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>0.05</value>
+							</Item>
+						</calcers>
+					</valueModCalcer>
+					<recalcProportionally>true</recalcProportionally>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateGreater">
+							<lhs type="gameMechanics.elements.calcers.CalcerFloor">
+								<source type="gameMechanics.elements.calcers.HealthBaseCalcer" />
+							</lhs>
+							<rhs type="gameMechanics.elements.calcers.HealthCalcer" />
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="EmergencyRepairBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectAllDevices">
+			<effects>
+				<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+					<reason>TR_NotRepaired</reason>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.world.ship.elements.ImpactSetSpeed">
+					<speedMod>0</speedMod>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactRudderTurn">
+					<omegaMod>0</omegaMod>
+					<movementModeFactor>1</movementModeFactor>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactCoolReactor" />
+				<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+					<limitModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value var="decreasePercent" />
+							</Item>
+						</calcers>
+					</limitModCalcer>
+					<valueModCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+					<recalcProportionally>false</recalcProportionally>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.world.ship.elements.ImpactCoolReactor" />
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

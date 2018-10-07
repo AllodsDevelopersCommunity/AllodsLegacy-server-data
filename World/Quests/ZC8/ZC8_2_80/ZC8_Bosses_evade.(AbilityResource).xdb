@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>314397744</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<conditions>
+						<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onSlave type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/HumMobs/ZC8/Tekuani/ZC8_EvilTekuani.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Creatures/TreantGreen/Instances/ZC8/ZC8_TreantBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</onSlave>
+						</Item>
+					</conditions>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAllAggro" />
+					</impacts>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+					<selector type="gameMechanics.elements.calcers.RangeSelectorResource">
+						<range min="0" max="1" />
+						<withinRange>false</withinRange>
+						<minCandidatesCount>0</minCandidatesCount>
+						<targetCount>0</targetCount>
+					</selector>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<impacts>
+						<Item>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Characters/HumMobs/ZC8/Tekuani/ZC8_EvilTekuani.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+															<quest href="ZC8_2_80.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<status>Started</status>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+															<quest href="ZC8_2_80.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<counterResource href="/Creatures/TreantGreen/Instances/ZC8/ZC8_TreantBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+															<value>1</value>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="CounId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/TreantGreen/Instances/ZC8/ZC8_TreantBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+															<quest href="ZC8_2_80.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<status>Started</status>
+														</Item>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+															<quest href="ZC8_2_80.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<counterResource href="/Characters/HumMobs/ZC8/Tekuani/ZC8_EvilTekuani.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+															<value>1</value>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="CounId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<skipSelfKill>true</skipSelfKill>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

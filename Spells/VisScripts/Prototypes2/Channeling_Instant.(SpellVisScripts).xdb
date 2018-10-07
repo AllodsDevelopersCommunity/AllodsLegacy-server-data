@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Prototype href="Instant_OnTarget.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<FxChannel />
+			<FadeInTimeChannel>0</FadeInTimeChannel>
+			<FadeOutTimeChannel>0</FadeOutTimeChannel>
+			<RayVelocity>0</RayVelocity>
+		</Variables>
+	</Header>
+	<Description href="Channeling_Instant.txt" />
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item skiped="" />
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionDelay">
+								<time var="DelayCasterFX" />
+							</Item>
+							<Item type="VisActionList">
+								<visActionID />
+								<play>Simultaneously</play>
+								<playWhile type="VisActionDelay">
+									<visActionID />
+									<time>3000</time>
+								</playWhile>
+								<elements>
+									<Item type="CreatureChannelDirectAction">
+										<visActionID />
+										<channelingFx hrefvar="FxChannel" />
+										<startPoint type="VisPointLocator">
+											<shift x="0" y="0" z="0" />
+											<locator var="LocatorOnCaster" />
+											<member>Default_Member</member>
+											<locatorName var="LocatorNameOnCaster" />
+											<from>FROM_DEFALUT</from>
+										</startPoint>
+										<endPoint type="VisPointLocator">
+											<shift x="0" y="0" z="0" />
+											<locator var="LocatorOnTarget" />
+											<member>Default_Member</member>
+											<locatorName var="LocatorNameOnTarget" />
+											<from>FROM_DEFALUT</from>
+										</endPoint>
+										<fadeInTime var="FadeInTimeChannel" />
+										<fadeOutTime var="FadeOutTimeChannel" />
+										<velocity var="RayVelocity" />
+										<offendTime />
+									</Item>
+								</elements>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

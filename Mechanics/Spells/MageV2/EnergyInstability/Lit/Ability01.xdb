@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>264585258</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<description href="Ability_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/ControlLightning.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+			<mark href="/Mechanics/Spells/Marks/MageInstability.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+			<impacts>
+				<impact type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasAbility">
+								<ability href="/Mechanics/Spells/MageV2/Abilities/InstabilityAlliances/FireIce/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+							<impact type="gameMechanics.elements.impacts.ImpactVariableSummand">
+								<variable href="EIVar.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							</impact>
+							<count type="gameMechanics.constructor.basicElements.ScalerCalcer">
+								<scaler type="gameMechanics.elements.scalers.RandomScaler">
+									<range>
+										<min>1</min>
+										<max>3</max>
+									</range>
+								</scaler>
+								<value>1</value>
+							</count>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateVariableLessThan">
+									<resource href="EIVar.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+									<value>5</value>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+									<chanceCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+										<ability href="/Mechanics/Spells/MageV2/Abilities/InstabilityAlliances/LitFire/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										<mul>0.25</mul>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+											<variable href="EIVar.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateVariableLessThan">
+									<resource href="EIVar.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+									<value>5</value>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+									<chanceCalcer type="gameMechanics.elements.calcers.AbilityRankCalcer">
+										<ability href="/Mechanics/Spells/MageV2/Abilities/InstabilityAlliances/IceLit/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										<mul>0.25</mul>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+											<variable href="EIVar.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</impact>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableReset">
+					<variable href="EIVar.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<majorEffect>0</majorEffect>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

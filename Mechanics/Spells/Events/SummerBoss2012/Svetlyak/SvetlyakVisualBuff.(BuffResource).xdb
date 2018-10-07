@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>330688514</resourceId>
+	</Header>
+	<Name href="SvetlyakVisualBuff.(BuffResource)_Name.txt" />
+	<Description href="SvetlyakVisualBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/MountBattleStationMilitary.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/Events/SummerBoss2012/SummerBossEgidaVisual.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="SvetlyakVisualBuff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="SvetlyakVisualBuff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/SummerBoss/Zones/SummerBoss/SummerBoss.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="SvetlyakBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="SvetlyakVisualBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="SvetlyakHasteBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>2000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+					<spell href="/Mechanics/Spells/Bard/Elegy/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+					<spell href="/Mechanics/Spells/Bard/ElegyUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>3599999</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBossBuffs.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

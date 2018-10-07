@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739815741</resourceId>
+	</Header>
+	<Name href="EnragerMerc.(SpellSingleTarget).Name.txt" />
+	<Description href="EnragerMerc.(SpellSingleTarget).Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>500</prepareDuration>
+	<isAggro>false</isAggro>
+	<mechanics>
+		<targetConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.constructor.basicElements.BinaryPredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasBuffRangeFromMaster">
+						<buff href="MercUpgrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>1</min>
+							<max>2</max>
+						</range>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+						<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onSlave type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="MercUpgrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</onSlave>
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="CanUpgradeMerc.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<consumeStacks>1</consumeStacks>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="MercUpgrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

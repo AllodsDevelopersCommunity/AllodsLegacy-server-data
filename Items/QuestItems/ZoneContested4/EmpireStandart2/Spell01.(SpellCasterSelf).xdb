@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>179164164</resourceId>
+	</Header>
+	<Name href="SpellName.txt" />
+	<Description href="SpellDesc.txt" />
+	<image href="/Interface/Icons/Misc/Junk/PvPDivineFavor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>2000</prepareDuration>
+	<needLos>true</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ZoneContested4/Zones/ZoneContested4/ZoneContested4.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ZoneContested4/ScriptZones/4_2_2.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ZoneContested4/E4_2_2/E4_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Started</status>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateDeviceNear">
+									<radius>25</radius>
+									<devices>
+										<Item href="/Items/InteractiveObjects/ZoneContested4/Empire_Standart/Empire_Standart.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+										<Item href="/Items/InteractiveObjects/ZoneContested4/League_Standart/League_Standart.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+									</devices>
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationModified">
+							<destination type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>true</faceSourcePos>
+								<coord x="0" y="0" z="0" />
+							</destination>
+							<modifiers>
+								<Item type="gameMechanics.map.destination.modifier.ModifierSelectReachable">
+									<alternatives>
+										<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="2" />
+										</Item>
+									</alternatives>
+									<safetyRadius>2</safetyRadius>
+								</Item>
+							</modifiers>
+						</destination>
+						<impacts />
+						<plane href="" />
+						<traceDown>false</traceDown>
+						<object href="/Items/InteractiveObjects/ZoneContested4/Empire_Standart/Empire_Standart.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+						<deviceImpacts>
+							<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+								<delay>180000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</deviceImpacts>
+						<pool href="" />
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ZoneContested4/E4_2_2/BannerDefence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+						<durationScalerTarget />
+						<durationScaler />
+						<scalerTarget />
+						<stacks />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneContested4/E4_2_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>1</value>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<sendAsMessage>false</sendAsMessage>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

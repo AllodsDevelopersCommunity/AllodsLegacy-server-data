@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>166811713</resourceId>
+	</Header>
+	<Name href="TimeKick_Name.txt" />
+	<Description href="TimeKick_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicTimeLapse.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+					<time>2000</time>
+					<impactsOnLand>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+											<zone href="FirstTimeBarrier.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+											<zone href="SecondTimeBarrier.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.DirectDamage">
+									<damage>80000</damage>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="TimeKick2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+									<stacks />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsOnLand>
+					<destination type="gameMechanics.map.destination.DestinationModified">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<coord x="0" />
+						</destination>
+						<modifiers>
+							<Item type="gameMechanics.map.destination.modifier.ModifierAbsolutePolar">
+								<radius type="gameMechanics.elements.calcers.FloatData">
+									<value>-25</value>
+								</radius>
+								<angle type="constructor.basicElements.AngleRadians">
+									<value>1.5</value>
+								</angle>
+							</Item>
+						</modifiers>
+					</destination>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups />
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

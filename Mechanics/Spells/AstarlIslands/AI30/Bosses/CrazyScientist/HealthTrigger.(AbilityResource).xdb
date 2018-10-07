@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>270704662</resourceId>
+	</Header>
+	<description href="HealthTrigger.(AbilityResource)_Desc.txt" />
+	<descTemplate href="HealthTrigger.(AbilityResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.5</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactDetachDetachables" />
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Pause.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Fear.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>9000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSetHealthToFull" />
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Characters/Undead_male/Instances/AstralIsle30/CrazyMutant.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="AI30_MutantVisScript.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="Message.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					<defaultSpeaker href="/Characters/Undead_male/Instances/AstralIsle30/CrazyScientist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="WarningScientist.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectGroup>Friends</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCallForHelp">
+					<radius>85</radius>
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

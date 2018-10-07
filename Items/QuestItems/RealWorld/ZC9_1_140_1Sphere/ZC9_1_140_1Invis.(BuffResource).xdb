@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>343871546</resourceId>
+	</Header>
+	<Name href="ZC9_1_140_1Invis.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Special/Alchemy/Invisibility.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/CommonBuffs/Invisibility/Invisibility.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Planes/Invisibility.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellLaunchedTrigger">
+			<spellStages>
+				<Item>Start</Item>
+				<Item>Launch</Item>
+			</spellStages>
+			<impactsAnySpell>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC9_1_140_1Invis.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsAnySpell>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventExploitStarted</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC9_1_140_1Invis.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC9_1_140_1Invis.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectUnworthyOfAttention" />
+		<Item type="gameMechanics.elements.effects.EffectZoneEnterLeaveChecker">
+			<impactsOnLeave>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC9_1_140_1Invis.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOnLeave>
+			<activeZone href="/Maps/RealWorld/Zones/RealWorld/RealWorld.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

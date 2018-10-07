@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>185235568</resourceId>
+	</Header>
+	<Name href="K_16_Item_01_Spell.txt" />
+	<Description href="K_16_Item_01_Spell.Description.txt" />
+	<useVisScipt type="UseVisScipt" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="K_16_Item_01_Spell.txt" />
+	<descTemplate href="K_16_Item_01_Spell.Description.txt" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+				<radius>30</radius>
+				<mobs>
+					<Item href="/Creatures/DemonMage/Instances/ArchipelagoContested6/DemonMageMiniboss45_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="K_16_Item_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="K_16_Item_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativePos" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpactGeneric">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff href="K_16_Item_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+						<buff href="K_16_Item_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<object href="/Items/InteractiveObjects/ArchipelagoContested6/K_16_Stelle/K_16_Stelle.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

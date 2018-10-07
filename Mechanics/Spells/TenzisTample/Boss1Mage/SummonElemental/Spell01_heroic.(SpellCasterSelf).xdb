@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>125923380</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/IceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Equipment/Ranged/WandElectrosnake.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>COLD</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>50000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBaseMana">
+				<baseMana>0.1</baseMana>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+						<faceSourcePos>true</faceSourcePos>
+						<coord x="0" y="0" z="0" />
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="10" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+				</impacts>
+				<plane href="" />
+				<pool href="" />
+				<traceDown>false</traceDown>
+				<level type="gameMechanics.elements.calcers.CalcerLevel" />
+				<object href="/Creatures/WaterElemental/Instances/TenzisTemple_Heroic/Instances/Inst_TenzisTemple/TZ_WaterElementalSummon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="Ask_Elemental.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Characters/Hadagan_male/Instances/InstTenzisTemple/Instances/Inst_TenzisTemple/TZ_Boss1Mage33_33.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

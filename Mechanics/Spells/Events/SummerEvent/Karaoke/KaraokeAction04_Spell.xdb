@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>258528290</resourceId>
+	</Header>
+	<Name href="KaraokeAction04_Spell_Name.txt" />
+	<Description href="KaraokeAction04_Spell_Desc.txt" />
+	<image href="/Interface/Ingame/ContextCharacter2/ResistanceNature.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3500</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Tropical_Atoll/ScriptZones/Karaoke.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+					<buff href="SongNumber_Buff_ForOfflineDecay.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<range>
+						<min>5</min>
+						<max>5</max>
+					</range>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Karaoke04_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.constructor.basicElements.ImpactList">
+								<impactsResource href="ActionSuccess04.xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="Chat/SongPart04_Fail.xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impactsElse>
+					</Item>
+				</impacts>
+				<mob>
+					<scriptID>KaraokeFolk</scriptID>
+					<map href="/Maps/Tropical_Atoll/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

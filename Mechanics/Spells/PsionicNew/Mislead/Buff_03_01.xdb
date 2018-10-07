@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>311481355</resourceId>
+	</Header>
+	<Name href="Buff_03__Name.txt" />
+	<Description href="Buff_03__Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicDominate.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_03__Name.txt.template" />
+	<descTemplate href="Buff_03__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/Mechanics/Planes/TwinPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Select</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/Mechanics/Planes/TwinPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/Mechanics/Planes/TwinPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactCopyAggro">
+					<casterToParameter>true</casterToParameter>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="/Mechanics/Planes/MisleadPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectIsolator">
+			<effect type="gameMechanics.elements.effects.AddParticularVisibilityRule">
+				<visibilityRule>
+					<channel>Visibility</channel>
+					<vector>Outgoing</vector>
+					<direction>Self</direction>
+					<plane href="/Mechanics/Planes/MisleadPlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+					<action>DENY</action>
+				</visibilityRule>
+			</effect>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</predicates>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.EffectAggroSubstitute" />
+			</effectsElse>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/PsionicContactEffects.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

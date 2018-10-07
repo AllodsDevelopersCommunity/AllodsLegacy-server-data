@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.SteleResource>
+	<Header>
+		<resourceId>129717252</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Items/CraftingObjects/Foraging/Foraging.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+		<Variables>
+			<point_level>0</point_level>
+			<plane_var>DevicePlane.xdb#xpointer(/gameMechanics.world.visibility.Plane)</plane_var>
+			<visobj_var>/Spells/FX/World/ResursMarker.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visobj_var>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="ForagingVisualizerComponent">
+			<states>
+				<Item>
+					<probability>1</probability>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Spells/FX/World/ResursMarker.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					</script>
+				</Item>
+				<Item>
+					<probability>0.15</probability>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Spells/FX/World/ResursMarker.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					</script>
+				</Item>
+				<Item>
+					<probability>-1</probability>
+					<script type="DeviceVisActionChangeModel">
+						<visObj href="/Spells/FX/World/ResursMarker.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					</script>
+				</Item>
+			</states>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.elements.skills.foraging.ForagingLabelResource">
+			<lootTable hrefvar="loot_table_v2" />
+			<pointLevel var="point_level" />
+			<forageChance var="forage_chance" />
+			<autoForageable var="autoForageable" />
+			<skills>
+				<Item href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+				<Item href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+			</skills>
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.StaticEntityAura">
+					<shape type="space.scaner.resources.Sphere" />
+					<radius>5</radius>
+					<impactsIn>
+						<Item type="gameMechanics.elements.skills.foraging.ImpactIfCanForage">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="VisibilityFilterBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<resource href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.skills.foraging.ImpactIfCanForage">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="VisibilityFilterBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<resource href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+						</Item>
+					</impactsIn>
+					<impactsOut>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="VisibilityFilterBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOut>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+</gameMechanics.world.device.SteleResource>

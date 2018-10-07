@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>279276548</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<description href="Ability_Desc.txt" />
+	<descVars />
+	<image href="/Interface/Icons/Spells/Bard/QuickSong.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+			<mark href="/Mechanics/Spells/Marks/BardSongChanged.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+			<impacts>
+				<impact type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>0</min>
+										<max>1</max>
+									</range>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Bard/QuickSong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>true</anyRank>
+											<consumeStacks>0</consumeStacks>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<min>0</min>
+												<max>2</max>
+											</range>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impactsElse>
+				</impact>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+			<mark href="/Mechanics/Spells/Marks/BardSongStart.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+			<impacts>
+				<impact type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</delta>
+					<attachIfNotExist>true</attachIfNotExist>
+					<resetTimer>false</resetTimer>
+				</impact>
+				<impact type="gameMechanics.elements.impacts.MarkedImpact">
+					<mark href="/Mechanics/Spells/Marks/BardSongChanged.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+				</impact>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+			<mark href="/Mechanics/Spells/Marks/BardSongEnd.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+			<impacts>
+				<impact type="gameMechanics.constructor.schemes.buff.StackBuff">
+					<buff href="SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>-1</value>
+					</delta>
+					<attachIfNotExist>false</attachIfNotExist>
+					<resetTimer>false</resetTimer>
+				</impact>
+				<impact type="gameMechanics.elements.impacts.MarkedImpact">
+					<mark href="/Mechanics/Spells/Marks/BardSongChanged.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+				</impact>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.MarkedImpact">
+					<mark href="/Mechanics/Spells/Marks/BardSongChanged.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+				</Item>
+			</impactsOn>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+					<effect type="gameMechanics.elements.effects.EffectModifyManaRegen">
+						<manaType>Energy</manaType>
+						<summand>10</summand>
+						<multiplier type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AbilityRankCalcer">
+									<ability href="/Mechanics/Spells/Bard/Abilities/CheapSongs/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<mul>1</mul>
+									<sum>-5</sum>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>0.1</value>
+								</Item>
+							</calcers>
+						</multiplier>
+						<priority>1</priority>
+					</effect>
+					<stackCountTrigger>2</stackCountTrigger>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+								<consumeStacks>0</consumeStacks>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>15</multiplier>
+							</durationScaler>
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

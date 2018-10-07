@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>333697259</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>101</priority>
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MercControl.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Retreat.(SpellArea)_Name.txt" />
+	<Description href="Retreat.(SpellArea)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerFear.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Retreat.(SpellArea)_Name.txt.template" />
+	<descTemplate href="Retreat.(SpellArea)_Desc.txt.template" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Friends</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+							<buff href="MegawarPet.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<radius>0</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

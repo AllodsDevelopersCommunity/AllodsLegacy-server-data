@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>331785265</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<kickText href="KickText.txt" />
+	<plotline />
+	<canCancel>true</canCancel>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital_MainSquare.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="13833.197266" y="6716.250977" z="-11.280600" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Kania_female/Instances/ZoneLeague1/K_T_P_Disassemble.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Items/CraftingObjects/LeatheringV2/Components/LeatherBoxTraining.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>20</totalCount>
+				</Item>
+			</predicates>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+					<item href="/Items/CraftingObjects/LeatheringV2/Components/LeatherBoxTraining.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<count>99</count>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+							<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+								<item href="/Items/CraftingObjects/LeatheringV2/Components/LeatherBoxTraining.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</item>
+							<count>20</count>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsElse>
+		</Item>
+	</startImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneLeague1/Profession_Disassemble_LW_Trainer_Start_CraftV2/Profession_Disassemble_LW_Trainer_Start_CraftV2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasSkill">
+			<skill href="/Mechanics/Skills/LeatheringV2/Leathering.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<locations>
+				<Item>
+					<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital_MainSquare.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="13833.197266" y="6716.250977" z="-11.280600" />
+				</Item>
+			</locations>
+			<relatedItems>
+				<Item href="/Items/CraftingObjects/LeatheringV2/Components/LeatherBoxTraining.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<Item href="/Items/CraftingObjects/LeatheringV2/Tools/Pincers.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>20</limit>
+			<items>
+				<Item href="/Items/CraftingObjects/LeatheringV2/Components/Training.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+		</Item>
+	</counters>
+	<reward>
+		<experience>2</experience>
+		<money>34</money>
+		<reputations>
+			<Item>
+				<faction href="/World/Factions/Profession/LeagueCrafters.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<value>250</value>
+			</Item>
+		</reputations>
+		<mandatoryItems>
+			<Item>
+				<item href="/Items/CraftingObjects/LeatheringV2/Components/tow01.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>20</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>true</tutorial>
+	<internalName>Profession_Disassemble_Trainer</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>5</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

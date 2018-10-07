@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>99174404</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="SphereFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectSpeedSetter">
+			<speed>0.0065</speed>
+			<isExternal>true</isExternal>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByRoute">
+			<route hrefvar="route" />
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnArrive>
+			<impactsOnCancel>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnCancel>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells" />
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+					<predicate type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsToPet">
+			<effects>
+				<Item type="gameMechanics.elements.effects.AddPlane">
+					<plane href="PetTravelPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

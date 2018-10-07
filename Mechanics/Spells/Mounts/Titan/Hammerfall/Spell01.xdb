@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>309765162</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100500</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/TheImpactHammer.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DisabledOnRemort.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/TheImpactHammer.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/BattleMountTurret_Hammerfall.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>2000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsMountFed">
+				<hideText>false</hideText>
+				<mount href="/Mechanics/Mounts/5thGrade/Mounts/BattleMount.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMounted">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/Mounts/Titan/Energize/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>1</consumeStacks>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.PartiallyScaledPhysicalDamage">
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scalerTarget type="gameMechanics.elements.scalers.ScalerIf">
+					<condition type="gameMechanics.elements.predicates.PredicateIsAvatar">
+						<hideText>false</hideText>
+					</condition>
+					<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>2</multiplier>
+					</scalerIf>
+					<scalerElse type="gameMechanics.elements.scalers.TrivialScaler" />
+				</scalerTarget>
+				<statsConvertor>
+					<dexterity type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Lethality</stat>
+					</dexterity>
+					<might type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>19.7642</value>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+								<level>1</level>
+								<exponent>1.0677</exponent>
+								<multiplier>0</multiplier>
+							</Item>
+						</calcers>
+					</might>
+				</statsConvertor>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>0.15</mul>
+					<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.CalcerSum">
+								<summands>
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>1.3</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>0.03</value>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.MountLevelCalcer">
+												<mount href="/Mechanics/Mounts/5thGrade/Mounts/BattleMount.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+											</Item>
+										</calcers>
+									</Item>
+								</summands>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.MobBaseHealthCalcer" />
+							<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+								<level>55</level>
+								<exponent>0.917</exponent>
+								<multiplier>0</multiplier>
+							</Item>
+						</calcers>
+					</mulCalcer>
+					<sum>0</sum>
+				</scaler>
+				<minDamage>1</minDamage>
+				<maxDamage>1</maxDamage>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

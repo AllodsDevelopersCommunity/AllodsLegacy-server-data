@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>283846662</resourceId>
+		<Prototype href="/Mechanics/ObjectTemplates/Allod.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+		<Variables>
+			<visObj>/World/Astral/Astral_Materics/Models/Astral_Archipelag_04.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObj>
+			<map>/Maps/AstralHangarLeague/Outpost_MapResource.xdb#xpointer(/mapLoader.MapResource)</map>
+			<radius>200</radius>
+			<description>KaniaOutpostDesc.txt</description>
+			<name>KaniaOutpostName.txt</name>
+			<scale>1</scale>
+			<image>/Interface/Ingame/ContextAstralMap/AstralHubMark/AstralTrade_Kania.(UISingleTexture).xdb#xpointer(/UISingleTexture)</image>
+		</Variables>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectSolidCollision">
+					<radius>150</radius>
+					<offset>10</offset>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<impactsIn>
+				<Item type="gameMechanics.world.ship.elements.ImpactSaveShipPosition">
+					<savedPosShift>300</savedPosShift>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+					<destination href="/Maps/AstralOutpostKania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<success />
+					<copyMapIds>true</copyMapIds>
+				</Item>
+			</impactsIn>
+			<inPredicates>
+				<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+					<onSlave type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</onSlave>
+				</Item>
+			</inPredicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHubMapCircle">
+			<radius>200</radius>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

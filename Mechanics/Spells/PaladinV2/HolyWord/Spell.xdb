@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>220650680</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MagicAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic7.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinPrayer.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/CrusaderWord.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>HOLY</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/PaladinV2/Canons/CanonOfLight/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>1</consumeStacks>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="/Mechanics/Spells/PaladinV2/HolyWordUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="durati_1" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius var="radius" />
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>true</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+						<element>HOLY</element>
+						<threatMultiplier>1</threatMultiplier>
+						<statsConvertor>
+							<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Dexterity</stat>
+							</intuition>
+							<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Might</stat>
+							</spirit>
+						</statsConvertor>
+						<minDamage var="minDamage" />
+						<maxDamage var="maxDamage" />
+						<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+							<scalers>
+								<Item type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+								<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+									<ability href="/Mechanics/Abilities/PaladinTalentsV2/ExtraDamageHoly/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<mul>0.09</mul>
+								</Item>
+							</scalers>
+						</scaler>
+					</Item>
+				</impacts>
+				<targetsLimit>0</targetsLimit>
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+					<hideText>false</hideText>
+					<buff href="/Mechanics/Spells/PaladinV2/Exorcism/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</predicate>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius var="radi_1" />
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>true</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+										<hideText>false</hideText>
+										<spell href="/Mechanics/Spells/PaladinV2/Exorcism/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/PaladinV2/Exorcism/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+												<hideText>false</hideText>
+												<spell href="/Mechanics/Spells/PaladinV2/Exorcism/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/PaladinV2/Exorcism/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</impacts>
+										<elseImpacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/PaladinV2/Exorcism/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<allowOverrideCaster>false</allowOverrideCaster>
+											</Item>
+										</elseImpacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</impacts>
+						<targetsLimit>0</targetsLimit>
+						<onBehalfOfHolder>false</onBehalfOfHolder>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

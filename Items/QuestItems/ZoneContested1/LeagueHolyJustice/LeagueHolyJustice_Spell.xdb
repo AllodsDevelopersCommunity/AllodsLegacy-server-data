@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>143950942</resourceId>
+	</Header>
+	<Name href="AmuletSpell.txt" />
+	<Description href="AmuletSpellDesc.txt" />
+	<image href="" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>HOLY</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType">
+			<repelType>IGNORE</repelType>
+		</Item>
+	</modifiers>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/2ndCircle/Zones/ZoneContested1/ZoneContested1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+					<minLevel type="gameMechanics.formulas.IntConstantValue">
+						<value>29</value>
+					</minLevel>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/2ndCircle/Zones/ZoneContested1/ZoneContested1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>30</value>
+				</minLevel>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicatePvpFlag">
+				<isOn>true</isOn>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateAffectGroup">
+				<affectGroup>Enemies</affectGroup>
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="FX.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.DirectDamage">
+					<damage>900000</damage>
+					<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>18</value>
+				</count>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

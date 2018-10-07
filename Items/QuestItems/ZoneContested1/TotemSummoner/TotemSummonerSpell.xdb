@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>1338769432</resourceId>
+	</Header>
+	<Name href="StunItemSpell.txt" />
+	<Description href="StunItemSpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>10000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/2ndCircle/ScriptZones/PowerPlace03.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneContested1/LeagueQuest3_2/LeagueQuest3_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneContested1/LeagueQuest3_2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="TotemSummoner.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>Ban01</scriptID>
+						<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+				<object href="/Creatures/Banshee/Instances/ZoneContested1/Banshee22_23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Items/InteractiveObjects/ZoneContested1/BansheRage/RageBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget />
+						<durationScaler />
+						<durationScalerTarget />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>BanGo</scriptID>
+								<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<runningMode>true</runningMode>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+						<msg href="/World/Quests/ZoneContested1/LeagueQuest3_2/BanWhisp.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>Ban02</scriptID>
+						<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+				</destination>
+				<object href="/Creatures/Banshee/Instances/ZoneContested1/Banshee22_23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Items/InteractiveObjects/ZoneContested1/BansheRage/RageBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget />
+						<durationScaler />
+						<durationScalerTarget />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>BanGo</scriptID>
+								<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<runningMode>true</runningMode>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+						<msg href="/World/Quests/ZoneContested1/LeagueQuest3_2/BanWhisp.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					</Item>
+				</impacts>
+				<plane href="" />
+				<pool href="" />
+				<traceDown>false</traceDown>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>Ban03</scriptID>
+						<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+					<yaw type="constructor.basicElements.AngleRadians">
+						<value>0</value>
+					</yaw>
+				</destination>
+				<object href="/Creatures/Banshee/Instances/ZoneContested1/Banshee22_23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Items/InteractiveObjects/ZoneContested1/BansheRage/RageBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget />
+						<durationScaler />
+						<durationScalerTarget />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>BanGo</scriptID>
+								<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<runningMode>true</runningMode>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>30000</delay>
+						<limit>1</limit>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+						<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+						<msg href="/World/Quests/ZoneContested1/LeagueQuest3_2/BanWhisp.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					</Item>
+				</impacts>
+				<plane href="" />
+				<pool href="" />
+				<traceDown>false</traceDown>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+	<iffPolicy>Friends</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

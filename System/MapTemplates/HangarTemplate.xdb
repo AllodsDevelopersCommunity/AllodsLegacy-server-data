@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>85941251</resourceId>
+	</Header>
+	<hasPatches>true</hasPatches>
+	<headParts>
+		<parts>
+			<Item type="gameMechanics.world.bigAstral.hangar.ShipEnterPart">
+				<enterSettings href="/System/Defaults/ShipEnterSettings.xdb#xpointer(/gameMechanics.world.bigAstral.hangar.ShipEnterSettings)" />
+			</Item>
+			<Item type="mapLoader.parts.PlayerCountResource" />
+			<Item type="mapLoader.parts.MapDestroyerResource" />
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffectsGeneric">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.EffectMarkedImpactsGeneric">
+								<mark href="/Mechanics/Ships/Hangar/ExitHangar.(MarkResource).xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								<impacts>
+									<Item type="gameMechanics.world.ship.elements.ImpactGoByTourFromPart">
+										<bunchPartClass>gameMechanics.world.bigAstral.ExitTourPart</bunchPartClass>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactOnShipCreatures">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactTeleportGeneric">
+												<destination type="gameMechanics.map.destination.DestinationSailingPort" />
+											</Item>
+										</impacts>
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+											</Item>
+										</predicates>
+									</Item>
+								</impacts>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.world.ship.elements.Effects.EffectSummonShipSpells">
+								<summonShipSpell href="/Mechanics/GameRoot/Astral/SummonShipSpell.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+								<unsummonShipSpell href="/Mechanics/GameRoot/Astral/UnsummonShipSpell.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							</Item>
+							<Item type="gameMechanics.elements.effects.EffectMarkedImpactsGeneric">
+								<mark href="/Mechanics/Ships/Hangar/Summon.(MarkResource).xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								<impacts>
+									<Item type="gameMechanics.world.ship.elements.ImpactSummonPersistentShip">
+										<destination type="gameMechanics.world.bigAstral.HangarDestination" />
+										<shipIndex type="gameMechanics.elements.calcers.CalcerLongParam">
+											<paramName>shipIndex</paramName>
+										</shipIndex>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+										<data href="/Mechanics/Ships/Hangar/HangarNPC/SummonShip.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</headParts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.mob.MobCellCountResource">
+				<limit>-1</limit>
+			</Item>
+			<Item type="gameMechanics.map.spawn.SummonPoolManager">
+				<globalPool href="/System/GlobalSummonPools/SummonPoolLimitedInstance.xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+			<Item type="gameMechanics.world.bigAstral.hangar.BindTargetPartResource" />
+		</parts>
+	</cellParts>
+	<entrance type="gameMechanics.map.instance.GroupInstanceEntrance" />
+	<isCreateRequired>true</isCreateRequired>
+	<isForDwellersOnly>false</isForDwellersOnly>
+	<isKickRequired>true</isKickRequired>
+	<prohibitWorldDrop>true</prohibitWorldDrop>
+	<isAutoNavigationOn>false</isAutoNavigationOn>
+</mapLoader.MapTemplate>

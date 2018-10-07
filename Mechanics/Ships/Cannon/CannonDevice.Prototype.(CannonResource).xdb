@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>1669464068</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+		<Variables>
+			<health>900</health>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="DeviceRotationPart" />
+		<Item type="RotationAnimationPart">
+			<yawBones>
+				<Item>
+					<bone>Base</bone>
+					<multiplier>1</multiplier>
+				</Item>
+			</yawBones>
+			<pitchBones>
+				<Item>
+					<bone>Gun</bone>
+					<multiplier>1</multiplier>
+				</Item>
+			</pitchBones>
+		</Item>
+		<Item type="DeviceHealthComponent">
+			<states>
+				<Item>
+					<health>1</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObj" />
+						<collision hrefvar="collision" />
+					</script>
+				</Item>
+				<Item>
+					<health>0.5</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjDamaged" />
+						<collision hrefvar="collisionDamaged" />
+					</script>
+				</Item>
+				<Item>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjBroken" />
+						<collision hrefvar="collisionBroken" />
+					</script>
+				</Item>
+			</states>
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_CANNON</type>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.world.device.cannon.ManualRotateFromSlotPartResource" />
+		<Item type="gameMechanics.world.device.DeviceMortalPartResource" />
+		<Item type="gameMechanics.world.HealthResource">
+			<maxHealth var="health" />
+		</Item>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<visObj hrefvar="visObj" />
+	<collision hrefvar="collision" />
+	<collisionObject>false</collisionObject>
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="/Mechanics/Ships/ShipDeviceExploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<viewSight>
+		<isBinding>true</isBinding>
+		<hasCrosshair>true</hasCrosshair>
+		<position x="0" y="-0.4" z="2.4" />
+	</viewSight>
+	<mass>2</mass>
+</gameMechanics.world.device.UsableDeviceResource>

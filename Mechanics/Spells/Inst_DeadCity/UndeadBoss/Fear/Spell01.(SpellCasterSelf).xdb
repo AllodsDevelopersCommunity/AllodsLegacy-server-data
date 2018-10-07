@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>208265221</resourceId>
+	</Header>
+	<Name href="BuffName.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/Meditation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<autoAppendToActionPanel>false</autoAppendToActionPanel>
+	<visualScripts href="/Spells/VisScripts/Creatures/ZombieDCMage/Bone_KnightCaster_Fear.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="BuffName.txt" />
+	<level>10</level>
+	<prepareDuration>1000</prepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Start</stage>
+			<duration>26000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHealthHigher">
+						<level>0.75</level>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+						<level>0.25</level>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Enemies</affectGroup>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.AvatarFilter" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactModifySpellCooldown">
+				<spell href="/Mechanics/Spells/Inst_DeadCity/UndeadBoss/Melee/Spell01.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<factor>0</factor>
+				<sum>4000</sum>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactModifySpellCooldown">
+				<spell href="/Mechanics/Spells/Inst_DeadCity/UndeadBoss/Melee/Spell02.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<factor>0</factor>
+				<sum>4000</sum>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

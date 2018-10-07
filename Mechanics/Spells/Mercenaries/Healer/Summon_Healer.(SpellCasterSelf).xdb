@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>284327970</resourceId>
+	</Header>
+	<Name href="Summon_Healer.(SpellCasterSelf)_Name.txt" />
+	<Description href="Summon_Healer.(SpellCasterSelf)_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Summon.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Summon_Healer.(SpellCasterSelf)_Name.txt.template" />
+	<descTemplate href="Summon_Healer.(SpellCasterSelf)_Desc.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Spells/Mercenaries/InstSpecificBuff/CanSummonMercs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFullGroup" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateAssistantInhabits">
+				<assistant href="/Mechanics/Characters/HumMobs/Mercenaries/Healer/Healer.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+							<assistantResource href="/Mechanics/Characters/HumMobs/Mercenaries/Healer/Healer.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos" />
+							<offset>4</offset>
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1.57</value>
+							</yaw>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<assistantResource href="/Mechanics/Characters/HumMobs/Mercenaries/Healer/Healer.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+						<mobResource href="/Characters/HumMobs/Mercenaries/Healer/Healer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<useTargetLevel>true</useTargetLevel>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.world.avatar.assistants.ImpactDismissAssistant">
+						<assistantResource href="/Mechanics/Characters/HumMobs/Mercenaries/Healer/Healer.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+								<spell href="Summon_Healer.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

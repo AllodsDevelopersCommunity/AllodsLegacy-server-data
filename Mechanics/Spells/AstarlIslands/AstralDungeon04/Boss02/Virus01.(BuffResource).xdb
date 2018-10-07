@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>333466681</resourceId>
+	</Header>
+	<Name href="Virus01.(BuffResource)_Name.txt" />
+	<Description href="Virus01.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerBloodPlague.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/BloodPlague.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Virus01.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Virus01.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.TickableDiseaseAura">
+					<radius>10</radius>
+					<delayIn>2000</delayIn>
+					<filter type="gameMechanics.world.creature.CreatureFilter" />
+					<disease href="Virus01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>10</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>DISEASE</element>
+									<minDamage>35</minDamage>
+									<maxDamage>35</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+							</filter>
+							<targetsLimit>4</targetsLimit>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+					</impactsOff>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>8000</duration>
+	<stackLimit>5</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+	<resistType>SRT_DoT</resistType>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

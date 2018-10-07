@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>196883457</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DruidPetCommand.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DruidAll.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic5.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Druid/DruidPetGetItUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Druid/PCGetIt.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>4000</duration>
+			<group href="/Mechanics/Spells/Groups/DruidPetCommand.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<hideText>false</hideText>
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<hideText>false</hideText>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateDruidPetIsActive">
+								<hideText>false</hideText>
+								<inactiveBuff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateToPet">
+								<hideText>false</hideText>
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceMana">
+										<hideText>false</hideText>
+										<mana>5</mana>
+										<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+										<source>Mainhand</source>
+										<manaType>
+											<Item>Energy</Item>
+										</manaType>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateToPet">
+						<hideText>false</hideText>
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceMana">
+								<hideText>false</hideText>
+								<mana>100</mana>
+								<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+								<source>Mainhand</source>
+								<manaType>
+									<Item>Energy</Item>
+								</manaType>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateHealthHigher">
+								<hideText>false</hideText>
+								<level>0.99</level>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateDruidPetIsActive">
+						<hideText>false</hideText>
+						<inactiveBuff href="/Mechanics/Spells/DruidV2/Pet/InactiveBuff/Buff_PetPlane.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactActivateDruidPet" />
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+				</impacts>
+				<sendAsMessage>false</sendAsMessage>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>10</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactPetStartAttack">
+						<spell hrefvar="spell" />
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactNull">
+				<value var="value" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactNull">
+				<value var="val_1" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

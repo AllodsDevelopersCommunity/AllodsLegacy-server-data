@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>2123038724</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>11</value>
+			<scaler>IntSpell</scaler>
+		</Item>
+		<Item>
+			<name>var1</name>
+			<value>18</value>
+			<scaler>IntSpell</scaler>
+		</Item>
+	</descVars>
+	<image href="/Interface/Icons/Misc/Mobparts/HeartAnimal.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/Pets/Banshee/DrainBlood.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>SHADOW</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>4000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<hideText>false</hideText>
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<hideText>false</hideText>
+						<buff href="/Mechanics/Spells/Necromancer/DarkMight/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<consumeStacks>0</consumeStacks>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+								<radius>-1</radius>
+								<affectPets>true</affectPets>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactHeal">
+										<heal>82.248</heal>
+										<threatMultiplier>1</threatMultiplier>
+										<scaler type="gameMechanics.elements.scalers.MagicScaler">
+											<stat>IS_Intellect</stat>
+										</scaler>
+										<mode>Default</mode>
+										<considerOutgoingModifiers>true</considerOutgoingModifiers>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>SHADOW</element>
+				<threatMultiplier>1</threatMultiplier>
+				<minDamage>5.5</minDamage>
+				<maxDamage>9</maxDamage>
+				<impactsOnHitCaster>
+					<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+								<variable href="/Mechanics/Spells/Necromancer/BloodPool/BloodPool.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+								<summand>2</summand>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsOnHitCaster>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

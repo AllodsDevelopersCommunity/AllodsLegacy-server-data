@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>72819725</resourceId>
+	</Header>
+	<hasPatches>true</hasPatches>
+	<headParts>
+		<parts>
+			<Item type="mapLoader.parts.PlayerCountResource" />
+			<Item type="mapLoader.parts.MapDestroyerResource" />
+			<Item type="gameMechanics.world.avatar.MapCombatStateResource" />
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+								<onEnter>
+									<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+								</onEnter>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+										<groups>
+											<Item href="/Mechanics/Spells/Groups/LooterEnforcer.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+										</groups>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Looters/LooterInformer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+					</Item>
+					<Item type="gameMechanics.elements.effects.BuffInterceptor">
+						<impactsOnAttach>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Looters/LooterInformer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOnAttach>
+						<impactsOnDetach>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Looters/LooterInformer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsOnDetach>
+						<predicates>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+								<groups>
+									<Item href="/Mechanics/Spells/Groups/LooterEnforcer.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</groups>
+							</Item>
+						</predicates>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</headParts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.mob.MobCellCountResource">
+				<limit>10000</limit>
+			</Item>
+			<Item type="gameMechanics.map.spawn.SummonPoolManager">
+				<globalPool href="/System/GlobalSummonPools/SummonPoolRaidInstance.xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+		</parts>
+	</cellParts>
+	<entrance type="gameMechanics.map.instance.RaidInstanceEntrance" />
+	<isExitRequired>true</isExitRequired>
+	<isForDwellersOnly>true</isForDwellersOnly>
+	<isKickRequired>true</isKickRequired>
+	<isMobEvade>false</isMobEvade>
+	<prohibitWorldDrop>true</prohibitWorldDrop>
+	<isAutoNavigationOn>false</isAutoNavigationOn>
+	<maxMobPath>500</maxMobPath>
+</mapLoader.MapTemplate>

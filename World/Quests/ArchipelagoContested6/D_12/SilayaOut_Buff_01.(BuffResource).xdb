@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>187001862</resourceId>
+		<Variables>
+			<self>SilayaOut_Buff_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</self>
+			<route>/Maps/ArchipelagoContested6/GlobalObjects/Routes/Tour_05_D_12_SilayaOut.(Route).xdb#xpointer(/gameMechanics.map.tour.Route)</route>
+		</Variables>
+	</Header>
+	<Name href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Name.txt" />
+	<Description href="/Mechanics/Spells/CommonBuffs/AstralTravel/Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/World/Quests/ArchipelagoContested6/D_11/Demon_Fly_FX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectMoveByRoute">
+			<route hrefvar="route" />
+			<reversed>false</reversed>
+			<impactsOnArrive>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="self" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnArrive>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells">
+			<onlyIfNotMainTarget>false</onlyIfNotMainTarget>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+			<removeExistingBuffs>true</removeExistingBuffs>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactOverrideInterruptPos">
+					<pos type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>AC6_Silaya_out</scriptID>
+							<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</pos>
+				</Item>
+			</impactsOn>
+			<impactsOff />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+			<factor>0</factor>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

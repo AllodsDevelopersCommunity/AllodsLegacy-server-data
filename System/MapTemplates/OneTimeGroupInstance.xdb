@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>241009664</resourceId>
+		<Prototype href="GroupInstanceProto.xdb#xpointer(/mapLoader.MapTemplate)" />
+	</Header>
+	<headParts>
+		<parts>
+			<Item type="mapLoader.parts.MapDestroyerResource">
+				<instanceLifeTime>0</instanceLifeTime>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+							<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>40</value>
+											</minLevel>
+										</predicate>
+									</Item>
+								</predicates>
+								<effectsIf>
+									<Item type="gameMechanics.elements.effects.SummandInnateStat">
+										<value>-12.5</value>
+										<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+											<scalers>
+												<Item type="gameMechanics.elements.scalers.StatScaler">
+													<stat type="gameMechanics.elements.stat.InnateStat">
+														<stat>IS_Strength</stat>
+													</stat>
+												</Item>
+												<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mul>-0.078</mul>
+													<mulCalcer type="gameMechanics.constructor.basicElements.ScalerCalcer">
+														<scaler type="gameMechanics.elements.scalers.StatScaler">
+															<stat type="gameMechanics.constructor.stat.DefaultStat" />
+														</scaler>
+														<value>1</value>
+													</mulCalcer>
+													<sum>1</sum>
+												</Item>
+											</scalers>
+										</scaler>
+										<stat>IS_Strength</stat>
+									</Item>
+									<Item type="gameMechanics.elements.effects.SummandInnateStat">
+										<value>-12.5</value>
+										<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+											<scalers>
+												<Item type="gameMechanics.elements.scalers.StatScaler">
+													<stat type="gameMechanics.elements.stat.InnateStat">
+														<stat>IS_Intellect</stat>
+													</stat>
+												</Item>
+												<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mul>-0.078</mul>
+													<mulCalcer type="gameMechanics.constructor.basicElements.ScalerCalcer">
+														<scaler type="gameMechanics.elements.scalers.StatScaler">
+															<stat type="gameMechanics.constructor.stat.DefaultStat" />
+														</scaler>
+														<value>1</value>
+													</mulCalcer>
+													<sum>1</sum>
+												</Item>
+											</scalers>
+										</scaler>
+										<stat>IS_Intellect</stat>
+									</Item>
+								</effectsIf>
+								<effectsElse />
+							</Item>
+						</effectsIf>
+						<effectsElse />
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</headParts>
+	<entrance type="gameMechanics.map.instance.GroupInstanceEntrance" />
+	<denyCells>true</denyCells>
+	<isAutoNavigationOn>false</isAutoNavigationOn>
+</mapLoader.MapTemplate>

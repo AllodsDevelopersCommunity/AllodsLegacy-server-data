@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>20317</resourceId>
+	</Header>
+	<name href="Zones/PlagueCastle/PC_Description.txt" />
+	<exit type="mapLoader.pointer.MapPointerPos">
+		<pointer>
+			<scriptID>PC_ExitPoint</scriptID>
+			<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		</pointer>
+	</exit>
+	<mapTemplate href="/System/MapTemplates/GroupInstance.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects>
+		<Item href="GlobalObjects/Tours/TourIN.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		<Item href="GlobalObjects/Tours/TourOUT.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+	</globalObjects>
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="/Items/InteractiveObjects/Instance_PlagueCastle/MapVariableSaveable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+							<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+								<key href="/System/ContentKeys/China.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateHasContentKey">
+									<key href="/System/ContentKeys/Mercenaries.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+								</predicate>
+							</Item>
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Maps/Inst_Empire1End/BuffStats01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

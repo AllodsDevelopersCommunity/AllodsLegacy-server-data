@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<animSpeedOnPrecast>0.8</animSpeedOnPrecast>
+			<projectileFx>/Spells/FX/Ships/Cannon.ProjectileFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</projectileFx>
+			<shieldExplosion>/Spells/FX/Ships/Shield.CanonHitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</shieldExplosion>
+			<hullExplosion>/Spells/FX/Ships/Hull.CanonHitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullExplosion>
+			<fxOnHands>/Spells/FX/Spells/ReadySpellDirectFire_AstralMobs.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</fxOnHands>
+			<fxOnPrecast>/Spells/FX/Spells/ReadyAstralSpellFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</fxOnPrecast>
+			<fxOnPrecastLoc>FROM_LOCATOR_NAME</fxOnPrecastLoc>
+			<fxOnPrecastLocName>Slot_Special02</fxOnPrecastLocName>
+			<projectileLocName>Slot_Hand_R</projectileLocName>
+			<shieldCrit>/Spells/FX/Ships/Shield.CanonHitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</shieldCrit>
+			<fxOnPrecastScale>1</fxOnPrecastScale>
+			<animOnPrecast>rangedAttack</animOnPrecast>
+			<hullCrit>/Spells/FX/Ships/Hull.CanonHitLightning_Crit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullCrit>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID>HandFX</visActionID>
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="fxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>true</lockScale>
+						<scale>1</scale>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Hand_L</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+					</Item>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="fxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>true</lockScale>
+						<scale>1</scale>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Hand_R</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="fxOnPrecast" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>false</lockScale>
+						<scale var="fxOnPrecastScale" />
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator var="fxOnPrecastLoc" />
+						<member>Default_Member</member>
+						<locatorName var="fxOnPrecastLocName" />
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<mode>DIE</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="animOnPrecast" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed var="animSpeedOnPrecast" />
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+				</advanced>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<playWhile />
+		<elements>
+			<Item type="VisActionStopAction">
+				<visActionID />
+				<stoppedActionID>HandFX</stoppedActionID>
+			</Item>
+			<Item type="CreatureAstralSpellFXVisAction">
+				<visActionID />
+				<astralSpell type="AstralSpellProjectile">
+					<shieldExplosion hrefvar="shieldExplosion" />
+					<shieldCrit hrefvar="shieldCrit" />
+					<hullExplosion hrefvar="hullExplosion" />
+					<hullCrit hrefvar="hullCrit" />
+					<projectileFx hrefvar="projectileFx" />
+					<locatorName var="projectileLocName" />
+				</astralSpell>
+			</Item>
+			<Item type="CreatureVisActionStartThrow">
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

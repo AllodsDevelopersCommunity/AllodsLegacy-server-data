@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>205756579</resourceId>
+	</Header>
+	<isHidden>true</isHidden>
+	<visualScript type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/EvilEye_TotalImmunity.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<locator>FROM_LOCATOR_NAME</locator>
+				<member>Group</member>
+				<locatorName>Slot_BodyFX</locatorName>
+			</Item>
+		</visualEffects>
+		<stopOnDeath>true</stopOnDeath>
+	</visualScript>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerCaster_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerWarrior_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_SkeletWarrior_M5.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_SkeletCaster_M5.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidWarrior_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidCaster_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>M_boss_02</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>D_boss_02</scriptID>
+								<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidCaster_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerWarrior_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerCaster_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidWarrior_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>60</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested8/AC8_Event/AC8_Event.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/ArchipelagoContested8/AC8_Event/AC8_Event.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/World/Quests/ArchipelagoContested8/AC8_Event/CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ArchipelagoContested8/AC8_Event/CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested8/AC8_6/AC8_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/ArchipelagoContested8/AC8_6/AC8_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/World/Quests/ArchipelagoContested8/AC8_6/CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ArchipelagoContested8/AC8_6/CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Active</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/QuestItems/ArchipelagoContested8/Ac8_Grind_D_02/Ac8_Grind_D_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Items/QuestItems/ArchipelagoContested8/Ac8_Grind_D_02/Ac8_Grind_M_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerCaster_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerWarrior_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidWarrior_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidCaster_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>5000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>Tp_05</scriptID>
+								<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_SkeletWarrior_M5.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_SkeletCaster_M5.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>10000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>40000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/World/Quests/ArchipelagoContested4/Q_27e/Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>2500</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/World/Quests/ArchipelagoContested4/Q_27e/Invis.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>2000</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+															<destination type="gameMechanics.map.destination.DestinationLocator">
+																<locator>
+																	<scriptID>gen_ku</scriptID>
+																	<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																</locator>
+															</destination>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_M_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_off_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="AC8_event_final_time.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="Ac8_Victory_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Ac8_Victory_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>Cultist_Gen</scriptID>
+								<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>45000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/World/Quests/ArchipelagoContested4/Q_27e/Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>2500</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="/World/Quests/ArchipelagoContested4/Q_27e/Invis.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>2000</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+															<destination type="gameMechanics.map.destination.DestinationLocator">
+																<locator>
+																	<scriptID>gen_De</scriptID>
+																	<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																</locator>
+															</destination>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_M_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_off_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="AC8_event_final_time.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="Ac8_Victory_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="Ac8_Victory_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>Demon_Gen</scriptID>
+								<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidCaster_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidWarrior_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerCaster_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopSpawn">
+					<table href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerWarrior_05_A.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactBaseHealth" />
+					</impacts>
+					<mob>
+						<scriptID>Cultist_Gen</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactBaseHealth" />
+					</impacts>
+					<mob>
+						<scriptID>Demon_Gen</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>60</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="AC8_DraconidCaster_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="AC8_DraconidWarrior_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="AC8_MindFlayerCaster_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="AC8_MindFlayerWarrior_05.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.MobFilter" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToMapHead">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+															<predicates>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</predicates>
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+											<zone href="/Maps/DeathRealm/Zones/DeathRealm.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+															<predicates>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</predicates>
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerCaster_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_MindFlayerWarrior_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidWarrior_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_DraconidCaster_05.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="AC8_General_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

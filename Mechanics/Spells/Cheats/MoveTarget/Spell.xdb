@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>1985282048</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Gloves/ClothEvilGloves.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>100</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+								<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+								<speed>25</speed>
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+								<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+							</Item>
+						</impactsElse>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

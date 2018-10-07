@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>277221385</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="WormWave.(SpellSingleTarget).Name.txt" />
+	<image href="/Interface/Icons/Misc/Mobparts/EarSquirrel.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Creatures/EarthQuake.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>12000</duration>
+			<group href="" />
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+								<hideText>false</hideText>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+								<time>1000</time>
+								<impactsOnLand>
+									<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+										<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+										<threatMultiplier>1</threatMultiplier>
+										<minDamage>24</minDamage>
+										<maxDamage>24</maxDamage>
+									</Item>
+								</impactsOnLand>
+								<distance>6</distance>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<shape type="gameMechanics.constructor.schemes.spell.area.Hemisphere" />
+				<affectGroup>Enemies</affectGroup>
+				<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+					<value>15</value>
+				</radius>
+				<targetsNum>0</targetsNum>
+				<affectMainTarget>true</affectMainTarget>
+				<workOnDead>true</workOnDead>
+				<needLosToTarget>false</needLosToTarget>
+				<shapeCenterPosition>Target</shapeCenterPosition>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+				<value>10</value>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

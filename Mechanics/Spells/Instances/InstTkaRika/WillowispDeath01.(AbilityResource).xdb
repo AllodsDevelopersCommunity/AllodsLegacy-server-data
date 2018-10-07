@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>212538386</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/HumMobs/Inst_TkaRika/Instances/Inst_TkaRika/Boss1Sarn.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Creatures/Willowisp/Instances/Inst_TkaRika/Wisp.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Creatures/Willowisp/Instances/Inst_TkaRika/WispWeak.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+					<targetsLimit>0</targetsLimit>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+			</impacts>
+			<killerImpacts />
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/Inst_TkaRika/QuestEvent01/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Phase01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buffs/BindSpell.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/Inst_TkaRika/QuestEvent01/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/World/Quests/Inst_TkaRika/QuestEvent01/Phase01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buffs/BindSpell.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsToKiller>
+		</Item>
+		<Item type="gameMechanics.elements.effects.UltimateVisibility" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

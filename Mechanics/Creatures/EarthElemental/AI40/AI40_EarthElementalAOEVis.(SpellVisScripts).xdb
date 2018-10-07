@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<LocatorNameOnTargets />
+			<FixPointTarget>true</FixPointTarget>
+			<Trail />
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<LocatorNameOnCaster />
+			<DelayCasterFX>0</DelayCasterFX>
+			<FxOnTargets />
+			<HitPostFxOnTarge />
+			<Enchant />
+			<OffendType>NO_OFFEND</OffendType>
+			<FixPointCaster>true</FixPointCaster>
+			<skipBloodFxOnTarget>false</skipBloodFxOnTarget>
+			<UseAnimation>USE_ANIMATIONS</UseAnimation>
+			<FxOnCaster />
+			<Animation>attack01</Animation>
+			<LocatorOnCaster />
+			<TrailOffHand />
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/MeleeAttack.txt" />
+	<precastType>PRECAST_DEFAULT</precastType>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay var="DelayCasterFX" />
+						<effectFx hrefvar="FxOnCaster" />
+						<fixPoint var="FixPointCaster" />
+						<lockScale>true</lockScale>
+						<scale>2.3</scale>
+						<fadeInTime>0</fadeInTime>
+					</Item>
+					<Item>
+						<delay>1300</delay>
+						<effectFx href="/Spells/FX/Mobs/MindFlayerDCPsionic_Wave_SpecialCast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fixPoint>false</fixPoint>
+						<member>Caster</member>
+						<offendTime />
+					</Item>
+				</visualEffects>
+				<stopOnDeath>false</stopOnDeath>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<mode>DIE</mode>
+						<use>USE_ANIMATIONS</use>
+						<animations>
+							<Item>specialAttack</Item>
+						</animations>
+						<channel>CHANNEL_DEFAULT</channel>
+						<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+						<advanced>
+							<speed>1</speed>
+						</advanced>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<skipBloodFx var="skipBloodFxOnTarget" />
+		<specialAction type="CreatureRunVisActionResource">
+			<resource hrefvar="HitPostFxOnTarge" />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

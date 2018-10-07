@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.SteleResource>
+	<Header>
+		<resourceId>348362762</resourceId>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.world.cellReplication.MapWideReplicated" />
+		<Item type="bunch.ClientSpecificPart">
+			<resource href="Point03.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.map.spawn.recaptureable.SpawnPlaceObserverResource">
+			<radius>25</radius>
+			<avatarConditions>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/Shroud.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</predicate>
+				</Item>
+			</avatarConditions>
+			<impactsOnCountChanged>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateGreater">
+							<lhs type="gameMechanics.elements.calcers.CheckPointAttackersCalcer" />
+							<rhs type="gameMechanics.elements.calcers.CheckPointDefendersCalcer" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateSpawnPlaceOwner">
+									<owner href="/Maps/MW_Isle01/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+								</Item>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+									<variableResource href="/Mechanics/MegaWar/Variables/Round.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<expectedValue type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</expectedValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateSpawnPlaceState">
+											<state>AssaultFrozen</state>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactContinueSpawnPlaceAssaultGeneric">
+											<recapturableSpawnPlace>MW01_Flag03</recapturableSpawnPlace>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactCaptureSpawnPlaceGeneric">
+											<newState>UnderAssault</newState>
+											<invider href="/Maps/MW_Isle01/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+											<recapturableSpawnPlace>MW01_Flag03</recapturableSpawnPlace>
+										</Item>
+									</impactsElse>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Maps/MW_Isle01/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateSpawnPlaceOwner">
+									<owner href="/Maps/MW_Isle01/Marks/Red.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+								</Item>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+									<variableResource href="/Mechanics/MegaWar/Variables/Round.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<expectedValue type="gameMechanics.elements.calcers.FloatData">
+										<value>2</value>
+									</expectedValue>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateSpawnPlaceState">
+											<state>AssaultFrozen</state>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactContinueSpawnPlaceAssaultGeneric">
+											<recapturableSpawnPlace>MW01_Flag03</recapturableSpawnPlace>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactCaptureSpawnPlaceGeneric">
+											<newState>UnderAssault</newState>
+											<invider href="/Maps/MW_Isle01/Marks/Blue.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+											<recapturableSpawnPlace>MW01_Flag03</recapturableSpawnPlace>
+										</Item>
+									</impactsElse>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="/Maps/MW_Isle01/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="/Maps/MW_Isle01/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateSpawnPlaceAssaultInProgress" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactStopSpawnPlaceAssaultGeneric">
+									<recapturableSpawnPlace>MW01_Flag03</recapturableSpawnPlace>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOnCountChanged>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffsResource" />
+	</persistentParts>
+	<name href="Point_03.(SteleResource).Name.txt" />
+	<visObj href="/World/Generic/Domination/Models/ButtleGroundFlags_Neutral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<collision href="/World/Races/Orc/Environment/Models/Orc_Emblems/Orc_Banner_05.(Collision).xdb#xpointer(/Collision)" />
+	<visScripts href="/Items/InteractiveObjects/Domination/Banner.(DeviceVisScripts).xdb#xpointer(/DeviceVisScripts)" />
+	<collisionObject>false</collisionObject>
+	<interactiveObject>true</interactiveObject>
+	<corpseDuration>1000</corpseDuration>
+	<corpseEmptyDuration>1000</corpseEmptyDuration>
+</gameMechanics.world.device.SteleResource>

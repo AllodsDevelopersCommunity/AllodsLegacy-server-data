@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>153366542</resourceId>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Chests/ChestMithril.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Spell_Name.txt" />
+	<descTemplate href="Spell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneHadagan1/CursedItemsLearningCurve/CursedItemsLearningCurve.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Druid.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+								<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.CursedItemProvider">
+							<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+								<item href="/Items/QuestRewards/ZoneHadagan1/ZE1_CursedItemsQuestNew_UncmClothBelt_8Mag.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</item>
+						</item>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.CursedItemProvider">
+							<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+								<item href="/Items/QuestRewards/ZoneHadagan1/ZE1_CursedItemsQuestNew_UncmLeatherBelt_8Mag.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</item>
+						</item>
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneHadagan1/CursedItemsLearningCurve/CountId1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>274558984</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerWanderingFever.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/InstanceModifiers/CloudKill/ResurrectShield/ResurrestShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/InstanceModifiers/CloudKill/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.PureDamage">
+							<damage>1</damage>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mul>0.21</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.FullHealthBSVCalcer" />
+								<additionalMultiplier>
+									<scaler type="gameMechanics.elements.scalers.LinearScaler">
+										<multiplier>1</multiplier>
+									</scaler>
+									<value>1</value>
+								</additionalMultiplier>
+							</scalerTarget>
+							<offends>true</offends>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/InstanceModifiers/CloudKill/RespireBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impactsIf>
+				</Item>
+			</impacts>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration>19000</duration>
+	<isStackable>false</isStackable>
+	<isGradual>true</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>302885889</resourceId>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj href="/Spells/FX/Ships/Astral_Anomaly_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>18</scale>
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name href="Anomaly.(ImpactRunnerSphericalObj).Name.txt" />
+			<description href="Anomaly.(ImpactRunnerSphericalObj).Description.txt" />
+			<image href="/Interface/Ingame/ContextAstralMap/AstralHubMark/AstralAnomalie1.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius>500</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>1</min>
+								<max>999</max>
+							</range>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactDecrementBuffGeneric">
+							<buff href="Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIn>
+			<impactsOnSelfIn>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+					<data href="/Mechanics/Astral/TL_04/EventHubs/Unknown/Unknown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOnSelfIn>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

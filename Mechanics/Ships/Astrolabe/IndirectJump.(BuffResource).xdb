@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>287251456</resourceId>
+	</Header>
+	<Name href="IndirectJump.txt" />
+	<Description href="IndirectJump.Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestHoldPerson.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="IndirectJump.txt" />
+	<descTemplate href="IndirectJump.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectShipDieHard">
+			<impactsOnAttach>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="/Mechanics/Ships/ShipDamageSuppressor.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSetHealthToNone" />
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+					<distributor type="gameMechanics.elements.calcers.ShipDistributor" />
+					<data href="/Mechanics/Ships/EmergencyTeleportClientData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactReturnShipToSavedPos" />
+			</impactsOnAttach>
+			<priority>-3</priority>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+					<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onSlave type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+						</onSlave>
+					</predicate>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="IndirectJump.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+					<distributor type="gameMechanics.elements.calcers.ShipDistributor" />
+					<data href="IndirectJump.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

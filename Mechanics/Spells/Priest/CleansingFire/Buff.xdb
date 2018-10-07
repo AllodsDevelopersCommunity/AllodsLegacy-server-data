@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>60016</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Priest/PriestCleansingFire.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/BuffVisScripts/DotFire.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<element>FIRE</element>
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+						<ability href="/Mechanics/Spells/Priest/PassiveTalents/Concentration/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<mul>0.05</mul>
+					</Item>
+				</scalers>
+			</scaler>
+			<fixedMultiplier>1</fixedMultiplier>
+			<progressiveMultiplier>0</progressiveMultiplier>
+			<parameters>
+				<damagePerTick var="damagePerTick" />
+				<impactsPerTick>
+					<Item type="gameMechanics.elements.impacts.MarkedImpact">
+						<mark href="/Mechanics/Spells/Marks/PriestCleansingFireTick.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+					</Item>
+				</impactsPerTick>
+				<threatMultiplier>1</threatMultiplier>
+				<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>0.1</mul>
+					<additionalMultiplier>
+						<scaler type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+							<buff href="/Mechanics/Spells/Priest/PassiveTalents/ExtendedDoTs/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<onlyFromMaster>true</onlyFromMaster>
+							<mul>1</mul>
+							<sum>0</sum>
+						</scaler>
+						<value>1</value>
+					</additionalMultiplier>
+					<sum>1</sum>
+				</scalerTarget>
+				<scaleOnTick>true</scaleOnTick>
+				<tickLength>2000</tickLength>
+				<affectOnStartTick>false</affectOnStartTick>
+			</parameters>
+		</Item>
+	</effects>
+	<duration>14111</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>198852653</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>650</priority>
+		<contextName href="CrystallFrostfield.txt" />
+		<contextDescription href="CrystallFrostfieldBuffDesc.txt" />
+		<contextImage href="/Interface/Icons/Spells/Mage/MageIceInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="CrystallFrostfield.txt" />
+	<Description href="CrystallFrostfieldBuffDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TR_1Boss/CrystalFrosfield.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>5000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/Inst_TkaRika/Zones/Inst_TkaRika/TkaRika.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="/Items/QuestItems/ArchipelagoContested6/I_2_Item_01/I_2_Item_01.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+				<checkBag>false</checkBag>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+				<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell08_Frostfield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<delta type="gameMechanics.elements.calcers.FloatData">
+					<value>-1</value>
+				</delta>
+				<attachIfNotExist>false</attachIfNotExist>
+				<resetTimer>false</resetTimer>
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>COLD</element>
+				<threatMultiplier>1</threatMultiplier>
+				<statsConvertor>
+					<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Lethality</stat>
+					</intuition>
+					<spirit type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>19.7642</value>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+								<level>1</level>
+								<exponent>1.0677</exponent>
+								<multiplier>0</multiplier>
+							</Item>
+						</calcers>
+					</spirit>
+				</statsConvertor>
+				<minDamage>1</minDamage>
+				<maxDamage>1</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>1</mul>
+					<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+						<multiplier>1</multiplier>
+					</mulCalcer>
+					<sum>0</sum>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/CommonBuffs/IceRoot/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.8</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallFrostfieldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>10</multiplier>
+						</durationScaler>
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>15</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>125885707</resourceId>
+	</Header>
+	<Name href="BuffName.txt" />
+	<Description href="BuffDesc.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidViperBite.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="TransformSnake.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="BuffName.txt" />
+	<descTemplate href="BuffDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllSpells" />
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Stamina</stat>
+			</stat>
+			<multiplier>0.05</multiplier>
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.elements.calcers.FullHealthCalcer" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="TransformSnake.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+							<quest href="Quest2_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactHealAll" />
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsMountAction" />
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Transformation.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

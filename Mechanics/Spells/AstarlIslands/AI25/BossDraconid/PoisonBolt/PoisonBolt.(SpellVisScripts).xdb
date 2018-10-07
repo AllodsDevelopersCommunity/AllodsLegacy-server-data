@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="CreatureAnimationAction">
+		<animations>
+			<Item>rangedAttack</Item>
+		</animations>
+		<channel>CHANNEL_ABILITY</channel>
+	</actionBarStart>
+	<actionBarComplite type="CreatureAnimationAction">
+		<animations>
+			<Item>spellCastDirected</Item>
+		</animations>
+	</actionBarComplite>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureVisActionStartThrow" />
+			<Item type="VisActionDelay">
+				<time>400</time>
+			</Item>
+			<Item type="CreatureProjectileAction">
+				<projectileFx href="/Spells/FX/Spells/NecromancerNeurotoxin_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<explosionFx href="/Spells/FX/Spells/HitPoison_Staff01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<pointOnCaster type="VisPointLocator">
+					<locator>Slot_Hand_R</locator>
+				</pointOnCaster>
+				<pointOnTarget type="VisPointLocator">
+					<locator>Slot_FX</locator>
+				</pointOnTarget>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<playWhile type="VisActionDelay">
+				<time>1800</time>
+			</playWhile>
+			<elements>
+				<Item type="VisActionList">
+					<play>Simultaneously</play>
+					<playWhile type="VisActionDelay">
+						<time>1100</time>
+					</playWhile>
+					<elements>
+						<Item type="ProceduralEffectVisAction">
+							<timeOff>1</timeOff>
+							<proceduralEffect href="/Spells/FX/InterfaceFX/Poison.(ProceduralEffect).xdb#xpointer(/ProceduralEffect)" />
+						</Item>
+					</elements>
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

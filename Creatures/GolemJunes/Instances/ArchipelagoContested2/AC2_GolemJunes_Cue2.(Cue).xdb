@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>99916829</resourceId>
+	</Header>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested2/AC2_4_3/AC2_4_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoContested2/AC2_4_9/AC2_4_9.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Finished</status>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRenewQuestMarks" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Creatures/GolemJunes/PlayTransformAnimation.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/ArchipelagoContested2/AC2_4_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</impacts>
+	<nextCues />
+	<name href="/Creatures/GolemJunes/Instances/SecretLab/Chat_name.txt" />
+	<text href="AC2_GolemJunes_Cue2_Text.txt" />
+</gameMechanics.world.mob.interaction.Cue>

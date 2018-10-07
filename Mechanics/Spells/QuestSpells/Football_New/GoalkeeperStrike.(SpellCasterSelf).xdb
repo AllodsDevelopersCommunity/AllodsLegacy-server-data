@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>332891141</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="GoalkeeperStrike.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Context/BlowOnTheBall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameAEMark>FootballMark</nameAEMark>
+	<sysName>Agob_7</sysName>
+	<nameTemplate href="GoalkeeperStrikeName.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<targetType>STTPoint</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>2000</duration>
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="FootballGameplayV2/YourMoveBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+								<radius>2</radius>
+								<mobs>
+									<Item href="/Creatures/Slime/Instances/ArchipelagoEmpire2/SlimeBall.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+								<time>1500</time>
+								<impactsOnLand>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="FootballGameplayV2/ForgetStickyAbility.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOnLand>
+								<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint" />
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="FootballGameplayV2/FootballCannotBlockBall.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<spawnResource href="/Maps/2ndCircle_Goblinoball_New/SpawnTables/ArchipelagoGoblinoball/Goblinoball/SlimeBall_Out.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="StrikeBallStrong.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

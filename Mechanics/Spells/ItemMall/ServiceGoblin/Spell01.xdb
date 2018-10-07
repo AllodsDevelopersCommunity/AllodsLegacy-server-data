@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>167407624</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="" />
+	<visualScripts href="/Spells/VisScripts/Common/Summon_Goblin.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>5000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType">
+			<repelType>FAIL</repelType>
+		</Item>
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>7</value>
+				</minLevel>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>true</hideText>
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Kania_AL1/Zones/ArchipelagoLeague1/ArchipelagoLeague1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>true</hideText>
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="/Maps/Hadagan_Underground/Zones/ZoneHadagan1_dang_1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeTrailPos">
+							<center type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>true</faceSourcePos>
+							</center>
+							<offset x="2" y="2" z="0" />
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>600000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impacts>
+						<plane href="/Creatures/GoblinBanker/Instances/CourierPlaneLeague.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+						<traceDown>false</traceDown>
+						<object href="/Creatures/GoblinBanker/Instances/Goblin_CourierLeague.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<pool href="" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeTrailPos">
+							<center type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians" />
+							</center>
+							<offset x="2" y="2" z="0" />
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>600000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impacts>
+						<plane href="/Creatures/GoblinBanker/Instances/CourierPlaneEmpire.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+						<traceDown>false</traceDown>
+						<object href="/Creatures/GoblinBanker/Instances/Goblin_CourierEmpire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<pool href="" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>5000</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>307152943</resourceId>
+	</Header>
+	<Name href="SphereFly_Buff_Name.txt" />
+	<Description href="SphereFly_Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/ZC6_Arhiopterix.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="Archaeopteryx.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="SphereFly_Buff_Name.txt" />
+	<descTemplate href="SphereFly_Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectHidePet" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells" />
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch" />
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectMoveByTour">
+					<route href="/Maps/IllusionWorld/GlobalObjects/Tours/SphereFly_12_06.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+					<impactsOnArrive>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ZC6_SphereFly_Buff_12_06.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOnArrive>
+					<impactsOnCancel>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ZC6_SphereFly_Buff_12_06.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsOnCancel>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.world.pet.PredicateHasPet" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Items/InteractiveObjects/IllusionWorld/ZC6_AviakGong/PetPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.world.pet.PredicateHasPet" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="/Items/InteractiveObjects/IllusionWorld/ZC6_AviakGong/PetPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

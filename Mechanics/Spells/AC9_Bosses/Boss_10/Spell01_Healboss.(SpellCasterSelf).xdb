@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>253375492</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>0</priority>
+		<contextImage href="/Interface/Icons/Spells/Priest/PriestCureWounds.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Operation.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell01_Healboss.txt" />
+	<Description href="Spell01_Healboss.(SpellCasterSelf).Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestCureWounds.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<autoAppendToActionPanel>false</autoAppendToActionPanel>
+	<visualScripts href="/Spells/VisScripts/Necromancer/CriticalCure.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>true</needLos>
+	<element>SHADOW</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks />
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Start</stage>
+			<duration>1000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/Creatures/AC9_Bosses/Boss_10_Need_Health.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<conditions />
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>70</mana>
+			</Item>
+		</casterResources>
+		<targetResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactHeal">
+						<heal>1</heal>
+						<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+								<multiplier>0.55</multiplier>
+							</mulCalcer>
+						</scaler>
+						<considerOutgoingModifiers>false</considerOutgoingModifiers>
+						<mode>Direct</mode>
+					</Item>
+				</impacts>
+				<spawnResource href="/Maps/ArchipelagoContested9/SpawnTables/ArchipelagoContested9/AC9_Boss_10.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>185</radius>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Mechanics/Creatures/AC9_Bosses/Boss_10_Need_Health.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateFaction">
+							<faction href="/World/Factions/Demons.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+					</predicates>
+				</filter>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactAttachSpellEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+						<effectScaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+							<scaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>0.5</multiplier>
+							</scaler>
+						</effectScaler>
+					</Item>
+				</effects>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

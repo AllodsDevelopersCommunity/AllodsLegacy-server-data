@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>333466889</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/IceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="FrostAoE.(SpellArea)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageIceInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mage/IceTomb.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="FrostAoE.(SpellArea)_Name.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>12000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="/Mechanics/Spells/TenzisTample/Boss1Mage/Blizard/Ask_Blizzard.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Characters/Hadagan_male/Instances/AstralDungeon04/Boss01/FrostMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>COLD</element>
+				<minDamage>20.8</minDamage>
+				<maxDamage>30.8</maxDamage>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/AstarlIslands/AstralDungeon04/Boss04/Frost.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+	</mechanics>
+	<speed>22</speed>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<shapeCenterPosition>Caster</shapeCenterPosition>
+	<radius>40</radius>
+	<needLosToTarget>true</needLosToTarget>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

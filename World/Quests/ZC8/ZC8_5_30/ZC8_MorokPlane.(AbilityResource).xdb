@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>315808803</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="ZC8_MorokPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.1</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="NoResurrect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<conditions>
+										<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+											<onSlave type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="ZC8_MorokResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</onSlave>
+										</Item>
+									</conditions>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="CounId_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>1000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+													<destination type="gameMechanics.map.destination.DestinationLocator">
+														<locator>
+															<scriptID>ZC8_OutsideTemple</scriptID>
+															<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+														</locator>
+														<yaw type="constructor.basicElements.AngleDegrees">
+															<value>270</value>
+														</yaw>
+													</destination>
+													<finishImpacts>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="ZC8_MorokResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="ZC8_WhiteRoomPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+															<predicates>
+																<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																	<predicates>
+																		<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+																		<Item type="gameMechanics.world.pet.PredicateHasPet" />
+																	</predicates>
+																</Item>
+															</predicates>
+															<impactsIf>
+																<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																			<buff href="ZC8_MorokResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</Item>
+																	</impacts>
+																</Item>
+															</impactsIf>
+														</Item>
+													</finishImpacts>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/MajorShake.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<finishImpacts>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+											<mob>
+												<scriptID>WR_Veronika</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+											<mob>
+												<scriptID>WR_Ancestor</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impacts>
+											<mob>
+												<scriptID>WR_Genlun</scriptID>
+												<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+									</finishImpacts>
+									<filter type="gameMechanics.world.creature.AvatarFilter" />
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactHealAll" />
+								<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+									<newMobWorld href="/Creatures/Morok/Instances/ZC8/ZC8_MorokSpark.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+											<newMobWorld href="/Creatures/Morok/Instances/ZC8/ZC8_WeakMorok.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="SmallEffect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+													<mob>
+														<scriptID>WR_Veronika</scriptID>
+														<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</mob>
+												</Item>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="NoResurrect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="Genlun_help.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+															<mob>
+																<scriptID>WR_Ancestor</scriptID>
+																<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															</mob>
+														</Item>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="SmallEffect.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsIf>
+													<impactsElse>
+														<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+															<mob>
+																<scriptID>WR_Genlun</scriptID>
+																<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															</mob>
+														</Item>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="Genlun_help.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impactsElse>
+												</Item>
+											</impactsElse>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>0.01</level>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

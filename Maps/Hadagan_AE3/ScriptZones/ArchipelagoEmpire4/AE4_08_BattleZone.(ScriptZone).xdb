@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>133100549</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoEmpire3/AE4_08/AE4_08.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/World/Quests/ArchipelagoEmpire3/AE4_08/AE4_08_yasker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Spells/QuestSpells/AE4/AE4_08_charge1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+							<faction href="/World/Factions/Kania.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>AE4_08_Evil_K_07</scriptID>
+				<map href="/Maps/Hadagan_AE3/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactDisableScriptZoneTemporarily">
+			<zone href="AE4_08_BattleZone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			<period>600000</period>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+			<msg href="/World/Quests/ArchipelagoEmpire3/AE4_08/AE4_director_chat_01.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+			<defaultSpeaker href="/Characters/Hadagan_male/Instances/ArchipelagoEmpire3/AE4_director.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/ArchipelagoEmpire3/AE4_08/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

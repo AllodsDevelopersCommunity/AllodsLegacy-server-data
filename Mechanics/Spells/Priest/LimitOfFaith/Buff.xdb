@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>342199300</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Priest/LimitOfFaith.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/LimitOfFaith.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1.4</scale>
+			<fadeInTime>300</fadeInTime>
+			<fadeOutTime>300</fadeOutTime>
+			<locator>Global</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DamageAbsorber">
+			<elements>
+				<Item>COLD</Item>
+				<Item>DISEASE</Item>
+				<Item>FIRE</Item>
+				<Item>ASTRAL</Item>
+				<Item>HOLY</Item>
+				<Item>LIGHTNING</Item>
+				<Item>PHYSICAL</Item>
+				<Item>POISON</Item>
+				<Item>SHADOW</Item>
+				<Item>ACID</Item>
+			</elements>
+			<absorb var="absorb" />
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mul>0.25</mul>
+						<mulCalcer type="gameMechanics.elements.calcers.ItemQualityCalcer">
+							<dressSlot>AMMO</dressSlot>
+						</mulCalcer>
+						<sum>1</sum>
+					</Item>
+				</scalers>
+			</scaler>
+			<buff hrefvar="buff" />
+			<absorbNotForthrightDamage>true</absorbNotForthrightDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/Priest_LimitOfFaith.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>10</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>1.5</multiplier>
+							</durationScaler>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+							<value>10</value>
+						</Item>
+					</impacts>
+					<targetsLimit>0</targetsLimit>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

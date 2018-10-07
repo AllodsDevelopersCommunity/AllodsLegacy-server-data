@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>40316</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline>GibberLine</plotline>
+	<image href="Quest_4_30.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<canCancel>false</canCancel>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Inst_LeagueStart/Zones/InstLeague1/InstLeague1_Floor1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="302.170013" y="5812.779785" z="0.000000" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Elf_female/Instances/InstLeague1/LI_ElfYoungSorceress3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+			<impacts>
+				<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate" />
+			</impacts>
+			<device>
+				<scriptID>Floor1_NonDevWall</scriptID>
+				<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>GibberDeath</scriptID>
+							<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="GibberDeath.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+							<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Firewall/NoMove_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<mob>
+								<scriptID>ElfYoungSorceress</scriptID>
+								<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>5000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="PortalActivation.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/Shake.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>7000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+											<msg href="ElfTalk1.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/15_Elf01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/15_Elf01_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>ElfYoungSorceress</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>KaniaPortal</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>5000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.DoorSwitch">
+							<switchType>Open</switchType>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>FinalDoor</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>15000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>DemonSpawn4</scriptID>
+							<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<runningMode>true</runningMode>
+							<path>
+								<Item>
+									<scriptID>PeopleWay3</scriptID>
+									<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>20000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+						</Item>
+					</impacts>
+					<object href="/Creatures/DemonScout/Instances/InstLeague1/DemonScout3_3Killer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>18000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>ElfFirewallHold</scriptID>
+									<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Firewall/Firewall_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+									<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+									<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/Floor_Firewall.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+									<data href="Firewall/FireWallChannel.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<locators>
+										<Item>
+											<scriptID>Firewall</scriptID>
+											<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+									</locators>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>1500</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="Firewall/InterruptChannel2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/16_Elf02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+									<msg href="ElfTalk1_5.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactTurnMob">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Firewall</scriptID>
+									<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/16_Elf02_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>ElfYoungSorceress</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>30000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="DemonSpawn.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+									<msg href="ElfTalk0.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+								</Item>
+							</impacts>
+							<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/17_Elf03.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/17_Elf03_Bubble.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>ElfYoungSorceress</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>4000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>300000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>2</visualState>
+								</Item>
+								<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+									<delay>2000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>Device_Floor1_Civilian1_GameScene</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>75000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+							<zone href="/Maps/Inst_LeagueStart/ScriptZones/TeleportOut.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							<variable href="/Maps/Inst_LeagueStart/ScriptZones/DemonsCount_Total.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<reset>false</reset>
+							<summand>110</summand>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>200000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>2</visualState>
+								</Item>
+								<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+									<delay>2000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+											<delay>500</delay>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>Device_Floor1_CivilianFight1_GameScene</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+			<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/SmallDust_01_loop.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleDevice">
+			<device>
+				<scriptID>FinalInwisibleWall_Spawn</scriptID>
+				<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>4000</delay>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="NPC_Ask.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScalerTarget />
+					<durationScaler />
+					<scalerTarget />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleDevice">
+			<device>
+				<scriptID>Device_Floor1_Demon_GameScene</scriptID>
+				<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>15000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>61000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>2</visualState>
+								</Item>
+								<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+									<delay>2000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+											<delay>500</delay>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>Device_Floor1_Demon_GameScene</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleDevice">
+			<device>
+				<scriptID>Device_Floor1_CivilianFight1_GameScene</scriptID>
+				<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>200000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>2</visualState>
+								</Item>
+								<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+									<delay>2000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+											<delay>500</delay>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>Device_Floor1_CivilianFight1_GameScene</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/Music_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/InstLeague1/Quest_4_10/Quest_4_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Inst_LeagueStart/Zones/InstLeague1/InstLeague1_Floor1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="302.170013" y="5812.779785" z="0.000000" />
+					<isIndoor>false</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentInterlocutor">
+			<trigger href="GibberDeath.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+		</Item>
+	</triggerAgents>
+	<reward>
+		<experience>6</experience>
+		<money>0</money>
+		<reputations />
+		<mandatoryItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaWarriorArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaPaladinArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaStalkerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaPriestArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaDruidArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Druid.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaMageArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/GibberlingWarriorArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Gibberling.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/GibberlingStalkerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Gibberling.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/GibberlingDruidArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Gibberling.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Druid.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/GibberlingPsionicArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Gibberling.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ElfPaladinArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ElfPriestArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ElfMageArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ElfNecromancerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ElfPsionicArmor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/KaniaBardArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ElfBardArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Quest_4_30</internalName>
+	<zone href="/Maps/Inst_LeagueStart/Zones/InstLeague1/InstLeague1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>2</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>3</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>330169362</resourceId>
+	</Header>
+	<name href="MausShot.(AbilityResource)_Name.txt" />
+	<nameTemplate href="MausShot.(AbilityResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectInstantiating">
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<hideText>true</hideText>
+									<buff href="MausShot.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsElse>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="MausShot.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+					<tick>3000</tick>
+					<initialDelay>10000</initialDelay>
+				</Item>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>70</radius>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="RocketBarrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Events/SummerBoss2012/Tyazh/TyazhBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="BarrageRest.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</predicate>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+							</filter>
+							<targetsLimit>1</targetsLimit>
+						</Item>
+					</impacts>
+					<tick>20000</tick>
+					<initialDelay>30000</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

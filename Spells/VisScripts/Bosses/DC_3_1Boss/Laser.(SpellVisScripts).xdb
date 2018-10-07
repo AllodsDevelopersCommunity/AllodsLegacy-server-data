@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/MobProjectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>ready</PreCastAnimation>
+			<FXProjectile>/Spells/FX/Mobs/Turret01_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXProjectile>
+			<CastAnimation>specialCast</CastAnimation>
+			<FXProjectileHit>/Spells/FX/Spells/HitManaBurn.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXProjectileHit>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirect03DownLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<scale>2</scale>
+						<locator>Slot_Global</locator>
+						<locatorName>Slot_Global</locatorName>
+					</Item>
+					<Item>
+						<effectFx href="/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<scale>5</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>Slot_Special01</locatorName>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<advanced>
+					<turnToTarget>BEFORE_FIRSTKEY</turnToTarget>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item skiped="" />
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time>1000</time>
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/DC_1BossMindflayer_Laser.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>20</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<locatorName>Slot_Special01</locatorName>
+								</startPoint>
+								<endPoint type="VisPointLocator" />
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

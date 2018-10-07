@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>287295488</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<uiInfos href="" />
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<descVars />
+	<image href="" />
+	<nameAEMark />
+	<sysName />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell04.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.skills.PredicateSkillScore">
+				<skill href="Alchemy.xdb#xpointer(/gameMechanics.elements.skills.alchemy.AlchemyResource)" />
+				<score var="score" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.skills.alchemy.AlchemyStart">
+				<resource href="Alchemy.xdb#xpointer(/gameMechanics.elements.skills.alchemy.AlchemyResource)" />
+				<numberOfSlots type="gameMechanics.elements.calcers.LongData">
+					<value var="value" />
+				</numberOfSlots>
+				<additionalCorrections type="gameMechanics.elements.calcers.CalcerLongIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Optimized</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.LongData">
+						<value>1</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.LongData">
+						<value>0</value>
+					</calcerElse>
+				</additionalCorrections>
+				<maxCorrectionsPerColumn type="gameMechanics.elements.calcers.CalcerLongIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Stable</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.LongData">
+						<value>5</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.LongData">
+						<value>3</value>
+					</calcerElse>
+				</maxCorrectionsPerColumn>
+				<additionalPotionChance type="gameMechanics.elements.calcers.CalcerIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Handy</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.FloatData">
+						<value>0.333</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FloatData">
+						<value>0</value>
+					</calcerElse>
+				</additionalPotionChance>
+				<additionalLines type="gameMechanics.elements.calcers.CalcerLongIfActiveItem">
+					<predicate type="gameMechanics.elements.item.ItemPredicateToolProperty">
+						<property>Quality</property>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.LongData">
+						<value>1</value>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.LongData">
+						<value>0</value>
+					</calcerElse>
+				</additionalLines>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

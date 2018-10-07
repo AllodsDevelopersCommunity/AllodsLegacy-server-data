@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>275802140</resourceId>
+	</Header>
+	<Name href="ZC6_L_Fly2_AsisstFoodUse.txt" />
+	<Description href="ZC6_L_Fly2_AsisstFoodUse.Description.txt" />
+	<visualScripts href="/Mechanics/Spells/AstarlIslands/AI27/WaterFolkMeat/TrowMeat.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC6_L_Fly2_AsisstFoodUse.txt" />
+	<descTemplate href="ZC6_L_Fly2_AsisstFoodUse.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<isAggro>false</isAggro>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+				<assistantResource href="/World/Quests/IllusionWorld/ZC6_L_Fly2/Assistant.(AssistantResource).xdb#xpointer(/gameMechanics.world.avatar.assistants.AssistantResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_L_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/IllusionWorld/ZC6_E_Fly2/ZC6_E_Fly2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Eagle/Instances/IllusionWorld/ZC6_Archeopt_Assist.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+				<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_AssistIsOur.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</conditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/IllusionWorld/ZC6_L_Fly2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="ZC6_L_Fly2_AsisstFood.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+				<buff href="/World/Quests/IllusionWorld/ZC6_L_Fly2/ZC6_Assist_Saturation.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<delta type="gameMechanics.elements.calcers.FloatData">
+					<value>1</value>
+				</delta>
+				<attachIfNotExist>true</attachIfNotExist>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSetHealthToFull" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

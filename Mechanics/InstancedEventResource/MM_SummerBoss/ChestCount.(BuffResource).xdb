@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>335037447</resourceId>
+	</Header>
+	<Name href="ChestCount.(BuffResource)_Name.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/Chest01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<nameTemplate href="ChestCount.(BuffResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/SummerBoss/Zones/SummerBoss/SummerBoss.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</predicate>
+								</Item>
+								<Item type="avatarPopulation.service.impl.matchMakingImpl.map.PredicateNotInstancedEventMember" />
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ChestCount.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>5000</tick>
+			<initialDelay>2000</initialDelay>
+		</Item>
+	</effects>
+	<stackLimit>15</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/SummerBossBuffs.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

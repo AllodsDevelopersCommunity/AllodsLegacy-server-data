@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>79584269</resourceId>
+	</Header>
+	<visObject href="" />
+	<lifeLengthCap>0</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>85</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Characters/HumMobs/Instances/InstEmpire1/RuffianSpy1_1_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Characters/HumMobs/Instances/InstEmpire1/DesantMiniBoss2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+			</filter>
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.EntityFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Characters/Hadagan_male/Instances/InstEmpire1/Doctor.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>IE1_Wounded</scriptID>
+						<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>85</radius>
+					<affectGroup>All</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>10000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_09.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Items/InteractiveObjects/InstEmpire1/Warning03.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>5000</delay>
+									<limit>1</limit>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+											<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/IE1_ShipDestroy_Outdoor.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+									<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<finalImpactsOnHolder>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</finalImpactsOnHolder>
+				</Item>
+			</impactsOnNone>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

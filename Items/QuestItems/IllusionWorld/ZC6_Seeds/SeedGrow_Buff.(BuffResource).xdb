@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>276515858</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Enlarge">
+			<factor>1</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactAttachSpellEffects">
+					<effects>
+						<Item type="gameMechanics.elements.effects.Enlarge">
+							<factor>1.5</factor>
+						</Item>
+					</effects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+					<impact type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>2000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.RelativePos" />
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+										<radius>5</radius>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ForceAggro" />
+										</impacts>
+										<filter type="gameMechanics.constructor.basicElements.FilterAnd">
+											<filters>
+												<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+															<mobs>
+																<Item href="/Creatures/EarthElemental/Instances/IllusionWorld/ZC6_EarthElemental50_50.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+															</mobs>
+														</Item>
+													</predicates>
+												</Item>
+												<Item type="gameMechanics.world.creature.MobFilter" />
+											</filters>
+										</filter>
+									</Item>
+								</impacts>
+								<object href="/Creatures/EarthElemental/Instances/IllusionWorld/ZC6_EarthElemental50_50.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+					</impact>
+					<count type="gameMechanics.elements.calcers.FloatData">
+						<value>5</value>
+					</count>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>90000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/IllusionWorld/ZC6_Earth2/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+									<quest href="/World/Quests/IllusionWorld/ZC6_Earth2/ZC6_Earth2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

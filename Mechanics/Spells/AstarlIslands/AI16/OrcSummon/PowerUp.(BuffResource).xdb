@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>237082647</resourceId>
+	</Header>
+	<Name href="PowerUp.txt" />
+	<Description href="PowerUp.Description.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicContactMind.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_Hand_R</locator>
+		</Item>
+	</visualEffects>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="PowerUp.txt" />
+	<descTemplate href="PowerUp.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.2</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>30</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>LIGHTNING</element>
+								<minDamage>25</minDamage>
+								<maxDamage>25</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="ElectricHitVisData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.constructor.basicElements.FilterOr">
+									<filters>
+										<Item type="gameMechanics.world.creature.AvatarFilter" />
+										<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+										</Item>
+									</filters>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+					</Item>
+				</impacts>
+			</impact>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.2</coeff>
+			</scaler>
+		</Item>
+	</effects>
+	<duration>600000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

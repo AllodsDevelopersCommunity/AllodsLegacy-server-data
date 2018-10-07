@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>301425985</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="ZC7_E_9_40.Goal.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="ZC7_E_9_40.CheckText.txt" />
+	<finishText href="ZC7_E_9_40.FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/IllusionWorld/Zones/ZC7/ZC7_IllusionWorld_05.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="12415.099609" y="10570.400391" z="82.700001" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/HumMobs/ZC7/ZC7_Ghost.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/ZC7/ZC7_E_9_40_Device/ZC7_E_9_40_Device.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/ZC7/ZC7_E_9_40_Spear/ZC7_E_9_40_Spear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="ZC7_E_9_40_Radar.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+			<impactsElse>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ZC7_E_9_40_Radar.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Items/InteractiveObjects/ZC7/ZC7_E_9_40_Distortion/ZC7_Distortion.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsElse>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="ZC7_E_9_40_AgentResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.world.pet.PredicateHasPet" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC7_E_9_40_AgentResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Items/InteractiveObjects/ZC7/ZC7_Distortion_Empire/ZC7_Distortion_E_Resolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZC7/ZC7_E_9_10/ZC7_E_9_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZC7/ZC7_E_spear4/ZC7_E_spear4.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<customName href="" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<items>
+				<Item href="/Items/QuestItems/ZC7/ZC7_E_9_40_Device/ZC7_E_9_40_Device.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<removeOnAbandon>true</removeOnAbandon>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<customName href="CounterCustomName_3.txt" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<items>
+				<Item href="/Items/QuestItems/ZC7/ZC7_E_9_40_Spear/ZC7_E_9_40_Spear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<removeOnAbandon>true</removeOnAbandon>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/IllusionWorld/Zones/ZC7/ZC7.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="11909.791992" y="10845.652344" z="63.837997" />
+					<isIndoor>true</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<relatedMobsAndDevices>
+				<Item href="/Items/InteractiveObjects/ZC7/ZC7_E_9_40_Distortion/ZC7_E_9_40_Distortion.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</relatedMobsAndDevices>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_2.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/IllusionWorld/Zones/ZC7/ZC7.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="11913.563477" y="10841.700195" z="63.632999" />
+					<isIndoor>true</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<relatedMobsAndDevices>
+				<Item href="/Characters/Undead_male/Instances/ZC7/ZC7_E_9_40_Agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</relatedMobsAndDevices>
+			<relatedItems>
+				<Item href="/Items/QuestItems/ZC7/ZC7_E_9_40_Spear/ZC7_E_9_40_Spear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentSelf">
+			<trigger href="RemoveBuff.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+		</Item>
+	</triggerAgents>
+	<reward>
+		<experience>16</experience>
+		<money>242374</money>
+	</reward>
+	<sharing>
+		<onRequest>false</onRequest>
+	</sharing>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>ZC7_E_9_40</internalName>
+	<zone href="/Maps/IllusionWorld/Zones/ZC7/ZC7.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>52</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>53</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>349699075</resourceId>
+	</Header>
+	<Name href="PseudoSpell.(BuffResource).Name.txt" />
+	<visScript href="/Spells/VisScripts/MegaWar/Healer/Dish.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href=".(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<affectGroup>Group</affectGroup>
+					<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+						<value>20</value>
+					</radius>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToMaster">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="AddresseeFinderBuffCaster.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactHeal">
+							<heal>67.45</heal>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<affectGroup>Group</affectGroup>
+					<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+						<value>20</value>
+					</radius>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.IncrementMana">
+					<manaType>Mana</manaType>
+					<amount>-120</amount>
+					<scaler type="gameMechanics.elements.scalers.ManaLevelScaler" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

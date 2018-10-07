@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>257562624</resourceId>
+	</Header>
+	<Name href="AC8_Bust_Buff.txt" />
+	<Description href="AC8_Bust_Buff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Halo/Willpower.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+					<stat type="gameMechanics.elements.stat.InnateStat">
+						<stat>IS_Stamina</stat>
+					</stat>
+					<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+							<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<forAllRanks>true</forAllRanks>
+						</mulCalcer>
+						<additionalMultiplier>
+							<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.InverseCalcer">
+									<value type="gameMechanics.elements.calcers.CalcerIf">
+										<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<max>0</max>
+											</range>
+										</predicate>
+										<calcerIf type="gameMechanics.elements.calcers.FloatData">
+											<value>1</value>
+										</calcerIf>
+										<calcerElse type="gameMechanics.elements.calcers.CalcerMul">
+											<calcers>
+												<Item type="gameMechanics.elements.calcers.FloatData">
+													<value>0.042</value>
+												</Item>
+												<Item type="gameMechanics.elements.calcers.CalcerDiff">
+													<minuend type="gameMechanics.elements.calcers.LinearCalcer">
+														<mul>25</mul>
+														<sum>0</sum>
+													</minuend>
+													<subtrahend type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+														<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<forAllRanks>true</forAllRanks>
+													</subtrahend>
+												</Item>
+												<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+													<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<forAllRanks>true</forAllRanks>
+												</Item>
+											</calcers>
+										</calcerElse>
+									</value>
+								</mulCalcer>
+							</scaler>
+							<value>1</value>
+						</additionalMultiplier>
+					</scaler>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SummandInnateStat">
+			<value>1</value>
+			<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+			<stat>IS_Stamina</stat>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateInZone">
+										<zone href="/Maps/DeathRealm/Zones/DeathRealm.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									</Item>
+								</predicates>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSetTaggingType">
+			<taggingType>None</taggingType>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.015</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectExperienceGrowthModifier">
+					<addPart>-1</addPart>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+					<scaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+						<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+								<summands>
+									<Item type="gameMechanics.elements.calcers.FloatData">
+										<value>1.7</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>0.00065</value>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</calcers>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>2.5e-005</value>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+												<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</calcers>
+									</Item>
+								</summands>
+							</mulCalcer>
+							<additionalMultiplier>
+								<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.CalcerIf">
+										<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<min>1</min>
+												<max>23</max>
+											</range>
+										</predicate>
+										<calcerIf type="gameMechanics.elements.calcers.InverseCalcer">
+											<value type="gameMechanics.elements.calcers.CalcerSum">
+												<summands>
+													<Item type="gameMechanics.elements.calcers.FloatData">
+														<value>24</value>
+													</Item>
+													<Item type="gameMechanics.elements.calcers.CalcerMul">
+														<calcers>
+															<Item type="gameMechanics.elements.calcers.FloatData">
+																<value>-1</value>
+															</Item>
+															<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+																<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</calcers>
+													</Item>
+												</summands>
+											</value>
+										</calcerIf>
+										<calcerElse type="gameMechanics.elements.calcers.FloatData">
+											<value>0</value>
+										</calcerElse>
+									</mulCalcer>
+									<sum>1</sum>
+								</scaler>
+								<value>1</value>
+							</additionalMultiplier>
+						</scaler>
+					</scaler>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+					<scaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+						<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+								<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<forAllRanks>true</forAllRanks>
+							</mulCalcer>
+							<additionalMultiplier>
+								<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+									<mulCalcer type="gameMechanics.elements.calcers.InverseCalcer">
+										<value type="gameMechanics.elements.calcers.CalcerIf">
+											<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+												<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												<range>
+													<max>0</max>
+												</range>
+											</predicate>
+											<calcerIf type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</calcerIf>
+											<calcerElse type="gameMechanics.elements.calcers.CalcerMul">
+												<calcers>
+													<Item type="gameMechanics.elements.calcers.FloatData">
+														<value>0.042</value>
+													</Item>
+													<Item type="gameMechanics.elements.calcers.CalcerDiff">
+														<minuend type="gameMechanics.elements.calcers.LinearCalcer">
+															<mul>25</mul>
+															<sum>0</sum>
+														</minuend>
+														<subtrahend type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+															<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<forAllRanks>true</forAllRanks>
+														</subtrahend>
+													</Item>
+													<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+														<buff href="AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<forAllRanks>true</forAllRanks>
+													</Item>
+												</calcers>
+											</calcerElse>
+										</value>
+									</mulCalcer>
+								</scaler>
+								<value>1</value>
+							</additionalMultiplier>
+						</scaler>
+					</scaler>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<stackLimit>48</stackLimit>
+	<isGradual>true</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

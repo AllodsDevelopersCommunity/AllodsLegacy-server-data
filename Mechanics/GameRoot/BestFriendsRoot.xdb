@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.gameRoot.BestFriendsRoot>
+	<Header>
+		<resourceId>357451808</resourceId>
+	</Header>
+	<bestFriendsLimit>2</bestFriendsLimit>
+	<elderBuff href="/Mechanics/BestFriends/SeniorCombatAbilities/SeniorBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	<afterTeleportBuff href="/Mechanics/BestFriends/Buffs/AfterTeleportBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	<teleportSpellStub href="/Mechanics/BestFriends/Spells/Teleport.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	<contentKey href="/System/ContentKeys/BestFriends.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+	<maxMountGrade>4</maxMountGrade>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectTrigger">
+			<triggers>
+				<Item type="gameMechanics.elements.triggers.BoundShipTrigger">
+					<toShipPredicates>
+						<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+							<permission>Return</permission>
+						</Item>
+					</toShipPredicates>
+				</Item>
+				<Item type="gameMechanics.elements.triggers.ZoneTrigger">
+					<predicates>
+						<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+					</predicates>
+				</Item>
+			</triggers>
+			<mechanics>
+				<effectsWhileOn>
+					<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+						<actions>
+							<Item href="/Mechanics/Spells/BestFriends/ReturnShip.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+						</actions>
+					</Item>
+				</effectsWhileOn>
+			</mechanics>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectTrigger">
+			<triggers>
+				<Item type="gameMechanics.elements.triggers.BoundShipTrigger">
+					<toShipPredicates>
+						<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+							<permission>Lend</permission>
+						</Item>
+					</toShipPredicates>
+				</Item>
+				<Item type="gameMechanics.elements.triggers.ZoneTrigger">
+					<predicates>
+						<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.elements.triggers.TargetTrigger">
+					<toTargetPredicates>
+						<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onSlave type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.elements.predicates.PredicateHasNoBorrowedShip" />
+								</predicates>
+							</onSlave>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateBestFriends" />
+					</toTargetPredicates>
+				</Item>
+			</triggers>
+			<mechanics>
+				<effectsWhileOn>
+					<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+						<actions>
+							<Item href="/Mechanics/Spells/BestFriends/LendShip.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+						</actions>
+					</Item>
+				</effectsWhileOn>
+			</mechanics>
+		</Item>
+	</effects>
+	<notifications>
+		<makeFriends href="/Mechanics/BestFriends/ClientData/MakeFriends.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<endFriendship href="/Mechanics/BestFriends/ClientData/EndFriendship.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<pathNotFound href="/Mechanics/BestFriends/ClientData/PathNotFound.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<lendMount href="/Mechanics/BestFriends/ClientData/LendMount.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<borrowMount href="/Mechanics/BestFriends/ClientData/BorrowMount.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<getBackMount href="/Mechanics/BestFriends/ClientData/GetBackMount.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<giveBackMount href="/Mechanics/BestFriends/ClientData/GiveBackMount.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<lendMountFail href="/Mechanics/BestFriends/ClientData/LendMountFail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<lendMountNoSlots href="/Mechanics/BestFriends/ClientData/LendMountNoSlots.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		<lendMountAlreadyHave href="/Mechanics/BestFriends/ClientData/LendMountAlreadyHave.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+	</notifications>
+</gameMechanics.world.gameRoot.BestFriendsRoot>

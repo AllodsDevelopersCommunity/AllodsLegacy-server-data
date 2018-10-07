@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.gameRoot.RemortRoot>
+	<Header>
+		<resourceId>206467077</resourceId>
+	</Header>
+	<predicateShowNPC type="gameMechanics.constructor.basicElements.PredicateOr">
+		<predicates>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoContested5/Remort_Fanal/Remort_Fanal.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Finished</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsRemort" />
+		</predicates>
+	</predicateShowNPC>
+	<switchAction href="RemortSwitchAction.xdb#xpointer(/gameMechanics.constructor.basicElements.ActionSimple)" />
+	<switchConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.LongData">
+				<value>50000</value>
+			</sumCalcer>
+		</Item>
+	</switchConditions>
+	<impactsOnSwitch>
+		<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.LongData">
+				<value>-50000</value>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SendImpactsToAddressees">
+			<addresseesFinder type="gameMechanics.elements.addresseeFinders.AddressesCalcerDespawnableShips" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric">
+					<forced>true</forced>
+				</Item>
+			</impacts>
+		</Item>
+	</impactsOnSwitch>
+	<createResetAction href="RemortCreateResetAction.xdb#xpointer(/gameMechanics.constructor.basicElements.ActionSimple)" />
+	<createConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsRemort" />
+		</Item>
+		<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+			<currency href="/Mechanics/AlternativeCurrencies/RemortPoint.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			<count>1</count>
+		</Item>
+	</createConditions>
+	<resetConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsRemort" />
+		</Item>
+	</resetConditions>
+	<impactsOnCreate>
+		<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+			<currency href="/Mechanics/AlternativeCurrencies/RemortPoint.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>-1</value>
+			</sumCalcer>
+		</Item>
+	</impactsOnCreate>
+	<remortAbilityConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>45</value>
+				</minLevel>
+			</predicate>
+		</Item>
+	</remortAbilityConditions>
+	<remortAbility href="/Mechanics/Spells/Remort/RemortAbility/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+</gameMechanics.world.gameRoot.RemortRoot>

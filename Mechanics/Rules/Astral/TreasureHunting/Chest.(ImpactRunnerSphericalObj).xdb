@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>282492952</resourceId>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj href="/Spells/FX/Ships/AstralAnomalyChestSarnFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>15</scale>
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name href="Chest_Name.txt" />
+			<description href="Chest_Desc.txt" />
+			<image href="/Interface/Ingame/ContextAstralMap/AstralHubMark/Wreckage.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius>50</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+					<impacts>
+						<Item type="gameMechanics.world.bigAstral.ImpactStopObjectSpawn" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<max>4</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="BuffChestOnShip.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.world.bigAstral.elements.ImpactsOnSectors">
+									<selector type="gameMechanics.world.bigAstral.elements.StaticSectorSelector">
+										<sector href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+									</selector>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactAddEssencesToActivity">
+											<essences>
+												<Item type="gameMechanics.world.bigAstral.activities.OneTimeSpawnResource">
+													<maxPerHub>4</maxPerHub>
+													<countDice>
+														<edges>1</edges>
+														<rolls>1</rolls>
+													</countDice>
+													<resources>
+														<Item>
+															<resource href="Chest.(ImpactRunnerSphericalObj).xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)" />
+														</Item>
+													</resources>
+													<pois>
+														<mapPoi href="Chest.(AstralMapPOI).xdb#xpointer(/gameMechanics.world.bigAstral.AstralMapPOI)" />
+														<scanerPoi href="Chest.(ScanerPOI).xdb#xpointer(/gameMechanics.world.bigAstral.ScanerPOI)" />
+													</pois>
+												</Item>
+											</essences>
+											<activity href="TreasureHunting.(AstralActivity).xdb#xpointer(/gameMechanics.world.bigAstral.activities.AstralActivity)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

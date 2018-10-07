@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739818847</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<description href="Ability_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/ThePowerAstral.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/WarriorV3/Abilities/StunReducedDuration/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</impactsOnAttach>
+			<forceAttachBuff>true</forceAttachBuff>
+			<durationScalerTarget type="gameMechanics.elements.scalers.LinearScaler">
+				<multiplier>0.5</multiplier>
+			</durationScalerTarget>
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericAnd">
+					<predicates>
+						<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+							<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+							<predicate type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+								<groups>
+									<Item href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									<Item href="/Mechanics/Spells/Groups/Disorients.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									<Item href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</groups>
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+							<predicate type="gameMechanics.constructor.schemes.buff.PredicateBuffEquals">
+								<buff href="/Mechanics/Spells/WarriorV3/BattleFrenzy/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

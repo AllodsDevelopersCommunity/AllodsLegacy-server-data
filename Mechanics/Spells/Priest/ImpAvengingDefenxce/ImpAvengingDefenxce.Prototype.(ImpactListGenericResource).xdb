@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>362651657</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+					<hideText>false</hideText>
+					<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+					<spell hrefvar="CurrentSpellLevel" />
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+					<spell hrefvar="CurrentSpellLevel" />
+					<effects>
+						<Item type="gameMechanics.elements.effects.BuffInterceptor">
+							<impactsOnAttach>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<radius>30</radius>
+									<affectGroup>Group</affectGroup>
+									<affectHolder>true</affectHolder>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactHeal">
+											<heal var="heal" />
+											<threatMultiplier>1</threatMultiplier>
+											<mode>Default</mode>
+											<considerOutgoingModifiers>true</considerOutgoingModifiers>
+										</Item>
+									</impacts>
+									<targetsLimit>0</targetsLimit>
+									<onBehalfOfHolder>true</onBehalfOfHolder>
+								</Item>
+							</impactsOnAttach>
+							<forceAttachBuff>true</forceAttachBuff>
+							<predicates>
+								<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffEquals">
+									<buff href="/Mechanics/Spells/Priest/ZealBuff/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>true</anyRank>
+								</Item>
+							</predicates>
+						</Item>
+					</effects>
+				</Item>
+			</elseImpacts>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

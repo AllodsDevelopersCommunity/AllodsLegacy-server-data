@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>358363139</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="MakeFriendsSpell.(SpellSingleTarget).ContextName.txt" />
+		<contextDescription href="MakeFriendsSpell.(SpellSingleTarget).ContextDescription.txt" />
+	</contextActionInfo>
+	<Name href="MakeFriendsSpell.(SpellSingleTarget).Name.txt" />
+	<Description href="MakeFriendsSpell.(SpellSingleTarget).Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>7</value>
+	</range>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics>
+		<cooldown>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBestFriends">
+					<count>2</count>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>6</value>
+				</minLevel>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasBestFriends">
+					<count>2</count>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateBestFriends" />
+			</Item>
+		</conditions>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactStartQuiz">
+						<question href="MakeFriendsQuestion.(Question).xdb#xpointer(/gameMechanics.world.quiz.Question)" />
+						<paramsCalcers>
+							<stringEntries>
+								<Item>
+									<name>caster</name>
+									<calcer type="gameMechanics.elements.calcers.CasterNameCalcer" />
+								</Item>
+							</stringEntries>
+						</paramsCalcers>
+						<participants type="gameMechanics.elements.addresseeFinders.AddressesCalcerSingle">
+							<calcer type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+						</participants>
+						<resultsHandler type="gameMechanics.elements.common.SingleResultHandler">
+							<impactsOnSuccess>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+											<lhs type="gameMechanics.elements.calcers.CalcerLongParam">
+												<paramName>choice</paramName>
+											</lhs>
+											<rhs type="gameMechanics.elements.calcers.LongData">
+												<value>0</value>
+											</rhs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+													<item href="MakeFriendsItem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactMakeFriends" />
+											</impacts>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ReturningImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+													<data href="Refuse_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+													<calcers>
+														<stringEntries>
+															<Item>
+																<name>caster</name>
+																<calcer type="gameMechanics.elements.calcers.CasterNameCalcer" />
+															</Item>
+														</stringEntries>
+													</calcers>
+												</Item>
+											</impacts>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsOnSuccess>
+							<impactsOnFail>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="Refuse_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											<calcers>
+												<stringEntries>
+													<Item>
+														<name>caster</name>
+														<calcer type="gameMechanics.elements.calcers.CasterNameCalcer" />
+													</Item>
+												</stringEntries>
+											</calcers>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsOnFail>
+						</resultsHandler>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

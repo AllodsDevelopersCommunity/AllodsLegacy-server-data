@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>277159987</resourceId>
+	</Header>
+	<Name href="ZC6_E_8_add3_item_Spell.txt" />
+	<Description href="ZC6_E_8_add3_item_Spell.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/ZC6_E_8_add3_Item.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="ZC6_E_8_add3_item_Spell.txt" />
+	<descTemplate href="ZC6_E_8_add3_item_Spell.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>5</value>
+	</range>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1500</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/IllusionWorld/ZC6_E_8_add3/ZC6_E_8_add3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.3</level>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_E_AviakPatient_Wild.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/IllusionWorld/ZC6_E_8_add3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+				<newMobWorld href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_E_AviakPatient.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>8000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.Disintegrate" />
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>5</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

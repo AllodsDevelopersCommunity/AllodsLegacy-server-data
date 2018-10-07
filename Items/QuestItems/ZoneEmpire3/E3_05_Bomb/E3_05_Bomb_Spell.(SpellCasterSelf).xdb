@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24367</resourceId>
+	</Header>
+	<Name href="E3_05_Bomb_Spell_Name.txt" />
+	<Description href="E3_05_Bomb_Spell_Desc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/ZoneEmpire3/E3_5_Bomb_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="E3_05_Bomb.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+						<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire3/Badaboom.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>2000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+								<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire3/Badaboom.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneEmpire3/E3_5_05/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+	<iffPolicy>Friends</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>235501688</resourceId>
+	</Header>
+	<Name href="/Items/QuestItems/ArchipelagoEmpire1/HaloMagicItem_True/HaloMagicItem_True_SpellName.txt" />
+	<Description href="/Items/QuestItems/ArchipelagoEmpire1/HaloMagicItem_True/HaloMagicItem_True_SpellDesc.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>30000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan_Sanatorium/ScriptZones/Halo_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/World/Quests/ArchipelagoEmpire1/Quest_02_Halo/AddHalo.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<scalerTarget />
+				<durationScaler />
+				<durationScalerTarget />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>7000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+									<radius>55</radius>
+									<mobs>
+										<Item href="/Creatures/DemonMageNewBreed/Instances/ZoneHadagan1/ZH1_Halo_Demon5_5.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</predicate>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>SD</scriptID>
+										<map href="/Maps/Hadagan_Sanatorium/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>120000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+								</impacts>
+								<object href="/Creatures/DemonMageNewBreed/Instances/ZoneHadagan1/ZH1_Halo_Demon5_5.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/Hadagan_Sanatorium/Quest_1_3_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>10000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+										<value>1000</value>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<mob>
+							<scriptID>ZH1_Halo_Demon1</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</mob>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/Hadagan_Sanatorium/Quest_1_3_1/Quest_1_3_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Completed</status>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="ZE1_HaloMagicItem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								<count>1</count>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>6500</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+										<mob>
+											<scriptID>ZH1_Halo_Demon1</scriptID>
+											<map href="/Maps/Hadagan_Sanatorium/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</mob>
+									</Item>
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

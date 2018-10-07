@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>250033186</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/InsuranceTrigger.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic1.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Stalker/SmashingShot.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Stalker/SlicingStrike.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1</duration>
+			<group href="" />
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+						<source>Mainhand</source>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier>1.2</multiplier>
+					</Item>
+				</scalers>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>35</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="/Mechanics/Spells/StalkerNew/MeleeIntuitiveStrikeUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration>1</duration>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.WeaponSpeedScaler">
+							<source>Mainhand</source>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>1.2</multiplier>
+						</Item>
+					</scalers>
+				</scaler>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.ScalerIf">
+					<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+						<ability href="/Mechanics/Spells/StalkerNew/Talents/IntuitiveStrikeDamage/Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						<anyRank>false</anyRank>
+					</condition>
+					<scalerIf type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+							<Item type="gameMechanics.elements.scalers.RandomScaler">
+								<range>
+									<min>109</min>
+									<max>127</max>
+								</range>
+							</Item>
+							<Item type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>0.01</multiplier>
+							</Item>
+						</scalers>
+					</scalerIf>
+					<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+						<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<ability href="/Mechanics/Spells/StalkerNew/Talents/IntuitiveStrikeDamage/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<anyRank>false</anyRank>
+						</condition>
+						<scalerIf type="gameMechanics.constructor.basicElements.ScalerMultiple">
+							<scalers>
+								<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+								<Item type="gameMechanics.elements.scalers.RandomScaler">
+									<range>
+										<min>106</min>
+										<max>118</max>
+									</range>
+								</Item>
+								<Item type="gameMechanics.elements.scalers.LinearScaler">
+									<multiplier>0.01</multiplier>
+								</Item>
+							</scalers>
+						</scalerIf>
+						<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+								<ability href="/Mechanics/Spells/StalkerNew/Talents/IntuitiveStrikeDamage/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<anyRank>false</anyRank>
+							</condition>
+							<scalerIf type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+									<Item type="gameMechanics.elements.scalers.RandomScaler">
+										<range>
+											<min>103</min>
+											<max>109</max>
+										</range>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.LinearScaler">
+										<multiplier>0.01</multiplier>
+									</Item>
+								</scalers>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.PhysicalScaler" />
+						</scalerElse>
+					</scalerElse>
+				</scaler>
+				<avgDamage var="avgDamage" />
+				<source>Mainhand</source>
+			</Item>
+		</targetImpacts>
+		<linkedAbility href="/Mechanics/Spells/StalkerNew/Quiver/Autoloader/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

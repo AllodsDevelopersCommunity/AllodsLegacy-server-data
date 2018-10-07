@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>278364177</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<name href="Quest_Name.txt" />
+	<goal href="AddonQuest_GoalText.txt" />
+	<startText href="AddonQuest_StartText.txt" />
+	<checkText href="Quest_CheckText.txt" />
+	<finishText href="AddonQuest_FinishText.txt" />
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld hrefvar="questTaker" />
+	</finisher>
+	<rewardImpacts>
+		<Item type="gameMechanics.world.ship.elements.ImpactAddShipInUpgrade">
+			<shipResource hrefvar="ship" />
+			<constructionTime var="time" />
+			<item hrefvar="item" />
+			<itemsCount>5</itemsCount>
+			<parts hrefvar="parts" />
+			<partsCount>15</partsCount>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateGreater">
+			<lhs type="gameMechanics.elements.calcers.AstralUnlockCalcer" />
+			<rhs type="gameMechanics.elements.calcers.CalcerAvatarLevelMin">
+				<tierLevel hrefvar="minUnlock" />
+			</rhs>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateHasUpgradableShip">
+			<newShipResource hrefvar="ship" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<showCounterValue>true</showCounterValue>
+			<limit>5</limit>
+			<items>
+				<Item hrefvar="item" />
+			</items>
+			<removeOnAbandon>false</removeOnAbandon>
+			<removeOnComplete>false</removeOnComplete>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<showCounterValue>true</showCounterValue>
+			<limit>15</limit>
+			<items>
+				<Item hrefvar="parts" />
+			</items>
+			<removeOnAbandon>false</removeOnAbandon>
+			<removeOnComplete>false</removeOnComplete>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountUpgradableShip">
+			<customName href="Upgrade.txt" />
+			<showCounterValue>true</showCounterValue>
+			<limit>1</limit>
+			<newShipResource hrefvar="ship" />
+		</Item>
+	</counters>
+	<sharing>
+		<onRequest>false</onRequest>
+	</sharing>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyInstant" />
+	<zone href="/Maps/AstralHangar/Zones/AstralHangar/AstralHangar.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value var="qlevel" />
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value var="qlevel" />
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

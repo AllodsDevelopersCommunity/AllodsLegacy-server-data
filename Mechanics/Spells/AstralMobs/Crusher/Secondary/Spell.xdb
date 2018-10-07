@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>231148558</resourceId>
+		<Variables>
+			<cooldown>25000</cooldown>
+		</Variables>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Warlock/Primary.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>250</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+			<Item skiped="" />
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+							<damage>1000</damage>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+							<value type="gameMechanics.elements.calcers.FloatData">
+								<value>1.33</value>
+							</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+						<Item type="gameMechanics.elements.calcers.CalcerExp">
+							<base>1.025</base>
+							<baseCalc type="gameMechanics.elements.calcers.FloatData">
+								<value>1.025</value>
+							</baseCalc>
+							<powCalc type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+								<buff href="CtulhuEnrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<forAllRanks>true</forAllRanks>
+							</powCalc>
+						</Item>
+					</calcers>
+				</damage>
+				<shieldDamageMod>1</shieldDamageMod>
+				<deviceDamageMod>0.33</deviceDamageMod>
+				<hullDamageMod>1</hullDamageMod>
+				<deviceCount>2</deviceCount>
+				<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.ImpactSpellHitAE">
+				<count>6</count>
+				<createOnCaster>true</createOnCaster>
+				<impacts>
+					<Item type="gameMechanics.elements.bunchImpacts.ScaledAstralDamage">
+						<element>ASTRAL</element>
+						<minDamage type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+									<damage>20000</damage>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>1.3</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+							</calcers>
+						</minDamage>
+						<maxDamage type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+									<damage>30000</damage>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>1.3</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+							</calcers>
+						</maxDamage>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+						<data href="/Spells/ClientData/AstralMob_HitAoE.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.ImpactSpellHitAE">
+				<createOnCaster>false</createOnCaster>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAvatarFinishUse" />
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>150</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

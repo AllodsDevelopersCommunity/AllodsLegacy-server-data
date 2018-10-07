@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>342813723</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Druid/Rip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/VisScripts/Druid/PetRend_Hit.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_02__Name.txt.template" />
+	<descTemplate href="Buff_02__Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<binaryPredicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<hideText>false</hideText>
+					<range min="0" max="7" />
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+					<hideText>false</hideText>
+					<onMaster type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<hideText>false</hideText>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAlive">
+								<hideText>false</hideText>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<hideText>false</hideText>
+								<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+									<hideText>false</hideText>
+									<groups>
+										<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+									</groups>
+									<checkHelpful>true</checkHelpful>
+									<checkHarmful>true</checkHarmful>
+								</predicate>
+							</Item>
+						</predicates>
+					</onMaster>
+					<onSlave type="gameMechanics.elements.predicates.PredicateIsAlive">
+						<hideText>false</hideText>
+					</onSlave>
+				</Item>
+			</binaryPredicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+					<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+					<threatMultiplier>1</threatMultiplier>
+					<minDamage var="minDamage" />
+					<maxDamage var="maxDamage" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+					<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>500</value>
+					</delta>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsElse>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>500</value>
+			</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff_02_02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff_02_03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

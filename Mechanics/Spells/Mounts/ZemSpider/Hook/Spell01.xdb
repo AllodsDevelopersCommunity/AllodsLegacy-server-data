@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>380827651</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100498</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/BattleMountZemHook.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DisabledOnRemort.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/BattleMountZemHook.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/ZemSpider_Hook.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>6000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.IgnoreRangeAfterStartModifier" />
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>40000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>-0.025</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.MountLevelCalcer">
+					<mount href="/Mechanics/Mounts/5thGrade/Mounts/ZemSpider.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+				</mulCalcer>
+				<sum>1</sum>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsMountFed">
+				<hideText>false</hideText>
+				<mount href="/Mechanics/Mounts/5thGrade/Mounts/ZemSpider.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMounted">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>false</hideText>
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<hideText>false</hideText>
+					<buff href="ReuseProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<consumeStacks>0</consumeStacks>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<conditions />
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<hideText>false</hideText>
+				<buff href="/Mechanics/Spells/Mounts/ZemSpider/Energize/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<anyRank>true</anyRank>
+				<consumeStacks>4</consumeStacks>
+			</Item>
+		</casterResources>
+		<channelingMechanics>
+			<channelingBuff href="Hook.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<finishImpacts>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="ReuseProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</finishImpacts>
+		</channelingMechanics>
+		<targetImpacts />
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

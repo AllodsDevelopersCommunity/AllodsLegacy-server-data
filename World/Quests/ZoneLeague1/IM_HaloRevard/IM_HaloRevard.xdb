@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>186030082</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital_MainSquare.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="13657.564453" y="6765.047852" z="-6.025320" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Elf_female/Instances/ZoneLeague1/MainAbbath.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsFairyActive" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/IMOffensivePotions.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+											<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/ItemMall/Potions/Strength/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+									<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+										<multiplier>2</multiplier>
+									</durationScaler>
+									<scalerTarget />
+									<stacks />
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Mechanics/Spells/ItemMall/Potions/Intellect/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+									<durationScalerTarget />
+									<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+										<multiplier>2</multiplier>
+									</durationScaler>
+									<scalerTarget />
+									<stacks />
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/IMDefensivePotions.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/ItemMall/Potions/Stamina/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<durationScalerTarget />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>2</multiplier>
+							</durationScaler>
+							<scalerTarget />
+							<stacks />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIf>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasFairy" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/USA.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+			</predicates>
+		</Item>
+	</startConditions>
+	<reward>
+		<experience>2</experience>
+		<money>34</money>
+		<fairyFeed>
+			<period>14400000</period>
+			<conditions>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateIsFairyActive" />
+				</Item>
+			</conditions>
+		</fairyFeed>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyDelayed" />
+	<tutorial>false</tutorial>
+	<internalName>IM_HaloRevard</internalName>
+	<lowPriority>false</lowPriority>
+	<zone href="/Maps/Kania/Zones/ZoneLeague1/ZoneLeague1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>5</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>5</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

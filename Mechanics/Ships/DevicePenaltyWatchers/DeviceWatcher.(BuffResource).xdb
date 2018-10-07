@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739814418</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateGreater">
+							<lhs type="gameMechanics.world.device.CalcerTechLevelDelta" />
+							<rhs type="gameMechanics.elements.calcers.FloatData">
+								<value>0</value>
+							</rhs>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff hrefvar="buff" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff hrefvar="buff" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

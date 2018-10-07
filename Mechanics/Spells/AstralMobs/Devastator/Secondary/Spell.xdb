@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>121053384</resourceId>
+		<Variables>
+			<cooldown>20000</cooldown>
+		</Variables>
+	</Header>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Devastator/Secondary.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>0</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>350</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Spell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration var="cooldown" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderRandomDevice">
+					<deviceTypes>
+						<Item href="/Mechanics/Ships/UsableDeviceTypes/Cannon.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+						<Item href="/Mechanics/Ships/UsableDeviceTypes/BeamCannon.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+						<Item href="/Mechanics/Ships/UsableDeviceTypes/EngineVertical.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+						<Item href="/Mechanics/Ships/UsableDeviceTypes/Rudder.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+					</deviceTypes>
+				</addresseeFinder>
+				<impacts>
+					<Item type="gameMechanics.world.ship.elements.ImpactDeviceHit">
+						<damage type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+									<damage>200</damage>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>1.33</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+							</calcers>
+						</damage>
+					</Item>
+					<Item type="gameMechanics.elements.device.EntityClientData">
+						<data href="/Spells/ClientData/AstralMob_HitDevice.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

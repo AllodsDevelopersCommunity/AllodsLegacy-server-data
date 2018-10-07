@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>328773645</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestDivineArmor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/TotalImmunity.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DamageAbsorber">
+			<elements>
+				<Item>COLD</Item>
+				<Item>DISEASE</Item>
+				<Item>FIRE</Item>
+				<Item>ASTRAL</Item>
+				<Item>HOLY</Item>
+				<Item>LIGHTNING</Item>
+				<Item>PHYSICAL</Item>
+				<Item>POISON</Item>
+				<Item>SHADOW</Item>
+				<Item>ACID</Item>
+			</elements>
+			<absorb>180</absorb>
+			<scaler type="gameMechanics.elements.scalers.ScalerIf">
+				<condition type="gameMechanics.elements.predicates.PredicateManaCaster">
+					<hideText>false</hideText>
+					<manaType>Mana</manaType>
+				</condition>
+				<scalerIf type="gameMechanics.elements.scalers.MagicScaler">
+					<stat>IS_Intellect</stat>
+				</scalerIf>
+				<scalerElse type="gameMechanics.elements.scalers.SlotScaler">
+					<slot>MAINHAND</slot>
+				</scalerElse>
+			</scaler>
+			<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<absorbNotForthrightDamage>true</absorbNotForthrightDamage>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Fears.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Disorients.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Blinds.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/Stuns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+					<predicate type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</predicate>
+				</Item>
+			</predicates>
+			<removeExistingBuffs>true</removeExistingBuffs>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectUnworthyOfAttention" />
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/RangedAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Shroud.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Escapes.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

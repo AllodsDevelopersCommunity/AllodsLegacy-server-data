@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>360840193</resourceId>
+	</Header>
+	<name href="Collectors_exchange_verif.(Cue).Name.txt" />
+	<text href="Collectors_exchange_verif.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+			<items>
+				<Item href="/Items/CollectorsEdition/CollectorsEdition_RushOrderCloak.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<totalCount>1</totalCount>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+			<items>
+				<Item href="/Items/CollectorsEdition/CollectorsEdition_RushOrderCloak.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+			<totalCount>1</totalCount>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateCanTake">
+			<item href="/Items/Costumes/DressItems/Back/Special/CollectorsCape.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Items/CollectorsEdition/CollectorsEdition_RushOrderCloak.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>1</totalCount>
+					<checkDress>false</checkDress>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+					<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+						<item href="/Items/Costumes/DressItems/Back/Special/CollectorsCape.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</item>
+					<binding>ForceBind</binding>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+					<item href="/Items/CollectorsEdition/CollectorsEdition_RushOrderCloak.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+							<items>
+								<Item href="/Items/CollectorsEdition/CollectorsEdition_RushOrderCloak.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</items>
+							<totalCount>1</totalCount>
+							<checkBag>false</checkBag>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+							<data href="CollectorsExchange_fail.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

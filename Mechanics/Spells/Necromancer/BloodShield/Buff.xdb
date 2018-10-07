@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>1921974299</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Necromancer/Bloodshield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffectsIncCount />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<effects>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.RepelTypeRaiser">
+					<type>IGNORE</type>
+				</Item>
+				<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+							<buff hrefvar="buff" />
+							<resetTimer>false</resetTimer>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+											<ability href="/Mechanics/Abilities/NecromancerTalents/HealingShield/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+					<scaleImpactsByDamage>false</scaleImpactsByDamage>
+					<damageType>Damage</damageType>
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+						<Item type="gameMechanics.elements.predicates.damageProperties.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.damageProperties.PredicateOffenderIsCaster" />
+						</Item>
+					</predicates>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.StatArmor" />
+			<multiplier>1</multiplier>
+			<summand>0</summand>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>0.08</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<forAllRanks>true</forAllRanks>
+				</mulCalcer>
+				<sum>1</sum>
+			</scaler>
+		</Item>
+	</effects>
+	<duration>1800000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit var="stackLimit" />
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

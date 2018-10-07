@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>353613900</resourceId>
+	</Header>
+	<name href="TE2012_E_05R.(QuestResource).Name.txt" />
+	<goal href="TE2012_E_05R.(QuestResource).Goal.txt" />
+	<startText href="TE2012_E_05R.(QuestResource).StartText.txt" />
+	<checkText href="TE2012_E_05R.(QuestResource).CheckText.txt" />
+	<finishText href="TE2012_E_05R.(QuestResource).FinishText.txt" />
+	<returnLocation>
+		<zone href="/Maps/Hadagan/Zones/ZoneEmpire2/E2_Sector1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="11423.200001" y="12013.800000" z="16.900000" />
+		<radius>5</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Elf_female/Instances/ZoneLeague1/TheEnd2012_Historian.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_05R/SoulTrap.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_05_qc2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+			<rule href="/Mechanics/Rules/LoreEvents/OneTime/TheEnd2012/TheEnd2012_week3.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="TE2012_E_03.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Finished</status>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="TE2012_E_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Finished</status>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateFalse" />
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="TE2012_E_05R.(QuestResource).CustomName.txt" />
+			<description href="TE2012_E_05R.(QuestResource).Description.txt" />
+			<relatedItems>
+				<Item href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_05R/SoulTrap.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>15</limit>
+			<id href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_05_qc1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<mandatoryItems>
+			<Item>
+				<item href="/Mechanics/Spells/Events/OneTime/TheEnd2012/HistGift.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyDelayed" />
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/ZoneHadagan1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

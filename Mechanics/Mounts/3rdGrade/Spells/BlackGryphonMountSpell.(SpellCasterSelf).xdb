@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>261044265</resourceId>
+	</Header>
+	<Name href="BattleMountSpell.txt" />
+	<Description href="BlackGryphonMountSpell.Desctiption.txt" />
+	<image href="/Interface/Icons/Mounts/GryphoneDark.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>2500</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasFreeStableSlots" />
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateHasMountFromGroup">
+									<group href="/Mechanics/Mounts/Groups/Gryphon3Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasMountFromGroup">
+								<group href="/Mechanics/Mounts/Groups/Gryphon3Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+									<unlock href="/Mechanics/Mounts/Skins/Gryphons/BlackGryphon.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasMountFromGroup">
+						<group href="/Mechanics/Mounts/Groups/Gryphon3Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Mounts/Skins/Gryphons/BlackGryphon.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTameMount">
+						<mount href="/Mechanics/Mounts/3rdGrade/Mounts/BlackGryphon.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

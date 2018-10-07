@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>290770158</resourceId>
+	</Header>
+	<Name href="ZC6_E_8_1_3_MonkeyExplosive.(BuffResource)_Name.txt" />
+	<Description href="ZC6_E_8_1_3_MonkeyExplosive.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireball.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="ZC6_E_8_1_3_MonkeyExplosive.(BuffResource)_Name.txt.template" />
+	<descTemplate href="ZC6_E_8_1_3_MonkeyExplosive.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>12</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_E_8_1_3_AviakWarrior.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_E_8_1_3_AviakMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/IllusionWorld/ZC6_E_8_1_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="ZC6_E_8_1_3_ContextAction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<finishImpacts>
+						<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+					</finishImpacts>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>2000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="ZC6_E_8_1_3_MonkeyExplosive.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactKill" />
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectForceMove">
+			<destinations>
+				<Item type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>ZC6_CampCentre</scriptID>
+						<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</Item>
+			</destinations>
+			<impactsOnArrived>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC6_E_8_1_3_MonkeyExplosive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOnArrived>
+			<impactsOnPathNotFound>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC6_E_8_1_3_MonkeyExplosive.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOnPathNotFound>
+		</Item>
+	</effects>
+	<duration>15000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<ReadyAnimationBody>readySpellOmniBody</ReadyAnimationBody>
+			<FxOnCaster />
+			<ReadyAnimationHands>readySpellOmni</ReadyAnimationHands>
+			<LocatorNameOnCaster />
+			<LocatorOnCaster>Slot_TopFX</LocatorOnCaster>
+			<Animation>spellCastOmni</Animation>
+			<FxOnHands />
+			<FxFixPoint>false</FxFixPoint>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/Omni_Instant.txt" />
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureVisActionCreateController">
+				<controllerName>Right</controllerName>
+				<controller href="/Characters/RightShoulder.(AnimationController).xdb#xpointer(/AnimationController)" />
+			</Item>
+			<Item type="CreatureVisActionCreateController">
+				<visActionID />
+				<controllerName>Left</controllerName>
+				<controller href="/Characters/LeftShoulder.(AnimationController).xdb#xpointer(/AnimationController)" />
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>CLAMP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="ReadyAnimationBody" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>LOOP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="ReadyAnimationHands" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController>Right</specialController>
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>LOOP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="ReadyAnimationHands" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController>Left</specialController>
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="CreatureTimeIntervalChannelSpeedAction">
+				<specialController>Right</specialController>
+				<frozenSpeed>0.7</frozenSpeed>
+			</Item>
+			<Item type="CreatureTimeIntervalChannelSpeedAction">
+				<visActionID />
+				<channel>CHANNEL_DEFAULT</channel>
+				<specialController>Left</specialController>
+				<startSpeed>1</startSpeed>
+				<endSpeed>4</endSpeed>
+				<frozenSpeed>0.7</frozenSpeed>
+			</Item>
+			<Item type="CreatureTimeIntervalChannelPosAction" />
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx hrefvar="FxOnHands" />
+				<locator>Slot_Hand_L</locator>
+			</Item>
+			<Item>
+				<effectFx hrefvar="FxOnHands" />
+				<locator>Slot_Hand_R</locator>
+			</Item>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirect01Down.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastOmni</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay>200</delay>
+						<effectFx href="/Spells/FX/Spells/HitFireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+						<fixPoint var="FxFixPoint" />
+						<locator var="LocatorOnCaster" />
+						<locatorName var="LocatorNameOnCaster" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

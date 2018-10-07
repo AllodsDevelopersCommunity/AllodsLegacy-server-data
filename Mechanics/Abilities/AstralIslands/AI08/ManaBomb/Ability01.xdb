@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>172582969</resourceId>
+	</Header>
+	<name href="Ability01.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0.2</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<radius>8</radius>
+									<affectGroup>Enemies</affectGroup>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.IncrementMana">
+											<manaType>Mana</manaType>
+											<amount>-200</amount>
+											<scaler type="gameMechanics.elements.scalers.ManaLevelScaler" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.IncrementMana">
+											<manaType>Energy</manaType>
+											<amount>-100</amount>
+											<threatMultiplier>1</threatMultiplier>
+											<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+											<element>ASTRAL</element>
+											<threatMultiplier>0</threatMultiplier>
+											<statsConvertor type="" />
+											<minDamage>35</minDamage>
+											<maxDamage>35</maxDamage>
+											<scaler type="gameMechanics.elements.scalers.MagicScaler">
+												<stat>IS_Intellect</stat>
+											</scaler>
+										</Item>
+									</impacts>
+									<filter type="gameMechanics.constructor.basicElements.FilterOr">
+										<filters>
+											<Item type="gameMechanics.world.creature.AvatarFilter" />
+											<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+												<predicates>
+													<Item type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</predicates>
+											</Item>
+										</filters>
+									</filter>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="ManaExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>345090060</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Mage/TheTideOfTheElements.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/DotIce.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.CountingEffectOverTime">
+			<effect type="gameMechanics.elements.effects.ImpactsOverTime">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<tick>1000</tick>
+				<initialDelay>0</initialDelay>
+			</effect>
+			<ticksCount>9</ticksCount>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/TideElements_Cast.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<calcers>
+						<addressEntries>
+							<Item>
+								<name>caster</name>
+								<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+							</Item>
+							<Item>
+								<name>target</name>
+								<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+							</Item>
+						</addressEntries>
+					</calcers>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+													<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<range>
+														<min>5</min>
+														<max>9</max>
+													</range>
+												</Item>
+											</predicates>
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsUnderEnvelope">
+											<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+													<element>ASTRAL</element>
+													<minDamage var="minDamage" />
+													<maxDamage var="maxDamage" />
+													<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+														<scalers>
+															<Item type="gameMechanics.elements.scalers.ScalerBuff">
+																<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																<multiplier>1</multiplier>
+																<summand>0</summand>
+															</Item>
+															<Item type="gameMechanics.elements.scalers.MagicScaler" />
+															<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+																<mul>0.25</mul>
+																<mulCalcer type="gameMechanics.elements.calcers.ItemQualityCalcer">
+																	<dressSlot>AMMO</dressSlot>
+																</mulCalcer>
+																<sum>1</sum>
+															</Item>
+														</scalers>
+													</scaler>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+									<shape type="gameMechanics.constructor.schemes.spell.area.RectangularRay">
+										<width>10</width>
+										<topPlane>10</topPlane>
+										<bottomPlane>-10</bottomPlane>
+									</shape>
+									<affectGroup>Enemies</affectGroup>
+									<radius type="gameMechanics.elements.impacts.RunImpactsInShape$DistanceCalcer" />
+									<targetsNum>0</targetsNum>
+									<affectMainTarget>true</affectMainTarget>
+									<workOnDead>true</workOnDead>
+									<needLosToTarget>false</needLosToTarget>
+									<shapeCenterPosition>Caster</shapeCenterPosition>
+									<shapeOrientation>YawAndPitch</shapeOrientation>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups />
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

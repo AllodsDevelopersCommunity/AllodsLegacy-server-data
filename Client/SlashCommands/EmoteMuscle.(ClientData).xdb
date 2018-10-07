@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.ClientData>
+	<Header>
+		<resourceId>23878</resourceId>
+	</Header>
+	<customData type="UIEmoteData">
+		<textTarget href="EmoteMuscleNoTarget.txt" />
+		<textNoTarget href="EmoteMuscleNoTarget.txt" />
+		<voiceOvers />
+		<animation type="CreatureVisActionData">
+			<action type="VisActionList">
+				<elements>
+					<Item type="CreatureSetFlagAction">
+						<flagName>Flag_Emote</flagName>
+					</Item>
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="PredicateCreatureFlagAction">
+							<flagName>Flag_MountNeeded</flagName>
+							<checkIsSet>false</checkIsSet>
+						</playWhile>
+						<elements>
+							<Item type="VisActionList">
+								<play>Simultaneously</play>
+								<playWhile type="CreatureAnimationAction">
+									<animations>
+										<Item>emoteMuscle</Item>
+									</animations>
+									<channel>CHANNEL_EMOTE</channel>
+									<channelOverrideMode>OVERRIDE_STOP</channelOverrideMode>
+									<channelOverrideControllers>TOP_AND_BOTTOM</channelOverrideControllers>
+									<advanced>
+										<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+									</advanced>
+								</playWhile>
+								<elements>
+									<Item type="Sound3DAction">
+										<alias href="/Client/CreatureSoundAliases/emoteMuscle.(AliasSound3d).xdb#xpointer(/AliasSound3d)" />
+										<forcedSoundStop>true</forcedSoundStop>
+									</Item>
+								</elements>
+								<stopWhileWhenElementsEnded>false</stopWhileWhenElementsEnded>
+							</Item>
+						</elements>
+					</Item>
+					<Item type="CreatureSetFlagAction">
+						<flagName>Flag_Emote</flagName>
+						<timeOut>0.5</timeOut>
+					</Item>
+				</elements>
+			</action>
+		</animation>
+		<image href="/Interface/Icons/Special/Emotions/Muscle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</customData>
+</gameMechanics.world.ClientData>

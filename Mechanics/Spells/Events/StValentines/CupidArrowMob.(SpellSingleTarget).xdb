@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>301467652</resourceId>
+	</Header>
+	<Name href="CupidArrowMob.(SpellSingleTarget)_Name.txt" />
+	<image href="/Interface/Icons/Misc/Event/StValentinesArrows.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Events/StValentines/CupidArrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="CupidArrowMob.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<level>4</level>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Everyone</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+				<rule href="/Mechanics/Rules/StValentines/StValentinesDay.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>HUMANOID</race>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>UNDEAD</race>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+					<buff href="CupidArrowLimitMob.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<range>
+						<min>3</min>
+						<max>3</max>
+					</range>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="CupidArrowLimitMob.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

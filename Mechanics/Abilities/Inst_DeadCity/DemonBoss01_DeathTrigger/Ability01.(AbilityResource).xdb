@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>172192808</resourceId>
+	</Header>
+	<name href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<nameTemplate href="/Mechanics/Abilities/Inst_DeadCity/DragonDeathTrigger/Ability_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Demon_SoulEater_Event</scriptID>
+									<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</moveType>
+						<resource href="/Maps/Inst_DeadCity/ScriptZones/Demon_SoulEater_Projectile_Reset01.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+					<variable href="/Maps/Inst_DeadCity/Variables/Demons.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<summand>1</summand>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Rotate</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Demon_SoulEater_Event</scriptID>
+									<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</moveType>
+						<resource href="/Maps/Inst_DeadCity/ScriptZones/Demon_SoulEater_Projectile_Reset01.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_DeadCity/ScriptZones/Demon_SoulEaterStrat.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Abilities/Bosses/ActivityTracker/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Abilities/Bosses/ActivityTrackerDisabler/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/MobProjectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>danceAnniversary</PreCastAnimation>
+			<FXProjectile>/Spells/FX/Mobs/GT_5Boss_AcidPool_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXProjectile>
+			<CastAnimation>rangedAttack</CastAnimation>
+			<FXOnCaster />
+			<FXProjectileHit>/Spells/FX/Spells/HitPoisonAOE.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXProjectileHit>
+			<ProjectileLocatorOnTarget>Slot_Global</ProjectileLocatorOnTarget>
+			<FixPointCaster>true</FixPointCaster>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectPoisonWand.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<LocatorOnCaster>Slot_FX</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="PreCastAnimation" />
+				</animations>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item skiped="" />
+					<Item>
+						<effectFx hrefvar="FXOnCaster" />
+						<fixPoint var="FixPointCaster" />
+						<scale>2.5</scale>
+						<locator var="LocatorOnCaster" />
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<use>USE_CURRENT_RANGED_ATTACK</use>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item skiped="" />
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<useOwnKillingParams>false</useOwnKillingParams>
+</SpellVisScripts>

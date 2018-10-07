@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FixPointTarget>true</FixPointTarget>
+			<ShakeParams />
+			<FxOnTarget />
+			<DelayCasterFX>0</DelayCasterFX>
+			<HitDelay>0</HitDelay>
+			<FixPointCaster>false</FixPointCaster>
+			<FxOnHands />
+			<HitPostFxOnTarget />
+			<Animation>instantSpellCastOmni</Animation>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/Omni_Instant.txt" />
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID />
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="FxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Hand_L</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+					</Item>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="FxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Hand_R</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<precastType>PRECAST_LAUNCH</precastType>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visActionID />
+						<visualEffects>
+							<Item>
+								<delay var="DelayCasterFX" />
+								<effectFx href="/Spells/FX/Spells/LotteryTrinket.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fixPoint var="FixPointCaster" />
+								<locator>Slot_BodyFX</locator>
+								<locatorName />
+								<offendTime type="EffectOffendConstDelay">
+									<delay var="HitDelay" />
+								</offendTime>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="ShakeAction">
+						<params hrefvar="ShakeParams" />
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureEffectsAction">
+					<visActionID />
+					<visualEffects>
+						<Item>
+							<effectFx hrefvar="FxOnTarget" />
+							<fixPoint var="FixPointTarget" />
+							<locator>Global</locator>
+							<locatorName />
+						</Item>
+					</visualEffects>
+				</Item>
+				<Item type="CreatureRunVisActionResource">
+					<resource hrefvar="HitPostFxOnTarget" />
+				</Item>
+			</elements>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

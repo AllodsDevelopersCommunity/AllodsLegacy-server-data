@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>267497478</resourceId>
+		<Variables>
+			<duration>5000</duration>
+			<buff>/Mechanics/Spells/WarriorV2/Charge/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</buff>
+			<avgDamage>6.88</avgDamage>
+		</Variables>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/ChargeRhino.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Creatures/Rhino/Charge.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Charge">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mul>0.1</mul>
+						<mulCalcer type="gameMechanics.elements.calcers.MountLevelCalcer">
+							<mount href="/Mechanics/Mounts/2ndGrade/Mounts/RhinoItemMall.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+						</mulCalcer>
+						<sum>1</sum>
+					</durationScaler>
+					<allowOverrideCaster>false</allowOverrideCaster>
+					<impactsOnAttach>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Spells/VisScripts/Creatures/Rhino/Charge.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsOnAttach>
+				</Item>
+			</impacts>
+			<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<speedFactor>3</speedFactor>
+			<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+				<angle>0.5236</angle>
+			</pathChecker>
+			<drawValue>0</drawValue>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

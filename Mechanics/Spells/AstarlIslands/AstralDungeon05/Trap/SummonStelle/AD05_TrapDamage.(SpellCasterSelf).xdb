@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>739817783</resourceId>
+	</Header>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<isAE>true</isAE>
+	<mechanics>
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Trap</scriptID>
+							<map href="/Maps/AstralDungeon05/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+							<verticalRange min="0" max="0" />
+							<horizontalRange min="0" max="30" />
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>6000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+								<radius>85</radius>
+								<affectGroup>Enemies</affectGroup>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+										<element>PHYSICAL</element>
+										<minDamage>50</minDamage>
+										<maxDamage>50</maxDamage>
+										<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+									</Item>
+									<Item type="gameMechanics.elements.device.EntityClientData">
+										<data href="/Mechanics/Spells/AstarlIslands/AI17/JungleBossSacrifice/AcidExplosionEffect.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="DamagingStele.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactModifySpellCooldown">
+				<spell href="AD05_TrapDamage.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<factor>0.95</factor>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

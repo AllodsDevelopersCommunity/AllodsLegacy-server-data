@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>367287312</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell hrefvar="spell" />
+						<anyRank>false</anyRank>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+					<spell hrefvar="spell" />
+					<effects>
+						<Item type="gameMechanics.elements.effects.WhileAlive">
+							<effects>
+								<Item type="gameMechanics.elements.effects.Switch">
+									<impactsOn>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff hrefvar="buff" />
+											<allowOverrideCaster>false</allowOverrideCaster>
+										</Item>
+									</impactsOn>
+									<impactsOff>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff hrefvar="buff" />
+											<anyRank>true</anyRank>
+										</Item>
+									</impactsOff>
+									<rerunOnLoad>false</rerunOnLoad>
+								</Item>
+							</effects>
+						</Item>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.elements.impacts.MarkedImpact">
+									<mark href="/Mechanics/Spells/Marks/BardSongStart.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.MarkedImpact">
+									<mark href="/Mechanics/Spells/Marks/BardSongEnd.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+					</effects>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739814444</resourceId>
+	</Header>
+	<visualScript type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<lockScale>true</lockScale>
+				<scale>4</scale>
+				<locator>Slot_FX</locator>
+			</Item>
+		</visualEffects>
+	</visualScript>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="AI50_Boss02_LightningBall.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.4</coeff>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>3</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>LIGHTNING</element>
+							<minDamage>15</minDamage>
+							<maxDamage>15</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Mechanics/Spells/AstarlIslands/AI14/ElectricRing/LightningHit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

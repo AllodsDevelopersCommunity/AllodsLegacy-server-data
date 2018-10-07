@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>139641858</resourceId>
+	</Header>
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateFalse" />
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested4/AC4_Arena/AC4_Arena.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ArchipelagoContested4/AC4_Arena/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested4/AC4_Arena_liga/AC4_Arena_liga.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ArchipelagoContested4/AC4_Arena_liga/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateVariableLessThan">
+							<resource href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_demon_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<value>8</value>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+							<variable href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_demon_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<summand>1</summand>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_demon_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<scalerTarget />
+											<durationScaler />
+											<durationScalerTarget />
+											<allowOverrideCaster>false</allowOverrideCaster>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleportLocFaction">
+											<defaultLocator type="" />
+											<factionLocators>
+												<Item>
+													<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+													<locator>
+														<scriptID>pvp_event_start_imp</scriptID>
+														<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+													<yaw type="constructor.basicElements.AngleRadians">
+														<value>0</value>
+													</yaw>
+												</Item>
+												<Item>
+													<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+													<locator>
+														<scriptID>pvp_event_start_lig</scriptID>
+														<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</locator>
+													<yaw type="constructor.basicElements.AngleRadians">
+														<value>0</value>
+													</yaw>
+												</Item>
+											</factionLocators>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_demon_cue_limit.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<name href="Arena_demon_name2.txt" />
+	<text href="Arena_demon_text2.txt" />
+</gameMechanics.world.mob.interaction.Cue>

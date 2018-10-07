@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>82377833</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>400</priority>
+		<contextName href="Capitan_Summon_Name.txt" />
+		<contextDescription href="Capitan_Summon_Desc.txt" />
+		<contextImage href="/Interface/Icons/Spells/Necromancer/PetModePassive.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Capitan_Summon_Name.txt" />
+	<Description href="Capitan_Summon_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Warrior/Gibberling.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>99</value>
+	</range>
+	<prepareDuration>1000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<needInGroup>true</needInGroup>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>300000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="RedTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<impactsOnAttach>
+							<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+								<destination type="gameMechanics.map.destination.RelativePos" />
+							</Item>
+						</impactsOnAttach>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="BlueTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="BlueTeam.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+						<impactsOnAttach>
+							<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+								<destination type="gameMechanics.map.destination.RelativePos" />
+							</Item>
+						</impactsOnAttach>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

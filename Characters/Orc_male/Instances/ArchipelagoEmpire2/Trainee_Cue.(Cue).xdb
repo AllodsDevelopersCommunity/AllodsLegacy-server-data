@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>81958912</resourceId>
+	</Header>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoEmpire2/0_4AE2/0_4AE2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+						<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+							<msg href="TraineeMsg01.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+							<defaultSpeaker href="" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+							<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								<Item type="gameMechanics.elements.impacts.DirectDamage">
+									<damage>1</damage>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="TraineeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<text href="Trainee_Cue_Txt.txt" />
+</gameMechanics.world.mob.interaction.Cue>

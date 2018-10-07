@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/RangedAttack.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<AttackAnimation>USE_ANIMATIONS</AttackAnimation>
+			<FxProjectile>/Spells/FX/Spells/Events/CupidArrow.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item skiped="" />
+		</elements>
+	</actionBarStart>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="CreatureThrowArrowAction">
+				<arrow href="Cupid_Arrow.(VisProjectile).xdb#xpointer(/VisProjectile)" />
+				<enchantedArrowIndex>0</enchantedArrowIndex>
+				<arrowInTargetTime>10000</arrowInTargetTime>
+				<theGe>7</theGe>
+				<pointInTargetMin>0.5</pointInTargetMin>
+				<pointInTargetMax>0.7</pointInTargetMax>
+				<additionalEffectFx href="/Spells/FX/Spells/Events/CupidArrow.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<effectBone>Slot_FX</effectBone>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile type="VisActionList">
+					<play>Simultaneously</play>
+					<elements>
+						<Item type="CreatureItemAnimationAction">
+							<itemsSlot>RANGED</itemsSlot>
+							<animation>attack</animation>
+						</Item>
+						<Item type="CreatureAnimationAction">
+							<use var="AttackAnimation" />
+							<animations>
+								<Item>attackBow</Item>
+							</animations>
+							<advanced>
+								<offendType>ONEOFFEND_ONETARGET</offendType>
+								<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+							</advanced>
+						</Item>
+					</elements>
+				</playWhile>
+				<elements>
+					<Item type="CreatureChangeVisItemsAction">
+						<items>
+							<Item>
+								<slot>RANGED</slot>
+								<newItem href="/Items/VisualItems/Weapon/Bow/Bow_2H_A_04Default.(VisualItem).xdb#xpointer(/gameMechanics.constructor.schemes.item.VisualItem)" />
+							</Item>
+						</items>
+					</Item>
+				</elements>
+				<stopOnDeath>false</stopOnDeath>
+				<stopWhileWhenElementsEnded>true</stopWhileWhenElementsEnded>
+			</Item>
+			<Item skiped="" />
+		</elements>
+		<stopWhileWhenElementsEnded>true</stopWhileWhenElementsEnded>
+	</launch>
+</SpellVisScripts>

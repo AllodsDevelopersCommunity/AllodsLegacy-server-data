@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>271779847</resourceId>
+	</Header>
+	<Name href="CrystallAbsoluteShieldBuffCopy.(BuffResource).Name.txt" />
+	<Description href="CrystallAbsoluteShieldBuffCopy.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestDivineArmor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Bosses/TR_1Boss/CrystallAbsoluteShield.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="CrystallAbsoluteShieldBuffCopy.(BuffResource).Name.txt" />
+	<descTemplate href="CrystallAbsoluteShieldBuffCopy.(BuffResource).Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+					<predicate type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToHarmfulSpells" />
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="DelayedDeath.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>15000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

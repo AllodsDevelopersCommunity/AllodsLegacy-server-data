@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>336733192</resourceId>
+	</Header>
+	<name href="Inst_TepPyramid_enter_Cue.(Cue).Name.txt" />
+	<text href="Inst_TepPyramid_enter_Cue.Text.txt" />
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+						<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+							<key href="/System/ContentKeys/TepPyramid.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateInRaid" />
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/RealWorld/ZC9_creation_2/ZC9_creation_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>TPGatekeeper</scriptID>
+							<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+					<data href="NoEnter.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

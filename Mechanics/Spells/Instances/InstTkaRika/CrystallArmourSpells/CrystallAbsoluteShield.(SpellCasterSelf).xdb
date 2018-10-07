@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>198852664</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>900</priority>
+		<contextName href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell04_AbsoluteShield.txt" />
+		<contextDescription href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell04_AbsoluteShield.Description.txt" />
+		<contextImage href="/Interface/Icons/Spells/Priest/PriestDivineArmor.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell04_AbsoluteShield.txt" />
+	<Description href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell04_AbsoluteShield.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TR_1Boss/CrystallAbsoluteShield.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>25000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/Inst_TkaRika/Zones/Inst_TkaRika/TkaRika.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+				<items>
+					<Item href="/Items/QuestItems/ArchipelagoContested6/I_2_Item_01/I_2_Item_01.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				</items>
+				<totalCount>1</totalCount>
+				<checkBag>false</checkBag>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallAbsoluteShieldBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+				<buff href="/Mechanics/Spells/Instances/InstTkaRika/Buffs/CrystallSpell04_AbsoluteShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<delta type="gameMechanics.elements.calcers.FloatData">
+					<value>-1</value>
+				</delta>
+				<attachIfNotExist>false</attachIfNotExist>
+				<resetTimer>false</resetTimer>
+				<anyRank>false</anyRank>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

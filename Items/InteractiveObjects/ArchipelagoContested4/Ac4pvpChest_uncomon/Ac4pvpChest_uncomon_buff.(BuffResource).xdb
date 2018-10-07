@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>169772034</resourceId>
+	</Header>
+	<Name href="Ac4pvpChest_uncomon_buff_name.txt" />
+	<Description href="Ac4pvpChest_uncomon_buff.Description.txt" />
+	<image href="/Interface/Icons/Misc/Chests/ChestIron.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Events/PvP_eventAC4/KeepCheastBlue.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.3</coeff>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="/Maps/ArchipelagoContested4/ScriptZones/Arena_AC4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="/Maps/MM_Pvp_Arena/ScriptZones/Arena_AC4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="/Maps/TWarArena/ScriptZones/Arena_AC4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>true</faceSourcePos>
+								<coord x="0" y="0" z="0" />
+							</destination>
+							<plane href="" />
+							<pool href="/Mechanics/Rules/ArchipelagoContested4/Pvp_arena/Pvp4_mob_shest.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+							<traceDown>false</traceDown>
+							<object href="Ac4pvpChest_uncomon.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/Shroud.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Ac4pvpChest_uncomon_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectHandleLeaveMission">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Ac4pvpChest_uncomon_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

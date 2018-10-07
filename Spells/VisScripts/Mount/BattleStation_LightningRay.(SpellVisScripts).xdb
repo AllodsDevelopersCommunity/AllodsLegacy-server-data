@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureAnimationAction">
+								<animations>
+									<Item>attack</Item>
+								</animations>
+								<advanced>
+									<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+									<eventPlaybackEnd>true</eventPlaybackEnd>
+									<turnToTarget>NO_TURN</turnToTarget>
+									<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+								</advanced>
+							</Item>
+							<Item type="CreatureAnimationAction">
+								<mode>LOOP</mode>
+								<animations>
+									<Item>channelCastDirected</Item>
+								</animations>
+								<advanced>
+									<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+									<eventPlaybackEnd>true</eventPlaybackEnd>
+									<turnToTarget>NO_TURN</turnToTarget>
+									<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+								</advanced>
+							</Item>
+						</elements>
+					</Item>
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<elements>
+							<Item type="CreatureEffectsAction">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Mobs/Turret04_Dust.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<fixPoint>true</fixPoint>
+										<scale>1.4</scale>
+										<locator>Slot_Global</locator>
+									</Item>
+								</visualEffects>
+							</Item>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Spells/BattleStation_LightningRay.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>14</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>FROM_LOCATOR_NAME</locator>
+									<member>Mount</member>
+									<locatorName>Slot_Special01</locatorName>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_FX</locator>
+									<member>Assaulter</member>
+								</endPoint>
+								<multyTargetMode>Umbrella</multyTargetMode>
+								<secondaryTargetParams>
+									<fxLength>20</fxLength>
+									<offendTime type="EffectOffendConstDelay" />
+								</secondaryTargetParams>
+							</Item>
+							<Item type="CreatureFixedTimeProjectileAction">
+								<projectileFx href="/Spells/FX/Mobs/GlowYellowWeak.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<explosionFx href="/Spells/FX/Spells/HitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<pointOnCaster type="VisPointLocator">
+									<shift z="0.5" />
+									<member>Mount</member>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<locator>Slot_FX</locator>
+								</pointOnTarget>
+								<waitDuration>600</waitDuration>
+								<throwDuration>0</throwDuration>
+								<count>33</count>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</actionBarStart>
+</SpellVisScripts>

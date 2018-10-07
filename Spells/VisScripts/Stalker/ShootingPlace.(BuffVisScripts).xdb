@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<BuffVisScripts>
+	<Header>
+		<Variables>
+			<LoadHoldMode>LOOP</LoadHoldMode>
+			<LoadHoldAnimation>USE_CURRENT_RANGED_HOLD</LoadHoldAnimation>
+		</Variables>
+	</Header>
+	<action type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureTakeArrowAction">
+				<visActionID>AttachString</visActionID>
+				<arrow href="" />
+				<enchantedArrowIndex>1</enchantedArrowIndex>
+				<rorate>NONE</rorate>
+				<forceTakeInHand>false</forceTakeInHand>
+			</Item>
+			<Item type="CreatureItemAnimationAction">
+				<visActionID>AttachString2</visActionID>
+				<itemsSlot>RANGED</itemsSlot>
+				<mode>CLAMP</mode>
+				<animation>special</animation>
+				<idleAnimation>idle</idleAnimation>
+			</Item>
+			<Item type="CreatureTakeBowStringAction">
+				<visActionID>AttachString2</visActionID>
+				<itemsSlot>RANGED</itemsSlot>
+				<itemLocatorName>Slot_String</itemLocatorName>
+				<creatureLocator>Slot_Hand_R</creatureLocator>
+				<member>Assaulter</member>
+				<creatureLocatorName />
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID>AttachString2</visActionID>
+				<mode var="LoadHoldMode" />
+				<use var="LoadHoldAnimation" />
+				<animations />
+				<channel>CHANNEL_ATTACK</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript type="VisActionList">
+					<play>Simultaneously</play>
+					<playWhile />
+					<elements>
+						<Item type="VisActionStopAction">
+							<stoppedActionID>AttachString</stoppedActionID>
+						</Item>
+						<Item type="VisActionStopAction">
+							<stoppedActionID>AttachString2</stoppedActionID>
+						</Item>
+					</elements>
+					<stopOnDeath>true</stopOnDeath>
+				</channelOverrideScript>
+				<channelOverrideControllers>TOP_ONLY</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<animationKeysAction />
+					<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item skiped="" />
+		</elements>
+		<stopOnDeath>true</stopOnDeath>
+	</action>
+</BuffVisScripts>

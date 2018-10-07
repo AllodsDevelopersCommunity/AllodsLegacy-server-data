@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>126640135</resourceId>
+	</Header>
+	<Name href="ZL1_ScoutDetector_Spell_Name.txt" />
+	<Description href="ZL1_ScoutDetector_Spell_Description.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneLeague1/Quest_12_03/Quest_12_03.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Kania/ScriptZones/ZoneLeague1/zone_Quest_12_03.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>15</radius>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Characters/HumMobs/Instances/ZoneLeague1/ZL_HumMobM_09.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Characters/HumMobs/Instances/ZoneLeague1/ZL_HumMobM_11.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+								<ability href="/Characters/HumMobs/Instances/ZoneLeague1/HideScout.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>1000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+										<value>1</value>
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>500</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="ZL1_ScoutDetector_AppearEffect.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>60000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+												<ability href="/Characters/HumMobs/Instances/ZoneLeague1/HideScout.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.AttachAbility">
+												<ability href="/Characters/HumMobs/Instances/ZoneLeague1/HideScout.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+											</Item>
+										</impactsElse>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

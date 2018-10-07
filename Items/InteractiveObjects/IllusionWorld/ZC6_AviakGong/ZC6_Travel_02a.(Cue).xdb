@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>332222474</resourceId>
+	</Header>
+	<name href="ZC6_Travel_02a.(Cue).Name.txt" />
+	<text href="ZC6_Travel_02a.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly1/ZC6_L_Fly1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Started</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+			<zone href="/Maps/IllusionWorld/ScriptZones/ZC6_SphereFly_09.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+			<quest href="/World/Quests/IllusionWorld/ZC6_L_Fly1/ZC6_L_Fly1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<counterResource href="/Items/QuestItems/IllusionWorld/AviakEgg/AviakEgg.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<value>1</value>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateMounted" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+			<id href="/World/Quests/IllusionWorld/ZC6_E_Fly1/CountId1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="AviakFly_00_Stun_Back.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+					<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.world.pet.ImpactDismissPet" />
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+			<group href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactRemoveAllBuffsFromGroup">
+			<group href="/Mechanics/Spells/Groups/FeatureConsumables.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Items/QuestItems/IllusionWorld/AviakScroll/Aviak_Plane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<anyRank>false</anyRank>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

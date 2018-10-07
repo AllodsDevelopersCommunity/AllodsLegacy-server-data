@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>174907392</resourceId>
+	</Header>
+	<name href="Door_Open_Name.txt" />
+	<description href="Door_Open_Desc.txt" />
+	<level>45</level>
+	<rating>5</rating>
+	<zone href="/Maps/ArchipelagoGipatsShard/Zones/ArchipelagoGipatsShard/ArchipelagoGipatsShard.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<reward>
+		<experience>0</experience>
+		<mandatoryItems />
+		<alternativeItems>
+			<Item>
+				<item href="/Items/Mechanics/Maze_KHD/RegenPoitionBig/RegenPoitionBig.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/Maze_KHD/RegenManaBig/RegenManaBig.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/Maze_KHD/GasBottle/GasBottle.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/Maze_KHD/AcidBottle/AcidBottle.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/Maze_KHD/DivineArmor/DivineArmor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/Maze_KHD/Cannon_maze/Cannon_maze.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</alternativeItems>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_SINGLE</Item>
+	</types>
+	<timeTable href="Door_Open.(TimePeriodTable).xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects />
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+			<delay>100</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/ArchipelagoGipatsShard/Zones/ArchipelagoGipatsShard/ArchipelagoGipatsShard.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Maps/Maze_KHD/ClientData/EventStart.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item skiped="" />
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+			<delay>1500000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/ArchipelagoGipatsShard/Zones/ArchipelagoGipatsShard/ArchipelagoGipatsShard.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/Maps/Maze_KHD/ClientData/Event5minWarning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<finishImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+			<delay>9000000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_KHD.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Rules/Maze_KHD/Finish_Event/Teleport2Exit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<durationScalerTarget />
+							<durationScaler />
+							<scalerTarget />
+							<stacks />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>4000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.RandomImpact">
+									<entries>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+															<destination type="gameMechanics.map.destination.DestinationLocator">
+																<locator>
+																	<scriptID>Maze_exit_01</scriptID>
+																	<map href="/Maps/Maze_KHD/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																</locator>
+																<yaw type="constructor.basicElements.AngleRadians">
+																	<value>0</value>
+																</yaw>
+															</destination>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+											<chance>0.5</chance>
+										</Item>
+										<Item>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+															<destination type="gameMechanics.map.destination.DestinationLocator">
+																<locator>
+																	<scriptID>Maze_exit_02</scriptID>
+																	<map href="/Maps/Maze_KHD/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																</locator>
+																<yaw type="constructor.basicElements.AngleRadians">
+																	<value>0</value>
+																</yaw>
+															</destination>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+											<chance>0.5</chance>
+										</Item>
+									</entries>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+			<delay>9800000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item skiped="" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+			<zone href="/Maps/ArchipelagoGipatsShard/Zones/ArchipelagoGipatsShard/ArchipelagoGipatsShard.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Maps/Maze_KHD/ClientData/EventFinish.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+	</finishImpacts>
+</gameMechanics.world.rules.RuleResource>

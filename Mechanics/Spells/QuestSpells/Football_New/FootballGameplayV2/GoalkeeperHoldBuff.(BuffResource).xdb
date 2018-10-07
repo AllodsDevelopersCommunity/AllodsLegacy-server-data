@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>334711842</resourceId>
+	</Header>
+	<Name href="GoalkeeperHoldBuff.(BuffResource)_Name.txt" />
+	<Description href="GoalkeeperHoldBuff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Context/Create_An_Obstacle.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="GoalkeeperHold.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="/Mechanics/Spells/QuestSpells/Football_New/GoalkeeperHoldName.txt" />
+	<descTemplate href="GoalkeeperHoldDesc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableAura">
+			<tick>1000</tick>
+			<affectGroup>All</affectGroup>
+			<radius>3</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Slime/Instances/ArchipelagoEmpire2/SlimeBall.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+			</filter>
+			<blinking>true</blinking>
+			<onBehalfOfHolder>true</onBehalfOfHolder>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/QuestSpells/Football_New/MoveBall2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="FootballRunawayMove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+					<time>500</time>
+					<destination type="gameMechanics.map.destination.SelfPosDestination" />
+				</Item>
+			</impactsIn>
+			<holderImpactsIn>
+				<Item type="gameMechanics.battleground.map.ImpactUpdateEventAchievement">
+					<achievement href="/Mechanics/InstancedEventResource/MM_Football/FootKeeperAchievement.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+					<summand>1</summand>
+				</Item>
+			</holderImpactsIn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-0.4</coeff>
+			</effectScaler>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FootballSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

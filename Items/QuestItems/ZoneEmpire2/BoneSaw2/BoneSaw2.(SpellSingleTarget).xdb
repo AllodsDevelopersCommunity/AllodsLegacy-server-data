@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24306</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="BoneSaw2_SpellName.txt" />
+		<contextDescription href="BoneSaw2_SpellDesc.txt" />
+	</contextActionInfo>
+	<Name href="BoneSaw2_SpellName.txt" />
+	<Description href="BoneSaw2_SpellDesc.txt" />
+	<nameTemplate href="BoneSaw2_SpellName.txt" />
+	<descTemplate href="BoneSaw2_SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Items/QuestItems/ZoneEmpire2/AdmiralHead_inBox/AdmiralHead_inBox.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>1</totalCount>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Characters/HumMobs/Instances/ZoneEmpire2/HumanWarriorMiniboss_12.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+				<affectPets>false</affectPets>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneEmpire2/Quest_140_30/Quest_140_30.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+											<items>
+												<Item href="/Items/QuestItems/ZoneEmpire2/AdmiralHead_inBox/AdmiralHead_inBox.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+											</items>
+											<totalCount>1</totalCount>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="/Items/QuestItems/ZoneEmpire2/HeadBox/HeadBox.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+								<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+									<item href="/Items/QuestItems/ZoneEmpire2/AdmiralHead_inBox/AdmiralHead_inBox.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</item>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneEmpire2/Quest_140_30/CountId1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

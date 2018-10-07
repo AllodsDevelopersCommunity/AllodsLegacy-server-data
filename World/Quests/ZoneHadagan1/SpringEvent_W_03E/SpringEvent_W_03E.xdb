@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>145673349</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/HadaganTower1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="11485.500000" y="12714.624023" z="5.800000" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_male/Instances/ZoneHadagan1/Empire1_Hadagan_Comandor_Keepers.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/EventFebruary/Invitations/InvitationFemale.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+			<count>3</count>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+			<buff href="/Items/QuestItems/EventFebruary/Gifted03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<delta type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</delta>
+			<attachIfNotExist>true</attachIfNotExist>
+			<resetTimer>false</resetTimer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Items/QuestItems/EventFebruary/Gifted.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Items/QuestItems/EventFebruary/Gifted02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Items/QuestItems/EventFebruary/Gifted03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCharacterSex">
+							<sex href="/Mechanics/Sex/Male.xdb#xpointer(/gameMechanics.world.avatar.CharacterSex)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/Events/February/Invitation/Female/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCharacterSex">
+							<sex href="/Mechanics/Sex/Female.xdb#xpointer(/gameMechanics.world.avatar.CharacterSex)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/Events/February/Invitation/Male/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/QuestItems/EventFebruary/Gifted.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/QuestItems/EventFebruary/Gifted02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Items/QuestItems/EventFebruary/Gifted03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCharacterSex">
+			<sex href="/Mechanics/Sex/Female.xdb#xpointer(/gameMechanics.world.avatar.CharacterSex)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+			<rule href="/Mechanics/Rules/SpringEvent/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneHadagan1/SpringEvent_W_00E/SpringEvent_W_00E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>true</showCounterValue>
+			<relatedItems>
+				<Item href="/Items/QuestItems/EventFebruary/Invitations/InvitationFemale.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>3</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<money>0</money>
+		<reputations>
+			<Item>
+				<faction href="/World/Factions/EventFebruary_Empire.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<value>500</value>
+			</Item>
+		</reputations>
+	</reward>
+	<sharing>
+		<onRequest>false</onRequest>
+	</sharing>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyInstant" />
+	<tutorial>false</tutorial>
+	<internalName>SpringEvent_W_03E</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/ZoneHadagan1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

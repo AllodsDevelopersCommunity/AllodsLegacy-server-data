@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Mob_Projectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<FxProjectile>/Spells/FX/Mobs/GC_DemonMageBoss_AstralBolt.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+			<PreCastAnimationMode>LOOP</PreCastAnimationMode>
+			<FxOnTarget>/Spells/FX/Mobs/GC_DemonMageBoss_AstralBolt_RootHit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTarget>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<PreCastFX />
+			<FxOnHands />
+			<Animation>invalid</Animation>
+			<LocatorOnCaster>Slot_Mouth</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<actionBarStart />
+	<wholeCasting />
+	<launch type="VisActionList">
+		<elements>
+			<Item />
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item />
+					<Item type="VisActionList">
+						<elements>
+							<Item type="VisActionDelay">
+								<time>300</time>
+							</Item>
+							<Item type="CreatureVisActionStartThrow">
+								<visActionID />
+							</Item>
+							<Item type="VisActionList">
+								<play>Simultaneously</play>
+								<elements>
+									<Item type="CreatureProjectileAction">
+										<visActionID />
+										<projectileFx hrefvar="FxProjectile" />
+										<explosionFx hrefvar="FxOnTarget" />
+										<isMultyProjectile>true</isMultyProjectile>
+										<theGe var="Ge" />
+										<pointOnCaster type="VisPointLocator">
+											<shift x="0" y="0" z="0" />
+											<locator var="LocatorOnCaster" />
+											<member>Default_Member</member>
+											<locatorName var="LocatorNameOnCaster" />
+											<from>FROM_DEFALUT</from>
+										</pointOnCaster>
+										<pointOnTarget type="VisPointLocator">
+											<shift x="0" y="0" z="0" />
+											<locator var="LocatorOnTarget" />
+											<member>Default_Member</member>
+											<locatorName var="LocatorNameOnTarget" />
+											<from>FROM_DEFALUT</from>
+										</pointOnTarget>
+										<isInverted>false</isInverted>
+										<offendTime type="EffectOffendConstDelay">
+											<delay var="HitDelay" />
+										</offendTime>
+									</Item>
+									<Item type="CreatureEffectsAction">
+										<visualEffects>
+											<Item>
+												<effectFx href="/Spells/FX/Mobs/DemonCrabBoss.SpellCastDirected.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+												<scale>1.2</scale>
+												<locator>Slot_Mouth</locator>
+											</Item>
+										</visualEffects>
+									</Item>
+								</elements>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

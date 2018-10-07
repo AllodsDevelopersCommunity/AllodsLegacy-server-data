@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>1774977036</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/2ndCircle_AC2/Zones/ArchipelagoContested2/AC2_S_00.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="8031.670000" y="11855.820000" z="50.020000" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Elf_female/Instances/ArchipelagoContested2/A3_2_Elf_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+					<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>Elf_Boss</scriptID>
+				<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested2/AC2_L5_1/AC2_L5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested2/AC2_E5_1/AC2_E5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Finished</status>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="Count_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<startConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested2/AC2_E5_1/AC2_E5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested2/AC2_L5_1/AC2_L5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+			</predicates>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<objects>
+				<Item href="/Characters/HumMobs/Instances/ArchipelagoContested2/Elf_Vampire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</objects>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="AC2_5_5.CustomName.txt" />
+			<description href="AC2_5_5.Description.txt" />
+			<locations>
+				<Item>
+					<zone href="/Maps/2ndCircle_AC2/Zones/ArchipelagoContested2/AC2_Elf_Castle.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="7812.600000" y="13470.900000" z="50.299999" />
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<id href="Count_01.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<experience>8</experience>
+		<money>4700</money>
+		<reputations>
+			<Item>
+				<faction href="/World/Factions/Historicans.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<value>500</value>
+			</Item>
+		</reputations>
+		<alternativeItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested2/AC2Quest5_5LeatherHelmLvl37.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested2/AC2_Quest_Gen_CmLeatherHelm37Phys.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested2/AC2_Quest_Gen_CmPlateHelm37MagHealer.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested2/AC2_Quest_Gen_CmPlateHelm37Phys.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/QuestRewards/ArchipelagoContested2/AC2Quest5_5ClothHelmLvl37.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</alternativeItems>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>AC2_5_5</internalName>
+	<zone href="/Maps/2ndCircle_AC2/Zones/ArchipelagoContested2/ArchipelagoContested2.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>36</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>37</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

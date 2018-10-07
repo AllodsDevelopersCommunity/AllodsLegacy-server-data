@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>358737922</resourceId>
+	</Header>
+	<visScript href="JumpCameraUse.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells" />
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.EffectOnBuffTimeout">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_EmpireStart/SpawnTables/InstEmpire1/Body.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>2</visualState>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<device href="/Items/InteractiveObjects/InstEmpire1/Body/Body.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<radius>100</radius>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="ShipOutJump.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.unlocks.AbilityUnlocker">
+			<abilities>
+				<Item href="/Mechanics/Abilities/Creatures/Maneken/DisableActions.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+			</abilities>
+		</Item>
+	</effects>
+	<duration>4000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/StartInstanceBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

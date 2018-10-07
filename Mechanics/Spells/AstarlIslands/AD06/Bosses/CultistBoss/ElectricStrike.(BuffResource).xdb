@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739817651</resourceId>
+	</Header>
+	<Name href="ElectricStrike.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageLightningArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="ElectricStrike.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>LIGHTNING</element>
+					<minDamage>45</minDamage>
+					<maxDamage>45</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps>3</jumps>
+			<buff href="ElectricStrike.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.RandomAutotarget">
+				<group>Enemies</group>
+				<radius>10</radius>
+			</autotarget>
+			<onBehalfOfCaster>true</onBehalfOfCaster>
+			<radius>10</radius>
+			<inCasterRange>false</inCasterRange>
+			<keepTrack>false</keepTrack>
+			<renewingEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="ElecticStrikeCD.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<calcers>
+								<addressEntries>
+									<Item>
+										<name>target</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+									<Item>
+										<name>caster</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+								</addressEntries>
+							</calcers>
+						</Item>
+					</impactsOff>
+				</Item>
+			</renewingEffects>
+		</Item>
+	</effects>
+	<duration>75</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<isForthright>true</isForthright>
+</gameMechanics.constructor.schemes.buff.BuffResource>

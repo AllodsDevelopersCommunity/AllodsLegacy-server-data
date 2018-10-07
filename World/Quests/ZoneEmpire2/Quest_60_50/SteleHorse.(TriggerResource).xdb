@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>39838</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+							<zone href="/Maps/Hadagan/ScriptZones/WolfStele.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+									<radius>60</radius>
+									<affectPets>false</affectPets>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Items/InteractiveObjects/ZoneEmpire2/WolfStele/HorseKillPredicate.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+													<quest href="Quest_60_50.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+													<value>5</value>
+												</Item>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+														<items>
+															<Item href="/Items/QuestItems/ZoneEmpire2/Documents/Documents.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+														</items>
+														<totalCount>1</totalCount>
+													</predicate>
+												</Item>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="Buff_60_50_horse.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</predicate>
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos">
+												<yaw type="constructor.basicElements.AngleRadians" />
+											</destination>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>90000</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.Disintegrate" />
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+													<value>50000</value>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+															<radius>60</radius>
+															<affectPets>false</affectPets>
+															<impacts>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="Buff_60_50_horse.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+											<object href="/Creatures/Artiodactyl/Instances/ZoneEmpire2/HorseM_Miniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

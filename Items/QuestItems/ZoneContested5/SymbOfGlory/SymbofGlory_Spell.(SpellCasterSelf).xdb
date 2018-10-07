@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>366920704</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="SymbofGlory_Spell.(SpellCasterSelf).Name.txt" />
+	<Description href="SymbofGlory_Spell.(SpellCasterSelf).Description.txt" />
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasGuildProgress" />
+			<Item type="gameMechanics.elements.predicates.PredicateGuildRight">
+				<memberRight>GMRWearSymobolics</memberRight>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAddGuildAuthority">
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.LinearScaler">
+							<multiplier>20</multiplier>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.predicates.PredicateGuildLevelLesser">
+								<level>15</level>
+							</condition>
+							<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>10</multiplier>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>1</multiplier>
+							</scalerElse>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/ItemMall/AstralLootMultiplier/ActiveMultiplierBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</condition>
+							<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>0.5</multiplier>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>1</multiplier>
+							</scalerElse>
+						</Item>
+						<Item type="gameMechanics.elements.scalers.ScalerIf">
+							<condition type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="/Mechanics/Spells/ItemMall/AstralLootMultiplier/ActiveMultiplierBuff_x4.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</condition>
+							<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>0.25</multiplier>
+							</scalerIf>
+							<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>1</multiplier>
+							</scalerElse>
+						</Item>
+					</scalers>
+				</scaler>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.AddGuildLoyalty">
+				<amount>10</amount>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

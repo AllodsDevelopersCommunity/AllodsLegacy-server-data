@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Mob_Projectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>ready</PreCastAnimation>
+			<FxProjectile>/Spells/FX/Spells/NecromancerNeurotoxin_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+			<FxOnTarget>/Spells/FX/Spells/HitPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTarget>
+			<LocatorOnTarget>Slot_BodyFX</LocatorOnTarget>
+			<PreCastFX />
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<LocatorOnCaster>Slot_Hand_R</LocatorOnCaster>
+			<Animation>rangedAttack</Animation>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<speed>2</speed>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<visActionID />
+				<play>Simultaneously</play>
+				<preconditional>false</preconditional>
+				<elements>
+					<Item type="VisActionList">
+						<visActionID />
+						<play>InSequence</play>
+						<playWhile />
+						<preconditional>false</preconditional>
+						<elements>
+							<Item type="CreatureVisActionStartThrow">
+								<visActionID />
+							</Item>
+							<Item type="CreatureProjectileAction">
+								<visActionID />
+								<projectileFx hrefvar="FxProjectile" />
+								<explosionFx hrefvar="FxOnTarget" />
+								<isMultyProjectile>true</isMultyProjectile>
+								<theGe>0</theGe>
+								<pointOnCaster type="VisPointLocator">
+									<shift x="0" y="0" z="0" />
+									<locator var="LocatorOnCaster" />
+									<member>Default_Member</member>
+									<locatorName />
+									<from>FROM_DEFALUT</from>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<shift x="0" y="0" z="0" />
+									<locator var="LocatorOnTarget" />
+									<member>Default_Member</member>
+									<locatorName />
+									<from>FROM_DEFALUT</from>
+								</pointOnTarget>
+								<isInverted>false</isInverted>
+								<offendTime type="EffectOffendConstDelay">
+									<delay>0</delay>
+								</offendTime>
+							</Item>
+						</elements>
+						<stopOnDeath>false</stopOnDeath>
+						<stopWhileWhenElementsEnded>true</stopWhileWhenElementsEnded>
+					</Item>
+				</elements>
+				<stopOnDeath>false</stopOnDeath>
+				<stopWhileWhenElementsEnded>true</stopWhileWhenElementsEnded>
+			</Item>
+			<Item type="VisActionDelay">
+				<time>400</time>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<speed>2</speed>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureVisActionStartThrow" />
+							<Item type="CreatureProjectileAction">
+								<projectileFx hrefvar="FxProjectile" />
+								<explosionFx hrefvar="FxOnTarget" />
+								<isMultyProjectile>true</isMultyProjectile>
+								<pointOnCaster type="VisPointLocator">
+									<locator var="LocatorOnCaster" />
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<locator var="LocatorOnTarget" />
+								</pointOnTarget>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionDelay">
+				<time>400</time>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<speed>2</speed>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureVisActionStartThrow" />
+							<Item type="CreatureProjectileAction">
+								<projectileFx hrefvar="FxProjectile" />
+								<explosionFx hrefvar="FxOnTarget" />
+								<isMultyProjectile>true</isMultyProjectile>
+								<pointOnCaster type="VisPointLocator">
+									<locator var="LocatorOnCaster" />
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<locator var="LocatorOnTarget" />
+								</pointOnTarget>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

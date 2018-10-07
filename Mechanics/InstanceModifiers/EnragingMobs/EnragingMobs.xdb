@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>195151895</resourceId>
+	</Header>
+	<name href="EnragingMobs.txt" />
+	<description href="EnragingMobs.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/FightingFury.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+									<quality href="/Mechanics/MobQualities/BossAdd.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+								</Item>
+							</predicates>
+							<effectsIf>
+								<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+									<onEnter>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</onEnter>
+								</Item>
+							</effectsIf>
+							<effectsElse>
+								<Item type="gameMechanics.elements.effects.LayeredHealthTrigger">
+									<layers>
+										<Item>
+											<percent>0.8</percent>
+											<mechanics>
+												<impactsOn>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOn>
+												<impactsOff>
+													<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOff>
+											</mechanics>
+										</Item>
+										<Item>
+											<percent>0.6</percent>
+											<mechanics>
+												<impactsOn>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOn>
+												<impactsOff>
+													<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOff>
+											</mechanics>
+										</Item>
+										<Item>
+											<percent>0.4</percent>
+											<mechanics>
+												<impactsOn>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOn>
+												<impactsOff>
+													<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOff>
+											</mechanics>
+										</Item>
+										<Item>
+											<percent>0.2</percent>
+											<mechanics>
+												<impactsOn>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOn>
+												<impactsOff>
+													<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+														<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impactsOff>
+											</mechanics>
+										</Item>
+									</layers>
+								</Item>
+							</effectsElse>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+</gameMechanics.map.basicElements.MapModifierResource>

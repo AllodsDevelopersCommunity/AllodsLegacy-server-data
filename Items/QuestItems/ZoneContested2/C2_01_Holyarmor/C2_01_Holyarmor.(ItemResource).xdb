@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.item.ItemResource>
+	<Header>
+		<resourceId>1338900525</resourceId>
+	</Header>
+	<image href="/Interface/Icons/Spells/Priest/PriestSilence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<source>Quest</source>
+	<budgetUsage>1</budgetUsage>
+	<visualElement href="/Items/Costumes/VisItems/Set/QuestItems/C2_01_Holyarmor.(VisualItem).xdb#xpointer(/gameMechanics.constructor.schemes.item.VisualItem)" />
+	<nameChecked>false</nameChecked>
+	<isQuestRelated>true</isQuestRelated>
+	<slot>LIFESTYLEBACK</slot>
+	<ritual>false</ritual>
+	<itemClass href="/Mechanics/ItemClasses/LifeStyle.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+									<zone href="/Maps/2ndCircle/ScriptZones/ZoneContested2/C2_Surv_Zone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ZoneContested2/C2_1_4_EV/C2_1_4_EV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ZoneContested2/C2_1_4_LV/C2_1_4_LV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Maps/2ndCircle/ScriptZones/ZoneContested2/Immortality_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+							<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>60000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ZoneContested2/C2_1_4_LV/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+									<id href="/World/Quests/ZoneContested2/C2_1_4_EV/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								</Item>
+								<Item skiped="" />
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							</impacts>
+							<spawnResource href="/Maps/2ndCircle/SpawnTables/ZoneContested2/Cyclops26_27.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ZoneContested2/C2_1_4_LV/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/ZoneContested2/C2_1_4_EV/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZoneContested2/C2_1_4_LV/C2_1_4_LV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested2/C2_1_4_LV/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>-1</value>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZoneContested2/C2_1_4_EV/C2_1_4_EV.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZoneContested2/C2_1_4_EV/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>-1</value>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<level>27</level>
+	<requiredLevel>25</requiredLevel>
+	<stackLimit>1</stackLimit>
+	<quality href="/Mechanics/ItemQualities/Goods.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+	<price type="gameMechanics.constructor.schemes.item.price.ItemPriceMoney">
+		<sellPrice>-1</sellPrice>
+		<buyPrice>-1</buyPrice>
+	</price>
+	<binding>BindOnPickup</binding>
+	<name href="C2_01_Holyarmor_Name.txt" />
+	<requiredReputation>Hostility</requiredReputation>
+	<category href="/Mechanics/ItemCategories/LifeStyle/LSBack.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemCategoryTerminal)" />
+	<customSellPrice>true</customSellPrice>
+	<customBuyPrice>true</customBuyPrice>
+	<includeInBoxes>false</includeInBoxes>
+</gameMechanics.constructor.schemes.item.ItemResource>

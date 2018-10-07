@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>channelCastDirected</Item>
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<advanced>
+					<offendType>ONEOFFEND_ONETARGET</offendType>
+				</advanced>
+			</Item>
+			<Item type="CreatureChannelDirectAction">
+				<channelingFx href="/Spells/FX/Spells/Placeholder2.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<startPoint type="VisPointLocator">
+					<shift x="1.3" y="-0.15" z="1.35" />
+					<locator>FROM_LOCATOR_NAME</locator>
+					<locatorName />
+				</startPoint>
+				<endPoint type="VisPointLocator">
+					<shift x="0" y="0" z="0" />
+					<locator>Slot_BodyFX</locator>
+					<locatorName>CentralBigEye_Bottom</locatorName>
+				</endPoint>
+			</Item>
+			<Item type="CreatureRunActionOnSpellTargets">
+				<targetAction type="VisActionRefCounter">
+					<keyWord>ray</keyWord>
+					<action type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile />
+						<elements>
+							<Item type="CreatureAnimationAction">
+								<mode>CLAMP</mode>
+								<animations>
+									<Item>special01</Item>
+								</animations>
+								<channel>CHANNEL_ABILITY</channel>
+								<specialController>Eyes</specialController>
+							</Item>
+							<Item type="CreatureEffectsAction">
+								<visualEffects>
+									<Item>
+										<effectFx href="/Spells/FX/Mobs/ViyEye.Open.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<locator>FROM_LOCATOR_NAME</locator>
+										<locatorName>Eyes</locatorName>
+									</Item>
+								</visualEffects>
+							</Item>
+						</elements>
+					</action>
+				</targetAction>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<playOnTargets>
+		<specialAction />
+	</playOnTargets>
+</SpellVisScripts>

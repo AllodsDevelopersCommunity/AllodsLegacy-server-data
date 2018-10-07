@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>61101</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<contextActionInfo>
+		<priority>100</priority>
+		<contextName href="" />
+		<contextDescription href="" />
+		<contextImage href="" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DragonRelic7.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Necromancer/SummonSkeleton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>5</level>
+	<prepareDuration>10000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>SHADOW</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana var="mana" />
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.world.pet.PredicateHasPet" />
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.world.pet.ImpactDismissPet">
+						<clientData href="/Spells/ClientData/SummonUndead.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMatch">
+				<cases>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.world.pet.ImpactSummonPet">
+								<mobResource hrefvar="mobResource" />
+								<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</base>
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<copyStats>true</copyStats>
+								<plane href="" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.world.pet.ImpactSummonPet">
+								<mobResource hrefvar="mobResour_1" />
+								<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</base>
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<copyStats>true</copyStats>
+								<plane href="" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.world.pet.ImpactSummonPet">
+								<mobResource hrefvar="mobResour_2" />
+								<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+								<destination type="gameMechanics.map.destination.RelativeRotatePos">
+									<base type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians">
+											<value>0</value>
+										</yaw>
+										<faceSourcePos>true</faceSourcePos>
+										<coord x="0" y="0" z="0" />
+									</base>
+									<offset>4</offset>
+									<yaw type="constructor.basicElements.AngleRadians">
+										<value>1.57</value>
+									</yaw>
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<allowOverrideCaster>false</allowOverrideCaster>
+									</Item>
+								</impacts>
+								<copyStats>true</copyStats>
+								<plane href="" />
+							</Item>
+						</impacts>
+					</Item>
+				</cases>
+				<defaultImpacts>
+					<Item type="gameMechanics.world.pet.ImpactSummonPet">
+						<mobResource hrefvar="mobResour_3" />
+						<petType href="/Mechanics/Pets/NecroPetType.xdb#xpointer(/gameMechanics.world.pet.PetTypeResource)" />
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos">
+								<yaw type="constructor.basicElements.AngleRadians">
+									<value>0</value>
+								</yaw>
+								<faceSourcePos>true</faceSourcePos>
+								<coord x="0" y="0" z="0" />
+							</base>
+							<offset>4</offset>
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1.57</value>
+							</yaw>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<allowOverrideCaster>false</allowOverrideCaster>
+							</Item>
+						</impacts>
+						<copyStats>true</copyStats>
+						<plane href="" />
+					</Item>
+				</defaultImpacts>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="Buff_03_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

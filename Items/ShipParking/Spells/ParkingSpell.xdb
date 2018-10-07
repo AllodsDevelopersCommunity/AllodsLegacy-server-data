@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>361255949</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<parkingLot>0</parkingLot>
+		</Variables>
+	</Header>
+	<Name href="ParkingSpell.txt" />
+	<Description href="ParkingSpell.Description.txt" />
+	<prepareDuration>2500</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown type="" />
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<resource href="/Items/ShipParking/ParkingCoupon1.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<resource href="/Items/ShipParking/ParkingCoupon2.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<resource href="/Items/ShipParking/ParkingCoupon3.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<resource href="/Items/ShipParking/ParkingCoupon4.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<resource href="/Items/ShipParking/ParkingCoupon5.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactResourceCooldown">
+				<binding>Soul</binding>
+				<resource hrefvar="coupon" />
+				<cooldownInDays type="gameMechanics.elements.calcers.CalcerLongSum">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.CalcerLongDiv">
+							<dividend type="gameMechanics.elements.calcers.TimeTableCalcer">
+								<timeTable href="TimeTable.xdb#xpointer(/timetables.TimeTable)" />
+							</dividend>
+							<divisor type="gameMechanics.elements.calcers.LongData">
+								<value>86400000</value>
+							</divisor>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.LongData">
+							<value>1</value>
+						</Item>
+					</calcers>
+				</cooldownInDays>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.WorldDistributor" />
+				<data href="GotParking.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				<calcers>
+					<floatEntries>
+						<Item>
+							<name>parkingLot</name>
+							<calcer type="gameMechanics.elements.calcers.FloatData">
+								<value var="parkingLot" />
+							</calcer>
+						</Item>
+					</floatEntries>
+					<stringEntries>
+						<Item>
+							<name>avatarName</name>
+							<calcer type="gameMechanics.elements.calcers.CasterNameCalcer" />
+						</Item>
+					</stringEntries>
+					<resourceEntries />
+				</calcers>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric">
+						<forced>true</forced>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+				<delay>3000</delay>
+				<impacts>
+					<Item type="gameMechanics.constructor.basicElements.ImpactList">
+						<impactsResource href="/Mechanics/Ships/ShipParkingBuffs/SummonOnParking.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)" />
+						<calcers>
+							<longEntries>
+								<Item>
+									<name>shipIndex</name>
+									<calcer type="gameMechanics.world.ship.elements.calcers.CalcerAvailableShipIndex" />
+								</Item>
+							</longEntries>
+						</calcers>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/AstralHangarHadagan_VIP/Zones/AstralHangarHadagan_VIP/AstralHangarHadagan_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/AstralHangarLeague_VIP/Zones/AstralHangarLeague_VIP/AstralHangarLeague_VIP.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+						<buff hrefvar="ownerBuff" />
+						<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+							<mulCalcer type="gameMechanics.elements.calcers.TimeTableCalcerFloat">
+								<timeTable href="/Items/ShipParking/Spells/TimeTable.xdb#xpointer(/timetables.TimeTable)" />
+							</mulCalcer>
+							<additionalMultiplier>
+								<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+								<value>1</value>
+							</additionalMultiplier>
+						</durationScaler>
+					</Item>
+				</impactsIf>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>255889408</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+					<actions>
+						<Item href="CrabRacingCASpell.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					</actions>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+									</predicates>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.RandomImpact">
+											<entries>
+												<Item>
+													<impacts>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="CrabRacingFastBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impacts>
+												</Item>
+												<Item>
+													<impacts>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="CrabRacingSlowBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</impacts>
+												</Item>
+											</entries>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<tick>5000</tick>
+					<initialDelay>182000</initialDelay>
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<duration>600000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerEvent_CrabRacing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

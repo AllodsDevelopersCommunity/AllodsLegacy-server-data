@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>161840139</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MobsCooldowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerAcidBolt.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<speed>50</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<element>POISON</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>30000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>40</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<coord x="0" y="0" z="0" />
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+						<faceSourcePos>true</faceSourcePos>
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="10" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<object href="/Creatures/DemonScout/Instances/Inst_GurluhsorTower/Instances/Inst_GurluhsorTower/GS_DemonScout_GTtrash_boss8.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>25000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactKill" />
+						</impacts>
+					</Item>
+				</impacts>
+				<plane href="" />
+				<pool href="" />
+				<traceDown>false</traceDown>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationModified">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<coord x="0" y="0" z="0" />
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>0</value>
+							</yaw>
+							<faceSourcePos>true</faceSourcePos>
+						</destination>
+						<modifiers>
+							<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+								<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+									<verticalRange min="0" max="0" />
+									<horizontalRange min="0" max="10" />
+								</modifier>
+							</Item>
+						</modifiers>
+					</destination>
+					<object href="/Creatures/DemonScout/Instances/Inst_GurluhsorTower/Instances/Inst_GurluhsorTower/GS_DemonScout_GTtrash_boss8.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>25000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactKill" />
+							</impacts>
+							<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+						</Item>
+					</impacts>
+					<plane href="" />
+					<pool href="" />
+					<traceDown>false</traceDown>
+				</impact>
+				<count type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+					<buff href="/Mechanics/Abilities/GurluhsorTower/TrashMobs/DemonWarriorHive/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<forAllRanks>false</forAllRanks>
+				</count>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

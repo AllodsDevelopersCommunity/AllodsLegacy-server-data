@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapTemplate>
+	<Header>
+		<resourceId>72819855</resourceId>
+	</Header>
+	<hasPatches>true</hasPatches>
+	<headParts>
+		<parts>
+			<Item type="mapLoader.parts.PlayerCountResource" />
+			<Item type="gameMechanics.map.basicElements.MapCountdownResource">
+				<ttl>0</ttl>
+			</Item>
+			<Item type="gameMechanics.world.avatar.MapCombatStateResource" />
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffectsGeneric">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.EffectMarkedImpactsGeneric">
+								<mark href="/Mechanics/Ships/Hangar/ExitHangar.(MarkResource).xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								<impacts>
+									<Item type="gameMechanics.world.ship.elements.ImpactGoByTourFromPart">
+										<bunchPartClass>gameMechanics.world.bigAstral.ExitTourPart</bunchPartClass>
+									</Item>
+								</impacts>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsDeferredGeneric">
+						<delay>0</delay>
+						<effects>
+							<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+								<reason>TR_TeleportToIsland</reason>
+							</Item>
+						</effects>
+					</Item>
+					<Item type="gameMechanics.elements.effects.EffectsIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+										<delay>0</delay>
+										<impacts>
+											<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+												<impacts>
+													<Item type="gameMechanics.world.ship.elements.ImpactRepairDeviceToFull" />
+												</impacts>
+												<filter type="gameMechanics.world.device.filters.DamagedUsableDeviceFilter" />
+											</Item>
+											<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+												<allowedTypes>
+													<Item href="/Mechanics/Ships/UsableDeviceTypes/Shield.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+												</allowedTypes>
+												<impacts>
+													<Item type="gameMechanics.world.device.shield.ImpactReplenishShield" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.world.ship.elements.ImpactCoolReactor" />
+										</impacts>
+									</Item>
+								</impactsOn>
+								<impactsOff />
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+								<onEnter>
+									<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+								</onEnter>
+								<effects>
+									<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+										</impacts>
+										<tick>3000</tick>
+										<initialDelay>-1</initialDelay>
+									</Item>
+								</effects>
+							</Item>
+						</effectsIf>
+					</Item>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Mechanics/Spells/Mercenaries/InstSpecificBuff/CanSummonMercs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+						<impactsOff>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Spells/Mercenaries/InstSpecificBuff/CanSummonMercs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOff>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.world.bigAstral.hangar.ShipEnterPart">
+				<enterSettings href="/System/Defaults/ShipEnterSettings.xdb#xpointer(/gameMechanics.world.bigAstral.hangar.ShipEnterSettings)" />
+			</Item>
+		</parts>
+	</headParts>
+	<cellParts>
+		<parts>
+			<Item type="gameMechanics.world.mob.MobCellCountResource">
+				<limit>-1</limit>
+			</Item>
+			<Item type="gameMechanics.map.spawn.SummonPoolManager">
+				<globalPool href="/System/GlobalSummonPools/SummonPoolRaidInstance.xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+			<Item type="gameMechanics.world.bigAstral.hangar.BindTargetPartResource" />
+			<Item type="gameMechanics.world.astralTeleports.ShipEvacuatorResource" />
+			<Item type="gameMechanics.world.astralTeleports.CheckPaidPartResource" />
+			<Item type="gameMechanics.map.instance.astralIsland.BoundAvatarsOnlyCellPartResource" />
+			<Item type="gameMechanics.world.bigAstral.PersonalAstralLootResource" />
+		</parts>
+	</cellParts>
+	<entrance type="gameMechanics.map.instance.astralIsland.AstralIslandEntrance" />
+	<isForDwellersOnly>true</isForDwellersOnly>
+	<isKickRequired>true</isKickRequired>
+	<isMobEvade>false</isMobEvade>
+	<isMobSuperJumpModeOn>true</isMobSuperJumpModeOn>
+	<prohibitWorldDrop>true</prohibitWorldDrop>
+	<isAutoNavigationOn>false</isAutoNavigationOn>
+</mapLoader.MapTemplate>

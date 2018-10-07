@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>275850257</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellCasterSelf)01.Name.txt" />
+	<visualScripts href="SpellVisScripts.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>8000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.elements.calcers.DestinationBehind">
+					<comfortRange>2</comfortRange>
+					<maxSteps>1</maxSteps>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>45000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+								</impacts>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.AvatarFilter" />
+					</Item>
+				</impacts>
+				<level type="gameMechanics.elements.calcers.CalcerLevel" />
+				<object href="Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

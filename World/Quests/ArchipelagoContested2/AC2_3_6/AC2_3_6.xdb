@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>1765408787</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<returnLocation>
+		<zone href="/Maps/2ndCircle_AC2/Zones/ArchipelagoContested2/AC2_S_00.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="7970.012207" y="11862.274414" z="35.120300" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Creatures/Aviak/Instances/ArchipelagoContested2/A3_2_Aviak_Guard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+			<mob>
+				<scriptID>AviakScout_01</scriptID>
+				<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+			<mob>
+				<scriptID>AviakScout_02</scriptID>
+				<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>18000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+							<msg href="MsgMilvus.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>AviakMilvus</scriptID>
+				<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>2000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<runningMode>false</runningMode>
+							<path>
+								<Item>
+									<scriptID>AviakScout_01_01</scriptID>
+									<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>AviakScout_01_02</scriptID>
+									<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>10000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+									<msg href="MsgScout01.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+									<defaultSpeaker href="" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>30000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>AviakScout_01</scriptID>
+						<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<runningMode>false</runningMode>
+							<path>
+								<Item>
+									<scriptID>AviakScout_02_01</scriptID>
+									<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+								<Item>
+									<scriptID>AviakScout_02_02</scriptID>
+									<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>14000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+									<msg href="MsgScout02.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+									<defaultSpeaker href="" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>30000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>AviakScout_02</scriptID>
+						<map href="/Maps/2ndCircle_AC2/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested2/AC2_3_4/AC2_3_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ArchipelagoContested2/AC2_3_5/AC2_3_5.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<reward>
+		<experience>7</experience>
+		<money>4112</money>
+		<reputations />
+	</reward>
+	<internalName>AC2_3_6</internalName>
+	<zone href="/Maps/2ndCircle_AC2/Zones/ArchipelagoContested2/ArchipelagoContested2.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>36</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>37</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

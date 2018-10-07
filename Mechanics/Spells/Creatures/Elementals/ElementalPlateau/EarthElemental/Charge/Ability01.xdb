@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>340956180</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<image href="" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<hideText>false</hideText>
+							<predicate type="gameMechanics.elements.resources.ResourceBuff">
+								<hideText>false</hideText>
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+								<consumeStacks>0</consumeStacks>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+							<selector type="gameMechanics.tools.SelectorParticular">
+								<index>0</index>
+							</selector>
+							<impacts>
+								<Item>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactsIf">
+											<predicate type="gameMechanics.elements.predicates.PredicateDistance">
+												<hideText>false</hideText>
+												<range min="8" max="60" />
+											</predicate>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ReturningImpact">
+													<impacts>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<allowOverrideCaster>false</allowOverrideCaster>
+														</Item>
+													</impacts>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<runImpactsOnEachTick>true</runImpactsOnEachTick>
+					<affectOnStartTick>false</affectOnStartTick>
+					<tick type="gameMechanics.elements.calcers.FloatData">
+						<value>500</value>
+					</tick>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

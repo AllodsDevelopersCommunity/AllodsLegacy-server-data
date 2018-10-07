@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>145808386</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FairySpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Halo/LightForce.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>120000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsFairyActive" />
+			<Item type="gameMechanics.elements.predicates.PredicateFairyRankGreater">
+				<rank>1</rank>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+				<currency href="/Mechanics/AlternativeCurrencies/Myrrh.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<count>0</count>
+				<countCalcer type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateWeakFaction" />
+							<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+								<buff href="/Mechanics/Spells/ItemSpells/ChangeFaction/BuffWeakFaction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<range>
+									<min>1</min>
+									<max>1</max>
+								</range>
+							</Item>
+						</predicates>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.FairySpellCostCalcer">
+						<mul>0.5</mul>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FairySpellCostCalcer">
+						<mul>5</mul>
+					</calcerElse>
+				</countCalcer>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+					<radius>85</radius>
+				</distributor>
+				<data href="/Spells/ClientData/FairyLightForce.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactHeal">
+				<heal>1</heal>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>1</mul>
+					<mulCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+						<mul var="mul" />
+						<mulCalcer type="gameMechanics.elements.calcers.FairyHealCalcer" />
+						<sum>0</sum>
+					</mulCalcer>
+					<sum>0</sum>
+				</scaler>
+				<mode>Direct</mode>
+				<considerOutgoingModifiers>false</considerOutgoingModifiers>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactAddFairyExperience">
+				<experience var="experience" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Fairies/AbilityUseBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>85</radius>
+				<affectGroup>Group</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+						<currency href="/Mechanics/AlternativeCurrencies/Myrrh.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+						<sumCalcer type="gameMechanics.elements.calcers.CalcerIf">
+							<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateWeakFaction" />
+									<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+										<buff href="/Mechanics/Spells/ItemSpells/ChangeFaction/BuffWeakFaction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<range>
+											<min>1</min>
+											<max>1</max>
+										</range>
+									</Item>
+								</predicates>
+							</predicate>
+							<calcerIf type="gameMechanics.constructor.basicElements.FloatZero" />
+							<calcerElse type="gameMechanics.elements.calcers.FairySpellCostCalcer">
+								<mul var="mul02" />
+							</calcerElse>
+						</sumCalcer>
+						<multiplier>1</multiplier>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.AvatarFilter">
+					<block>false</block>
+					<withPet>false</withPet>
+				</filter>
+				<targetsLimit>0</targetsLimit>
+				<onBehalfOfHolder>false</onBehalfOfHolder>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

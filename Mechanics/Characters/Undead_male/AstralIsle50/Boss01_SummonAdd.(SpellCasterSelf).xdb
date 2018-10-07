@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>369166344</resourceId>
+	</Header>
+	<Name href="Boss01_SummonAdd.(SpellCasterSelf).Name.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/AreaSlow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>1000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationLocator">
+					<locator>
+						<scriptID>AI50_Boss01Add</scriptID>
+						<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</locator>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+				</impacts>
+				<object href="/Creatures/Robot/Instances/AstralIsle50/AI50_Boss01Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<pool href="Boss01_SummonAdd.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+		</casterImpacts>
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="Boss01_Fire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

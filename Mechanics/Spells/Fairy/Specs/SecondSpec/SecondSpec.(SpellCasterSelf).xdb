@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>276990979</resourceId>
+	</Header>
+	<Name href="SecondSpec_Name.txt" />
+	<Description href="SecondSpec_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/EmblemOfGreatness.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Other/Change_Specialization.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<level>1</level>
+	<prepareDuration>8000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>0</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsFairyActive" />
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+				<currency href="/Mechanics/AlternativeCurrencies/Myrrh.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<count>0</count>
+				<countCalcer type="gameMechanics.elements.calcers.FairySpellCostCalcer">
+					<mul>5</mul>
+				</countCalcer>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+				<operation type="gameMechanics.itemService.stuff.SwitchTalentBuild">
+					<buildIndex type="gameMechanics.elements.calcers.CalcerIntParam">
+						<paramName>buildIndex</paramName>
+					</buildIndex>
+				</operation>
+				<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<params>
+		<params>
+			<Item>
+				<name>buildIndex</name>
+				<type>Int</type>
+			</Item>
+		</params>
+	</params>
+	<canStartNotBeeingInSpellbook>true</canStartNotBeeingInSpellbook>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

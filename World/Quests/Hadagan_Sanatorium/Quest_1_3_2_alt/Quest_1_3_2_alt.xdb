@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>268788824</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline>E1_HSLine</plotline>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium_Neighborhood.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="1410.004028" y="1336.164063" z="2.400640" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Orc_male/Instances/Hadagan_Sanatorium/Shaman.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>TestDemon</scriptID>
+					<map href="/Maps/Hadagan_Sanatorium/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+					<trigger href="/Items/QuestItems/ZoneHadagan1/SummonMob/DeathTrigger2.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Items/QuestItems/ZoneHadagan1/SummonMob/SummonMob2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.world.pet.PredicateHasPet" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Items/QuestItems/ZoneHadagan1/SummonMob/SummonMob2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<object href="/Creatures/DemonMageNewBreed/Instances/ZoneHadagan1/ChallengeDemon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<level type="gameMechanics.elements.calcers.CalcerLevel" />
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="Finish.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateFalse" />
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountKill">
+			<customName href="/World/Quests/Hadagan_Sanatorium/Quest_1_3_1_alt/CounterCustomName_2.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="1390.627998" y="1305.719400" z="0.000000" />
+					<isIndoor>false</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<objects>
+				<Item href="/Creatures/DemonMageNewBreed/Instances/ZoneHadagan1/ChallengeDemon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</objects>
+		</Item>
+	</counters>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentSelf">
+			<trigger href="Clearing.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+		</Item>
+	</triggerAgents>
+	<reward>
+		<experience>10</experience>
+		<money>60</money>
+		<unlocks>
+			<Item href="/Mechanics/Unlocks/FairySpellsRanks1/HealthResumptionR1Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+		</unlocks>
+		<mandatoryItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Vendors/Myrrh/Myrrh50.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+	</reward>
+	<secretSequence>true</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Quest_1_3_2</internalName>
+	<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>0</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>187789416</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.DoorSwitch">
+							<switchType>Open</switchType>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>SL_Boss5Door</scriptID>
+						<map href="/Maps/Inst_SecretLab/astral_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="GolemSpells/MountGolem/Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_SecretLab/ScriptZones/astral_DemonAggro.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_SecretLab/ScriptZones/astral_SL_ExitPortal.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_SecretLab/SpawnTables/Astral/SL_FinalPortal.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff />
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+							<impacts>
+								<Item type="gameMechanics.elements.device.DoorSwitch">
+									<switchType>Close</switchType>
+								</Item>
+							</impacts>
+							<device>
+								<scriptID>SL_Boss5Door</scriptID>
+								<map href="/Maps/Inst_SecretLab/astral_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+							<zone href="/Maps/Inst_SecretLab/ScriptZones/astral_DemonAggro.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							<disable>true</disable>
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

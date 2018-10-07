@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<ReadyAnimationBody>rangedAttack</ReadyAnimationBody>
+			<ReadyAnimationHands>idle02</ReadyAnimationHands>
+			<FxExplosion>/Spells/FX/Spells/HitFireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxExplosion>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FxProjectile>/Spells/FX/Spells/MageFireballAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>LOOP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="ReadyAnimationHands" />
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+				</advanced>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting />
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item>rangedAttack</Item>
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+					<autoHasten>
+						<mode>AUTOHASTEN_FIRSTKEY</mode>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="CreatureProjectileAction">
+				<visActionID />
+				<projectileFx hrefvar="FxProjectile" />
+				<explosionFx hrefvar="FxExplosion" />
+				<isMultyProjectile>false</isMultyProjectile>
+				<theGe>5</theGe>
+				<pointOnCaster type="VisPointLocator">
+					<locator>Slot_Head</locator>
+				</pointOnCaster>
+				<pointOnTarget type="VisPointLocator">
+					<shift x="0" y="0" z="0" />
+					<locator>Global</locator>
+					<member>Default_Member</member>
+					<locatorName />
+					<from>FROM_DEFALUT</from>
+				</pointOnTarget>
+				<isInverted>false</isInverted>
+				<offendTime type="EffectOffendConstDelay">
+					<delay>0</delay>
+				</offendTime>
+			</Item>
+		</elements>
+	</launch>
+	<charged type="CreatureChargedSpellAction">
+		<effectFx href="/Spells/FX/Spells/PocketSpellFire01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+		<fadeInTime>500</fadeInTime>
+		<fadeOutTime>500</fadeOutTime>
+	</charged>
+</SpellVisScripts>

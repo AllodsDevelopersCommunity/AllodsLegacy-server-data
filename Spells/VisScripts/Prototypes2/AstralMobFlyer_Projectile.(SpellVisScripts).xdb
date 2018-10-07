@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<shieldCrit>/Spells/FX/Ships/Shield.CanonHitPlankton.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</shieldCrit>
+			<animSpeed>0</animSpeed>
+			<PrepareFxOnCaster>/Spells/FX/Spells/ReadyAstralSpellPlankton.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</PrepareFxOnCaster>
+			<projectileFx>/Spells/FX/Spells/Plankton_Projectile01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</projectileFx>
+			<PrepareFxScale>1</PrepareFxScale>
+			<shieldExplosion>/Spells/FX/Ships/Shield.CanonHitPlankton.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</shieldExplosion>
+			<ProjectileFxLoc>Slot_Special01</ProjectileFxLoc>
+			<hullCrit>/Spells/FX/Ships/Hull.CanonHitLightning_Crit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullCrit>
+			<PrepareFxLoc>Slot_Special02</PrepareFxLoc>
+			<PrepareFxAnim>rangedAttack</PrepareFxAnim>
+			<hullExplosion>/Spells/FX/Ships/Hull.CanonHitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullExplosion>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID />
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="PrepareFxOnCaster" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>false</lockScale>
+						<scale var="PrepareFxScale" />
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<member>Default_Member</member>
+						<locatorName var="PrepareFxLoc" />
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="PrepareFxAnim" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed var="animSpeed" />
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+				</advanced>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<visActionID />
+		<play>InSequence</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAstralSpellFXVisAction">
+				<visActionID />
+				<astralSpell type="AstralSpellProjectile">
+					<shieldExplosion hrefvar="shieldExplosion" />
+					<shieldCrit hrefvar="shieldCrit" />
+					<hullExplosion hrefvar="hullExplosion" />
+					<hullCrit hrefvar="hullCrit" />
+					<projectileFx hrefvar="projectileFx" />
+					<locatorName var="ProjectileFxLoc" />
+				</astralSpell>
+			</Item>
+			<Item type="CreatureVisActionStartThrow">
+				<visActionID />
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

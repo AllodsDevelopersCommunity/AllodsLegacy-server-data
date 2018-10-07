@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>285547520</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellSingleTarget)_Name.txt" />
+	<Description href="Spell01.(SpellSingleTarget)_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/Viy/EP_Volcano_RangedAttack.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SpellName.txt" />
+	<descTemplate href="SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>65</value>
+	</range>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>3000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/Spells/EP_Volcano/Boss_TestChAOE/Buff00.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<conditions>
+			<Item type="gameMechanics.constructor.basicElements.BinaryPredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateReachTarget" />
+			</Item>
+		</conditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+						<minDamage>15</minDamage>
+						<maxDamage>15</maxDamage>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

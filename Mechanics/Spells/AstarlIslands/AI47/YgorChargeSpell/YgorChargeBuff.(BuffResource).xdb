@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>313814019</resourceId>
+	</Header>
+	<Name href="YgorChargeBuff.(BuffResource)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCharge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="BuffName.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Charge">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+					<impactsOnHitCaster>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/AstarlIslands/AI47/YgorChargeBuffs/RageBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOnHitCaster>
+					<impactsOnHitTarget>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/ChargeFear/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOnHitTarget>
+					<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+					<avgDamage>30</avgDamage>
+					<source>Mainhand</source>
+				</Item>
+			</impacts>
+			<buff href="YgorChargeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<speedFactor>4</speedFactor>
+			<predicate type="gameMechanics.elements.predicates.PredicateReachTarget" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="YgorChargeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnAttach>
+			<ignoreHelpful>false</ignoreHelpful>
+			<ignoreHarmful>false</ignoreHarmful>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+					<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+	</effects>
+	<duration>5000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

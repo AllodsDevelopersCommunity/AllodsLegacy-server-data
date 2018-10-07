@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>307860493</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.EffectMapChanged">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.ship.ImpactAddInsight">
+							<count>100</count>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<object href="Mob.(AstralMobWorld).xdb#xpointer(/gameMechanics.world.astralMob.AstralMobWorld)" />
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.SelfPosDestination" />
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.SpreadModifier">
+										<verticalRange min="0" max="0" />
+										<horizontalRange min="0" max="250" />
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactAggroAstralMob" />
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+									<delay>180000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+									<buff href="InHangar.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

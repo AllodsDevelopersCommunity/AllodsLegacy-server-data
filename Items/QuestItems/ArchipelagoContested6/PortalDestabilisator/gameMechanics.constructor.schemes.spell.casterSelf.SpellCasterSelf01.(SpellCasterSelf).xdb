@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>192808962</resourceId>
+	</Header>
+	<Name href="gameMechanics.txt" />
+	<Description href="gameMechanics.Description.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone1.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone2.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone5.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone1.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+								<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+								<radius>20</radius>
+								<mobs>
+									<Item href="/Characters/HumMobs/ArchipelagoContested6/Instances/ArchipelagoContested6/AC6Mag46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+								<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_46.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/World/Quests/ArchipelagoContested6/D_10/Portal_01_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>AC6_Portal_01</scriptID>
+								<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested6/D_10/buff_kill.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/CultistPortalEvent/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="PortalDestabilisator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+								<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone2.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+								<radius>20</radius>
+								<mobs>
+									<Item href="/Characters/HumMobs/ArchipelagoContested6/Instances/ArchipelagoContested6/AC6Mag46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+								<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_47.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/World/Quests/ArchipelagoContested6/D_10/Portal_01_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>AC6_Portal_03</scriptID>
+								<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested6/D_10/buff_kill_03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/CultistPortalEvent/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="PortalDestabilisator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+								<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+								<radius>20</radius>
+								<mobs>
+									<Item href="/Characters/HumMobs/ArchipelagoContested6/Instances/ArchipelagoContested6/AC6Mag46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+								<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_48.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/World/Quests/ArchipelagoContested6/D_10/Portal_01_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>AC6_Portal_04</scriptID>
+								<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested6/D_10/buff_kill_04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/CultistPortalEvent/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="PortalDestabilisator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+								<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone4.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+								<radius>20</radius>
+								<mobs>
+									<Item href="/Characters/HumMobs/ArchipelagoContested6/Instances/ArchipelagoContested6/AC6Mag46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+								<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_49.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/World/Quests/ArchipelagoContested6/D_10/Portal_01_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>AC6_Portal_05</scriptID>
+								<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested6/D_10/buff_kill_05.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/CultistPortalEvent/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="PortalDestabilisator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+								<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested6/ScriptZones/AC6_CultistDamageZone5.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+								<radius>20</radius>
+								<mobs>
+									<Item href="/Characters/HumMobs/ArchipelagoContested6/Instances/ArchipelagoContested6/AC6Mag46_46.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+								<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_50.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+						<data href="/World/Quests/ArchipelagoContested6/D_10/Portal_01_ClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						<locators>
+							<Item>
+								<scriptID>AC6_Portal_02</scriptID>
+								<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</Item>
+						</locators>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/World/Quests/ArchipelagoContested6/D_10/buff_kill_02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoContested6/CultistPortalEvent/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>5000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+								<item href="PortalDestabilisator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderRule">
+							<rule href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/Cultist_Spawn_Rule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+						</addresseeFinder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+								<delay>60000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateGenericAnd">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateTimeInIntervalGeneric">
+														<interval href="TimeIntervalTable.(TimeIntervalTable).xdb#xpointer(/timeinterval.TimeIntervalTable)" />
+													</Item>
+												</predicates>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.RandomImpactGeneric">
+														<entries>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																		<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																		<impacts>
+																			<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+																				<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_46.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+																			</Item>
+																		</impacts>
+																	</Item>
+																</impacts>
+															</Item>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																		<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																		<impacts>
+																			<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+																				<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_47.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+																			</Item>
+																		</impacts>
+																	</Item>
+																</impacts>
+															</Item>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																		<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																		<impacts>
+																			<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+																				<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_48.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+																			</Item>
+																		</impacts>
+																	</Item>
+																</impacts>
+															</Item>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																		<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																		<impacts>
+																			<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+																				<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_49.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+																			</Item>
+																		</impacts>
+																	</Item>
+																</impacts>
+															</Item>
+															<Item>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+																		<map href="/Maps/ArchipelagoContested6/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																		<impacts>
+																			<Item type="gameMechanics.elements.impacts.MapHeadSpawnTableObjects">
+																				<table href="/Maps/ArchipelagoContested6/SpawnTables/ArchipelagoContested6/AC6Mag46_50.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+																			</Item>
+																		</impacts>
+																	</Item>
+																</impacts>
+															</Item>
+														</entries>
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactSendClientDataZoneGeneric">
+												<data href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/MSG_Start.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												<stringCalcers>
+													<Item skiped="" />
+												</stringCalcers>
+												<zone href="/Maps/ArchipelagoContested6/Zones/ArchipelagoContested6/ArchipelagoContested6.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.ImpactEndRuleActiveState" />
+											<Item type="gameMechanics.elements.impacts.ImpactSendClientDataZoneGeneric">
+												<data href="/Mechanics/Rules/ArchipelagoContested6/CultistPortalEvent/MSG_Vict.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												<stringCalcers>
+													<Item skiped="" />
+												</stringCalcers>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ArchipelagoContested6/CultistPortalEvent/CultistPortalEvent.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="PortalDestabilisator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Prototype href="Parts/CharacterSpell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<RayMaxTime>3000</RayMaxTime>
+			<PreCastAnimation>PreCastAnimationDirectWand.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</PreCastAnimation>
+			<MultyTargetMode>FromCaster</MultyTargetMode>
+			<RaySecondaryLength>2</RaySecondaryLength>
+			<RaySecondaryVelocity>0</RaySecondaryVelocity>
+			<FXRaySecondary />
+			<RayLength>2</RayLength>
+			<FXRay />
+			<RayVelocity>0</RayVelocity>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item skiped="" />
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time var="RayMaxTime" />
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx hrefvar="FXRay" />
+								<fxLength var="RayLength" />
+								<startPoint type="VisPointLocator">
+									<locator var="LocatorOnCaster" />
+									<locatorName var="LocatorNameOnCaster" />
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator var="LocatorOnTargets" />
+									<locatorName var="LocatorNameOnTargets" />
+								</endPoint>
+								<velocity var="RayVelocity" />
+								<multyTargetMode var="MultyTargetMode" />
+								<secondaryTargetParams>
+									<channelingFx hrefvar="FXRaySecondary" />
+									<fxLength var="RaySecondaryLength" />
+									<velocity var="RaySecondaryVelocity" />
+								</secondaryTargetParams>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

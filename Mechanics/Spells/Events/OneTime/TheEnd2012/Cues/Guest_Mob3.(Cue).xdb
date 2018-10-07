@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>354068497</resourceId>
+	</Header>
+	<name href="Guest_Mob3.(Cue).Name.txt" />
+	<text href="Guest_Mob3.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_02R.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_02R.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_02R_qc3.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_02R.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_02R_qc2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_02R.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Active</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_02R.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_02R_qc3.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_02R.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_02R_qc2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationModified">
+				<destination type="gameMechanics.map.destination.RelativePos">
+					<yaw type="constructor.basicElements.AngleRadians" />
+				</destination>
+				<modifiers>
+					<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+						<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+							<verticalRange min="0" max="0" />
+							<horizontalRange min="0" max="5" />
+						</modifier>
+					</Item>
+				</modifiers>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>300000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.quest.trigger.ImpactAttachTrigger">
+					<trigger href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_02R/Quest2R_Mob3Trigger.(TriggerResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_02R/Quest02R_PlaneBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.world.pet.PredicateHasPet" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_02R/Quest02R_PlaneBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<object href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_02R/Quest02R_Mob3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<level type="gameMechanics.elements.calcers.CalcerLevel" />
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

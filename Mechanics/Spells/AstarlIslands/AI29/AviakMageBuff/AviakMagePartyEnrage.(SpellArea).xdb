@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>265915539</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="AviakMagePartyEnrage.(SpellArea).Name.txt" />
+	<Description href="AviakMagePartyEnrage.(SpellArea).Description.txt" />
+	<image href="/Interface/Icons/Misc/Mobparts/WolfHead.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="SpellCast.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakWarrior.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakMageSilver.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakSoul03.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakSoul01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakSoul02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakMage.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<Item href="/Creatures/Aviak/Instances/AstralIsle29/Astral29AviakSoul02.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+						<buff href="AviakMagePartyEnrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<delta type="gameMechanics.elements.calcers.LinearCalcer">
+							<mul>1</mul>
+							<sum>0</sum>
+						</delta>
+						<attachIfNotExist>true</attachIfNotExist>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>20</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

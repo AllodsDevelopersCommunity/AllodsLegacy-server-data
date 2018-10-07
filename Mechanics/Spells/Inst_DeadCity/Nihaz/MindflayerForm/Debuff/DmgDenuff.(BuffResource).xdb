@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>273625094</resourceId>
+	</Header>
+	<Name href="DmgDenuff.(BuffResource).Name.txt" />
+	<Description href="DmgDenuff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/AreaSlow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Creatures/NihazDC/MindflayerForm_DmgDenuff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="DmgDenuff.(BuffResource).Name.txt" />
+	<descTemplate href="DmgDenuff.(BuffResource).Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="DmgBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.OutgoingHealModifier">
+			<scaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+				<scaler type="gameMechanics.elements.scalers.LinearScaler">
+					<multiplier>0</multiplier>
+				</scaler>
+			</scaler>
+			<priority>Multiplier</priority>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps>5</jumps>
+			<buff href="DmgDenuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.FilteringAutotarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.RandomAutotarget">
+					<group>Friends</group>
+					<radius>10</radius>
+				</autotarget>
+			</autotarget>
+			<radius>10</radius>
+			<inCasterRange>true</inCasterRange>
+		</Item>
+	</effects>
+	<duration>40000</duration>
+	<stackLimit>6</stackLimit>
+	<isHelpful>false</isHelpful>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

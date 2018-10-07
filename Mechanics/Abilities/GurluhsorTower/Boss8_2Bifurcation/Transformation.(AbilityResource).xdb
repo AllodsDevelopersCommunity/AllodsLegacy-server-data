@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>131636286</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAbility">
+			<ability href="/Mechanics/Abilities/Creatures/EliteVision/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.world.mob.behaviour.aiEvents.GoneThroughPathEvent</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="BodyFire.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="SarnDeath.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>SarnLight</scriptID>
+								<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+							<msg href="/World/Ask/GT/Boss08Sarn_AngelSummon.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+							<defaultSpeaker href="/Creatures/SarnAvatar/GS_SarnAvatar3Light.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>SarnSpider</scriptID>
+								<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>17000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+							<mob>
+								<scriptID>SarnDark</scriptID>
+								<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.SpawnSingleProjectile">
+							<projectile>
+								<scriptID>Boss8_Win_Projectile</scriptID>
+								<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</projectile>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>8000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="InvisPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<scalerTarget />
+							<durationScaler />
+							<durationScalerTarget />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Mechanics/Spells/IMTurret/LvL1Turret/LvL1Turret.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Mechanics/Spells/IMTurret/LvL2Turret/LvL2Turret.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Mechanics/Spells/IMTurret/Lvl3Turret/LvL3Turret.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<Item href="/Mechanics/Spells/IMTurret/LvL4Turret/LvL4Turret.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+					</filter>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="BifurcationPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

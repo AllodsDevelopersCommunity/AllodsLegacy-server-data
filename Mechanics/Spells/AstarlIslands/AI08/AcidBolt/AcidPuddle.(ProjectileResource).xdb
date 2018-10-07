@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>180524037</resourceId>
+	</Header>
+	<visObject href="/Spells/FX/Spells/AcidPuddle.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>0.1</altitude>
+	<lifeLengthCap>7000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>5</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>true</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>ACID</element>
+							<threatMultiplier>0</threatMultiplier>
+							<minDamage>10</minDamage>
+							<maxDamage>10</maxDamage>
+							<impactOnHitTarget />
+							<scaler type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</scaler>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+					<targetsLimit>0</targetsLimit>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

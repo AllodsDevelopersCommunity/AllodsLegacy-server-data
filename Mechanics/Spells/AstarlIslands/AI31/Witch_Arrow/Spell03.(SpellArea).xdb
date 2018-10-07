@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>292523041</resourceId>
+	</Header>
+	<Name href="Spell03.(SpellArea)_Name.txt" />
+	<Description href="Spell03.(SpellArea)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireballUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="AI31_Fireball_Banchee.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell03.(SpellArea)_Name.txt.template" />
+	<descTemplate href="Spell03.(SpellArea)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>75</value>
+	</range>
+	<prepareDuration>2500</prepareDuration>
+	<element>FIRE</element>
+	<targetType>STTPoint</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>15000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>FIRE</element>
+				<minDamage>33</minDamage>
+				<maxDamage>33</maxDamage>
+				<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>6</radius>
+						<affectGroup>Enemies</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="/Mechanics/Spells/AstarlIslands/AI26/AI26_ZombieBossFear/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.world.creature.AvatarFilter" />
+						<onBehalfOfHolder>false</onBehalfOfHolder>
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		</targetConditions>
+	</mechanics>
+	<speed>15</speed>
+	<targetsSelectionStage>Launch</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>3</radius>
+	<needLosToTarget>true</needLosToTarget>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

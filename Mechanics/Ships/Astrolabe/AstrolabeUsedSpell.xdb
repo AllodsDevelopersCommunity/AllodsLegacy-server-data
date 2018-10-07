@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>217719809</resourceId>
+	</Header>
+	<groups>
+		<Item href="AstrolabeSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/ShipDeviceActions.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="AstrolabeName.txt" />
+	<Description href="AstrolabeUsage.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/Astralyabiya.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<canStartNotBeeingInSpellbook>true</canStartNotBeeingInSpellbook>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+			<Item type="gameMechanics.elements.predicates.PredicateOnParentShip">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="AstrolabeDisabler.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+							</groups>
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateStandingOnOwnShip" />
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnPersistentShip" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateIsGroupLeader" />
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+					<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactOnShipBound">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+										<predicates>
+											<Item type="gameMechanics.world.ship.elements.PredicateStandingOnBoundShip" />
+										</predicates>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.ImpactTeleportToBoundShipGeneric" />
+										</impactsElse>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.world.ship.elements.ImpactIslandAstrolabeJump">
+						<destination type="gameMechanics.elements.calcers.CalcerLongParam">
+							<paramName>destination</paramName>
+						</destination>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.world.ship.elements.ImpactAstralAstrolabeJump">
+						<destination type="gameMechanics.elements.calcers.CalcerLongParam">
+							<paramName>destination</paramName>
+						</destination>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<params>
+		<params>
+			<Item>
+				<name>destination</name>
+				<type>Int</type>
+			</Item>
+		</params>
+	</params>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>333466838</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/IceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<Name href="Summon.(SpellCasterSelf)_Name.txt" />
+	<image href="/Interface/Icons/Equipment/Ranged/WandElectrosnake.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Necromancer/SummonSkeleton.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Summon.(SpellCasterSelf)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<needLos>false</needLos>
+	<element>COLD</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>36000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians" />
+					</destination>
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="35" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>100000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+					<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+				</impacts>
+				<object href="/Creatures/WaterElemental/Instances/AstralDungeon04/Boss01/WaterElemental.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				<level type="gameMechanics.elements.calcers.CalcerLevel" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="/Mechanics/Spells/TenzisTample/Boss1Mage/SummonElemental/Ask_Elemental.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Characters/Hadagan_male/Instances/InstTenzisTemple/Instances/Inst_TenzisTemple/TZ_Boss1Mage33_33.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

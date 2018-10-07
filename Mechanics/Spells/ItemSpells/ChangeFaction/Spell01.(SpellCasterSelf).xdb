@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>316321794</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellCasterSelf)_Name.txt" />
+	<Description href="Spell01.(SpellCasterSelf)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/TransferFaction.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Spell01.(SpellCasterSelf)_Name.txt.template" />
+	<descTemplate href="Spell01.(SpellCasterSelf)_Desc.txt.template" />
+	<prepareDuration>10000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="/ItemMall/Services/Exchange/IMCrystalPouch500.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+				<key href="/System/ContentKeys/ChangeFaction.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateWeakFaction" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+							<key href="/System/ContentKeys/Brazil.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+							<key href="/System/ContentKeys/USA.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+							<key href="/System/ContentKeys/Europe.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+						</Item>
+					</predicates>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<hideText>false</hideText>
+						<resource href="/Mechanics/GameRoot/ChangeFactionRoot.xdb" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+											<resource href="/Items/ShipParking/ParkingCoupon1.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+											<resource href="/Items/ShipParking/ParkingCoupon2.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+											<resource href="/Items/ShipParking/ParkingCoupon3.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+											<resource href="/Items/ShipParking/ParkingCoupon4.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+											<resource href="/Items/ShipParking/ParkingCoupon5.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactStartQuiz">
+								<question href="LoseParking.(Question).xdb#xpointer(/gameMechanics.world.quiz.Question)" />
+								<participants type="gameMechanics.elements.addresseeFinders.AddressesCalcerSingle">
+									<calcer type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+								</participants>
+								<resultsHandler type="gameMechanics.elements.common.SingleResultHandler">
+									<impactsOnSuccess>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+													<lhs type="gameMechanics.elements.calcers.CalcerLongParam">
+														<paramName>choice</paramName>
+													</lhs>
+													<rhs type="gameMechanics.elements.calcers.LongData">
+														<value>0</value>
+													</rhs>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactDespawnShip" />
+												<Item type="itemService.avatar.changeFaction.ImpactChangeFaction">
+													<resource href="/ItemMall/Services/Exchange/IMCrystalPouch500.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsOnSuccess>
+								</resultsHandler>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDespawnShip" />
+							<Item type="itemService.avatar.changeFaction.ImpactChangeFaction">
+								<resource href="/ItemMall/Services/Exchange/IMCrystalPouch500.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="WarningCooldown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.behaviour.brain.MobBrainResource>
+	<Header>
+		<resourceId>77519905</resourceId>
+	</Header>
+	<memoryVariables>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.NavigationPosVariable">
+			<name>spawnPos</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.NavigationPosVariable">
+			<name>interruptPos</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.MovementTypeVariable">
+			<name>moveType</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.BoolVariable">
+			<name>pursuitToComfort</name>
+			<value>false</value>
+		</Item>
+	</memoryVariables>
+	<!--==============================================================================================-->
+	<!--============================================STATES============================================-->
+	<!--==============================================================================================-->
+	<root type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+		<name>Root</name>
+		<groupType>Static</groupType>
+		<subnodes>
+			<!--0-->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+				<name>AliveStatesGroup</name>
+				<groupType>Static</groupType>
+				<subnodes>
+					<!--1-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>ReturnState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateReturn">
+							<interruptPos name="interruptPos" />
+							<moveType name="moveType" />
+						</state>
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<onStart>
+								<Item type="gameMechanics.elements.impacts.ImpactResetMob" />
+							</onStart>
+							<effects>
+								<Item type="gameMechanics.elements.effects.DamageZeroSuppressor" />
+								<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+								<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+											<predicate type="gameMechanics.constructor.schemes.buff.BuffRetainedOnReset" />
+										</Item>
+									</predicates>
+								</Item>
+								<Item type="gameMechanics.elements.effects.EffectNoAggro" />
+								<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+									<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+										<base>2</base>
+									</effectScaler>
+								</Item>
+							</effects>
+						</reaction>
+						<mandatory>
+							<Item>
+								<to>GuardState</to>
+							</Item>
+							<Item>
+								<to>GuardState</to>
+							</Item>
+						</mandatory>
+					</Item>
+					<!--4-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>HoldState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateHold" />
+						<mandatory>
+							<Item>
+								<to>GuardState</to>
+							</Item>
+							<Item>
+								<to>AttackPlayerStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+							</Item>
+							<Item>
+								<to>GuardState</to>
+							</Item>
+						</mandatory>
+					</Item>
+					<!--3-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>GuardState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateGuard">
+							<interruptPos name="interruptPos" />
+							<spawnPos name="spawnPos" />
+						</state>
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<effects>
+								<Item type="gameMechanics.world.mob.behaviour.components.effects.EffectCanBeAggred" />
+							</effects>
+						</reaction>
+						<mandatory>
+							<Item>
+								<to>HoldState</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>AttackDeviceStateGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsUsableDevice" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackShipHullState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsShip" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackPlayerStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+						</optional>
+					</Item>
+					<!--4-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>AttackPlayerStatesGroup</name>
+						<groupType>Static</groupType>
+						<subnodes>
+							<!--0-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PursuitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePursuit">
+									<moveType name="moveType" />
+									<pursuitToComfort name="pursuitToComfort" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item />
+									<Item>
+										<to>AttackState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+								</mandatory>
+							</Item>
+							<!--1-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>AttackState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateAttack">
+									<pursuitToComfort name="pursuitToComfort" />
+									<moveType name="moveType" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item>
+										<to>PursuitState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+									<Item />
+									<Item />
+								</mandatory>
+							</Item>
+						</subnodes>
+						<activeConvolutions>
+							<Item type="gameMechanics.world.mob.behaviour.components.states.ImpactConvolution">
+								<impact type="gameMechanics.elements.impacts.ImpactCallForHelp">
+									<radius>10</radius>
+								</impact>
+							</Item>
+						</activeConvolutions>
+						<initialState>AttackState</initialState>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+						</exitTypes>
+						<exitsRemap>
+							<Item>
+								<from>1</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>2</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>3</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>1</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<mandatory>
+							<Item>
+								<to>PreAggro</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>HoldState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe" />
+							</Item>
+							<Item>
+								<to>AttackDeviceStateGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsUsableDevice" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackShipHullState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsShip" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackPlayerStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe" />
+							</Item>
+							<Item>
+								<to>ReturnState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>AttackDeviceStateGroup</name>
+						<groupType>Static</groupType>
+						<initialState>PursuitState</initialState>
+						<subnodes>
+							<!--0-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>PursuitState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePursuit">
+									<moveType name="moveType" />
+									<pursuitToComfort name="pursuitToComfort" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item />
+									<Item>
+										<to>AttackState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+								</mandatory>
+								<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+									<onStart>
+										<Item type="gameMechanics.elements.impacts.ImpactSetMobAutoAttackRange" />
+									</onStart>
+								</reaction>
+							</Item>
+							<!--1-->
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>AttackState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateShipPartAttack">
+									<pursuitToComfort name="pursuitToComfort" />
+									<moveType name="moveType" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item>
+										<to>PursuitState</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+									</Item>
+									<Item />
+									<Item />
+								</mandatory>
+							</Item>
+						</subnodes>
+						<exitsRemap>
+							<Item>
+								<from>1</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>2</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>1</from>
+								<exit>3</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>1</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<mandatory>
+							<Item>
+								<to>ReturnState</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>AttackDeviceStateGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsUsableDevice" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackShipHullState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsShip" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackPlayerStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe" />
+							</Item>
+							<Item>
+								<to>ReturnState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+								</pipe>
+							</Item>
+						</optional>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+						</exitTypes>
+					</Item>
+					<!--5!-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>AttackShipHullState</name>
+						<groupType>Static</groupType>
+						<initialState>AttackState</initialState>
+						<subnodes>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>AttackState</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateShipPartAttack">
+									<pursuitToComfort name="pursuitToComfort" />
+									<moveType name="moveType" />
+								</state>
+								<mandatory>
+									<Item />
+									<Item />
+									<Item />
+									<Item />
+								</mandatory>
+							</Item>
+						</subnodes>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.TargetProvider</type>
+							</Item>
+						</exitTypes>
+						<mandatory>
+							<Item>
+								<to>ReturnState</to>
+							</Item>
+							<Item>
+								<to>HoldState</to>
+							</Item>
+						</mandatory>
+						<exitsRemap>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>1</exit>
+								<groupExit>1</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>2</exit>
+								<groupExit>0</groupExit>
+							</Item>
+							<Item>
+								<from>0</from>
+								<exit>3</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<optional>
+							<Item>
+								<to>AttackDeviceStateGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsUsableDevice" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackShipHullState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsShip" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackPlayerStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe" />
+							</Item>
+							<Item>
+								<to>ReturnState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+								</pipe>
+							</Item>
+						</optional>
+					</Item>
+					<!--6!-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>PreAggro</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePreAggro" />
+						<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+							<onStart>
+								<Item type="gameMechanics.elements.impacts.ImpactFindTagetsOnShip" />
+							</onStart>
+						</reaction>
+						<mandatory>
+							<Item>
+								<to>GuardState</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>AttackDeviceStateGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsUsableDevice" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackShipHullState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe">
+									<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateIsShip" />
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackPlayerStatesGroup</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+						</optional>
+					</Item>
+				</subnodes>
+				<initialState>PreAggro</initialState>
+				<optional>
+					<Item>
+						<to>DeadState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactLand" />
+								<Item type="gameMechanics.elements.impacts.ImpactRemoveAggroAndTarget" />
+							</impacts>
+							<eventType>gameMechanics.elements.events.EventDeath</eventType>
+							<eventPredicate type="gameMechanics.world.mob.behaviour.components.predicates.PredicateFromSelf" />
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+			<!--1-->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>DeadState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+			</Item>
+		</subnodes>
+		<initialState>AliveStatesGroup</initialState>
+	</root>
+</gameMechanics.world.mob.behaviour.brain.MobBrainResource>

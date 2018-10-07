@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>88881152</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Priest/PriestHeavenlyLight.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.abilities.DieHardObserver">
+			<dieHardBuff href="Immunity.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<impactsOnAttach>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStunNoCC.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier var="multiplier" />
+					</durationScaler>
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="ClientDataOnProc.xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<calcers>
+						<stringEntries>
+							<Item>
+								<name>caster</name>
+								<calcer type="gameMechanics.elements.calcers.CasterNameCalcer" />
+							</Item>
+						</stringEntries>
+					</calcers>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+						<radius>85</radius>
+					</distributor>
+					<data href="/Spells/ClientData/EvilHealing.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+						<multiplier var="multipli_1" />
+					</durationScaler>
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactBaseHealth">
+					<healthMultiplier var="healthMultiplier" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactBaseMana">
+					<manaMultiplier var="manaMultiplier" />
+				</Item>
+			</impactsOnAttach>
+			<restrictiveBuff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<priority>0</priority>
+			<suppressDamage>true</suppressDamage>
+		</Item>
+	</effects>
+	<majorEffect>0</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

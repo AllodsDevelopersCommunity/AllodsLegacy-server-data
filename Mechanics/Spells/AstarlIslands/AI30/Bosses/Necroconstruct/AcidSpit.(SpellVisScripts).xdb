@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/MobOmni.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<AnimationPreCastMode>LOOP</AnimationPreCastMode>
+			<FixPointCaster>true</FixPointCaster>
+			<LocatorNameOnCaster />
+			<FixPointTarget>true</FixPointTarget>
+			<LocatorNameOnTargets />
+			<LocatorOnTargets>Slot_Global</LocatorOnTargets>
+			<LocatorOnCaster>Slot_Mouth</LocatorOnCaster>
+			<PreCastAnimation>ready</PreCastAnimation>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectPoisonWand.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FXOnCaster>/Spells/FX/Mobs/TrollShaman_SpecialCast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+			<HitPostFXOnTargets>/Spells/VisScripts/HitPostFxOnTarget/HitPoisonShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</HitPostFXOnTargets>
+			<CastAnimation>spellCastDirected</CastAnimation>
+			<FXOnTargets>/Spells/FX/Spells/HitPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnTargets>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="FxOnHands" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+							<animations />
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>false</lockScale>
+						<scale>2</scale>
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>Slot_Mouth</locator>
+						<member>Default_Member</member>
+						<locatorName />
+						<offendTime />
+						<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+					</Item>
+					<Item skiped="" />
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<precastType>PRECAST_DEFAULT</precastType>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>DIE</mode>
+				<animations>
+					<Item var="CastAnimation" />
+				</animations>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<scale>2</scale>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

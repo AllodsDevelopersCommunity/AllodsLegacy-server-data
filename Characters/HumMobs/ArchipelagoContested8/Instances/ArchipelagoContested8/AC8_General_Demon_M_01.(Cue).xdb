@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>205756656</resourceId>
+	</Header>
+	<name href="AC8_General_Demon_M_01.txt" />
+	<text href="AC8_General_Demon_M_01.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.resources.ResourceBuff">
+			<buff href="/Items/QuestItems/ArchipelagoContested8/Ac8_Grind_D_02/Ac8_Grind_M_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_Event/AC8_Event.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>InQuestBook</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+							<zone href="/Maps/ArchipelagoContested8/ScriptZones/Baza_M.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Ac8_Victory_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+											<data href="Ac8_atak_ready.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+													<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_M_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<delta type="gameMechanics.elements.calcers.FloatData">
+														<value>48</value>
+													</delta>
+													<attachIfNotExist>true</attachIfNotExist>
+												</Item>
+											</impacts>
+											<mob>
+												<scriptID>Demon_Gen</scriptID>
+												<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+											<data href="Ac8_atak_ready_chat.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse />
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="Ac8_victory.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+																	<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+																	<summand>-1</summand>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+																	<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+															<mob>
+																<scriptID>Cultist_Gen</scriptID>
+																<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															</mob>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</impactsIf>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+											<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>Demon_Gen</scriptID>
+										<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="AC8_atak_player.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+															<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<status>Active</status>
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+															<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<counterResource href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																<value>1</value>
+															</predicate>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_Event/AC8_Event.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>InQuestBook</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+							<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_01_M.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>true</anyRank>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+																	<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+																	<summand>-1</summand>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+																	<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+															<mob>
+																<scriptID>Cultist_Gen</scriptID>
+																<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															</mob>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</impactsIf>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+											<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>Demon_Gen</scriptID>
+										<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="AC8_atak_player.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+															<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<status>Active</status>
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+															<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<counterResource href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																<value>1</value>
+															</predicate>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Ac8_Victory_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+											<data href="Ac8_atak_ready_M_01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+													<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_M_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<delta type="gameMechanics.elements.calcers.FloatData">
+														<value>48</value>
+													</delta>
+													<attachIfNotExist>true</attachIfNotExist>
+												</Item>
+											</impacts>
+											<mob>
+												<scriptID>Demon_Gen</scriptID>
+												<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+											<data href="Ac8_atak_ready_M_01_chat.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ReturningImpact">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+															<predicates>
+																<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+															</predicates>
+															<impactsIf>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+																<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																	<predicates>
+																		<Item type="gameMechanics.elements.resources.ResourceBuff">
+																			<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</Item>
+																	</predicates>
+																	<impactsIf>
+																		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+																			<impacts>
+																				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+																					<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+																					<summand>-1</summand>
+																				</Item>
+																				<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+																					<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																				</Item>
+																			</impacts>
+																			<mob>
+																				<scriptID>Cultist_Gen</scriptID>
+																				<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																			</mob>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																			<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<anyRank>false</anyRank>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																			<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<anyRank>false</anyRank>
+																		</Item>
+																	</impactsIf>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																	<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<anyRank>false</anyRank>
+																</Item>
+															</impactsIf>
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+															<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+														</Item>
+														<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+															<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<delta type="gameMechanics.elements.calcers.FloatData">
+																<value>1</value>
+															</delta>
+															<attachIfNotExist>true</attachIfNotExist>
+														</Item>
+													</impacts>
+													<mob>
+														<scriptID>Demon_Gen</scriptID>
+														<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+													</mob>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ReturningImpact">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+															<delay>2000</delay>
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+																	<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+																	<data href="AC8_atak_player.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ReturningImpact">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+															<predicates>
+																<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+																	<predicates>
+																		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																			<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																			<status>Active</status>
+																		</Item>
+																		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																				<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																				<counterResource href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																				<value>1</value>
+																			</predicate>
+																		</Item>
+																	</predicates>
+																</Item>
+															</predicates>
+															<impactsIf>
+																<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+																	<id href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																</Item>
+															</impactsIf>
+														</Item>
+													</impacts>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="Ac8_victory.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ArchipelagoContested8/AC8_Event/AC8_Event.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>InQuestBook</status>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+							<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_02_M.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+									<data href="Ac8_atak_ready_M_02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_grind_M_01_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>48</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>Demon_Gen</scriptID>
+										<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactSendClientDataToZone">
+									<data href="Ac8_atak_ready_M_02_chat.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ReturningImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+															<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+															<predicates>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</predicates>
+															<impactsIf>
+																<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+																	<impacts>
+																		<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+																			<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+																			<summand>-1</summand>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+																			<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		</Item>
+																	</impacts>
+																	<mob>
+																		<scriptID>Cultist_Gen</scriptID>
+																		<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																	</mob>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																	<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<anyRank>false</anyRank>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																	<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<anyRank>false</anyRank>
+																</Item>
+															</impactsIf>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+													<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+												</Item>
+												<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+													<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<delta type="gameMechanics.elements.calcers.FloatData">
+														<value>1</value>
+													</delta>
+													<attachIfNotExist>true</attachIfNotExist>
+												</Item>
+											</impacts>
+											<mob>
+												<scriptID>Demon_Gen</scriptID>
+												<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</mob>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ReturningImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>2000</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+															<data href="AC8_atak_player.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ReturningImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+															<predicates>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																	<status>Active</status>
+																</Item>
+																<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																	<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																		<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																		<counterResource href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																		<value>1</value>
+																	</predicate>
+																</Item>
+															</predicates>
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+															<id href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+														</Item>
+													</impactsIf>
+												</Item>
+											</impacts>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsIf>
+							<impactsElse />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="AC8_event_buff_raedy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>true</anyRank>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateTrue" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+																	<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+																	<summand>-1</summand>
+																</Item>
+																<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+																	<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+															<mob>
+																<scriptID>Cultist_Gen</scriptID>
+																<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															</mob>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.BuffDetacher">
+															<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															<anyRank>false</anyRank>
+														</Item>
+													</impactsIf>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+											<variable href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+										</Item>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="AC8_player_count_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>Demon_Gen</scriptID>
+										<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+											<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+											<data href="AC8_atak_player.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+															<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+															<status>Active</status>
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+															<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+																<quest href="/World/Quests/ArchipelagoContested8/AC8_5_1/AC8_5_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																<counterResource href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																<value>1</value>
+															</predicate>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+													<id href="/World/Quests/ArchipelagoContested8/AC8_5_1/CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

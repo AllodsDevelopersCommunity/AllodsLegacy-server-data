@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>201420801</resourceId>
+	</Header>
+	<Name href="TimeKick_Name.txt" />
+	<Description href="TimeKick_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicTimeLapse.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+					<time>2000</time>
+					<impactsOnLand>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+											<zone href="FirstTimeBarrier.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+											<zone href="SecondTimeBarrier.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.DirectDamage">
+									<damage>120000</damage>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>1000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactKill" />
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsOnLand>
+					<destination type="gameMechanics.map.destination.DestinationModified">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>0</value>
+							</yaw>
+							<faceSourcePos>true</faceSourcePos>
+							<coord x="0" y="0" z="0" />
+						</destination>
+						<modifiers>
+							<Item type="gameMechanics.map.destination.modifier.ModifierAbsolutePolar">
+								<radius type="gameMechanics.elements.calcers.FloatData">
+									<value>-25</value>
+								</radius>
+								<angle type="constructor.basicElements.AngleRadians">
+									<value>1.5</value>
+								</angle>
+							</Item>
+						</modifiers>
+					</destination>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>4000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups />
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

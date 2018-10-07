@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>125885690</resourceId>
+	</Header>
+	<Name href="Stone_Knife_SpellName.txt" />
+	<Description href="Stone_Knife_SpellDesc.txt" />
+	<nameTemplate href="Stone_Knife_SpellName.txt" />
+	<descTemplate href="Stone_Knife_SpellDesc.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>180000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/KillWolf.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+						<ability href="/Creatures/Wolf/Instances/ArchipelagoGipatsShard/Plane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>180000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.AttachAbility">
+								<ability href="/Creatures/Wolf/Instances/ArchipelagoGipatsShard/Plane.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<mob>
+					<scriptID>SingleWolf</scriptID>
+					<map href="/Maps/ArchipelagoGipatsShard/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoGipatsShard/Quest2_2/CountId_0.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ArchipelagoGipatsShard/Quest2_2/Quest2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="Stone_Knife.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

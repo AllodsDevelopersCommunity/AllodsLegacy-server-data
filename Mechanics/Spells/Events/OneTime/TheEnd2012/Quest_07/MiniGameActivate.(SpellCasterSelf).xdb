@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>356952066</resourceId>
+	</Header>
+	<Description href="MiniGameActivate.(SpellCasterSelf).Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+						<radius>40</radius>
+						<mobs>
+							<Item href="/Characters/Elf_female/Instances/ZoneLeague1/TheEnd2012_Historian.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="/Mechanics/Spells/Events/OneTime/TheEnd2012/Quest_06/TooCloseToSummon.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="MiniGameStart.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="ItemActivate.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>2</value>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>-2</value>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Active</status>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_E_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>-1</value>
+									</Item>
+								</impacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>2</value>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>-2</value>
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+												<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<status>Active</status>
+											</Item>
+											<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/LoreEvents/TheEnd2012/TE2012_L_07.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</Item>
+										</predicates>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/Mechanics/Spells/Events/OneTime/TheEnd2012/QuestCounters/TE2012_L_07_qc1..(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>-1</value>
+									</Item>
+								</impacts>
+							</Item>
+						</elseImpacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

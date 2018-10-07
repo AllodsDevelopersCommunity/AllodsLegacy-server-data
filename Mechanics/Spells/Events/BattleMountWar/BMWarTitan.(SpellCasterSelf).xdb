@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>739815073</resourceId>
+	</Header>
+	<Name href="BMWarTitan.(SpellCasterSelf).Name.txt" />
+	<Description href="BMWarTitan.(SpellCasterSelf).Description.txt" />
+	<image href="/Interface/Icons/Mounts/MountTitan.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="BMWarTitan.(SpellCasterSelf).Name.txt" />
+	<descTemplate href="BMWarTitan.(SpellCasterSelf).Description.txt" />
+	<prepareDuration>2500</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+				<rule href="/Mechanics/Rules/AprilBattle/BMWarTitan.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasFreeStableSlots" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasMount">
+					<mount href="BMWarTitan.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactTameMount">
+				<mount href="BMWarTitan.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+				<expiresAfter>
+					<day>4</day>
+				</expiresAfter>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

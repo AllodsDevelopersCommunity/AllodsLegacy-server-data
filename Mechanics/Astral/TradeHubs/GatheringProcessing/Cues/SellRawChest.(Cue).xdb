@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>312391686</resourceId>
+	</Header>
+	<name href="SellRawChest.txt" />
+	<text href="SellRawChest.Text.txt" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>sellPrice</alias>
+			<calcer type="gameMechanics.elements.calcers.CalcerLongMul">
+				<calcers>
+					<Item type="gameMechanics.world.bigAstral.tradeWars.CalcerRawPrice" />
+					<Item type="gameMechanics.elements.calcers.LongData">
+						<value>3</value>
+					</Item>
+				</calcers>
+			</calcer>
+		</Item>
+	</data>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.MaxLevelConstant">
+				<summand>-3</summand>
+			</minLevel>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateDistance">
+					<range min="0" max="700" />
+				</Item>
+			</predicates>
+		</Item>
+	</additionalConditions>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+			<lhs type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+				<chestType href="/Mechanics/Astral/TradeHubs/ResourceChests/ResourceGatheringChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+				<boundChestsOnly>true</boundChestsOnly>
+			</lhs>
+			<rhs type="gameMechanics.elements.calcers.LongData">
+				<value>0</value>
+			</rhs>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+					<permission>BuyChests</permission>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip">
+						<ownershipRequired>false</ownershipRequired>
+					</addresseeFinder>
+					<impacts>
+						<Item type="itemService.elements.astral.ImpactRemoveChest">
+							<chestType href="/Mechanics/Astral/TradeHubs/ResourceChests/ResourceGatheringChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+							<impactsOnAvatarPerChest>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateDistance">
+										<range min="0" max="500" />
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/AstralHangarHadagan/TradeAllodsStart/QuestCountSoldSupplies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+											<id href="/World/Quests/AstralHangarLeague/TradeAllodsStart/QuestCountSoldSupplies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impactsOnAvatarPerChest>
+							<scalableImpactsOnAvatarPerChest>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.elements.predicates.PredicateDistance">
+										<range min="0" max="500" />
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+											<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMul">
+												<calcers>
+													<Item type="gameMechanics.world.bigAstral.tradeWars.CalcerRawPrice" />
+													<Item type="gameMechanics.elements.calcers.LongData">
+														<value>3</value>
+													</Item>
+												</calcers>
+											</sumCalcer>
+										</Item>
+										<Item type="gameMechanics.world.bigAstral.tradeWars.ImpactAddRaw">
+											<count type="gameMechanics.elements.calcers.LongData">
+												<value>3</value>
+											</count>
+										</Item>
+									</impactsIf>
+								</Item>
+							</scalableImpactsOnAvatarPerChest>
+							<inverseScaleOnBoundCount>true</inverseScaleOnBoundCount>
+							<boundChestsOnly>true</boundChestsOnly>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<nextCues>
+		<Item href="BuyResource.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_MaxChests.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="BuyResource_NoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="SellRaw.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

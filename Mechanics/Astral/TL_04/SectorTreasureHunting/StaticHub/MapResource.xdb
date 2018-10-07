@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>271972381</resourceId>
+	</Header>
+	<stabilityZoneInfo>
+		<lights href="/World/Sky/Astral/Astral_Growth_01/Astral_Growth_01.(ZoneLights).xdb#xpointer(/ZoneLights)" />
+		<ambience>
+			<project href="/SFX/Ambience/Ambience.(FMODProject).xdb#xpointer(/FMODProject)" />
+			<name>Ambience/AstralAmbience/5Layer_2Tier</name>
+		</ambience>
+	</stabilityZoneInfo>
+	<instabilityZoneInfo>
+		<lights href="/World/Sky/Astral/Astral_Growth_01/Astral_Growth_01_Unstable.(ZoneLights).xdb#xpointer(/ZoneLights)" />
+		<ambience>
+			<project href="/SFX/Ambience/Ambience.(FMODProject).xdb#xpointer(/FMODProject)" />
+			<name>Ambience/AstralAmbience/5Layer_2Tier</name>
+		</ambience>
+	</instabilityZoneInfo>
+	<mapTemplate href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Zone/TreasureHuntingTemplate.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<serverObjects href="ServerObjects.xdb#xpointer(/gameMechanics.map.ServerObjects)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>10000</delay>
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/TimeWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+															<predicates>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/Instability.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/Desync.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+																<Item type="gameMechanics.elements.resources.ResourceBuff">
+																	<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/AlreadyVisited.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+																<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+																	<predicate type="gameMechanics.elements.predicates.PredicateResourceReady">
+																		<resource href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/AlreadyVisitedFakeCue.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+																	</predicate>
+																</Item>
+															</predicates>
+														</predicate>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/Instability.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/AlreadyVisited.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ImpactResourceCooldown">
+														<binding>Soul</binding>
+														<resource href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/AlreadyVisitedFakeCue.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+														<cooldownInDays type="gameMechanics.elements.calcers.LongData">
+															<value>1</value>
+														</cooldownInDays>
+													</Item>
+												</impactsIf>
+											</Item>
+										</impacts>
+									</Item>
+								</impactsOn>
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/TimeWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOff>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffectsGeneric">
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+										<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/DeathHandler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+						<impactsOff>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+								<predicates>
+									<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+										<buff href="/Mechanics/Astral/TL_04/SectorTreasureHunting/Buffs/DeathHandler.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOff>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

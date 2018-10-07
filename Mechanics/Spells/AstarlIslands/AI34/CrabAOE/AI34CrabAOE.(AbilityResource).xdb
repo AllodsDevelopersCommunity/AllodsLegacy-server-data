@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>288797715</resourceId>
+	</Header>
+	<name href="AI34CrabAOE.(AbilityResource)_Name.txt" />
+	<nameTemplate href="AbilityName.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.1</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>10</radius>
+						<affectGroup>Enemies</affectGroup>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+										<data href="/Mechanics/Spells/AstarlIslands/AI17/JungleBossSacrifice/AcidExplosionEffect.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/AstarlIslands/AI34/DrownedOnStrike/DrownedStrikeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+										<element>ACID</element>
+										<minDamage>80</minDamage>
+										<maxDamage>80</maxDamage>
+										<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+									</Item>
+								</impactsIf>
+								<impactsElse>
+									<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+										<element>ACID</element>
+										<minDamage>40</minDamage>
+										<maxDamage>40</maxDamage>
+										<impactOnHitTarget type="gameMechanics.elements.impacts.ReturningImpact">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactKill" />
+											</impacts>
+										</impactOnHitTarget>
+										<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+									</Item>
+								</impactsElse>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</impact>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

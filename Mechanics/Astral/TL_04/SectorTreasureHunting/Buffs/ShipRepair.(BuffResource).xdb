@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>282837010</resourceId>
+	</Header>
+	<Name href="ShipRepair.txt" />
+	<Description href="ShipRepair.Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/AstralEssence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="ShipRepair.txt" />
+	<descTemplate href="ShipRepair.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectAllDevices">
+			<effects>
+				<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+					<reason>TR_NotRepaired</reason>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+					<allowedTypes>
+						<Item href="/Mechanics/Ships/UsableDeviceTypes/Shield.xdb#xpointer(/gameMechanics.world.device.UsableDeviceType)" />
+					</allowedTypes>
+					<impacts>
+						<Item type="gameMechanics.world.device.shield.ImpactReplenishShield" />
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+					<impacts>
+						<Item type="gameMechanics.world.ship.elements.ImpactRepairDeviceToFull" />
+					</impacts>
+					<filter type="gameMechanics.world.device.filters.DamagedUsableDeviceFilter" />
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.ImpactCoolReactor" />
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+					<limitModCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+					<valueModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>0.1</value>
+							</Item>
+						</calcers>
+					</valueModCalcer>
+				</Item>
+			</impacts>
+			<tick>3000</tick>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

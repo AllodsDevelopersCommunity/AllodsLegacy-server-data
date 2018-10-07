@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>305476609</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<text href="League_Mercenaries2_P.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction hrefvar="faction" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.world.avatar.assistants.PredicateHasAssistant">
+				<assistantResource hrefvar="assistant" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateAssistantInhabits">
+					<assistant hrefvar="assistant" />
+				</Item>
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="/Mechanics/LFG/Buffs/LFG_Member.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateFullGroup" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateInRaid" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.world.avatar.assistants.ImpactSummonAssistant">
+			<destination type="gameMechanics.map.destination.RelativeRotatePos">
+				<base type="gameMechanics.map.destination.RelativePos" />
+				<offset>4</offset>
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>1.57</value>
+				</yaw>
+			</destination>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<assistantResource hrefvar="assistant" />
+			<mobResource hrefvar="mobResource" />
+			<useTargetLevel>true</useTargetLevel>
+			<planeSyncStrategy>Sync</planeSyncStrategy>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

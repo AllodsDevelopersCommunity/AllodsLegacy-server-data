@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>292875268</resourceId>
+	</Header>
+	<Name href="Reward.(BuffResource)_Name.txt" />
+	<Description href="Reward.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Special/Currency/SparksDemon.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Reward.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Reward.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectStackTriggerGeneric">
+			<count>10</count>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="Rewarded.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>1</min>
+								<max>9999</max>
+							</range>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactOnShipCrew">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+													<buff href="Rewarded.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<range>
+														<min>1</min>
+														<max>9999</max>
+													</range>
+												</Item>
+											</predicates>
+											<impactsElse>
+												<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+													<currency href="/Mechanics/AlternativeCurrencies/AstralExplore.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+													<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+														<value>1</value>
+													</sumCalcer>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+													<currency href="/Mechanics/AlternativeCurrencies/AstralPvP.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+													<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+														<value>1</value>
+													</sumCalcer>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateInGroup" />
+													</predicates>
+													<impactsElse>
+														<Item type="gameMechanics.elements.impacts.ImpactAddMoneyGeneric">
+															<sumCalcer type="gameMechanics.elements.calcers.LongData">
+																<value>1500000</value>
+															</sumCalcer>
+														</Item>
+													</impactsElse>
+												</Item>
+											</impactsElse>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="Rewarded.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactOnShipCrew">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Rewarded.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>600000</duration>
+	<stackLimit>10</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

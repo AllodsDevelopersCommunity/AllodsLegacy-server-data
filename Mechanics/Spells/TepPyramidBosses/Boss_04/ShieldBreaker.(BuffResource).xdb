@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>278375482</resourceId>
+	</Header>
+	<Name href="ShieldBreaker.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/RestoreShield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="ShieldBreaker.(BuffResource).Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateHealthHigher">
+					<level>0.5</level>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="BossShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOn>
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateHealthLower">
+										<level>0.5</level>
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="BossShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsOff>
+				</Item>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<affectHolder>false</affectHolder>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+											<element>SHADOW</element>
+											<minDamage>40</minDamage>
+											<maxDamage>40</maxDamage>
+											<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+											<destination type="gameMechanics.map.destination.DestinationLocator">
+												<locator>
+													<scriptID>ToGo</scriptID>
+													<map href="/Maps/Inst_TepPyramid/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</locator>
+											</destination>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>3000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ForceAggro" />
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+									<filter type="gameMechanics.world.creature.AvatarFilter" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="MeleeAddAoE.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<tick>7000</tick>
+					<initialDelay>2000</initialDelay>
+				</Item>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="ShieldBreaker.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impactsOn>
+				</Item>
+			</effectsIf>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isHelpful>false</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

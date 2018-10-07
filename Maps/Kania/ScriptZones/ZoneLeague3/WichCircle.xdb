@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>17930</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/ZoneLeague3/Quest13_3/Quest13_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactSummon">
+			<destination type="gameMechanics.map.destination.DestinationLocatorSpread">
+				<locator>
+					<scriptID>ZL3_Kania</scriptID>
+					<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0</value>
+				</yaw>
+				<verticalSpread>0</verticalSpread>
+				<horizontalSpread>10</horizontalSpread>
+			</destination>
+			<object href="/Characters/Kania_female/Instances/ZoneLeague3/Kania.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Items/QuestItems/ZoneLeague3/StunItem/Summon.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>120000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+							<zone href="WichCircle.xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							<disable>false</disable>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<plane href="" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+			<zone href="WichCircle.xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+		</Item>
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>301163575</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="DiDuser_Stage1.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactAggrolistMember">
+					<selector type="gameMechanics.elements.calcers.RangeSelectorResource">
+						<range min="0" max="1" />
+						<withinRange>false</withinRange>
+						<minCandidatesCount>0</minCandidatesCount>
+						<targetCount>0</targetCount>
+					</selector>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<impacts>
+						<Item>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+													<quest href="/World/Quests/RealWorld/ZC9_8_20/ZC9_8_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<status>Active</status>
+												</Item>
+												<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+													<quest href="/World/Quests/RealWorld/ZC9_8_20/ZC9_8_20.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+													<counterResource href="/Creatures/NecroZombieMale/Instances/RealWorld/Enemy_DiDuser.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+													<value>3</value>
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="DiDuser_Resolvent_Stage2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

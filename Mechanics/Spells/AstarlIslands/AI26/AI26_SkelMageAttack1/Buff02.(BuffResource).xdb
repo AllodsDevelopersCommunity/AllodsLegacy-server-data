@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>268082209</resourceId>
+	</Header>
+	<Name href="Buff02Name.txt" />
+	<Description href="Buff02Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerPtomain.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/OpTarget_Skull.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.TickableDiseaseAura">
+					<radius>10</radius>
+					<delayIn>2000</delayIn>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+					<disease href="Buff02.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<antibodies>
+						<Item href="Buff03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</antibodies>
+				</Item>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOff>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff04.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff03.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOff>
+				</Item>
+				<Item type="gameMechanics.elements.effects.MagicDoT">
+					<element>DISEASE</element>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+					<parameters>
+						<damagePerTick>20</damagePerTick>
+					</parameters>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<stackLimit>5</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

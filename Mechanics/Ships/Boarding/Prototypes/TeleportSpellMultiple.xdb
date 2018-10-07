@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>142614531</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="TeleportSpellMultipleName.txt" />
+		<contextDescription href="TeleportSpellMultipleDesc.txt" />
+		<contextImage href="/Interface/Icons/Misc/GetOnTheShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<Name href="TeleportSpellMultipleName.txt" />
+	<Description href="TeleportSpellMultipleDesc.txt" />
+	<image href="/Interface/Icons/Misc/GetOnTheShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="TeleportSpellMultipleName.txt" />
+	<descTemplate href="TeleportSpellMultipleDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>5</value>
+	</range>
+	<needLos>false</needLos>
+	<iffPolicy>Everyone</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Ships/Teleport/SafeFallBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+				<predicates>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Ships/Boarding/AllowBoardingTeleport.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.world.device.boarding.ImpactBoardingTeleportMultiple">
+						<canJumpToTarget>
+							<Item type="gameMechanics.constructor.basicElements.PredicateFalse" />
+						</canJumpToTarget>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.world.device.boarding.ImpactBoardingTeleportMultiple">
+						<canJumpToTarget>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="/Mechanics/Ships/Boarding/AllowBoardingTeleport.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</predicate>
+							</Item>
+						</canJumpToTarget>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

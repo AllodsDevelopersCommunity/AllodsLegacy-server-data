@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>370416660</resourceId>
+	</Header>
+	<Name href="MM_LastStand_WaitBuff.(BuffResource).Name.txt" />
+	<Description href="MM_LastStand_WaitBuff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestSilence.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+					<predicate type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+						<groups>
+							<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateSpellInGroup">
+				<group href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateSpellInGroup">
+				<group href="/Mechanics/Spells/Groups/MountSpeedBoosts.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="LastStand_DeadBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactRevive" />
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+									<mark href="MM_LastStand_blue_mark.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+								</Item>
+								<Item type="avatarPopulation.service.impl.matchMakingImpl.map.PredicateInstancedEventRound">
+									<round>1</round>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactSetVisualState">
+											<visualState>1</visualState>
+										</Item>
+									</impacts>
+									<device>
+										<scriptID>LS_ship</scriptID>
+										<map href="/Maps/LastStand/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</device>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactSetVisualState">
+											<visualState>2</visualState>
+										</Item>
+									</impacts>
+									<device>
+										<scriptID>LS_ship</scriptID>
+										<map href="/Maps/LastStand/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</device>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsIf>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="MM_LastStand_Achievment.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>1000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+									<mark href="MM_LastStand_blue_mark.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="MM_LastStand_Hover.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactAvatarJump">
+									<destination type="gameMechanics.map.destination.DestinationLocator">
+										<locator>
+											<scriptID>LS_02_02</scriptID>
+											<map href="/Maps/LastStand/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</locator>
+									</destination>
+									<speed>20</speed>
+									<impactsOnLand>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>1000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="MM_LastStand_Hover.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+									</impactsOnLand>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Shroud.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

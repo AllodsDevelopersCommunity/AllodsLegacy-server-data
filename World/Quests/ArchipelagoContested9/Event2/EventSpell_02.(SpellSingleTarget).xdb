@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>244861971</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/AC6_Start_SpellGroup.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="EventSpell_02.txt" />
+	<Description href="EventSpell_02.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Bosses/TR_1Boss/CrystalCannon.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="EventSpell_02.txt" />
+	<descTemplate href="EventSpell_02.Description.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>50</value>
+	</range>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Everyone</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Harpy/Instances/ArchipelagoContested9/Coobe49_49.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHealthHigher">
+					<level>0.11</level>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>100</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

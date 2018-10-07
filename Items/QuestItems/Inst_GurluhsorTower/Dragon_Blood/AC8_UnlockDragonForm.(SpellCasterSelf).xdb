@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>296491010</resourceId>
+	</Header>
+	<Name href="UnlockDragonForm.txt" />
+	<Description href="UnlockDragonForm.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Fairy/AvatarFormForUnlockDragonForm.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="UnlockDragonForm.txt" />
+	<descTemplate href="UnlockDragonForm.Description.txt" />
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+							<unlock href="/Mechanics/Unlocks/SecondaryDressUnlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/SecondaryDressUnlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Dragon_Blood.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>10</count>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+						<sumCalcer type="gameMechanics.elements.calcers.LongData">
+							<value>15000000</value>
+						</sumCalcer>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Dragon_Blood.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>10</count>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>284674091</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Bard/QuickSong.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.EffectNull">
+			<value var="value" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="/Mechanics/Spells/Bard/Abilities/Music/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.MarkedImpact">
+					<mark href="/Mechanics/Spells/Marks/BardSongChanged.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/Healsong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="buff" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeHealsong.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffHealsong.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffHealsong.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/Elegy/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="bu_1" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeElegy.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffElegy.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffElegy.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/ElegyUpgrade/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="bu_2" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeElegyUpgrade.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffElegyUpgrade.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffElegyUpgrade.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/Lament/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="bu_3" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeLament.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffLament.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffLament.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/Allegro/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="bu_4" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeAllegro.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffAllegro.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffAllegro.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/Shadowsong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="bu_5" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeShadowSong.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffShadowSong.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffShadowSong.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/Bard/Bravado/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+							<buff href="/Mechanics/Spells/Bard/Abilities/Music/SongsCounter.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<range>
+								<min>2</min>
+								<max>2</max>
+							</range>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff hrefvar="bu_6" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="DetacherFailsafeBravado.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffBravado.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOff>
+							<rerunOnLoad>false</rerunOnLoad>
+						</Item>
+						<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+							<onLeave>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="TurnOffBravado.(ImpactList).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</onLeave>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch" />
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

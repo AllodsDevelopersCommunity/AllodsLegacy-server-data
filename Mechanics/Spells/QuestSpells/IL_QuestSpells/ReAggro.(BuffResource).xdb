@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>276627487</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.ForceAggro" />
+			<attackSource>Mainhand</attackSource>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ThreatMultiplier">
+			<factor>100</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="AfterHeal.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="PlayerBleeding.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="PlayerBleeding.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+							<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+							<impactsOnAttach>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									</impacts>
+									<mob>
+										<scriptID>AggroNpc</scriptID>
+										<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+							</impactsOnAttach>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<predicates />
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/StartInstanceBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

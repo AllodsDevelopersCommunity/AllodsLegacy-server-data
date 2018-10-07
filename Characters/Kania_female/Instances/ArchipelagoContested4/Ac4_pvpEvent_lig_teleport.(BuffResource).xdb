@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>177542171</resourceId>
+	</Header>
+	<Name href="Ac4_pvpEvent_lig_teleport_buff.txt" />
+	<Description href="Ac4_pvpEvent_lig_teleport.Description.txt" />
+	<image href="/Interface/Icons/Spells/ChampionsSpells/ChampionsVeil.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delayExtensionMax>10000</delayExtensionMax>
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+							<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+								<value>0.8</value>
+							</chanceCalcer>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+													<predicate type="gameMechanics.elements.resources.ResourceBuff">
+														<buff href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_blok.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														<anyRank>true</anyRank>
+														<consumeStacks>0</consumeStacks>
+													</predicate>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateVariableLessThan">
+															<resource href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_lig_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+															<globalVar>false</globalVar>
+															<value>24</value>
+														</Item>
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+															<variable href="/Characters/Hadagan_female/Instances/ArchipelagoContested4/Ac4_pvpEvent_lig_variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+															<summand>1</summand>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																	<predicates>
+																		<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+																	</predicates>
+																	<impactsIf>
+																		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																			<buff href="Ac4_pvpEvent_lig_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<allowOverrideCaster>false</allowOverrideCaster>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+																			<destination type="gameMechanics.map.destination.DestinationLocator">
+																				<yaw type="constructor.basicElements.AngleRadians">
+																					<value>0</value>
+																				</yaw>
+																				<locator>
+																					<scriptID>pvp_event_start_lig</scriptID>
+																					<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																				</locator>
+																			</destination>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																			<buff href="Ac4_pvpEvent_lig_teleport.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<anyRank>false</anyRank>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+																			<predicates>
+																				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																					<quest href="/World/Quests/ArchipelagoContested4/AC4_Arena_liga/AC4_Arena_liga.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																					<status>Active</status>
+																				</Item>
+																			</predicates>
+																			<impactsIf>
+																				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+																					<id href="/World/Quests/ArchipelagoContested4/AC4_Arena_liga/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																					<value>1</value>
+																				</Item>
+																			</impactsIf>
+																		</Item>
+																		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																			<buff href="/Items/PvpDivineFavor/AC4/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<anyRank>false</anyRank>
+																		</Item>
+																		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																			<buff href="Ac4_Day_Fighter.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<allowOverrideCaster>false</allowOverrideCaster>
+																		</Item>
+																		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																			<buff href="Ac4_Day_Fighter_blok.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																			<allowOverrideCaster>false</allowOverrideCaster>
+																		</Item>
+																	</impactsIf>
+																</Item>
+															</impacts>
+														</Item>
+													</impactsIf>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+									<mob>
+										<scriptID>konduktor_lig</scriptID>
+										<map href="/Maps/ArchipelagoContested4/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</mob>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<tick>13000</tick>
+					<initialDelay>-1</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>3600000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

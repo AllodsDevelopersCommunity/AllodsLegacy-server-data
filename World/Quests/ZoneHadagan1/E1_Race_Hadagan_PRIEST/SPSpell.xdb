@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>100705384</resourceId>
+	</Header>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>5000</prepareDuration>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="E1_Race_Hadagan_PRIEST.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/E1_Tribune.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<targetConditions />
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+				<msg href="Speech_Mess.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+				<defaultSpeaker href="/Characters/Hadagan_male/Instances/ZoneHadagan1/E1_ProfQuest_NPC1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSetVisualState">
+						<visualState>2</visualState>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>3000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSetVisualState">
+								<visualState>1</visualState>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<mob>
+					<scriptID>Tribune1</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSetVisualState">
+						<visualState>2</visualState>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>4000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSetVisualState">
+								<visualState>1</visualState>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<mob>
+					<scriptID>Tribune2</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</mob>
+			</Item>
+		</casterImpacts>
+		<targetImpacts />
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

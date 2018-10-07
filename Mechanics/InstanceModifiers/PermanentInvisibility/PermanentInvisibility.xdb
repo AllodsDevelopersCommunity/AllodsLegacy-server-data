@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>193134592</resourceId>
+	</Header>
+	<name href="PermanentInvisibility.txt" />
+	<description href="PermanentInvisibility.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/FearUnknown.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+									<quality href="/Mechanics/MobQualities/Boss.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+								</Item>
+							</predicates>
+							<effectsIf>
+								<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateIsEnemy">
+											<factions>
+												<Item href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+												<Item href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+											</factions>
+										</Item>
+									</predicates>
+									<effectsIf>
+										<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+											<effects>
+												<Item type="gameMechanics.elements.effects.EffectDisableAbility">
+													<ability href="Ability.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+												</Item>
+											</effects>
+										</Item>
+										<Item type="gameMechanics.elements.effects.Switch">
+											<impactsOn>
+												<Item type="gameMechanics.elements.impacts.AttachAbility">
+													<ability href="Ability.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+												</Item>
+											</impactsOn>
+										</Item>
+									</effectsIf>
+								</Item>
+							</effectsIf>
+						</Item>
+					</effectsIf>
+					<effectsElse>
+						<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<effectsIf>
+								<Item type="gameMechanics.elements.effects.Switch">
+									<impactsOn>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="AggroAura/AggroAura.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsOn>
+								</Item>
+							</effectsIf>
+						</Item>
+					</effectsElse>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+	<exclusions>
+		<Item href="/Maps/AstralIsle17/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		<Item href="/Maps/AstralIsle22/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+	</exclusions>
+</gameMechanics.map.basicElements.MapModifierResource>

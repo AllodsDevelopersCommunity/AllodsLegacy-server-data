@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739822445</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<image href="" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.EffectImpactsOnDeath">
+			<impactsOnKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+					<value>0</value>
+				</Item>
+			</impactsOnKiller>
+			<impactsOnVictimWoKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+					<value>0</value>
+				</Item>
+			</impactsOnVictimWoKiller>
+			<impactsOnVictim>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>85</radius>
+					<affectGroup>Friends</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/StrongholdMobs/Goblins/Enrage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+								<hideText>false</hideText>
+								<ability href="/Mechanics/Spells/StrongholdMobs/Goblins/GoblinRacial/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<anyRank>true</anyRank>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<hideText>false</hideText>
+								<predicate type="gameMechanics.elements.predicates.PredicateHasAbility">
+									<hideText>false</hideText>
+									<ability href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<anyRank>true</anyRank>
+								</predicate>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateInCombat">
+								<hideText>false</hideText>
+							</Item>
+						</predicates>
+					</filter>
+					<targetsLimit>0</targetsLimit>
+					<onBehalfOfHolder>true</onBehalfOfHolder>
+				</Item>
+			</impactsOnVictim>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

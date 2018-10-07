@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>81067009</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+			<zone href="GS_WellProjectileTrigger.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			<disable>true</disable>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateSpawnSaved">
+						<spawn href="/Creatures/SarnAvatar/SarnAvatar_SC.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_GurluhsorTower/SpawnTables/GS_Boss8Trash_0001.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleProjectile">
+					<projectile>
+						<scriptID>GT_Liver_01</scriptID>
+						<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</projectile>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+									<value>1</value>
+								</Item>
+							</impacts>
+							<spawnResource href="/Maps/Inst_GurluhsorTower/SpawnTables/GS_Boss8Trash_0001.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+					<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impactsIn>
+	<impactsOut />
+</gameMechanics.map.scriptZone.ScriptZone>

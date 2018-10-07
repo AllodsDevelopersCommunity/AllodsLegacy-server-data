@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>145328152</resourceId>
+	</Header>
+	<Name href="DrinkSpell_Name.txt" />
+	<Description href="DrinkSpell_Desc.txt" />
+	<visualScripts href="Drink.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>3500</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RandomImpact">
+				<entries>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="Drink.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</delta>
+								<attachIfNotExist>true</attachIfNotExist>
+							</Item>
+						</impacts>
+						<chance>9</chance>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="Happy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="Drink.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+								<quest href="/World/Quests/ZoneLeague1/SpringEvent_M_side/SpringEvent_M_side.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+								<quest href="/World/Quests/ZoneHadagan1/SpringEvent_M_sideE/SpringEvent_M_sideE.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							</Item>
+						</impacts>
+					</Item>
+				</entries>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<iffPolicy>Friends</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

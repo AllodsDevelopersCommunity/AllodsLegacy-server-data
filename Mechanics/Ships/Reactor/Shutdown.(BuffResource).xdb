@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>313144341</resourceId>
+	</Header>
+	<duration>0</duration>
+	<isHelpful>false</isHelpful>
+	<resistType>SRT_None</resistType>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+					<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onMaster type="gameMechanics.elements.predicates.PredicateGreater">
+							<lhs type="gameMechanics.world.ship.elements.calcers.CalcerMaxEnergy" />
+							<rhs type="gameMechanics.world.ship.elements.calcers.CalcerCurrentEnergy" />
+						</onMaster>
+					</predicate>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="Shutdown.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectDeviceShutdown">
+			<reason>TR_Malfunction</reason>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.buff.BuffResource>

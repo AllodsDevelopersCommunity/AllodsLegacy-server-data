@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>332208131</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/Werewolf/Instances/AstralDungeon02/WerewolfMorphBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/Werewolf/Instances/AstralDungeon02/Werewolf01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+										<faction href="/World/Factions/Astral_Islands/AD02/Werewolf_CutScene.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/Werewolf/Instances/AstralDungeon02/WerewolfMorphBoss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+								<Item type="gameMechanics.map.variables.PredicateMapVariableEquals">
+									<variableResource href="/Maps/AstralDungeon02/ScriptZones/ArmandDeDuserDeath.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+									<expectedValue type="gameMechanics.constructor.basicElements.FloatZero" />
+									<threshold>0</threshold>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+									<faction href="/World/Factions/Astral_Islands/AD02/Werewolf_CutScene.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+													<mobs>
+														<Item href="/Characters/HumMobs/Instances/AstralDungeon02/ArmandDeDuser.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+													</mobs>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ForceAggro" />
+													</impacts>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="WerewolfImmunityBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.map.variables.ImpactMapVariableSummand">
+							<variable href="/Maps/AstralDungeon02/ScriptZones/ArmandDeDuserDeath.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<summand>1</summand>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxExplosion />
+			<BowVisualItem>/Items/VisualItems/Weapon/Bow/Bow_2H_Long_F_02GoldWood.(VisualItem).xdb#xpointer(/gameMechanics.constructor.schemes.item.VisualItem)</BowVisualItem>
+			<AnimationHoldBow>holdBow</AnimationHoldBow>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<visActionID />
+		<play>InSequence</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item>loadBow</Item>
+					<Item var="AnimationHoldBow" />
+				</animations>
+				<advanced>
+					<animationKeysAction>
+						<Item>
+							<action type="CreatureTakeArrowAction">
+								<visActionID>TakeArrow</visActionID>
+							</action>
+							<runIfOverrided>false</runIfOverrided>
+						</Item>
+						<Item>
+							<action type="VisActionList">
+								<visActionID />
+								<play>Simultaneously</play>
+								<playWhile />
+								<elements>
+									<Item type="CreatureItemAnimationAction">
+										<visActionID />
+										<itemsSlot>RANGED</itemsSlot>
+										<mode>CLAMP</mode>
+										<animation>special</animation>
+									</Item>
+									<Item type="CreatureTakeBowStringAction">
+										<visActionID>AttachString</visActionID>
+										<itemsSlot>RANGED</itemsSlot>
+										<itemLocatorName>Slot_String</itemLocatorName>
+										<creatureLocator>Slot_Hand_R</creatureLocator>
+										<member>Assaulter</member>
+										<creatureLocatorName />
+									</Item>
+								</elements>
+							</action>
+							<runIfOverrided>false</runIfOverrided>
+						</Item>
+					</animationKeysAction>
+					<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+				</advanced>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureChangeVisItemsAction">
+		<visActionID />
+		<removeAllItems>false</removeAllItems>
+		<items>
+			<Item>
+				<slot>RANGED</slot>
+				<newItem hrefvar="BowVisualItem" />
+			</Item>
+		</items>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="VisActionStopAction">
+				<visActionID />
+				<stoppedActionID>AttachString</stoppedActionID>
+			</Item>
+			<Item type="VisActionStopAction">
+				<visActionID />
+				<stoppedActionID>TakeArrow</stoppedActionID>
+			</Item>
+			<Item type="CreatureItemAnimationAction">
+				<visActionID />
+				<itemsSlot>RANGED</itemsSlot>
+				<mode>DIE</mode>
+				<animation>attack</animation>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_CURRENT_RANGED_ATTACK</use>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<turnToTarget>BEFORE_ANIMATIONEND</turnToTarget>
+				</advanced>
+			</Item>
+			<Item type="CreatureThrowArrowAction">
+				<arrowInTargetTime>15000</arrowInTargetTime>
+				<effectBone>Arrow_Root</effectBone>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

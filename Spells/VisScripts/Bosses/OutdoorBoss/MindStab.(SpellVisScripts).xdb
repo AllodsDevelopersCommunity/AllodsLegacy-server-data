@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxChannel>/Spells/FX/Mobs/OutDoorBoss_MindStab.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxChannel>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<playWhile type="VisActionDelay">
+					<time>1000</time>
+				</playWhile>
+				<elements>
+					<Item type="CreatureChannelDirectAction">
+						<channelingFx hrefvar="FxChannel" />
+						<startPoint type="VisPointLocator">
+							<locator>FROM_LOCATOR_NAME</locator>
+							<locatorName>Pump2</locatorName>
+						</startPoint>
+						<endPoint type="VisPointLocator">
+							<locator>Slot_FX</locator>
+						</endPoint>
+						<offendTime type="EffectOffendConstDelay" />
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="CreatureEffectsAction">
+			<visualEffects>
+				<Item>
+					<locator>Slot_Global</locator>
+					<effectFx href="/Spells/FX/Mobs/OutDoorBoss_MindStab_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+					<fixPoint>true</fixPoint>
+					<scale>1.5</scale>
+				</Item>
+			</visualEffects>
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

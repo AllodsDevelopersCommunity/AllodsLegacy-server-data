@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>298667058</resourceId>
+	</Header>
+	<Name href="Profession_EnergyDrain.(SpellSingleTarget).Name.txt" />
+	<Description href="Profession_EnergyDrain.(SpellSingleTarget).Description.txt" />
+	<autoAppendToActionPanel>false</autoAppendToActionPanel>
+	<visualScripts href="/Spells/VisScripts/Items/Gadget.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Profession_EnergyDrain.(SpellSingleTarget).NameTemplate.txt" />
+	<descTemplate href="Profession_EnergyDrain.(SpellSingleTarget).DescTemplate.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>8</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.map.instance.astralIsland.PredicateOnAstralIsland" />
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>UNDEAD</race>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>DEMON</race>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>ELEMENTAL</race>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>BEAST</race>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+				<minLevel type="gameMechanics.formulas.IntConstantValue">
+					<value>46</value>
+				</minLevel>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>UNDEAD</race>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.RelativePos">
+									<coord x="2" y="2" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="UndeadBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+								<object href="/Creatures/Willowisp/Instances/AlchemyV2_White_Willowisp.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<level type="gameMechanics.elements.calcers.CalcerLevel" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>DEMON</race>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.RelativePos">
+									<coord x="2" y="2" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="DemonBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+								<object href="/Creatures/Willowisp/Instances/AlchemyV2_White_WillowispDemon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<level type="gameMechanics.elements.calcers.CalcerLevel" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>ELEMENTAL</race>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.RelativePos">
+									<coord x="2" y="2" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="ElemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+								<object href="/Creatures/Willowisp/Instances/AlchemyV2_White_WillowispElem.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<level type="gameMechanics.elements.calcers.CalcerLevel" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCreatureRace">
+						<race>BEAST</race>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.RelativePos">
+									<coord x="2" y="2" />
+								</destination>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="BeastBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+								<object href="/Creatures/Willowisp/Instances/AlchemyV2_White_WillowispBeast.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<level type="gameMechanics.elements.calcers.CalcerLevel" />
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+				<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

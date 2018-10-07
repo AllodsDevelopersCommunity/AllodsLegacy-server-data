@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>297177111</resourceId>
+	</Header>
+	<name href="MegaGoal_Island_L_13.(QuestResource).Name.txt" />
+	<goal href="MegaGoal_Island_L_13.(QuestResource).Goal.txt" />
+	<startText href="MegaGoal_Island_L_13.(QuestResource).StartText.txt" />
+	<checkText href="MegaGoal_Island_L_13.(QuestResource).CheckText.txt" />
+	<finishText href="MegaGoal_Island_L_13.(QuestResource).FinishText.txt" />
+	<canCancel>false</canCancel>
+	<returnLocation>
+		<zone href="/Maps/Kania/Zones/ZoneLeague1/ZoneLeague1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="13623.190430" y="7168.501465" z="-27.535000" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Kania_male/Instances/ZoneLeague1/PlayerIsland_LeagueNPC.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+					<unlock href="/Mechanics/Unlocks/MegaGoal/IslandFinished.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactResourceCooldown">
+					<binding>Avatar</binding>
+					<resource href="/Characters/Kania_male/Instances/ZoneLeague1/Cues/MegaGoal/MegagoalIslandCooldown.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+					<cooldownInDays type="gameMechanics.elements.calcers.LongData">
+						<value>2</value>
+					</cooldownInDays>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactResourceCooldown">
+					<binding>Avatar</binding>
+					<resource href="/Characters/Kania_male/Instances/ZoneLeague1/Cues/MegaGoal/MegagoalIslandCooldown.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+					<cooldownInDays type="gameMechanics.elements.calcers.LongData">
+						<value>7</value>
+					</cooldownInDays>
+				</Item>
+			</impactsElse>
+		</Item>
+	</startImpacts>
+	<startConditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+					<unlock href="/Mechanics/Unlocks/MegaGoal/Island_Unlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneLeague1/MegaGoal_Island_L_12/MegaGoal_Island_L_12.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Finished</status>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+					<resource href="/Characters/Kania_male/Instances/ZoneLeague1/Cues/MegaGoal/MegagoalIslandCooldown.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+				</Item>
+			</predicates>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountAltCurrency">
+			<limit>22</limit>
+			<currency href="/Mechanics/AlternativeCurrencies/MeteorChunk.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+		</Item>
+	</counters>
+	<sharing>
+		<onRequest>false</onRequest>
+	</sharing>
+	<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>51</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>51</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

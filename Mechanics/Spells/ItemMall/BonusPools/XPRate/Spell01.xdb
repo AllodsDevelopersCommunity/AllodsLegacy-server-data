@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>225693714</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<descVars>
+		<Item>
+			<name>var0</name>
+			<value>50</value>
+			<scaler>FormulaBonusPool</scaler>
+		</Item>
+	</descVars>
+	<image href="" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Everyone</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAddToBonusPool">
+				<track>Experience</track>
+				<valueCalcer type="gameMechanics.elements.calcers.CalcerLongSum">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.CalcerLongMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.CalcerLevel" />
+								<Item type="gameMechanics.elements.calcers.CalcerLevel" />
+								<Item type="gameMechanics.elements.calcers.LongData">
+									<value>50</value>
+								</Item>
+							</calcers>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+							<calcerLong type="gameMechanics.elements.calcers.CalcerNextLevelExp">
+								<factor>1</factor>
+							</calcerLong>
+							<calcerFloat type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+										<level>9</level>
+										<exponent>0.9</exponent>
+										<multiplier>0</multiplier>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+										<level>34</level>
+										<exponent>1.066</exponent>
+										<multiplier>0</multiplier>
+									</Item>
+								</calcers>
+							</calcerFloat>
+						</Item>
+					</calcers>
+				</valueCalcer>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

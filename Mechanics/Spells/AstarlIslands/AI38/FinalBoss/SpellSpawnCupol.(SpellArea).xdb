@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>302411818</resourceId>
+	</Header>
+	<Name href="SpellSpawnCupol.(SpellArea)_Name.txt" />
+	<nameTemplate href="SpellSpawnCupol.(SpellArea)_Name.txt" />
+	<prepareDuration>1000</prepareDuration>
+	<needLos>false</needLos>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>40000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="DisablePortalSummon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos" />
+					<offset>15</offset>
+					<turn>ToTarget</turn>
+				</destination>
+				<object href="/Items/InteractiveObjects/AstralIsle38/AI38_DefenceCupol/AI38_DefenceCupol.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+				<pool href="FinalBossPortal.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="AI38AOE.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<radius>30</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

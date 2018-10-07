@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>178464771</resourceId>
+	</Header>
+	<Name href="TimeSphere.txt" />
+	<Description href="TimeSphere.Description.txt" />
+	<image href="/Interface/Icons/Equipment/Trinket/SymbolAmalgam.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+				<base>0.35</base>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.WeaponSpeedMultiplier">
+			<scaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+				<base>0.5</base>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.WeaponSpeedMultiplier">
+			<attackSource>Ranged</attackSource>
+			<scaler type="gameMechanics.elements.scalers.ExponentialEffectScaler">
+				<base>0.5</base>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellPrepareDurationModifier">
+			<factor>2</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellPrepareDurationSummand">
+			<summand>2000</summand>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Energy</manaType>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.IncrementMana">
+							<manaType>Energy</manaType>
+							<amount>-20</amount>
+							<threatMultiplier>1</threatMultiplier>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.IncrementMana">
+							<manaType>Mana</manaType>
+							<amount>-20</amount>
+							<threatMultiplier>1</threatMultiplier>
+							<scaler type="gameMechanics.elements.scalers.StatScaler">
+								<stat type="gameMechanics.elements.stat.InnateStat">
+									<stat>IS_Intellect</stat>
+								</stat>
+							</scaler>
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHealthHigher">
+							<level>0.3</level>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.DrainLifeDamage">
+							<element>PHYSICAL</element>
+							<minDamage>3500</minDamage>
+							<maxDamage>4000</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<casterHealMultiplier>1</casterHealMultiplier>
+							<healthBufferBuff href="" />
+							<threatMultiplier>1</threatMultiplier>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactHeal">
+									<heal>1</heal>
+									<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.005</multiplier>
+										</mulCalcer>
+									</scaler>
+									<considerOutgoingModifiers>false</considerOutgoingModifiers>
+									<mode>Direct</mode>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<elseImpacts>
+						<Item type="gameMechanics.elements.impacts.DrainLifeDamage">
+							<element>PHYSICAL</element>
+							<minDamage>4000</minDamage>
+							<maxDamage>5000</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<casterHealMultiplier>1</casterHealMultiplier>
+							<healthBufferBuff href="" />
+							<threatMultiplier>1</threatMultiplier>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactHeal">
+									<threatMultiplier>1</threatMultiplier>
+									<heal>1</heal>
+									<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.075</multiplier>
+										</mulCalcer>
+									</scaler>
+									<considerOutgoingModifiers>false</considerOutgoingModifiers>
+									<mode>Direct</mode>
+								</Item>
+							</impacts>
+						</Item>
+					</elseImpacts>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

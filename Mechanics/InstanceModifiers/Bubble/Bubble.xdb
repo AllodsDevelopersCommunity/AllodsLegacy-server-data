@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>290494475</resourceId>
+	</Header>
+	<name href="Bubble.txt" />
+	<description href="Bubble.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/AstralBarrier.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsEnemy">
+							<factions>
+								<Item href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								<Item href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</factions>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="BubbleBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+						</Item>
+					</effectsIf>
+					<effectsElse>
+						<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<effectsIf>
+								<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+									<actions>
+										<Item href="AoeBarrierNeutralizer/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+									</actions>
+								</Item>
+							</effectsIf>
+						</Item>
+					</effectsElse>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+	<exclusions>
+		<Item href="/Maps/AstralIsle34/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		<Item href="/Maps/AstralIsle35/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+	</exclusions>
+</gameMechanics.map.basicElements.MapModifierResource>

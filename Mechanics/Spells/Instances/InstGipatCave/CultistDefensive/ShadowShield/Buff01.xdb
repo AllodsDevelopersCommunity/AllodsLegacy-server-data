@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>133319703</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/Bloodshield.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt" />
+	<descTemplate href="Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.DamageThreshold">
+			<healthCalcer type="gameMechanics.elements.calcers.LinearCalcer">
+				<mul>1</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.MobBaseHealthCalcer" />
+				<sum>0</sum>
+			</healthCalcer>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>15</radius>
+					<affectGroup>Enemies</affectGroup>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/CommonBuffs/Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+								<multiplier>12</multiplier>
+							</durationScaler>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>SHADOW</element>
+							<threatMultiplier>0</threatMultiplier>
+							<minDamage>25</minDamage>
+							<maxDamage>30</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<duration>9000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

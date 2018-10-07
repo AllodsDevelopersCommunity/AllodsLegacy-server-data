@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>270714881</resourceId>
+	</Header>
+	<name href="MirrorAnomality.txt" />
+	<description href="MirrorAnomality.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/MirrorDeviance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+								<Item type="gameMechanics.elements.predicates.PredicateIsEnemy">
+									<factions>
+										<Item href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										<Item href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									</factions>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+									<quality href="/Mechanics/MobQualities/BossAdd.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+								</Item>
+							</predicates>
+							<effectsIf>
+								<Item type="gameMechanics.elements.effects.Switch">
+									<impactsOn>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<durationScaler />
+										</Item>
+									</impactsOn>
+								</Item>
+								<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.RandomImpact">
+													<entries>
+														<Item>
+															<impacts>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item>
+															<impacts>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="Buff05.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+													</entries>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+									<tick>40000</tick>
+								</Item>
+							</effectsIf>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+		</Item>
+	</mapEffects>
+	<weight>1</weight>
+</gameMechanics.map.basicElements.MapModifierResource>

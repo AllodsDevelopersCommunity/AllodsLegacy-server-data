@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>378256399</resourceId>
+	</Header>
+	<Name href="SpellResetDungeon.Name.txt" />
+	<Description href="SpellResetDungeon.Description.txt" />
+	<nameTemplate href="SpellResetDungeon.Name.txt" />
+	<descTemplate href="SpellResetDungeon.Description.txt" />
+	<prepareDuration>10000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics>
+		<cooldown>
+			<duration>2592000000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="itemService.avatar.stronghold.PredicateDungeonCreated" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+					<zone href="DungeonZone.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+				<operation type="itemService.avatar.stronghold.ResetDungeon" />
+				<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

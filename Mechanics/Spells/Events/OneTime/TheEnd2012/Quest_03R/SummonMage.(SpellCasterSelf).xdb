@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>359639041</resourceId>
+	</Header>
+	<Description href="SummonMage.(SpellCasterSelf).Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/Kania/Zones/ZoneLeague1/ZoneLeague1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="SummonContextAction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="L_SummonNotHere.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/Kania/Zones/ZoneLeague1/ZoneLeague1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+								<buff href="SummonContextAction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+								<data href="E_SummonNotHere.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

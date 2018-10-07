@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>205137966</resourceId>
+		<Variables>
+			<self>Fly_BuffGipat2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</self>
+			<route>/Maps/ArchipelagoGipatsShard/GlobalObjects/Routes/AC5_route02.(Route).xdb#xpointer(/gameMechanics.map.tour.Route)</route>
+		</Variables>
+	</Header>
+	<Name href="/Items/InteractiveObjects/ArchipelagoContested5/AC5_Barkas_dragon/Fly_Buff_name.txt" />
+	<Description href="/Items/InteractiveObjects/ArchipelagoContested5/AC5_Barkas_dragon/Fly_Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageClairvoyance.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Items/InteractiveObjects/ArchipelagoContested5/AC5_Barkas_dragon/AC5_DragonSphereFX.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<finishImpacts>
+					</finishImpacts>
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>0</value>
+						</yaw>
+						<locator>
+							<scriptID>AC5_Enter02</scriptID>
+							<map href="/Maps/ArchipelagoContested5/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.LifeGuard">
+			<level>1</level>
+			<factor>0</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAESpells">
+			<onlyIfNotMainTarget>false</onlyIfNotMainTarget>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToAllActions" />
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<removeExistingBuffs>true</removeExistingBuffs>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMoveByTour">
+			<route href="/Maps/ArchipelagoGipatsShard/GlobalObjects/Tours/AC5_route02.(Tour).xdb#xpointer(/gameMechanics.map.tour.Tour)" />
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transport.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

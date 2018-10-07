@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>78889078</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName hrefvar="counter_name" />
+			<showCounterValue>false</showCounterValue>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<triggerAgents>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentAddressee">
+			<trigger href="TriggerTarget.xdb#xpointer(/gameMechanics.constructor.schemes.quest.trigger.TriggerResource)" />
+			<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSingleMob">
+				<mob>
+					<scriptID var="escortee_name" />
+					<map hrefvar="escortee_map" />
+				</mob>
+			</addressee>
+		</Item>
+		<Item type="gameMechanics.elements.trigger.TriggerAgentSelf">
+			<trigger hrefvar="trigger_avatar" />
+		</Item>
+	</triggerAgents>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToInterlocutor">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateVariableLessThan">
+							<resource href="Counter.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+							<value>2</value>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.GoThroughLocatorsList">
+							<path hrefvar="path" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID var="escortee_name" />
+				<map hrefvar="escortee_map" />
+			</mob>
+		</Item>
+	</startImpacts>
+	<sharing>
+		<onStart>true</onStart>
+		<onRequest>false</onRequest>
+	</sharing>
+</gameMechanics.constructor.schemes.quest.QuestResource>

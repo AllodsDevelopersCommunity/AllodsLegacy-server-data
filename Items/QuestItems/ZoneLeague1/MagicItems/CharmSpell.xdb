@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24122</resourceId>
+	</Header>
+	<Name href="CharmName.txt" />
+	<Description href="CharmNameDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+	<mechanics>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/EarthElemental/Instances/ZoneLeague1/EarthElemental_01.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+				<level>0.5</level>
+			</Item>
+		</targetConditions>
+		<casterResources />
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague1/Quest_08_034/CountId.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+						<newMobWorld href="/Creatures/EarthElemental/Instances/ZoneLeague1/EarthElemental_02.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactHealAll" />
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>30000</delay>
+				<limit>1</limit>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactKill" />
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

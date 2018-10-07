@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>311581761</resourceId>
+	</Header>
+	<name href="ZC8_start_1_Ulumi2.(Cue).Name.txt" />
+	<text href="ZC8_start_1_Ulumi2.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="ZC8_start_L_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZC8/ZC8_start_E_1/ZC8_start_E_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Started</status>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+			<radius>60</radius>
+			<affectPets>false</affectPets>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="ZC8_start_L_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="ZC8_start_L_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ZC8/ZC8_start_E_1/ZC8_start_E_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+												<quest href="/World/Quests/ZC8/ZC8_start_E_1/ZC8_start_E_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+												<counterResource href="/World/Quests/ZC8/ZC8_start_E_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+												<value>1</value>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ZC8_start_1_AgentPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZC8/ZC8_start_E_1/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>ZC8_Ulumi</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+									<radius>60</radius>
+									<affectPets>false</affectPets>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+													<predicates>
+														<Item type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="UlumiPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+															<predicates>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="ZC8_start_L_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																</Item>
+																<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+																	<quest href="/World/Quests/ZC8/ZC8_start_E_1/ZC8_start_E_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+																</Item>
+															</predicates>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="ZC8_start_1_AgentPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+													<predicates>
+														<Item type="gameMechanics.world.pet.PredicateHasPet" />
+													</predicates>
+													<impactsIf>
+														<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+															<impacts>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="ZC8_start_1_AgentPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+													</impactsIf>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="UlumiPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="UlumiPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsElse>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+					<object href="/Characters/Undead_male/Instances/ZC8/ZC8_start_1_Agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

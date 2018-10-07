@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>366796801</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell hrefvar="spell" />
+						<anyRank>false</anyRank>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+					<spell hrefvar="spell" />
+					<effects>
+						<Item type="gameMechanics.elements.effects.SpellCostModifier">
+							<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							<factor>-1</factor>
+						</Item>
+						<Item type="gameMechanics.elements.effects.OutgoingHealModifier">
+							<scaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+								<scaler type="gameMechanics.elements.scalers.LinearScaler">
+									<multiplier>0.5</multiplier>
+								</scaler>
+							</scaler>
+						</Item>
+						<Item type="gameMechanics.elements.effects.SpellPrepareDurationModifier">
+							<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+							<factor>-1</factor>
+						</Item>
+						<Item type="gameMechanics.elements.effects.WhileAlive">
+							<effects>
+								<Item type="gameMechanics.elements.effects.TickableAura">
+									<tick>5000</tick>
+									<affectGroup>Group</affectGroup>
+									<affectSelf>true</affectSelf>
+									<radius>85</radius>
+									<impactsIn>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff hrefvar="buff" />
+										</Item>
+									</impactsIn>
+									<impactsOut>
+										<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+											<buff hrefvar="buff" />
+										</Item>
+									</impactsOut>
+								</Item>
+							</effects>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+							<conditionalEvents>
+								<Item>
+									<obj>gameMechanics.elements.events.EventSpellLaunchedTarget</obj>
+									<predicate type="gameMechanics.elements.predicates.PredicateEventSpellLaunched">
+										<spell href="/Mechanics/Spells/CommonBuffs/ClassesGroupBuffs/HpMpEnMax/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.group.SpellGroup)" />
+									</predicate>
+								</Item>
+								<Item>
+									<obj>gameMechanics.elements.events.EventSpellLaunchedTarget</obj>
+									<predicate type="gameMechanics.elements.predicates.PredicateEventSpellLaunched">
+										<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+									</predicate>
+								</Item>
+							</conditionalEvents>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+									<spell hrefvar="spell" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="MagDmgEnforcer.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+						</Item>
+					</effects>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

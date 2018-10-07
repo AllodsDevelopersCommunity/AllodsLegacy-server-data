@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>314543113</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.CreatureFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZC8/ZC8_4_130/ZC8_4_130.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Completed</status>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZC8/ZC8_4_130/ZC8_4_130.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Finished</status>
+			</predicate>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="ZC8_ParadoxWall.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impactsIn>
+	<impactsOut>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+					<mobs>
+						<Item href="/Characters/HumMobs/ZC8/ZC8_CrystalGuard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactRemoveAllAggro" />
+			</impactsIf>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ZC8_ParadoxWall.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</impactsOut>
+	<considerAsWhole>true</considerAsWhole>
+</gameMechanics.map.scriptZone.ScriptZone>

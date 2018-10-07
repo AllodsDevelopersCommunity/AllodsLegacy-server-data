@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>739820594</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100502</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Mounts/SpellsMounts/PatTheCat.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/PatTheCat.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/CatChannel.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>6000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>COLD</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType">
+			<repelType>IGNORE</repelType>
+		</Item>
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics>
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>1000</duration>
+			<group href="" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mul>12</mul>
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerDiff">
+					<minuend type="gameMechanics.elements.calcers.FloatData">
+						<value>10</value>
+					</minuend>
+					<subtrahend type="gameMechanics.elements.calcers.CalcerMountFromGroupMaxLevel">
+						<group href="/Mechanics/Mounts/Groups/Cat6Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+					</subtrahend>
+				</mulCalcer>
+				<sum>180</sum>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMountFromGroupFeeded">
+						<group href="/Mechanics/Mounts/Groups/Cat6Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+						<key href="/System/ContentKeys/P2P_shard/P2P_shard_Zones.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMounted" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+				<hideText>false</hideText>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<hideText>false</hideText>
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<hideText>false</hideText>
+					<buff href="Buff_05_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+					<consumeStacks>0</consumeStacks>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<isForthright>false</isForthright>
+		</channelingMechanics>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

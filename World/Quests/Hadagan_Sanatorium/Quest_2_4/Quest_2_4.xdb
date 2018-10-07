@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>255416326</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<canCancel>false</canCancel>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium_Neighborhood_inst.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="3964.747070" y="3771.257080" z="-0.754047" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_male/Instances/Hadagan_Sanatorium/Captain.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Ktulhu_Point</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+						<yaw type="constructor.basicElements.AngleRadians">
+							<value>1.45</value>
+						</yaw>
+					</destination>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>8000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/KtulhaNew.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>Ktulha</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.SpawnSingleDevice">
+			<device>
+				<scriptID>AstralDevice</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>HawkWay1</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay2</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay3</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay4</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>8500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ProbabilisticImpactBinary">
+							<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+								<value>0.5</value>
+							</chanceCalcer>
+							<impactsSuccess>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+									<data href="/Items/InteractiveObjects/InstEmpire1/CanonShoot01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<locators>
+										<Item>
+											<scriptID>Shoot1</scriptID>
+											<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>Shoot2</scriptID>
+											<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+									</locators>
+								</Item>
+							</impactsSuccess>
+							<impactsFailure>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+									<data href="/Items/InteractiveObjects/InstEmpire1/CanonShoot02.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<locators>
+										<Item>
+											<scriptID>Shoot1</scriptID>
+											<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+										<Item>
+											<scriptID>Shoot3</scriptID>
+											<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+										</Item>
+									</locators>
+								</Item>
+							</impactsFailure>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>2</visualState>
+								</Item>
+								<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+									<delay>3300</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+											<visualState>0</visualState>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<device>
+								<scriptID>Gun01</scriptID>
+								<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</device>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>stalk01</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>HawkWay1</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay2</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay3</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay5</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay6</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>stalk02</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>HawkWay8</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>stalk03</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>HawkWay2</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay3</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay5</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>HawkWay7</scriptID>
+							<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>5000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/ReadyBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>stalk05</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/ReadyBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>stalk04</scriptID>
+				<map href="/Maps/Hadagan_Sanatorium/alternative_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>8500</delay>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/QuestSpells/IL_QuestSpells/CannonFire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+			<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+				<item href="/Items/QuestItems/Hadagan_Sanatorium/AntiDemonArtifact/AntiDemonArtifact.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</item>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Mechanics/Spells/QuestSpells/IE1_AstralCombat/BattleMusic.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/Hadagan_Sanatorium/Quest_2_2/Quest_2_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="/World/Quests/Hadagan_Sanatorium/Quest_2_5/CounterCustomName_1.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium_Neighborhood_inst.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="3934.180176" y="3719.877930" z="0.000000" />
+					<isIndoor>false</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<relatedItems>
+				<Item href="/Items/QuestItems/Hadagan_Sanatorium/AntiDemonArtifact/AntiDemonArtifact.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="/World/Quests/Hadagan_Sanatorium/Quest_2_5/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium_Neighborhood_inst.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="3937.200000" y="3764.900000" z="0.000000" />
+					<isIndoor>false</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<reward>
+		<experience>10</experience>
+		<money>60</money>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Quest_2_4</internalName>
+	<zone href="/Maps/Hadagan_Sanatorium/Zones/Hadagan_Sanatorium/Hadagan_Sanatorium.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>4</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

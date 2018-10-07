@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="AstralMobDemon_AOE.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<CastAnimation>spellCastDirected</CastAnimation>
+			<FXOnCaster>/Spells/FX/Mobs/AstralCtulhu_ChannelHead.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+			<LocatorNameOnCaster>Slot_Special01</LocatorNameOnCaster>
+			<ShieldExplosion>/Spells/FX/Ships/Shield.CanonHitAstral.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</ShieldExplosion>
+			<PreCastFX>/Spells/FX/Mobs/AstralCtulhu_ChannelReady.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</PreCastFX>
+			<HullExplosion>/Spells/FX/Ships/Hull.CanonHitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</HullExplosion>
+			<ProjectileFX>/Spells/FX/Mobs/AstralCtulhu_Channel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</ProjectileFX>
+			<PreCastFXDelay>0</PreCastFXDelay>
+			<ChannelFXLength>50</ChannelFXLength>
+			<ProjectileFXLocator>Slot_Special01</ProjectileFXLocator>
+			<PreCastFXLocatorName>Slot_Special01</PreCastFXLocatorName>
+			<targetSettings>DEFAULT</targetSettings>
+			<ignoreShield>false</ignoreShield>
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<Description href="AstralMob_Ray.Description.txt" />
+	<actionBarStart type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<channel>CHANNEL_ABILITY</channel>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID>Ready</visActionID>
+				<visualEffects>
+					<Item skiped="" />
+					<Item skiped="" />
+					<Item>
+						<effectFx hrefvar="PreCastFX" />
+						<locatorName var="PreCastFXLocatorName" />
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<channel>CHANNEL_ABILITY</channel>
+			</Item>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx hrefvar="FXOnCaster" />
+								<locator var="LocatorOnCaster" />
+								<locatorName var="LocatorNameOnCaster" />
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="CreatureAstralSpellFXVisAction">
+						<astralSpell type="AstralSpellChanneling">
+							<shieldExplosion hrefvar="ShieldExplosion" />
+							<hullExplosion hrefvar="HullExplosion" />
+							<projectileFx hrefvar="ProjectileFX" />
+							<locatorName var="ProjectileFXLocator" />
+							<fxLength var="ChannelFXLength" />
+							<ignoreShield var="ignoreShield" />
+							<targetSettings var="targetSettings" />
+						</astralSpell>
+					</Item>
+					<Item type="VisActionStopAction">
+						<visActionID />
+						<stoppedActionID>Ready</stoppedActionID>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

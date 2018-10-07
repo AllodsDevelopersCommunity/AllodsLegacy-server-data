@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>40328</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline>IE1_mainLine</plotline>
+	<image href="Quest1_2.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<canCancel>false</canCancel>
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/InstEmpire1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="1402.382004" y="1324.827499" z="-4.372999" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/Hadagan_male/Instances/InstEmpire1/Sergant_1.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Characters/Hadagan_male/Instances/InstEmpire1/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>IE1Heal1</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Characters/Hadagan_male/Instances/InstEmpire1/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>IE1Heal2</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>5000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>IE1_Boss</scriptID>
+						<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+			<data href="/Maps/Inst_EmpireStart/ScriptZones/Fire.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			<locators>
+				<Item>
+					<scriptID>IE1_Blow14</scriptID>
+					<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</Item>
+				<Item>
+					<scriptID>IE1_Blow14</scriptID>
+					<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</Item>
+			</locators>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+			<impacts>
+				<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+					<visualState>3</visualState>
+				</Item>
+			</impacts>
+			<device>
+				<scriptID>ES_Door1</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</device>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>10000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Items/InteractiveObjects/InstEmpire1/Warning09.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>5000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>IE1Step1_5_Boss</scriptID>
+									<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</moveType>
+						<resource href="Projectile.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>IE1_SuicidePath01</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>IE1Step1_5_3</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>20000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>IE1LootMasterQuest</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.GoThroughPath">
+					<runningMode>true</runningMode>
+					<path>
+						<Item>
+							<scriptID>IE1_SuicidePath02</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+						<Item>
+							<scriptID>IE1Step1_5_3</scriptID>
+							<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</path>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>17000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactKill" />
+					</impacts>
+				</Item>
+			</impacts>
+			<mob>
+				<scriptID>IE1LootMaster</scriptID>
+				<map href="/Maps/Inst_EmpireStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClearTarget" />
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/Mechanics/Spells/QuestSpells/SFX_ClientData/Inst_Empire_Start/Ask_07.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Items/QuestItems/InstEmpire1/Vodka/Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="/Maps/Inst_EmpireStart/ScriptZones/IntrudersMusicBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+			<zone href="/Maps/Inst_EmpireStart/ScriptZones/StopAtack.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			<disable>true</disable>
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/InstEmpire1/Quest1_0_2/Quest1_0_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<showCounterValue>false</showCounterValue>
+			<locations>
+				<Item>
+					<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/InstEmpire1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="1409.000000" y="1336.699951" z="-4.299999" />
+					<isIndoor>false</isIndoor>
+					<radius>0</radius>
+				</Item>
+			</locations>
+			<relatedMobsAndDevices>
+				<Item href="/Characters/HumMobs/Instances/InstEmpire1/DesantMiniBoss3.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</relatedMobsAndDevices>
+			<limit>1</limit>
+			<isInternal>false</isInternal>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<triggerAgents />
+	<reward>
+		<experience>4</experience>
+		<money>0</money>
+		<reputations />
+		<mandatoryItems>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganNecromancerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganWarriorArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganStalkerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganPriestArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganPaladinArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganPsionicArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganMageArmor.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ZemPriestArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Priest.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ZemMageArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Mage.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ZemNecromancerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Necromancer.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/ZemPsionicArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Psionic.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/OrcWarriorArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Warrior.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/OrcPaladinArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Paladin.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/OrcStalkerArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Stalker.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/OrcDruidArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Druid.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/HadaganBardArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+			<Item>
+				<hidden>false</hidden>
+				<item href="/Items/Mechanics/StartInstacesRewards/OrcBardArmor.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+						<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateCharacterClass">
+						<characterClass href="/Mechanics/Classes/Bard.xdb#xpointer(/gameMechanics.world.avatar.CharacterClass)" />
+					</Item>
+				</predicates>
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+		<alternativeItems />
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<internalName>Quest1_2</internalName>
+	<zone href="/Maps/Inst_EmpireStart/Zones/InstEmpire1/InstEmpire1.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>2</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

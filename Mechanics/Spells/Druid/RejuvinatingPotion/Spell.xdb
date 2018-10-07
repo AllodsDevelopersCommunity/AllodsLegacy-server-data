@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>100955247</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Misc/Food/Beer.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Druid/RejuvinatingPotion.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>HOLY</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>120000</duration>
+			<group href="" />
+		</cooldown>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<number>1</number>
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<manaType>Mana</manaType>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.IncrementMana">
+						<manaType>Mana</manaType>
+						<amount var="amount" />
+						<threatMultiplier>1</threatMultiplier>
+						<scaler type="gameMechanics.elements.scalers.StatScaler">
+							<stat type="gameMechanics.elements.stat.InnateStat">
+								<stat>IS_Intellect</stat>
+							</stat>
+						</scaler>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactHeal">
+						<heal var="heal" />
+						<threatMultiplier>1</threatMultiplier>
+						<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+							<scalers>
+								<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+									<ability href="/Mechanics/Abilities/DruidTalentsV2/ConcotionMastery/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<mul>0.1</mul>
+								</Item>
+								<Item type="gameMechanics.elements.scalers.StatScaler">
+									<stat type="gameMechanics.elements.stat.InnateStat">
+										<stat>IS_Stamina</stat>
+									</stat>
+								</Item>
+								<Item type="gameMechanics.elements.scalers.StatScaler">
+									<stat type="gameMechanics.elements.stat.InnateStat">
+										<stat>IS_Intellect</stat>
+									</stat>
+								</Item>
+							</scalers>
+						</scaler>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.IncrementMana">
+						<manaType>Energy</manaType>
+						<amount var="amou_1" />
+						<threatMultiplier>1</threatMultiplier>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactHeal">
+						<heal var="he_1" />
+						<threatMultiplier>1</threatMultiplier>
+						<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+							<scalers>
+								<Item type="gameMechanics.elements.scalers.StatScaler">
+									<stat type="gameMechanics.elements.stat.InnateStat">
+										<stat>IS_Stamina</stat>
+									</stat>
+								</Item>
+								<Item type="gameMechanics.elements.scalers.StatScaler">
+									<stat type="gameMechanics.elements.stat.InnateStat">
+										<stat>IS_Strength</stat>
+									</stat>
+								</Item>
+							</scalers>
+						</scaler>
+						<statsConvertor>
+							<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Might</stat>
+							</intuition>
+							<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+								<stat>IS_Might</stat>
+							</spirit>
+						</statsConvertor>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

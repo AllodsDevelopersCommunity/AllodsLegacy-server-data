@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>179958789</resourceId>
+	</Header>
+	<Name href="SPSpell.txt" />
+	<Description href="Q_text3.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/ZE1_Quest_Speech.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="SPSpell.txt" />
+	<descTemplate href="Q_text3.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10</value>
+	</range>
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/E1_Park.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="GuildQuest_1_1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+					<radius>25</radius>
+				</distributor>
+				<data href="SpeechMsg03.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				<calcers>
+					<stringEntries>
+						<Item>
+							<name>avatarName</name>
+							<calcer type="gameMechanics.elements.calcers.TargetNameCalcer" />
+						</Item>
+						<Item>
+							<name>guildName</name>
+							<calcer type="gameMechanics.elements.calcers.GuildNameCalcer" />
+						</Item>
+					</stringEntries>
+				</calcers>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

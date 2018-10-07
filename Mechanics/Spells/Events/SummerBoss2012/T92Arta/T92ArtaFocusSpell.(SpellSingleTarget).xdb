@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>330188803</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBoss2012.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="T92ArtaFocusSpell.(SpellSingleTarget)_Name.txt" />
+	<Description href="T92ArtaFocusSpell.(SpellSingleTarget)_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/VisorAbilitiesAnalysisPurposes.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Events/SummerBoss2012/T92ArtaFocus_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>Ar2</sysName>
+	<nameTemplate href="T92ArtaFocusSpell.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="T92ArtaFocusSpell.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>80</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<needLos>false</needLos>
+	<iffPolicy>Everyone</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Events/SummerBoss2012/BossMaus.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+					<Item type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Mechanics/Spells/Events/SummerBoss2012/BossMaus/MausLightDebuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="T92ArtaFocusBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="T92ArtaFocusBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

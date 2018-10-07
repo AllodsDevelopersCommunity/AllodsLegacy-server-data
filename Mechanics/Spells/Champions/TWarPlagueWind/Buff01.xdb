@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>215303216</resourceId>
+		<Variables>
+			<disease>/Mechanics/Spells/Necromancer/WanderingFever/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</disease>
+			<damagePerTick>4.9</damagePerTick>
+		</Variables>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerWanderingFever.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Necromancer/Fever.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.NotStackableEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.TickableDiseaseAura">
+					<tick>2000</tick>
+					<affectGroup>Enemies</affectGroup>
+					<affectSelf>false</affectSelf>
+					<onBehalfOfCaster>true</onBehalfOfCaster>
+					<radius>10</radius>
+					<delayIn>2000</delayIn>
+					<filter type="gameMechanics.world.creature.AvatarFilter">
+						<block>false</block>
+						<withPet>false</withPet>
+					</filter>
+					<disease href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.DirectDamage">
+					<damage>0.15</damage>
+					<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mul>1</mul>
+						<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+							<multiplier>1</multiplier>
+						</mulCalcer>
+						<sum>0</sum>
+					</scalerTarget>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+			<initialDelay>0</initialDelay>
+		</Item>
+	</effects>
+	<duration>60000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>5</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

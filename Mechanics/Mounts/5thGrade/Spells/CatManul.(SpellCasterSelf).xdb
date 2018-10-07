@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>739830157</resourceId>
+	</Header>
+	<Name href="MammothSpell.txt" />
+	<Description href="CatManul.Desctiption.txt" />
+	<image href="/Interface/Icons/Mounts/MountCatManul.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="MammothSpell.txt" />
+	<descTemplate href="CatManul.Desctiption.txt" />
+	<prepareDuration>2500</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasFreeStableSlots" />
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateHasMountFromGroup">
+									<group href="/Mechanics/Mounts/Groups/Cat6Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateHasMountFromGroup">
+								<group href="/Mechanics/Mounts/Groups/Cat6Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+									<unlock href="/Mechanics/Mounts/Skins/Cats/CatManul.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasMountFromGroup">
+						<group href="/Mechanics/Mounts/Groups/Cat6Grade.xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountGroupResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Mounts/Skins/Cats/CatManul.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactTameMount">
+						<mount href="/Mechanics/Mounts/5thGrade/Mounts/CatManul.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

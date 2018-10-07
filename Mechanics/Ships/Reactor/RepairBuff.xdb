@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>268374017</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectReactorCoolerModifier">
+			<modifier type="gameMechanics.elements.calcers.FloatData">
+				<value>0</value>
+			</modifier>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+					<limitModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.HealthBaseCalcer" />
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>0.0333</value>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>0.04</value>
+							</Item>
+						</calcers>
+					</limitModCalcer>
+					<valueModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.HealthBaseCalcer" />
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>0.0333</value>
+							</Item>
+						</calcers>
+					</valueModCalcer>
+					<recalcProportionally>true</recalcProportionally>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateGreater">
+							<lhs type="gameMechanics.elements.calcers.CalcerFloor">
+								<source type="gameMechanics.elements.calcers.HealthBaseCalcer" />
+							</lhs>
+							<rhs type="gameMechanics.elements.calcers.HealthCalcer" />
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="RepairBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+			<initialDelay>5000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectShipDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="RepairBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectCriticalMalfunctionTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+					<buff href="RepairBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<malfunctionType>CMT_ReactorShutdown</malfunctionType>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+							<data href="PlaySpecial.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+							<data href="StopSpecial.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

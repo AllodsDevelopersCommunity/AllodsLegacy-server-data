@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/MobOmni.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<AnimationPreCastMode>LOOP</AnimationPreCastMode>
+			<FixPointTarget>true</FixPointTarget>
+			<LocatorNameOnTargets />
+			<PreCastAnimation>specialAttack</PreCastAnimation>
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<HitPostFXOnTargets />
+			<FXOnTargets />
+			<FixPointCaster>false</FixPointCaster>
+			<LocatorNameOnCaster />
+			<LocatorOnCaster>Slot_Global</LocatorOnCaster>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirect03DownLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FXOnCaster>/Spells/FX/Mobs/DC_1BossMindflayer_AoETrail.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+		</Variables>
+	</Header>
+	<Description href="GolemBoss_Earthquake.(SpellVisScripts).Description.txt" />
+	<wholeCasting type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<scale>2</scale>
+						<locator>Slot_Global</locator>
+					</Item>
+					<Item>
+						<locator>Slot_Hand_R</locator>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>invalid</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<animationKeysActionPeriod>
+						<Item>
+							<action type="CreatureTrailAction">
+								<creatureTrail href="/Spells/FX/InterfaceFX/TrailArrowBlue.(TrailTemplate).xdb#xpointer(/TrailTemplate)" />
+							</action>
+							<stopIfAnimationStoped>true</stopIfAnimationStoped>
+						</Item>
+					</animationKeysActionPeriod>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<scale>1.3</scale>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

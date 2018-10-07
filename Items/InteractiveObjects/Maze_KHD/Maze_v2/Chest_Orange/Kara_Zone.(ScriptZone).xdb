@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.scriptZone.ScriptZone>
+	<Header>
+		<resourceId>335128582</resourceId>
+	</Header>
+	<filter type="gameMechanics.world.creature.AvatarFilter" />
+	<conditionsIn>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Items/InteractiveObjects/Maze_KHD/Storage_battery/Charge.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<buff href="/Items/InteractiveObjects/Maze_KHD/Storage_battery/Jump_Pad.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+	</conditionsIn>
+	<impactsIn>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>Maze_exit_01</scriptID>
+					<map href="/Maps/Maze_KHD/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="Kara_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ZoneDistributor">
+				<zone type="gameMechanics.elements.calcers.ZoneDistributor$OwnZone" />
+				<faction type="gameMechanics.elements.calcers.ZoneDistributor$AnyFaction" />
+			</distributor>
+			<data href="Chest_Orange_Data.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+			<calcers>
+				<stringEntries>
+					<Item>
+						<name>AvatarName</name>
+						<calcer type="gameMechanics.elements.calcers.TargetNameCalcer" />
+					</Item>
+				</stringEntries>
+			</calcers>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactKill" />
+	</impactsIn>
+</gameMechanics.map.scriptZone.ScriptZone>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>245870595</resourceId>
+	</Header>
+	<Name href="BuffResource.txt" />
+	<Description href="BuffResource.Description.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/CrystalMedium/Crystal01.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Aura">
+			<radius>40</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="LegueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>1</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateFaction">
+											<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="EmpireBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="LegueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value>-1</value>
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateFaction">
+											<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ReturningImpact">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="EmpireBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value>-1</value>
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.MultLinearEffectScaler">
+				<coeff>1</coeff>
+				<calcer type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.CalcerSum">
+						<summands>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.2</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="LegueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.1</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="EmpireBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+						</summands>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.CalcerSum">
+						<summands>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.1</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="LegueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.2</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="EmpireBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+						</summands>
+					</calcerElse>
+				</calcer>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectMountSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.MultLinearEffectScaler">
+				<coeff>1</coeff>
+				<calcer type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.CalcerSum">
+						<summands>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.2</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="LegueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.1</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="EmpireBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+						</summands>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.CalcerSum">
+						<summands>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.1</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="LegueBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.LinearCalcer">
+								<mul>0.2</mul>
+								<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+									<buff href="EmpireBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<forAllRanks>true</forAllRanks>
+								</mulCalcer>
+								<sum>0</sum>
+							</Item>
+						</summands>
+					</calcerElse>
+				</calcer>
+			</effectScaler>
+		</Item>
+	</effects>
+	<duration>1000</duration>
+	<stackLimit>100</stackLimit>
+	<isGradual>true</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxOnCaster>/Spells/FX/Spells/MageTeleportAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<UseAnimation>USE_ANIMATIONS</UseAnimation>
+			<FxOnTargets />
+			<LocatorNameOnCaster />
+			<FxOnTargetsFixedPoint>false</FxOnTargetsFixedPoint>
+			<LocatorNameOnTargets />
+			<LocatorOnTargets />
+			<LocatorOnCaster>Global</LocatorOnCaster>
+			<Animation>channelCastOmni</Animation>
+		</Variables>
+	</Header>
+		<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<mode>LOOP</mode>
+						<animations>
+							<Item>channelCastOmni</Item>
+						</animations>
+						<channel>CHANNEL_ABILITY</channel>
+					</Item>
+					<Item type="CreatureEffectsAction">
+						<visActionID>Sphere</visActionID>
+						<visualEffects>
+							<Item>
+								<locator>Slot_Hand_L</locator>
+								<effectFx href="/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							</Item>
+							<Item>
+								<locator>Slot_Hand_R</locator>
+								<effectFx href="/Spells/FX/Spells/ReadySpellDirectLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							</Item>
+							<Item>
+								<delay>0</delay>
+								<effectFx href="/Spells/FX/Spells/MageTeleportAbility_Loop.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<effectAnimations>
+									<mode>LOOP</mode>
+								</effectAnimations>
+								<fixPoint>true</fixPoint>
+								<fadeInTime>1000</fadeInTime>
+								<fadeOutTime>0</fadeOutTime>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<actionBarComplite type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/MageTeleportAbility_End.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<fixPoint>true</fixPoint>
+			</Item>
+			<Item>
+				<locator>Slot_FX</locator>
+				<effectFx href="/Spells/FX/Spells/MageDispelMagicAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			</Item>
+		</visualEffects>
+	</actionBarComplite>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<use var="UseAnimation" />
+						<animations>
+							<Item var="Animation" />
+						</animations>
+						<advanced>
+							<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+							<offendType>ONEOFFEND_ONETARGET</offendType>
+							<autoHasten>
+								<mode>AUTOHASTEN_NONE</mode>
+								<timeToBeLeft>0</timeToBeLeft>
+							</autoHasten>
+							<eventPlaybackEnd>true</eventPlaybackEnd>
+						</advanced>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.basicElements.MapModifierResource>
+	<Header>
+		<resourceId>301591552</resourceId>
+	</Header>
+	<name href="Apathy.txt" />
+	<description href="Apathy.Description.txt" />
+	<image href="/Interface/Icons/Spells/Modifiers/Apathy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<mapEffects>
+		<Item type="gameMechanics.elements.effects.AddMapSpecificEffects">
+			<effects>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="NotEnoughSleepBuff/NotEnoughSleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="ApathyBuff/Apathy.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<tick>10000</tick>
+						</Item>
+						<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="AboutSleepBuff/AboutSleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Context/ContextBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<tick>10000</tick>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effects>
+			<producer href="Apathy.(MapModifierResource).xdb#xpointer(/gameMechanics.map.basicElements.MapModifierResource)" />
+		</Item>
+	</mapEffects>
+	<cellEffects>
+		<Item type="gameMechanics.elements.effects.CombatStateTriggerGeneric">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactRandomAvatarsOnCell">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2000</delay>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="AboutSleepBuff/AboutSleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+						<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+					</predicates>
+				</Item>
+			</onEnter>
+		</Item>
+	</cellEffects>
+</gameMechanics.map.basicElements.MapModifierResource>

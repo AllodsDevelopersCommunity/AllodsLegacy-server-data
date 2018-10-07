@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>129724430</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<range>10</range>
+			<energyAmount>0</energyAmount>
+			<radius>15</radius>
+		</Variables>
+	</Header>
+	<contextActionInfo>
+		<priority>101</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Context/ContextResurrection.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<Name href="Spell_Prototype.txt" />
+	<image href="/Interface/Icons/Equipment/Mace/MaceNewbie.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value var="range" />
+	</range>
+	<targetType>STTPoint</targetType>
+	<isAggro>false</isAggro>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff hrefvar="buff" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.BuffDetacher">
+				<buff hrefvar="buff" />
+				<anyRank>false</anyRank>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint">
+					<yawDelta type="constructor.basicElements.AngleDegrees">
+						<value>180</value>
+					</yawDelta>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff hrefvar="goblinBuff" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+								<impacts>
+									<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+										<delay>1000</delay>
+										<limit var="count" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateHealthLower">
+														<level>1</level>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.world.device.ImpactDeviceHeal">
+														<amount var="amount" />
+													</Item>
+													<Item type="gameMechanics.elements.device.ImpactDeviceClientData">
+														<data href="DeviceRepairGoodEffect_ClientData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="GoblinMovementBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+												</impactsIf>
+												<impactsElse>
+													<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																<buff href="GoblinMovementBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+															</Item>
+														</impacts>
+													</Item>
+												</impactsElse>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+								<destination type="gameMechanics.map.destination.RelativePos" />
+								<shape type="gameMechanics.constructor.schemes.spell.area.CylinderWithHeight">
+									<topPlane>2</topPlane>
+									<bottomPlane>-2</bottomPlane>
+								</shape>
+								<radius var="radius" />
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateDevice" />
+								</predicates>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<object hrefvar="summon" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip">
+					<ownershipRequired>false</ownershipRequired>
+				</addresseeFinder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>1000</delay>
+						<limit var="count" />
+						<impacts>
+							<Item type="gameMechanics.world.ship.elements.ImpactEnergyHit">
+								<amount type="gameMechanics.elements.calcers.FloatData">
+									<value var="energyAmount" />
+								</amount>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<radius var="radius" />
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

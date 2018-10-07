@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>316631061</resourceId>
+	</Header>
+	<name href="ZC7_E_9_40_Distortion2.(Cue).Name.txt" />
+	<text href="ZC7_E_9_40_Distortion2.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZC7/ZC7_E_9_40/ZC7_E_9_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ZC7/ZC7_E_9_40/ZC7_E_9_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/World/Quests/ZC7/ZC7_E_9_40/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+							<quest href="/World/Quests/ZC7/ZC7_L_3_10/ZC7_L_3_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<status>Started</status>
+						</Item>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+								<quest href="/World/Quests/ZC7/ZC7_L_3_10/ZC7_L_3_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<counterResource href="/World/Quests/ZC7/ZC7_L_3_10/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+								<value>1</value>
+							</predicate>
+						</Item>
+					</predicates>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactSummon">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>ZC7_E_9_40_Agent</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/World/Quests/ZC7/ZC7_E_9_40/ZC7_E_9_40_AgentResolvent.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ForceAggro" />
+					</impacts>
+					<object href="/Characters/Undead_male/Instances/ZC7/ZC7_E_9_40_Agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZC7/ZC7_E_9_40/ZC7_E_9_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Active</status>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ZC7/ZC7_E_9_40/ZC7_E_9_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/World/Quests/ZC7/ZC7_E_9_40/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									<value>1</value>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZC7/ZC7_E_9_40/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsElse>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateFaction">
+									<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/ZC7/ZC7_L_3_10/ZC7_L_3_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Active</status>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ZC7/ZC7_L_3_10/ZC7_L_3_10.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/World/Quests/ZC7/ZC7_L_3_10/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									<value>1</value>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/ZC7/ZC7_L_3_10/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

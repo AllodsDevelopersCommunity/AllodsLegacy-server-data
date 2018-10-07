@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>270715906</resourceId>
+	</Header>
+	<name href="Ability01_Name.txt" />
+	<nameTemplate href="Ability01_Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectOnStrike">
+			<impact type="gameMechanics.elements.impacts.ImpactsToTarget">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.resources.ResourceBuff">
+									<buff href="SupportBuff/Support.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</predicate>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</predicate>
+									</Item>
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</predicate>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+														<predicate type="gameMechanics.elements.resources.ResourceBuff">
+															<buff href="ControlShield/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+														</predicate>
+													</Item>
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.CasterProbabilisticImpact">
+																<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+																	<value>0.5</value>
+																</chanceCalcer>
+																<impacts>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+																			<multiplier>3</multiplier>
+																		</durationScaler>
+																	</Item>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+																			<multiplier>3</multiplier>
+																		</durationScaler>
+																	</Item>
+																</impacts>
+																<impactsOnFail>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+																			<multiplier>6</multiplier>
+																		</durationScaler>
+																	</Item>
+																	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																		<buff href="Fear/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																		<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+																			<multiplier>6</multiplier>
+																		</durationScaler>
+																	</Item>
+																</impactsOnFail>
+															</Item>
+														</impacts>
+													</Item>
+												</impactsIf>
+											</Item>
+										</impactsIf>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</impact>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLinearStatModifier">
+			<stat type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Will</stat>
+			</stat>
+			<multiplier>1.2</multiplier>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

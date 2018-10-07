@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>125295624</resourceId>
+		<isPrototype>true</isPrototype>
+		<Prototype href="/Mechanics/ObjectTemplates/ShipDevice.(UsableDeviceResource).xdb#xpointer(/bunch.BunchResource)" />
+		<Variables>
+			<maxEnergy>50</maxEnergy>
+			<health>5000</health>
+			<maxSpeed>25</maxSpeed>
+			<acceleration>0.8</acceleration>
+			<nominalMass>100</nominalMass>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="ShipEngineComponent">
+			<engineSound>
+				<project href="" />
+				<name />
+			</engineSound>
+			<inHangarScript type="DeviceAnimationAction">
+				<visActionID />
+				<mode>LOOP</mode>
+				<channelId>0</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+				</advanced>
+			</inHangarScript>
+			<velocityScripts>
+				<Item>
+					<speedValue>0.25</speedValue>
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<animations>
+							<Item>idle</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<speedValue>0.5</speedValue>
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<animations>
+							<Item>run</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<speedValue>0.75</speedValue>
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<animations>
+							<Item>run01</Item>
+						</animations>
+					</script>
+				</Item>
+				<Item>
+					<speedValue>1</speedValue>
+					<script type="DeviceAnimationAction">
+						<mode>LOOP</mode>
+						<animations>
+							<Item>run02</Item>
+						</animations>
+					</script>
+				</Item>
+			</velocityScripts>
+			<useTargetSpeed>true</useTargetSpeed>
+		</Item>
+		<Item type="DeviceHealthComponent">
+			<states>
+				<Item>
+					<health>1</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjNormal" />
+						<collision hrefvar="collisionNormal" />
+					</script>
+				</Item>
+				<Item>
+					<health>0.5</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjDamaged" />
+						<collision hrefvar="collisionDamaged" />
+					</script>
+				</Item>
+				<Item>
+					<health>0.01</health>
+					<script type="DeviceVisActionChangeModel">
+						<visObj hrefvar="visObjBroken" />
+						<collision hrefvar="collisionBroken" />
+					</script>
+				</Item>
+			</states>
+		</Item>
+		<Item type="DeviceOfflineComponent">
+			<onlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idle</Item>
+				</animations>
+			</onlineScript>
+			<offlineScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleOffline</Item>
+				</animations>
+			</offlineScript>
+			<malfunctionScript type="DeviceAnimationAction">
+				<mode>LOOP</mode>
+				<channelId>1</channelId>
+				<animations>
+					<Item>idleMalfunction</Item>
+				</animations>
+			</malfunctionScript>
+		</Item>
+		<Item type="UsableDeviceClientPart">
+			<type>USDEV_ENGINE_HORIZONTAL</type>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.EffectSwitchInterceptor">
+					<reasonsToIgnore>
+						<Item>TR_Broken</Item>
+						<Item>TR_InterHubAcceleration</Item>
+					</reasonsToIgnore>
+				</Item>
+				<Item type="gameMechanics.world.ship.elements.Effects.EffectImmortalMortal" />
+				<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsIfGeneric">
+							<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+								<onMaster type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.world.device.PredicateDeviceOnline" />
+									</predicates>
+								</onMaster>
+							</predicate>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+									<chanceCalcer type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.elements.calcers.CalcerDiff">
+												<minuend type="gameMechanics.elements.calcers.CalcerMul">
+													<calcers>
+														<Item type="gameMechanics.elements.calcers.HealthInferiorityCalcer" />
+														<Item type="gameMechanics.elements.calcers.FloatData">
+															<value>4</value>
+														</Item>
+													</calcers>
+												</minuend>
+												<subtrahend type="gameMechanics.elements.calcers.FloatData">
+													<value>3</value>
+												</subtrahend>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>0.0083333375</value>
+											</Item>
+										</calcers>
+									</chanceCalcer>
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+											<buff href="/Mechanics/Ships/BuffStunDevice.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+										<Item type="gameMechanics.world.ship.elements.ImpactNotifyMalfunction">
+											<type>CMT_EngineShutdown</type>
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<tick>500</tick>
+					<initialDelay>-1</initialDelay>
+				</Item>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+							<id href="/World/Quests/AstralHangar/Q1/Count_1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="UsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="/Mechanics/Ships/DevicePenaltyWatchers/EngineWatcher.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsOn>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.world.device.DeviceMortalPartResource" />
+		<Item type="gameMechanics.world.HealthResource">
+			<maxHealth var="health" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.spell.spellstate.SpellStatesResource" />
+		<Item type="gameMechanics.world.device.ResetActiveSpellsCallbackResource">
+			<defaultSpells>
+				<Item href="Remote/Speed0.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</defaultSpells>
+		</Item>
+		<Item type="gameMechanics.world.device.control.AcceleratorDamageTriggerResource">
+			<maxSpeed var="maxSpeed" />
+			<maxEnergy var="maxEnergy" />
+			<acceleration var="acceleration" />
+			<nominalMass var="nominalMass" />
+		</Item>
+		<Item type="gameMechanics.world.device.parts.RemoteSpellsHolderPartResource">
+			<remoteSpells>
+				<Item href="Remote/Speed0.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/Speed1.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/Speed2.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Remote/Speed3.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</remoteSpells>
+		</Item>
+	</persistentParts>
+	<visObj hrefvar="visObjNormal" />
+	<collision hrefvar="collisionNormal" />
+	<collisionObject>true</collisionObject>
+	<exploitingText href="/Mechanics/Ships/ShipDeviceExploitText.txt" />
+	<exploit href="/Mechanics/Ships/ShipDeviceExploit.xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<mass>10</mass>
+	<deviceSpells>
+		<Item href="ActionStartForsage.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="ActionStopForsage.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</deviceSpells>
+</gameMechanics.world.device.UsableDeviceResource>

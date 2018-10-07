@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>259357698</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<description href="Ability_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/ThrowADagger.chn.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.BuffExtraEffects">
+			<buff href="/Mechanics/Spells/StalkerNew/MelleFlurryOfBlades/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>7</radius>
+							<affectGroup>Enemies</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledPhysicalWeaponDamage">
+									<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+									<threatMultiplier>1</threatMultiplier>
+									<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+										<scalers>
+											<Item type="gameMechanics.elements.scalers.ScalerIf">
+												<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+													<hideText>false</hideText>
+													<spell href="/Mechanics/Spells/StalkerNew/MelleFlurryOfBlades/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+													<anyRank>false</anyRank>
+												</condition>
+												<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+													<multiplier>20.43</multiplier>
+												</scalerIf>
+												<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+													<condition type="gameMechanics.elements.predicates.PredicateHasSpell">
+														<hideText>false</hideText>
+														<spell href="/Mechanics/Spells/StalkerNew/MelleFlurryOfBlades/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+														<anyRank>false</anyRank>
+													</condition>
+													<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+														<multiplier>19.44</multiplier>
+													</scalerIf>
+													<scalerElse type="gameMechanics.elements.scalers.LinearScaler">
+														<multiplier>15.87</multiplier>
+													</scalerElse>
+												</scalerElse>
+											</Item>
+											<Item type="gameMechanics.elements.scalers.StrengthDPSScaler" />
+											<Item type="gameMechanics.elements.scalers.WeaponDamageBSVScaler" />
+										</scalers>
+									</scaler>
+									<avgDamage>1</avgDamage>
+									<source>Mainhand</source>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterAnd">
+								<filters>
+									<Item type="gameMechanics.world.creature.CreatureFilter">
+										<blockCreatures>false</blockCreatures>
+									</Item>
+									<Item type="gameMechanics.world.creature.AliveFilter">
+										<alowImmortal>true</alowImmortal>
+									</Item>
+								</filters>
+							</filter>
+							<targetsLimit>1</targetsLimit>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+					</impacts>
+					<tick>1000</tick>
+					<initialDelay>0</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

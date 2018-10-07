@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<animSpeed>0</animSpeed>
+			<PrepareFxOnCaster>/Spells/FX/Spells/ReadyAstralSpellDirectDamage.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</PrepareFxOnCaster>
+			<channelFxLoc>Slot_Special01</channelFxLoc>
+			<IgnoreTarget>IGNORE_SHIELD</IgnoreTarget>
+			<PrepareFxScale>1</PrepareFxScale>
+			<shieldExplosion />
+			<PrepareFxLoc>Slot_Special02</PrepareFxLoc>
+			<Ignore>true</Ignore>
+			<PrepareFxAnim>rangedAttack</PrepareFxAnim>
+			<hullExplosion>/Spells/FX/Ships/Hull.CanonHitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</hullExplosion>
+			<channelFx>/Spells/FX/Spells/AstralDirectDamage_Channel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</channelFx>
+			<channelFxLength>20</channelFxLength>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<visActionID />
+		<play>Simultaneously</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visActionID />
+				<visualEffects>
+					<Item>
+						<delay>0</delay>
+						<effectFx hrefvar="PrepareFxOnCaster" />
+						<effectAlias href="" />
+						<effectAnimations>
+							<mode>DIE</mode>
+						</effectAnimations>
+						<fixPoint>false</fixPoint>
+						<lockScale>false</lockScale>
+						<scale var="PrepareFxScale" />
+						<fadeInTime>0</fadeInTime>
+						<fadeOutTime>0</fadeOutTime>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<member>Default_Member</member>
+						<locatorName var="PrepareFxLoc" />
+						<offendTime />
+					</Item>
+				</visualEffects>
+			</Item>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="PrepareFxAnim" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed var="animSpeed" />
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_DEFAULT</waitRealEvent>
+				</advanced>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<visActionID />
+		<play>InSequence</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAstralSpellFXVisAction">
+				<visActionID />
+				<astralSpell type="AstralSpellChanneling">
+					<shieldExplosion hrefvar="shieldExplosion" />
+					<hullExplosion hrefvar="hullExplosion" />
+					<projectileFx hrefvar="channelFx" />
+					<locatorName var="channelFxLoc" />
+					<fxLength var="channelFxLength" />
+					<ignoreShield var="Ignore" />
+					<targetSettings var="IgnoreTarget" />
+				</astralSpell>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

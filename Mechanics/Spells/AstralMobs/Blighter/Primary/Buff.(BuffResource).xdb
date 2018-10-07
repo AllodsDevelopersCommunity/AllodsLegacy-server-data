@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>350906379</resourceId>
+	</Header>
+	<Name href="Buff.(BuffResource)_Name.txt" />
+	<Description href="Buff.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/RepairCorps.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Buff.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+							<damage type="gameMechanics.elements.calcers.CalcerMul">
+								<calcers>
+									<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+										<damage>40</damage>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+										<value type="gameMechanics.elements.calcers.FloatData">
+											<value>1.33</value>
+										</value>
+									</Item>
+									<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+								</calcers>
+							</damage>
+							<hitCalcType type="gameMechanics.world.projectile.StaticCalcType" />
+							<targetScaler type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+								<buff href="Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+								<onlyFromMaster>true</onlyFromMaster>
+								<mul>1</mul>
+							</targetScaler>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>10</stackLimit>
+	<isGradual>true</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

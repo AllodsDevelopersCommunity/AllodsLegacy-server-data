@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>97542173</resourceId>
+	</Header>
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>9000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="DrakChennelStop.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataCoords">
+					<data href="DrakChannel.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<locators>
+						<Item>
+							<scriptID>AC3_1st_Channel</scriptID>
+							<map href="/Maps/2ndCircle_AC3/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</Item>
+					</locators>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="DrakChennelStop.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="BuffEvade_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+					<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+					<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ChannelBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</onEnter>
+		</Item>
+	</effects>
+	<isHelpful>false</isHelpful>
+</gameMechanics.constructor.schemes.buff.BuffResource>

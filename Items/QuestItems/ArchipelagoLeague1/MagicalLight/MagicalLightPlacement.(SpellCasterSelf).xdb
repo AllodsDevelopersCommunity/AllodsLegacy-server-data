@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>4194420</resourceId>
+	</Header>
+	<Name href="MagicalLightSpell_Name.txt" />
+	<Description href="MagicalLightSpell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+			<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Kania_AL1/ScriptZones/ArchipelagoLeague1/MagicalLightZone.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ArchipelagoLeague1/Quest3_6/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+				<impacts>
+					<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+						<visualState>2</visualState>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>60000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+								<visualState>1</visualState>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+				<device>
+					<scriptID>AL1_MagicalLight</scriptID>
+					<map href="/Maps/Kania_AL1/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</device>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="/World/Quests/ArchipelagoLeague1/Quest3_6/Quest3_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="MagicalLight.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="MagicalLight.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

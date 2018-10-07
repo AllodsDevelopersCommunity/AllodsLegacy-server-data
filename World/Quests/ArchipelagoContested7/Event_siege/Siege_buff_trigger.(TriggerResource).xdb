@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>218375188</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Siege_scale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInZone">
+											<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/Nihaz_camp.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateInZone">
+											<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/Sanctuary.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+										</Item>
+									</predicates>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+									<rule href="/Mechanics/Rules/ArchipelagoContested7/siege/Siege.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf />
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>5000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="Siege_scale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+									<quest href="Event_siege.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+			<tick>6000</tick>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

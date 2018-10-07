@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739822218</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<description href="Ability_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/SweepingSlamUpgrade.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+					<hideText>false</hideText>
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateNotInCombat">
+							<hideText>false</hideText>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<hideText>false</hideText>
+							<ability href="/Mechanics/Spells/WarriorV3/Abilities/ToughnessInCombat/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<anyRank>true</anyRank>
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<hideText>false</hideText>
+					<predicate type="gameMechanics.elements.resources.ResourceBuff">
+						<hideText>false</hideText>
+						<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<consumeStacks>0</consumeStacks>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+							<stacks type="gameMechanics.elements.calcers.CalcerIf">
+								<predicate type="gameMechanics.elements.predicates.PredicateInCombat">
+									<hideText>false</hideText>
+								</predicate>
+								<calcerIf type="gameMechanics.elements.calcers.AbilityRankCalcer">
+									<ability href="/Mechanics/Spells/WarriorV3/Abilities/ToughnessInCombat/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									<mul>1</mul>
+									<sum>0</sum>
+								</calcerIf>
+								<calcerElse type="gameMechanics.elements.calcers.FloatData">
+									<value>6</value>
+								</calcerElse>
+							</stacks>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<affectOnStartTick>false</affectOnStartTick>
+			<tick type="gameMechanics.elements.calcers.FloatData">
+				<value>2000</value>
+			</tick>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

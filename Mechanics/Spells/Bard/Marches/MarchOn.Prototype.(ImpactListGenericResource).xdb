@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>364950536</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<spell />
+			<spell_off_1/>
+			<spell_off_2/>
+			<spell_off_3/>
+			<buff />
+			<enforcer_off_1/>
+			<enforcer_off_2/>
+			<enforcer_off_3/>
+		</Variables>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+			<spell hrefvar="spell_off_1" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+			<spell hrefvar="spell_off_2" />
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+			<spell hrefvar="spell_off_3" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff hrefvar="enforcer_off_1" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff hrefvar="enforcer_off_2" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff hrefvar="enforcer_off_3" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+						<spell hrefvar="spell" />
+						<anyRank>false</anyRank>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+					<spell hrefvar="spell" />
+					<effects>
+						<Item type="gameMechanics.elements.effects.WhileAlive">
+							<effects>
+								<Item type="gameMechanics.elements.effects.TickableAura">
+									<tick>5000</tick>
+									<affectGroup>Group</affectGroup>
+									<affectSelf>true</affectSelf>
+									<radius>85</radius>
+									<impactsIn>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff hrefvar="buff" />
+										</Item>
+									</impactsIn>
+									<impactsOut>
+										<Item type="gameMechanics.elements.impacts.ImpactDecrementBuff">
+											<buff hrefvar="buff" />
+										</Item>
+									</impactsOut>
+								</Item>
+							</effects>
+						</Item>
+					</effects>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

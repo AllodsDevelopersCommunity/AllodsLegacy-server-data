@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>141599744</resourceId>
+	</Header>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/AstralHangar/Q8/Q8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>InQuestBook</status>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="/World/Quests/AstralHangar/Q8/Q8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/World/Quests/AstralHangar/Q8/Count_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</predicate>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleportToHub">
+							<destinationSector href="/Mechanics/Astral/Sector_TL0_1/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+							<destHub>0</destHub>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleportToHub">
+							<destinationSector href="/Mechanics/Astral/Sector_TL0_1_H/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+							<destHub>0</destHub>
+						</Item>
+					</impacts>
+				</Item>
+			</elseImpacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>6000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/AstralHangar/Q8/Count_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+	</impacts>
+	<name href="GoHome_Name.txt" />
+	<text href="GoHome_Text.txt" />
+</gameMechanics.world.mob.interaction.Cue>

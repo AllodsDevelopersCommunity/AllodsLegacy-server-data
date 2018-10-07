@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>78069844</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Paladin/PaladinLightInfusion.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<locator>FROM_LOCATOR_NAME</locator>
+			<member>Default_Member</member>
+			<locatorName>Slot_BodyFX</locatorName>
+			<effectFx href="/Spells/FX/Spells/PaladinLightInfusionAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<effectAnimations>
+				<mode>DIE</mode>
+			</effectAnimations>
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<fadeInTime>200</fadeInTime>
+			<fadeOutTime>400</fadeOutTime>
+		</Item>
+	</visualEffects>
+	<effects>
+		<Item type="gameMechanics.elements.common.HealOverTime">
+			<healPerTick type="gameMechanics.elements.calcers.FloatData">
+				<value>9</value>
+			</healPerTick>
+			<threatMultiplier>1</threatMultiplier>
+			<tick>2000</tick>
+			<affectOnStartTick>false</affectOnStartTick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncrementBuffDuration">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<delta type="gameMechanics.elements.calcers.FloatData">
+						<value>-2000</value>
+					</delta>
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateIsForthright" />
+				<Item type="gameMechanics.elements.predicates.damageProperties.PredicateSubElement">
+					<subElement>PHYSICAL</subElement>
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>20000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks />
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

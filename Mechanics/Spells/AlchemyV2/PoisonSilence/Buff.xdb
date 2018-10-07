@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>273032196</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Misc/Potions/YouthPotion.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/BuffVisScripts/Silence.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+			<group href="/Mechanics/Spells/Groups/VoiceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAvatar">
+					<hideText>false</hideText>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectSilenceChat" />
+			</effectsIf>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.PartiallyScaledMagicDamage">
+					<element>POISON</element>
+					<threatMultiplier>1</threatMultiplier>
+					<statsConvertor>
+						<intuition type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Dexterity</stat>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Intuition</stat>
+								</Item>
+							</calcers>
+						</intuition>
+						<spirit type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Might</stat>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.InnateStatCalcer">
+									<stat>IS_Spirit</stat>
+								</Item>
+							</calcers>
+						</spirit>
+					</statsConvertor>
+					<minDamage var="minDamage" />
+					<maxDamage var="maxDamage" />
+					<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mul>0.050596</mul>
+						<mulCalcer type="gameMechanics.elements.calcers.BSVCalcer" />
+						<additionalMultiplier>
+							<scaler type="gameMechanics.elements.scalers.SpellPowerBSVScaler" />
+							<value>1</value>
+						</additionalMultiplier>
+						<sum>0</sum>
+					</scaler>
+				</Item>
+			</impacts>
+			<tick>2000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<duration var="duration" />
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Silence.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FeatureConsumables.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/StopSing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralMob.AstralMobBrainResource>
+	<Header>
+		<resourceId>345688065</resourceId>
+	</Header>
+	<root type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+		<name>Root</name>
+		<groupType>Static</groupType>
+		<subnodes>
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>IdleState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+				<optional>
+					<Item>
+						<to>AttackState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+					</Item>
+					<Item>
+						<to>DeadState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<impacts>
+								<item type="gameMechanics.elements.impacts.ImpactRemoveAllAggroGeneric" />
+							</impacts>
+							<eventType>gameMechanics.elements.events.EventDeath</eventType>
+							<isSubscriptional>false</isSubscriptional>
+							<eventPredicate type="gameMechanics.world.astralMob.behaviour.predicates.EventFromSelfPredicate"/>
+						</pipe>
+					</Item>
+				</optional>
+				<activeConvolutions>
+					<Item type="gameMechanics.world.astralMob.behaviour.convolutions.NearestTargetSelectConvolution" />
+				</activeConvolutions>
+			</Item>
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>AttackState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateTurretAttack" />
+				<optional>
+					<Item>
+						<to>IdleState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+						</pipe>
+					</Item>
+					<Item>
+						<to>DeadState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<impacts>
+								<item type="gameMechanics.elements.impacts.ImpactRemoveAllAggroGeneric" />
+							</impacts>
+							<eventType>gameMechanics.elements.events.EventDeath</eventType>
+							<isSubscriptional>false</isSubscriptional>
+							<eventPredicate type="gameMechanics.world.astralMob.behaviour.predicates.EventFromSelfPredicate"/>
+						</pipe>
+					</Item>
+				</optional>
+				<activeConvolutions>
+					<Item type="gameMechanics.world.astralMob.behaviour.convolutions.NearestTargetSelectConvolution" />
+				</activeConvolutions>
+			</Item>
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>DeadState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+			</Item>
+		</subnodes>
+		<initialState>IdleState</initialState>
+	</root>
+</gameMechanics.world.astralMob.AstralMobBrainResource>

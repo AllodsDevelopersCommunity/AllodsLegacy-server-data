@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>349080579</resourceId>
+	</Header>
+	<name href="MapProgressCue01.(Cue).Name.txt" />
+	<text href="MapProgressCue01.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.resources.ResourceItem">
+			<item href="/Items/MegaWars/MegaWarProgressKey04.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+			<item href="/Items/MegaWars/MegaWarProgressKey04.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.LongData">
+				<value>100000</value>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateGreaterLong">
+						<lhs type="gameMechanics.world.social.megaWar.elements.CalcerMWarProgressWeek" />
+						<rhs type="gameMechanics.elements.calcers.LongData">
+							<value>29</value>
+						</rhs>
+					</predicate>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+					<impacts>
+						<Item type="gameMechanics.world.social.megaWar.elements.ImpactAddMapProgress" />
+					</impacts>
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

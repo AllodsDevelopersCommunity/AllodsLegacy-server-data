@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>280718359</resourceId>
+	</Header>
+	<altitude>0</altitude>
+	<lifeLengthCap>3600000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>45</radius>
+			<filter type="gameMechanics.constructor.basicElements.FilterOr">
+				<filters>
+					<Item type="gameMechanics.world.creature.AvatarFilter" />
+					<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCreature">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Shade.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss04_AddCaster.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04_Add_01.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss04_AddMelee.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Generator.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/GeneratorBroken.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+				</filters>
+			</filter>
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>1</visualState>
+						</Item>
+					</impacts>
+					<device href="/Mechanics/Spells/TepPyramidBosses/Boss_04/MorokDoor.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+				</Item>
+				<Item type="gameMechanics.map.variables.ImpactIfMapVariable">
+					<variable href="/Maps/Inst_TepPyramid/Scripts/MorokVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<predicates>
+						<Item type="gameMechanics.map.variables.PredicateMapVariableLessGeneric">
+							<variableResource href="/Maps/Inst_TepPyramid/Scripts/MorokVar.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+							<maxValue type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</maxValue>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+							<table href="/Maps/Inst_TepPyramid/SpawnTables/Inst_TepPyramid/Boss_04.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+							<radius>45</radius>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+											<mobs>
+												<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/GeneratorBroken.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											</mobs>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.MobFilter" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+									<visualState>1</visualState>
+								</Item>
+							</impacts>
+							<device href="Generator.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+							<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsToSummonPoolGeneric">
+							<pool href="/Mechanics/Spells/TepPyramidBosses/Boss_04/Boss04Pool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impactsElse>
+				</Item>
+			</impactsOnNone>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

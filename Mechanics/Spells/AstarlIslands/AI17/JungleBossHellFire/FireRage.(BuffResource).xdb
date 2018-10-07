@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>244375565</resourceId>
+	</Header>
+	<Name href="FireRage.txt" />
+	<Description href="FireRage.Description.txt" />
+	<image href="/Interface/Icons/Spells/Psionic/PsionicTimeLapse.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="FireRage.txt" />
+	<descTemplate href="FireRage.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.Switch">
+				<impactsOn>
+					<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+						<radius>50</radius>
+						<affectGroup>Enemies</affectGroup>
+						<affectHolder>false</affectHolder>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>ASTRAL</element>
+								<minDamage>100</minDamage>
+								<maxDamage>100</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+								<radius>50</radius>
+								<affectGroup>Enemies</affectGroup>
+								<affectHolder>false</affectHolder>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+										<element>ASTRAL</element>
+										<minDamage>100</minDamage>
+										<maxDamage>100</maxDamage>
+										<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+										<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+										<data href="HitOnTarget.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.constructor.basicElements.FilterOr">
+									<filters>
+										<Item type="gameMechanics.world.creature.AvatarFilter" />
+										<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+										</Item>
+									</filters>
+								</filter>
+							</Item>
+						</impacts>
+						<filter type="gameMechanics.constructor.basicElements.FilterOr">
+							<filters>
+								<Item type="gameMechanics.world.creature.AvatarFilter" />
+								<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</predicates>
+								</Item>
+							</filters>
+						</filter>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+						<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="FireRage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</impactsOn>
+			</effect>
+			<stackCountTrigger>6</stackCountTrigger>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<stackLimit>6</stackLimit>
+	<isHelpful>true</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

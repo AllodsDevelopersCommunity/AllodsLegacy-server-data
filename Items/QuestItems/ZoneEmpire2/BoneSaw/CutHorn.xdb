@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>24270</resourceId>
+	</Header>
+	<Name href="CutHornName.txt" />
+	<Description href="CutHornDesc.txt" />
+	<nameTemplate href="CutHornName.txt" />
+	<descTemplate href="CutHornDesc.txt" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<prepareDuration>1000</prepareDuration>
+	<isWorkOnDead>true</isWorkOnDead>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZoneEmpire2/Quest_80_60/Quest_80_60.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Items/QuestItems/ZoneEmpire2/RhinoHorn/RhinoHorn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							<value>7</value>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZoneEmpire2/Quest_80_60/Quest_80_60.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Items/QuestItems/ZoneEmpire2/UnicornHorn/UnicornHorn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+							<value>7</value>
+						</predicate>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Rhino/Instances/ZoneEmpire2/Rhino9_10.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Artiodactyl/Instances/ZoneEmpire2/Unicorn9_10.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</predicate>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Rhino/Instances/ZoneEmpire2/Rhino9_10.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ZoneEmpire2/Quest_80_60/Quest_80_60.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/Items/QuestItems/ZoneEmpire2/RhinoHorn/RhinoHorn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+											<value>7</value>
+										</predicate>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+										<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+											<item href="/Items/QuestItems/ZoneEmpire2/RhinoHorn/RhinoHorn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</item>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+										<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+											<item href="/Items/Mechanics/BrokenHornZE2Q8050.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</item>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Artiodactyl/Instances/ZoneEmpire2/Unicorn9_10.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Deadman.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ZoneEmpire2/Quest_80_60/Quest_80_60.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/Items/QuestItems/ZoneEmpire2/UnicornHorn/UnicornHorn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+											<value>7</value>
+										</predicate>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+										<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+											<item href="/Items/QuestItems/ZoneEmpire2/UnicornHorn/UnicornHorn.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</item>
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+										<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+											<item href="/Items/Mechanics/BrokenHornZE2Q8050.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										</item>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>280799239</resourceId>
+		<Variables>
+			<wreck_var1WithChests>ShipDeathWreck_01HWithChests.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_var1WithChests>
+			<decreasePercent>0.16</decreasePercent>
+			<wreck_var2>ShipDeathWreck_02H.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_var2>
+			<wreck_var3>ShipDeathWreck_03H.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_var3>
+			<wreck_ghost2>ShipDeathWreck_02H_Ghost.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_ghost2>
+			<wreck_ghost3>ShipDeathWreck_03H_Ghost.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_ghost3>
+			<wreckImpacts>WreckLootDropNoDurabilityLoss.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)</wreckImpacts>
+		</Variables>
+	</Header>
+	<Name href="BuffShipDieHard_Home.txt" />
+	<Description href="BuffShipDieHard_Home.Description.txt" />
+	<image href="/Interface/Icons/Misc/AstralShip.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectShipDieHard">
+			<impactsOnAttach>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="ShipDieHard.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>7000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.world.ship.elements.PredicateTooDeepInInstability">
+									<threshold>0</threshold>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.world.ship.elements.ImpactModifyShipHealth">
+									<limitModCalcer type="gameMechanics.elements.calcers.CalcerMul">
+										<calcers>
+											<Item type="gameMechanics.world.ship.elements.calcers.CalcerShipMaxDurability" />
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value var="decreasePercent" />
+											</Item>
+										</calcers>
+									</limitModCalcer>
+									<valueModCalcer type="gameMechanics.constructor.basicElements.FloatZero" />
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+							<delay>0</delay>
+							<impacts>
+								<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+									<destination href="/Maps/AstralHangarHadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									<success />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOnAttach>
+			<priority>-1</priority>
+		</Item>
+	</effects>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>true</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

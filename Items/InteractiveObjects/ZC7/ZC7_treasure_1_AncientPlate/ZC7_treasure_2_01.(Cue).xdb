@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>312757275</resourceId>
+	</Header>
+	<name href="ZC7_treasure_2_01.txt" />
+	<text href="ZC7_treasure_2_01.Text.txt" />
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+					<zone href="/Maps/IllusionWorld_Inst/ScriptZones/ZC7_SecretWall.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+					<destination type="gameMechanics.map.destination.DestinationLocator">
+						<locator>
+							<scriptID>Secretwall_Out</scriptID>
+							<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</locator>
+					</destination>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZC7/ZC7_treasure_2_E/ZC7_treasure_2_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Completed</status>
+									</predicate>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZC7/ZC7_treasure_2_L/ZC7_treasure_2_L.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Completed</status>
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+							<destination type="gameMechanics.map.destination.DestinationLocator">
+								<locator>
+									<scriptID>Secretwall_In</scriptID>
+									<map href="/Maps/IllusionWorld_Inst/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</locator>
+							</destination>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

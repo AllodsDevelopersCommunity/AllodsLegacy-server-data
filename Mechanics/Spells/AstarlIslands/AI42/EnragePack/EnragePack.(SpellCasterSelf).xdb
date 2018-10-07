@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>325299206</resourceId>
+	</Header>
+	<Name href="EnragePack.(SpellCasterSelf)_Name.txt" />
+	<visualScripts href="/Mechanics/Spells/AstarlIslands/AI42/Enrage/DrumMusic.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="EnragePack.(SpellCasterSelf)_Name.txt.template" />
+	<prepareDuration>3000</prepareDuration>
+	<immutablePrepareDuration>true</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>7000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>30</radius>
+				<affectGroup>Friends</affectGroup>
+				<conditions>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onSlave type="gameMechanics.elements.predicates.PredicateInCombat" />
+					</Item>
+				</conditions>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="EnragePack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.MobFilter" />
+				<targetsLimit>1</targetsLimit>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

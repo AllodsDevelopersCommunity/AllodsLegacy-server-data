@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.item.ItemResource>
+	<Header>
+		<resourceId>739822018</resourceId>
+	</Header>
+	<image href="/Interface/Icons/Mounts/MountCarpet.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<itemClass href="/Mechanics/ItemClasses/Other.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemClass)" />
+	<functionalPart type="itemService.avatar.itemBag.ItemTakeActions">
+		<actions>
+			<Item type="itemService.elements.components.ItemTakeActionImpacts">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+											<unlock href="TestCarpetRecieved.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateHasMount">
+											<mount href="/Mechanics/Mounts/5thGrade/Mounts/Carpet.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+										</predicate>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+										<rule href="/Mechanics/Rules/PrizeTesters/PrizeTestersRule.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+								<unlock href="TestCarpetRecieved.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+								<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+									<item href="/Mechanics/PrizeTesters/Items/CarpetTesterItem.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+								</item>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="itemService.avatar.itemBag.TakeCurrency">
+				<currency href="/Mechanics/AlternativeCurrencies/ItemMall/CasualToken.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			</Item>
+		</actions>
+	</functionalPart>
+	<quality href="/Mechanics/ItemQualities/Goods.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemQuality)" />
+	<binding>BindOnPickup</binding>
+	<itemMallType>ITEMMALLABLE</itemMallType>
+	<name href="FirstOpenMountTester.(ItemResource).Name.txt" />
+</gameMechanics.constructor.schemes.item.ItemResource>

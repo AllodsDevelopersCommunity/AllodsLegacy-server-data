@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>314397726</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Knockdowns.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="TreantWave.(SpellSingleTarget)_Name.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidTreantForm.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="TreantWave.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="TreantWave.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>15</value>
+	</range>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>12000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RunImpactsInShape">
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+								<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+									<value>0.6</value>
+								</chanceCalcer>
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="TreantAstralKick.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+										<time>1000</time>
+										<impactsOnLand>
+											<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+												<minDamage>24</minDamage>
+												<maxDamage>24</maxDamage>
+											</Item>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Mechanics/Spells/CommonBuffs/Stun/BuffStun.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impactsOnLand>
+										<distance>6</distance>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<shape type="gameMechanics.constructor.schemes.spell.area.Hemisphere" />
+				<affectGroup>Enemies</affectGroup>
+				<radius type="gameMechanics.elements.impacts.RunImpactsInShape$FixedRadius">
+					<value>15</value>
+				</radius>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

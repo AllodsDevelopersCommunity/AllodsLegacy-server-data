@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>369166366</resourceId>
+	</Header>
+	<Name href="Boss01_Fire.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Mounts/SpellsMounts/FireBeam.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="Boss01_Fire.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectRay">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>FIRE</element>
+					<threatMultiplier>0</threatMultiplier>
+					<minDamage>30</minDamage>
+					<maxDamage>30</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+				</Item>
+			</impacts>
+			<length>15</length>
+			<width>3</width>
+			<height>10</height>
+			<tick>2000</tick>
+			<affectGroup>Enemies</affectGroup>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<radius>40</radius>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+								<Item type="gameMechanics.elements.predicates.PredicateRespawnableResource">
+									<resources>
+										<Item href="Boss01_puddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+									</resources>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+									<projectileData>
+										<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+											<destination type="gameMechanics.map.destination.SelfPosDestination" />
+										</moveType>
+										<resource href="Boss01_FirePuddle.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+									</projectileData>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+									<delay>1000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Undispelable.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>259806286</resourceId>
+	</Header>
+	<Name href="GolemBuff.(BuffResource).Name.txt" />
+	<Description href="GolemBuff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/FragmentsGolems.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="GolemTransform.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="GolemBuff.(BuffResource).Name.txt" />
+	<descTemplate href="GolemBuff.(BuffResource).Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAddContextActions">
+			<actions>
+				<Item href="StackAma/StackAma.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<Item href="Invis/Invis.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactHeal">
+					<heal>1</heal>
+					<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+						<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer" />
+					</scaler>
+					<mode>Direct</mode>
+					<considerOutgoingModifiers>false</considerOutgoingModifiers>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactDismount" />
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectInZoneTracker">
+			<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<activeZone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_yellow.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			<trackData href="MapIcon.(TrackDataResource).xdb#xpointer(/gameMechanics.world.avatar.TrackDataResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAllActionsExceptGroup">
+			<group href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0</multiplier>
+			</healthOn>
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInZone">
+							<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_yellow.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>12</min>
+										<max>12</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_12Stack/Chest_12Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_12Stack/Chest_12Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>11</min>
+										<max>11</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_11Stack/Chest_11Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_11Stack/Chest_11Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>10</min>
+										<max>10</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_10Stack/Chest_10Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_10Stack/Chest_10Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>9</min>
+										<max>9</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_09Stack/Chest_09Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_09Stack/Chest_09Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>8</min>
+										<max>8</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_08Stack/Chest_08Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_08Stack/Chest_08Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>7</min>
+										<max>7</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_07Stack/Chest_07Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_07Stack/Chest_07Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>6</min>
+										<max>6</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_06Stack/Chest_06Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_06Stack/Chest_06Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>5</min>
+										<max>5</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_05Stack/Chest_05Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_05Stack/Chest_05Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>4</min>
+										<max>4</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_04Stack/Chest_04Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_04Stack/Chest_04Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>3</min>
+										<max>3</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_03Stack/Chest_03Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_03Stack/Chest_03Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>2</min>
+										<max>2</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_02Stack/Chest_02Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_02Stack/Chest_02Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>1</min>
+										<max>1</max>
+									</range>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+											<minLevel type="gameMechanics.formulas.IntConstantValue">
+												<value>55</value>
+											</minLevel>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_01Stack/Chest_01Stack.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactSummon">
+											<destination type="gameMechanics.map.destination.RelativePos" />
+											<object href="/Items/InteractiveObjects/Maze_KHD/Maze_v2/Chest_01Stack/Chest_01Stack_Turkey.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsIf>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInZone">
+								<zone href="/Maps/Maze_KHD/Zones/Maze_KHD/Maze_KHD.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="GolemBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateIsMountAction" />
+		</Item>
+	</effects>
+	<duration>180000</duration>
+	<stackLimit>12</stackLimit>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Transformation.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/Dismount.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>99374096</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+							<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+									<distributor type="gameMechanics.elements.calcers.ShipDistributor" />
+									<data href="MinedReactorCountdown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+									<calcers>
+										<floatEntries>
+											<Item>
+												<name>timeLeft</name>
+												<calcer type="gameMechanics.elements.calcers.CalcerBuffDuration">
+													<buff href="ReplicatedBombBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<multiplier>0.001</multiplier>
+												</calcer>
+											</Item>
+										</floatEntries>
+									</calcers>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>1000</initialDelay>
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.EffectBoundShipChangeHandler">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactResetActiveAction" />
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactResetActiveAction" />
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+			<predicates />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+							<buff href="ReplicatedBombBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+							<buff href="ReplicatedBombBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>351394838</resourceId>
+	</Header>
+	<Name href="ChargeBuff.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorCharge.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Warrior/Charge.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ChargeStandalone">
+			<targetFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+			<impactsToTarget>
+				<Item type="gameMechanics.elements.impacts.ImpactClearSpellCooldown">
+					<spell href="/Mechanics/MegaWar/Assistants/MeleeDD/Abilities/MeatChopper/MeatChopper.(SpellArea).xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+				</Item>
+			</impactsToTarget>
+			<impactsToCharger>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/CommonBuffs/KnockDown/BuffKnockDown.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsToCharger>
+			<speedFactor>3</speedFactor>
+			<predicate type="gameMechanics.elements.predicates.PredicateReachTarget" />
+			<pathChecker type="space.pathfinding.pathChecker.PathDeviationLimited">
+				<angle>0.5236</angle>
+			</pathChecker>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImmunityToSpellFromGroup">
+			<groups>
+				<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</groups>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<impactsOnAttach>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="ChargeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOnAttach>
+			<ignoreHelpful>true</ignoreHelpful>
+			<ignoreHarmful>true</ignoreHarmful>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHasGroup">
+					<group href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+					<predicate type="gameMechanics.constructor.schemes.buff.PredicateBuffHarmful" />
+				</Item>
+			</predicates>
+		</Item>
+	</effects>
+	<duration>6000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

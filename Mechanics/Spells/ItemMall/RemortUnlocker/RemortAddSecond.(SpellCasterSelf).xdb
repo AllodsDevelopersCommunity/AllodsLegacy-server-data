@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>277854208</resourceId>
+	</Header>
+	<Name href="RemortAddSecond.(SpellCasterSelf).Name.txt" />
+	<Description href="RemortAddSecond.(SpellCasterSelf).Description.txt" />
+	<nameTemplate href="RemortAddSecond.(SpellCasterSelf).Name.txt" />
+	<descTemplate href="RemortAddSecond.(SpellCasterSelf).Description.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceAltCurrency">
+					<currency href="/Mechanics/AlternativeCurrencies/MaxRemortsAvailable.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+					<countCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value>7</value>
+					</countCalcer>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateIsRemort" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+				<unlock href="/Mechanics/Unlocks/RemortGrantedAbilities/Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+							<unlock href="/Mechanics/Unlocks/RemortGrantedAbilities/RemortUnlockSecond.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+						<unlock href="/Mechanics/Unlocks/RemortGrantedAbilities/RemortUnlockSecond.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+						<currency href="/Mechanics/AlternativeCurrencies/RemortPoint.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+						<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</sumCalcer>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+						<currency href="/Mechanics/AlternativeCurrencies/MaxRemortsAvailable.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+						<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</sumCalcer>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+										<unlock href="/Mechanics/Unlocks/RemortGrantedAbilities/RemortUnlockSecond.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateUnlock">
+										<unlock href="/Mechanics/Unlocks/RemortGrantedAbilities/Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+								<currency href="/Mechanics/AlternativeCurrencies/MaxRemortsAvailable.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+								<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</sumCalcer>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+								<currency href="/Mechanics/AlternativeCurrencies/RemortPoint.(AlternativeCurrency).xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+								<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</sumCalcer>
+							</Item>
+						</impacts>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>5000</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

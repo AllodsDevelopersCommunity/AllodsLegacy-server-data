@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>164524248</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Druid/DruidNaturalRegeneration.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<effectFx href="/Spells/FX/Spells/PriestMendWoundsAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<fixPoint>false</fixPoint>
+			<lockScale>false</lockScale>
+			<scale>1</scale>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+			<locator>Slot_Global</locator>
+			<member>Default_Member</member>
+			<locatorName />
+			<useVisObjectSettings>FROM_CASTER</useVisObjectSettings>
+		</Item>
+	</visualEffects>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.common.HealOverTime">
+			<healPerTick type="gameMechanics.elements.calcers.FloatData">
+				<value var="value" />
+			</healPerTick>
+			<threatMultiplier>1</threatMultiplier>
+			<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+				<scalers>
+					<Item type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</Item>
+					<Item type="gameMechanics.elements.scalers.ScalerIf">
+						<condition type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<hideText>false</hideText>
+							<ability href="/Mechanics/Abilities/DruidTalentsV2/ElectroTherapy/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<anyRank>true</anyRank>
+						</condition>
+					</Item>
+				</scalers>
+			</scaler>
+			<tick>2000</tick>
+			<mode>Default</mode>
+			<affectOnStartTick>false</affectOnStartTick>
+			<considerOutgoingModifiers>true</considerOutgoingModifiers>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+							<hideText>false</hideText>
+							<ability href="/Mechanics/Abilities/DruidTalentsV2/NatureHealing/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<anyRank>true</anyRank>
+						</Item>
+					</predicates>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactHeal">
+							<heal>1</heal>
+							<threatMultiplier>1</threatMultiplier>
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.MagicScaler">
+										<stat>IS_Intellect</stat>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+										<ability href="/Mechanics/Abilities/DruidTalentsV2/NatureHealing/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										<mul>8.9</mul>
+									</Item>
+								</scalers>
+							</scaler>
+							<mode>Default</mode>
+							<considerOutgoingModifiers>true</considerOutgoingModifiers>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_HoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

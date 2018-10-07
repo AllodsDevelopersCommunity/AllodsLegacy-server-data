@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>380224520</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>LIGHTNING</element>
+							<threatMultiplier>5</threatMultiplier>
+							<scalerTarget type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>true</anyRank>
+										<onlyFromMaster>true</onlyFromMaster>
+										<mul>-1</mul>
+										<sum>9</sum>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>true</anyRank>
+										<onlyFromMaster>true</onlyFromMaster>
+										<mul>-1</mul>
+										<sum>9</sum>
+									</Item>
+								</scalers>
+							</scalerTarget>
+							<minDamage>1</minDamage>
+							<maxDamage>1</maxDamage>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps>6</jumps>
+			<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.RandomAutotarget">
+				<group>Enemies</group>
+				<radius>10</radius>
+			</autotarget>
+			<onBehalfOfCaster>true</onBehalfOfCaster>
+			<radius>10</radius>
+			<inCasterRange>false</inCasterRange>
+			<keepTrack>true</keepTrack>
+			<renewingEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOff>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+								<radius>85</radius>
+							</distributor>
+							<data href="/Spells/ClientData/ChainLightning_Druid.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<calcers>
+								<addressEntries>
+									<Item>
+										<name>caster</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+									<Item>
+										<name>target</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+								</addressEntries>
+							</calcers>
+						</Item>
+					</impactsOff>
+					<rerunOnLoad>false</rerunOnLoad>
+				</Item>
+			</renewingEffects>
+		</Item>
+	</effects>
+	<duration>75</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>7</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<ranks />
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

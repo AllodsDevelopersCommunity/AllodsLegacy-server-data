@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>365992960</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Misc/Crafting/Retorts.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell04.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell05.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat">
+				<hideText>false</hideText>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<hideText>false</hideText>
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<hideText>false</hideText>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateReputationLess">
+								<hideText>false</hideText>
+								<faction href="/World/Factions/Profession/LeagueCrafters.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								<value var="value" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateFaction">
+								<hideText>true</hideText>
+								<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<hideText>false</hideText>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateReputationLess">
+								<hideText>false</hideText>
+								<faction href="/World/Factions/Profession/EmpireCrafters.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+								<value var="val_1" />
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateFaction">
+								<hideText>true</hideText>
+								<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem">
+				<hideText>false</hideText>
+				<number var="number" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<hideText>false</hideText>
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAddReputation">
+						<faction href="/World/Factions/Profession/LeagueCrafters.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						<value>100</value>
+						<scaleByGlobal>true</scaleByGlobal>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAddReputation">
+						<faction href="/World/Factions/Profession/EmpireCrafters.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+						<value>100</value>
+						<scaleByGlobal>true</scaleByGlobal>
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

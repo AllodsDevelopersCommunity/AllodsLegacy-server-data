@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>125037681</resourceId>
+	</Header>
+	<Name href="Spell_name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/Beacon1_L1_3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/Beacon2_L1_3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/Beacon1_L1_3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ArchipelagoGipatsShard/L1_3/L1_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ArchipelagoGipatsShard/L1_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoGipatsShard/L1_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Lantern.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>1</count>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1</value>
+							</yaw>
+						</destination>
+						<object href="/Items/InteractiveObjects/ArchipelagoGipatsShard/Beacon_Kania/Beacon_Kania.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+						<impacts />
+						<deviceImpacts>
+							<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+								<delay>60000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+										<delay>0</delay>
+									</Item>
+								</impacts>
+							</Item>
+						</deviceImpacts>
+						<pool href="Beacon_Kani_Pool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/Beacon2_L1_3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ArchipelagoGipatsShard/L1_3/L1_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/World/Quests/ArchipelagoGipatsShard/L1_3/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ArchipelagoGipatsShard/L1_3/CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+						<item href="Lantern.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						<count>1</count>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<coord x="0" y="0" z="0" />
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1</value>
+							</yaw>
+							<faceSourcePos>true</faceSourcePos>
+						</destination>
+						<object href="/Items/InteractiveObjects/ArchipelagoGipatsShard/Beacon_Kania/Beacon_Kania.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+						<impacts />
+						<deviceImpacts>
+							<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+								<delay>60000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate">
+										<delay>0</delay>
+									</Item>
+								</impacts>
+							</Item>
+						</deviceImpacts>
+						<plane href="" />
+						<pool href="" />
+						<traceDown>false</traceDown>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

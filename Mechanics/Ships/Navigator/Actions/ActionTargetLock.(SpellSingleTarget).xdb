@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>282924032</resourceId>
+	</Header>
+	<Name href="ActionTargetLockName.txt" />
+	<Description href="ActionTargetLockDesc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/VisorAbilitiesAnalysisPurposes.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10000</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+					<summands>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.world.device.CalcerTechLevelDelta" />
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>0</value>
+								</Item>
+							</calcers>
+						</Item>
+					</summands>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAstralMob" />
+					<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+				</predicates>
+			</Item>
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+				<buff href="TargetLock.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</targetImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceEnergy">
+				<energy type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>100</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+							<value type="gameMechanics.elements.calcers.FloatData">
+								<value>1.33</value>
+							</value>
+						</Item>
+					</calcers>
+				</energy>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

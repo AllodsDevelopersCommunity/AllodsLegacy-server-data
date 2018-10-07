@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>188047378</resourceId>
+	</Header>
+	<Name href="/Mechanics/Spells/Inst_DeadCity/Boss_GateKeeper/Fire_Ball/Buff_Name.txt" />
+	<Description href="/Mechanics/Spells/Inst_DeadCity/Boss_GateKeeper/Fire_Ball/Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageFireInstability.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Bosses/DC_2_1Boss/DrakeBomber_FireDot.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<element>FIRE</element>
+			<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+			<parameters>
+				<damagePerTick>11000</damagePerTick>
+				<statsConvertor>
+					<intuition type="gameMechanics.elements.calcers.CalcerIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</predicate>
+						<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Intuition</stat>
+						</calcerIf>
+						<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Dexterity</stat>
+						</calcerElse>
+					</intuition>
+					<spirit type="gameMechanics.elements.calcers.CalcerIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateManaCaster">
+							<manaType>Mana</manaType>
+						</predicate>
+						<calcerIf type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Spirit</stat>
+						</calcerIf>
+						<calcerElse type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Might</stat>
+						</calcerElse>
+					</spirit>
+				</statsConvertor>
+				<affectOnStartTick>true</affectOnStartTick>
+			</parameters>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>50</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FireSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_DoT</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

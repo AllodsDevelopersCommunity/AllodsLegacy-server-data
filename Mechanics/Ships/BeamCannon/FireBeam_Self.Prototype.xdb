@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>129042525</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<autoAimAngle>10</autoAimAngle>
+			<damageType>ASTRAL</damageType>
+			<multiplier>1</multiplier>
+			<energy>160</energy>
+			<base>2</base>
+			<damageMultiplier>400</damageMultiplier>
+			<fireBeam>FireBeam_ClientData.xdb#xpointer(/gameMechanics.world.device.cannon.AstralSpell)</fireBeam>
+			<limit>3</limit>
+			<safe>false</safe>
+		</Variables>
+	</Header>
+	<Name href="/Mechanics/Ships/BeamCannon/BeamCannonStartName.txt" />
+	<Description href="/Mechanics/Ships/BeamCannon/BeamCannonStartDesc.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/StalkerArrowOvercharged.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<groups>
+		<Item href="BeamCannonSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="BeamCannonTargetSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<isWeak>true</isWeak>
+	<prepareDuration>60000</prepareDuration>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.ResourceEnergy">
+				<energy type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value var="energy" />
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerExp">
+							<base var="base" />
+							<powCalc type="gameMechanics.elements.calcers.FloatData">
+								<value>-1</value>
+							</powCalc>
+						</Item>
+					</calcers>
+				</energy>
+				<safe var="safe" />
+			</Item>
+		</casterConditions>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff hrefvar="targetBuff" />
+		</channelingMechanics>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAstralMob" />
+					<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+				</predicates>
+			</Item>
+		</targetConditions>
+		<casterChannelingEffects>
+			<Item type="gameMechanics.elements.effects.Switch">
+				<impactsOn>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff href="FireUsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+						<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsOn>
+				<impactsOff>
+					<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+						<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+								<buff href="FireUsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.world.device.cannon.ImpactBeamCannonStop" />
+					<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+						<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsOff>
+			</Item>
+			<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+				<tick>2000</tick>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>0</delay>
+						<impacts>
+							<Item type="gameMechanics.world.device.cannon.ImpactSendLaunchEvent">
+								<clientData hrefvar="fireBeam" />
+								<channeling>true</channeling>
+							</Item>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.world.ship.elements.ImpactEnergyConsume">
+						<hasSafetyFuse>false</hasSafetyFuse>
+						<safe var="safe" />
+						<amount type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value var="energy" />
+								</Item>
+								<Item type="gameMechanics.elements.calcers.CalcerExp">
+									<base var="base" />
+									<powCalc type="gameMechanics.elements.calcers.CalcerSum">
+										<summands>
+											<Item type="gameMechanics.elements.calcers.CalcerMul">
+												<calcers>
+													<Item type="gameMechanics.elements.calcers.FloatData">
+														<value var="multiplier" />
+													</Item>
+													<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+														<forAllRanks>false</forAllRanks>
+														<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</calcers>
+											</Item>
+											<Item type="gameMechanics.elements.calcers.FloatData">
+												<value>-1</value>
+											</Item>
+										</summands>
+									</powCalc>
+								</Item>
+							</calcers>
+						</amount>
+						<onFail>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="SelfTickBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+								<delay>0</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactChannelingStop" />
+									<Item type="gameMechanics.world.device.ImpactSendCriticalMalfunction">
+										<type>CMT_BeamSafeTurnOff</type>
+									</Item>
+								</impacts>
+							</Item>
+						</onFail>
+						<onSuccess>
+							<Item type="gameMechanics.elements.impacts.ProbabilisticImpactGeneric">
+								<chanceCalcer type="gameMechanics.world.device.LinearMalfunctionCalcer">
+									<treshold>1</treshold>
+									<inverted>false</inverted>
+									<value>0.5</value>
+									<k>1</k>
+									<b>0</b>
+								</chanceCalcer>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+										<delay>0</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactChannelingStop" />
+											<Item type="gameMechanics.world.device.ImpactSendCriticalMalfunction">
+												<type>CMT_BeamTurnOff</type>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</onSuccess>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.DeviceOnlineTrigger">
+				<impactsOff>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>0</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactChannelingStop" />
+						</impacts>
+					</Item>
+				</impactsOff>
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.DeviceUseTrigger">
+				<deviceImpactsOnFinishUse>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+						<delay>0</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactChannelingStop" />
+						</impacts>
+					</Item>
+				</deviceImpactsOnFinishUse>
+				<userImpactsOnFinishUse>
+					<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+						<buff href="FireUsageBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</userImpactsOnFinishUse>
+			</Item>
+		</casterChannelingEffects>
+		<cooldown>
+			<duration>60000</duration>
+			<group href="BeamCannonTargetSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataGeneric">
+				<data href="CannonAttack_ClientData.xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellGroupDeactivateGeneric">
+				<group href="BeamCannonSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivateGeneric" />
+		</casterImpacts>
+	</mechanics>
+	<speed>500</speed>
+	<targetsSelectionStage>Start</targetsSelectionStage>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Cone">
+		<objectsProvider>CollisionScene</objectsProvider>
+		<angle type="constructor.basicElements.AngleRadians">
+			<value>0.2618</value>
+		</angle>
+	</shape>
+	<useAverageThrowDuration>true</useAverageThrowDuration>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>
+	<Header>
+		<resourceId>76230663</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<visObj />
+			<image>/Interface/Ingame/ContextAstralMap/AstralHubMark/PortalBlue.(UITextureElement).xdb#xpointer(/UITextureElement)</image>
+			<description>AstralTeleportDesc.txt</description>
+			<scale>1</scale>
+			<radius />
+			<name>AstralTeleport.txt</name>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="VisEntityVisualizer">
+			<visObj hrefvar="visObj" />
+			<scale var="scale" />
+		</Item>
+		<Item type="AstralHubObjectPart">
+			<name hrefvar="name" />
+			<description hrefvar="description" />
+			<image hrefvar="image" />
+		</Item>
+		<Item type="PositionSynchronizer" />
+	</parts>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectAstralPerimeterCollision">
+			<radius var="radius" />
+			<impactsIn>
+				<Item type="gameMechanics.world.ship.elements.ImpactTeleportToSector">
+					<success />
+				</Item>
+			</impactsIn>
+			<inPredicates>
+				<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+					<onSlave type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+							<groups>
+								<Item href="/Mechanics/Spells/Groups/AstralShipInterhubTravelBlockers.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+							</groups>
+						</predicate>
+					</onSlave>
+				</Item>
+			</inPredicates>
+		</Item>
+	</effects>
+</gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj>

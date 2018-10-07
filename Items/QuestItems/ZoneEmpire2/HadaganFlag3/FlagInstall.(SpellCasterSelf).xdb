@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>81737793</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="1.txt" />
+		<contextDescription href="2.txt" />
+	</contextActionInfo>
+	<Name href="3.txt" />
+	<Description href="4.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<replaceLowRanks>true</replaceLowRanks>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneEmpire2/Quest_110_40/Quest_110_40.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/Hadagan/ScriptZones/FlagZone3.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="HadaganFlag3.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+				<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/FLAG_03_1.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneEmpire2/Quest_110_40/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>60000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+						<table href="/Maps/Hadagan/SpawnTables/ZoneEmpire2/FLAG_03_1.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<iffPolicy>FriendsEnemies</iffPolicy>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>24350</resourceId>
+	</Header>
+	<Name href="E3_11_Spirit_Wand_Charged_Spell_Name.txt" />
+	<Description href="E3_11_Spirit_Wand_Charged_Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Items/E3_Spirit_Wand_Charged.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Hadagan/Zones/ZoneEmpire3/E3_Sector09.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Hadagan/Zones/ZoneEmpire3/E3_Sector10.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Hadagan/Zones/ZoneEmpire3/E3_Sector11.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="E3_Spirit_Wand_Charged_Spell.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>120000</duration>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>0</value>
+							</yaw>
+							<faceSourcePos>true</faceSourcePos>
+							<coord x="0" y="0" z="0" />
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>120000</delay>
+								<limit>1</limit>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+								<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+							</Item>
+						</impacts>
+						<plane href="" />
+						<pool href="" />
+						<traceDown>false</traceDown>
+						<object href="/Creatures/Scorpion/Instances/ZoneEmpire3/Scorpion16_16.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

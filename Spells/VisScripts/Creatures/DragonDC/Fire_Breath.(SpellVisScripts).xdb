@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/MobOmni.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<FixPointCaster>false</FixPointCaster>
+			<LocatorNameOnCaster>Slot_Special01</LocatorNameOnCaster>
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+			<FXOnCaster>/Spells/FX/Spells/DragonForm_FireBreath.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellRed.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<CastAnimation>spellCastDirected</CastAnimation>
+			<AnimationPreCastMode>LOOP</AnimationPreCastMode>
+			<FixPointTarget>true</FixPointTarget>
+			<LocatorNameOnTargets />
+			<PreCastAnimation>specialCast</PreCastAnimation>
+			<LocatorOnTargets>Slot_FX</LocatorOnTargets>
+			<HitPostFXOnTargets />
+			<FXOnTargets />
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<scale>2</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>L_Hand</locatorName>
+					</Item>
+					<Item>
+						<scale>2</scale>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>R_Hand</locatorName>
+					</Item>
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Spells/DragonForm_FireBreath_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fixPoint var="FixPointCaster" />
+								<scale>0.3</scale>
+								<locator>Slot_Global</locator>
+							</Item>
+							<Item>
+								<effectFx hrefvar="FXOnCaster" />
+								<locator var="LocatorOnCaster" />
+								<locatorName var="LocatorNameOnCaster" />
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

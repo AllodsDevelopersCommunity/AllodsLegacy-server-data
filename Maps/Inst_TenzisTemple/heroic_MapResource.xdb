@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>98487361</resourceId>
+	</Header>
+	<name href="Zones/Inst_TenzisTemple/ZoneDescription.txt" />
+	<mapPrefix>heroic</mapPrefix>
+	<factionExits>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Portal_League1_Capital</scriptID>
+					<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0</value>
+				</yaw>
+			</exit>
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item>
+			<exit type="mapLoader.pointer.MapPointerPos">
+				<pointer>
+					<scriptID>Capital_AE1_Teleport</scriptID>
+					<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</pointer>
+				<yaw type="constructor.basicElements.AngleRadians">
+					<value>0</value>
+				</yaw>
+			</exit>
+			<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+	</factionExits>
+	<mapTemplate href="/System/MapTemplates/SaveableGroupInstance.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<spawnSettings>
+		<trashMinSpawnTime>10800000</trashMinSpawnTime>
+		<trashMaxSpawnTime>10800000</trashMaxSpawnTime>
+		<runeLevel>5</runeLevel>
+	</spawnSettings>
+	<globalObjects />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="/Items/InteractiveObjects/Inst_TenzisTemple/MapVariableSaveable.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+						</predicates>
+						<effectsIf>
+							<Item type="gameMechanics.elements.effects.Switch">
+								<impactsOn>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Characters/Hadagan_male/Instances/InstTenzisTemple/Instances/Inst_TenzisTemple/TZ_mapresource_heroic.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsOn>
+								<impactsOff>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Characters/Hadagan_male/Instances/InstTenzisTemple/Instances/Inst_TenzisTemple/TZ_mapresource_heroic.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impactsOff>
+							</Item>
+						</effectsIf>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+	<resetInstancePeriod href="/Mechanics/GameRoot/Instance.(TimeTable).xdb#xpointer(/timetables.TimeTable)" />
+</mapLoader.MapResource>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.group.SpellGroup>
+	<Header>
+		<resourceId>360059920</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/TeleportationSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/ActionBarChange.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell.(SpellGroup).Name.txt" />
+	<Description href="Spell.(SpellGroup).Description.txt" />
+	<image href="/Interface/Icons/Spells/Mage/Sanctuary.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mage/Sanctuary.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>6</sysName>
+	<prepareDuration>5000</prepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Friends</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>300000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onMaster type="gameMechanics.world.ship.elements.PredicateHasBoundShip">
+								<ownershipRequired>false</ownershipRequired>
+							</onMaster>
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactTeleportToBoundShip" />
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.elements.impacts.ImpactTeleportToSanctuary" />
+						</impactsElse>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.group.SpellGroup>

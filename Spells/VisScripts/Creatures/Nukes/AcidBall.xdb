@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<FxExplosion>/Spells/FX/Spells/HitFireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxExplosion>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FxProjectile>/Spells/FX/Spells/MageIceArrowAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+		</Variables>
+	</Header>
+	<actionBarStart type="CreatureAnimationAction">
+		<mode>LOOP</mode>
+		<animations>
+			<Item>readySpellDirected</Item>
+		</animations>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<locator>Slot_Hand_L</locator>
+				<effectFx hrefvar="FxOnHands" />
+			</Item>
+			<Item>
+				<locator>Slot_Hand_R</locator>
+				<effectFx hrefvar="FxOnHands" />
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<offendType>ONEOFFEND_ONETARGET</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_FIRSTKEY</mode>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="CreatureProjectileAction">
+				<projectileFx hrefvar="FxProjectile" />
+				<explosionFx hrefvar="FxExplosion" />
+				<isMultyProjectile>true</isMultyProjectile>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

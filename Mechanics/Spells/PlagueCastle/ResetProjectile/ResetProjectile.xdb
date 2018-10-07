@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>61603843</resourceId>
+	</Header>
+	<altitude>0</altitude>
+	<lifeLengthCap>0</lifeLengthCap>
+	<impactsOnHit />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityWaitNoneOrSomeAround">
+			<radius>100</radius>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+			<impactsOnNone>
+				<Item type="gameMechanics.elements.impacts.EntityFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+							<newMobWorld href="/Characters/Kania_male/Instances/PlagueCastle/DakarDiDazire.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>PC_Dackar</scriptID>
+						<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntitytFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+									<msg href="/Characters/Kania_male/Instances/PlagueCastle/Pannochka06.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+									<defaultSpeaker href="/Characters/Kania_female/Instances/PlagueCastle/Pannochka.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Characters/Kania_male/Instances/PlagueCastle/Pannochka06.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+							<useParentCaster>false</useParentCaster>
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/Pannochka.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.DoorSwitch">
+							<switchType>Open</switchType>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>TheDoor2</scriptID>
+						<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityResetSpawnTable">
+					<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/SkeletonMage22_22PC.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityResetSpawnTable">
+					<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/SkeletonWarrior22_22PC.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityResetSpawnTable">
+					<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/ZombieWarrior22_22PC.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>0</visualState>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>PC_Bell</scriptID>
+						<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+					<delay>5000</delay>
+					<limit>1</limit>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.EntityResetSpawnTable">
+							<table href="/Maps/Inst_PlagueCastle/SpawnTables/PlagueCastle/Pannochka.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntitySpawnSingleMob">
+							<mob>
+								<scriptID>PC_PannochkaSleeping</scriptID>
+								<map href="/Maps/Inst_PlagueCastle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.EntityImpactsDeferred">
+							<delay>1000</delay>
+							<limit>1</limit>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.EntityImpactEntitiesAround">
+									<radius>85</radius>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOnNone>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

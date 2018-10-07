@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.trigger.TriggerResource>
+	<Header>
+		<resourceId>314523665</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ReturningImpact">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="ZC8_1_110.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+										<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+											<predicate type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="ZC8_NPC_Genlun_Summon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</predicate>
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="ZC8_1_110.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/Creatures/Crocodile/Instances/ZC8/ZC8_Crocodile.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											<value>9</value>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactSummon">
+									<destination type="gameMechanics.map.destination.DestinationModified">
+										<destination type="gameMechanics.map.destination.RelativePos">
+											<yaw type="constructor.basicElements.AngleRadians" />
+										</destination>
+										<modifiers>
+											<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+												<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+													<verticalRange min="0" max="0" />
+													<horizontalRange min="0" max="5" />
+												</modifier>
+											</Item>
+										</modifiers>
+									</destination>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="ZC8_NPC_Genlun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+											<impacts>
+												<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+													<buff href="ZC8_NPC_Genlun_Summon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impacts>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+											<delay>1000</delay>
+											<impacts>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+													<data href="GenlunInvite.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>4000</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+																	<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																	<buff href="ZC8_NPC_Genlun_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																	<buff href="ZC8_NPC_Genlun.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																	<buff href="ZC8_NPC_Genlun_Summon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																</Item>
+															</impacts>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactGoTo">
+															<destination type="gameMechanics.map.destination.DestinationLocator">
+																<locator>
+																	<scriptID>GoldenFlower_4</scriptID>
+																	<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+																</locator>
+															</destination>
+															<runningMode>true</runningMode>
+														</Item>
+														<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+															<delay>4000</delay>
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.Disintegrate" />
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ReturningImpact">
+															<impacts>
+																<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+																	<msg href="GenlunInvite.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+													<delay>500</delay>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+															<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+															<data href="GenlunInvite.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														</Item>
+													</impacts>
+												</Item>
+											</impacts>
+										</Item>
+									</impacts>
+									<object href="/Characters/HumMobs/ZC8/ZC8_NPC_Genlun_summon.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.quest.trigger.TriggerResource>

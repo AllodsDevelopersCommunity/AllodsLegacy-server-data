@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>292747282</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>101</priority>
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MercControl.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Attack.(SpellSingleTarget)_Name.txt" />
+	<Description href="Attack.(SpellSingleTarget)_Desc.txt" />
+	<image href="/Interface/Icons/Special/Emotions/Attack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Attack.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="Attack.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<isAggro>false</isAggro>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Friends</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+							<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+										<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>5000</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.ForceAggro" />
+														</impacts>
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+																<value>100000000</value>
+															</Item>
+														</impacts>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/HumMobs/Mercenaries/Berserker/Berserker.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Archer/Archer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Wizard/Wizard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Witcher/Witcher.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+					</predicates>
+				</filter>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Friends</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+							<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+										<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+														<value>100000000</value>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+										<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+														<value>100000000</value>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/HumMobs/Mercenaries/Tank/Tank.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Healer/Healer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+				</filter>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<affectGroup>Friends</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsIf">
+						<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+							<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="/Mechanics/Spells/Mercenaries/Controls/Retreat/MercRetreatPlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.SendImpactsToAddressee">
+										<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ForceAggro" />
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+														<value>100000000</value>
+													</Item>
+												</impacts>
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/HumMobs/Mercenaries/Berserker/Berserker.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Archer/Archer.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Wizard/Wizard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								<Item href="/Characters/HumMobs/Mercenaries/Witcher/Witcher.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+					</predicates>
+				</filter>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

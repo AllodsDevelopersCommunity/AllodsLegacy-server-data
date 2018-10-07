@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>128193561</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerSleepingDropsy.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<delay>0</delay>
+			<locator>FROM_LOCATOR_NAME</locator>
+			<member>Default_Member</member>
+			<locatorName>Slot_BodyFX</locatorName>
+			<effectFx href="/Spells/FX/Spells/NecromancerSpreadingPlagueAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAlias href="" />
+			<effectAnimations>
+				<mode>DIE</mode>
+			</effectAnimations>
+			<fixPoint>false</fixPoint>
+			<fadeInTime>200</fadeInTime>
+			<fadeOutTime>500</fadeOutTime>
+		</Item>
+	</visualEffects>
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+					<value>1</value>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+					<element>DISEASE</element>
+					<threatMultiplier>1</threatMultiplier>
+					<minDamage>20</minDamage>
+					<maxDamage>20</maxDamage>
+					<scaler type="gameMechanics.elements.scalers.MagicScaler">
+						<stat>IS_Intellect</stat>
+					</scaler>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.IncrementMana">
+					<manaType>Mana</manaType>
+					<amount>-250</amount>
+					<threatMultiplier>1</threatMultiplier>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.IncrementMana">
+					<manaType>Energy</manaType>
+					<amount>-250</amount>
+					<threatMultiplier>1</threatMultiplier>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DiseaseAura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>10</radius>
+			<delayIn>2000</delayIn>
+			<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<targetCondition>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+							</Item>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<anyRank>true</anyRank>
+							</Item>
+						</predicates>
+					</predicate>
+				</Item>
+			</targetCondition>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>5</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Diseases.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

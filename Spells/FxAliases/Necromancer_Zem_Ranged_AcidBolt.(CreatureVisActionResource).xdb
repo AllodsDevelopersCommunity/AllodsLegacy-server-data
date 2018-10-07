@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CreatureVisActionResource>
+	<Header>
+		<Variables>
+			<FxOnCaster />
+			<FadeInTimeChannel>0</FadeInTimeChannel>
+			<FixPointCaster>false</FixPointCaster>
+			<DelayCasterFX>0</DelayCasterFX>
+			<RayVelocity>0</RayVelocity>
+			<LocatorNameOnCaster>Slot_Eye_L</LocatorNameOnCaster>
+			<LocatorNameOnTarget />
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+			<Animation>spellCastDirected</Animation>
+			<FadeOutTimeChannel>0</FadeOutTimeChannel>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<HitDelay>0</HitDelay>
+			<FxChannel>/Spells/FX/Spells/Pets/AcidBolt_Zem.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxChannel>
+		</Variables>
+	</Header>
+	<action type="VisActionList">
+		<visActionID />
+		<play>InSequence</play>
+		<playWhile />
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>DIE</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<channelOverrideControllers>DEFAULT_CONTROLLERS</channelOverrideControllers>
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<changeChannelAfterFirstKey>NOT_CHANGE</changeChannelAfterFirstKey>
+					<channelAfterFirstKey>CHANNEL_RETURNING</channelAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<stopIfRotatedOrMoved>false</stopIfRotatedOrMoved>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+					<turnToTarget>TURN_DEFAULT</turnToTarget>
+					<waitRealEvent>WAIT_FROMFIRSTKEY</waitRealEvent>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureChannelDirectAction">
+						<visActionID />
+						<channelingFx hrefvar="FxChannel" />
+						<startPoint type="VisPointLocator">
+							<shift x="0" y="0" z="0" />
+							<locator var="LocatorOnCaster" />
+							<member>Default_Member</member>
+							<locatorName var="LocatorNameOnCaster" />
+							<from>FROM_DEFALUT</from>
+						</startPoint>
+						<endPoint type="VisPointLocator">
+							<shift x="0" y="0" z="0" />
+							<locator var="LocatorOnTarget" />
+							<member>Default_Member</member>
+							<locatorName var="LocatorNameOnTarget" />
+							<from>FROM_DEFALUT</from>
+						</endPoint>
+						<fadeInTime var="FadeInTimeChannel" />
+						<fadeOutTime var="FadeOutTimeChannel" />
+						<velocity var="RayVelocity" />
+						<offendTime />
+					</Item>
+					<Item type="CreatureEffectsOnTarget">
+						<visualEffects>
+							<Item>
+								<locator>Slot_FX</locator>
+								<effectFx href="/Spells/FX/Spells/HitPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fixPoint>true</fixPoint>
+								<offendTime type="EffectOffendConstDelay" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</action>
+</CreatureVisActionResource>

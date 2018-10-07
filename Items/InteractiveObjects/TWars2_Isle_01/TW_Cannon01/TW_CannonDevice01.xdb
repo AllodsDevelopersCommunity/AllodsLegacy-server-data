@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.device.UsableDeviceResource>
+	<Header>
+		<resourceId>290700346</resourceId>
+		<Variables>
+			<visObj>/World/Generic/TWars/Models/Golem/Golem_Body.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</visObj>
+			<collision>/World/Generic/TWars/Models/Golem/Golem_Body.(Collision).xdb#xpointer(/Collision)</collision>
+		</Variables>
+	</Header>
+	<parts>
+		<Item type="InteractionAnimationPart">
+			<interactionStartAction type="CreatureAnimationAction">
+				<mode>LOOP</mode>
+				<animations>
+					<Item>useStandingStart</Item>
+					<Item>useStandingLoop</Item>
+				</animations>
+			</interactionStartAction>
+			<interactionEndAction type="CreatureAnimationAction">
+				<animations>
+					<Item>useStandingEnd</Item>
+				</animations>
+			</interactionEndAction>
+		</Item>
+	</parts>
+	<persistentParts>
+		<Item type="gameMechanics.world.cellReplication.MapWideReplicated" />
+		<Item type="gameMechanics.elements.bunchparts.BunchPartAttachEffects">
+			<effects>
+				<Item type="gameMechanics.world.device.parts.ImpactsOnUserGeneric">
+					<userImpactsOnStartUse>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="TWCannonBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</userImpactsOnStartUse>
+					<userImpactsOnFinishUse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="TWCannonBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</userImpactsOnFinishUse>
+				</Item>
+			</effects>
+		</Item>
+	</persistentParts>
+	<name href="TW_Cannon01_Name.txt" />
+	<visObj hrefvar="visObj" />
+	<collision hrefvar="collision" />
+	<collisionObject>true</collisionObject>
+	<exploitingText href="TWCannonExploit.txt" />
+	<exploit href="TW_CannonExploit.(Exploit).xdb#xpointer(/gameMechanics.constructor.schemes.exploit.Exploit)" />
+	<viewSight>
+		<isBinding>true</isBinding>
+		<position x="0" y="-3" z="12.4" />
+		<fov>1</fov>
+		<distance>0.1</distance>
+		<camera href="ObjectCameraSettings01.(ObjectCameraSettings).xdb#xpointer(/ObjectCameraSettings)" />
+	</viewSight>
+	<mass>1.25</mass>
+	<deviceSpells>
+		<Item href="Shootl01.(SpellArea).xdb#xpointer(/gameMechanics.constructor.schemes.spell.area.SpellArea)" />
+	</deviceSpells>
+</gameMechanics.world.device.UsableDeviceResource>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>255293454</resourceId>
+	</Header>
+	<Name href="CrabRacingCASpell.Name.txt" />
+	<Description href="CrabRacingCASpell.Description.txt" />
+	<image href="/Interface/Icons/Misc/Event/CrabBait.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<isAggro>false</isAggro>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>4000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Crab/Instances/Tropical_Atoll/Crab_01Green.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Crab/Instances/Tropical_Atoll/Crab_02Blue.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Crab/Instances/Tropical_Atoll/Crab_03Violet.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Crab/Instances/Tropical_Atoll/Crab_04Orange.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/Crab/Instances/Tropical_Atoll/Crab_05Salat.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="CrabRacingSupportBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<consumeStacks>20</consumeStacks>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="/Items/QuestItems/Tropical_Atoll/CrabFood/CrabFood.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+				<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+				<data href="CrabRacingSupport_VisScript.xdb#xpointer(/gameMechanics.world.ClientData)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="CrabRacingSupportBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<impactsOnAttach>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="CrabRacingSlowBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="CrabRacingFastBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+				</impactsOnAttach>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>265679906</resourceId>
+	</Header>
+	<persistentParts>
+		<Item type="gameMechanics.constructor.commonBunchParts.ImportantObjectResource">
+			<isImportant>true</isImportant>
+		</Item>
+	</persistentParts>
+	<name href="" />
+	<visObject href="/Spells/FX/Spells/MageFireTrapAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<lifeLengthCap>120000</lifeLengthCap>
+	<plane href="/Mechanics/Planes/Landmine.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectCasterTriggerGeneric">
+			<conditionalEvents>
+				<Item>
+					<obj>gameMechanics.elements.events.EventSpellLaunchedPoint</obj>
+					<predicate type="gameMechanics.elements.predicates.PredicateEventSpellLaunched">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</predicate>
+				</Item>
+				<Item>
+					<obj>gameMechanics.elements.events.EventSpellLaunchedTarget</obj>
+					<predicate type="gameMechanics.elements.predicates.PredicateEventSpellLaunched">
+						<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					</predicate>
+				</Item>
+			</conditionalEvents>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CasterLostWatcherGeneric">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddParticularVisibilityRuleGeneric">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Incoming</direction>
+				<plane href="/Mechanics/Planes/Landmine.xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.TickableEntityAura">
+			<tick>2000</tick>
+			<affectGroup>Enemies</affectGroup>
+			<radius>8</radius>
+			<holderImpactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectileGeneric">
+					<projectileData>
+						<moveType type="gameMechanics.world.projectile.MoveTypeIdle" />
+						<resource href="Projectile2.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+					</projectileData>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+					<radius>10</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsDead" />
+							</predicates>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/Spells/ClientData/HitFire.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>FIRE</element>
+									<minDamage>51.59</minDamage>
+									<maxDamage>51.59</maxDamage>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impacts>
+					<finalImpactsOnHolder>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</finalImpactsOnHolder>
+				</Item>
+			</holderImpactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

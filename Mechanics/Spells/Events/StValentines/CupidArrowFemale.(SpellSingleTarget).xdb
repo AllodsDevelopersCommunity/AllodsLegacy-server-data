@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>301467658</resourceId>
+	</Header>
+	<Name href="CupidArrowFemale.(SpellSingleTarget)_Name.txt" />
+	<image href="/Interface/Icons/Misc/Event/StValentinesArrows.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Events/StValentines/CupidArrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="CupidArrowFemale.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<level>4</level>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Everyone</iffPolicy>
+	<launchWhenReady>true</launchWhenReady>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/StValentines/HadaganQuestIntro.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/StValentines/HadaganQuestAllies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/StValentines/HadaganQuestEnemies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/StValentines/KaniaQuestIntro.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/StValentines/KaniaQuestAllies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/StValentines/KaniaQuestEnemies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCharacterSex">
+				<sex href="/Mechanics/Sex/Male.xdb#xpointer(/gameMechanics.world.avatar.CharacterSex)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+					<buff href="CupidArrowTimeout.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<range>
+						<min>1</min>
+						<max>1</max>
+					</range>
+				</predicate>
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/StValentines/HadaganQuestIntro.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganOrcCountIntro.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganHadaganCountIntro.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganZemCountIntro.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/StValentines/HadaganQuestAllies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganOrcCountAllies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganHadaganCountAllies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganZemCountAllies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneHadagan1/StValentines/HadaganQuestEnemies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganElfCountEnemies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganKaniaCountEnemies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Gibberling.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneHadagan1/StValentines/HadaganGibberlingCountEnemies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/StValentines/KaniaQuestAllies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Elf.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneLeague1/StValentines/KaniaElfCountAllies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Kania.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneLeague1/StValentines/KaniaKaniaCountAllies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Gibberling.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneLeague1/StValentines/KaniaGibberlingCountAllies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneLeague1/StValentines/KaniaQuestEnemies.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Started</status>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Orc.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneLeague1/StValentines/KaniaElfCountEnemies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Hadagan.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneLeague1/StValentines/KaniaKaniaCountEnemies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateCharacterRace">
+								<race href="/Mechanics/Races/Undead.xdb#xpointer(/gameMechanics.world.avatar.CharacterRace)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+								<id href="/World/Quests/ZoneLeague1/StValentines/KaniaGibberlingCountEnemies.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague1/StValentines/KaniaKaniaCountIntro.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="CupidArrowTimeout.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+				<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+					<value>0.15</value>
+				</chanceCalcer>
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="BlindedByLove.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>270917643</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/Meditation.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsMob" />
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+							<quality href="/Mechanics/MobQualities/Boss.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+						</Item>
+					</predicates>
+					<effectsIf>
+						<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+							<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+								<coeff>0.25</coeff>
+							</scaler>
+						</Item>
+					</effectsIf>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+					<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+						<coeff>0.1</coeff>
+					</scaler>
+				</Item>
+			</effectsElse>
+		</Item>
+	</effects>
+	<duration>30000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+	<resistType>SRT_None</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>285841761</resourceId>
+	</Header>
+	<Name href="ActionScanHubName.txt" />
+	<Description href="ActionScanHubDesc.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestSpiritualFocus.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>45000</duration>
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+					<summands>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.world.device.CalcerTechLevelDelta" />
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>0</value>
+								</Item>
+							</calcers>
+						</Item>
+					</summands>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+				<impacts>
+					<Item type="gameMechanics.world.device.navigator.ImpactScanHubGeneric">
+						<scanRange>2000</scanRange>
+						<duration type="gameMechanics.elements.calcers.LongData">
+							<value>30000</value>
+						</duration>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

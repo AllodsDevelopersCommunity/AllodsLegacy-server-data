@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.rules.RuleResource>
+	<Header>
+		<resourceId>246765634</resourceId>
+	</Header>
+	<name href="AC8_Event_Riding_Rule.txt" />
+	<description href="AC8_Event_Riding_Rule.Description.txt" />
+	<level>48</level>
+	<rating>4</rating>
+	<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<reward>
+		<money>160000</money>
+		<reputations>
+			<Item>
+				<faction href="/World/Factions/ArchipelagoContested8/Cultist_friends.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				<value>500</value>
+			</Item>
+		</reputations>
+		<mandatoryItems>
+			<Item>
+				<item href="/Mechanics/Mounts/2ndGrade/Items/UniMountItemGhost.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+				<number>1</number>
+			</Item>
+		</mandatoryItems>
+		<guildAuthorityScaler type="gameMechanics.elements.scalers.LinearScaler">
+			<multiplier>70</multiplier>
+		</guildAuthorityScaler>
+	</reward>
+	<types>
+		<Item>RULE_TYPE_SINGLE</Item>
+	</types>
+	<locations>
+		<Item>
+			<predicate type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</predicate>
+			</predicate>
+			<location>
+				<position x="599.200001" y="389.500000" z="5.600000" />
+				<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</location>
+		</Item>
+		<Item>
+			<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</predicate>
+			<location>
+				<position x="572.000000" y="390.000000" z="0.000000" />
+				<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</location>
+		</Item>
+	</locations>
+	<predicates>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/DeadCityContentPack.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+	</predicates>
+	<timeTable href="TimePeriodTable.xdb#xpointer(/timeperiod.TimePeriodTable)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactSendClientDataZoneGeneric">
+					<data href="EventStarted.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+											<zone href="/Maps/ArchipelagoContested8/ScriptZones/AC8_Event_Riding.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+										</Item>
+										<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+											<quest href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Event_Riding.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<status>Started</status>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_start.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<allowOverrideCaster>false</allowOverrideCaster>
+									<durationScalerTarget />
+									<durationScaler />
+									<scalerTarget />
+									<stacks />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+					<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.MapHeadSpawnSingleMob">
+							<mob>
+								<scriptID>necromant</scriptID>
+								<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+							<impacts />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+											<zone href="/Maps/ArchipelagoContested8/ScriptZones/AC8_Event_Riding.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+											<variable href="/Maps/ArchipelagoContested8/ScriptZones/AC8_Event_Riding.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+											<reset>true</reset>
+											<summand>0</summand>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_Cultist_Admiral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactSendClientDataZoneGeneric">
+					<data href="EventStarted01.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+					<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<onlyOnTargetMapHead>false</onlyOnTargetMapHead>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/ArchipelagoContested8/AC8_Event_Riding/AC8_Riding.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+					<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.MapHeadSpawnSingleMob">
+							<mob>
+								<scriptID>necromant</scriptID>
+								<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</mob>
+							<impacts />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactScriptZoneVariableSummand">
+											<zone href="/Maps/ArchipelagoContested8/ScriptZones/AC8_Event_Riding.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+											<variable href="/Maps/ArchipelagoContested8/ScriptZones/AC8_Event_Riding.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+											<reset>true</reset>
+											<summand>0</summand>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_Cultist_Admiral.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<startImpacts />
+	<finishImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsToMapHeads">
+			<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.MapHeadFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+					<spawnResource href="/Maps/ArchipelagoContested8/SpawnTables/ArchipelagoContested8/AC8_Riding_Helper.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+		</Item>
+	</finishImpacts>
+</gameMechanics.world.rules.RuleResource>

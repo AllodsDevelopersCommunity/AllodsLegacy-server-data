@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>336531477</resourceId>
+	</Header>
+	<name href="AmuletProjectile.(ProjectileResource).Name.txt" />
+	<altitude>0.5</altitude>
+	<visObject href="/Spells/FX/Spells/PriestHealingRadianceAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EntityImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<filter type="gameMechanics.world.creature.MobFilter" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.DirectDamage">
+									<damage>1</damage>
+									<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+									<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+										<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+											<multiplier>0.4</multiplier>
+										</mulCalcer>
+									</scalerTarget>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="DeathTriggerBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/Cat/Tiger/Instances/IllusionWorld/ZC6_Leopard_miniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+										<Item href="/Creatures/Cat/Tiger/Instances/IllusionWorld/Leopard.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+							</predicates>
+						</Item>
+					</impacts>
+					<radius>20</radius>
+					<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+	<lifeLengthCap>12000</lifeLengthCap>
+</gameMechanics.world.projectile.ProjectileResource>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>166874115</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>false</pvp>
+	<autoSetReturnLocation>false</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/HaloIsle/Zones/HaloIsle/HaloIsle_ship.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="800.000000" y="758.000000" z="0.000000" />
+		<isIndoor>false</isIndoor>
+		<radius>0</radius>
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Characters/HumMobs/HaloIsle/Instances/HaloIsle/HaloIsleDracon40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>2000</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughLocatorsList">
+							<runningMode>false</runningMode>
+							<path href="Drakonid_path.(LocatorsList).xdb#xpointer(/gameMechanics.map.LocatorsList)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>drakonid_fin</scriptID>
+						<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>2</visualState>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>kletka</scriptID>
+						<map href="/Maps/HaloIsle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impacts>
+		</Item>
+	</startImpacts>
+	<rewardImpacts>
+		<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+			<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+			<data href="/World/Quests/HaloIsle/HaloIsle_01/HaloIsle_Final.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+		</Item>
+	</rewardImpacts>
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+			<quest href="/World/Quests/HaloIsle/HaloIsle_03_New/HaloIsle_03_New.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+			<status>Finished</status>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/ItemmallService.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountItem">
+			<customName href="CounterCustomName_2.txt" />
+			<locations>
+				<Item>
+					<zone href="/Maps/HaloIsle/Zones/HaloIsle/HaloIsle_ship.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="749.200000" y="786.100000" z="-12.600000" />
+				</Item>
+			</locations>
+			<limit>1</limit>
+			<items>
+				<Item href="/Items/QuestItems/HaloIsle/Dragon_Str/Dragon_Str.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</items>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCustomName_1.txt" />
+			<locations>
+				<Item>
+					<zone href="/Maps/HaloIsle/Zones/HaloIsle/HaloIsle_ship.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					<position x="765.799999" y="777.700000" z="-1.299999" />
+				</Item>
+			</locations>
+			<relatedItems>
+				<Item href="/Items/QuestItems/HaloIsle/Dragon_Str/Dragon_Str.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</relatedItems>
+			<limit>1</limit>
+			<id href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<lootTable>
+		<Item>
+			<lootable href="/Characters/HumMobs/HaloIsle/Instances/HaloIsle/HaloIsleGiberBoss40_40.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			<item href="/Items/QuestItems/HaloIsle/Dragon_Str/Dragon_Str.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<chance>1</chance>
+			<minNumber>1</minNumber>
+			<maxNumber>1</maxNumber>
+			<isForAll>false</isForAll>
+		</Item>
+	</lootTable>
+	<reward>
+		<money>0</money>
+		<unlocks>
+			<Item href="/Mechanics/Unlocks/FairyRanks/FairyRank5Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+		</unlocks>
+	</reward>
+	<secretSequence>false</secretSequence>
+	<tutorial>false</tutorial>
+	<binding>Soul</binding>
+	<internalName>HaloIsle_04_New</internalName>
+	<zone href="/Maps/HaloIsle/Zones/HaloIsle/HaloIsle.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.IntConstantValue">
+		<value>30</value>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.IntConstantValue">
+		<value>30</value>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

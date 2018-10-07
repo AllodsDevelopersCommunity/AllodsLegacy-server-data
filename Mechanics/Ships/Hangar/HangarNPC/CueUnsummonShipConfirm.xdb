@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>128452608</resourceId>
+	</Header>
+	<name href="CueUnsummonShipConfirm.txt" />
+	<text href="CueUnsummonShipConfirmText.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicateHasSummonedShip" />
+				<Item type="gameMechanics.elements.predicates.PredicateHangarHasShip" />
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+			<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderShip" />
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="EnemiesAboard.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactDespawnShipGeneric" />
+						<Item type="gameMechanics.elements.impacts.ReturningImpactsGeneric">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParamsGeneric">
+									<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+									<data href="UnSummonShip.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impactsElse>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

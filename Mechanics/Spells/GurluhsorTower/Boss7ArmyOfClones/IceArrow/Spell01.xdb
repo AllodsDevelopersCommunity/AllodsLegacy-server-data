@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>106389518</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/Magics.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/IceSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroupElement)" />
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/MageIceArrow.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Bosses/GT_7Boss/IceArrow.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<speed>25</speed>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>2000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>COLD</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.ModifierIf">
+			<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/SpeedCasting.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>1</min>
+					<max>1</max>
+				</range>
+			</predicate>
+			<modifier type="gameMechanics.elements.spell.PrepareDurationMultiplier">
+				<factor>0.5</factor>
+			</modifier>
+		</Item>
+		<Item type="gameMechanics.elements.spell.ModifierIf">
+			<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/SpeedCasting.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>2</min>
+					<max>2</max>
+				</range>
+			</predicate>
+			<modifier type="gameMechanics.elements.spell.PrepareDurationMultiplier">
+				<factor>0.25</factor>
+			</modifier>
+		</Item>
+		<Item type="gameMechanics.elements.spell.ModifierIf">
+			<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/SpeedCasting.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>3</min>
+					<max>3</max>
+				</range>
+			</predicate>
+			<modifier type="gameMechanics.elements.spell.PrepareDurationMultiplier">
+				<factor>0.125</factor>
+			</modifier>
+		</Item>
+		<Item type="gameMechanics.elements.spell.ModifierIf">
+			<predicate type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+				<buff href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/SpeedCasting.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<range>
+					<min>4</min>
+					<max>4</max>
+				</range>
+			</predicate>
+			<modifier type="gameMechanics.elements.spell.PrepareDurationMultiplier">
+				<factor>0.0625</factor>
+			</modifier>
+		</Item>
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Start</stage>
+			<duration>10000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+					<buffs>
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/CanExplode.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/CanExplode0.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/GurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<Item href="/Mechanics/Spells/GurluhsorTower/Boss7ArmyOfClones/Buffs/GreatGurluhsorSpirit.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</buffs>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>5</mana>
+				<scaleByWeaponSpeed>false</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Mana</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+				<element>COLD</element>
+				<threatMultiplier>0</threatMultiplier>
+				<minDamage>20.93</minDamage>
+				<maxDamage>20.94</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</impactOnHitTarget>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

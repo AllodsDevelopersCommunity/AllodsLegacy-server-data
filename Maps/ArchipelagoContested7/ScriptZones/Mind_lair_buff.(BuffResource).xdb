@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>198082571</resourceId>
+	</Header>
+	<Name href="Mind_lair_buff.txt" />
+	<Description href="Mind_lair_buff.Description.txt" />
+	<image href="/Interface/Icons/Misc/Quest/Journal.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Mind_lair_buff.txt" />
+	<descTemplate href="Mind_lair_buff.Description.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested7/AC7_GS14/AC7_GS14.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Active</status>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Mind_lair_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="/World/Quests/ArchipelagoContested7/AC7_GS14/Radar.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Visibility</channel>
+				<vector>Incoming</vector>
+				<direction>Outgoing</direction>
+				<plane href="/World/Quests/ArchipelagoContested7/AC7_GS14/Radar.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ItemBagTrigger">
+			<item href="/Items/QuestItems/ArchipelagoContested7/Scaner_mind/Scaner_mind.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			<impactsOnRemove>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Mind_lair_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOnRemove>
+		</Item>
+	</effects>
+	<duration>300000</duration>
+	<stackLimit>5</stackLimit>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<ranks />
+</gameMechanics.constructor.schemes.buff.BuffResource>

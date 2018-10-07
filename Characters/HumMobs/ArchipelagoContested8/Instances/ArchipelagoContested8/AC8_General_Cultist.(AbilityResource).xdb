@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>205756686</resourceId>
+	</Header>
+	<visualScript type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/General_Cultist_01.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+				<scale>0.6</scale>
+				<member>Group</member>
+				<locatorName>Slot_BodyFX</locatorName>
+			</Item>
+		</visualEffects>
+		<stopOnDeath>true</stopOnDeath>
+	</visualScript>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectVariable">
+			<resource href="AC8_General_Demon_Variable.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_03_D.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="AC8_General_MarkBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+					<mob>
+						<scriptID>D_boss_02</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Aura">
+			<affectGroup>Friends</affectGroup>
+			<radius>50</radius>
+			<impactsIn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AddVisibilityRule">
+			<visibilityRule>
+				<channel>Influence</channel>
+				<vector>Outgoing</vector>
+				<direction>Incoming</direction>
+				<plane href="AC8_General_plane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+			</visibilityRule>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Guard" />
+		<Item type="gameMechanics.elements.effects.EffectSetTaggingType">
+			<taggingType>Override</taggingType>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactsToMapHead">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+									<zone href="/Maps/ArchipelagoContested8/Zones/ArchipelagoContested8/ArchipelagoContested8.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+													<data href="Ac8_general_death.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/Items/QuestItems/ArchipelagoContested8/Ac8_Grind_D_02/Ac8_Grind_D_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+													<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+													<data href="Ac8_general_death.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactsOnZoneAvatarsGeneric">
+									<zone href="/Maps/DeathRealm/Zones/DeathRealm.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_Bust_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_Buff_Aura_Demon.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="AC8_buff_player_01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/Items/QuestItems/ArchipelagoContested8/Ac8_Grind_D_02/Ac8_Grind_D_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="AC8_event_final_fail.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>Demon_Gen</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_tp_resist.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>Tp_04</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/World/Quests/ArchipelagoContested8/AC8_grind_M_01/AC8_tp_resist.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>Tp_03</scriptID>
+						<map href="/Maps/ArchipelagoContested8/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ThreatMultiplier">
+			<factor>6</factor>
+		</Item>
+	</effects>
+	<disableWhileDead>true</disableWhileDead>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

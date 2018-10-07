@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>139489281</resourceId>
+	</Header>
+	<name href="Cue2_name.txt" />
+	<text href="Cue2_Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/AstralHangar/Q4/Q4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>Active</status>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/AstralHangar/Q4/Q4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/World/Quests/AstralHangar/Q4/Count_1.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									<value>1</value>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+									<quest href="/World/Quests/AstralHangar/Q5/Q5.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<status>NotInQuestBook</status>
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/AstralHangar/Q4/Q4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/World/Quests/AstralHangar/Q4/Count_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>1</value>
+									</predicate>
+								</Item>
+							</predicates>
+						</Item>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="TL0_Looser.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</predicates>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/AstralHangar/Q8/Q8.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/AstralHangarLeague/ScriptZones/Q8_Complete.xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+						<zone href="/Maps/AstralHangarHadagan/ScriptZones/Q8_Complete.xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					</predicate>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+			</predicates>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleportToHub">
+							<destinationSector href="/Mechanics/Astral/Sector_TL0_1/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+							<destHub>1</destHub>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<elseImpacts>
+				<Item type="gameMechanics.elements.impacts.SendGenericImpactsToAddressee">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactTeleportToHub">
+							<destinationSector href="/Mechanics/Astral/Sector_TL0_1_H/Sector.xdb#xpointer(/gameMechanics.world.bigAstral.AstralSectorResource)" />
+							<destHub>1</destHub>
+						</Item>
+					</impacts>
+				</Item>
+			</elseImpacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>6000</delay>
+			<limit>1</limit>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+					<id href="/World/Quests/AstralHangar/Q4/Count_2.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				</Item>
+			</impacts>
+			<useSpellEnvelopeTargetEffects>false</useSpellEnvelopeTargetEffects>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.BuffDetacher">
+			<buff href="TL0_Looser.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<anyRank>false</anyRank>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

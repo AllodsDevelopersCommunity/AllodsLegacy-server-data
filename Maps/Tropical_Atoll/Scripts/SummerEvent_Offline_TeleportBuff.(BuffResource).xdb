@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>268597249</resourceId>
+	</Header>
+	<Name href="SummerEvent_Offline_TeleportBuff.(BuffResource).Name.txt" />
+	<image href="/Interface/Icons/Misc/Event/ParadiseIslang_Ticket.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="SummerEvent_Offline_TeleportBuff.(BuffResource).Name.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+										<rule href="/Mechanics/Rules/SummerEvent/TeleporstToIsland/SummerEvent_Online.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.TargetDistributor" />
+									<data href="SummerEvent_Offline.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+										<rule href="/Mechanics/Rules/SummerEvent/TeleporstToIsland/SummerEvent_Online.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactTeleportLocFaction">
+									<factionLocators>
+										<Item>
+											<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+											<locator>
+												<scriptID>KaniaCapital</scriptID>
+												<map href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</Item>
+										<Item>
+											<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+											<locator>
+												<scriptID>Capital_AE1_Teleport</scriptID>
+												<map href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+											</locator>
+										</Item>
+									</factionLocators>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

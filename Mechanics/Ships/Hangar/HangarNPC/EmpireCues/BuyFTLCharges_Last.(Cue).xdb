@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>211919874</resourceId>
+	</Header>
+	<name href="BuyFTLCharges_Name.txt" />
+	<text href="BuyFTLCharges_Desc.txt" />
+	<image href="/Interface/Icons/Special/Currency/ChargesAcceleration.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<data>
+		<Item type="CueDataMoney">
+			<alias>value</alias>
+			<calcer type="gameMechanics.elements.calcers.CalcerLongAstrolabeChargeCost">
+				<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			</calcer>
+		</Item>
+	</data>
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongAstrolabeChargeCost">
+				<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+			<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			<count>1</count>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceAltCurrency">
+				<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<count>2</count>
+			</predicate>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.elements.resources.ResourceAltCurrency">
+				<currency href="/Mechanics/AlternativeCurrencies/AstralFastTravel.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<count>19</count>
+			</predicate>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateHasMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongAstrolabeChargeCost">
+				<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			</sumCalcer>
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+			<sumCalcer type="gameMechanics.elements.calcers.CalcerLongMul">
+				<calcers>
+					<Item type="gameMechanics.elements.calcers.CalcerLongAstrolabeChargeCost">
+						<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+					</Item>
+					<Item type="gameMechanics.elements.calcers.LongData">
+						<value>-1</value>
+					</Item>
+				</calcers>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+			<currency href="/Mechanics/AlternativeCurrencies/FastTravelTicket.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>-1</value>
+			</sumCalcer>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAddAltCurrency">
+			<currency href="/Mechanics/AlternativeCurrencies/AstralFastTravel.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+			<sumCalcer type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</sumCalcer>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

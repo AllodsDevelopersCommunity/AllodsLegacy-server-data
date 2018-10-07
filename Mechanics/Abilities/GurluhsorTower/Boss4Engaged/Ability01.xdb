@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>150680580</resourceId>
+	</Header>
+	<name href="Ability_Name.txt" />
+	<image href="" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<affectGroup>Enemies</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+											<value>1</value>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList">
+									<eraseBeforeCopy>false</eraseBeforeCopy>
+								</Item>
+							</impacts>
+							<spawnResource href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss4Add_ElfPaladin.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>85</radius>
+							<affectGroup>All</affectGroup>
+							<affectHolder>true</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.resources.ResourceBuff">
+											<buff href="/Mechanics/Spells/GurluhsorTower/Boss4Elf/BloodShield/BloodShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>true</anyRank>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.BuffDetacher">
+											<buff href="/Mechanics/Spells/GurluhsorTower/Boss4Elf/BloodShield/BloodShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</impactsIf>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+							<targetsLimit>0</targetsLimit>
+							<onBehalfOfHolder>true</onBehalfOfHolder>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+							<device href="/Mechanics/Abilities/GurluhsorTower/Boss4AddAbillity/ShieldStella.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+							<radius>85</radius>
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAlive" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+									<radius>85</radius>
+									<affectGroup>All</affectGroup>
+									<affectHolder>true</affectHolder>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.elements.resources.ResourceBuff">
+													<buff href="/Mechanics/Spells/GurluhsorTower/Boss4Elf/BloodShield/BloodShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>true</anyRank>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.BuffDetacher">
+													<buff href="/Mechanics/Spells/GurluhsorTower/Boss4Elf/BloodShield/BloodShield.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+												</Item>
+											</impactsIf>
+										</Item>
+									</impacts>
+									<filter type="gameMechanics.world.creature.AvatarFilter">
+										<block>false</block>
+										<withPet>false</withPet>
+									</filter>
+									<targetsLimit>0</targetsLimit>
+									<onBehalfOfHolder>true</onBehalfOfHolder>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactDevicesAround">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+									<device href="/Mechanics/Abilities/GurluhsorTower/Boss4AddAbillity/ShieldStella.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+									<destination type="gameMechanics.map.destination.RelativePos" />
+									<radius>85</radius>
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss4Add_ElfPaladin.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.Disintegrate" />
+											</impactsIf>
+										</Item>
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Maps/Inst_GurluhsorTower/ScriptZones/Boss4_ChitChat.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectOverrideInterruptPos">
+			<pos type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>GS_Boss4_Projectile</scriptID>
+					<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</pos>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>739821953</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<assistant />
+			<MercDead />
+			<ImpactListResummonCombat />
+		</Variables>
+	</Header>
+	<image href="" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateAssistantInhabits">
+							<hideText>false</hideText>
+							<assistant hrefvar="assistant" />
+						</Item>
+					</predicates>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff hrefvar="MercDead" />
+						</Item>
+					</impactsElse>
+				</Item>
+			</impactsOn>
+			<rerunOnLoad>true</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateInCombat" />
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.basicElements.ImpactList">
+							<impactsResource hrefvar="ImpactListResummonCombat" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+			<tick>15000</tick>
+			<initialDelay>5000</initialDelay>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<groups />
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>false</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

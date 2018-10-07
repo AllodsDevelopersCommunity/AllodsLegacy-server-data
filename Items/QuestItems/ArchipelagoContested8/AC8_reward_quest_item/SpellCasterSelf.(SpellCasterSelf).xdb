@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>241399852</resourceId>
+	</Header>
+	<Name href="SpellCasterSelf.txt" />
+	<Description href="SpellCasterSelf.Description.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>60000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_02_M.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ArchipelagoContested8/AC8_reward_quest/AC8_reward_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_MindFlayerGeneral_02_P.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<value>1</value>
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_04_D.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ArchipelagoContested8/AC8_reward_quest/AC8_reward_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_DraconidGeneral_D2_P.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<value>1</value>
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+								<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_02_M.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+								<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+									<quest href="/World/Quests/ArchipelagoContested8/AC8_reward_quest/AC8_reward_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+									<counterResource href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_MindFlayerGeneral_02_P.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									<value>1</value>
+								</predicate>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="/Items/QuestItems/ZoneHadagan1/SummonMob/ChallengePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.world.pet.PredicateHasPet" />
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="/Items/QuestItems/ZoneHadagan1/SummonMob/ChallengePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impactsIf>
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>300000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</impacts>
+						<object href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_MindFlayerGeneral_02_P.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+										<zone href="/Maps/ArchipelagoContested8/ScriptZones/Boss_04_D.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+									</Item>
+									<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+										<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+											<quest href="/World/Quests/ArchipelagoContested8/AC8_reward_quest/AC8_reward_quest.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+											<counterResource href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_DraconidGeneral_D2_P.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+											<value>1</value>
+										</predicate>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.ImpactSummon">
+								<destination type="gameMechanics.map.destination.RelativePos" />
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.TagMobForKill" />
+									<Item type="gameMechanics.elements.impacts.ForceAggro" />
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+												<buff href="/Items/QuestItems/ZoneHadagan1/SummonMob/ChallengePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<predicates>
+													<Item type="gameMechanics.world.pet.PredicateHasPet" />
+												</predicates>
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.ImpactsToPet">
+														<impacts>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/Items/QuestItems/ZoneHadagan1/SummonMob/ChallengePlane.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+														</impacts>
+													</Item>
+												</impactsIf>
+											</Item>
+										</impacts>
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+										<delay>300000</delay>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.Disintegrate" />
+										</impacts>
+									</Item>
+								</impacts>
+								<object href="/Characters/HumMobs/ArchipelagoContested8/Instances/ArchipelagoContested8/AC8_DraconidGeneral_D2_P.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</Item>
+						</impactsIf>
+					</Item>
+				</impactsElse>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

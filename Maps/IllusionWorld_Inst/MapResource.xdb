@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>294292521</resourceId>
+	</Header>
+	<minimapLight>
+		<AmbientFactor>0.5</AmbientFactor>
+		<FogStart>100</FogStart>
+		<FogEnd>500</FogEnd>
+		<SunLightYaw>45</SunLightYaw>
+		<SunLightPitch>0</SunLightPitch>
+		<AmbientColor>2017861120</AmbientColor>
+		<DiffuseColor>2017861120</DiffuseColor>
+		<FogColor>2017861120</FogColor>
+		<SpecularColor>0</SpecularColor>
+		<ContourColor>0</ContourColor>
+		<SpecularWaterColor>0</SpecularWaterColor>
+		<WaterGradientStart>-1</WaterGradientStart>
+		<WaterGradientEnd>-1</WaterGradientEnd>
+		<TerrainSpecularColor>0</TerrainSpecularColor>
+		<TerrainContourColor>0</TerrainContourColor>
+	</minimapLight>
+	<name href="Name.txt" />
+	<exit type="mapLoader.pointer.MapPointerPos">
+		<pointer>
+			<scriptID>ZC6_FromElementalCave</scriptID>
+			<map href="/Maps/IllusionWorld/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		</pointer>
+	</exit>
+	<mapTemplate href="/System/MapTemplates/ZC9_Instance_Map_Template.(MapTemplate).xdb#xpointer(/mapLoader.MapTemplate)" />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+														<quest href="/World/Quests/IllusionWorld/ZC6_MiniinstBoss/ZC6_MiniinstBoss.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<status>Completed</status>
+													</Item>
+													<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+														<quest href="/World/Quests/IllusionWorld/ZC6_MiniinstBoss/ZC6_MiniinstBoss.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+														<status>Finished</status>
+													</Item>
+												</predicates>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+												<impacts>
+													<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+														<visualState>1</visualState>
+													</Item>
+												</impacts>
+												<device>
+													<scriptID>Aviak_Elemental_Cave</scriptID>
+													<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</device>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+												<zone href="ScriptZones/ZC6_ElementalCave_Air.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+												<zone href="ScriptZones/ZC6_ElementalCave_Fire.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+											</Item>
+											<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+												<mob>
+													<scriptID>ZC6_AviakWise</scriptID>
+													<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</mob>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>1500</delay>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.ImpactMobMorph">
+																<newMobWorld href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_AviakWiseAgent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+															</Item>
+															<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+																<buff href="/World/Quests/IllusionWorld/ZC6_MiniinstBoss/BossFreeze_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+															<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																<buff href="/Mechanics/Creatures/Aviak/Instances/IllusionWorld/ZC6_Buff_AntiAir.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+															<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																<buff href="/Mechanics/Creatures/Aviak/Instances/IllusionWorld/ZC6_Buff_AntiFire.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+															<Item type="gameMechanics.elements.impacts.BuffDetacher">
+																<buff href="/Mechanics/Creatures/Aviak/Instances/IllusionWorld/ZC6_Buff_AntiWater.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+															</Item>
+															<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+																<ability href="/Mechanics/Creatures/Aviak/Instances/IllusionWorld/Agent_BattleAction.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+															</Item>
+															<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+																<faction href="/World/Factions/NeutralFriendly.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+															</Item>
+															<Item type="gameMechanics.elements.impacts.AttachAbility">
+																<ability href="/Mechanics/Abilities/CanDoNothing/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+															</Item>
+														</impacts>
+														<mob>
+															<scriptID>ZC6_AviakWise</scriptID>
+															<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+														</mob>
+													</Item>
+												</impacts>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.SpawnSingleDevice">
+												<device>
+													<scriptID>TeleportTo_ZC9</scriptID>
+													<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</device>
+											</Item>
+											<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+												<mob>
+													<scriptID>ZC6_Veronika_Appear</scriptID>
+													<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</mob>
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.SpawnSingleMob">
+												<mob>
+													<scriptID>ZC6_AviakWise</scriptID>
+													<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</mob>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+</mapLoader.MapResource>

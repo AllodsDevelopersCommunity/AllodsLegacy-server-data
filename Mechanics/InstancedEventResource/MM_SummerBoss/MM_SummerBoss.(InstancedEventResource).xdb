@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<avatarPopulation.service.impl.matchMakingImpl.scheme.InstancedEventResource>
+	<Header>
+		<resourceId>329931804</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<description href="Desc.txt" />
+	<score href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+	<duration>
+		<hour>1</hour>
+	</duration>
+	<prepareTime>
+		<minute>1</minute>
+		<second>30</second>
+	</prepareTime>
+	<waitBuff href="MM_SummerBossWait.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	<impactsOnStart>
+		<Item type="gameMechanics.elements.impacts.ImpactAllAvatarsOnMap">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/T92Arta/T92ArtaBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>1</min>
+										<max>9</max>
+									</range>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakVisualBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>1</min>
+										<max>9</max>
+									</range>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakHasteBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>1</min>
+										<max>9</max>
+									</range>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/Type59ST/Type59STBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>1</min>
+										<max>9</max>
+									</range>
+								</Item>
+								<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+									<buff href="/Mechanics/Spells/Events/SummerBoss2012/Tyazh/TyazhBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<range>
+										<min>1</min>
+										<max>9</max>
+									</range>
+								</Item>
+							</predicates>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+											<variableResource href="ChestCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+											<minValue type="gameMechanics.elements.calcers.FloatData">
+												<value>14</value>
+											</minValue>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+											<destination type="gameMechanics.map.destination.DestinationLocator">
+												<locator>
+													<scriptID>Spawn1</scriptID>
+													<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+												</locator>
+											</destination>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+											<predicates>
+												<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+													<variableResource href="ChestCount.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+													<minValue type="gameMechanics.elements.calcers.FloatData">
+														<value>9</value>
+													</minValue>
+												</Item>
+											</predicates>
+											<impactsIf>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+													<destination type="gameMechanics.map.destination.DestinationLocator">
+														<locator>
+															<scriptID>Spawn2</scriptID>
+															<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+														</locator>
+													</destination>
+												</Item>
+											</impactsIf>
+											<impactsElse>
+												<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+													<destination type="gameMechanics.map.destination.DestinationLocator">
+														<locator>
+															<scriptID>SummerBoss</scriptID>
+															<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+														</locator>
+													</destination>
+												</Item>
+											</impactsElse>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.MapHeadSpawnSingleMob">
+			<mob>
+				<scriptID>Maus</scriptID>
+				<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+			</mob>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/Events/SummerBoss2012/BossMaus/MausWalkBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.map.variables.ImpactMapVariableSummandGeneric">
+			<variable href="Start.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+			<summand>1</summand>
+		</Item>
+	</impactsOnStart>
+	<startAnnounce href="SummerBossStartMessage.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+	<impactsOnAvatars>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="CharEquip.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impactsOnAvatars>
+	<achievements>
+		<Item>
+			<resource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+			<count>15</count>
+		</Item>
+	</achievements>
+	<mechanicsType>SUMMERBOSS</mechanicsType>
+	<isHighPriority>true</isHighPriority>
+	<eventType type="avatarPopulation.service.impl.matchMakingImpl.eventType.marked.MarkedGroupInstancedEvent">
+		<minAvatarLevel>23</minAvatarLevel>
+		<levelsPartition>
+			<entries>
+				<Item>
+					<minLevel>23</minLevel>
+				</Item>
+			</entries>
+		</levelsPartition>
+		<minAvatarsCount>0</minAvatarsCount>
+		<capacity>12</capacity>
+		<immediatelyStartFactor>1</immediatelyStartFactor>
+		<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+		<entrances>
+			<Item>
+				<mark href="SummerBossSpawnPlace.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+				<entrances>
+					<Item type="mapLoader.pointer.MapPointerPos">
+						<pointer>
+							<scriptID>SBRespawnLoc</scriptID>
+							<map href="/Maps/SummerBoss/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</pointer>
+					</Item>
+				</entrances>
+			</Item>
+		</entrances>
+	</eventType>
+	<activeEventJoinPeriod>-1</activeEventJoinPeriod>
+	<maxVisitsPerDay>3</maxVisitsPerDay>
+	<impactsOnEarlyExit>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/InstancedEventResource/MM_BG01/LeaverDebuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		</Item>
+	</impactsOnEarlyExit>
+	<rewards>
+		<Item>
+			<eventPredicates>
+				<Item type="avatarPopulation.service.impl.matchMakingImpl.event.predicates.PredicateAchievementInRange">
+					<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+					<minCount>0</minCount>
+					<maxCount>0</maxCount>
+				</Item>
+			</eventPredicates>
+			<items>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/PlatinumMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>1</value>
+					</calcer>
+				</Item>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/GoldMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>2</value>
+					</calcer>
+				</Item>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/SilverMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>4</value>
+					</calcer>
+				</Item>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/BronzeMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>8</value>
+					</calcer>
+				</Item>
+			</items>
+			<mailTemplate href="MM_SB.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+		</Item>
+		<Item>
+			<eventPredicates>
+				<Item type="avatarPopulation.service.impl.matchMakingImpl.event.predicates.PredicateAchievementInRange">
+					<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+					<minCount>1</minCount>
+					<maxCount>2</maxCount>
+				</Item>
+			</eventPredicates>
+			<items>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/GoldMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerDiff">
+						<minuend type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+							<value>3</value>
+						</minuend>
+						<subtrahend type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.AchievementCalcer">
+							<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+						</subtrahend>
+					</calcer>
+				</Item>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/SilverMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>4</value>
+					</calcer>
+				</Item>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/BronzeMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>8</value>
+					</calcer>
+				</Item>
+			</items>
+			<mailTemplate href="MM_SB.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+		</Item>
+		<Item>
+			<eventPredicates>
+				<Item type="avatarPopulation.service.impl.matchMakingImpl.event.predicates.PredicateAchievementInRange">
+					<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+					<minCount>3</minCount>
+					<maxCount>6</maxCount>
+				</Item>
+			</eventPredicates>
+			<items>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/SilverMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerDiff">
+						<minuend type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+							<value>7</value>
+						</minuend>
+						<subtrahend type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.AchievementCalcer">
+							<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+						</subtrahend>
+					</calcer>
+				</Item>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/BronzeMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+						<value>8</value>
+					</calcer>
+				</Item>
+			</items>
+			<mailTemplate href="MM_SB.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+		</Item>
+		<Item>
+			<eventPredicates>
+				<Item type="avatarPopulation.service.impl.matchMakingImpl.event.predicates.PredicateAchievementInRange">
+					<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+					<minCount>7</minCount>
+					<maxCount>14</maxCount>
+				</Item>
+			</eventPredicates>
+			<items>
+				<Item>
+					<item href="/Items/EventItems/SummerBoss2012/BronzeMedal.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					<calcer type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerDiff">
+						<minuend type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.CalcerConst">
+							<value>15</value>
+						</minuend>
+						<subtrahend type="avatarPopulation.service.impl.matchMakingImpl.event.calcers.AchievementCalcer">
+							<achievementResource href="MM_SBChests.(BattleEventAchievementResource).xdb#xpointer(/gameMechanics.battleground.BattleEventAchievementResource)" />
+						</subtrahend>
+					</calcer>
+				</Item>
+			</items>
+			<mailTemplate href="MM_SB.(MailTemplate).xdb#xpointer(/gameMechanics.mail.MailTemplate)" />
+		</Item>
+	</rewards>
+</avatarPopulation.service.impl.matchMakingImpl.scheme.InstancedEventResource>

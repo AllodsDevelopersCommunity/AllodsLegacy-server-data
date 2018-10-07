@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>319705090</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<contextActionInfo>
+		<contextName href="CA_Name.txt" />
+		<contextDescription href="CA.Description.txt" />
+		<contextImage hrefvar="pick_icon" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Mace/MaceHammer.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts hrefvar="visualScripts" />
+	<level>1</level>
+	<prepareDuration>2000</prepareDuration>
+	<needLos>false</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell04.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+						<lhs type="gameMechanics.elements.calcers.CalcerSkillScoreCurrent">
+							<skillResource href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+						</lhs>
+						<rhs type="gameMechanics.elements.calcers.CalcerSkillScoreCurrent">
+							<skillResource href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+						</rhs>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.skills.foraging.ImpactForage">
+						<resource href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.skills.foraging.ImpactForage">
+						<resource href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateHasSkill">
+						<skill href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHasSkill">
+						<skill href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.skills.foraging.PredicateHasForagingInstrument">
+				<resource href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.skills.foraging.PredicateForagingDeviceNear">
+				<resources>
+					<Item href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+					<Item href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+				</resources>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.skills.PredicateSkillScore">
+						<skill href="/Mechanics/Skills/BlacksmithV2/Blacksmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+						<score var="score" />
+					</Item>
+					<Item type="gameMechanics.elements.skills.PredicateSkillScore">
+						<skill href="/Mechanics/Skills/WeaponsmithV2/Weaponsmith.(DiceCraftSkillResource).xdb#xpointer(/gameMechanics.elements.skills.diceCraft.DiceCraftSkillResource)" />
+						<score var="score02" />
+					</Item>
+				</predicates>
+			</Item>
+		</casterConditions>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

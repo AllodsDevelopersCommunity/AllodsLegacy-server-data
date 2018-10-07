@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.astralMob.AstralMobBrainResource>
+	<Header>
+		<resourceId>1474166807</resourceId>
+	</Header>
+	<memoryVariables>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.NavigationPosVariable">
+			<name>interruptPos</name>
+		</Item>
+	</memoryVariables>
+	<!--==============================================================================================-->
+	<!--============================================STATES============================================-->
+	<!--==============================================================================================-->
+	<root type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+		<name>Root</name>
+		<groupType>Static</groupType>
+		<subnodes>
+			<!--0-->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+				<name>ActiveStatesGroup</name>
+				<groupType>Static</groupType>
+				<initialState>WaitShip</initialState>
+				<subnodes>
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>WaitShip</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+						<optional>
+                            <Item>
+                                <to>IdleGroup</to>
+                                <pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+                                    <eventType>gameMechanics.world.mob.behaviour.aiMsgs.WakeUpMsg</eventType>
+                                </pipe>
+                            </Item>
+                            <Item>
+                                <to>AttackState</to>
+                                <pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe"/>
+                            </Item>
+                        </optional>
+					</Item>
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>IdleGroup</name>
+						<groupType>Dynamic</groupType>
+						<initialState>CheckSpot</initialState>
+						<subnodes>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>CheckSpot</name>
+								<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+								<optional>
+									<Item>
+										<to>Roam</to>
+										<pipe type="gameMechanics.world.mob.behaviour.components.pipes.MsgTransferPipe">
+											<msgType>gameMechanics.world.astralMob.behaviour.aiMsgs.MsgStartRandomRoaming</msgType>
+										</pipe>
+										<inActiveGroup>false</inActiveGroup>
+									</Item>
+								</optional>
+							</Item>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>Roam</name>
+								<state type="gameMechanics.world.astralMob.behaviour.states.AIStateRandomRoaming">
+									<interruptPos name="interruptPos" />
+								</state>
+							</Item>
+						</subnodes>
+						<optional>
+							<Item>
+								<to>WaitShip</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+									<eventType>gameMechanics.world.mob.behaviour.aiMsgs.FallAsleepMsg</eventType>
+								</pipe>
+							</Item>
+							<Item>
+								<to>AttackState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+						</optional>
+						<activeConvolutions>
+							<Item type="gameMechanics.world.astralMob.behaviour.convolutions.NearestTargetSelectConvolution" />								
+							<Item type="gameMechanics.world.astralMob.behaviour.convolutions.FallAsleepConvolution" />
+						</activeConvolutions>
+					</Item>
+					<!--2-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>ReturnState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateGoToStoredPoint" />
+						<mandatory>
+							<Item>
+								<to>IdleGroup</to>
+							</Item>
+							<Item>
+								<to>IdleGroup</to>
+							</Item>
+						</mandatory>
+						<reaction type="gameMechanics.world.behaviour.genericBrain.BrainReaction">
+							<onStart>
+								<Item type="gameMechanics.elements.bunchImpacts.ImpactResetAstralMob"/>
+							</onStart>
+							<effects>
+								<Item type="gameMechanics.elements.effects.EffectSetSpeedToMaxAstral" />
+							</effects>
+						</reaction>
+						<optional>
+							<Item>
+								<to>AttackState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+						</optional>
+					</Item>
+					<!--3-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>CheckSpotState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateWait">
+							<period>10000</period>
+						</state>
+						<mandatory>
+							<Item>
+								<to>ReturnState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.SetStoredPointPipe">
+									<target name="interruptPos" />
+								</pipe>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>AttackState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroAppearedPipe" />
+							</Item>
+						</optional>
+					</Item>
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+						<name>AttackState</name>
+						<groupType>Static</groupType>
+						<initialState>CastState</initialState>
+						<subnodes>
+							<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+								<name>CastState</name>
+								<state type="gameMechanics.world.astralMob.behaviour.states.AIStateAttack" />
+								<mandatory>
+									<Item>
+									</Item>
+								</mandatory>								
+							</Item>
+							
+						</subnodes>
+						<exitTypes>
+							<Item>
+								<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+							</Item>
+						</exitTypes>
+						<exitsRemap>
+							<Item>
+								<from>0</from>
+								<exit>0</exit>
+								<groupExit>0</groupExit>
+							</Item>
+						</exitsRemap>
+						<mandatory>
+							<Item>
+								<to>CheckSpotState</to>
+							</Item>
+						</mandatory>
+						<optional>
+							<Item>
+								<to>AttackState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.AggroLeaderChangedPipe" />
+							</Item>
+                            <Item>
+                                <to>CheckSpotState</to>
+                                <pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+                                    <eventType>gameMechanics.world.mob.behaviour.aiMsgs.NoVisibleTargetsMsg</eventType>
+                                </pipe>
+                            </Item>
+                            <Item>
+                                <to>CheckSpotState</to>
+                                <pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+                                    <eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+                                </pipe>
+                            </Item>
+						</optional>
+					</Item>
+				</subnodes>
+				<optional>
+					<Item>
+						<to>DeadState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<impacts>
+								<item type="gameMechanics.elements.impacts.ImpactRemoveAllAggroGeneric" />
+							</impacts>
+							<eventType>gameMechanics.elements.events.EventDeath</eventType>
+							<isSubscriptional>false</isSubscriptional>
+							<eventPredicate type="gameMechanics.world.astralMob.behaviour.predicates.EventFromSelfPredicate"/>
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>DeadState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle"/>
+			</Item>
+		</subnodes>
+		<initialState>ActiveStatesGroup</initialState>
+	</root>
+</gameMechanics.world.astralMob.AstralMobBrainResource>

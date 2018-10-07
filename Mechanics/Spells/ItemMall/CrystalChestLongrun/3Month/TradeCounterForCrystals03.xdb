@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>241888273</resourceId>
+	</Header>
+	<Name href="TradeCounterForCrystals_Name.txt" />
+	<Description href="TradeCounterForCrystals_Desc.txt" />
+	<image href="" />
+	<nameTemplate href="TradeCounterForCrystals_Name.txt.template" />
+	<descTemplate href="TradeCounterForCrystals_Desc.txt.template" />
+	<level>25</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItemCounter">
+				<points>1</points>
+				<destroyItemOnCounterZeroed>true</destroyItemOnCounterZeroed>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/CrystalChest/3month/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateItemCountGreater">
+										<value>0</value>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateItemCountLess">
+										<value>2</value>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+								<operation type="itemService.elements.TradeActiveItemCounterForCrystals">
+									<chances>
+										<Item>
+											<baseCrystals>144</baseCrystals>
+											<weight>1</weight>
+											<additionalCrystals>
+												<max>0</max>
+											</additionalCrystals>
+										</Item>
+									</chances>
+									<additionalOperations>
+										<Item type="itemService.elements.CooldownActiveItem">
+											<period>7</period>
+										</Item>
+										<Item type="itemService.avatar.itemBag.IncrementItemCounter">
+											<summand>-1</summand>
+											<destroyItemOnCounterZeroed>true</destroyItemOnCounterZeroed>
+										</Item>
+									</additionalOperations>
+								</operation>
+								<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+							</Item>
+						</impacts>
+						<elseImpacts>
+							<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+								<operation type="itemService.elements.TradeActiveItemCounterForCrystals">
+									<chances>
+										<Item>
+											<baseCrystals>6</baseCrystals>
+											<weight>1</weight>
+											<additionalCrystals>
+												<max>0</max>
+											</additionalCrystals>
+										</Item>
+									</chances>
+									<additionalOperations>
+										<Item type="itemService.elements.CooldownActiveItem">
+											<period>7</period>
+										</Item>
+										<Item type="itemService.avatar.itemBag.IncrementItemCounter">
+											<summand>-1</summand>
+											<destroyItemOnCounterZeroed>true</destroyItemOnCounterZeroed>
+										</Item>
+									</additionalOperations>
+								</operation>
+								<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+							</Item>
+						</elseImpacts>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+						<operation type="itemService.elements.TradeActiveItemCounterForCrystals">
+							<chances>
+								<Item>
+									<baseCrystals>144</baseCrystals>
+									<removeItem>true</removeItem>
+									<weight>1</weight>
+									<additionalCrystals>
+										<max>0</max>
+									</additionalCrystals>
+								</Item>
+							</chances>
+							<additionalOperations>
+								<Item type="itemService.avatar.itemBag.IncrementItemCounter">
+									<summand>-1</summand>
+									<destroyItemOnCounterZeroed>true</destroyItemOnCounterZeroed>
+								</Item>
+							</additionalOperations>
+						</operation>
+						<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

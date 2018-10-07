@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>288723968</resourceId>
+	</Header>
+	<Name href="ExitHangarName.txt" />
+	<Description href="ExitHangarDesc.txt" />
+	<image href="/Interface/Icons/Actions/AngarFlayButton.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>0</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateInAstralHub" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateOnParentShip">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateShipManualMode" />
+				</predicates>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceUser" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsToGroupMembers">
+								<affectPets>false</affectPets>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.BuffDetacher">
+										<buff href="/Mechanics/Ships/Hangar/Buffs/ShipMasterBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTransport" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.MarkedImpactGeneric">
+								<mark href="/Mechanics/Ships/Hangar/ExitHangar.(MarkResource).xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+						<predicates />
+						<impactsIf>
+							<Item type="itemService.elements.astral.ImpactShowShipTicketsInfo" />
+						</impactsIf>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

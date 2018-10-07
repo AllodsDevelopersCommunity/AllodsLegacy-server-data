@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>101509127</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Warrior/WarriorDefenseCombo.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/EvilEye_PhysicalImmunity.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>1.5</scale>
+			<fadeInTime>500</fadeInTime>
+			<fadeOutTime>500</fadeOutTime>
+			<locator>Slot_BodyFX</locator>
+		</Item>
+	</visualEffects>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Buff_Name.txt" />
+	<descTemplate href="Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ScalerInputDamageChannel">
+			<element>PHYSICAL</element>
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>-1</coeff>
+			</scaler>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="AreaDamage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Aura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>10</radius>
+			<impactsIn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="NoSilence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impactsIn>
+			<impactsOut>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="NoSilence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOut>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="DispelDebuffs.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>15000</delay>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="ChangeState.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactLaunchProjectile">
+							<projectileData>
+								<moveType type="gameMechanics.world.projectile.MoveTypeIdle">
+									<destination type="gameMechanics.map.destination.RelativePos">
+										<yaw type="constructor.basicElements.AngleRadians" />
+										<coord />
+									</destination>
+								</moveType>
+								<resource href="Silence_ProjectileAura.(ProjectileResource).xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+							</projectileData>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>3500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01a.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>4000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+							<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01b.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="SilenceStart.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Door1Spawn</scriptID>
+										<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>360000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NoAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/Gargoyle/Instances/Inst_GurluhsorTower/GS_Gargoyle_Boss6Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Door1Spawn</scriptID>
+										<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>360000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NoAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/Gargoyle/Instances/Inst_GurluhsorTower/GS_Gargoyle_Boss6Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Door2Spawn</scriptID>
+										<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>360000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NoAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/Gargoyle/Instances/Inst_GurluhsorTower/GS_Gargoyle_Boss6Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Door2Spawn</scriptID>
+										<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>360000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NoAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/Gargoyle/Instances/Inst_GurluhsorTower/GS_Gargoyle_Boss6Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Door1Spawn</scriptID>
+										<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>360000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NoAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/EvilEye/Inst_GurluhsorTower/Instances/Inst_GurluhsorTower/GS_EvilEye_Boss6Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.DestinationLocator">
+									<locator>
+										<scriptID>Door2Spawn</scriptID>
+										<map href="/Maps/Inst_GurluhsorTower/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+									</locator>
+									<yaw type="constructor.basicElements.AngleRadians" />
+								</destination>
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="4" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+									<delay>360000</delay>
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.Disintegrate" />
+									</impacts>
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NoAttack.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impacts>
+							<object href="/Creatures/EvilEye/Inst_GurluhsorTower/Instances/Inst_GurluhsorTower/GS_EvilEye_Boss6Add.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsOn>
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="Silence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>false</anyRank>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="SilenceProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01_silence_immunity.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff_All_immunity.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactEntitiesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateGenericAnd">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateProjectile" />
+										<Item type="gameMechanics.constructor.basicElements.PredicateGenericNot">
+											<predicate type="gameMechanics.elements.predicates.PredicateRespawnableResource">
+												<resources>
+													<Item href="/Mechanics/Spells/GurluhsorTower/Projectiles/Boss6_ResetProjectile.xdb#xpointer(/gameMechanics.world.projectile.ProjectileResource)" />
+													
+												</resources>
+											</predicate>
+										</Item>
+									</predicates>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01a.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01b.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+					<delay>5000</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</predicate>
+								</Item>
+							</predicates>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01a.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+									<table href="/Maps/Inst_GurluhsorTower/SpawnTables/Inst_GurluhsorTower/GS_Boss6_AOE_SPAM_01b.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.resources.ResourceAnyBuff">
+										<buffs>
+											<Item href="NoSilence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<Item href="SilenceProtection.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<Item href="SilenceStart.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</buffs>
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="Silence.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+			<tick>1000</tick>
+			<initialDelay>-1</initialDelay>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<resistType>SRT_BuffDebuff</resistType>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

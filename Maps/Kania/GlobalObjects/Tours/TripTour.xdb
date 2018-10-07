@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.map.tour.Tour>
+	<Header>
+		<resourceId>342169600</resourceId>
+	</Header>
+	<route href="/Maps/Kania/GlobalObjects/Routes/TripTour.(Route).xdb#xpointer(/gameMechanics.map.tour.Route)" />
+	<speed>0.1</speed>
+	<travelOnce>true</travelOnce>
+	<destoyTravelerAtEnd>false</destoyTravelerAtEnd>
+	<impactPoints>
+		<Item>
+			<point>6</point>
+			<impacts type="gameMechanics.world.transport.TransportImpactsGeneric">
+				<impacts>
+					<Item type="gameMechanics.world.device.control.ImpactSetEngineManualMode" />
+					<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateFaction">
+								<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+								<destination href="/Maps/Kania/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								<success>
+									<Item type="gameMechanics.world.ship.elements.ImpactGoByTourFromPart">
+										<bunchPartClass>gameMechanics.world.bigAstral.EntranceTourPart</bunchPartClass>
+									</Item>
+								</success>
+							</Item>
+						</impactsIf>
+						<impactsElse>
+							<Item type="gameMechanics.world.ship.elements.ImpactShipEnter">
+								<destination href="/Maps/Hadagan/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								<success>
+									<Item type="gameMechanics.world.ship.elements.ImpactGoByTourFromPart">
+										<bunchPartClass>gameMechanics.world.bigAstral.EntranceTourPart</bunchPartClass>
+									</Item>
+								</success>
+							</Item>
+						</impactsElse>
+					</Item>
+					<Item type="gameMechanics.world.ship.elements.ImpactAllDevices">
+						<filter type="gameMechanics.world.device.filters.HasDeviceTypeFilter" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+								<buff href="/Mechanics/Ships/BuffTest.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacherGeneric">
+						<buff href="/Mechanics/Ships/BuffNobodyLeaves.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+			</impacts>
+		</Item>
+		<Item>
+			<point>0</point>
+			<impacts />
+		</Item>
+	</impactPoints>
+</gameMechanics.map.tour.Tour>

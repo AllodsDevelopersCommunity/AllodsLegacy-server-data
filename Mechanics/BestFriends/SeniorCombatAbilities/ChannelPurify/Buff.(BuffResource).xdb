@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>360059942</resourceId>
+	</Header>
+	<Name href="Buff.(BuffResource).Name.txt" />
+	<Description href="Buff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Misc/Event/PurpleSpark.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectInstantiating">
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>10</radius>
+							<affectGroup>Enemies</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateMobQualityLessThan">
+											<quality href="/Mechanics/MobQualities/Boss.xdb#xpointer(/gameMechanics.world.mob.MobQuality)" />
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.PureDamage">
+											<damage>1</damage>
+											<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+											<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+												<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+													<multiplier>0.05</multiplier>
+												</mulCalcer>
+											</scalerTarget>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.PureDamage">
+											<damage>1</damage>
+											<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+											<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+												<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+													<multiplier>0.025</multiplier>
+												</mulCalcer>
+											</scalerTarget>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<tick>1000</tick>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MapLocalBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isMultiple>true</isMultiple>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

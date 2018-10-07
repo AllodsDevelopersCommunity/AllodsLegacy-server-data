@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>461242412</resourceId>
+	</Header>
+	<Name href="C2_14_Amulet_SpellName.txt" />
+	<Description href="C2_14_Amulet_SpellDesc.txt" />
+	<visualScripts href="/Spells/VisScripts/Priest/Cleanse.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="C2_14_Amulet_SpellName.txt" />
+	<descTemplate href="C2_14_Amulet_SpellDesc.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<iffPolicy>Enemies</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCanTakePack">
+				<toAdd>
+					<Item>
+						<item href="/Items/QuestItems/ZoneContested2/ZC2_14_Tear/ZC2_14_Tear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</toAdd>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasItemsCount">
+					<items>
+						<Item href="/Items/QuestItems/ZoneContested2/ZC2_14_Tear/ZC2_14_Tear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</items>
+					<totalCount>1</totalCount>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/Artiodactyl/Instances/ZoneContested2/Unicorn30_31.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneContested2/C2_14_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+						<id href="/World/Quests/ZoneContested2/C2_14_3_E/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="/World/Quests/ZoneContested2/C2_14_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>9</value>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="C2_14_Amulet.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+							<item href="/Items/QuestItems/ZoneContested2/ZC2_14_Tear/ZC2_14_Tear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</item>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Active</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="/World/Quests/ZoneContested2/C2_14_3_E/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+						<value>9</value>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/Empire.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+						<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="C2_14_Amulet.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+							<item href="/Items/QuestItems/ZoneContested2/ZC2_14_Tear/ZC2_14_Tear.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</item>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+						<predicates>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/ZoneContested2/C2_14_3_E/C2_14_3_E.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/World/Quests/ZoneContested2/C2_14_3_E/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>9</value>
+									</Item>
+								</predicates>
+							</Item>
+							<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Active</status>
+									</Item>
+									<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+										<quest href="/World/Quests/ZoneContested2/C2_14_3/C2_14_3.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<counterResource href="/World/Quests/ZoneContested2/C2_14_3/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+										<value>9</value>
+									</Item>
+								</predicates>
+							</Item>
+						</predicates>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+						<msg href="/World/Quests/ZoneContested2/C2_14_3/Succes_Msg.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.elements.calcers.DestinationCurrentTarget" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>10000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</impacts>
+						<object href="/Creatures/Artiodactyl/Instances/ZoneContested2/Unicorn29_30.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.Disintegrate" />
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactMobWhisper">
+						<msg href="/World/Quests/ZoneContested2/C2_14_3/Failure_Msg.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+						<faction href="/World/Factions/Wild.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

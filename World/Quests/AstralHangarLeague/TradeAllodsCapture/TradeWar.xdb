@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.quest.QuestResource>
+	<Header>
+		<resourceId>319438848</resourceId>
+	</Header>
+	<name href="Name.txt" />
+	<goal href="GoalText.txt" />
+	<startText href="StartText.txt" />
+	<checkText href="CheckText.txt" />
+	<finishText href="FinishText.txt" />
+	<plotline />
+	<type>QUEST_TYPE_SOLO</type>
+	<pvp>true</pvp>
+	<autoSetReturnLocation>true</autoSetReturnLocation>
+	<returnLocation>
+		<zone href="/Maps/AstralHangarLeague/Zones/AstralHangarLeague/AstralHangar.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+		<position x="319.406097" y="1425.991455" z="73.816448" />
+	</returnLocation>
+	<finisher type="gameMechanics.elements.quest.QuestFinisherMob">
+		<mobWorld href="/Mechanics/Ships/Hangar/HangarNPC/HangarNPC_L.xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+	</finisher>
+	<startImpacts />
+	<rewardImpacts />
+	<startConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateFaction">
+			<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/AstralTradeAllods.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasContentKey">
+						<key href="/System/ContentKeys/AstralTradeAllods_CaptureEvent.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+					<rule href="/Mechanics/Rules/Astral/TradeWarAlternativeCapture/AlternativeCaptureEvent.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+				</Item>
+			</predicates>
+		</Item>
+	</startConditions>
+	<counters>
+		<Item type="gameMechanics.elements.quest.QuestCountShip">
+			<customName href="CounterName.txt" />
+			<limit>1</limit>
+			<state>AnyShipSummoned</state>
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterTurretDestroyed.txt" />
+			<limit>1</limit>
+			<id href="QuestCountTurretDestroyed.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+		<Item type="gameMechanics.elements.quest.QuestCountSpecial">
+			<customName href="CounterCapturedAllod.txt" />
+			<limit>1</limit>
+			<id href="QuestCountCapturedAllod.(QuestCountId).xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+		</Item>
+	</counters>
+	<timer type="" />
+	<triggerAgents />
+	<reward>
+		<money>750000</money>
+		<currencies>
+			<Item>
+				<currency href="/Mechanics/AlternativeCurrencies/AstralPvP.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<value>1</value>
+			</Item>
+		</currencies>
+		<mandatoryItems />
+	</reward>
+	<sharing>
+		<onRequest>false</onRequest>
+	</sharing>
+	<secretSequence>false</secretSequence>
+	<repeatPolicy type="gameMechanics.constructor.schemes.quest.RepeatPolicyDelayed">
+		<cooldown>1</cooldown>
+	</repeatPolicy>
+	<tutorial>false</tutorial>
+	<internalName>TradeAllodsCaptureLeague</internalName>
+	<lowPriority>true</lowPriority>
+	<zone href="/Maps/AstralHangarLeague/Zones/AstralHangarLeague/AstralHangar.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+	<requiredLevel type="gameMechanics.formulas.MaxLevelConstant">
+		<summand>-3</summand>
+	</requiredLevel>
+	<level type="gameMechanics.formulas.MaxLevelConstant">
+		<summand>-3</summand>
+	</level>
+</gameMechanics.constructor.schemes.quest.QuestResource>

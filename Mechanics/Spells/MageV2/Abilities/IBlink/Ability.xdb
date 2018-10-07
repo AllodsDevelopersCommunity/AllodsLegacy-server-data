@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>267892753</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Mage/MageLevitate.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+			<casterImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactAllEnemies">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactDecrementThreat">
+							<value var="value" />
+							<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.MagicScaler">
+										<stat>IS_Intellect</stat>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.OffensiveRunesScaler" />
+								</scalers>
+							</scaler>
+							<minValue>1</minValue>
+						</Item>
+					</impacts>
+					<useMasterEnemies>false</useMasterEnemies>
+					<targetsLimit>0</targetsLimit>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.resources.ResourceBuff">
+							<hideText>false</hideText>
+							<buff href="/Mechanics/Spells/MageV2/MirrorImage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<consumeStacks>0</consumeStacks>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="/Mechanics/Spells/MageV2/MirrorImage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<anyRank>true</anyRank>
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value var="val_1" />
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+							<resetTimer>false</resetTimer>
+						</Item>
+					</impactsIf>
+					<impactsElse>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+									<hideText>false</hideText>
+									<spell href="/Mechanics/Spells/MageV2/MirrorImage/Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+									<buff href="/Mechanics/Spells/MageV2/MirrorImage/Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+									<delta type="gameMechanics.elements.calcers.FloatData">
+										<value var="val_2" />
+									</delta>
+									<attachIfNotExist>true</attachIfNotExist>
+									<resetTimer>false</resetTimer>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateHasSpell">
+											<hideText>false</hideText>
+											<spell href="/Mechanics/Spells/MageV2/MirrorImage/Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+											<anyRank>false</anyRank>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="/Mechanics/Spells/MageV2/MirrorImage/Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value var="val_3" />
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+											<resetTimer>false</resetTimer>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+											<buff href="/Mechanics/Spells/MageV2/MirrorImage/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<anyRank>false</anyRank>
+											<delta type="gameMechanics.elements.calcers.FloatData">
+												<value var="val_4" />
+											</delta>
+											<attachIfNotExist>true</attachIfNotExist>
+											<resetTimer>false</resetTimer>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsElse>
+						</Item>
+					</impactsElse>
+				</Item>
+			</casterImpacts>
+			<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationSpells">
+				<spells>
+					<Item href="/Mechanics/Spells/MageV2/Blink/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				</spells>
+			</destination>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>false</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

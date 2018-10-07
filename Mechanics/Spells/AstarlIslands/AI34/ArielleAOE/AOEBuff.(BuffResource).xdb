@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>290069573</resourceId>
+	</Header>
+	<Name href="AOEBuff.(BuffResource)_Name.txt" />
+	<Description href="AOEBuff.(BuffResource).Description.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/CriticalCure.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="ArielleDotVis.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="BuffName.txt" />
+	<descTemplate href="AOEBuff.(BuffResource).DescTemplate.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectDisableAct">
+			<actions>
+				<Item>Move</Item>
+				<Item>Jump</Item>
+			</actions>
+		</Item>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<damagePerTick>15</damagePerTick>
+			</parameters>
+			<element>ASTRAL</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectsDeferred">
+			<delay>3000</delay>
+			<effects>
+				<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>11</radius>
+							<affectGroup>Enemies</affectGroup>
+							<affectHolder>false</affectHolder>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ASTRAL</element>
+									<minDamage>80</minDamage>
+									<maxDamage>80</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.constructor.basicElements.FilterOr">
+								<filters>
+									<Item type="gameMechanics.world.creature.AvatarFilter" />
+									<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+									</Item>
+								</filters>
+							</filter>
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="ArielleBuffClientData.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+					</impacts>
+					<tick>1000</tick>
+					<initialDelay>1000</initialDelay>
+				</Item>
+			</effects>
+		</Item>
+	</effects>
+	<duration>8000</duration>
+	<isHelpful>false</isHelpful>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

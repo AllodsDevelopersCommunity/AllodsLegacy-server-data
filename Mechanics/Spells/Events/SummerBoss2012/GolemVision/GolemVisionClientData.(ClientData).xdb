@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.ClientData>
+	<Header>
+		<resourceId>330621952</resourceId>
+	</Header>
+	<customData />
+	<visEventData type="ClientDataVisEventAttack">
+		<casterName>caster</casterName>
+		<mainTargetName>target</mainTargetName>
+		<action type="VisActionList">
+			<play>Simultaneously</play>
+			<elements>
+				<Item type="CreatureAnimationAction">
+					<animations>
+						<Item>rangedAttack</Item>
+					</animations>
+					<advanced>
+						<turnToTarget>NO_TURN</turnToTarget>
+					</advanced>
+				</Item>
+				<Item type="VisActionList">
+					<elements>
+						<Item type="VisActionDelay">
+							<time>900</time>
+						</Item>
+						<Item type="CreatureChannelDirectAction">
+							<channelingFx href="/Spells/FX/Spells/GolemShot_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+							<startPoint type="VisPointLocator">
+								<locator>Slot_FX</locator>
+							</startPoint>
+							<endPoint type="VisPointLocator">
+								<locator>Global</locator>
+							</endPoint>
+							<fadeInTime>100</fadeInTime>
+							<fadeOutTime>100</fadeOutTime>
+						</Item>
+						<Item type="VisActionDelay">
+							<time>600</time>
+						</Item>
+						<Item type="VisActionList">
+							<play>Simultaneously</play>
+							<elements>
+								<Item type="CreatureEffectsOnTarget">
+									<visualEffects>
+										<Item>
+											<effectFx href="/Spells/FX/Spells/ThrowBottleGas_Hit.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+											<fixPoint>true</fixPoint>
+											<scale>0.2</scale>
+										</Item>
+									</visualEffects>
+								</Item>
+								<Item type="Sound3DAction">
+									<sound>
+										<project href="/SFX/Spells/Sounds.(FMODProject).xdb#xpointer(/FMODProject)" />
+										<name>spells/Hits/HitLightning</name>
+									</sound>
+								</Item>
+							</elements>
+						</Item>
+						<Item type="Sound3DAction" />
+					</elements>
+				</Item>
+			</elements>
+		</action>
+	</visEventData>
+	<params>
+		<params>
+			<Item>
+				<name>caster</name>
+				<type>Address</type>
+			</Item>
+			<Item>
+				<name>target</name>
+				<type>Address</type>
+			</Item>
+		</params>
+	</params>
+</gameMechanics.world.ClientData>

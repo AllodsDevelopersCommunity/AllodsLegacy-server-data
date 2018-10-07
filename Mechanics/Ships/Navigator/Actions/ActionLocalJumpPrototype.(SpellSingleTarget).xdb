@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>338888720</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<cooldown>300000</cooldown>
+			<insightCost>75</insightCost>
+		</Variables>
+	</Header>
+	<Name href="ActionLocalJumpName.txt" />
+	<Description href="ActionLocalJumpDesc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/VisorAbilitiesLocalJump.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>10000</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTarget</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration var="cooldown" />
+			<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+				<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+					<summands>
+						<Item type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.CalcerMax">
+							<calcers>
+								<Item type="gameMechanics.world.device.CalcerTechLevelDelta" />
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value>0</value>
+								</Item>
+							</calcers>
+						</Item>
+					</summands>
+				</mulCalcer>
+			</scaler>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.world.device.cannon.DeviceHasUser" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsAstralMob" />
+					<Item type="gameMechanics.world.ship.elements.PredicateIsShip" />
+				</predicates>
+			</Item>
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateDistance">
+				<range min="400" max="40000" />
+			</Item>
+		</conditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+				<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderDeviceLinkedTo" />
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactInstantiatingGeneric">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+								<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactTeleportToTargetGeneric">
+										<useCorpulenceSum>false</useCorpulenceSum>
+										<range>300</range>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+						<useParentCaster>false</useParentCaster>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+		<casterResources>
+			<Item type="gameMechanics.world.ship.elements.ResourceInsight">
+				<amount type="gameMechanics.elements.calcers.FloatData">
+					<value var="insightCost" />
+				</amount>
+			</Item>
+		</casterResources>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

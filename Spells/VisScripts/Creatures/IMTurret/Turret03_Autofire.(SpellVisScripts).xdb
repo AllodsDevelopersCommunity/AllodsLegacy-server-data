@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes2/Mob_Projectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>ready</PreCastAnimation>
+			<FxProjectile>/Spells/FX/Mobs/Turret01_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+			<FxOnTarget>/Spells/FX/Spells/HitLightning.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnTarget>
+			<LocatorNameOnCaster>Slot_Special05</LocatorNameOnCaster>
+			<LocatorOnTarget>Slot_FX</LocatorOnTarget>
+			<PreCastFX />
+			<FxOnHands />
+			<FxOnCaster>/Spells/FX/Mobs/Turret01_Attack.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<HitPostFxOnTarget>/Spells/VisScripts/HitPostFxOnTarget/HitLightning02.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)</HitPostFxOnTarget>
+			<Animation>attack</Animation>
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item skiped="" />
+							<Item>
+								<delay>100</delay>
+								<effectFx href="/Spells/FX/Mobs/Turret01_Attack.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<locatorName>Slot_Special06</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureVisActionStartThrow">
+								<visActionID />
+							</Item>
+							<Item type="CreatureProjectileAction">
+								<visActionID />
+								<projectileFx hrefvar="FxProjectile" />
+								<explosionFx hrefvar="FxOnTarget" />
+								<isMultyProjectile>true</isMultyProjectile>
+								<theGe var="Ge" />
+								<pointOnCaster type="VisPointLocator">
+									<shift x="0" y="0" z="0" />
+									<locator var="LocatorOnCaster" />
+									<member>Default_Member</member>
+									<locatorName var="LocatorNameOnCaster" />
+									<from>FROM_DEFALUT</from>
+								</pointOnCaster>
+								<pointOnTarget type="VisPointLocator">
+									<shift x="0" y="0" z="0" />
+									<locator var="LocatorOnTarget" />
+									<member>Default_Member</member>
+									<locatorName var="LocatorNameOnTarget" />
+									<from>FROM_DEFALUT</from>
+								</pointOnTarget>
+								<isInverted>false</isInverted>
+								<offendTime type="EffectOffendConstDelay">
+									<delay var="HitDelay" />
+								</offendTime>
+							</Item>
+							<Item type="VisActionList">
+								<elements>
+									<Item type="VisActionDelay">
+										<time>100</time>
+									</Item>
+									<Item type="CreatureVisActionStartThrow" />
+									<Item type="CreatureProjectileAction">
+										<projectileFx href="/Spells/FX/Mobs/Turret01_Projectile.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+										<pointOnCaster type="VisPointLocator">
+											<locator>FROM_LOCATOR_NAME</locator>
+											<locatorName>Slot_Special06</locatorName>
+										</pointOnCaster>
+										<pointOnTarget type="VisPointLocator">
+											<locator>Slot_FX</locator>
+										</pointOnTarget>
+									</Item>
+								</elements>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

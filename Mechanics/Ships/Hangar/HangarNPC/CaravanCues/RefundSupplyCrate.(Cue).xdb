@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>297674763</resourceId>
+	</Header>
+	<name href="RefundSupplyCrate.txt" />
+	<text href="RefundSupplyCrate.Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+			<lhs type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+				<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+			</lhs>
+			<rhs type="gameMechanics.elements.calcers.LongData">
+				<value>0</value>
+			</rhs>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/AstralCaravans.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+		<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicateShipOwner" />
+				<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+			</predicates>
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+			<minLevel type="gameMechanics.formulas.IntConstantValue">
+				<value>48</value>
+			</minLevel>
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.constructor.basicElements.ImpactAdapter">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.SendImpactsToAddresseeGeneric">
+					<addresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderBoundShip" />
+					<impacts>
+						<Item type="itemService.elements.astral.ImpactRemoveChest">
+							<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+							<chestCount type="gameMechanics.world.ship.elements.calcers.CalcerTreasureChestCount">
+								<chestType href="/Mechanics/Rules/Astral/Caravans/Chests/SupplyChest.(AstralChestType).xdb#xpointer(/gameMechanics.world.device.AstralChestType)" />
+							</chestCount>
+							<scalableImpactsOnAvatarPerChest>
+								<Item type="gameMechanics.elements.impacts.ImpactsIf">
+									<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+										<onSlave type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+											<predicates>
+												<Item type="gameMechanics.world.ship.elements.PredicateShipOwner" />
+												<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+											</predicates>
+										</onSlave>
+									</predicate>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactAddMoney">
+											<sumCalcer type="gameMechanics.elements.calcers.LongData">
+												<value>200000</value>
+											</sumCalcer>
+										</Item>
+									</impactsIf>
+								</Item>
+							</scalableImpactsOnAvatarPerChest>
+						</Item>
+					</impacts>
+				</Item>
+			</impacts>
+		</Item>
+	</impacts>
+	<nextCues>
+		<Item href="LoadSupplyCrateEvent.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="LoadSupplyCrateEventNoSpace.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="LoadSupplyCrate.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+		<Item href="LoadSupplyCrateNoShip.(Cue).xdb#xpointer(/gameMechanics.world.mob.interaction.Cue)" />
+	</nextCues>
+</gameMechanics.world.mob.interaction.Cue>

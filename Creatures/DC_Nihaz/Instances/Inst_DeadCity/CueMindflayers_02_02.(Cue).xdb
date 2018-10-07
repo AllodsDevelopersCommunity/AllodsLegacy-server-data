@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>272220195</resourceId>
+	</Header>
+	<name href="CueMindflayers_02_02.(Cue).Name.txt" />
+	<text href="CueMindflayers_02_02.(Cue).Text.txt" />
+	<image href="" />
+	<conditions>
+		<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+			<variableResource href="/Maps/Inst_DeadCity/Variables/MindFlayers.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+			<minValue type="gameMechanics.elements.calcers.FloatData">
+				<value>1</value>
+			</minValue>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>Mindflayer02Boss</scriptID>
+					<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.map.variables.PredicateMapVariableGreater">
+					<variableResource href="/Maps/Inst_DeadCity/Variables/MindFlayers.(MapVariableResource).xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<minValue type="gameMechanics.elements.calcers.FloatData">
+						<value>1</value>
+					</minValue>
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactFindPermanentDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.DoorSwitch">
+							<switchType>Open</switchType>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>MindflayerBoss02_Door</scriptID>
+						<map href="/Maps/Inst_DeadCity/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_DeadCity/ScriptZones/Gate_Mindflayers_Down.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+					<disable>false</disable>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactScriptZoneSetDisabled">
+					<zone href="/Maps/Inst_DeadCity/ScriptZones/Gate_Mindflayers_Down_Open.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</Item>
+			</impactsIf>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

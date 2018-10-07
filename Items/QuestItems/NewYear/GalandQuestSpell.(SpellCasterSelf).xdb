@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>136152075</resourceId>
+	</Header>
+	<Name href="GarlandQuestSpell_Name.txt" />
+	<Description href="GarlandQuestSpell_Desc.txt" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="GarlandQuestSpell_Name.txt" />
+	<descTemplate href="GarlandQuestSpell_Desc.txt" />
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>10000</duration>
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateDeviceNear">
+					<radius>4</radius>
+					<devices>
+						<Item href="/Items/InteractiveObjects/NewYear/SnowManQuest/SnowManQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<Item href="/Items/InteractiveObjects/NewYear/FirQuest/FirQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<Item href="/Items/InteractiveObjects/NewYear/GarlandQuest/GarlandQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<Item href="/Items/InteractiveObjects/NewYear/FirQuest/FirHadagan_Quest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+					</devices>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/NewYearEvent/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/WinterEvent/WinterEvent.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/NewYearEvent/Region/Bras_Japan_Phil/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/NewYearEvent/Region/China/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/NewYearEvent/Region/Indonesia/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+						<rule href="/Mechanics/Rules/NewYearEvent/Region/Korea/Korea.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Kania/Zones/ZoneLeague1/ZL1_0Capital.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateInZone">
+						<zone href="/Maps/Hadagan/Zones/ZoneHadagan1/ZoneHadagan1.xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.world.ship.elements.PredicateStandingOnShip" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="GalandQuest.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateFaction">
+						<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos">
+								<faceSourcePos>false</faceSourcePos>
+							</base>
+							<offset>0</offset>
+						</destination>
+						<impactsFromTarget>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff href="NewYearDisintegration.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsFromTarget>
+						<object href="/Items/InteractiveObjects/NewYear/GarlandQuest/GarlandQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<pool href="KaniaQuestSummonPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+							<item href="NewYearCoupon.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</item>
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativeRotatePos">
+							<base type="gameMechanics.map.destination.RelativePos">
+								<faceSourcePos>false</faceSourcePos>
+							</base>
+							<offset>0</offset>
+						</destination>
+						<impactsFromTarget>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+								<buff href="NewYearDisintegration.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</impactsFromTarget>
+						<object href="/Items/InteractiveObjects/NewYear/GarlandQuest/GarlandQuest.(ChestResource).xdb#xpointer(/gameMechanics.world.device.ChestResource)" />
+						<pool href="HadaganQuestSummonPool.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+						<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+							<item href="NewYearCoupon.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+						</item>
+					</Item>
+				</elseImpacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneLeague1/NewYear03/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="/World/Quests/ZoneHadagan1/NewYear03/CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="NoUse.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

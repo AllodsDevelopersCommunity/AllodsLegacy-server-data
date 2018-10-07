@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>275912723</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<image href="/Interface/Icons/Spells/Bard/Allegro.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Bard/Allegro_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<needVisualize>false</needVisualize>
+	<needVisualizeDuration>false</needVisualizeDuration>
+	<nameTemplate href="Buff_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIfOverTime">
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+								<groups>
+									<Item href="/Mechanics/Spells/Groups/StopSing.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+								</groups>
+							</predicate>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>20</radius>
+							<affectGroup>Group</affectGroup>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+									<predicates>
+										<Item type="gameMechanics.elements.predicates.PredicateInCombat" />
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.ImpactDispelByGroups">
+											<groups>
+												<Item href="/Mechanics/Spells/Groups/MovementImpairingSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+											</groups>
+											<spell href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										</Item>
+									</impactsElse>
+								</Item>
+							</impacts>
+							<filter type="gameMechanics.world.creature.AliveFilter" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impactsIf>
+			<runImpactsOnEachTick>true</runImpactsOnEachTick>
+			<tick type="gameMechanics.elements.calcers.CalcerMul">
+				<calcers>
+					<Item type="gameMechanics.elements.calcers.FloatData">
+						<value>4000</value>
+					</Item>
+					<Item type="gameMechanics.elements.calcers.CalcerIf">
+						<predicate type="gameMechanics.elements.resources.ResourceBuff">
+							<buff href="/Mechanics/Spells/Bard/QuickSong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</predicate>
+						<calcerIf type="gameMechanics.elements.calcers.LinearCalcer">
+							<mul>-1</mul>
+							<mulCalcer type="gameMechanics.constructor.basicElements.ScalerCalcer">
+								<scaler type="gameMechanics.elements.scalers.BuffRankScaler">
+									<buff href="/Mechanics/Spells/Bard/QuickSong/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<mul>1</mul>
+								</scaler>
+								<value>1</value>
+							</mulCalcer>
+							<sum>5</sum>
+						</calcerIf>
+						<calcerElse type="gameMechanics.elements.calcers.FloatData">
+							<value>1</value>
+						</calcerElse>
+					</Item>
+				</calcers>
+			</tick>
+		</Item>
+	</effects>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<canBeSaved>false</canBeSaved>
+</gameMechanics.constructor.schemes.buff.BuffResource>

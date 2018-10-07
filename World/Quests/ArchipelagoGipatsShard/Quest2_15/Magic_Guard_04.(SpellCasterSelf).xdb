@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>125885467</resourceId>
+	</Header>
+	<contextActionInfo>
+		<contextName href="Guard_action_name.txt" />
+		<contextDescription href="Guard_action_desc.txt" />
+	</contextActionInfo>
+	<Name href="SpellGuard.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/ArchipelagoGipatsShard/ScriptZones/Magic_Guard_04.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+					<quest href="Quest2_15.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<counterResource href="CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+					<value>0</value>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="/Items/QuestItems/ArchipelagoGipatsShard/Magic_scarecrow/Magic_scarecrow.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.RelativeRotatePos">
+					<base type="gameMechanics.map.destination.RelativePos">
+						<yaw type="constructor.basicElements.AngleRadians" />
+						<coord />
+					</base>
+					<offset>2</offset>
+				</destination>
+				<object href="/Items/InteractiveObjects/ArchipelagoGipatsShard/Scarecrow/Scarecrow.(SteleResource).xdb#xpointer(/gameMechanics.world.device.SteleResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+				<item href="/Items/QuestItems/ArchipelagoGipatsShard/Magic_scarecrow/Magic_scarecrow.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

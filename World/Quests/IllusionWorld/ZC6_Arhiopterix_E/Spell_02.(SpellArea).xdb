@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>329073682</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="ArhiopterixBombing.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/ActionBarChange.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_02.(SpellArea)_Name.txt" />
+	<Description href="Spell_02.(SpellArea)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Quest/ZC6_windbuff.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="TelekineticThrowVisScript.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>3</sysName>
+	<nameTemplate href="Spell_02.(SpellArea)_Name.txt.template" />
+	<descTemplate href="Spell_02.(SpellArea)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>150</value>
+	</range>
+	<element>LIGHTNING</element>
+	<targetType>STTPoint</targetType>
+	<isAggro>false</isAggro>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>6000</duration>
+		</cooldown>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Aviak/Instances/IllusionWorld/ZC6_EliteAnarchistMob.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Throw.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+						<time>500</time>
+						<destination type="gameMechanics.elements.calcers.DestinationSpellTargetPoint">
+							<yawDelta type="constructor.basicElements.AngleDegrees" />
+						</destination>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>35</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

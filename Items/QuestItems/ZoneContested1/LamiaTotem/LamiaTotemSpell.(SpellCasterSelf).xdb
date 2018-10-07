@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>83487745</resourceId>
+	</Header>
+	<Name href="LamiaTotemSpell_Name.txt" />
+	<Description href="LamiaTotemDesc_Name.txt" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>30</value>
+	</range>
+	<prepareDuration>3000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType" />
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateInScriptZone">
+				<zone href="/Maps/2ndCircle/ScriptZones/Arena.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="/World/Quests/ZoneContested1/Quest6_4/Quest6_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Active</status>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+							<radius>56</radius>
+							<mobs>
+								<Item href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+							<radius>56</radius>
+							<mobs>
+								<Item href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss24.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+						<Item type="gameMechanics.elements.predicates.PredicateMobNear">
+							<radius>56</radius>
+							<mobs>
+								<Item href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss25.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</Item>
+					</predicates>
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZoneContested1/Quest6_4/Quest6_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<value>1</value>
+						</predicate>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>ZC1_LamiaFighter01</scriptID>
+								<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>180000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<object href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZoneContested1/Quest6_4/Quest6_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss24.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<value>2</value>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="/World/Quests/ZoneContested1/Quest6_4/Quest6_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<value>1</value>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>ZC1_LamiaFighter02</scriptID>
+								<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>180000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<object href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss24.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+						<predicate type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+							<quest href="/World/Quests/ZoneContested1/Quest6_4/Quest6_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+							<counterResource href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<value>3</value>
+						</predicate>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+						<quest href="/World/Quests/ZoneContested1/Quest6_4/Quest6_4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<counterResource href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss23.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<value>2</value>
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.DestinationLocator">
+							<locator>
+								<scriptID>ZC1_LamiaFighter03</scriptID>
+								<map href="/Maps/2ndCircle/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+							</locator>
+						</destination>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>180000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<object href="/Creatures/Lamia/Instances/ZoneContested1/LamiaWarriorMiniboss25.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactSpellCooldown">
+				<spell href="LamiaTotemSpell.(SpellCasterSelf).xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				<duration>60000</duration>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>338784256</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/QuestSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Wave.(SpellCasterSelf)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Psionic/TelekineticTrust.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Wave.(SpellCasterSelf)_Name.txt.template" />
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>7000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>30</radius>
+				<conditions>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onSlave type="gameMechanics.elements.predicates.PredicateMobWorld">
+							<mobs>
+								<Item href="/Characters/Undead_male/Instances/ZC8/ZC8_1_120_agent.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							</mobs>
+						</onSlave>
+					</Item>
+				</conditions>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1000</time>
+						<impactsOnLand>
+							<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+								<element>ASTRAL</element>
+								<threatMultiplier>3</threatMultiplier>
+								<minDamage>50</minDamage>
+								<maxDamage>0</maxDamage>
+								<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+							</Item>
+						</impactsOnLand>
+						<distance>15</distance>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.MobFilter" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

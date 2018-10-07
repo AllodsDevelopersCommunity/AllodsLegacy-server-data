@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>211688450</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/FairySpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Halo/HealthResumption.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<level>1</level>
+	<prepareDuration var="prepareDuration" />
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>ASTRAL</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>false</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+	</ranks>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.ModifierIf">
+			<predicate type="gameMechanics.elements.predicates.PredicateInCombat">
+				<hideText>false</hideText>
+			</predicate>
+			<modifier type="gameMechanics.elements.spell.PrepareDurationMultiplier">
+				<factor var="factor" />
+			</modifier>
+		</Item>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType">
+			<repelType>FAIL</repelType>
+		</Item>
+	</modifiers>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>true</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration var="duration" />
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<hideText>false</hideText>
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateNotInCombat">
+						<hideText>false</hideText>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateManaCaster">
+						<hideText>true</hideText>
+						<manaType>Mana</manaType>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromGroup">
+						<hideText>true</hideText>
+						<groups>
+							<Item href="HealthResumption.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</groups>
+						<checkHelpful>true</checkHelpful>
+						<checkHarmful>true</checkHarmful>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasFairy">
+				<hideText>false</hideText>
+				<fairy href="" />
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceAltCurrency">
+				<hideText>false</hideText>
+				<currency href="/Mechanics/AlternativeCurrencies/Myrrh.xdb#xpointer(/gameMechanics.constructor.schemes.item.AlternativeCurrency)" />
+				<count>0</count>
+				<countCalcer type="gameMechanics.elements.calcers.CalcerIf">
+					<predicate type="gameMechanics.constructor.basicElements.PredicateOr">
+						<hideText>false</hideText>
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateWeakFaction">
+								<hideText>false</hideText>
+								<treatNoFactionAsWeak>false</treatNoFactionAsWeak>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+								<hideText>false</hideText>
+								<buff href="/Mechanics/Spells/ItemSpells/ChangeFaction/BuffWeakFaction.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<range>
+									<min>1</min>
+									<max>1</max>
+								</range>
+							</Item>
+						</predicates>
+					</predicate>
+					<calcerIf type="gameMechanics.elements.calcers.FairySpellCostCalcer">
+						<mul>0.1</mul>
+					</calcerIf>
+					<calcerElse type="gameMechanics.elements.calcers.FairySpellCostCalcer">
+						<mul>1</mul>
+					</calcerElse>
+				</countCalcer>
+			</Item>
+		</casterResources>
+		<channelingMechanics type="gameMechanics.constructor.schemes.spell.CreatureChannelingMechanics">
+			<channelingBuff hrefvar="buff" />
+			<isForthright>false</isForthright>
+		</channelingMechanics>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAddFairyExperience">
+				<experience>15</experience>
+			</Item>
+			<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+				<buff href="/Mechanics/Fairies/AbilityUseBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<allowOverrideCaster>false</allowOverrideCaster>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+	<speed>0</speed>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

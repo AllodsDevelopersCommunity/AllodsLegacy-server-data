@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>238068798</resourceId>
+	</Header>
+	<Name href="BlackWolfMountSpell.txt" />
+	<Description href="BattleMountAprilSpellDesc.txt" />
+	<image href="/Interface/Icons/Mounts/BatlleMountTime.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Common/Use.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="BlackWolfMountSpell.txt" />
+	<descTemplate href="BattleMountAprilSpellDesc.txt" />
+	<prepareDuration>2500</prepareDuration>
+	<needLos>false</needLos>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<needInFront>false</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+			<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+				<rule href="/Mechanics/Rules/AprilBattle/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasFreeStableSlots" />
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateHasMount">
+					<mount href="/Mechanics/Mounts/2ndGrade/Mounts/BattleMountApril.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceActiveItem" />
+		</casterResources>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactTameMount">
+				<mount href="/Mechanics/Mounts/2ndGrade/Mounts/BattleMountApril.(MountResource).xdb#xpointer(/gameMechanics.constructor.schemes.mount.MountResource)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

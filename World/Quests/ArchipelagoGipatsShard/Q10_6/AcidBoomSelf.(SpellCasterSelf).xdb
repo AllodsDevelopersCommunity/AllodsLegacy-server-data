@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>130512901</resourceId>
+	</Header>
+	<Description href="detornator_description.txt" />
+	<descTemplate href="detornator_description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="Q10_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="Q10_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_2.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="Q10_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_3.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestCounterNotLess">
+				<quest href="Q10_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="CountId_4.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+				<value>1</value>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+				<quest href="Q10_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<status>Started</status>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+				<id href="CountId_5.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+				<impacts>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="/Items/QuestItems/ArchipelagoGipatsShard/MinesDetonator/ExplosionBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impacts>
+				<spawnResource href="/Maps/ArchipelagoGipatsShard/SpawnTables/ArchipelagoGipatsShard/DemonMageBridge.(MobSpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactFreezeQuestCounter">
+				<quest href="Q10_6.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				<counterResource href="/Items/QuestItems/ArchipelagoGipatsShard/MinesDetonator/MinesDetonator.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceClientData">
+								<data href="/Items/InteractiveObjects/ArchipelagoGipatsShard/BridgeExplosion/AcidExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+								<radius>30</radius>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.75</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.MobFilter" />
+							</Item>
+						</impacts>
+						<device>
+							<scriptID>support1</scriptID>
+							<map href="/Maps/ArchipelagoGipatsShard/cave_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</device>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceClientData">
+								<data href="/Items/InteractiveObjects/ArchipelagoGipatsShard/BridgeExplosion/AcidExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+								<radius>30</radius>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.75</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.MobFilter" />
+							</Item>
+						</impacts>
+						<device>
+							<scriptID>support2</scriptID>
+							<map href="/Maps/ArchipelagoGipatsShard/cave_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</device>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>1500</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceClientData">
+								<data href="/Items/InteractiveObjects/ArchipelagoGipatsShard/BridgeExplosion/AcidExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+								<radius>30</radius>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.75</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.MobFilter" />
+							</Item>
+						</impacts>
+						<device>
+							<scriptID>support3</scriptID>
+							<map href="/Maps/ArchipelagoGipatsShard/cave_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</device>
+					</Item>
+				</impacts>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+				<delay>2000</delay>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+						<impacts>
+							<Item type="gameMechanics.elements.device.ImpactDeviceClientData">
+								<data href="/Items/InteractiveObjects/ArchipelagoGipatsShard/BridgeExplosion/AcidExplosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+								<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+								<radius>30</radius>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.75</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<filter type="gameMechanics.world.creature.MobFilter" />
+							</Item>
+						</impacts>
+						<device>
+							<scriptID>support4</scriptID>
+							<map href="/Maps/ArchipelagoGipatsShard/cave_MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+						</device>
+					</Item>
+				</impacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

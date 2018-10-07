@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>362651666</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+			<elseImpacts>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellActivate">
+					<effects>
+						<Item type="gameMechanics.elements.effects.WhileAlive">
+							<effects>
+								<Item type="gameMechanics.elements.effects.EffectMarkedImpacts">
+									<impacts>
+										<impact type="gameMechanics.elements.impacts.ImpactPPM">
+											<impact type="gameMechanics.elements.impacts.ImpactIfTarget">
+												<impactsIf>
+													<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+														<element>LIGHTNING</element>
+														<threatMultiplier>1</threatMultiplier>
+														<maxDamage var="maxDamage" />
+														<minDamage var="minDamage" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+														<data href="/Spells/ClientData/HitLighning.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+														<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+															<radius>85</radius>
+														</distributor>
+													</Item>
+												</impactsIf>
+												<predicates>
+													<Item type="gameMechanics.constructor.basicElements.PredicateTrue">
+														<hideText>false</hideText>
+													</Item>
+												</predicates>
+											</impact>
+											<ppm>5</ppm>
+										</impact>
+									</impacts>
+									<mark href="/Mechanics/Spells/Marks/PriestMeleeAttacksOnHit.xdb#xpointer(/gameMechanics.constructor.basicElements.MarkResource)" />
+								</Item>
+							</effects>
+						</Item>
+					</effects>
+					<spell hrefvar="CurrentSpellLevel" />
+				</Item>
+			</elseImpacts>
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.ImpactSpellDeactivate">
+					<spell hrefvar="CurrentSpellLevel" />
+				</Item>
+			</impacts>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.spell.spellstate.PredicateSpellActiveState">
+					<hideText>false</hideText>
+					<anyRank>true</anyRank>
+					<spell hrefvar="CurrentSpellLevel" />
+				</Item>
+			</predicates>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

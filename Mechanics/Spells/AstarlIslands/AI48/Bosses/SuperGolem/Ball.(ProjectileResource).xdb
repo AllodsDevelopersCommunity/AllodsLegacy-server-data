@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.projectile.ProjectileResource>
+	<Header>
+		<resourceId>361871366</resourceId>
+	</Header>
+	<name href="Ball.(ProjectileResource).Name.txt" />
+	<visObject href="/Spells/FX/World/AC5_buf2.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+	<altitude>2</altitude>
+	<speed>0.007</speed>
+	<lifeLengthCap>10000</lifeLengthCap>
+	<effects>
+		<Item type="gameMechanics.elements.effects.TickableEntityAura">
+			<affectGroup>Enemies</affectGroup>
+			<radius>2</radius>
+			<height>2</height>
+			<filter type="gameMechanics.world.creature.AvatarFilter" />
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</predicates>
+			<holderImpactsIn>
+				<Item type="gameMechanics.elements.impacts.EntityImpactCreaturesAround">
+					<radius>5</radius>
+					<affectGroup>Enemies</affectGroup>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>FIRE</element>
+							<minDamage>50</minDamage>
+							<maxDamage>50</maxDamage>
+							<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.StackBuff">
+								<buff href="Melting.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<delta type="gameMechanics.elements.calcers.FloatData">
+									<value>1</value>
+								</delta>
+								<attachIfNotExist>true</attachIfNotExist>
+							</impactOnHitTarget>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiatingWithAddressee">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor">
+										<radius>60</radius>
+									</distributor>
+									<data href="Explosion.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+							</impacts>
+							<consumeAddress type="gameMechanics.elements.addresseeFinders.AddresseeFinderTarget" />
+						</Item>
+					</impacts>
+					<finalImpactsOnHolder>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</finalImpactsOnHolder>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+				</Item>
+			</holderImpactsIn>
+		</Item>
+	</effects>
+</gameMechanics.world.projectile.ProjectileResource>

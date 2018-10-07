@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>135561242</resourceId>
+	</Header>
+	<Name href="CurseStrikeBuff_Name.txt" />
+	<Description href="CurseStrikeBuff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/PetCommandAttack.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Mobs/TR_2Boss_CurseStrike_Buff.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<locator>Slot_TopFX</locator>
+		</Item>
+	</visualEffects>
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.Switch">
+				<impactsOn>
+					<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+						<impact type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>SHADOW</element>
+							<threatMultiplier>1</threatMultiplier>
+							<minDamage>11</minDamage>
+							<maxDamage>13</maxDamage>
+							<impactOnHitTarget type="gameMechanics.elements.impacts.ImpactClientDataParams">
+								<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+								<data href="/Spells/ClientData/HitAstral.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							</impactOnHitTarget>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</scaler>
+						</impact>
+						<count type="gameMechanics.elements.calcers.FloatData">
+							<value>3</value>
+						</count>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="CurseStrikeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					</Item>
+				</impactsOn>
+			</effect>
+			<stackCountTrigger>3</stackCountTrigger>
+		</Item>
+	</effects>
+	<duration>45000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>3</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>false</isHelpful>
+	<groups />
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

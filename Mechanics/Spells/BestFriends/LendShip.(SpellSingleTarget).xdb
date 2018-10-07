@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>363751424</resourceId>
+	</Header>
+	<Name href="LendShip_Name.txt" />
+	<Description href="LendShip_Desc.txt" />
+	<nameTemplate href="LendShip_Name.txt" />
+	<needLos>false</needLos>
+	<iffPolicy>Friends</iffPolicy>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>85</value>
+	</range>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.world.ship.elements.PredicateOnBoundShip">
+				<predicates>
+					<Item type="gameMechanics.world.ship.elements.PredicatePermission">
+						<permission>Lend</permission>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.world.ship.elements.PredicateInHangar" />
+		</casterConditions>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasNoBorrowedShip" />
+		</targetConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateBestFriends" />
+			<Item type="gameMechanics.elements.predicates.PredicateOnSameMap" />
+		</conditions>
+		<targetImpacts>
+			<Item type="gameMechanics.world.ship.elements.ImpactLendBoundShip" />
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

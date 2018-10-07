@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<ReadyAnimationBody>readySpellDirectedBody</ReadyAnimationBody>
+			<Ge>0</Ge>
+			<ReadyAnimationHands>ready</ReadyAnimationHands>
+			<FxExplosion>/Spells/FX/Spells/HitPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxExplosion>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectPoison.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<FxProjectile>/Spells/FX/Spells/NecromancerAcidBoltAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxProjectile>
+		</Variables>
+	</Header>
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>LOOP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="ReadyAnimationHands" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController>Left</specialController>
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+				</advanced>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<locator>Slot_Hand_L</locator>
+				<effectFx hrefvar="FxOnHands" />
+			</Item>
+			<Item>
+				<locator>Slot_Hand_R</locator>
+				<effectFx hrefvar="FxOnHands" />
+			</Item>
+			<Item>
+				<locator>Slot_Global</locator>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirect01Down.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>InSequence</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item>spellCastDirected</Item>
+				</animations>
+				<channel>CHANNEL_ABILITY</channel>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>500</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="CreatureVisActionStartThrow" />
+			<Item type="CreatureProjectileAction">
+				<projectileFx hrefvar="FxProjectile" />
+				<explosionFx hrefvar="FxExplosion" />
+				<isMultyProjectile>true</isMultyProjectile>
+				<theGe var="Ge" />
+				<pointOnCaster type="VisPointLocator">
+					<locator>Slot_Hand_L</locator>
+				</pointOnCaster>
+				<offendTime type="EffectOffendConstDelay" />
+			</Item>
+		</elements>
+	</launch>
+	<playOnTargets>
+		<specialAction type="CreatureRunVisActionResource">
+			<resource href="/Spells/VisScripts/HitPostFxOnTarget/HitPoisonShader.(CreatureVisActionResource).xdb#xpointer(/CreatureVisActionResource)" />
+		</specialAction>
+	</playOnTargets>
+</SpellVisScripts>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>739814816</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectIncreaseHealth">
+			<bonusHealthPercent>1</bonusHealthPercent>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="AI50_TrueAvatar_enrage.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</impacts>
+			<tick>10000</tick>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="/Mechanics/Creatures/Integral/AstralIsle50/AI50_Integral_Sleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.DirectDamage">
+							<damage>1</damage>
+							<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+							<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+								<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+									<multiplier>0.08</multiplier>
+								</mulCalcer>
+							</scalerTarget>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>AI50_IntegralBoss</scriptID>
+						<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/Mechanics/Creatures/Integral/AstralIsle50/AI50_Integral_Sleep.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+							</impacts>
+							<spawnResource href="/Maps/AstralIsle50/SpawnTables/AI50_IntegralAvatars.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>AI50_IntegralBoss</scriptID>
+						<map href="/Maps/AstralIsle50/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

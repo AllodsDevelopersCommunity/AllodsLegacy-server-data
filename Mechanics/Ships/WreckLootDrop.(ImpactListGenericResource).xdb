@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.basicElements.ImpactListResource>
+	<Header>
+		<resourceId>269338634</resourceId>
+		<Variables>
+			<delay>3600000</delay>
+			<plankCalcDecreasePercent>0.16</plankCalcDecreasePercent>
+		</Variables>
+	</Header>
+	<impacts>
+		<Item type="gameMechanics.world.ship.elements.ImpactFillBunchLootDroppers">
+			<lootDropperResources>
+				<Item type="gameMechanics.world.astralWreck.TrashLootDropper">
+					<plankCalcer type="gameMechanics.elements.calcers.CalcerLongMulFloat">
+						<calcerLong type="gameMechanics.elements.calcers.LongData">
+							<value>50</value>
+						</calcerLong>
+						<calcerFloat type="gameMechanics.elements.calcers.CalcerMul">
+							<calcers>
+								<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+									<value type="gameMechanics.elements.calcers.FloatData">
+										<value>1.33</value>
+									</value>
+								</Item>
+								<Item type="gameMechanics.elements.calcers.FloatData">
+									<value var="plankCalcDecreasePercent" />
+								</Item>
+							</calcers>
+						</calcerFloat>
+						<rounding>Ceil</rounding>
+					</plankCalcer>
+				</Item>
+				<Item type="gameMechanics.world.astralWreck.AstralChestsDropper">
+					<chestAmount type="gameMechanics.world.ship.elements.calcers.ChestCountCalcer" />
+					<clientData href="ChestsDropperData.xdb#xpointer(gameMechanics.world.ClientData)" />
+				</Item>
+			</lootDropperResources>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTargetGeneric">
+			<predicates>
+				<Item type="gameMechanics.world.ship.elements.PredicateTooDeepInInstability" />
+			</predicates>
+			<impactsIf>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>0</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="gameMechanics.elements.impacts.ImpactLockHub" />
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay var="delay" />
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+</gameMechanics.constructor.basicElements.ImpactListResource>

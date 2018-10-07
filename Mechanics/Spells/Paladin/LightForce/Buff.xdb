@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>87452204</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinLightForce.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects />
+	<visScript href="/Spells/VisScripts/Paladin/LightForce.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.ImpactHeal">
+					<heal var="heal" />
+					<threatMultiplier>1</threatMultiplier>
+					<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+						<scalers>
+							<Item type="gameMechanics.elements.scalers.PhysicalSpellPowerScaler" />
+							<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+								<ability href="/Mechanics/Spells/Paladin/PassiveTalents/HolyLight/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+								<mul>0.1</mul>
+							</Item>
+						</scalers>
+					</scaler>
+					<statsConvertor>
+						<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Dexterity</stat>
+						</intuition>
+						<spirit type="gameMechanics.elements.calcers.InnateStatCalcer">
+							<stat>IS_Might</stat>
+						</spirit>
+					</statsConvertor>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps var="jumps" />
+			<buff hrefvar="buff" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.FriendWithMinHPAutotarget">
+				<filter>Group</filter>
+				<radius>30</radius>
+			</autotarget>
+			<radius>30</radius>
+			<inCasterRange>false</inCasterRange>
+		</Item>
+	</effects>
+	<duration>2000</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

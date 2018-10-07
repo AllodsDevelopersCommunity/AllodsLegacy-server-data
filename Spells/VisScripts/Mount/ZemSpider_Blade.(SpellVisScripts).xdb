@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<launch type="VisActionList">
+		<elements>
+			<Item type="CreatureSetFlagAction">
+				<flagName>Flag_MountNeeded</flagName>
+				<timeOut>0.5</timeOut>
+			</Item>
+			<Item type="VisActionList">
+				<playWhile type="PredicateCreatureFlagAction">
+					<flagName>Flag_Emote</flagName>
+				</playWhile>
+				<elements>
+					<Item type="VisActionDelay">
+						<time>500</time>
+					</Item>
+				</elements>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureAnimationAction">
+						<animations>
+							<Item>specialCast</Item>
+						</animations>
+						<channel>CHANNEL_MOVE</channel>
+					</Item>
+					<Item type="VisActionList">
+						<play>Simultaneously</play>
+						<playWhile type="VisActionDelay">
+							<time>2500</time>
+						</playWhile>
+						<elements>
+							<Item type="CreatureChannelDirectAction">
+								<channelingFx href="/Spells/FX/Mobs/MountSpider_LaserChannel.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fxLength>5</fxLength>
+								<startPoint type="VisPointLocator">
+									<locator>Head</locator>
+									<member>Mount</member>
+								</startPoint>
+								<endPoint type="VisPointLocator">
+									<locator>Slot_Global</locator>
+								</endPoint>
+							</Item>
+						</elements>
+					</Item>
+					<Item type="CreatureEffectsOnTarget">
+						<visualEffects>
+							<Item>
+								<delay>0</delay>
+								<effectFx href="/Spells/FX/Mobs/MountSpider_LaserPool.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<fixPoint>true</fixPoint>
+								<lockScale>true</lockScale>
+								<locator>Slot_Global</locator>
+								<member>Mount</member>
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx href="/Spells/FX/Mobs/MountSpider_LaserHead.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+								<locator>FROM_LOCATOR_NAME</locator>
+								<member>Mount</member>
+								<locatorName>Head</locatorName>
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>317221890</resourceId>
+	</Header>
+	<Name href="Burning.(BuffResource)_Name.txt" />
+	<Description href="Burning.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Mage/Firewall.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualEffects>
+		<Item>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>3</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+		<Item>
+			<delay>600</delay>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>2</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+		<Item>
+			<delay>1200</delay>
+			<effectFx href="/Spells/FX/Spells/DotFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<scale>2.5</scale>
+			<locator>Slot_Global</locator>
+		</Item>
+	</visualEffects>
+	<interfaceHighPriority>true</interfaceHighPriority>
+	<nameTemplate href="Burning.(BuffResource)_Name.txt.template" />
+	<descTemplate href="Burning.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImpactsOverTime">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<radius>5</radius>
+					<affectHolder>false</affectHolder>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>FIRE</element>
+							<minDamage>5</minDamage>
+							<maxDamage>5</maxDamage>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="Burning_2.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.constructor.basicElements.FilterOr">
+						<filters>
+							<Item type="gameMechanics.world.creature.AvatarFilter" />
+							<Item type="gameMechanics.constructor.basicElements.FilterPredicates">
+								<predicates>
+									<Item type="gameMechanics.elements.resources.ResourceBuff">
+										<buff href="/Mechanics/Spells/Mercenaries/Controls/MercUnderControl.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</predicates>
+							</Item>
+						</filters>
+					</filter>
+					<onBehalfOfHolder>false</onBehalfOfHolder>
+				</Item>
+			</impacts>
+			<initialDelay>-1</initialDelay>
+		</Item>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<parameters>
+				<damagePerTick>10</damagePerTick>
+			</parameters>
+			<element>FIRE</element>
+		</Item>
+	</effects>
+	<duration>10000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>false</isHelpful>
+	<canBeSaved>false</canBeSaved>
+	<isAE>true</isAE>
+</gameMechanics.constructor.schemes.buff.BuffResource>

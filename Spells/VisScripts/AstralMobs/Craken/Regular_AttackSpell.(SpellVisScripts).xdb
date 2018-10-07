@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Prototype href="/Spells/VisScripts/Prototypes/AstralMobDemon_Projectile.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+		<Variables>
+			<PreCastAnimation>ready</PreCastAnimation>
+			<CastAnimation>instantSpellCastDirected</CastAnimation>
+			<FXOnCaster>/Spells/FX/Spells/ReadySpellDirectFireWand_Cast.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FXOnCaster>
+			<LocatorNameOnCaster>Slot_FX</LocatorNameOnCaster>
+			<PreCastFx>/Spells/FX/Spells/ReadySpellDirect03DownFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</PreCastFx>
+			<ProjectileFX>/Spells/FX/Spells/AstralDemonCracken_Fireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</ProjectileFX>
+			<ProjectileFXLocator>HandF_TentacleF1_R</ProjectileFXLocator>
+			<FxOnHands>/Spells/FX/Spells/AstralDemonCracken_ReadySpell.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+			<PreCastFXLocatorName>Slot_FX</PreCastFXLocatorName>
+			<PreCastFxDelay>500</PreCastFxDelay>
+			<LocatorOnCaster>FROM_LOCATOR_NAME</LocatorOnCaster>
+		</Variables>
+	</Header>
+	<wholeCasting type="VisActionList">
+		<elements>
+			<Item type="CreatureEffectsAction">
+				<visualEffects>
+					<Item>
+						<scale>3</scale>
+						<fadeInTime>200</fadeInTime>
+						<fadeOutTime>200</fadeOutTime>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>HandF_TentacleF1_L</locatorName>
+					</Item>
+					<Item>
+						<scale>3</scale>
+						<fadeInTime>200</fadeInTime>
+						<fadeOutTime>200</fadeOutTime>
+						<locator>FROM_LOCATOR_NAME</locator>
+						<locatorName>HandF_TentacleF1_R</locatorName>
+					</Item>
+					<Item skiped="" />
+				</visualEffects>
+			</Item>
+		</elements>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<elements>
+			<Item skiped="" />
+			<Item type="VisActionList">
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<scale>1.5</scale>
+								<locator var="LocatorOnCaster" />
+								<locatorName var="LocatorNameOnCaster" />
+							</Item>
+						</visualEffects>
+					</Item>
+					<Item skiped="" />
+					<Item type="VisActionDelay">
+						<time>200</time>
+					</Item>
+					<Item type="VisActionList">
+						<elements>
+							<Item type="CreatureVisActionStartThrow" />
+							<Item type="CreatureAstralSpellFXVisAction">
+								<astralSpell type="AstralSpellProjectile">
+									<shieldExplosion href="/Spells/FX/Ships/Shield.CanonHitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+									<shieldCrit href="/Spells/FX/Ships/Shield.CanonHitFire.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+									<hullExplosion href="" />
+									<hullCrit href="" />
+									<projectileFx href="/Spells/FX/Spells/AstralDemonCracken_Fireball.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+									<locatorName>HandF_TentacleF1_L</locatorName>
+								</astralSpell>
+							</Item>
+						</elements>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

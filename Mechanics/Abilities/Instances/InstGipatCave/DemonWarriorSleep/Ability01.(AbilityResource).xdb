@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>138988547</resourceId>
+		<Variables>
+			<buff>sleep_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)</buff>
+		</Variables>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventDamageReceived</Item>
+				<Item>gameMechanics.elements.events.EventMagicDamageReceived</Item>
+				<Item>gameMechanics.elements.events.EventPhysicalDamageReceived</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff hrefvar="buff" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onEnter>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="sleep_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<scalerTarget />
+							<durationScaler />
+							<durationScalerTarget />
+							<allowOverrideCaster>false</allowOverrideCaster>
+						</Item>
+					</impacts>
+				</Item>
+			</onEnter>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSetTaggingType">
+			<taggingType>Override</taggingType>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

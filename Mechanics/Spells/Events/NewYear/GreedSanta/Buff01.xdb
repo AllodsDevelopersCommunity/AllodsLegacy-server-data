@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>135896072</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Event/Gerland.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="GreedSanta.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt" />
+	<descTemplate href="Buff_Desc.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectVariable">
+			<resource href="Var.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+			<impactsOnMax>
+				<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+					<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+						<item href="/Items/QuestItems/NewYear/Gift2013.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</item>
+					<count>4</count>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactGiveItem">
+					<item type="gameMechanics.constructor.schemes.item.SimpleItemProvider">
+						<item href="/Items/QuestItems/NewYear/GiftMedium2013.(ItemResource).xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</item>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnMax>
+			<impactsOnChange>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+					<data href="GreedStack.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					<calcers>
+						<floatEntries>
+							<Item>
+								<name>GreedSantaStacks</name>
+								<calcer type="gameMechanics.elements.calcers.VariableValueCalcer">
+									<variable href="Var.(VariableResource).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+								</calcer>
+							</Item>
+						</floatEntries>
+					</calcers>
+				</Item>
+			</impactsOnChange>
+		</Item>
+	</effects>
+	<duration>3600000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<decayPolicy>OfflineDecay</decayPolicy>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/DeathSafeBuff.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

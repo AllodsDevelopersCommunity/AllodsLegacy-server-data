@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>172977153</resourceId>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.elements.effects.HealthTrigger">
+			<healthOn type="gameMechanics.elements.calcers.FullHealthCalcer">
+				<multiplier>0</multiplier>
+			</healthOn>
+			<healthOff type="gameMechanics.constructor.basicElements.FloatZero" />
+			<impactsOn>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+							<buff href="/World/Quests/ArchipelagoContested4/Q_26e/Q_26e_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>2500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+									<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+									<data href="/World/Quests/ArchipelagoContested4/Q_27e/Invis.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="/World/Quests/ArchipelagoContested4/Q_27e/Teleport.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+							<msg href="/World/Quests/ArchipelagoContested3/Quest5_4_2/Gurl_win.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+							<defaultSpeaker href="/Characters/HumMobs/Instances/ArchipelagoContested3/RuffianMageMiniboss.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>AC3_Gurl</scriptID>
+						<map href="/Maps/2ndCircle_AC3/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+									<predicate type="gameMechanics.elements.predicates.PredicateQuestStatus">
+										<quest href="/World/Quests/ArchipelagoContested3/Quest5_4_2/Quest5_4_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+										<status>Completed</status>
+									</predicate>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactFailQuest">
+									<quest href="/World/Quests/ArchipelagoContested3/Quest5_4_2/Quest5_4_2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impactsOn>
+		</Item>
+	</effects>
+	<level>1</level>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

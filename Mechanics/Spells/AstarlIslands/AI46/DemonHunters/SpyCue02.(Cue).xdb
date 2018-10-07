@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>739823035</resourceId>
+	</Header>
+	<name href="SpyCue02.(Cue).Name.txt" />
+	<text href="SpyCue02.(Cue).Text.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+				<Item type="gameMechanics.elements.resources.ResourceBuff">
+					<buff href="AssistantPaladinF.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+					<faction href="/World/Factions/ArchipelagoDecision/Kultists.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+					<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+					<data href="/Mechanics/Spells/AstarlIslands/AI46/Tresh/Spy04.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="/Mechanics/Spells/AstarlIslands/AI46/Tresh/NoDamage.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactMobChat">
+					<msg href="/Mechanics/Spells/AstarlIslands/AI46/Tresh/Spy04.(TextMessage).xdb#xpointer(/gameMechanics.world.TextMessage)" />
+					<defaultSpeaker href="/Characters/Hadagan_male/Instances/AstralIsle46/DemonSpy.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+					<ability href="AssistantPaladinF.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+				</Item>
+			</impacts>
+			<spawnResource href="/Maps/AstralIsle46/SpawnTables/AstralIsle46/SummonSpy.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+			<delay>1500</delay>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.GoThroughPath">
+							<runningMode>true</runningMode>
+							<path>
+								<Item>
+									<scriptID>Spy11</scriptID>
+									<map href="/Maps/AstralIsle46/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+								</Item>
+							</path>
+						</Item>
+					</impacts>
+					<spawnResource href="/Maps/AstralIsle46/SpawnTables/AstralIsle46/Boss02_46isle.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+			</impacts>
+		</Item>
+		<Item type="gameMechanics.elements.impacts.EntitySpawnTableObjects">
+			<table href="/Maps/AstralIsle46/SpawnTables/AstralIsle46/Boss02_46isle.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactStopTalk" />
+		<Item type="gameMechanics.elements.impacts.ForceAggro" />
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

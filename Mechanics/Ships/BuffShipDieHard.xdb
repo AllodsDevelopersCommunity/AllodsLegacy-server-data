@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>267161602</resourceId>
+		<isPrototype>true</isPrototype>
+		<Variables>
+			<wreck_var1WithChests>ShipDeathWreck_default.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_var1WithChests>
+			<decreasePercent>0.16</decreasePercent>
+			<delay>3600000</delay>
+			<wreck_var2>ShipDeathWreck_default.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_var2>
+			<wreck_var3>ShipDeathWreck_default.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_var3>
+			<wreck_ghost2>ShipDeathWreck_default.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_ghost2>
+			<wreck_ghost3>ShipDeathWreck_default.xdb#xpointer(/gameMechanics.world.astralTeleports.ImpactRunnerSphericalObj)</wreck_ghost3>
+			<wreckImpacts>WreckLootDrop.(ImpactListGenericResource).xdb#xpointer(/gameMechanics.constructor.newBasicElements.ImpactListGenericResource)</wreckImpacts>
+		</Variables>
+	</Header>
+	<effects>
+		<Item type="gameMechanics.world.ship.elements.Effects.EffectShipDieHard">
+			<impactsOnAttach>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="ShipDieHard.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+					<buff href="ShipDamageSuppressor.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactsDeferredGeneric">
+					<delay>5500</delay>
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateGreaterLong">
+									<lhs type="gameMechanics.world.ship.elements.calcers.ChestCountCalcer" />
+									<rhs type="gameMechanics.elements.calcers.LongData">
+										<value>0</value>
+									</rhs>
+								</Item>
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.elements.impacts.ImpactSpawnObject">
+									<resource hrefvar="wreck_var1WithChests" />
+									<impacts>
+										<Item type="gameMechanics.constructor.basicElements.ImpactList">
+											<impactsResource hrefvar="wreckImpacts" />
+										</Item>
+									</impacts>
+								</Item>
+							</impactsIf>
+							<impactsElse>
+
+								<Item type="gameMechanics.elements.impacts.ImpactIfCasterGeneric">
+									<predicates>
+										<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+											<predicates>
+												<Item type="gameMechanics.world.ship.elements.PredicateShipSkin">
+													<skin href="/Ships/HadaganGroup_GhostShip/HadaganGroup_GhostShip.(ShipSkin).xdb#xpointer(/gameMechanics.world.ship.ShipSkin)" />
+												</Item>
+												<Item type="gameMechanics.world.ship.elements.PredicateShipSkin">
+													<skin href="/Ships/HadaganGroup_GhostShip/HadaganGroup_GhostShip_Level2.(ShipSkin).xdb#xpointer(/gameMechanics.world.ship.ShipSkin)" />
+												</Item>
+												<Item type="gameMechanics.world.ship.elements.PredicateShipSkin">
+													<skin href="/Ships/KaniaGroupNew_GhostShip/KaniaGroupNew_GhostShip.(ShipSkin).xdb#xpointer(/gameMechanics.world.ship.ShipSkin)" />
+												</Item>
+												<Item type="gameMechanics.world.ship.elements.PredicateShipSkin">
+													<skin href="/Ships/KaniaGroupNew_GhostShip/KaniaGroupNew_GhostShip_Level2.(ShipSkin).xdb#xpointer(/gameMechanics.world.ship.ShipSkin)" />
+												</Item>
+											</predicates>
+										</Item>
+									</predicates>
+									<impactsIf>
+										<Item type="gameMechanics.elements.impacts.RandomImpactGeneric">
+											<entries>
+												<Item>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactSpawnObject">
+															<resource hrefvar="wreck_ghost2" />
+															<impacts>
+																<Item type="gameMechanics.constructor.basicElements.ImpactList">
+																	<impactsResource hrefvar="wreckImpacts" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+												<Item>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactSpawnObject">
+															<resource hrefvar="wreck_ghost3" />
+															<impacts>
+																<Item type="gameMechanics.constructor.basicElements.ImpactList">
+																	<impactsResource hrefvar="wreckImpacts" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+											</entries>
+											<createAll>false</createAll>
+										</Item>
+									</impactsIf>
+									<impactsElse>
+										<Item type="gameMechanics.elements.impacts.RandomImpactGeneric">
+											<entries>
+												<Item>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactSpawnObject">
+															<resource hrefvar="wreck_var2" />
+															<impacts>
+																<Item type="gameMechanics.constructor.basicElements.ImpactList">
+																	<impactsResource hrefvar="wreckImpacts" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+												<Item>
+													<impacts>
+														<Item type="gameMechanics.elements.impacts.ImpactSpawnObject">
+															<resource hrefvar="wreck_var3" />
+															<impacts>
+																<Item type="gameMechanics.constructor.basicElements.ImpactList">
+																	<impactsResource hrefvar="wreckImpacts" />
+																</Item>
+															</impacts>
+														</Item>
+													</impacts>
+												</Item>
+											</entries>
+											<createAll>false</createAll>
+										</Item>
+									</impactsElse>
+								</Item>
+							</impactsElse>
+						</Item>
+						<Item type="gameMechanics.world.ship.elements.ImpactEmergencyTeleport">
+							<impactsOnArrive>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="ShipInvisibility.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherGeneric">
+									<buff href="Reactor/EmergencyRepairBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.constructor.basicElements.ImpactList">
+									<impactsResource href="ShipDieHard_AfterTeleportFX.(ImpactListResource).xdb#xpointer(/gameMechanics.constructor.basicElements.ImpactListResource)" />
+								</Item>
+							</impactsOnArrive>
+							<impactsBefore />
+							<shouldDisableCollisions>true</shouldDisableCollisions>
+						</Item>
+					</impacts>
+				</Item>
+			</impactsOnAttach>
+			<conditions>
+				<Item type="gameMechanics.world.ship.elements.PredicateDurabilityMoreThan">
+					<thresholdCalcer type="gameMechanics.elements.calcers.FloatData">
+						<value var="decreasePercent" />
+					</thresholdCalcer>
+				</Item>
+			</conditions>
+		</Item>
+	</effects>
+	<duration>0</duration>
+	<isStackable>true</isStackable>
+	<stackLimit>1</stackLimit>
+	<isHelpful>true</isHelpful>
+	<isClientReplicated>false</isClientReplicated>
+</gameMechanics.constructor.schemes.buff.BuffResource>

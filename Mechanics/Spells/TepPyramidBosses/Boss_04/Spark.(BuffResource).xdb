@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>278375491</resourceId>
+	</Header>
+	<Name href="Spark.(BuffResource).Name.txt" />
+	<Description href="Spark.(BuffResource)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Event/PurpleSpark.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Bosses/TepPyramid/Spark_Buff.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Spark.(BuffResource).Name.txt" />
+	<descTemplate href="Spark.(BuffResource)_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectsIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+					<mobs>
+						<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</Item>
+			</predicates>
+			<effectsIf>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>1500</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+									<impacts>
+										<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+											<buff href="ShieldBreaker.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<durationScaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+												<mul>-1</mul>
+												<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+													<buff href="Spark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<forAllRanks>true</forAllRanks>
+												</mulCalcer>
+												<sum>6</sum>
+											</durationScaler>
+										</Item>
+									</impacts>
+								</Item>
+							</impacts>
+						</Item>
+					</impactsOn>
+				</Item>
+			</effectsIf>
+			<effectsElse>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+							<delay>200</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.DirectDamage">
+									<damage>1</damage>
+									<scalerTarget type="gameMechanics.elements.scalers.ScalerIf">
+										<condition type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+											<buff href="SparkCount.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											<range>
+												<min>1</min>
+												<max>9999</max>
+											</range>
+										</condition>
+										<scalerIf type="gameMechanics.constructor.basicElements.ScalerMultiple">
+											<scalers>
+												<Item type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.15</multiplier>
+													</mulCalcer>
+												</Item>
+												<Item type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+													<buff href="SparkScale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													<anyRank>false</anyRank>
+													<onlyFromMaster>false</onlyFromMaster>
+													<mul>1</mul>
+													<sum>1</sum>
+												</Item>
+											</scalers>
+										</scalerIf>
+										<scalerElse type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.CalcerSum">
+												<summands>
+													<Item type="gameMechanics.elements.calcers.CalcerMul">
+														<calcers>
+															<Item type="gameMechanics.elements.calcers.FullHealthCalcer">
+																<multiplier>0.15</multiplier>
+															</Item>
+															<Item type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+																<buff href="SparkScale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																<forAllRanks>true</forAllRanks>
+															</Item>
+														</calcers>
+													</Item>
+													<Item type="gameMechanics.elements.calcers.CalcerMul">
+														<calcers>
+															<Item type="gameMechanics.elements.calcers.FullHealthCalcer">
+																<multiplier>0.15</multiplier>
+															</Item>
+															<Item type="gameMechanics.elements.calcers.LinearCalcer">
+																<mul>-1</mul>
+																<mulCalcer type="gameMechanics.elements.calcers.BuffStackCountCalcer">
+																	<buff href="Spark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+																	<forAllRanks>true</forAllRanks>
+																</mulCalcer>
+																<sum>7</sum>
+															</Item>
+														</calcers>
+													</Item>
+												</summands>
+											</mulCalcer>
+										</scalerElse>
+									</scalerTarget>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="SparkDot.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+						</Item>
+					</impactsOn>
+					<impactsOff>
+						<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+							<buff href="SparkScale.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<delta type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</delta>
+							<attachIfNotExist>true</attachIfNotExist>
+						</Item>
+					</impactsOff>
+				</Item>
+			</effectsElse>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectJumpOnDetach">
+			<jumps>5</jumps>
+			<buff href="Spark.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<autotarget type="gameMechanics.constructor.schemes.spell.multiTarget.ClosestAutotarget">
+				<group>All</group>
+				<conditions>
+					<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+						<onMaster type="gameMechanics.constructor.basicElements.PredicateNot">
+							<predicate type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</predicate>
+						</onMaster>
+						<onSlave type="gameMechanics.constructor.basicElements.PredicateOr">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+									<mobs>
+										<Item href="/Creatures/TepPyramidBosses/Instances/Inst_TepPiramid/Boss_04.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+									</mobs>
+								</Item>
+							</predicates>
+						</onSlave>
+					</Item>
+				</conditions>
+			</autotarget>
+			<onBehalfOfCaster>true</onBehalfOfCaster>
+			<radius>85</radius>
+			<inCasterRange>false</inCasterRange>
+			<keepTrack>false</keepTrack>
+			<renewingEffects>
+				<Item type="gameMechanics.elements.effects.Switch">
+					<impactsOn>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="GeneratorSpark.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+							<calcers>
+								<addressEntries>
+									<Item>
+										<name>caster</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+									</Item>
+									<Item>
+										<name>target</name>
+										<finder type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+									</Item>
+								</addressEntries>
+							</calcers>
+						</Item>
+					</impactsOn>
+				</Item>
+			</renewingEffects>
+		</Item>
+	</effects>
+	<duration>3000</duration>
+	<stackLimit>9999</stackLimit>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/RemovesNot.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

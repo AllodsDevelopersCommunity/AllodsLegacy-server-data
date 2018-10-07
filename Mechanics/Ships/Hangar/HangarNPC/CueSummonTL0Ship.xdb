@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>352602112</resourceId>
+	</Header>
+	<name href="CueSummonTL0Ship.txt" />
+	<text href="CueSummonTL0ShipText.txt" />
+	<conditions>
+		<Item type="gameMechanics.world.ship.elements.PredicateIsHangarEmpty" />
+		<Item type="gameMechanics.elements.predicates.PredicateIsDweller" />
+		<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+			<predicate type="gameMechanics.world.ship.elements.PredicateHasSummonedShip" />
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/AstralHangarLeague/Q1/Q1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/AstralHangarHadagan/Q1/Q1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+					<status>Active</status>
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateFaction">
+					<faction href="/World/Factions/League.xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+				</Item>
+			</predicates>
+			<impactsIf>
+				<Item type="itemService.elements.astral.ImpactSummonTempShip">
+					<scanRadius>1000</scanRadius>
+					<shipResource href="/Mechanics/Ships/AstralShip/AstralShipKaniaNewTL0.(ShipResource).xdb#xpointer(/gameMechanics.world.ship.ShipResource)" />
+					<destination type="gameMechanics.world.bigAstral.HangarDestination" />
+				</Item>
+			</impactsIf>
+			<impactsElse>
+				<Item type="itemService.elements.astral.ImpactSummonTempShip">
+					<scanRadius>1000</scanRadius>
+					<shipResource href="/Mechanics/Ships/AstralShip/AstralShipHadaganTL0.(ShipResource).xdb#xpointer(/gameMechanics.world.ship.ShipResource)" />
+					<destination type="gameMechanics.world.bigAstral.HangarDestination" />
+				</Item>
+			</impactsElse>
+		</Item>
+	</impacts>
+	<nextCues />
+</gameMechanics.world.mob.interaction.Cue>

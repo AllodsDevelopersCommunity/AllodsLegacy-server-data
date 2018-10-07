@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>86017042</resourceId>
+	</Header>
+	<visualEffects>
+		<Item>
+			<locator>Slot_Hand_L</locator>
+			<effectFx href="/Spells/FX/Spells/ReadySpellDirectDisease.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+		</Item>
+		<Item>
+			<delay>0</delay>
+			<locator>Slot_Hand_R</locator>
+			<locatorName />
+			<effectFx href="/Spells/FX/Spells/ReadySpellDirectDisease.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			<effectAnimations>
+				<mode>DIE</mode>
+			</effectAnimations>
+			<fixPoint>false</fixPoint>
+			<fadeInTime>0</fadeInTime>
+			<fadeOutTime>0</fadeOutTime>
+		</Item>
+	</visualEffects>
+	<needVisualize>false</needVisualize>
+	<effects>
+		<Item type="gameMechanics.elements.effects.AddPlane">
+			<plane href="NecroPlane.(Plane).xdb#xpointer(/gameMechanics.world.visibility.Plane)" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOn />
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.SpawnTableObjects">
+					<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/ZombieWarrior_t.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ResetSpawnTable">
+					<table href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/Necromancer_Effect.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+							<predicates>
+								<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+							</predicates>
+							<impactsIf>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="NecroAggro.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<scalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScaler type="gameMechanics.elements.scalers.TrivialScaler" />
+									<durationScalerTarget type="gameMechanics.elements.scalers.TrivialScaler" />
+								</Item>
+							</impactsIf>
+						</Item>
+					</impacts>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleMob">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactFindSpawnTable">
+									<impacts>
+										<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+											<value>20</value>
+										</Item>
+									</impacts>
+									<spawnResource href="/Maps/Inst_LeagueStart/SpawnTables/InstLeague1/ZombieWarrior_t.(SpawnTable).xdb#xpointer(/gameMechanics.map.spawn.SpawnTable)" />
+								</Item>
+							</impacts>
+						</Item>
+					</impacts>
+					<mob>
+						<scriptID>ElfYoungSorceress</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</mob>
+				</Item>
+				<Item type="gameMechanics.elements.impacts.ImpactFindSingleDevice">
+					<impacts>
+						<Item type="gameMechanics.elements.device.ImpactDeviceSetVisualState">
+							<visualState>2</visualState>
+						</Item>
+						<Item type="gameMechanics.elements.device.DeviceImpactsDeferred">
+							<delay>1000</delay>
+							<impacts>
+								<Item type="gameMechanics.elements.device.ImpactDeviceDisintergrate" />
+							</impacts>
+						</Item>
+					</impacts>
+					<device>
+						<scriptID>Device_Floor1_DeadCorpse_GameScene</scriptID>
+						<map href="/Maps/Inst_LeagueStart/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+					</device>
+				</Item>
+			</impactsOff>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.buff.BuffResource>

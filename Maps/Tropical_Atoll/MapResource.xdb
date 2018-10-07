@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapLoader.MapResource>
+	<Header>
+		<resourceId>248671350</resourceId>
+	</Header>
+	<minimapLight>
+		<AmbientFactor>0.5</AmbientFactor>
+		<FogStart>100</FogStart>
+		<FogEnd>500</FogEnd>
+		<SunLightYaw>25.7143</SunLightYaw>
+		<SunLightPitch>178.095</SunLightPitch>
+		<AmbientColor>2017861120</AmbientColor>
+		<DiffuseColor>2017861120</DiffuseColor>
+		<FogColor>2017861120</FogColor>
+		<SpecularColor>0</SpecularColor>
+		<ContourColor>0</ContourColor>
+		<SpecularWaterColor>0</SpecularWaterColor>
+		<WaterGradientStart>-1</WaterGradientStart>
+		<WaterGradientEnd>-1</WaterGradientEnd>
+		<TerrainSpecularColor>0</TerrainSpecularColor>
+		<TerrainContourColor>0</TerrainContourColor>
+	</minimapLight>
+	<internalName>Tropical_Atoll</internalName>
+	<name href="Name.txt" />
+	<mapTemplate href="/System/MapTemplates/ChanneledMapLarge.xdb#xpointer(/mapLoader.MapTemplate)" />
+	<globalObjects />
+	<parts>
+		<parts>
+			<Item type="gameMechanics.map.variables.MapVariablesHolderResource">
+				<variables>
+					<Item href="Scripts/CrabRacing_MapVar1.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Scripts/CrabRacing_MapVar2.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Scripts/CrabRacing_MapVar3.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Scripts/CrabRacing_MapVar4.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Scripts/CrabRacing_MapVar5.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Scripts/CrabRacing_MapVar6.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+					<Item href="Scripts/CrabRacing_MapVarFinish.xdb#xpointer(/gameMechanics.map.variables.MapVariableResource)" />
+				</variables>
+			</Item>
+			<Item type="gameMechanics.map.basicElements.MapSpecificEffects">
+				<effects>
+					<Item type="gameMechanics.elements.effects.Switch">
+						<impactsOn>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+										<predicates>
+											<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+												<predicate type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+													<rule href="/Mechanics/Rules/SummerEvent/TeleporstToIsland/SummerEvent_Online.(RuleResource).xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+												</predicate>
+											</Item>
+										</predicates>
+										<impactsIf>
+											<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+												<delay>10000</delay>
+												<impacts>
+													<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+														<buff href="Scripts/SummerEvent_Offline_TeleportBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+													</Item>
+												</impacts>
+											</Item>
+										</impactsIf>
+										<impactsElse>
+											<Item type="gameMechanics.elements.impacts.ImpactInstantiating">
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+														<destination type="gameMechanics.map.destination.DestinationLocator">
+															<locator>
+																<scriptID>TropicalHome</scriptID>
+																<map href="MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+															</locator>
+														</destination>
+													</Item>
+												</impacts>
+											</Item>
+										</impactsElse>
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Scripts/ChangingVis/Cloth_Boots_ZoneArrival.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+								</predicates>
+								<impactsIf>
+									<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+										<buff href="Scripts/ChangingVis/HideHead_TillHat.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									</Item>
+								</impactsIf>
+							</Item>
+						</impactsOn>
+					</Item>
+				</effects>
+			</Item>
+		</parts>
+	</parts>
+	<deathHeightThreshhold>-50</deathHeightThreshhold>
+</mapLoader.MapResource>

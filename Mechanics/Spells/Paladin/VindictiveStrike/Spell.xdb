@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>87451660</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MeleeAttacks.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<image href="/Interface/Icons/Spells/Paladin/PaladinBlessedSword.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Paladin/PurificationStrike.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.MeleeRangeCalcer" />
+	<level>1</level>
+	<prepareDuration>0</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>true</needLos>
+	<element>PHYSICAL</element>
+	<targetType>STTCurrentTarget</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>true</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<ranks>
+		<Item href="Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell02.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+		<Item href="Spell03.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+	</ranks>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>false</launchWhenReady>
+	<needInFront>true</needInFront>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>60000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateUsesWeapon" />
+		</casterConditions>
+		<conditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+				<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+		</conditions>
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceMana">
+				<mana>25</mana>
+				<scaleByWeaponSpeed>true</scaleByWeaponSpeed>
+				<source>Mainhand</source>
+				<manaType>
+					<Item>Energy</Item>
+				</manaType>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+				<impactsOnHitTarget>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+								<predicates>
+									<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+										<ability href="/Mechanics/Spells/Paladin/CanonAbilityUpgrade/Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+										<anyRank>false</anyRank>
+									</Item>
+								</predicates>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactFillUpItems">
+										<item href="/Mechanics/Spells/Paladin/Canon/Item.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+										<maximum>60</maximum>
+										<add var="add" />
+									</Item>
+								</impacts>
+								<elseImpacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+												<ability href="/Mechanics/Spells/Paladin/CanonAbilityUpgrade/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+												<anyRank>false</anyRank>
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactFillUpItems">
+												<item href="/Mechanics/Spells/Paladin/Canon/Item.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+												<maximum>40</maximum>
+												<add var="a_1" />
+											</Item>
+										</impacts>
+										<elseImpacts>
+											<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+														<ability href="/Mechanics/Spells/Paladin/CanonAbility/Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+														<anyRank>false</anyRank>
+													</Item>
+												</predicates>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactFillUpItems">
+														<item href="/Mechanics/Spells/Paladin/Canon/Item.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+														<maximum>30</maximum>
+														<add var="a_2" />
+													</Item>
+												</impacts>
+												<elseImpacts>
+													<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+														<predicates>
+															<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+																<predicates>
+																	<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+																		<ability href="/Mechanics/Spells/Paladin/CanonAbilityUpgrade/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+																		<anyRank>false</anyRank>
+																	</Item>
+																	<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+																		<ability href="/Mechanics/Spells/Paladin/CanonAbility/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+																		<anyRank>false</anyRank>
+																	</Item>
+																</predicates>
+															</Item>
+														</predicates>
+														<impacts>
+															<Item type="gameMechanics.elements.impacts.ImpactFillUpItems">
+																<item href="/Mechanics/Spells/Paladin/Canon/Item.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+																<maximum>20</maximum>
+																<add var="a_3" />
+															</Item>
+														</impacts>
+														<elseImpacts>
+															<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+																<predicates>
+																	<Item type="gameMechanics.elements.predicates.PredicateHasAbility">
+																		<ability href="/Mechanics/Spells/Paladin/CanonAbility/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+																		<anyRank>false</anyRank>
+																	</Item>
+																</predicates>
+																<impacts>
+																	<Item type="gameMechanics.elements.impacts.ImpactFillUpItems">
+																		<item href="/Mechanics/Spells/Paladin/Canon/Item.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+																		<maximum>10</maximum>
+																		<add var="a_4" />
+																	</Item>
+																</impacts>
+															</Item>
+														</elseImpacts>
+													</Item>
+												</elseImpacts>
+											</Item>
+										</elseImpacts>
+									</Item>
+								</elseImpacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<durationScalerTarget type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+							<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<onlyFromMaster>true</onlyFromMaster>
+							<mul var="mul" />
+							<sum>0</sum>
+							<anyRank>false</anyRank>
+						</durationScalerTarget>
+						<allowOverrideCaster>false</allowOverrideCaster>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="/Mechanics/Spells/Paladin/MarkOfCrusader/Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+					</Item>
+				</impactsOnHitTarget>
+				<scaleByDamageImpactsOnHit>false</scaleByDamageImpactsOnHit>
+				<threatMultiplier>1</threatMultiplier>
+				<scaler type="gameMechanics.constructor.basicElements.ScalerMultiple">
+					<scalers>
+						<Item type="gameMechanics.elements.scalers.PhysicalScaler" />
+						<Item type="gameMechanics.elements.scalers.AbilityRankScaler">
+							<ability href="/Mechanics/Spells/Paladin/PassiveTalents/HolyWave/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							<mul>0.05</mul>
+						</Item>
+					</scalers>
+				</scaler>
+				<minDamage var="minDamage" />
+				<maxDamage var="maxDamage" />
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>50</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

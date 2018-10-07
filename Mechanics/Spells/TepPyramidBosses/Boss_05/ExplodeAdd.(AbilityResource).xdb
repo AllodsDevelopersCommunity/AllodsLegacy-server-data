@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>282914840</resourceId>
+	</Header>
+	<name href="ExplodeAdd.(AbilityResource)_Name.txt" />
+	<nameTemplate href="ExplodeAdd.(AbilityResource)_Name.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.ImmunityToBuffs">
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffInGroup">
+					<groups>
+						<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						<Item href="/Mechanics/Spells/Groups/CrowdControlSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+					</groups>
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.CombatStateTrigger">
+			<onLeave>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</onLeave>
+		</Item>
+		<Item type="gameMechanics.elements.effects.UltimateVisibility" />
+		<Item type="gameMechanics.elements.effects.DeathTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.Disintegrate" />
+			</impacts>
+			<impactsToKiller>
+				<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ExplodeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						</Item>
+					</impacts>
+					<impactsOnNoTargets>
+						<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+					</impactsOnNoTargets>
+					<filter type="gameMechanics.world.creature.AvatarFilter" />
+				</Item>
+			</impactsToKiller>
+			<skipSelfKill>true</skipSelfKill>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectInstantiating">
+			<effects>
+				<Item type="gameMechanics.elements.effects.PreciseAura">
+					<radius>5</radius>
+					<filter type="gameMechanics.constructor.basicElements.FilterPredicates">
+						<predicates>
+							<Item type="gameMechanics.elements.resources.ResourceBuff">
+								<buff href="ExplodeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+						</predicates>
+					</filter>
+					<impactsIn>
+						<Item type="gameMechanics.elements.impacts.ReturningImpact">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+							<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+							<data href="ExplodeAdd.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+							<radius>10</radius>
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+									<element>ASTRAL</element>
+									<minDamage>200</minDamage>
+									<maxDamage>200</maxDamage>
+									<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+								</Item>
+							</impacts>
+							<impactsOnNoTargets>
+								<Item type="gameMechanics.constructor.basicElements.ImpactNull" />
+							</impactsOnNoTargets>
+							<filter type="gameMechanics.world.creature.AvatarFilter" />
+							<onBehalfOfHolder>false</onBehalfOfHolder>
+						</Item>
+						<Item type="gameMechanics.elements.impacts.BuffDetacher">
+							<buff href="ExplodeBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+						</Item>
+					</impactsIn>
+				</Item>
+			</effects>
+		</Item>
+		<Item type="gameMechanics.elements.effects.AutoAttackDisabler" />
+		<Item type="gameMechanics.elements.effects.UltimateVisibility" />
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

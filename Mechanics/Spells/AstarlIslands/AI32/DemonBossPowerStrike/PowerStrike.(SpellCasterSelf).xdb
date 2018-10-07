@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>274837655</resourceId>
+	</Header>
+	<Name href="PowerStrike.txt" />
+	<visualScripts href="PowerStrike.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="PowerStrike.txt" />
+	<prepareDuration>5000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<iffPolicy>Friends</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<isAE>true</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactCreaturesAround">
+				<radius>28</radius>
+				<affectGroup>Enemies</affectGroup>
+				<affectHolder>false</affectHolder>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ScaledPhysicalDamage">
+						<scaler type="gameMechanics.elements.scalers.PhysicalScaler" />
+						<minDamage>50</minDamage>
+						<maxDamage>50</maxDamage>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ImpactAstralKick">
+						<time>1500</time>
+						<impactsOnLand>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.RelativeRotatePos">
+													<base type="gameMechanics.map.destination.RelativePos" />
+													<offset>10</offset>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+														<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+														<data href="Sum2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+													<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+												</impacts>
+												<object href="/Creatures/DemonMage/Instances/AstralIsle32/DemonMage45_45.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<pool href="PowerStrike.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactSummon">
+												<destination type="gameMechanics.map.destination.RelativeRotatePos">
+													<base type="gameMechanics.map.destination.RelativePos" />
+													<offset>10</offset>
+												</destination>
+												<impacts>
+													<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+														<distributor type="gameMechanics.elements.calcers.ObjectsAroundDistributor" />
+														<data href="/Mechanics/Spells/AstarlIslands/AI32/Enlarge/Sum1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+													</Item>
+													<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+													<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+												</impacts>
+												<object href="/Creatures/DemonScout/AstralIsle32/Instances/AstralIsle32/DemonScoutEliteAI3245_45.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+												<pool href="PowerStrike.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impactsOnLand>
+						<distance>5</distance>
+					</Item>
+				</impacts>
+				<filter type="gameMechanics.world.creature.AvatarFilter" />
+				<targetsLimit>2</targetsLimit>
+			</Item>
+		</casterImpacts>
+		<cooldown>
+			<duration>45000</duration>
+		</cooldown>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

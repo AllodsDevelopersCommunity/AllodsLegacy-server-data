@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>260312078</resourceId>
+	</Header>
+	<Name href="SummonNPC2.(SpellCasterSelf).Name.txt" />
+	<Description href="SummonNPC2.(SpellCasterSelf).Description.txt" />
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateMobNear">
+					<radius>50</radius>
+					<mobs>
+						<Item href="/Characters/Hadagan_male/Instances/ArchipelagoContested7/Stalker_nihaz_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					</mobs>
+				</predicate>
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateOr">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="AC7_KS2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ArchipelagoContested7/AC7_KS4/AC7_KS4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</Item>
+					<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="/World/Quests/ArchipelagoContested7/AC7_KS4/AC7_KS4.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>NotInQuestBook</status>
+							</Item>
+							<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+								<quest href="AC7_KS2.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+								<status>Finished</status>
+							</Item>
+						</predicates>
+					</Item>
+					<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+						<quest href="/World/Quests/ArchipelagoContested7/AC7_Kr1/AC7_Kr1.xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+						<status>Completed</status>
+					</Item>
+				</predicates>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateInZone">
+				<zone href="/Maps/ArchipelagoContested7/Zones/ArchipelagoContested7/AC5_Mindflyers_cave_zone.(ZoneResource).xdb#xpointer(/gameMechanics.map.zone.ZoneResource)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateInScriptZone">
+					<zone href="/Maps/ArchipelagoContested7/ScriptZones/NoSummonNPC2.(ScriptZone).xdb#xpointer(/gameMechanics.map.scriptZone.ScriptZone)" />
+				</predicate>
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactSummon">
+				<destination type="gameMechanics.map.destination.DestinationModified">
+					<destination type="gameMechanics.map.destination.RelativePos" />
+					<modifiers>
+						<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+							<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+								<verticalRange min="0" max="0" />
+								<horizontalRange min="0" max="2" />
+							</modifier>
+						</Item>
+					</modifiers>
+				</destination>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+						<delay>60000</delay>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.Disintegrate" />
+						</impacts>
+					</Item>
+				</impacts>
+				<object href="/Characters/Hadagan_male/Instances/ArchipelagoContested7/Stalker_nihaz_2.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

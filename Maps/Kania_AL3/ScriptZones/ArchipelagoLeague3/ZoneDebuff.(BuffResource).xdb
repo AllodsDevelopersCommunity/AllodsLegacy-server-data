@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>99142259</resourceId>
+	</Header>
+	<Name href="ZoneDebuffName.txt" />
+	<Description href="ZoneDebuffDesc.txt" />
+	<image href="/Interface/Icons/Spells/Necromancer/NecromancerFear.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<effects>
+		<Item type="gameMechanics.constructor.basicElements.HighStackEffect">
+			<effect type="gameMechanics.elements.effects.Switch">
+				<impactsOn>
+					<Item type="gameMechanics.elements.impacts.ImpactSummon">
+						<destination type="gameMechanics.map.destination.RelativePos">
+							<coord x="1" y="0.1" z="1" />
+							<yaw type="constructor.basicElements.AngleRadians">
+								<value>1</value>
+							</yaw>
+						</destination>
+						<object href="/Characters/HumMobs/Instances/ArchipelagoLeague3/AL3_Vampire_buff.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ImpactActivateAggro">
+								<value>10</value>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>120000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.Disintegrate" />
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.BuffDetacher">
+						<buff href="ZoneDebuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>false</anyRank>
+					</Item>
+					<Item type="gameMechanics.constructor.schemes.buff.StackBuff">
+						<buff href="ZoneDebuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<delta type="gameMechanics.elements.calcers.FloatData">
+							<value>-4</value>
+						</delta>
+					</Item>
+				</impactsOn>
+			</effect>
+			<stackCountTrigger>5</stackCountTrigger>
+		</Item>
+	</effects>
+	<duration>610000</duration>
+	<stackLimit>5</stackLimit>
+</gameMechanics.constructor.schemes.buff.BuffResource>

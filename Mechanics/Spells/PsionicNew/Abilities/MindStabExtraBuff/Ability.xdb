@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>315971598</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Psionic/MergingMinds.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+			<targetImpacts>
+				<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</Item>
+			</targetImpacts>
+			<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationSpells">
+				<spells>
+					<Item href="/Mechanics/Spells/PsionicNew/MindStab/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					<Item href="/Mechanics/Spells/PsionicNew/MindStabUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				</spells>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellExtraImpacts">
+			<targetImpacts>
+				<Item type="gameMechanics.elements.impacts.ImpactsIf">
+					<predicate type="gameMechanics.elements.predicates.PredicateHasBuffFromMaster">
+						<hideText>false</hideText>
+						<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+					</predicate>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ScaledMagicDamage">
+							<element>ASTRAL</element>
+							<threatMultiplier>1</threatMultiplier>
+							<scalerTarget type="gameMechanics.constructor.basicElements.ScalerMultiple">
+								<scalers>
+									<Item type="gameMechanics.elements.scalers.ScalerIf">
+										<binaryCondition type="gameMechanics.constructor.basicElements.BinaryPredicateOr">
+											<hideText>false</hideText>
+											<predicates>
+												<Item type="gameMechanics.elements.predicates.PredicateAffectedByMasterContact">
+													<hideText>false</hideText>
+													<checkContactType>true</checkContactType>
+													<contactType>Normal</contactType>
+												</Item>
+												<Item type="gameMechanics.constructor.basicElements.BinaryPredicateAnd">
+													<hideText>false</hideText>
+													<predicates>
+														<Item type="gameMechanics.elements.predicates.PredicateAffectedByMasterContact">
+															<hideText>false</hideText>
+															<checkContactType>true</checkContactType>
+															<contactType>Crude</contactType>
+														</Item>
+														<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+															<hideText>false</hideText>
+															<onMaster type="gameMechanics.elements.predicates.PredicateHasAbility">
+																<hideText>false</hideText>
+																<ability href="/Mechanics/Spells/PsionicNew/Abilities/SameContacts/Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+																<anyRank>false</anyRank>
+															</onMaster>
+															<onSlave type="gameMechanics.constructor.basicElements.PredicateTrue">
+																<hideText>false</hideText>
+															</onSlave>
+														</Item>
+													</predicates>
+												</Item>
+											</predicates>
+										</binaryCondition>
+										<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+											<multiplier>1.2</multiplier>
+										</scalerIf>
+										<scalerElse type="gameMechanics.elements.scalers.ScalerIf">
+											<binaryCondition type="gameMechanics.constructor.basicElements.BinaryPredicateAnd">
+												<hideText>false</hideText>
+												<predicates>
+													<Item type="gameMechanics.elements.predicates.PredicateAffectedByMasterContact">
+														<hideText>false</hideText>
+														<checkContactType>true</checkContactType>
+														<contactType>Crude</contactType>
+													</Item>
+													<Item type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+														<hideText>false</hideText>
+														<onMaster type="gameMechanics.elements.predicates.PredicateHasAbility">
+															<hideText>false</hideText>
+															<ability href="/Mechanics/Spells/PsionicNew/Abilities/SameContacts/Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+															<anyRank>false</anyRank>
+														</onMaster>
+														<onSlave type="gameMechanics.constructor.basicElements.PredicateTrue">
+															<hideText>false</hideText>
+														</onSlave>
+													</Item>
+												</predicates>
+											</binaryCondition>
+											<scalerIf type="gameMechanics.elements.scalers.LinearScaler">
+												<multiplier>1.1</multiplier>
+											</scalerIf>
+											<scalerElse type="gameMechanics.elements.scalers.TrivialScaler" />
+										</scalerElse>
+									</Item>
+									<Item type="gameMechanics.elements.scalers.ScalerBuff">
+										<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+										<multiplier>1</multiplier>
+										<summand>0</summand>
+										<checkCaster>false</checkCaster>
+									</Item>
+								</scalers>
+							</scalerTarget>
+							<minDamage var="minDamage" />
+							<maxDamage var="maxDamage" />
+							<impactOnHitTarget type="gameMechanics.elements.impacts.BuffDetacher">
+								<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<casterAddresseeFinder type="gameMechanics.elements.addresseeFinders.AddresseeFinderCaster" />
+								<anyRank>true</anyRank>
+							</impactOnHitTarget>
+							<scaler type="gameMechanics.elements.scalers.MagicScaler">
+								<stat>IS_Intellect</stat>
+							</scaler>
+						</Item>
+					</impactsIf>
+				</Item>
+			</targetImpacts>
+			<destination type="gameMechanics.elements.effects.SpellExtraImpacts$DestinationSpells">
+				<spells>
+					<Item href="/Mechanics/Spells/PsionicNew/MindLeach/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+					<Item href="/Mechanics/Spells/PsionicNew/MindLeachUpgrade/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				</spells>
+			</destination>
+		</Item>
+	</effects>
+	<majorEffect>-1</majorEffect>
+	<level>1</level>
+	<ranks>
+		<Item href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability02.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+		<Item href="Ability03.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+	</ranks>
+	<disableWhileDead>true</disableWhileDead>
+	<saveState>false</saveState>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

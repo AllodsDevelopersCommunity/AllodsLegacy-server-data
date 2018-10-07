@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>259892237</resourceId>
+	</Header>
+	<Name href="PirateDruidWasps/BuffName.txt" />
+	<Description href="PirateDruidWasps/BuffDescription.txt" />
+	<image href="/Interface/Icons/Spells/Druid/DruidWaspSwarm.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Druid/WaspSwarm.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="PirateDruidWasps/BuffName.txt" />
+	<descTemplate href="PirateDruidWasps/BuffDescription.txt" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectVariable">
+			<resource href="/Mechanics/Spells/HumMobs/ClassMobs/Druid/WaspSwarm/WaspSwarmVariable01.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+			<impactsOnMin>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="WaspBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOnMin>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDamageTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactVariableSummand">
+					<variable href="/Mechanics/Spells/HumMobs/ClassMobs/Druid/WaspSwarm/WaspSwarmVariable01.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+					<summand>-1</summand>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+		<Item type="gameMechanics.elements.effects.MagicDoT">
+			<element>POISON</element>
+			<scaler type="gameMechanics.elements.scalers.MagicScaler" />
+			<parameters>
+				<damagePerTick>10</damagePerTick>
+			</parameters>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectDisorient">
+			<radius>5</radius>
+		</Item>
+	</effects>
+	<duration>5000</duration>
+	<isHelpful>false</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/CrowdControlBuffs.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+</gameMechanics.constructor.schemes.buff.BuffResource>

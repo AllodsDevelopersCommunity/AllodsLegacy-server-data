@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>302885894</resourceId>
+	</Header>
+	<Name href="Attack.(SpellSingleTarget)_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/AstralMobs/Craken/Regular_AttackSpell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Attack.(SpellSingleTarget)_Name.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>330</value>
+	</range>
+	<prepareDuration>0</prepareDuration>
+	<needLos>false</needLos>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>500</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.bunchImpacts.ImpactSpellCooldownBunch">
+				<spell href="Attack.(SpellSingleTarget).xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+				<duration>500</duration>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.world.device.cannon.ImpactCannonDamage">
+				<damage type="gameMechanics.elements.calcers.CalcerMul">
+					<calcers>
+						<Item type="gameMechanics.elements.calcers.AstralMobImpactDamageCalcer">
+							<damage>2500</damage>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralTLCalcer">
+							<value type="gameMechanics.elements.calcers.FloatData">
+								<value>1.33</value>
+							</value>
+						</Item>
+						<Item type="gameMechanics.elements.calcers.AstralMobStrengthModCalcer" />
+					</calcers>
+				</damage>
+				<hitCalcType type="gameMechanics.world.projectile.AstralMobCalcType" />
+				<targetScaler type="gameMechanics.elements.scalers.ScalerIf">
+					<condition type="gameMechanics.elements.predicates.PredicateBuffStackCountRange">
+						<buff href="Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<range>
+							<min>1</min>
+							<max>9999</max>
+						</range>
+					</condition>
+					<scalerIf type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+						<buff href="Slow.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<onlyFromMaster>true</onlyFromMaster>
+						<mul>-0.08</mul>
+						<sum>1</sum>
+					</scalerIf>
+					<scalerElse type="gameMechanics.elements.scalers.TargetBuffStackCountScaler">
+						<buff href="Haste.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+						<anyRank>true</anyRank>
+						<onlyFromMaster>true</onlyFromMaster>
+						<mul>0.05</mul>
+						<sum>1</sum>
+					</scalerElse>
+				</targetScaler>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>150</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

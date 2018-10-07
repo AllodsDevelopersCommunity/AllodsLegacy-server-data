@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>311234571</resourceId>
+	</Header>
+	<Name href="Buff_Name.txt" />
+	<Description href="Buff_Desc.txt" />
+	<image href="/Interface/Icons/Spells/Stalker/StalkerSideStrike.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Spells/VisScripts/Psionic/TemporalAcceleration.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectGroupCooldownMultiplier">
+			<group href="/Mechanics/Spells/Groups/PsionicDetonators.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<factor>0.5</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectSpeedModifier">
+			<effectScaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>0.5</coeff>
+			</effectScaler>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectModifySpellCastTime">
+			<group href="/Mechanics/Spells/Groups/PsionicDetonators.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+			<factor>0.5</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.SpellPrepareDurationModifier">
+			<spell href="/Mechanics/Spells/PsionicNew/WallOfBlades/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget)" />
+			<factor>-0.5</factor>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<forceAttachBuff>false</forceAttachBuff>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffEquals">
+					<buff href="/Mechanics/Spells/PsionicNew/MindStab/Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.BuffInterceptor">
+			<forceAttachBuff>false</forceAttachBuff>
+			<predicates>
+				<Item type="gameMechanics.constructor.schemes.buff.PredicateBuffEquals">
+					<buff href="/Mechanics/Spells/PsionicNew/MindStab/Buff_02_01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				</Item>
+			</predicates>
+		</Item>
+		<Item type="gameMechanics.elements.effects.DisableSpellsPredicate">
+			<predicate type="gameMechanics.elements.predicates.PredicateSpellEquals">
+				<spells>
+					<Item href="/Mechanics/Spells/PsionicNew/Concentration/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+					<Item href="/Mechanics/Spells/RaceClassSpells/PsionicElf/Spell01.xdb#xpointer(/gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf)" />
+				</spells>
+			</predicate>
+		</Item>
+	</effects>
+	<duration>15000</duration>
+	<isStackable>false</isStackable>
+	<isHelpful>true</isHelpful>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SpeedBoosts.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<isDetachableOnWill>true</isDetachableOnWill>
+	<ranks />
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

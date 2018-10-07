@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>739826288</resourceId>
+	</Header>
+	<name href="ResetDungeon.(Cue).Name.txt" />
+	<text href="ResetDungeon.(Cue).Text.txt" />
+	<data>
+		<Item type="CueDataItem">
+			<alias>item</alias>
+			<item href="/ItemMall/Services/StrongholdReset/StrongholdResetItem.(ItemResource).xdb" />
+		</Item>
+	</data>
+	<conditions>
+		<Item type="itemService.avatar.stronghold.PredicateDungeonCreated">
+			<minRooms>1</minRooms>
+		</Item>
+		<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+			<key href="/System/ContentKeys/Stronghold.xdb#xpointer(/basement.contentkey.ContentKey)" />
+		</Item>
+	</conditions>
+	<additionalConditions>
+		<Item type="gameMechanics.elements.resources.ResourceItem">
+			<item href="/ItemMall/Services/StrongholdReset/StrongholdResetItem.(ItemResource).xdb" />
+		</Item>
+	</additionalConditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactDestroyItem">
+			<item href="/ItemMall/Services/StrongholdReset/StrongholdResetItem.(ItemResource).xdb" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactAvatarStuff">
+			<operation type="itemService.avatar.stronghold.ResetDungeon" />
+			<addressee type="gameMechanics.elements.addresseeFinders.AddresseeFinderSelf" />
+		</Item>
+		<Item type="gameMechanics.elements.impacts.ImpactActiveCueCooldown">
+			<binding>Avatar</binding>
+			<cooldownInDays>30</cooldownInDays>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>

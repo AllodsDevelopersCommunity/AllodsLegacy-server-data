@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<SpellVisScripts>
+	<Header>
+		<Variables>
+			<ReadyAnimationBody>readySpell</ReadyAnimationBody>
+			<FxOnCaster>/Spells/FX/Spells/MageIceRingAbility.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnCaster>
+			<Animation>spellCastOmni</Animation>
+			<FxOnHands>/Spells/FX/Spells/ReadySpellDirectIce.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)</FxOnHands>
+		</Variables>
+	</Header>
+	<Description href="/Spells/VisScripts/Prototypes2/Omni_Instant.txt" />
+	<actionBarStart type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<visActionID />
+				<mode>LOOP</mode>
+				<use>USE_ANIMATIONS</use>
+				<animations>
+					<Item var="ReadyAnimationBody" />
+				</animations>
+				<channel>CHANNEL_DEFAULT</channel>
+				<channelOverrideMode>OVERRIDE_DEFAULT</channelOverrideMode>
+				<channelOverrideScript />
+				<specialController />
+				<advanced>
+					<speed>0</speed>
+					<backgroundAfterFirstKey>false</backgroundAfterFirstKey>
+					<offendType>NO_OFFEND</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>false</eventPlaybackEnd>
+				</advanced>
+			</Item>
+		</elements>
+	</actionBarStart>
+	<wholeCasting type="CreatureEffectsAction">
+		<visualEffects>
+			<Item>
+				<effectFx hrefvar="FxOnHands" />
+				<locator>Slot_Hand_L</locator>
+			</Item>
+			<Item>
+				<effectFx hrefvar="FxOnHands" />
+				<locator>Slot_Hand_R</locator>
+			</Item>
+			<Item>
+				<effectFx href="/Spells/FX/Spells/ReadySpellDirect01Down.(VisObjectTemplate).xdb#xpointer(/VisObjectTemplate)" />
+			</Item>
+		</visualEffects>
+	</wholeCasting>
+	<launch type="VisActionList">
+		<play>Simultaneously</play>
+		<elements>
+			<Item type="CreatureAnimationAction">
+				<animations>
+					<Item var="Animation" />
+				</animations>
+				<advanced>
+					<backgroundAfterFirstKey>true</backgroundAfterFirstKey>
+					<offendType>EVERYKEY_ALLOFFENDS</offendType>
+					<autoHasten>
+						<mode>AUTOHASTEN_NONE</mode>
+						<timeToBeLeft>0</timeToBeLeft>
+					</autoHasten>
+					<eventPlaybackEnd>true</eventPlaybackEnd>
+				</advanced>
+			</Item>
+			<Item type="VisActionList">
+				<play>Simultaneously</play>
+				<elements>
+					<Item type="CreatureEffectsAction">
+						<visualEffects>
+							<Item>
+								<effectFx hrefvar="FxOnCaster" />
+								<fixPoint>true</fixPoint>
+								<locatorName var="LocatorNameOnCaster" />
+							</Item>
+						</visualEffects>
+					</Item>
+				</elements>
+			</Item>
+		</elements>
+	</launch>
+</SpellVisScripts>

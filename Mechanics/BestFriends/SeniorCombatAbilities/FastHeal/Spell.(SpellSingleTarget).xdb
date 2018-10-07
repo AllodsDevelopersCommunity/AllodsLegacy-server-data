@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>360059946</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/ActionBarChange.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell.(SpellSingleTarget).Name.txt" />
+	<Description href="Spell.(SpellSingleTarget).Description.txt" />
+	<image href="/Interface/Icons/Spells/Priest/PriestAspectHeal.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Priest/CompleteHeal.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<sysName>4</sysName>
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>25</value>
+	</range>
+	<level>2</level>
+	<element>HOLY</element>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<isAggro>false</isAggro>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterResources>
+			<Item type="gameMechanics.elements.resources.ResourceBuff">
+				<buff href="/Mechanics/BestFriends/SeniorCombatAbilities/AmmoForInstaSpellBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+				<consumeStacks>10</consumeStacks>
+			</Item>
+		</casterResources>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactHeal">
+				<heal>1</heal>
+				<threatMultiplier>0</threatMultiplier>
+				<scaler type="gameMechanics.elements.scalers.TrivialScaler" />
+				<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+						<multiplier>0.8</multiplier>
+					</mulCalcer>
+				</scalerTarget>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+				<predicate type="gameMechanics.elements.predicates.PredicateBestFriends" />
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacherStackRange">
+								<buff href="/Mechanics/BestFriends/SeniorCombatAbilities/AmmoForInstaSpellBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								<range>
+									<min>8</min>
+									<max>8</max>
+								</range>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>343318531</resourceId>
+	</Header>
+	<Name href="Spell01.(SpellCasterSelf)_Name.txt" />
+	<Description href="Spell01.(SpellCasterSelf)_Desc.txt" />
+	<image href="/Interface/Icons/Misc/Itemmall/TransferFaction.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<nameTemplate href="Spell01.(SpellCasterSelf)_Name.txt.template" />
+	<descTemplate href="Spell01.(SpellCasterSelf)_Desc.txt.template" />
+	<prepareDuration>10000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+				<key href="/System/ContentKeys/ChangeFaction.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+			</Item>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateWeakFaction" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+				<hideText>true</hideText>
+				<key href="/System/ContentKeys/Brazil.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+			</Item>
+			<Item type="gameMechanics.elements.resources.ResourceItem">
+				<item href="/ItemMall/Services/Exchange/IMCrystalPouch3000.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+			</Item>
+		</casterConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateResourceReady">
+						<hideText>false</hideText>
+						<resource href="/Mechanics/GameRoot/ChangeFactionRoot.xdb" />
+					</Item>
+				</predicates>
+				<impacts>
+					<Item type="gameMechanics.elements.impacts.ImpactDespawnShip" />
+					<Item type="itemService.avatar.changeFaction.ImpactChangeFaction">
+						<resource href="/ItemMall/Services/Exchange/IMCrystalPouch3000.xdb#xpointer(/gameMechanics.constructor.schemes.item.ItemResource)" />
+					</Item>
+				</impacts>
+				<elseImpacts>
+					<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+						<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+						<data href="/Mechanics/Spells/ItemSpells/ChangeFaction/WarningCooldown.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+					</Item>
+				</elseImpacts>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

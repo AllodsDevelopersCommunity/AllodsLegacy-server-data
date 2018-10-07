@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>
+	<Header>
+		<resourceId>259302434</resourceId>
+	</Header>
+	<Name href="SummonGoblins_Name.txt" />
+	<visualScripts href="/Spells/VisScripts/Warrior/BattleFrenzy.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<prepareDuration>2000</prepareDuration>
+	<targetType>STTSelf</targetType>
+	<triggersGlobalCooldown>false</triggersGlobalCooldown>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>1800000</duration>
+		</cooldown>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.RepeatedImpact">
+				<impact type="gameMechanics.elements.impacts.ImpactInstantiating">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.ImpactSummon">
+							<destination type="gameMechanics.map.destination.DestinationModified">
+								<destination type="gameMechanics.map.destination.RelativePos" />
+								<modifiers>
+									<Item type="gameMechanics.map.destination.modifier.ModifierTrail">
+										<modifier type="gameMechanics.map.destination.modifier.SpreadModifier">
+											<verticalRange min="0" max="0" />
+											<horizontalRange min="0" max="15" />
+										</modifier>
+									</Item>
+								</modifiers>
+							</destination>
+							<impacts>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="BossAssist.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+								<Item type="gameMechanics.elements.impacts.ImpactCopyAggroList" />
+								<Item type="gameMechanics.elements.impacts.ImpactSetAllAggro" />
+							</impacts>
+							<object href="/Creatures/GoblinMage/Instances/AstralIsle25/AstralRangedGoblin.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+							<pool href="/Mechanics/Spells/AstarlIslands/AI25/BossGoblin/SummonGoblins.(SummonPool).xdb#xpointer(/gameMechanics.map.spawn.SummonPool)" />
+						</Item>
+					</impacts>
+				</impact>
+				<count type="gameMechanics.elements.calcers.FloatData">
+					<value>3</value>
+				</count>
+			</Item>
+		</casterImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.casterSelf.SpellCasterSelf>

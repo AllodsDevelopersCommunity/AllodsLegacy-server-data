@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>330216449</resourceId>
+	</Header>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/SummerBoss2012.(ActionGroup).xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Type59STShotSpell.(SpellSingleTarget)_Name.txt" />
+	<Description href="Type59STShotSpell.(SpellSingleTarget)_Desc.txt" />
+	<image href="/Interface/Icons/Equipment/Ships/Shot/FireShot02.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Events/SummerBoss2012/Type59STShot_Spell.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Type59STShotSpell.(SpellSingleTarget)_Name.txt.template" />
+	<descTemplate href="Type59STShotSpell.(SpellSingleTarget)_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>60</value>
+	</range>
+	<needLos>false</needLos>
+	<targetType>STTCurrentTargetNotSelf</targetType>
+	<iffPolicy>Everyone</iffPolicy>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<duration>4000</duration>
+		</cooldown>
+		<targetConditions>
+			<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+				<predicate type="gameMechanics.elements.predicates.PredicateIsAvatar" />
+			</Item>
+		</targetConditions>
+		<casterImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactAstralKickToPoint">
+				<time>300</time>
+				<destination type="gameMechanics.elements.calcers.DestinationBehind">
+					<comfortRange>3</comfortRange>
+					<maxSteps>2</maxSteps>
+				</destination>
+			</Item>
+		</casterImpacts>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Events/SummerBoss2012/BossMaus.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.ReturningImpact">
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakMiss1.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakMiss2.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="/Mechanics/Spells/Events/SummerBoss2012/Svetlyak/SvetlyakMiss3.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+								</entries>
+							</Item>
+						</impacts>
+					</Item>
+					<Item type="gameMechanics.elements.impacts.ProbabilisticImpact">
+						<chanceCalcer type="gameMechanics.elements.calcers.FloatData">
+							<value>0.3</value>
+						</chanceCalcer>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIfCaster">
+										<predicates>
+											<Item type="gameMechanics.elements.resources.ResourceBuff">
+												<buff href="/Mechanics/Spells/Events/SummerBoss2012/SummerBossTrainingBuff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+											</Item>
+										</predicates>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.ImpactClientDataParams">
+												<distributor type="gameMechanics.elements.calcers.CasterDistributor" />
+												<data href="/Mechanics/Spells/Events/SummerBoss2012/TrainingData/Type59TrainingShot.(ClientData).xdb#xpointer(/gameMechanics.world.ClientData)" />
+											</Item>
+										</impacts>
+									</Item>
+								</impacts>
+							</Item>
+						</impacts>
+					</Item>
+				</impactsIf>
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+				<predicates>
+					<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+						<mobs>
+							<Item href="/Creatures/Events/SummerBoss2012/AddGiWi.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+						</mobs>
+					</Item>
+				</predicates>
+				<impactsIf>
+					<Item type="gameMechanics.elements.impacts.RandomImpact">
+						<entries>
+							<Item>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.25</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<chance>0.8</chance>
+							</Item>
+							<Item>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.35</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<chance>0.8</chance>
+							</Item>
+							<Item>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.DirectDamage">
+										<damage>1</damage>
+										<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+											<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+												<multiplier>0.15</multiplier>
+											</mulCalcer>
+										</scalerTarget>
+									</Item>
+								</impacts>
+								<chance>0.8</chance>
+							</Item>
+						</entries>
+					</Item>
+				</impactsIf>
+				<impactsElse>
+					<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+						<predicates>
+							<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+								<mobs>
+									<Item href="/Creatures/Events/SummerBoss2012/AddModel704.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+								</mobs>
+							</Item>
+						</predicates>
+						<impactsIf>
+							<Item type="gameMechanics.elements.impacts.RandomImpact">
+								<entries>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.05</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+										<chance>0.7</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.07</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+										<chance>0.7</chance>
+									</Item>
+									<Item>
+										<impacts>
+											<Item type="gameMechanics.elements.impacts.DirectDamage">
+												<damage>1</damage>
+												<scalerTarget type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+													<mulCalcer type="gameMechanics.elements.calcers.FullHealthCalcer">
+														<multiplier>0.09</multiplier>
+													</mulCalcer>
+												</scalerTarget>
+											</Item>
+										</impacts>
+										<chance>0.7</chance>
+									</Item>
+								</entries>
+							</Item>
+						</impactsIf>
+					</Item>
+				</impactsElse>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+	<speed>25</speed>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

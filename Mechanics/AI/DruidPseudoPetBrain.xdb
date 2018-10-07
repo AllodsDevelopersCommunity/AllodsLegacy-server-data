@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameMechanics.world.mob.behaviour.brain.MobBrainResource>
+	<Header>
+		<resourceId>58937</resourceId>
+	</Header>
+	<memoryVariables>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.AddressVariable">
+			<name>master</name>
+		</Item>
+		<Item type="gameMechanics.world.pet.brain.PetAggroModeVariable">
+			<name>aggroMode</name>
+			<value>Aggressive</value>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.MovementTypeVariable">
+			<name>moveType</name>
+		</Item>
+		<Item type="gameMechanics.world.mob.behaviour.components.variables.BoolVariable">
+			<name>pursuitToComfort</name>
+			<value>false</value>
+		</Item>
+	</memoryVariables>
+
+	<!--==============================================================================================-->
+	<!--============================================STATES============================================-->
+	<!--==============================================================================================-->
+
+	<root type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+		<name>Root</name>
+		<groupType>Static</groupType>
+		<subnodes>
+
+			<!-- Init Pet, Set Master and Target -->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>WaitInitState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+				<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+					<onStart>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAggroAndTarget" />
+					</onStart>
+				</reaction>
+				<optional>
+					<Item>
+						<to>AttackStatesGroup</to>
+						<pipe type="gameMechanics.world.pet.brain.PseudoPetInitializerPipe">
+							<eventType>gameMechanics.world.mob.behaviour.aiMsgs.MsgInitializePseudoPet</eventType>
+							<masterVar name="master" />
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+
+
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStatesGroupNode">
+				<name>AttackStatesGroup</name>
+				<groupType>Static</groupType>
+				<subnodes>
+					<!--0-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>PursuitState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStatePursuit">
+							<moveType name="moveType" />
+							<pursuitToComfort name="pursuitToComfort" />
+						</state>
+						<mandatory>
+							<Item />
+							<Item />
+							<Item>
+								<to>AttackState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+							</Item>
+						</mandatory>
+						<activeConvolutions />
+					</Item>
+					<!--1-->
+					<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+						<name>AttackState</name>
+						<state type="gameMechanics.world.mob.behaviour.components.states.AIStateAttack">
+							<pursuitToComfort name="pursuitToComfort" />
+							<moveType name="moveType" />
+						</state>
+						<mandatory>
+							<Item />
+							<Item>
+								<to>PursuitState</to>
+								<pipe type="gameMechanics.world.mob.behaviour.components.pipes.TargetAddressPipe" />
+							</Item>
+							<Item />
+							<Item />
+						</mandatory>
+						<activeConvolutions />
+					</Item>
+				</subnodes>
+				<initialState>AttackState</initialState>
+				<exitTypes>
+					<Item>
+						<type>gameMechanics.world.behaviour.basicComponents.AIState</type>
+					</Item>
+				</exitTypes>
+				<exitsRemap>
+					<Item>
+						<from>1</from>
+						<exit>0</exit>
+						<groupExit>0</groupExit>
+					</Item>
+					<Item>
+						<from>1</from>
+						<exit>2</exit>
+						<groupExit>0</groupExit>
+					</Item>
+					<Item>
+						<from>1</from>
+						<exit>3</exit>
+						<groupExit>0</groupExit>
+					</Item>
+					<Item>
+						<from>0</from>
+						<exit>0</exit>
+						<groupExit>0</groupExit>
+					</Item>
+					<Item>
+						<from>0</from>
+						<exit>1</exit>
+						<groupExit>0</groupExit>
+					</Item>
+				</exitsRemap>
+				<mandatory>
+					<Item>
+						<to>PetDespawnState</to>
+					</Item>
+				</mandatory>
+				<optional>
+					<Item>
+						<to>PetDespawnState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+						</pipe>
+					</Item>
+					<Item>
+						<to>PetDespawnState</to>
+						<pipe type="gameMechanics.world.pet.brain.PseudoPetDespawnEventPipe">
+							<eventType>gameMechanics.elements.events.EventDeath</eventType>
+							<eventPredicate type="gameMechanics.world.pet.brain.PredicateFromMasterOrSelf">
+								<master name="master" />
+							</eventPredicate>
+						</pipe>
+					</Item>
+					<Item>
+						<to>HoldState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.HoldRunnerPipe" />
+					</Item>
+				</optional>
+			</Item>
+
+
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<name>HoldState</name>
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateHold" />
+				<mandatory>
+					<Item>
+						<to>PetDespawnState</to>
+					</Item>
+					<Item>
+						<to>AttackStatesGroup</to>
+					</Item>
+					<Item>
+						<to>PetDespawnState</to>
+					</Item>
+				</mandatory>
+				<optional>
+					<Item>
+						<to>PetDespawnState</to>
+						<pipe type="gameMechanics.world.mob.behaviour.components.pipes.UniversalEventHandlerPipe">
+							<eventType>gameMechanics.world.mob.behaviour.aiMsgs.AggroDisappearedMsg</eventType>
+						</pipe>
+					</Item>
+				</optional>
+			</Item>
+
+
+			<!-- Despawn State -->
+			<Item type="gameMechanics.world.behaviour.genericBrain.AIStateNodeSingle">
+				<state type="gameMechanics.world.mob.behaviour.components.states.AIStateIdle" />
+				<reaction type="gameMechanics.world.mob.behaviour.brain.MobBrainReaction">
+					<onStart>
+						<Item type="gameMechanics.elements.impacts.ImpactRemoveAggroAndTarget" />
+						<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.Disintegrate" />
+							</impacts>
+						</Item>
+					</onStart>
+				</reaction>
+				<name>PetDespawnState</name>
+			</Item>
+
+		</subnodes>
+
+		<initialState>WaitInitState</initialState>
+
+	</root>
+
+</gameMechanics.world.mob.behaviour.brain.MobBrainResource>

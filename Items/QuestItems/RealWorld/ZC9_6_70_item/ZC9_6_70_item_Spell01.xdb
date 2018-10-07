@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>
+	<Header>
+		<resourceId>344985604</resourceId>
+	</Header>
+	<Name href="ZC9_6_70_item_Spell01.Name.txt" />
+	<Description href="ZC9_6_70_item_Spell01.Description.txt" />
+	<visualScripts href="/Spells/VisScripts/Mount/BattleStation_LightningRay.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>20</value>
+	</range>
+	<prepareDuration>2000</prepareDuration>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateMobWorld">
+				<mobs>
+					<Item href="/Creatures/MechMelee/Instances/RealWorld/ZC9_MechMelee.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+					<Item href="/Creatures/MechSiege/Instances/RealWorld/ZC9_MechGunslinger.(MobWorld).xdb#xpointer(/gameMechanics.world.mob.MobWorld)" />
+				</mobs>
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateFaction">
+				<faction href="/World/Factions/RealWorld/TephGuard.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateNotInCombat" />
+		</targetConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.RandomImpact">
+				<entries>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ReturningInstantiatingImpact">
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactIncreaseQuestCount">
+										<id href="/World/Quests/RealWorld/ZC9_6_70/CountId_1.xdb#xpointer(/gameMechanics.elements.quest.QuestCountId)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+								<faction href="/World/Factions/RealWorld/ZC9_Resistance.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+							</Item>
+							<Item type="gameMechanics.elements.impacts.ImpactsDeferred">
+								<delay>20000</delay>
+								<impacts>
+									<Item type="gameMechanics.elements.impacts.ImpactSetFaction">
+										<faction href="/World/Factions/RealWorld/TephGuard.(Faction).xdb#xpointer(/gameMechanics.world.creature.Faction)" />
+									</Item>
+									<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+										<ability href="/Characters/Hadagan_male/Instances/RealWorld/ZC9_Guard_ResistanceAbility.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+									</Item>
+								</impacts>
+							</Item>
+							<Item type="gameMechanics.elements.impacts.AttachAbility">
+								<ability href="/Characters/Hadagan_male/Instances/RealWorld/ZC9_Guard_ResistanceAbility.(AbilityResource).xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+							</Item>
+						</impacts>
+					</Item>
+					<Item>
+						<impacts>
+							<Item type="gameMechanics.elements.impacts.ForceAggro" />
+						</impacts>
+						<chance>0.25</chance>
+					</Item>
+				</entries>
+			</Item>
+		</targetImpacts>
+	</mechanics>
+</gameMechanics.constructor.schemes.spell.singleTarget.SpellSingleTarget>

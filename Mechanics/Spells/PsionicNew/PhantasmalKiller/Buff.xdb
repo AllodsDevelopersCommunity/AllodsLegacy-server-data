@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.buff.BuffResource>
+	<Header>
+		<resourceId>313532443</resourceId>
+		<isPrototype>true</isPrototype>
+	</Header>
+	<image href="/Interface/Icons/Spells/Psionic/PsionicPhantasmalKiller.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visScript href="/Mechanics/Spells/DruidV2/CallOfTheWild/PetTwin.(BuffVisScripts).xdb#xpointer(/BuffVisScripts)" />
+	<nameTemplate href="Buff_Name.txt.template" />
+	<descTemplate href="Buff_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.CopyCasterStats">
+			<usePetStats>false</usePetStats>
+			<useActualValues>false</useActualValues>
+			<hpMod>0</hpMod>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.PostponedImpacts">
+					<impacts>
+						<Item type="gameMechanics.elements.impacts.Disintegrate" />
+					</impacts>
+				</Item>
+			</impactsOff>
+			<rerunOnLoad>false</rerunOnLoad>
+		</Item>
+		<Item type="gameMechanics.elements.effects.StatToStatAspect">
+			<from type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Intellect</stat>
+			</from>
+			<to type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Strength</stat>
+			</to>
+			<coeffFrom>1</coeffFrom>
+			<coeffTo>0</coeffTo>
+		</Item>
+		<Item type="gameMechanics.elements.effects.StatToStatAspect">
+			<from type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Spirit</stat>
+			</from>
+			<to type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Might</stat>
+			</to>
+			<coeffFrom>1</coeffFrom>
+			<coeffTo>0</coeffTo>
+		</Item>
+		<Item type="gameMechanics.elements.effects.StatToStatAspect">
+			<from type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Intuition</stat>
+			</from>
+			<to type="gameMechanics.elements.stat.InnateStat">
+				<stat>IS_Dexterity</stat>
+			</to>
+			<coeffFrom>1</coeffFrom>
+			<coeffTo>0</coeffTo>
+		</Item>
+		<Item type="gameMechanics.elements.effects.ScalerAllInputDamage">
+			<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+				<coeff>3</coeff>
+			</scaler>
+		</Item>
+		<Item type="gameMechanics.constructor.basicElements.EffectTrigger">
+			<eventClasses>
+				<Item>gameMechanics.elements.events.EventDeath</Item>
+			</eventClasses>
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>true</anyRank>
+				</Item>
+			</impacts>
+			<eventsSource type="gameMechanics.elements.addresseeFinders.AddresseeFinderTargetDeferred" />
+		</Item>
+	</effects>
+	<duration var="duration" />
+	<isStackable>false</isStackable>
+	<stackLimit>1</stackLimit>
+	<isGradual>false</isGradual>
+	<isHelpful>true</isHelpful>
+	<isDetachableOnWill>false</isDetachableOnWill>
+	<isMultiple>false</isMultiple>
+	<ranks>
+		<Item href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff02.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+		<Item href="Buff03.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+	</ranks>
+	<canBeSaved>true</canBeSaved>
+	<isClientReplicated>true</isClientReplicated>
+	<resistType>SRT_BuffDebuff</resistType>
+</gameMechanics.constructor.schemes.buff.BuffResource>

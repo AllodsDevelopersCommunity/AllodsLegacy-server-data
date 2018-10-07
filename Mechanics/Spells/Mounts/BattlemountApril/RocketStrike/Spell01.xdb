@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.spell.area.SpellArea>
+	<Header>
+		<resourceId>238068757</resourceId>
+	</Header>
+	<contextActionInfo>
+		<priority>100500</priority>
+		<contextName href="Spell_Name.txt" />
+		<contextDescription href="Spell_Desc.txt" />
+		<contextImage href="/Interface/Icons/Mounts/RocketSalvo.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	</contextActionInfo>
+	<groups>
+		<Item href="/Mechanics/Spells/Groups/MountedSpells.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+		<Item href="/Mechanics/Spells/Groups/DisabledOnRemort.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+	</groups>
+	<Name href="Spell_Name.txt" />
+	<Description href="Spell_Desc.txt" />
+	<image href="/Interface/Icons/Mounts/RocketSalvo.(UISingleTexture).xdb#xpointer(/UISingleTexture)" />
+	<visualScripts href="/Spells/VisScripts/Mount/BattleMountGolem_RocketStrike.(SpellVisScripts).xdb#xpointer(/SpellVisScripts)" />
+	<nameTemplate href="Spell_Name.txt.template" />
+	<descTemplate href="Spell_Desc.txt.template" />
+	<range type="gameMechanics.elements.calcers.FloatData">
+		<value>40</value>
+	</range>
+	<level>1</level>
+	<prepareDuration>2000</prepareDuration>
+	<immutablePrepareDuration>false</immutablePrepareDuration>
+	<needLos>false</needLos>
+	<element>FIRE</element>
+	<targetType>STTSelf</targetType>
+	<isAggro>true</isAggro>
+	<replaceLowRanks>false</replaceLowRanks>
+	<isWorkOnDead>false</isWorkOnDead>
+	<modifiers>
+		<Item type="gameMechanics.elements.spell.RaiseRepelType">
+			<repelType>IGNORE</repelType>
+		</Item>
+	</modifiers>
+	<iffPolicy>Enemies</iffPolicy>
+	<triggersGlobalCooldown>true</triggersGlobalCooldown>
+	<ignoreGlobalCooldown>false</ignoreGlobalCooldown>
+	<needInGroup>false</needInGroup>
+	<launchWhenReady>true</launchWhenReady>
+	<needInFront>false</needInFront>
+	<isAE>false</isAE>
+	<mechanics type="gameMechanics.constructor.schemes.spell.SpellMechanics">
+		<cooldown>
+			<stage>Launch</stage>
+			<duration>13000</duration>
+			<group href="" />
+		</cooldown>
+		<casterConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateIsRuleActive">
+				<rule href="/Mechanics/Rules/AprilBattle/Rule.xdb#xpointer(/gameMechanics.world.rules.RuleResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.predicates.PredicateMounted">
+				<hideText>false</hideText>
+			</Item>
+		</casterConditions>
+		<targetImpacts>
+			<Item type="gameMechanics.elements.impacts.PartiallyScaledMagicDamage">
+				<element>FIRE</element>
+				<threatMultiplier>0</threatMultiplier>
+				<statsConvertor>
+					<intuition type="gameMechanics.elements.calcers.InnateStatCalcer">
+						<stat>IS_Lethality</stat>
+					</intuition>
+					<spirit type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>19.7642</value>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+								<level>1</level>
+								<exponent>1.0677</exponent>
+								<multiplier>0</multiplier>
+							</Item>
+						</calcers>
+					</spirit>
+				</statsConvertor>
+				<minDamage>1</minDamage>
+				<maxDamage>3</maxDamage>
+				<impactOnHitTarget type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="Buff01.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<allowOverrideCaster>false</allowOverrideCaster>
+				</impactOnHitTarget>
+				<scaler type="gameMechanics.elements.scalers.LinerMultiplierScaler">
+					<mul>0.1</mul>
+					<mulCalcer type="gameMechanics.elements.calcers.CalcerMul">
+						<calcers>
+							<Item type="gameMechanics.elements.calcers.FloatData">
+								<value>1</value>
+							</Item>
+							<Item type="gameMechanics.elements.calcers.MobBaseHealthCalcer" />
+							<Item type="gameMechanics.elements.calcers.OverLevelPenaltyCalcer">
+								<level>42</level>
+								<exponent>0.917</exponent>
+								<multiplier>0</multiplier>
+							</Item>
+						</calcers>
+					</mulCalcer>
+					<sum>0</sum>
+				</scaler>
+			</Item>
+		</targetImpacts>
+		<targetConditions>
+			<Item type="gameMechanics.elements.predicates.PredicateCreature" />
+		</targetConditions>
+	</mechanics>
+	<speed>0</speed>
+	<targetsSelectionStage>Land</targetsSelectionStage>
+	<maxTargets>-1</maxTargets>
+	<shape type="gameMechanics.constructor.schemes.spell.area.Sphere" />
+	<radius>40</radius>
+</gameMechanics.constructor.schemes.spell.area.SpellArea>

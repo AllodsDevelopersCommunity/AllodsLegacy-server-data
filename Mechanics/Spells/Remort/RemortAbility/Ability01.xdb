@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.constructor.schemes.ability.AbilityResource>
+	<Header>
+		<resourceId>219764741</resourceId>
+	</Header>
+	<isHidden>true</isHidden>
+	<name href="Ability_Name.txt" />
+	<nameTemplate href="Ability_Name.txt.template" />
+	<descTemplate href="Ability_Desc.txt.template" />
+	<effects>
+		<Item type="gameMechanics.elements.effects.EffectVariable">
+			<resource href="FlagBuffActive.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.VariableResource)" />
+			<valueTriggers>
+				<Item>
+					<onGreaterOrEqual>false</onGreaterOrEqual>
+					<value type="gameMechanics.elements.calcers.FloatData">
+						<value>0.5</value>
+					</value>
+					<effects>
+						<Item type="gameMechanics.elements.effects.ScalerAllOutputDamage">
+							<scaler type="gameMechanics.elements.scalers.LinearEffectScaler">
+								<coeff>-0.33</coeff>
+							</scaler>
+						</Item>
+						<Item type="gameMechanics.elements.effects.OutgoingHealModifier">
+							<scaler type="gameMechanics.elements.scalers.SimpleEffectScaler">
+								<scaler type="gameMechanics.elements.scalers.LinearScaler">
+									<multiplier>0.66</multiplier>
+								</scaler>
+							</scaler>
+							<priority>Multiplier</priority>
+						</Item>
+						<Item type="gameMechanics.elements.effects.DeathTrigger">
+							<impacts>
+								<Item type="gameMechanics.elements.impacts.ImpactAddExperience">
+									<calcer type="gameMechanics.elements.calcers.CalcerCurrentLevelExp">
+										<factor>-0.1</factor>
+									</calcer>
+									<direct>true</direct>
+								</Item>
+							</impacts>
+						</Item>
+						<Item type="gameMechanics.elements.effects.Switch">
+							<impactsOn>
+								<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="RebornBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+								</Item>
+							</impactsOn>
+							<impactsOff>
+								<Item type="gameMechanics.elements.impacts.BuffDetacher">
+									<buff href="RebornBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+									<anyRank>false</anyRank>
+								</Item>
+							</impactsOff>
+						</Item>
+						<Item type="gameMechanics.elements.effects.EffectDisableActionsGroup">
+							<group href="/Mechanics/Spells/Groups/DisabledOnRemort.xdb#xpointer(/gameMechanics.constructor.basicInterfaces.ActionGroup)" />
+						</Item>
+					</effects>
+				</Item>
+				<Item>
+					<onGreaterOrEqual>true</onGreaterOrEqual>
+					<value type="gameMechanics.elements.calcers.FloatData">
+						<value>0.5</value>
+					</value>
+					<effects>
+						<Item type="gameMechanics.elements.effects.EffectExperienceGrowthModifier">
+							<addPart>-1</addPart>
+							<source>Kill</source>
+							<prio>Multiplier</prio>
+							<slice href="/Mechanics/Slices/DefaultExperienceSlice.xdb#xpointer(/gameMechanics.world.avatar.development.ExperienceSlice)" />
+						</Item>
+						<Item type="gameMechanics.elements.effects.EffectExperienceGrowthModifier">
+							<addPart>-1</addPart>
+							<source>Quest</source>
+							<prio>Multiplier</prio>
+						</Item>
+						<Item type="gameMechanics.elements.effects.EffectExperienceGrowthModifier">
+							<addPart>-1</addPart>
+							<source>Impact</source>
+							<prio>Multiplier</prio>
+						</Item>
+						<Item type="gameMechanics.elements.effects.EffectExperienceGrowthModifier">
+							<addPart>-1</addPart>
+							<source>ImpactDirect</source>
+							<prio>Multiplier</prio>
+						</Item>
+					</effects>
+				</Item>
+			</valueTriggers>
+		</Item>
+		<Item type="gameMechanics.elements.effects.Switch">
+			<impactsOff>
+				<Item type="gameMechanics.elements.impacts.BuffDetacher">
+					<buff href="SwitchBuff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+					<anyRank>false</anyRank>
+				</Item>
+			</impactsOff>
+		</Item>
+		<Item type="gameMechanics.elements.effects.EffectLevelUpTrigger">
+			<impacts>
+				<Item type="gameMechanics.elements.impacts.ImpactIfTarget">
+					<predicates>
+						<Item type="gameMechanics.elements.predicates.PredicateCreatureLevel">
+							<minLevel type="gameMechanics.formulas.IntConstantValue">
+								<value>45</value>
+							</minLevel>
+						</Item>
+					</predicates>
+					<impactsIf>
+						<Item type="gameMechanics.elements.impacts.ImpactForgetAbility">
+							<ability href="Ability01.xdb#xpointer(/gameMechanics.constructor.schemes.ability.AbilityResource)" />
+						</Item>
+						<Item type="gameMechanics.elements.impacts.ImpactGrantUnlock">
+							<unlock href="/Mechanics/Unlocks/RemortGrantedAbilities/Unlock.xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+						</Item>
+					</impactsIf>
+				</Item>
+			</impacts>
+		</Item>
+	</effects>
+</gameMechanics.constructor.schemes.ability.AbilityResource>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gameMechanics.world.mob.interaction.Cue>
+	<Header>
+		<resourceId>310432783</resourceId>
+	</Header>
+	<name href="PlayerIsle_NPC_Cue_8.(Cue).Name.txt" />
+	<text href="PlayerIsle_NPC_Cue_8.(Cue).Text02.txt" />
+	<conditions>
+		<Item type="gameMechanics.constructor.basicElements.PredicateAnd">
+			<predicates>
+				<Item type="gameMechanics.elements.predicates.PredicateQuestStatus">
+					<quest href="/World/Quests/ZoneHadagan1/MegaGoal_Island_E_10/MegaGoal_Island_E_10.(QuestResource).xdb#xpointer(/gameMechanics.constructor.schemes.quest.QuestResource)" />
+				</Item>
+				<Item type="gameMechanics.constructor.basicElements.PredicateNot">
+					<predicate type="gameMechanics.elements.predicates.PredicateUnlock">
+						<unlock href="/Mechanics/Unlocks/Locations/SettingSelectZone/TeleportLocations/SettingSelectUnlock.(UnlockResource).xdb#xpointer(/gameMechanics.constructor.schemes.unlock.UnlockResource)" />
+					</predicate>
+				</Item>
+				<Item type="gameMechanics.elements.predicates.PredicateHasContentKey">
+					<key href="/System/ContentKeys/SettingSelectZone.(ContentKey).xdb#xpointer(/basement.contentkey.ContentKey)" />
+				</Item>
+			</predicates>
+		</Item>
+	</conditions>
+	<impacts>
+		<Item type="gameMechanics.elements.impacts.ImpactTeleport">
+			<destination type="gameMechanics.map.destination.DestinationLocator">
+				<locator>
+					<scriptID>SetSelect_Portal</scriptID>
+					<map href="/Maps/SettingSelectZone/MapResource.xdb#xpointer(/mapLoader.MapResource)" />
+				</locator>
+			</destination>
+		</Item>
+		<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+			<buff href="/Mechanics/Spells/Megagoal/SettingSelect/SetHelperPlane/Buff01.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			<durationScaler type="gameMechanics.elements.scalers.LinearScaler">
+				<multiplier>100</multiplier>
+			</durationScaler>
+		</Item>
+	</impacts>
+</gameMechanics.world.mob.interaction.Cue>
