@@ -2,6 +2,9 @@
 
 Change note of Allods Legacy server
 
+#### 07-10-2018: Scheduled lucky moment
++ Change lucky time to appear every Friday at 8:00 pm
+
 #### 07-10-2018: Change ammo stack count
 + Change ammo stack count from 1000 to 10000 for all qualities
 
