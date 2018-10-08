@@ -2,6 +2,11 @@
 
 Change note of Allods Legacy server
 
+#### 08-10-2018: Increase battleground token amount
++ Increase the number of token given by quest from 65 to 500
++ Increase stack count from 100 to 500 for quest token
++ Increase stack count from 100 to 1000 for reward token
+
 #### 08-10-2018: MM_Pvp_Arena_Turkish fix
 + Fix buff attachment
 + Remove time table
