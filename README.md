@@ -2,6 +2,10 @@
 
 Change note of Allods Legacy server
 
+#### 08-10-2018: MM_Pvp_Arena_Turkish fix
++ Fix buff attachment
++ Remove time table
+
 #### 07-10-2018: Allow mounts indoor
 + Allow mounts indoor and in Tka Rika zone
 

@@ -66,7 +66,6 @@
 				</Item>
 				<Item>
 					<minLevel>55</minLevel>
-					<capacity>24</capacity>
 				</Item>
 			</entries>
 			<baseEntityLevel>55</baseEntityLevel>
@@ -100,7 +99,28 @@
 			</Item>
 		</entrances>
 	</eventType>
-	<startTime href="/Mechanics/InstancedEventResource/MM_Pvp_Arena/TimeTable.xdb#xpointer(/timetables.TimeTable)" />
+	<impactsOnAvatars>
+	<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+					<buff href="/Mechanics/Spells/BG_Balance/BG_Balance_Buff.xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+			</Item>
+			<Item type="gameMechanics.elements.impacts.ImpactsIf">
+					<predicate type="gameMechanics.constructor.basicElements.BinaryPredicateWrapper">
+							<onMaster type="gameMechanics.battleground.map.PredicateBattleMemberMark">
+									<mark href="/Mechanics/InstancedEventResource/MM_Pvp_Arena/MM_ArenaRedMark.(BattlegroundPlayerSpawnPlace).xdb#xpointer(/gameMechanics.battleground.BattlegroundPlayerSpawnPlace)" />
+							</onMaster>
+					</predicate>
+					<impactsIf>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Maps/MM_Pvp_Arena/ScriptZones/MM_pvpEvent_imp_Buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)" />
+							</Item>
+					</impactsIf>
+					<impactsElse>
+							<Item type="gameMechanics.constructor.schemes.buff.BuffAttacher">
+									<buff href="/Maps/MM_Pvp_Arena/ScriptZones/MM_pvpEvent_lig_buff.(BuffResource).xdb#xpointer(/gameMechanics.constructor.schemes.buff.BuffResource)"  />
+							</Item>
+					</impactsElse>
+			</Item>
+	</impactsOnAvatars>
 	<activeEventJoinPeriod>1800000</activeEventJoinPeriod>
 	<maxVisitsPerDay>1</maxVisitsPerDay>
 </avatarPopulation.service.impl.matchMakingImpl.scheme.InstancedEventResource>
