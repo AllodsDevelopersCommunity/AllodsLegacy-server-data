@@ -2,6 +2,9 @@
 
 Change note of Allods Legacy server
 
+#### 08-10-2018: Remove lvl 30 condition for powerplaces quest in ZC1
++ Remove lvl 30 condition for powerplaces cues in ZC1
+
 #### 08-10-2018: Increase battleground token amount
 + Increase the number of token given by quest from 65 to 500
 + Increase stack count from 100 to 500 for quest token
