@@ -2,6 +2,9 @@
 
 Change note of Allods Legacy server
 
+#### 24-10-2018: Add class exchange items and Spells
++ Add class exhange spell and item for all classes
+
 #### 08-10-2018: Remove lvl 30 condition for powerplaces quest in ZC1
 + Remove lvl 30 condition for powerplaces cues in ZC1
 
