@@ -2,6 +2,15 @@
 
 Change note of Allods Legacy server
 
+### Java updates
++ Free revive
++ Custom number of players in battlegrounds
++ gn_add on screen
++ Class change
++ Gear score fixed for cursed draconic relics
+
+### XDB updates
+
 #### 24-10-2018: Add class exchange items and Spells
 + Add class exhange spell and item for all classes
 
